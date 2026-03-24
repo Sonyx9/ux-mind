@@ -16,7 +16,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   <Navbar />
 
   <!-- HERO SECTION -->
-  <section class="relative min-h-screen overflow-hidden">
+  <section class="relative overflow-hidden" style="height:100vh; min-height:640px;">
 
     <!-- Background grid: 4 columns × 3 rows, plus markers at intersections -->
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
@@ -33,12 +33,6 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       )}
     </div>
 
-    <!-- Time display — below NAŠE SPECIALIZACE -->
-    <div class="absolute left-6 z-10 flex items-center gap-3" style="top: calc(83.333% + 80px);">
-      <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX VÝZKUM</p>
-      <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
-    </div>
-
     <!-- Center CTA -->
     <div class="absolute top-0 left-1/2 -translate-x-1/2 z-[60] pt-5 hidden md:block">
       <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200" style="--tw-bg-opacity:1;" onmouseover="this.style.background='transparent';this.style.color='#0A0A0A';" onmouseout="this.style.background='#0A0A0A';this.style.color='#FCFCFC';">
@@ -48,7 +42,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     <!-- Large headline — inside top grid rectangle (0–33.333%) -->
     <div class="absolute left-6 z-10" style="top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
-      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(4rem, 12vw, 11rem); line-height: 0.9; margin: 0; padding: 0;">
+      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(3rem, min(10vw, 13vh), 9rem); line-height: 0.9; margin: 0; padding: 0;">
         UX<br/>MIND.
       </h1>
       <!-- Mobile-only: first annotation below heading -->
@@ -62,7 +56,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     <!-- Center 3D Brain — desktop only -->
     <div class="hidden md:flex absolute inset-0 items-center justify-center">
-      <div id="hero-gif-container" class="relative" style="width: min(78vw, 840px); height: min(78vh, 780px);">
+      <div id="hero-gif-container" class="relative" style="width: min(66vw, 760px); height: min(50vh, 540px);">
         <!-- Hero GIF - plays once then freezes on last frame -->
         <img
           id="hero-gif"
@@ -73,7 +67,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
         <!-- Annotation: top — text visible in hero below CTA, line goes down into image -->
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
-          <p class="font-mono text-[11px] tracking-widest text-center mb-1 max-w-32">KDE VÝZKUM<br/>ODHALUJE PRAVDU</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">KDE VÝZKUM<br/>ODHALUJE PRAVDU</p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
@@ -81,7 +75,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         <!-- Annotation: left — text left of container, dot at 22% from left -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
           <div class="text-right mr-2">
-            <p class="font-mono text-[11px] tracking-widest">Z POHLEDU UŽIVATELE,<br/>VZNIKÁ DESIGN</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">Z POHLEDU UŽIVATELE,<br/>VZNIKÁ DESIGN</p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
@@ -92,7 +86,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
-            <p class="font-mono text-[11px] tracking-widest">EYE TRACKING<br/>ODHALUJE CO<br/>LIDÉ OPRAVDU VIDÍ</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>ODHALUJE CO<br/>LIDÉ OPRAVDU VIDÍ</p>
           </div>
         </div>
 
@@ -101,7 +95,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
-            <p class="font-mono text-[11px] tracking-widest">ZÁKLAD<br/>PRO RŮST</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">ZÁKLAD<br/>PRO RŮST</p>
           </div>
         </div>
 
@@ -109,14 +103,14 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
-          <p class="font-mono text-[11px] tracking-widest text-center mt-1 max-w-24">DATA<br/>MÍSTO DOJMŮ</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATA<br/>MÍSTO DOJMŮ</p>
         </div>
 
       </div>
     </div><!-- end desktop gif container -->
 
     <!-- Info box: stats (top right) -->
-    <div class="hidden md:block absolute top-24 right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="min-width:200px;">
+    <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(52px,5.5vh,80px); min-width:clamp(160px,14vw,200px);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
         <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
@@ -124,21 +118,21 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold text-2xl leading-none stat-projects">50+</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">PROJEKTŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">PROJEKTŮ</p>
         </div>
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold text-2xl leading-none stat-respondents">200+</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">RESPONDENTŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTŮ</p>
         </div>
-        <div class="flex items-baseline justify-between border-t border-brand-black/20 pt-2 mt-1">
+        <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
           <p class="font-display font-bold text-2xl leading-none stat-clicks">50%</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">VÍCE PROKLIKŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">VÍCE PROKLIKŮ</p>
         </div>
       </div>
     </div>
 
     <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
-    <div class="absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
+    <div class="hero-spec-list absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
       <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ NAŠE SPECIALIZACE ]</p>
       <div class="space-y-3">
         {[
@@ -158,26 +152,30 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           </div>
         ))}
       </div>
+      <div class="flex items-center gap-3 mt-3">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX VÝZKUM</p>
+        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
+      </div>
     </div>
 
     <!-- Info box: about us — fills right half of bottom grid rectangle -->
-    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black p-6 bg-brand-white/90 backdrop-blur-sm flex-col justify-between"
-      style="left:calc(75% + 40px); right:40px; top:calc(66.667% + 40px); bottom:40px;">
+    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black bg-brand-white/90 backdrop-blur-sm flex-col justify-between overflow-hidden"
+      style="left:calc(75% + clamp(12px,1.8vw,32px)); right:clamp(12px,1.8vw,32px); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
-        <div class="mb-3">
-          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5" style="font-size:11px;">NE AGENTURA – ODBORNÍCI</p>
+        <div class="mb-2">
+          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5" style="font-size:clamp(9px,0.75vw,11px);">NE AGENTURA – ODBORNÍCI</p>
         </div>
-        <p class="font-mono text-xs text-brand-black/60 leading-relaxed">
+        <p class="font-mono text-brand-black/60 leading-relaxed" style="font-size:clamp(9px,0.75vw,11px);">
           Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
         </p>
-        <div class="flex gap-2 mt-4">
-          <a href="/o-nas" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">O NÁS</a>
-          <a href="/kontakt" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">KONTAKT</a>
+        <div class="flex gap-2 mt-2">
+          <a href="/o-nas" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">O NÁS</a>
+          <a href="/kontakt" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">KONTAKT</a>
         </div>
       </div>
-      <div class="mt-4 pt-4 border-t border-brand-black/20 flex items-center justify-between">
-        <p class="font-mono text-[10px] text-brand-black/40 tracking-widest whitespace-nowrap">PROJEKT ZA ÚČASTI:</p>
-        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6 ml-3" />
+      <div class="mt-2 pt-2 border-t border-brand-black/20 flex items-center justify-between">
+        <p class="font-mono text-brand-black/40 tracking-widest whitespace-nowrap" style="font-size:clamp(8px,0.65vw,10px);">PROJEKT ZA ÚČASTI:</p>
+        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(14px,1.6vh,24px);" />
       </div>
     </div>
 
@@ -227,7 +225,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   </style>
 
   <!-- SERVICES SECTION -->
-  <section class="px-6 py-24 max-w-7xl mx-auto">
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
       {[
         {
@@ -277,7 +275,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   </section>
 
   <!-- STATS SECTION -->
-  <section class="px-6 py-16 border-t border-brand-black/10">
+  <section class="desktop-gutter-x py-16 border-t border-brand-black/10">
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
       {[
         { num: '50+', label: 'Projektů' },
@@ -296,7 +294,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
   <!-- BLOG SECTION -->
   {posts.length > 0 && (
-    <section class="px-6 py-24 max-w-7xl mx-auto">
+    <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
       <div class="flex justify-between items-end mb-12">
         <div>
           <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ BLOG ]</p>
@@ -336,7 +334,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   )}
 
   <!-- CTA SECTION -->
-  <section class="px-6 py-24 bg-brand-black text-brand-white">
+  <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
     <div class="max-w-4xl mx-auto text-center">
       <p class="font-mono text-xs text-brand-white/40 tracking-widest mb-6">[ ZAČNĚME SPOLUPRACOVAT ]</p>
       <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">
@@ -385,6 +383,12 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     // Annotations — appear after GIF finishes playing
     function animateAnnotations() {
+      const gifContainer = document.getElementById('hero-gif-container');
+      const gifH = gifContainer ? gifContainer.offsetHeight : 630;
+      const gifW = gifContainer ? gifContainer.offsetWidth : 840;
+      const scaleH = gifH / 630;
+      const scaleW = gifW / 840;
+
       document.querySelectorAll<HTMLElement>('.ann').forEach((ann, i) => {
         setTimeout(() => {
           ann.style.transition = 'opacity 0.3s ease';
@@ -392,9 +396,14 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           const line = ann.querySelector<HTMLElement>('.ann-line');
           if (!line) return;
           line.style.transition = 'width 0.5s ease, height 0.5s ease';
-          const custom = line.dataset.size;
-          if (line.classList.contains('w-px')) line.style.height = (custom ?? '150') + 'px';
-          else line.style.width = (custom ?? '170') + 'px';
+          const base = line.dataset.size ? parseInt(line.dataset.size) : null;
+          if (line.classList.contains('w-px')) {
+            const size = Math.round((base ?? 150) * Math.min(scaleH, 1));
+            line.style.height = size + 'px';
+          } else {
+            const size = Math.round((base ?? 170) * Math.min(scaleW, 1));
+            line.style.width = size + 'px';
+          }
         }, GIF_DURATION + i * 250);
       });
     }
