@@ -68,7 +68,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
           <p class="font-mono text-[11px] tracking-widest text-center mb-1 max-w-32">KDE VÝZKUM<br/>ODHALUJE PRAVDU</p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;"></div></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
         <!-- Annotation: left — text left of container, dot at 22% from left -->
@@ -77,12 +77,12 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
             <p class="font-mono text-[11px] tracking-widest">Z POHLEDU UŽIVATELE,<br/>VZNIKÁ DESIGN</p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;"></div></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
         <!-- Annotation: right top — text right of container, dot at 22% from right -->
         <div class="ann absolute flex items-center opacity-0" style="right:22%; top:28%; transform:translate(100%,-50%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;"></div></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
             <p class="font-mono text-[11px] tracking-widest">EYE TRACKING<br/>ODHALUJE CO<br/>LIDÉ OPRAVDU VIDÍ</p>
@@ -91,7 +91,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
         <!-- Annotation: right bottom — text right of container, dot at 22% from right -->
         <div class="ann absolute flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;"></div></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
             <p class="font-mono text-[11px] tracking-widest">ZÁKLAD<br/>PRO RŮST</p>
@@ -100,7 +100,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
         <!-- Annotation: bottom — text below container, dot at 18% from bottom -->
         <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;"></div></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
           <p class="font-mono text-[11px] tracking-widest text-center mt-1 max-w-24">DATA<br/>MÍSTO DOJMŮ</p>
         </div>
@@ -175,7 +175,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <!-- Cursor dot — only in hero area -->
-    <div id="cursor-dot" style="position:fixed; top:0; left:0; width:6px; height:6px; background:#0A0A0A; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); opacity:0;"></div>
+    <div id="cursor-dot" style="position:fixed;top:0;left:0;width:8px;height:8px;background:#0A0A0A;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;"></div>
 
     <!-- Scroll indicator -->
     <div class="absolute bottom-6 z-10 flex flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
@@ -422,11 +422,22 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     if (box) observer.observe(box);
   })();
 
-  // Cursor dot — follows mouse only within hero section
+  // Cursor circle + trail — only in hero section
   (function() {
     const dot = document.getElementById('cursor-dot');
     const hero = document.querySelector<HTMLElement>('section');
     let mx = 0, my = 0, cx = 0, cy = 0;
+
+    // Canvas trail
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9996;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d')!;
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    const trail: {x: number, y: number, t: number}[] = [];
 
     function inHero() {
       if (!hero) return false;
@@ -436,7 +447,9 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
-      if (dot) dot.style.opacity = inHero() ? '1' : '0';
+      const visible = inHero();
+      if (dot) dot.style.opacity = visible ? '1' : '0';
+      if (visible) trail.push({ x: mx, y: my, t: performance.now() });
     });
     document.addEventListener('mouseleave', () => { if (dot) dot.style.opacity = '0'; });
 
@@ -444,6 +457,22 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       cx += (mx - cx) * 0.12;
       cy += (my - cy) * 0.12;
       if (dot) { dot.style.left = cx + 'px'; dot.style.top = cy + 'px'; }
+
+      // Draw trail
+      const now = performance.now();
+      const TRAIL_MS = 500;
+      while (trail.length > 1 && now - trail[0].t > TRAIL_MS) trail.shift();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 1; i < trail.length; i++) {
+        const age = (now - trail[i].t) / TRAIL_MS;
+        ctx.beginPath();
+        ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
+        ctx.lineTo(trail[i].x, trail[i].y);
+        ctx.strokeStyle = `rgba(10,10,10,${(1 - age) * 0.25})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
       requestAnimationFrame(animate);
     }
     animate();
