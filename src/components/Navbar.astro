@@ -2,12 +2,15 @@
 import { getLang, getAlternatePath, getNavLinks } from '../i18n/utils';
 
 const currentPath = Astro.url.pathname;
-const lang = getLang(currentPath);
-const alternatePath = getAlternatePath(currentPath);
-const navLinks = getNavLinks(lang);
+// Strip base prefix so comparisons work both locally and on GitHub Pages
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const path = currentPath.startsWith(base) ? currentPath.slice(base.length) || '/' : currentPath;
+const lang = getLang(path);
+const alternatePath = base + getAlternatePath(path);
+const navLinks = getNavLinks(lang).map(l => ({ ...l, href: base + l.href }));
 const altLabel = lang === 'cs' ? 'EN' : 'CZ';
-const homeHref = lang === 'cs' ? '/' : '/en/';
-const isHome = currentPath === '/' || currentPath === '/en/' || currentPath === '/en';
+const homeHref = base + (lang === 'cs' ? '/' : '/en/');
+const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply">
@@ -25,7 +28,7 @@ const isHome = currentPath === '/' || currentPath === '/en/' || currentPath === 
         <a
           href={link.href}
           class={`font-mono text-xs tracking-widest uppercase transition-opacity ${
-            currentPath === link.href || currentPath === link.href + '/' ? 'opacity-100' : 'opacity-50 hover:opacity-100'
+            currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-50 hover:opacity-100'
           }`}
         >
           {link.label}

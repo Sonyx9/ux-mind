@@ -391,7 +391,7 @@ const posts = (await getCollection('blog')).sort(
       });
     }
 
-    fetch('/hero.gif')
+    fetch(import.meta.env.BASE_URL + 'hero.gif')
       .then(r => r.arrayBuffer())
       .then(buf => {
         const src = new Uint8Array(buf);
