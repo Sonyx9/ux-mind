@@ -483,7 +483,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       const target = e.target as HTMLElement;
       if (target.closest('a, button, input, textarea, select, [role="button"]')) return;
       const el = document.createElement('div');
-      el.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:6px;height:6px;border:1px solid #0A0A0A;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) scale(1);transition:transform 0.4s ease,opacity 0.4s ease;opacity:1;`;
+      el.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:6px;height:6px;border:1px solid #0A0A0A;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) scale(1);transition:transform 0.4s ease,opacity 0.4s ease;opacity:1;`;
       document.body.appendChild(el);
       requestAnimationFrame(() => {
         el.style.transform = 'translate(-50%,-50%) scale(5)';
