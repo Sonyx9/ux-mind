@@ -10,12 +10,16 @@ export interface Props {
 const {
   title,
   description = 'UX Mind — specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.',
-  image = '/og-image.jpg',
+  image = `${import.meta.env.BASE_URL}hero.gif`,
   type = 'website',
   lang = 'cs',
 } = Astro.props;
 
+const baseUrl = import.meta.env.BASE_URL;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const resolvedImage = image.startsWith('http://') || image.startsWith('https://')
+  ? image
+  : new URL(image.replace(/^\//, ''), new URL(baseUrl, Astro.site)).toString();
 const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
 ---
 
@@ -24,7 +28,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -38,7 +42,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={resolvedImage} />
     <meta property="og:locale" content="cs_CZ" />
     <meta property="og:site_name" content="UX Mind" />
 
@@ -47,7 +51,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={fullTitle} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={resolvedImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
