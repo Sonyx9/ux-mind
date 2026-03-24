@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="Case Studies"
+  description="Examples of UX projects: eye tracking, UX audit and user research for e-commerce, SaaS and media."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ CASE STUDIES ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          RESULTS<br/>SPEAK.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+        {[
+          {
+            category: 'E-commerce',
+            title: 'Eye tracking e-shop — +34% conversions',
+            desc: 'Eye tracking revealed that users were missing the main CTA button due to its poor position in the F-pattern layout. After the redesign, conversions increased by 34%.',
+            tags: ['Eye Tracking', 'E-commerce', 'Conversions'],
+            result: '+34% conversions',
+          },
+          {
+            category: 'SaaS',
+            title: 'UX audit of onboarding — churn reduced by 28%',
+            desc: 'A systematic audit of the onboarding process revealed 12 critical issues. Implementing the recommendations reduced the churn rate of new users by 28%.',
+            tags: ['UX Audit', 'SaaS', 'Onboarding'],
+            result: '-28% churn',
+          },
+          {
+            category: 'Media',
+            title: 'News portal readability',
+            desc: 'Eye tracking analysis showed how readers consume news. A layout redesign increased average reading time by 45% and click-through rate by 22%.',
+            tags: ['Eye Tracking', 'Media', 'UX Design'],
+            result: '+45% reading time',
+          },
+          {
+            category: 'Financial Sector',
+            title: 'User research — mobile banking',
+            desc: 'In-depth interviews and usability testing of a mobile banking app. Identifying 8 key pain points led to a redesign of critical features.',
+            tags: ['UX Research', 'Mobile', 'Fintech'],
+            result: '8 pain points → 0',
+          },
+        ].map(study => (
+          <div class="bg-brand-white p-10">
+            <div class="flex justify-between items-start mb-6">
+              <span class="font-mono text-xs text-brand-black/40 border border-brand-black/20 px-2 py-0.5">{study.category}</span>
+              <span class="font-display text-2xl font-bold text-brand-black/10">{study.result}</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              {study.tags.map(tag => (
+                <span class="font-mono text-xs text-brand-black/40 border border-brand-black/10 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center py-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-6">[ WANT SIMILAR RESULTS? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Let's work on your project</h2>
+        <a href="/en/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          GET A QUOTE →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

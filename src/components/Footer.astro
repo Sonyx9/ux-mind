@@ -1,0 +1,58 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-brand-black/10 px-6 py-12 mt-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+    <div class="md:col-span-2">
+      <p class="font-mono text-xs tracking-widest uppercase mb-4">UX MIND</p>
+      <p class="text-sm text-brand-black/60 max-w-xs leading-relaxed">
+        Specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.
+      </p>
+    </div>
+
+    <div>
+      <p class="font-mono text-xs tracking-widest uppercase mb-4 text-brand-black/40">Navigace</p>
+      <ul class="space-y-2">
+        {[
+          { href: '/sluzby', label: 'Služby' },
+          { href: '/eye-tracking', label: 'Eye Tracking' },
+          { href: '/ux-vyzkum', label: 'UX Výzkum' },
+          { href: '/pripadove-studie', label: 'Případové studie' },
+          { href: '/blog', label: 'Blog' },
+        ].map(link => (
+          <li>
+            <a href={link.href} class="text-sm text-brand-black/60 hover:text-brand-black transition-colors">
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-mono text-xs tracking-widest uppercase mb-4 text-brand-black/40">Kontakt</p>
+      <ul class="space-y-2">
+        <li>
+          <a href="mailto:info@uxmind.cz" class="text-sm text-brand-black/60 hover:text-brand-black transition-colors">
+            info@uxmind.cz
+          </a>
+        </li>
+        <li>
+          <a href="/kontakt" class="text-sm text-brand-black/60 hover:text-brand-black transition-colors">
+            Napsat nám
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto mt-12 pt-8 border-t border-brand-black/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <p class="font-mono text-xs text-brand-black/40">
+      © {currentYear} UX Mind. Všechna práva vyhrazena.
+    </p>
+    <p class="font-mono text-xs text-brand-black/40">
+      UX / EYE TRACKING / VÝZKUM UŽIVATELŮ
+    </p>
+  </div>
+</footer>

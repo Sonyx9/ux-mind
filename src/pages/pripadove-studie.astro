@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Případové studie"
+  description="Příklady UX projektů: eye tracking, UX audit a výzkum uživatelů pro e-commerce, SaaS a média."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ PŘÍPADOVÉ STUDIE ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          VÝSLEDKY<br/>MLUVÍ.
+        </h1>
+      </div>
+
+      <!-- Case studies grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+        {[
+          {
+            category: 'E-commerce',
+            title: 'Eye tracking e-shopu — +34 % konverzí',
+            desc: 'Eye tracking odhalil, že uživatelé přehlíží hlavní CTA tlačítko kvůli špatné pozici v F-pattern layoutu. Po redesignu konverze vzrostly o 34 %.',
+            tags: ['Eye Tracking', 'E-commerce', 'Konverze'],
+            result: '+34 % konverzí',
+          },
+          {
+            category: 'SaaS',
+            title: 'UX audit onboardingu — snížení churnu o 28 %',
+            desc: 'Systematický audit onboardingového procesu odhalil 12 kritických problémů. Implementace doporučení snížila míru odchodu nových uživatelů o 28 %.',
+            tags: ['UX Audit', 'SaaS', 'Onboarding'],
+            result: '-28 % churn',
+          },
+          {
+            category: 'Média',
+            title: 'Čitelnost zpravodajského portálu',
+            desc: 'Eye tracking analýza ukázala jak čtenáři konzumují zprávy. Redesign layoutu zvýšil průměrnou dobu čtení o 45 % a počet prokliků o 22 %.',
+            tags: ['Eye Tracking', 'Média', 'UX Design'],
+            result: '+45 % čtení',
+          },
+          {
+            category: 'Finanční sektor',
+            title: 'Výzkum uživatelů — mobilní bankovnictví',
+            desc: 'Hloubkové rozhovory a testování použitelnosti mobilní bankovní aplikace. Identifikace 8 hlavních pain points vedla k redesignu klíčových funkcí.',
+            tags: ['UX Výzkum', 'Mobile', 'Fintech'],
+            result: '8 pain points → 0',
+          },
+        ].map(study => (
+          <div class="bg-brand-white p-10">
+            <div class="flex justify-between items-start mb-6">
+              <span class="font-mono text-xs text-brand-black/40 border border-brand-black/20 px-2 py-0.5">{study.category}</span>
+              <span class="font-display text-2xl font-bold text-brand-black/10">{study.result}</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              {study.tags.map(tag => (
+                <span class="font-mono text-xs text-brand-black/40 border border-brand-black/10 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center py-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-6">[ CHCETE PODOBNÉ VÝSLEDKY? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Pojďme na váš projekt</h2>
+        <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          NEZÁVAZNĚ POPTAT →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

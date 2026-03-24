@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="UX Výzkum"
+  description="Hloubkový UX výzkum uživatelů. Rozhovory, testování použitelnosti, personas a journey mapy."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ UX VÝZKUM ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          DATA<br/>MÍSTO DOJMŮ.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          Rozhodování na základě dat, ne předpokladů. UX výzkum vám ukáže, co vaši uživatelé skutečně potřebují.
+        </p>
+      </div>
+
+      <!-- Methods grid -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ METODY VÝZKUMU ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+          {[
+            { title: 'Hloubkové rozhovory', type: 'Kvalitativní', desc: 'Individuální rozhovory s uživateli odhalují motivace, frustrace a mentální modely.' },
+            { title: 'Testování použitelnosti', type: 'Kvalitativní', desc: 'Sledujeme uživatele při plnění úkolů a identifikujeme kde selhávají.' },
+            { title: 'Kontextuální výzkum', type: 'Kvalitativní', desc: 'Pozorujeme uživatele v jejich přirozeném prostředí, jak skutečně pracují.' },
+            { title: 'Dotazníkové šetření', type: 'Kvantitativní', desc: 'Velká data od mnoha respondentů pro statisticky relevantní závěry.' },
+            { title: 'A/B testování', type: 'Kvantitativní', desc: 'Porovnáváme varianty designu na reálném provozu a měříme výsledky.' },
+            { title: 'Card sorting', type: 'Smíšené', desc: 'Zjišťujeme jak uživatelé kategorizují obsah pro lepší informační architekturu.' },
+          ].map(method => (
+            <div class="bg-brand-white p-8">
+              <span class="font-mono text-xs text-brand-black/30 border border-brand-black/20 px-2 py-0.5 mb-4 inline-block">{method.type}</span>
+              <h3 class="font-display text-xl font-bold mb-3 mt-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Deliverables -->
+      <div class="mb-24 border-t border-brand-black/10 pt-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ CO DOSTANETE ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {[
+            { title: 'Výzkumná zpráva', desc: 'Komplexní dokument s metodologií, zjištěními a doporučeními.' },
+            { title: 'Personas', desc: 'Datové osoby reprezentující vaše klíčové skupiny uživatelů.' },
+            { title: 'Journey mapy', desc: 'Vizualizace cesty uživatele produktem včetně pain points.' },
+            { title: 'Prioritizovaná doporučení', desc: 'Konkrétní kroky seřazené podle dopadu a náročnosti implementace.' },
+          ].map(item => (
+            <div>
+              <h3 class="font-display text-2xl font-bold mb-3">{item.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Poznejte své uživatele do hloubky</h2>
+        <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          ZAHÁJIT VÝZKUM →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="Eye Tracking"
+  description="Eye tracking for websites, apps and print materials. Heatmaps, AOI analysis and eye movement recordings."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ EYE TRACKING ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          WE SEE<br/>WHAT YOU DON'T.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          Eye tracking reveals precise data on how users perceive your content. We know where they look, what they overlook, and what captures their attention.
+        </p>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ HOW IT WORKS ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10">
+          {[
+            { num: '01', title: 'Preparation', desc: 'We set up test scenarios based on your goals. We define the AOIs (Areas of Interest) we want to track.' },
+            { num: '02', title: 'Testing', desc: 'Users interact with your product while the eye tracker precisely records their eye movements.' },
+            { num: '03', title: 'Analysis', desc: 'We process the data into visual heatmaps, gaze plots, and AOI statistics.' },
+            { num: '04', title: 'Recommendations', desc: 'We deliver specific recommendations on how to improve layout and content hierarchy.' },
+          ].map(step => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/30 mb-6">{step.num}</p>
+              <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ WHERE WE HELP ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            { title: 'Websites', desc: 'We find out where users spend time, what they overlook, and why they don\'t respond to your CTAs.' },
+            { title: 'Mobile Apps', desc: 'We test the navigation, readability and usability of your mobile products.' },
+            { title: 'E-commerce', desc: 'We optimise product pages, carts and checkouts for better conversions.' },
+            { title: 'Print Materials', desc: 'Banners, posters, packaging — we find out what draws attention on physical materials.' },
+          ].map(usecase => (
+            <div class="border border-brand-black/10 p-8">
+              <h3 class="font-display text-2xl font-bold mb-3">{usecase.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Find out what your users see</h2>
+        <a href="/en/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          SCHEDULE TESTING →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

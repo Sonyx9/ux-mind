@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="en"
+  title="UX Research"
+  description="In-depth UX user research. Interviews, usability testing, personas and journey maps."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ UX RESEARCH ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          DATA<br/>OVER ASSUMPTIONS.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          Decision-making based on data, not guesswork. UX research shows you what your users truly need.
+        </p>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ RESEARCH METHODS ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+          {[
+            { title: 'In-depth Interviews', type: 'Qualitative', desc: 'One-on-one interviews with users reveal motivations, frustrations and mental models.' },
+            { title: 'Usability Testing', type: 'Qualitative', desc: 'We observe users completing tasks and identify where they fail.' },
+            { title: 'Contextual Research', type: 'Qualitative', desc: 'We observe users in their natural environment to see how they actually work.' },
+            { title: 'Survey Research', type: 'Quantitative', desc: 'Large datasets from many respondents for statistically relevant conclusions.' },
+            { title: 'A/B Testing', type: 'Quantitative', desc: 'We compare design variants on real traffic and measure results.' },
+            { title: 'Card Sorting', type: 'Mixed', desc: 'We discover how users categorise content to improve information architecture.' },
+          ].map(method => (
+            <div class="bg-brand-white p-8">
+              <span class="font-mono text-xs text-brand-black/30 border border-brand-black/20 px-2 py-0.5 mb-4 inline-block">{method.type}</span>
+              <h3 class="font-display text-xl font-bold mb-3 mt-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-24 border-t border-brand-black/10 pt-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ WHAT YOU GET ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {[
+            { title: 'Research Report', desc: 'A comprehensive document with methodology, findings and recommendations.' },
+            { title: 'Personas', desc: 'Data-driven characters representing your key user groups.' },
+            { title: 'Journey Maps', desc: 'Visualisation of the user\'s path through the product, including pain points.' },
+            { title: 'Prioritised Recommendations', desc: 'Specific steps ordered by impact and implementation effort.' },
+          ].map(item => (
+            <div>
+              <h3 class="font-display text-2xl font-bold mb-3">{item.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Get to know your users in depth</h2>
+        <a href="/en/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          START RESEARCH →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

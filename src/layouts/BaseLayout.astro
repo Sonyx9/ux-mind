@@ -1,0 +1,105 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: string;
+  lang?: string;
+}
+
+const {
+  title,
+  description = 'UX Mind — specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.',
+  image = '/og-image.jpg',
+  type = 'website',
+  lang = 'cs',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:site_name" content="UX Mind" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-brand-white text-brand-black">
+    <slot />
+
+    <!-- Cursor dot -->
+    <div id="cursor-dot" style="position:fixed; top:0; left:0; width:8px; height:8px; background:#0A0A0A; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.1s ease; opacity:0;"></div>
+
+    <script>
+      const dot = document.getElementById('cursor-dot');
+      let mx = 0, my = 0, cx = 0, cy = 0;
+
+      // Hero section ends at 100vh, carousel is below — hide dot after hero+carousel
+      function isInHero(y: number): boolean {
+        const hero = document.querySelector('section');
+        const carousel = document.getElementById('logo-track')?.closest('div');
+        if (!hero) return true;
+        const heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+        const carouselBottom = carousel
+          ? carousel.getBoundingClientRect().bottom + window.scrollY
+          : heroBottom;
+        return (y + window.scrollY) <= carouselBottom;
+      }
+
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        if (dot) dot.style.opacity = isInHero(my) ? '1' : '0';
+      });
+
+      document.addEventListener('mouseleave', () => {
+        if (dot) dot.style.opacity = '0';
+      });
+
+      window.addEventListener('scroll', () => {
+        if (dot) dot.style.opacity = isInHero(my) ? '1' : '0';
+      }, { passive: true });
+
+      function animate() {
+        cx += (mx - cx) * 0.12;
+        cy += (my - cy) * 0.12;
+        if (dot) {
+          dot.style.left = cx + 'px';
+          dot.style.top = cy + 'px';
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    </script>
+  </body>
+</html>
