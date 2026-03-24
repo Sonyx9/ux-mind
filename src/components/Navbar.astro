@@ -10,20 +10,22 @@ const alternatePath = base + getAlternatePath(path);
 const navLinks = getNavLinks(lang).map(l => ({ ...l, href: base + l.href }));
 const altLabel = lang === 'cs' ? 'EN' : 'CZ';
 const homeHref = base + (lang === 'cs' ? '/' : '/en/');
+const contactHref = base + (lang === 'cs' ? '/kontakt' : '/en/contact');
+const mobileCTALabel = lang === 'cs' ? 'DOMLUVIT SCHŮZKU' : 'BOOK A MEETING';
 const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
   <div id="nav-inner" class={`desktop-gutter-x flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
-    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style={`font-size:clamp(1.05rem, 0.5vw + 0.9rem, 1.25rem); line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
+    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity ml-[5px]" style={`font-size:clamp(1.05rem, 0.5vw + 0.9rem, 1.25rem); line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
       UX MIND.
     </a>
 
     <!-- Mobile CTA — only on homepage, left side -->
     {isHome && (
-      <a href={`${base}/kontakt`} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5">
-        DOMLUVIT SCHŮZKU
+      <a href={contactHref} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5">
+        {mobileCTALabel}
       </a>
     )}
 
