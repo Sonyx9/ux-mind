@@ -8,7 +8,7 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 ).slice(0, 3);
 
-const gifSrc = `${import.meta.env.BASE_URL}hero.gif`;
+const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
 ---
 
 <BaseLayout title="UX Mind" description="UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.">
