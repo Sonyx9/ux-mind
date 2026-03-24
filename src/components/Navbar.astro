@@ -13,14 +13,12 @@ const homeHref = base + (lang === 'cs' ? '/' : '/en/');
 const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
   <div class={`px-6 flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
     <!-- Logo (hidden on homepage) -->
-    {!isHome ? (
-      <a href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style="font-size:1.25rem; line-height:1;">
-        UX MIND.
-      </a>
-    ) : <div />}
+    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style={`font-size:1.25rem; line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
+      UX MIND.
+    </a>
 
     <!-- Desktop nav -->
     <div class="hidden md:flex items-center gap-8">
@@ -78,4 +76,28 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 
   btn?.addEventListener('click', () => menu?.classList.remove('hidden'));
   closeBtn?.addEventListener('click', () => menu?.classList.add('hidden'));
+
+  const nav = document.getElementById('main-nav');
+  const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;
+  const isHomePage = document.querySelector('h1') !== null && logo?.style.opacity === '0';
+
+  function updateNav() {
+    if (!nav) return;
+    const scrolled = window.scrollY > 30;
+    nav.style.background = scrolled ? 'rgba(252,252,252,0.85)' : '';
+    nav.style.backdropFilter = scrolled ? 'blur(8px)' : '';
+    nav.style.mixBlendMode = scrolled ? 'normal' : 'multiply';
+
+    if (logo && isHomePage) {
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        const h1Bottom = h1.getBoundingClientRect().bottom;
+        const showLogo = h1Bottom < 0;
+        logo.style.opacity = showLogo ? '1' : '0';
+        logo.style.pointerEvents = showLogo ? 'auto' : 'none';
+      }
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 </script>
