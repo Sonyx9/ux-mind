@@ -133,8 +133,8 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         logo.style.opacity = showLogo ? '1' : '0';
         logo.style.pointerEvents = showLogo ? 'auto' : 'none';
 
-        // Below 3xl: switch hamburger → full nav when logo appears
-        if (window.innerWidth < 1800) {
+        // Desktop only (md+): switch hamburger → full nav when logo appears
+        if (window.innerWidth >= 768 && window.innerWidth < 1800) {
           if (showLogo) {
             if (navFull) navFull.style.display = 'flex';
             if (navHamburger) navHamburger.style.display = 'none';

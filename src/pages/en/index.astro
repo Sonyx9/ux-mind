@@ -15,7 +15,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
   <Navbar />
 
   <!-- HERO SECTION -->
-  <section class="relative min-h-screen overflow-hidden">
+  <section class="relative overflow-hidden" style="height:100vh; min-height:640px;">
 
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
       style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
@@ -31,25 +31,28 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       )}
     </div>
 
-    <div class="absolute left-6 z-10 flex items-center gap-3" style="top: calc(83.333% + 80px);">
-      <p class="font-mono hero-fluid-mono text-brand-black/40 tracking-widest">UX RESEARCH</p>
-      <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- --</p>
-    </div>
-
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-10 pt-5">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-[60] pt-5 hidden md:block">
       <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200" style="--tw-bg-opacity:1;" onmouseover="this.style.background='transparent';this.style.color='#0A0A0A';" onmouseout="this.style.background='#0A0A0A';this.style.color='#FCFCFC';">
         BOOK A MEETING
       </a>
     </div>
 
     <div class="absolute left-6 z-10" style="top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
-      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(4rem, 12vw, 11rem); line-height: 0.9; margin: 0; padding: 0;">
+      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(3rem, min(10vw, 13vh), 9rem); line-height: 0.9; margin: 0; padding: 0;">
         UX<br/>MIND.
       </h1>
+      <!-- Mobile-only: first annotation below heading -->
+      <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">WHERE RESEARCH REVEALS TRUTH</p>
     </div>
 
-    <div class="absolute inset-0 flex items-center justify-center">
-      <div class="relative" style="width: min(78vw, 840px); height: min(78vh, 780px);">
+    <!-- Mobile hero image — static, shown immediately -->
+    <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.png`} alt="UX Mind" style="width:100vw; height:auto; object-fit:contain;" />
+    </div>
+
+    <!-- Center 3D Brain — desktop only -->
+    <div class="hidden md:flex absolute inset-0 items-center justify-center">
+      <div id="hero-gif-container" class="relative" style="width: min(66vw, 760px); height: min(50vh, 540px);">
         <img
           id="hero-gif"
           src={gifSrc}
@@ -96,7 +99,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       </div>
     </div>
 
-    <div class="absolute top-24 right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="min-width:200px;">
+    <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(52px,5.5vh,80px); min-width:clamp(160px,14vw,200px);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
         <p class="font-mono text-xs text-brand-black/40">/25</p>
@@ -110,15 +113,15 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           <p class="font-display font-bold text-2xl leading-none stat-respondents">200+</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTS</p>
         </div>
-        <div class="flex items-baseline justify-between border-t border-brand-black/20 pt-2 mt-1">
+        <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
           <p class="font-display font-bold text-2xl leading-none stat-clicks">50%</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
         </div>
       </div>
     </div>
 
-    <div class="absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
-      <p class="font-mono hero-fluid-mono tracking-widest mb-4 text-brand-black/40">[ OUR SPECIALIZATION ]</p>
+    <div class="hero-spec-list absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
+      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ OUR SPECIALIZATION ]</p>
       <div class="space-y-3">
         {[
           { num: '01', label: 'UX AUDIT' },
@@ -127,35 +130,39 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           { num: '04', label: 'USER TESTING' },
         ].map((item) => (
           <div class="flex items-center gap-2">
-            <p class="font-mono hero-fluid-mono text-brand-black/40 shrink-0">{item.num}.</p>
-            <span class="spec-dashes font-mono hero-fluid-mono tracking-tight">
+            <p class="font-mono text-xs text-brand-black/40 shrink-0">{item.num}.</p>
+            <span class="spec-dashes font-mono text-xs tracking-tight">
               {Array.from({length: 20}).map(() => (
                 <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
               ))}
             </span>
-            <p class="font-mono hero-fluid-mono font-medium tracking-widest whitespace-nowrap">{item.label}</p>
+            <p class="font-mono text-xs font-medium tracking-widest whitespace-nowrap">{item.label}</p>
           </div>
         ))}
       </div>
+      <div class="flex items-center gap-3 mt-3">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX RESEARCH</p>
+        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- --</p>
+      </div>
     </div>
 
-    <div class="absolute z-10 border border-brand-black p-6 bg-brand-white/90 backdrop-blur-sm flex flex-col justify-between"
-      style="left:calc(75% + 40px); right:40px; top:calc(66.667% + 40px); bottom:40px;">
+    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black bg-brand-white/90 backdrop-blur-sm flex-col justify-between overflow-hidden"
+      style="left:calc(75% + clamp(12px,1.8vw,32px)); right:clamp(12px,1.8vw,32px); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
-        <div class="mb-3">
-          <p class="font-mono text-xs font-medium tracking-widest bg-brand-black text-brand-white px-1">NOT AN AGENCY – SPECIALISTS</p>
+        <div class="mb-2">
+          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5" style="font-size:clamp(9px,0.75vw,11px);">NOT AN AGENCY – SPECIALISTS</p>
         </div>
-        <p class="font-mono hero-fluid-copy text-brand-black/60 leading-relaxed">
+        <p class="font-mono text-brand-black/60 leading-relaxed" style="font-size:clamp(9px,0.75vw,11px);">
           We are a team of UX specialists. We help companies understand their users through data, research and eye tracking.
         </p>
-        <div class="flex gap-2 mt-4">
-          <a href="/en/about" class="font-mono hero-fluid-mono border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">ABOUT US</a>
-          <a href="/en/contact" class="font-mono hero-fluid-mono border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">CONTACT</a>
+        <div class="flex gap-2 mt-2">
+          <a href="/en/about" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">ABOUT US</a>
+          <a href="/en/contact" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">CONTACT</a>
         </div>
       </div>
-      <div class="mt-4 pt-4 border-t border-brand-black/20 flex items-center justify-between">
-        <p class="font-mono hero-fluid-micro text-brand-black/40 tracking-widest whitespace-nowrap">PROJECT WITH:</p>
-        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6 ml-3" />
+      <div class="mt-2 pt-2 border-t border-brand-black/20 flex items-center justify-between">
+        <p class="font-mono text-brand-black/40 tracking-widest whitespace-nowrap" style="font-size:clamp(8px,0.65vw,10px);">PROJECT WITH:</p>
+        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(14px,1.6vh,24px);" />
       </div>
     </div>
 
@@ -167,6 +174,22 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       <div class="w-px h-8 bg-brand-black/20"></div>
     </div>
   </section>
+
+  <!-- Mobile info box — NOT AN AGENCY, above logo carousel -->
+  <div class="md:hidden border border-brand-black mx-6 my-8 p-6 flex flex-col gap-4">
+    <div>
+      <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 inline-block" style="font-size:11px;">NOT AN AGENCY – SPECIALISTS</p>
+    </div>
+    <p class="font-mono text-xs text-brand-black/60 leading-relaxed">We are a team of UX specialists. We help companies understand their users through data, research and eye tracking.</p>
+    <div class="flex gap-2">
+      <a href="/en/about" class="font-mono text-xs border border-brand-black px-2 py-1">ABOUT US</a>
+      <a href="/en/contact" class="font-mono text-xs border border-brand-black px-2 py-1">CONTACT</a>
+    </div>
+    <div class="border-t border-brand-black/20 pt-4 flex items-center justify-between">
+      <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">PROJECT WITH:</p>
+      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6" />
+    </div>
+  </div>
 
   <!-- LOGO CAROUSEL -->
   <div class="overflow-hidden border-y border-brand-black/10 py-8 bg-brand-white">
