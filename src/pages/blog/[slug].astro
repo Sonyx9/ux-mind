@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Related posts (same tags, exclude current)
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const related = allPosts
+  .filter(p => p.slug !== post.slug && p.data.tags.some((t: string) => post.data.tags.includes(t)))
+  .slice(0, 3);
+
+const dateFormatted = new Date(post.data.date).toLocaleDateString('cs-CZ', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.excerpt}
+  image={post.data.coverImage}
+  type="article"
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+
+    <!-- Article header -->
+    <div class="max-w-4xl mx-auto px-6 mb-12">
+      <div class="flex flex-wrap gap-2 mb-6">
+        {post.data.tags.map((tag: string) => (
+          <a
+            href={`/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
+            class="font-mono text-xs border border-brand-black/20 px-3 py-1 hover:border-brand-black transition-colors"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+
+      <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight tracking-tighter mb-6">
+        {post.data.title}
+      </h1>
+
+      <p class="text-xl text-brand-black/60 leading-relaxed mb-8">{post.data.excerpt}</p>
+
+      <div class="flex justify-between items-center border-t border-b border-brand-black/10 py-4">
+        <div class="flex items-center gap-4">
+          <p class="font-mono text-xs text-brand-black/40">AUTOR</p>
+          <p class="font-mono text-xs font-medium">{post.data.author}</p>
+        </div>
+        <p class="font-mono text-xs text-brand-black/40">{dateFormatted}</p>
+      </div>
+    </div>
+
+    <!-- Cover image -->
+    {post.data.coverImage && (
+      <div class="max-w-6xl mx-auto px-6 mb-12">
+        <img
+          src={post.data.coverImage}
+          alt={post.data.title}
+          class="w-full aspect-video object-cover"
+        />
+      </div>
+    )}
+
+    <!-- Video embed -->
+    {post.data.video && (
+      <div class="max-w-4xl mx-auto px-6 mb-12">
+        <div class="aspect-video">
+          {post.data.video.includes('youtube.com') || post.data.video.includes('youtu.be') ? (
+            <iframe
+              src={`https://www.youtube.com/embed/${post.data.video.split('v=')[1]?.split('&')[0] || post.data.video.split('/').pop()}`}
+              class="w-full h-full"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          ) : post.data.video.includes('vimeo.com') ? (
+            <iframe
+              src={`https://player.vimeo.com/video/${post.data.video.split('/').pop()}`}
+              class="w-full h-full"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          ) : null}
+        </div>
+      </div>
+    )}
+
+    <!-- Article content -->
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <!-- Tags at bottom -->
+      <div class="mt-16 pt-8 border-t border-brand-black/10">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ TAGY ]</p>
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => (
+            <a
+              href={`/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`}
+              class="font-mono text-xs border border-brand-black/20 px-3 py-1.5 hover:border-brand-black transition-colors"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-12 pt-8 border-t border-brand-black/10 flex justify-between items-center">
+        <a href="/blog" class="font-mono text-xs tracking-widest border-b border-brand-black/20 pb-1 hover:border-brand-black transition-colors">
+          ← ZPĚT NA BLOG
+        </a>
+        <a href="/kontakt" class="font-mono text-xs border border-brand-black px-4 py-2 hover:bg-brand-black hover:text-brand-white transition-colors">
+          DOMLUVIT SCHŮZKU →
+        </a>
+      </div>
+    </div>
+
+    <!-- Related posts -->
+    {related.length > 0 && (
+      <div class="max-w-7xl mx-auto px-6 mt-24 pt-12 border-t border-brand-black/10">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ PODOBNÉ ČLÁNKY ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {related.map(rpost => (
+            <a href={`/blog/${rpost.slug}`} class="group">
+              {rpost.data.coverImage && (
+                <div class="aspect-video overflow-hidden mb-4">
+                  <img src={rpost.data.coverImage} alt={rpost.data.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+              )}
+              <h3 class="font-display text-xl font-bold group-hover:opacity-60 transition-opacity">{rpost.data.title}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

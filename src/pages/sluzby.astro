@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Služby"
+  description="UX audit, eye tracking, UX výzkum a testování uživatelů. Komplexní portfolio UX služeb pro digitální produkty."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Header -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ NAŠE SLUŽBY ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter" style="font-size: clamp(3.5rem, 10vw, 9rem);">
+          CO<br/>DĚLÁME.
+        </h1>
+      </div>
+
+      <!-- Services list -->
+      <div class="space-y-px border border-brand-black/10">
+        {[
+          {
+            num: '01',
+            title: 'UX Audit',
+            desc: 'Systematická analýza vašeho digitálního produktu. Procházíme rozhraní z pohledu uživatele, identifikujeme bariéry a navrhujeme konkrétní zlepšení s prioritizací podle dopadu.',
+            details: ['Heuristická analýza', 'Analýza tok uživatele', 'Prioritizovaný seznam doporučení', 'Workshop s týmem', 'Výstupní zpráva s mockupy'],
+            duration: '2–4 týdny',
+          },
+          {
+            num: '02',
+            title: 'Eye Tracking',
+            desc: 'Přesná data o vizuálním vnímání vašeho obsahu. Sledujeme pohyb očí uživatelů při interakci s webem, aplikací nebo tiskovými materiály.',
+            details: ['Heatmapy pozornosti', 'Analýza AOI (Areas of Interest)', 'Záznamy pohybu očí', 'F-pattern & Z-pattern analýza', 'Srovnávací testování variant'],
+            duration: '1–3 týdny',
+          },
+          {
+            num: '03',
+            title: 'UX Výzkum',
+            desc: 'Hloubkový výzkum uživatelů kombinující kvalitativní a kvantitativní metody. Pomáháme porozumět potřebám, frustracím a mentálním modelům vašich uživatelů.',
+            details: ['Hloubkové rozhovory', 'Kontextuální výzkum', 'Testování použitelnosti', 'Analýza dat', 'Personas & Journey mapy'],
+            duration: '3–8 týdnů',
+          },
+          {
+            num: '04',
+            title: 'Testování uživatelů',
+            desc: 'Moderované i nemoderované testy s reálnými uživateli. Sledujeme jak uživatelé plní úkoly ve vašem produktu a identifikujeme, kde selhávají.',
+            details: ['Moderované session testy', 'Nemoderované online testy', 'Think-aloud protokol', 'Záznam obrazovky', 'Analýza a doporučení'],
+            duration: '1–4 týdny',
+          },
+        ].map(service => (
+          <div class="p-8 md:p-12 border-b border-brand-black/10 last:border-0">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="md:col-span-2">
+                <div class="flex items-baseline gap-4 mb-4">
+                  <span class="font-mono text-xs text-brand-black/30">{service.num}</span>
+                  <h2 class="font-display text-3xl md:text-4xl font-bold">{service.title}</h2>
+                </div>
+                <p class="text-brand-black/60 leading-relaxed mb-6">{service.desc}</p>
+                <ul class="space-y-1">
+                  {service.details.map(d => (
+                    <li class="font-mono text-xs text-brand-black/60 flex gap-2">
+                      <span>→</span> {d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="flex flex-col justify-between">
+                <div>
+                  <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-1">DÉLKA PROJEKTU</p>
+                  <p class="font-display text-lg font-semibold">{service.duration}</p>
+                </div>
+                <a href="/kontakt" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors mt-6 text-center">
+                  NEZÁVAZNĚ SE ZEPTAT →
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

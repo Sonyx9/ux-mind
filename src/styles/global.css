@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FCFCFC;
+    color: #0A0A0A;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #0A0A0A;
+    color: #FAFAFA;
+  }
+}
+
+@layer components {
+  .annotation-line {
+    position: absolute;
+    background-color: #0A0A0A;
+    pointer-events: none;
+  }
+
+  .annotation-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #0A0A0A;
+    position: absolute;
+  }
+
+  .crosshair::before,
+  .crosshair::after {
+    content: '';
+    position: absolute;
+    background-color: #0A0A0A;
+  }
+  .crosshair::before {
+    width: 12px;
+    height: 1px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .crosshair::after {
+    width: 1px;
+    height: 12px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Prose styles for blog */
+.prose h1 { @apply text-4xl font-bold font-display mb-6 mt-10 leading-tight; }
+.prose h2 { @apply text-3xl font-bold font-display mb-4 mt-8 leading-tight; }
+.prose h3 { @apply text-2xl font-semibold font-display mb-3 mt-6; }
+.prose p { @apply text-lg leading-relaxed mb-6 text-brand-black/80; }
+.prose ul { @apply list-disc list-outside ml-6 mb-6 space-y-2; }
+.prose ol { @apply list-decimal list-outside ml-6 mb-6 space-y-2; }
+.prose li { @apply text-lg text-brand-black/80; }
+.prose a { @apply underline hover:text-brand-accent transition-colors; }
+.prose blockquote { @apply border-l-4 border-brand-black pl-6 italic text-xl my-8; }
+.prose code { @apply font-mono text-sm bg-black/5 px-1.5 py-0.5 rounded; }
+.prose pre { @apply font-mono text-sm bg-brand-black text-brand-white p-6 rounded-none overflow-x-auto my-8; }
+.prose img { @apply w-full my-8; }
+.prose hr { @apply border-brand-black/20 my-12; }
+.prose strong { @apply font-semibold; }

@@ -1,0 +1,471 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+).slice(0, 3);
+---
+
+<BaseLayout lang="en" title="UX Mind" description="UX research, UX audit and eye tracking. Helping companies create better digital products.">
+  <Navbar />
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen overflow-hidden">
+
+    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
+      style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
+      {[0, 25, 50, 75, 100].flatMap(x =>
+        [0, 33.333, 66.667, 100].map(y => (
+          <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
+            <div class="relative" style="width:14px; height:14px;">
+              <div class="absolute" style="top:50%; left:0; width:14px; height:1px; background:rgba(10,10,10,0.22); transform:translateY(-50%);"></div>
+              <div class="absolute" style="left:50%; top:0; height:14px; width:1px; background:rgba(10,10,10,0.22); transform:translateX(-50%);"></div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+
+    <div class="absolute left-6 z-10 flex items-center gap-3" style="top: calc(83.333% + 80px);">
+      <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX RESEARCH</p>
+      <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- --</p>
+    </div>
+
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-10 pt-5">
+      <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200" style="--tw-bg-opacity:1;" onmouseover="this.style.background='transparent';this.style.color='#0A0A0A';" onmouseout="this.style.background='#0A0A0A';this.style.color='#FCFCFC';">
+        BOOK A MEETING
+      </a>
+    </div>
+
+    <div class="absolute left-6 z-10" style="top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
+      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(4rem, 12vw, 11rem); line-height: 0.9; margin: 0; padding: 0;">
+        UX<br/>MIND.
+      </h1>
+    </div>
+
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="relative" style="width: min(78vw, 840px); height: min(78vh, 780px);">
+        <img
+          id="hero-gif"
+          src=""
+          alt="UX Mind"
+          class="w-full h-full object-contain"
+        />
+
+        <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
+          <p class="font-mono text-[11px] tracking-widest text-center mb-1 max-w-32">WHERE RESEARCH<br/>REVEALS TRUTH</p>
+          <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
+          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+        </div>
+
+        <div class="ann absolute flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
+          <div class="text-right mr-2">
+            <p class="font-mono text-[11px] tracking-widest">FROM THE USER'S<br/>PERSPECTIVE, DESIGN EMERGES</p>
+          </div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+        </div>
+
+        <div class="ann absolute flex items-center opacity-0" style="right:22%; top:28%; transform:translate(100%,-50%);">
+          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="ml-2">
+            <p class="font-mono text-[11px] tracking-widest">EYE TRACKING<br/>REVEALS WHAT<br/>PEOPLE TRULY SEE</p>
+          </div>
+        </div>
+
+        <div class="ann absolute flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
+          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="ml-2">
+            <p class="font-mono text-[11px] tracking-widest">FOUNDATION<br/>FOR GROWTH</p>
+          </div>
+        </div>
+
+        <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
+          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+          <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
+          <p class="font-mono text-[11px] tracking-widest text-center mt-1 max-w-24">DATA<br/>OVER IMPRESSIONS</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="absolute top-24 right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="min-width:200px;">
+      <div class="flex justify-between items-center mb-3">
+        <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
+        <p class="font-mono text-xs text-brand-black/40">/25</p>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-baseline justify-between">
+          <p class="font-display font-bold text-2xl leading-none stat-projects">50+</p>
+          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">PROJECTS</p>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <p class="font-display font-bold text-2xl leading-none stat-respondents">200+</p>
+          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">RESPONDENTS</p>
+        </div>
+        <div class="flex items-baseline justify-between border-t border-brand-black/20 pt-2 mt-1">
+          <p class="font-display font-bold text-2xl leading-none stat-clicks">50%</p>
+          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
+      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ OUR SPECIALIZATION ]</p>
+      <div class="space-y-3">
+        {[
+          { num: '01', label: 'UX AUDIT' },
+          { num: '02', label: 'EYE TRACKING' },
+          { num: '03', label: 'UX RESEARCH' },
+          { num: '04', label: 'USER TESTING' },
+        ].map((item) => (
+          <div class="flex items-center gap-2">
+            <p class="font-mono text-xs text-brand-black/40 shrink-0">{item.num}.</p>
+            <span class="spec-dashes font-mono text-xs tracking-tight">
+              {Array.from({length: 20}).map(() => (
+                <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
+              ))}
+            </span>
+            <p class="font-mono text-xs font-medium tracking-widest whitespace-nowrap">{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="absolute z-10 border border-brand-black p-6 bg-brand-white/90 backdrop-blur-sm flex flex-col justify-between"
+      style="left:calc(75% + 40px); right:40px; top:calc(66.667% + 40px); bottom:40px;">
+      <div>
+        <div class="mb-3">
+          <p class="font-mono text-xs font-medium tracking-widest bg-brand-black text-brand-white px-1">NOT AN AGENCY – SPECIALISTS</p>
+        </div>
+        <p class="font-mono text-xs text-brand-black/60 leading-relaxed">
+          We are a team of UX specialists. We help companies understand their users through data, research and eye tracking.
+        </p>
+        <div class="flex gap-2 mt-4">
+          <a href="/en/about" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">ABOUT US</a>
+          <a href="/en/contact" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">CONTACT</a>
+        </div>
+      </div>
+      <div class="mt-4 pt-4 border-t border-brand-black/20 flex items-center justify-between">
+        <p class="font-mono text-[10px] text-brand-black/40 tracking-widest whitespace-nowrap">PROJECT WITH:</p>
+        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6 ml-3" />
+      </div>
+    </div>
+
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
+      <p class="font-mono text-xs text-brand-black/40 tracking-widest">SCROLL</p>
+      <div class="w-px h-8 bg-brand-black/20"></div>
+    </div>
+  </section>
+
+  <!-- LOGO CAROUSEL -->
+  <div class="overflow-hidden border-y border-brand-black/10 py-8 bg-brand-white">
+    <div id="logo-track" class="flex items-center gap-16 w-max" style="animation: logoScroll 28s linear infinite;">
+      {['ALZA', 'ČSOB', 'T-MOBILE', 'ROHLIK', 'MALL', 'NOTINO', 'KOFOLA', 'CESKATELEVIZE'].concat(['ALZA', 'ČSOB', 'T-MOBILE', 'ROHLIK', 'MALL', 'NOTINO', 'KOFOLA', 'CESKATELEVIZE']).map(name => (
+        <div class="flex items-center justify-center px-8" style="min-width:140px; height:48px;">
+          <span class="font-mono text-xs tracking-widest text-brand-black/30 uppercase select-none">{name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <style>
+    @keyframes logoScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    #logo-track:hover { animation-play-state: paused; }
+  </style>
+
+  <!-- SERVICES SECTION -->
+  <section class="px-6 py-24 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+      {[
+        {
+          num: '01',
+          title: 'UX Audit',
+          desc: 'A systematic analysis of your product. We uncover problems users quietly tolerate and propose specific improvements.',
+          href: '/en/services',
+          tags: ['Analysis', 'Recommendations', 'Prioritisation'],
+        },
+        {
+          num: '02',
+          title: 'Eye Tracking',
+          desc: 'Precise data on where users actually look. Heatmaps and gaze recordings for websites, apps and print materials.',
+          href: '/en/eye-tracking',
+          tags: ['Heatmap', 'AOI Analysis', 'Recordings'],
+        },
+        {
+          num: '03',
+          title: 'UX Research',
+          desc: 'Qualitative and quantitative user research. Interviews, usability testing, surveys and data analysis.',
+          href: '/en/ux-research',
+          tags: ['Interviews', 'Testing', 'Analysis'],
+        },
+        {
+          num: '04',
+          title: 'Case Studies',
+          desc: 'Examples of projects where we helped companies improve their products and increase conversion rates.',
+          href: '/en/case-studies',
+          tags: ['Results', 'Data', 'Examples'],
+        },
+      ].map(service => (
+        <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
+          <div class="flex justify-between items-start mb-8">
+            <p class="font-mono text-xs text-brand-black/30 group-hover:text-brand-white/30">{service.num}</p>
+            <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
+          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6">{service.desc}</p>
+          <div class="flex flex-wrap gap-2">
+            {service.tags.map(tag => (
+              <span class="font-mono text-xs border border-brand-black/20 group-hover:border-brand-white/20 px-2 py-1">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="px-6 py-16 border-t border-brand-black/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      {[
+        { num: '50+', label: 'Projects' },
+        { num: '98%', label: 'Satisfied clients' },
+        { num: '8+', label: 'Years of experience' },
+        { num: '15+', label: 'Experts in team' },
+      ].map(stat => (
+        <div class="text-center">
+          <p class="font-display text-5xl md:text-6xl font-bold mb-2">{stat.num}</p>
+          <p class="font-mono text-xs text-brand-black/50 tracking-widest uppercase">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="px-6 py-24 max-w-7xl mx-auto">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ BLOG ]</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Latest<br/>articles</h2>
+        </div>
+        <a href="/en/blog" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+          ALL ARTICLES →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="group">
+            {post.data.coverImage && (
+              <div class="aspect-video overflow-hidden mb-4 bg-brand-black/5">
+                <img
+                  src={post.data.coverImage}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div class="flex gap-2 mb-2">
+              {post.data.tags?.slice(0,2).map((tag: string) => (
+                <span class="font-mono text-xs text-brand-black/40">{tag}</span>
+              ))}
+            </div>
+            <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
+            <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
+            <p class="font-mono text-xs text-brand-black/30 mt-4">
+              {new Date(post.data.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="px-6 py-24 bg-brand-black text-brand-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="font-mono text-xs text-brand-white/40 tracking-widest mb-6">[ LET'S COLLABORATE ]</p>
+      <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">
+        READY<br/>TO HELP.
+      </h2>
+      <p class="text-lg text-brand-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
+        We'd love to hear about your challenges and show you how UX research and eye tracking can help.
+      </p>
+      <a href="/en/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+        BOOK A MEETING →
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  (function () {
+    const img = document.getElementById('hero-gif') as HTMLImageElement | null;
+    if (!img) return;
+
+    function parseGifDuration(bytes: Uint8Array): number {
+      let total = 0;
+      let frameCount = 0;
+      const hasGCT = (bytes[10] & 0x80) !== 0;
+      const gctSize = hasGCT ? 3 * (1 << ((bytes[10] & 0x07) + 1)) : 0;
+      let i = 13 + gctSize;
+      while (i < bytes.length) {
+        if (bytes[i] === 0x3B) break;
+        if (bytes[i] === 0x21 && bytes[i+1] === 0xF9) {
+          const delay = (bytes[i+4] | (bytes[i+5] << 8)) * 10;
+          total += delay > 0 ? delay : 100;
+          i += 8;
+        } else if (bytes[i] === 0x21) {
+          i += 2;
+          while (i < bytes.length && bytes[i] !== 0) i += bytes[i] + 1;
+          i++;
+        } else if (bytes[i] === 0x2C) {
+          frameCount++;
+          const packed = bytes[i+9];
+          i += 10;
+          if (packed & 0x80) i += 3 * (1 << ((packed & 0x07) + 1));
+          i++;
+          while (i < bytes.length && bytes[i] !== 0) i += bytes[i] + 1;
+          i++;
+        } else { i++; }
+      }
+      return total > 0 ? total : frameCount * 100;
+    }
+
+    function blackenDashes(duration: number) {
+      const rows = document.querySelectorAll<HTMLElement>('.spec-dashes');
+      const rowCount = rows.length;
+      const rowDelay = 350;
+      const barDelay = 90;
+      const barCount = 20;
+      const rowDuration = barCount * barDelay;
+      const totalDuration = rowDuration + (rowCount - 1) * rowDelay;
+
+      function fillCycle(startDelay: number) {
+        rows.forEach((row, ri) => {
+          const spans = Array.from(row.querySelectorAll<HTMLElement>('span'));
+          spans.forEach((span, si) => {
+            setTimeout(() => { span.style.color = 'rgb(0,0,0)'; }, startDelay + ri * rowDelay + si * barDelay);
+          });
+        });
+        const greyStart = startDelay + totalDuration + 600;
+        rows.forEach((row, ri) => {
+          const spans = Array.from(row.querySelectorAll<HTMLElement>('span'));
+          spans.forEach((span, si) => {
+            setTimeout(() => { span.style.color = 'rgb(210,210,210)'; }, greyStart + ri * rowDelay + si * barDelay);
+          });
+        });
+        const nextCycle = greyStart + totalDuration + 400;
+        setTimeout(() => fillCycle(0), nextCycle);
+      }
+      fillCycle(duration);
+    }
+
+    function animateAnnotations(duration: number) {
+      const anns = document.querySelectorAll<HTMLElement>('.ann');
+      anns.forEach((ann, i) => {
+        const delay = duration + i * 250;
+        setTimeout(() => {
+          ann.style.transition = 'opacity 0.3s ease';
+          ann.style.opacity = '1';
+          const line = ann.querySelector<HTMLElement>('.ann-line');
+          if (!line) return;
+          const isVertical = line.classList.contains('w-px');
+          line.style.transition = 'width 0.5s ease, height 0.5s ease';
+          const custom = line.dataset.size;
+          if (isVertical) {
+            line.style.height = (custom ? custom : '150') + 'px';
+          } else {
+            line.style.width = (custom ? custom : '170') + 'px';
+          }
+        }, delay);
+      });
+    }
+
+    fetch('/hero.gif')
+      .then(r => r.arrayBuffer())
+      .then(buf => {
+        const src = new Uint8Array(buf);
+        let blockStart = -1;
+        for (let i = 0; i < src.length - 19; i++) {
+          if (src[i] === 0x21 && src[i+1] === 0xFF && src[i+2] === 0x0B) {
+            const label = String.fromCharCode(...src.slice(i+3, i+14));
+            if (label === 'NETSCAPE2.0' || label === 'ANIMEXTS1.0') {
+              blockStart = i;
+              break;
+            }
+          }
+        }
+        let bytes: Uint8Array;
+        if (blockStart >= 0) {
+          bytes = new Uint8Array(src.length - 19);
+          bytes.set(src.slice(0, blockStart));
+          bytes.set(src.slice(blockStart + 19), blockStart);
+        } else {
+          bytes = src;
+        }
+        const duration = parseGifDuration(bytes);
+        const blob = new Blob([bytes], { type: 'image/gif' });
+        img.src = URL.createObjectURL(blob);
+        const gifDuration = duration > 0 ? duration : 3000;
+        blackenDashes(gifDuration);
+        animateAnnotations(gifDuration);
+      });
+  })();
+
+  (function () {
+    const stats = [
+      { selector: '.stat-projects',    end: 50,  suffix: '+' },
+      { selector: '.stat-respondents', end: 200, suffix: '+' },
+      { selector: '.stat-clicks',      end: 50,  suffix: '%' },
+    ];
+    const duration = 1400;
+    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    function runCounter(el: HTMLElement, end: number, suffix: string) {
+      const start = performance.now();
+      function step(now: number) {
+        const progress = Math.min((now - start) / duration, 1);
+        el.textContent = Math.round(easeOut(progress) * end) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        stats.forEach(({ selector, end, suffix }) => {
+          const el = document.querySelector<HTMLElement>(selector);
+          if (el) runCounter(el, end, suffix);
+        });
+        observer.disconnect();
+      });
+    }, { threshold: 0.3 });
+    const box = document.querySelector('.stat-projects')?.closest('div.space-y-2');
+    if (box) observer.observe(box);
+  })();
+
+  function updateTime() {
+    const el = document.getElementById('local-time');
+    if (!el) return;
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZone: 'Europe/Prague'
+    });
+    el.textContent = `PRG ${time}`;
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>

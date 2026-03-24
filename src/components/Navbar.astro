@@ -1,0 +1,78 @@
+---
+import { getLang, getAlternatePath, getNavLinks } from '../i18n/utils';
+
+const currentPath = Astro.url.pathname;
+const lang = getLang(currentPath);
+const alternatePath = getAlternatePath(currentPath);
+const navLinks = getNavLinks(lang);
+const altLabel = lang === 'cs' ? 'EN' : 'CZ';
+const homeHref = lang === 'cs' ? '/' : '/en/';
+const isHome = currentPath === '/' || currentPath === '/en/' || currentPath === '/en';
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply">
+  <div class={`px-6 flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
+    <!-- Logo (hidden on homepage) -->
+    {!isHome ? (
+      <a href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style="font-size:1.25rem; line-height:1;">
+        UX MIND.
+      </a>
+    ) : <div />}
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`font-mono text-xs tracking-widest uppercase transition-opacity ${
+            currentPath === link.href || currentPath === link.href + '/' ? 'opacity-100' : 'opacity-50 hover:opacity-100'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="flex items-center gap-1 font-mono text-xs tracking-widest uppercase">
+        <span class="border border-brand-black px-1.5 py-0.5 font-medium">{lang === 'cs' ? 'CZ' : 'EN'}</span>
+        <span class="opacity-30">/</span>
+        <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
+      </div>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden font-mono text-xs tracking-widest uppercase"
+      aria-label="Menu"
+    >
+      [ MENU ]
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-brand-white flex flex-col justify-center items-center gap-8 hidden"
+>
+  <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {lang === 'cs' ? 'ZAVŘÍT' : 'CLOSE'} ]</button>
+  {navLinks.map(link => (
+    <a
+      href={link.href}
+      class="font-display text-4xl font-bold hover:opacity-50 transition-opacity"
+    >
+      {link.label}
+    </a>
+  ))}
+  <a href={alternatePath} class="font-mono text-sm tracking-widest uppercase opacity-40 hover:opacity-100 transition-opacity mt-4">
+    {altLabel} ↗
+  </a>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu');
+
+  btn?.addEventListener('click', () => menu?.classList.remove('hidden'));
+  closeBtn?.addEventListener('click', () => menu?.classList.add('hidden'));
+</script>

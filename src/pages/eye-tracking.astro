@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Eye Tracking"
+  description="Eye tracking pro weby, aplikace a tiskové materiály. Heatmapy, AOI analýza a záznamy pohybu očí."
+>
+  <Navbar />
+
+  <main class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Header -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ EYE TRACKING ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          VIDÍME<br/>CO VY NE.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          Eye tracking odhaluje přesná data o tom, jak uživatelé vnímají váš obsah. Víme kam se dívají, co přehlíží a co je zaujme.
+        </p>
+      </div>
+
+      <!-- How it works -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ JAK TO FUNGUJE ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10">
+          {[
+            { num: '01', title: 'Příprava', desc: 'Nastavíme testovací scénáře podle vašich cílů. Definujeme AOI (Areas of Interest), které chceme sledovat.' },
+            { num: '02', title: 'Testování', desc: 'Uživatelé interagují s vaším produktem. Eye tracker přesně sleduje pohyb jejich očí.' },
+            { num: '03', title: 'Analýza', desc: 'Zpracujeme data do vizuálních heatmap, gaze plotů a AOI statistik.' },
+            { num: '04', title: 'Doporučení', desc: 'Předáme konkrétní doporučení jak vylepšit rozvržení a hierarchii obsahu.' },
+          ].map(step => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/30 mb-6">{step.num}</p>
+              <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Use cases -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ KDE POMŮŽEME ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            { title: 'Webové stránky', desc: 'Zjistíme kde uživatelé tráví čas, co přehlíží a proč nereagují na vaše CTA.' },
+            { title: 'Mobilní aplikace', desc: 'Testujeme navigaci, čitelnost a použitelnost vašich mobilních produktů.' },
+            { title: 'E-commerce', desc: 'Optimalizujeme produktové stránky, košík a checkout pro lepší konverze.' },
+            { title: 'Tiskové materiály', desc: 'Bannery, plakáty, obaly – zjistíme co přitahuje pozornost na fyzických materiálech.' },
+          ].map(usecase => (
+            <div class="border border-brand-black/10 p-8">
+              <h3 class="font-display text-2xl font-bold mb-3">{usecase.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Zjistěte co vidí vaši uživatelé</h2>
+        <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          DOMLUVIT TESTOVÁNÍ →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
