@@ -158,7 +158,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       style="left:calc(75% + 40px); right:40px; top:calc(66.667% + 40px); bottom:40px;">
       <div>
         <div class="mb-3">
-          <p class="font-mono text-xs font-medium tracking-widest bg-brand-black text-brand-white px-1">NE AGENTURA – ODBORNÍCI</p>
+          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5" style="font-size:11px;">NE AGENTURA – ODBORNÍCI</p>
         </div>
         <p class="font-mono text-xs text-brand-black/60 leading-relaxed">
           Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
@@ -333,7 +333,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 <script>
   // GIF plays once (Netscape block removed from file). Duration = 4760ms.
   (function () {
-    const GIF_DURATION = 4760;
+    const GIF_DURATION = 3330;
 
     // Spec-dashes loading animation — starts immediately, loops forever
     function blackenDashes() {
@@ -394,7 +394,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       { selector: '.stat-respondents',  end: 200, suffix: '+' },
       { selector: '.stat-clicks',       end: 50,  suffix: '%' },
     ];
-    const duration = 4760;
+    const duration = 3330;
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
     function runCounter(el: HTMLElement, end: number, suffix: string) {
