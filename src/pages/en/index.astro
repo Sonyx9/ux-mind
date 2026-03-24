@@ -9,6 +9,7 @@ const posts = (await getCollection('blog')).sort(
 ).slice(0, 3);
 
 const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
+const yearSuffix = new Date().getFullYear().toString().slice(-2);
 ---
 
 <BaseLayout lang="en" title="UX Mind" description="UX research, UX audit and eye tracking. Helping companies create better digital products.">
@@ -60,38 +61,43 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           class="w-full h-full object-contain"
         />
 
-        <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
+        <!-- Annotation: top -->
+        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
           <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">WHERE RESEARCH<br/>REVEALS TRUTH</p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
-          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
-        <div class="ann absolute flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
+        <!-- Annotation: left -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
           <div class="text-right mr-2">
             <p class="font-mono hero-fluid-micro tracking-widest">FROM THE USER'S<br/>PERSPECTIVE, DESIGN EMERGES</p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
-          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
-        <div class="ann absolute flex items-center opacity-0" style="right:22%; top:28%; transform:translate(100%,-50%);">
-          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+        <!-- Annotation: right top -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:28%; transform:translate(100%,-50%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
             <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>REVEALS WHAT<br/>PEOPLE TRULY SEE</p>
           </div>
         </div>
 
-        <div class="ann absolute flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
-          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+        <!-- Annotation: right bottom -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
             <p class="font-mono hero-fluid-micro tracking-widest">FOUNDATION<br/>FOR GROWTH</p>
           </div>
         </div>
 
-        <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
-          <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
+        <!-- Annotation: bottom -->
+        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
           <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATA<br/>OVER IMPRESSIONS</p>
         </div>
@@ -102,7 +108,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
     <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(52px,5.5vh,80px); min-width:clamp(160px,14vw,200px);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
-        <p class="font-mono text-xs text-brand-black/40">/25</p>
+        <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
       </div>
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
@@ -142,7 +148,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       </div>
       <div class="flex items-center gap-3 mt-3">
         <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX RESEARCH</p>
-        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- --</p>
+        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
       </div>
     </div>
 
@@ -169,9 +175,9 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
     <!-- Cursor dot — only in hero area -->
     <div id="cursor-dot" style="position:fixed; top:0; left:0; width:8px; height:8px; background:#0A0A0A; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); opacity:0;"></div>
 
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
-      <p class="font-mono text-xs text-brand-black/40 tracking-widest">SCROLL</p>
-      <div class="w-px h-8 bg-brand-black/20"></div>
+    <div class="hidden md:flex absolute bottom-6 z-10 flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
+      <p class="font-mono text-xs text-brand-black/40 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
+      <div class="h-8 bg-brand-black/20" style="width: 1px;"></div>
     </div>
   </section>
 
@@ -338,14 +344,17 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
 </BaseLayout>
 
 <script>
+  // GIF plays once. Duration = 4760ms.
   (function () {
     const GIF_DURATION = 3330;
 
+    // Spec-dashes loading animation — starts immediately, loops forever
     function blackenDashes() {
       const rows = document.querySelectorAll<HTMLElement>('.spec-dashes');
       const rowDelay = 350, barDelay = 90, barCount = 20;
       const rowDuration = barCount * barDelay;
       const totalDuration = rowDuration + (rows.length - 1) * rowDelay;
+
       function fillCycle(startDelay: number) {
         rows.forEach((row, ri) => {
           Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
@@ -363,7 +372,14 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       fillCycle(0);
     }
 
+    // Annotations — appear after GIF finishes, proportional to container size
     function animateAnnotations() {
+      const gifContainer = document.getElementById('hero-gif-container');
+      const gifH = gifContainer ? gifContainer.offsetHeight : 630;
+      const gifW = gifContainer ? gifContainer.offsetWidth : 840;
+      const scaleH = gifH / 630;
+      const scaleW = gifW / 840;
+
       document.querySelectorAll<HTMLElement>('.ann').forEach((ann, i) => {
         setTimeout(() => {
           ann.style.transition = 'opacity 0.3s ease';
@@ -371,9 +387,14 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           const line = ann.querySelector<HTMLElement>('.ann-line');
           if (!line) return;
           line.style.transition = 'width 0.5s ease, height 0.5s ease';
-          const custom = line.dataset.size;
-          if (line.classList.contains('w-px')) line.style.height = (custom ?? '150') + 'px';
-          else line.style.width = (custom ?? '170') + 'px';
+          const base = line.dataset.size ? parseInt(line.dataset.size) : null;
+          if (line.classList.contains('w-px')) {
+            const size = Math.round((base ?? 150) * Math.min(scaleH, 1));
+            line.style.height = size + 'px';
+          } else {
+            const size = Math.round((base ?? 170) * Math.min(scaleW, 1));
+            line.style.width = size + 'px';
+          }
         }, GIF_DURATION + i * 250);
       });
     }
@@ -382,19 +403,24 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
 
     const img = document.getElementById('hero-gif') as HTMLImageElement | null;
     if (img) {
-      if (img.complete && img.naturalWidth > 0) animateAnnotations();
-      else img.addEventListener('load', animateAnnotations);
+      if (img.complete && img.naturalWidth > 0) {
+        animateAnnotations();
+      } else {
+        img.addEventListener('load', animateAnnotations);
+      }
     }
   })();
 
+  // Count-up animation for stats box
   (function () {
     const stats = [
-      { selector: '.stat-projects',    end: 50,  suffix: '+' },
-      { selector: '.stat-respondents', end: 200, suffix: '+' },
-      { selector: '.stat-clicks',      end: 50,  suffix: '%' },
+      { selector: '.stat-projects',     end: 50,  suffix: '+' },
+      { selector: '.stat-respondents',  end: 200, suffix: '+' },
+      { selector: '.stat-clicks',       end: 50,  suffix: '%' },
     ];
-    const duration = 1400;
+    const duration = 3330;
     const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+
     function runCounter(el: HTMLElement, end: number, suffix: string) {
       const start = performance.now();
       function step(now: number) {
@@ -404,6 +430,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       }
       requestAnimationFrame(step);
     }
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -414,36 +441,90 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
         observer.disconnect();
       });
     }, { threshold: 0.3 });
+
     const box = document.querySelector('.stat-projects')?.closest('div.space-y-2');
     if (box) observer.observe(box);
   })();
 
+  // Cursor circle + trail — only in hero section, desktop only
   (function() {
+    if (window.innerWidth < 768) return;
     const dot = document.getElementById('cursor-dot');
     const hero = document.querySelector<HTMLElement>('section');
     let mx = 0, my = 0, cx = 0, cy = 0;
+
+    // Canvas trail
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9996;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d')!;
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    const trail: {x: number, y: number, t: number}[] = [];
+
     function inHero() {
       if (!hero) return false;
       const rect = hero.getBoundingClientRect();
       return my >= rect.top && my <= rect.bottom && mx >= rect.left && mx <= rect.right;
     }
+
     document.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
-      if (dot) dot.style.opacity = inHero() ? '1' : '0';
+      const visible = inHero();
+      if (dot) dot.style.opacity = visible ? '1' : '0';
+      if (visible) trail.push({ x: mx, y: my, t: performance.now() });
     });
     document.addEventListener('mouseleave', () => { if (dot) dot.style.opacity = '0'; });
+
     function animate() {
-      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      cx += (mx - cx) * 0.12;
+      cy += (my - cy) * 0.12;
       if (dot) { dot.style.left = cx + 'px'; dot.style.top = cy + 'px'; }
+
+      const now = performance.now();
+      const TRAIL_MS = 500;
+      while (trail.length > 1 && now - trail[0].t > TRAIL_MS) trail.shift();
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 1; i < trail.length; i++) {
+        const age = (now - trail[i].t) / TRAIL_MS;
+        ctx.beginPath();
+        ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
+        ctx.lineTo(trail[i].x, trail[i].y);
+        ctx.strokeStyle = `rgba(10,10,10,${(1 - age) * 0.25})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
       requestAnimationFrame(animate);
     }
     animate();
+
+    // Click ripple — only inside hero section
+    document.addEventListener('click', (e) => {
+      if (!inHero()) return;
+      const target = e.target as HTMLElement;
+      if (target.closest('a, button, input, textarea, select, [role="button"]')) return;
+      const el = document.createElement('div');
+      el.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:6px;height:6px;border:1px solid #0A0A0A;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%) scale(1);transition:transform 0.4s ease,opacity 0.4s ease;opacity:1;`;
+      document.body.appendChild(el);
+      requestAnimationFrame(() => {
+        el.style.transform = 'translate(-50%,-50%) scale(5)';
+        el.style.opacity = '0';
+      });
+      setTimeout(() => el.remove(), 420);
+    });
   })();
 
   function updateTime() {
     const el = document.getElementById('local-time');
     if (!el) return;
     const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    const date = `${dd}/${mm}/${yyyy}`;
     const time = now.toLocaleTimeString('en-GB', {
       hour: '2-digit',
       minute: '2-digit',
@@ -451,7 +532,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       hour12: false,
       timeZone: 'Europe/Prague'
     });
-    el.textContent = `PRG ${time}`;
+    el.textContent = `PRG ${time}   ${date}`;
   }
   updateTime();
   setInterval(updateTime, 1000);
