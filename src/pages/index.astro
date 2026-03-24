@@ -7,6 +7,8 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 ).slice(0, 3);
+
+const gifSrc = `${import.meta.env.BASE_URL}hero.gif`;
 ---
 
 <BaseLayout title="UX Mind" description="UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.">
@@ -56,7 +58,7 @@ const posts = (await getCollection('blog')).sort(
         <!-- Hero GIF - plays once then freezes on last frame -->
         <img
           id="hero-gif"
-          src={`${import.meta.env.BASE_URL}hero.gif`}
+          src={gifSrc}
           alt="UX Mind"
           class="w-full h-full object-contain"
         />
@@ -328,69 +330,59 @@ const posts = (await getCollection('blog')).sort(
 </BaseLayout>
 
 <script>
-  // GIF is pre-patched (no Netscape loop block) — plays once and freezes on last frame.
-  // After it loads, start animations using a fixed duration read from the data attribute.
+  // GIF plays once (Netscape block removed from file). Duration = 4760ms.
   (function () {
-    const img = document.getElementById('hero-gif') as HTMLImageElement | null;
-    if (!img) return;
+    const GIF_DURATION = 4760;
 
-    const GIF_DURATION = 3000; // ms — adjust if GIF length changes
-
-    function blackenDashes(duration: number) {
+    // Spec-dashes loading animation — starts immediately, loops forever
+    function blackenDashes() {
       const rows = document.querySelectorAll<HTMLElement>('.spec-dashes');
-      const rowCount = rows.length;
-      const rowDelay = 350;
-      const barDelay = 90;
-      const barCount = 20;
+      const rowDelay = 350, barDelay = 90, barCount = 20;
       const rowDuration = barCount * barDelay;
-      const totalDuration = rowDuration + (rowCount - 1) * rowDelay;
+      const totalDuration = rowDuration + (rows.length - 1) * rowDelay;
 
       function fillCycle(startDelay: number) {
         rows.forEach((row, ri) => {
-          const spans = Array.from(row.querySelectorAll<HTMLElement>('span'));
-          spans.forEach((span, si) => {
+          Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
             setTimeout(() => { span.style.color = 'rgb(0,0,0)'; }, startDelay + ri * rowDelay + si * barDelay);
           });
         });
         const greyStart = startDelay + totalDuration + 600;
         rows.forEach((row, ri) => {
-          const spans = Array.from(row.querySelectorAll<HTMLElement>('span'));
-          spans.forEach((span, si) => {
+          Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
             setTimeout(() => { span.style.color = 'rgb(210,210,210)'; }, greyStart + ri * rowDelay + si * barDelay);
           });
         });
         setTimeout(() => fillCycle(0), greyStart + totalDuration + 400);
       }
-      fillCycle(duration);
+      fillCycle(0);
     }
 
-    function animateAnnotations(duration: number) {
-      const anns = document.querySelectorAll<HTMLElement>('.ann');
-      anns.forEach((ann, i) => {
+    // Annotations — appear after GIF finishes playing
+    function animateAnnotations() {
+      document.querySelectorAll<HTMLElement>('.ann').forEach((ann, i) => {
         setTimeout(() => {
           ann.style.transition = 'opacity 0.3s ease';
           ann.style.opacity = '1';
           const line = ann.querySelector<HTMLElement>('.ann-line');
           if (!line) return;
-          const isVertical = line.classList.contains('w-px');
           line.style.transition = 'width 0.5s ease, height 0.5s ease';
           const custom = line.dataset.size;
-          if (isVertical) line.style.height = (custom ?? '150') + 'px';
+          if (line.classList.contains('w-px')) line.style.height = (custom ?? '150') + 'px';
           else line.style.width = (custom ?? '170') + 'px';
-        }, duration + i * 250);
+        }, GIF_DURATION + i * 250);
       });
     }
 
-    function startAnimations() {
-      blackenDashes(GIF_DURATION);
-      animateAnnotations(GIF_DURATION);
-    }
+    blackenDashes();
 
-    if (img.complete && img.naturalWidth > 0) {
-      startAnimations();
-    } else {
-      img.addEventListener('load', startAnimations);
-      img.addEventListener('error', () => console.warn('hero.gif failed to load'));
+    const img = document.getElementById('hero-gif') as HTMLImageElement | null;
+    if (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        animateAnnotations();
+      } else {
+        img.addEventListener('load', animateAnnotations);
+      }
     }
   })();
 
