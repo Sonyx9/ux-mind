@@ -448,8 +448,9 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     }
     animate();
 
-    // Click ripple — small square expanding & fading at click position
+    // Click ripple — only inside hero section
     document.addEventListener('click', (e) => {
+      if (!inHero()) return;
       const target = e.target as HTMLElement;
       if (target.closest('a, button, input, textarea, select, [role="button"]')) return;
       const el = document.createElement('div');
