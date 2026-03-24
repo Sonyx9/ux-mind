@@ -63,6 +63,16 @@
   }
 }
 
+/* Mobile: reposition info box below time display */
+@media (max-width: 767px) {
+  #info-box {
+    left: 24px !important;
+    right: 24px !important;
+    top: auto !important;
+    bottom: 100px !important;
+  }
+}
+
 /* Prose styles for blog */
 .prose h1 { @apply text-4xl font-bold font-display mb-6 mt-10 leading-tight; }
 .prose h2 { @apply text-3xl font-bold font-display mb-4 mt-8 leading-tight; }
