@@ -4,7 +4,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://uxmind.cz',
+  site: 'https://sonyx9.github.io',
+  base: '/ux-mind',
   i18n: {
     defaultLocale: 'cs',
     locales: ['cs', 'en'],
