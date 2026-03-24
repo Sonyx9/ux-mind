@@ -157,6 +157,9 @@ const posts = (await getCollection('blog')).sort(
       </div>
     </div>
 
+    <!-- Cursor dot — only in hero area -->
+    <div id="cursor-dot" style="position:fixed; top:0; left:0; width:8px; height:8px; background:#0A0A0A; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); opacity:0;"></div>
+
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce">
       <p class="font-mono text-xs text-brand-black/40 tracking-widest">SCROLL</p>
       <div class="w-px h-8 bg-brand-black/20"></div>
@@ -400,6 +403,28 @@ const posts = (await getCollection('blog')).sort(
     }, { threshold: 0.3 });
     const box = document.querySelector('.stat-projects')?.closest('div.space-y-2');
     if (box) observer.observe(box);
+  })();
+
+  (function() {
+    const dot = document.getElementById('cursor-dot');
+    const hero = document.querySelector<HTMLElement>('section');
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    function inHero() {
+      if (!hero) return false;
+      const rect = hero.getBoundingClientRect();
+      return my >= rect.top && my <= rect.bottom && mx >= rect.left && mx <= rect.right;
+    }
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      if (dot) dot.style.opacity = inHero() ? '1' : '0';
+    });
+    document.addEventListener('mouseleave', () => { if (dot) dot.style.opacity = '0'; });
+    function animate() {
+      cx += (mx - cx) * 0.12; cy += (my - cy) * 0.12;
+      if (dot) { dot.style.left = cx + 'px'; dot.style.top = cy + 'px'; }
+      requestAnimationFrame(animate);
+    }
+    animate();
   })();
 
   function updateTime() {
