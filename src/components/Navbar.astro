@@ -14,9 +14,9 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
-  <div class={`px-6 flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
+  <div id="nav-inner" class={`desktop-gutter-x flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
-    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style={`font-size:1.25rem; line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
+    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity" style={`font-size:clamp(1.05rem, 0.5vw + 0.9rem, 1.25rem); line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
       UX MIND.
     </a>
 
@@ -27,18 +27,28 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       </a>
     )}
 
-    <!-- Desktop nav -->
-    <div class="hidden md:flex items-center gap-8">
+    <!-- Full nav — 1800px+ always, or scrolled on homepage -->
+    <div id="nav-full" class="hidden 3xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
       {navLinks.map(link => (
         <a
           href={link.href}
-          class={`font-mono text-xs tracking-widest uppercase transition-opacity ${
+          class={`font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
             currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-50 hover:opacity-100'
           }`}
         >
           {link.label}
         </a>
       ))}
+      <div class="flex items-center gap-1 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase">
+        <span class="border border-brand-black px-1.5 py-0.5 font-medium">{lang === 'cs' ? 'CZ' : 'EN'}</span>
+        <span class="opacity-30">/</span>
+        <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
+      </div>
+    </div>
+
+    <!-- Hamburger row — md up to 1800px -->
+    <div id="nav-hamburger" class="hidden md:flex 3xl:hidden items-center gap-3">
+      <button id="mobile-menu-btn" class="font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
       <div class="flex items-center gap-1 font-mono text-xs tracking-widest uppercase">
         <span class="border border-brand-black px-1.5 py-0.5 font-medium">{lang === 'cs' ? 'CZ' : 'EN'}</span>
         <span class="opacity-30">/</span>
@@ -46,9 +56,9 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       </div>
     </div>
 
-    <!-- Mobile menu button -->
+    <!-- Mobile-only menu button (< md) -->
     <button
-      id="mobile-menu-btn"
+      id="mobile-menu-btn-sm"
       class="md:hidden font-mono text-xs tracking-widest uppercase"
       aria-label="Menu"
     >
@@ -57,10 +67,10 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   </div>
 </nav>
 
-<!-- Mobile slide-in menu -->
+<!-- Slide-in menu (md–3xl uses hamburger) -->
 <div
   id="mobile-menu"
-  class="md:hidden fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
+  class="3xl:hidden fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
   style="transform: translateX(100%); transition: transform 0.3s ease;"
 >
   <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {lang === 'cs' ? 'ZAVŘÍT' : 'CLOSE'} ]</button>
@@ -78,7 +88,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 </div>
 
 <!-- Overlay backdrop -->
-<div id="mobile-overlay" class="md:hidden fixed inset-0 z-[99] bg-brand-black/30 hidden"></div>
+<div id="mobile-overlay" class="3xl:hidden fixed inset-0 z-[99] bg-brand-black/30 hidden"></div>
 
 <script>
   const btn = document.getElementById('mobile-menu-btn');
@@ -96,12 +106,17 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   }
 
   btn?.addEventListener('click', openMenu);
+  document.getElementById('mobile-menu-btn-sm')?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
   overlay?.addEventListener('click', closeMenu);
 
   const nav = document.getElementById('main-nav');
   const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;
   const isHomePage = document.querySelector('h1') !== null && logo?.style.opacity === '0';
+
+  const navFull = document.getElementById('nav-full') as HTMLElement | null;
+  const navHamburger = document.getElementById('nav-hamburger') as HTMLElement | null;
+  const navInner = document.getElementById('nav-inner') as HTMLElement | null;
 
   function updateNav() {
     if (!nav) return;
@@ -117,6 +132,28 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         const showLogo = h1Bottom < 0;
         logo.style.opacity = showLogo ? '1' : '0';
         logo.style.pointerEvents = showLogo ? 'auto' : 'none';
+
+        // Below 3xl: switch hamburger → full nav when logo appears
+        if (window.innerWidth < 1800) {
+          if (showLogo) {
+            if (navFull) navFull.style.display = 'flex';
+            if (navHamburger) navHamburger.style.display = 'none';
+            // Center logo, keep nav on the right
+            if (navInner) navInner.style.position = 'relative';
+            logo.style.position = 'absolute';
+            logo.style.left = '50%';
+            logo.style.transform = 'translateX(-50%)';
+            if (navInner) navInner.style.justifyContent = 'flex-end';
+          } else {
+            if (navFull) navFull.style.display = '';
+            if (navHamburger) navHamburger.style.display = '';
+            logo.style.position = '';
+            logo.style.left = '';
+            logo.style.transform = '';
+            if (navInner) navInner.style.position = '';
+            if (navInner) navInner.style.justifyContent = '';
+          }
+        }
       }
     }
   }

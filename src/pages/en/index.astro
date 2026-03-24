@@ -32,7 +32,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
     </div>
 
     <div class="absolute left-6 z-10 flex items-center gap-3" style="top: calc(83.333% + 80px);">
-      <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX RESEARCH</p>
+      <p class="font-mono hero-fluid-mono text-brand-black/40 tracking-widest">UX RESEARCH</p>
       <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- --</p>
     </div>
 
@@ -58,14 +58,14 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
         />
 
         <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
-          <p class="font-mono text-[11px] tracking-widest text-center mb-1 max-w-32">WHERE RESEARCH<br/>REVEALS TRUTH</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">WHERE RESEARCH<br/>REVEALS TRUTH</p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
           <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
         </div>
 
         <div class="ann absolute flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
           <div class="text-right mr-2">
-            <p class="font-mono text-[11px] tracking-widest">FROM THE USER'S<br/>PERSPECTIVE, DESIGN EMERGES</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">FROM THE USER'S<br/>PERSPECTIVE, DESIGN EMERGES</p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
@@ -75,7 +75,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
-            <p class="font-mono text-[11px] tracking-widest">EYE TRACKING<br/>REVEALS WHAT<br/>PEOPLE TRULY SEE</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>REVEALS WHAT<br/>PEOPLE TRULY SEE</p>
           </div>
         </div>
 
@@ -83,14 +83,14 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="ml-2">
-            <p class="font-mono text-[11px] tracking-widest">FOUNDATION<br/>FOR GROWTH</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">FOUNDATION<br/>FOR GROWTH</p>
           </div>
         </div>
 
         <div class="ann absolute flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
           <div class="w-1.5 h-1.5 bg-brand-black flex-shrink-0"></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
-          <p class="font-mono text-[11px] tracking-widest text-center mt-1 max-w-24">DATA<br/>OVER IMPRESSIONS</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATA<br/>OVER IMPRESSIONS</p>
         </div>
 
       </div>
@@ -104,21 +104,21 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold text-2xl leading-none stat-projects">50+</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">PROJECTS</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">PROJECTS</p>
         </div>
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold text-2xl leading-none stat-respondents">200+</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">RESPONDENTS</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTS</p>
         </div>
         <div class="flex items-baseline justify-between border-t border-brand-black/20 pt-2 mt-1">
           <p class="font-display font-bold text-2xl leading-none stat-clicks">50%</p>
-          <p class="font-mono text-[9px] text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
         </div>
       </div>
     </div>
 
     <div class="absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
-      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ OUR SPECIALIZATION ]</p>
+      <p class="font-mono hero-fluid-mono tracking-widest mb-4 text-brand-black/40">[ OUR SPECIALIZATION ]</p>
       <div class="space-y-3">
         {[
           { num: '01', label: 'UX AUDIT' },
@@ -127,13 +127,13 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
           { num: '04', label: 'USER TESTING' },
         ].map((item) => (
           <div class="flex items-center gap-2">
-            <p class="font-mono text-xs text-brand-black/40 shrink-0">{item.num}.</p>
-            <span class="spec-dashes font-mono text-xs tracking-tight">
+            <p class="font-mono hero-fluid-mono text-brand-black/40 shrink-0">{item.num}.</p>
+            <span class="spec-dashes font-mono hero-fluid-mono tracking-tight">
               {Array.from({length: 20}).map(() => (
                 <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
               ))}
             </span>
-            <p class="font-mono text-xs font-medium tracking-widest whitespace-nowrap">{item.label}</p>
+            <p class="font-mono hero-fluid-mono font-medium tracking-widest whitespace-nowrap">{item.label}</p>
           </div>
         ))}
       </div>
@@ -145,16 +145,16 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
         <div class="mb-3">
           <p class="font-mono text-xs font-medium tracking-widest bg-brand-black text-brand-white px-1">NOT AN AGENCY – SPECIALISTS</p>
         </div>
-        <p class="font-mono text-xs text-brand-black/60 leading-relaxed">
+        <p class="font-mono hero-fluid-copy text-brand-black/60 leading-relaxed">
           We are a team of UX specialists. We help companies understand their users through data, research and eye tracking.
         </p>
         <div class="flex gap-2 mt-4">
-          <a href="/en/about" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">ABOUT US</a>
-          <a href="/en/contact" class="font-mono text-xs border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">CONTACT</a>
+          <a href="/en/about" class="font-mono hero-fluid-mono border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">ABOUT US</a>
+          <a href="/en/contact" class="font-mono hero-fluid-mono border border-brand-black px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">CONTACT</a>
         </div>
       </div>
       <div class="mt-4 pt-4 border-t border-brand-black/20 flex items-center justify-between">
-        <p class="font-mono text-[10px] text-brand-black/40 tracking-widest whitespace-nowrap">PROJECT WITH:</p>
+        <p class="font-mono hero-fluid-micro text-brand-black/40 tracking-widest whitespace-nowrap">PROJECT WITH:</p>
         <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6 ml-3" />
       </div>
     </div>
@@ -188,7 +188,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
   </style>
 
   <!-- SERVICES SECTION -->
-  <section class="px-6 py-24 max-w-7xl mx-auto">
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
       {[
         {
@@ -238,7 +238,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
   </section>
 
   <!-- STATS SECTION -->
-  <section class="px-6 py-16 border-t border-brand-black/10">
+  <section class="desktop-gutter-x py-16 border-t border-brand-black/10">
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
       {[
         { num: '50+', label: 'Projects' },
@@ -255,7 +255,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
   </section>
 
   {posts.length > 0 && (
-    <section class="px-6 py-24 max-w-7xl mx-auto">
+    <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
       <div class="flex justify-between items-end mb-12">
         <div>
           <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ BLOG ]</p>
@@ -294,7 +294,7 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
     </section>
   )}
 
-  <section class="px-6 py-24 bg-brand-black text-brand-white">
+  <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
     <div class="max-w-4xl mx-auto text-center">
       <p class="font-mono text-xs text-brand-white/40 tracking-widest mb-6">[ LET'S COLLABORATE ]</p>
       <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">

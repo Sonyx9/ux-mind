@@ -13,6 +13,21 @@
     scroll-behavior: smooth;
   }
 
+  :root {
+    --desktop-gutter: 1.5rem;
+    --desktop-top-offset: 1.25rem;
+    --hero-panel-gap: 1.5rem;
+    --hero-panel-padding: 1.25rem;
+    --hero-figure-width: 42rem;
+    --hero-figure-height: 42rem;
+    --hero-stat-width: 12.5rem;
+    --hero-display-size: 4rem;
+    --hero-mono-size: 0.75rem;
+    --hero-micro-size: 0.6875rem;
+    --hero-box-text-size: 0.75rem;
+    --hero-stat-number-size: 1.5rem;
+  }
+
   body {
     background-color: #FCFCFC;
     color: #0A0A0A;
@@ -60,6 +75,87 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  /* Hero fluid micro text — scales with viewport */
+  .hero-fluid-micro {
+    font-size: clamp(9px, 0.75vw, 11px);
+  }
+
+  .desktop-shell {
+    width: min(100%, calc(100vw - (var(--desktop-gutter) * 2)));
+    margin-inline: auto;
+  }
+
+  .desktop-gutter-x {
+    padding-inline: var(--desktop-gutter);
+  }
+
+  .hero-fluid-title {
+    font-size: var(--hero-display-size);
+    line-height: 0.9;
+  }
+
+  .hero-fluid-box {
+    padding: var(--hero-panel-padding);
+  }
+
+  .hero-fluid-mono {
+    font-size: var(--hero-mono-size);
+  }
+
+  .hero-fluid-copy {
+    font-size: var(--hero-box-text-size);
+  }
+
+  .hero-fluid-stat {
+    font-size: var(--hero-stat-number-size);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --desktop-gutter: clamp(1.5rem, 2vw, 3rem);
+    --desktop-top-offset: clamp(1.25rem, 1.4vw, 2rem);
+    --hero-panel-gap: clamp(1.25rem, 2.1vw, 2.5rem);
+    --hero-panel-padding: clamp(1rem, 1.2vw, 1.75rem);
+    --hero-figure-width: clamp(34rem, 50vw, 52rem);
+    --hero-figure-height: clamp(34rem, 72vh, 49rem);
+    --hero-stat-width: clamp(12rem, 16vw, 16rem);
+    --hero-display-size: clamp(4.25rem, 9vw, 11rem);
+    --hero-mono-size: clamp(0.625rem, 0.28vw + 0.48rem, 0.75rem);
+    --hero-micro-size: clamp(0.55rem, 0.22vw + 0.45rem, 0.6875rem);
+    --hero-box-text-size: clamp(0.72rem, 0.3vw + 0.55rem, 0.875rem);
+    --hero-stat-number-size: clamp(1.6rem, 1.1vw + 1rem, 2.4rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --hero-figure-width: clamp(40rem, 48vw, 56rem);
+    --hero-figure-height: clamp(40rem, 74vh, 52rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-time > p,
+  .hero-spec-list p,
+  .hero-spec-list .spec-dashes {
+    font-size: var(--hero-mono-size);
+  }
+
+  .hero-stats-box .space-y-2 > div > p:last-child {
+    font-size: var(--hero-micro-size);
+  }
+
+  #info-box > div > p {
+    font-size: var(--hero-box-text-size);
+  }
+
+  #info-box > div > div:first-child p,
+  #info-box > div > div:last-child a,
+  #info-box > div:last-child p {
+    font-size: var(--hero-micro-size);
   }
 }
 
