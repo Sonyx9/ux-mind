@@ -16,7 +16,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
-  <div id="nav-inner" class={`desktop-gutter-x flex items-center justify-between ${isHome ? '' : 'max-w-7xl mx-auto'}`}>
+  <div id="nav-inner" class="desktop-gutter-x flex items-center justify-between max-w-7xl mx-auto">
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
     <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity ml-[5px]" style={`font-size:clamp(1.05rem, 0.5vw + 0.9rem, 1.25rem); line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
       UX MIND.
@@ -29,7 +29,6 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       </a>
     )}
 
-    <!-- Full nav — 1800px+ always, or scrolled on homepage -->
     <div id="nav-full" class="hidden 3xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
       {navLinks.map(link => (
         <a
@@ -69,10 +68,10 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   </div>
 </nav>
 
-<!-- Slide-in menu (md–3xl uses hamburger) -->
+<!-- Slide-in menu -->
 <div
   id="mobile-menu"
-  class="3xl:hidden fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
+  class="fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
   style="transform: translateX(100%); transition: transform 0.3s ease;"
 >
   <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {lang === 'cs' ? 'ZAVŘÍT' : 'CLOSE'} ]</button>
@@ -90,7 +89,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 </div>
 
 <!-- Overlay backdrop -->
-<div id="mobile-overlay" class="3xl:hidden fixed inset-0 z-[99] bg-brand-black/30 hidden"></div>
+<div id="mobile-overlay" class="fixed inset-0 z-[99] bg-brand-black/30 hidden"></div>
 
 <script>
   const btn = document.getElementById('mobile-menu-btn');
@@ -118,7 +117,38 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 
   const navFull = document.getElementById('nav-full') as HTMLElement | null;
   const navHamburger = document.getElementById('nav-hamburger') as HTMLElement | null;
-  const navInner = document.getElementById('nav-inner') as HTMLElement | null;
+  const mobileMenuSm = document.getElementById('mobile-menu-btn-sm');
+
+  function applyHomeMenuVisibility(showLogo: boolean) {
+    if (!navFull || !navHamburger) return;
+    const w = window.innerWidth;
+
+    if (!showLogo) {
+      // Hero: jen sbalené [ MENU ] jako na menších šířkách (i na 3xl)
+      navFull.style.display = 'none';
+      if (w >= 768) {
+        navHamburger.style.display = 'flex';
+      } else {
+        navHamburger.style.display = 'none';
+        if (mobileMenuSm) mobileMenuSm.style.display = '';
+      }
+      return;
+    }
+
+    // Po scrollu: rozbalená navigace jako na podstránkách
+    if (mobileMenuSm) mobileMenuSm.style.display = '';
+
+    if (w >= 1800) {
+      navFull.style.display = 'flex';
+      navHamburger.style.display = 'none';
+    } else if (w >= 768) {
+      navFull.style.display = 'flex';
+      navHamburger.style.display = 'none';
+    } else {
+      navFull.style.display = 'none';
+      navHamburger.style.display = 'none';
+    }
+  }
 
   function updateNav() {
     if (!nav) return;
@@ -130,35 +160,14 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
     if (logo && isHomePage) {
       const h1 = document.querySelector('h1');
       if (h1) {
-        const h1Bottom = h1.getBoundingClientRect().bottom;
-        const showLogo = h1Bottom < 0;
+        const showLogo = h1.getBoundingClientRect().bottom < 0;
         logo.style.opacity = showLogo ? '1' : '0';
         logo.style.pointerEvents = showLogo ? 'auto' : 'none';
-
-        // Desktop only (md+): switch hamburger → full nav when logo appears
-        if (window.innerWidth >= 768 && window.innerWidth < 1800) {
-          if (showLogo) {
-            if (navFull) navFull.style.display = 'flex';
-            if (navHamburger) navHamburger.style.display = 'none';
-            // Center logo, keep nav on the right
-            if (navInner) navInner.style.position = 'relative';
-            logo.style.position = 'absolute';
-            logo.style.left = '50%';
-            logo.style.transform = 'translateX(-50%)';
-            if (navInner) navInner.style.justifyContent = 'flex-end';
-          } else {
-            if (navFull) navFull.style.display = '';
-            if (navHamburger) navHamburger.style.display = '';
-            logo.style.position = '';
-            logo.style.left = '';
-            logo.style.transform = '';
-            if (navInner) navInner.style.position = '';
-            if (navInner) navInner.style.justifyContent = '';
-          }
-        }
+        applyHomeMenuVisibility(showLogo);
       }
     }
   }
   window.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
   updateNav();
 </script>

@@ -105,7 +105,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       </div>
     </div>
 
-    <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(52px,5.5vh,80px); min-width:clamp(160px,14vw,200px);">
+    <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(62px,calc(5.5vh + 10px),90px); min-width:clamp(160px,14vw,200px);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
         <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
@@ -166,9 +166,9 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           <a href="/en/contact" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">CONTACT</a>
         </div>
       </div>
-      <div class="mt-2 pt-2 border-t border-brand-black/20 flex items-center justify-between">
+      <div class="mt-2 pt-1 border-t border-brand-black/20 flex items-center justify-between">
         <p class="font-mono text-brand-black/40 tracking-widest whitespace-nowrap" style="font-size:clamp(8px,0.65vw,10px);">PROJECT WITH:</p>
-        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(14px,1.6vh,24px);" />
+        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(27px,3.12vh,47px);" />
       </div>
     </div>
 
@@ -191,20 +191,35 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       <a href="/en/about" class="font-mono text-xs border border-brand-black px-2 py-1">ABOUT US</a>
       <a href="/en/contact" class="font-mono text-xs border border-brand-black px-2 py-1">CONTACT</a>
     </div>
-    <div class="border-t border-brand-black/20 pt-4 flex items-center justify-between">
+    <div class="border-t border-brand-black/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">PROJECT WITH:</p>
-      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-6" />
+      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-[47px] w-auto" />
     </div>
   </div>
 
   <!-- LOGO CAROUSEL -->
   <div class="overflow-hidden border-y border-brand-black/10 py-8 bg-brand-white">
     <div id="logo-track" class="flex items-center gap-16 w-max" style="animation: logoScroll 28s linear infinite;">
-      {['ALZA', 'ČSOB', 'T-MOBILE', 'ROHLIK', 'MALL', 'NOTINO', 'KOFOLA', 'CESKATELEVIZE'].concat(['ALZA', 'ČSOB', 'T-MOBILE', 'ROHLIK', 'MALL', 'NOTINO', 'KOFOLA', 'CESKATELEVIZE']).map(name => (
-        <div class="flex items-center justify-center px-8" style="min-width:140px; height:48px;">
-          <span class="font-mono text-xs tracking-widest text-brand-black/30 uppercase select-none">{name}</span>
-        </div>
-      ))}
+      {(() => {
+        const logos = [
+          { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
+          { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FCHK' },
+          { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
+          { src: 'https://www.spa.cz/v3/logo/standard.svg', alt: 'Spa' },
+          { src: 'https://www.hotely.cz/wsngo/static/headerlogo/HotelyNewLogoHeader_165x30_v2.svg?v=383076', alt: 'Hotely.cz' },
+        ];
+        return logos.concat(logos).map(({ src, alt }) => (
+          <div class="flex items-center justify-center px-8 shrink-0" style="min-width:140px; height:48px;">
+            <img
+              src={src}
+              alt={alt}
+              class="logo-strip-img max-h-9 w-auto max-w-[140px] object-contain object-center select-none"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ));
+      })()}
     </div>
   </div>
 
@@ -214,6 +229,10 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       100% { transform: translateX(-50%); }
     }
     #logo-track:hover { animation-play-state: paused; }
+    .logo-strip-img {
+      filter: grayscale(1);
+      opacity: 0.65;
+    }
   </style>
 
   <!-- SERVICES SECTION -->
