@@ -16,7 +16,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   <Navbar />
 
   <!-- HERO SECTION -->
-  <section class="relative overflow-hidden" style="height:100vh; min-height:640px;">
+  <section class="hero-shell relative overflow-hidden">
 
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
       style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
@@ -39,8 +39,8 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <div class="absolute left-6 z-10" style="top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
-      <h1 class="font-display font-bold tracking-tighter text-brand-black" style="font-size: clamp(3rem, min(10vw, 13vh), 9rem); line-height: 0.9; margin: 0; padding: 0;">
-        UX<br/>MIND.
+      <h1 class="m-0 p-0" style="line-height:0;">
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo.svg`} alt="UX Mind" style="width: clamp(11rem, 24vw, 360px); height:auto; display:block;" />
       </h1>
       <!-- Mobile-only: first annotation below heading -->
       <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">WHERE RESEARCH REVEALS TRUTH</p>
@@ -197,38 +197,29 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
   </div>
 
-  <!-- LOGO CAROUSEL -->
-  <div class="overflow-hidden border-y border-brand-black/10 py-8 bg-brand-white">
-    <div id="logo-track" class="flex items-center gap-16 w-max" style="animation: logoScroll 28s linear infinite;">
-      {(() => {
-        const logos = [
-          { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
-          { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FCHK' },
-          { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
-          { src: 'https://www.spa.cz/v3/logo/standard.svg', alt: 'Spa' },
-          { src: 'https://www.hotely.cz/wsngo/static/headerlogo/HotelyNewLogoHeader_165x30_v2.svg?v=383076', alt: 'Hotely.cz' },
-        ];
-        return logos.concat(logos).map(({ src, alt }) => (
-          <div class="flex items-center justify-center px-8 shrink-0" style="min-width:140px; height:48px;">
-            <img
-              src={src}
-              alt={alt}
-              class="logo-strip-img max-h-9 w-auto max-w-[140px] object-contain object-center select-none"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-        ));
-      })()}
+  <!-- LOGO STRIP (static) -->
+  <div class="border-y border-brand-black/10 py-8 bg-brand-white">
+    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
+      {[
+        { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
+        { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FC Hradec Králové' },
+        { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
+      ].map(({ src, alt }) => (
+        <div class="px-4 py-1">
+          <img
+            src={src}
+            alt={alt}
+            class="logo-strip-img select-none"
+            style="height:36px; width:auto; max-width:140px; object-fit:contain; display:block;"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
     </div>
   </div>
 
   <style>
-    @keyframes logoScroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    #logo-track:hover { animation-play-state: paused; }
     .logo-strip-img {
       filter: grayscale(1);
       opacity: 0.65;

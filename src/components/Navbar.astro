@@ -18,8 +18,8 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
   <div id="nav-inner" class="desktop-gutter-x flex items-center justify-between max-w-7xl mx-auto">
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
-    <a id="nav-logo" href={homeHref} class="font-display font-bold tracking-tighter text-brand-black hover:opacity-50 transition-opacity ml-[5px]" style={`font-size:clamp(1.05rem, 0.5vw + 0.9rem, 1.25rem); line-height:1; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
-      UX MIND.
+    <a id="nav-logo" href={homeHref} class="block hover:opacity-50 transition-opacity ml-[5px]" style={`line-height:0; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
+      <img src={`${base}/logo.svg`} alt="UX Mind" style="height:clamp(18px, 0.55vw + 14px, 22px); width:auto; display:block;" />
     </a>
 
     <!-- Mobile CTA — only on homepage, left side -->

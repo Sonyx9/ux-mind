@@ -111,6 +111,20 @@
   .hero-fluid-stat {
     font-size: var(--hero-stat-number-size);
   }
+
+  /* Hero section height — tracks the *visible* viewport so the bottom
+     (spec list + clock / info box) is never hidden behind mobile browser UI. */
+  .hero-shell {
+    height: 100vh;      /* fallback for older browsers */
+    height: 100dvh;     /* dynamic viewport height */
+    min-height: 560px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-shell {
+    min-height: 640px;
+  }
 }
 
 @media (min-width: 768px) {

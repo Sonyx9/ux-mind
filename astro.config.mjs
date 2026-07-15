@@ -14,7 +14,10 @@ export default defineConfig({
     },
   },
   integrations: [
-    tailwind(),
+    // Base styles come from src/styles/global.css (imported in BaseLayout),
+    // so we disable the integration's own injected base to avoid a duplicate
+    // Tailwind build.
+    tailwind({ applyBaseStyles: false }),
     mdx(),
     // sitemap() is disabled on Windows due to a known absolute-path bug in the sitemap package.
     // Uncomment the line below when deploying on Linux/CI (GitHub Actions will work fine).
