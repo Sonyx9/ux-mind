@@ -20,7 +20,7 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
     <div class="max-w-7xl mx-auto px-6">
 
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ BLOG ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ BLOG ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter" style="font-size: clamp(3rem, 9vw, 8rem);">
           ZNALOSTI<br/>ZDARMA.
         </h1>
@@ -56,9 +56,9 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
             <div class="p-10 flex flex-col justify-between">
               <div>
                 <div class="flex gap-2 mb-4">
-                  <span class="font-mono text-xs border border-brand-black/20 px-2 py-0.5 text-brand-black/40">FEATURED</span>
+                  <span class="font-mono text-xs border border-brand-black/20 px-2 py-0.5 text-brand-black/60">FEATURED</span>
                   {allPosts[0].data.tags.slice(0,2).map((tag: string) => (
-                    <span class="font-mono text-xs text-brand-black/40">{tag}</span>
+                    <span class="font-mono text-xs text-brand-black/60">{tag}</span>
                   ))}
                 </div>
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 leading-tight group-hover:opacity-60 transition-opacity">
@@ -67,7 +67,7 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
                 <p class="text-brand-black/60 leading-relaxed">{allPosts[0].data.excerpt}</p>
               </div>
               <div class="flex justify-between items-center mt-8">
-                <p class="font-mono text-xs text-brand-black/30">
+                <p class="font-mono text-xs text-brand-black/50">
                   {new Date(allPosts[0].data.date).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </p>
                 <span class="font-mono text-xs">ČÍST →</span>
@@ -92,14 +92,14 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
             )}
             <div class="flex gap-2 mb-2">
               {post.data.tags.slice(0,2).map((tag: string) => (
-                <span class="font-mono text-xs text-brand-black/40">{tag}</span>
+                <span class="font-mono text-xs text-brand-black/60">{tag}</span>
               ))}
             </div>
             <h2 class="font-display text-xl font-bold mb-2 leading-tight group-hover:opacity-60 transition-opacity">
               {post.data.title}
             </h2>
             <p class="text-sm text-brand-black/60 leading-relaxed mb-4">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/30">
+            <p class="font-mono text-xs text-brand-black/50">
               {new Date(post.data.date).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </a>
@@ -108,7 +108,7 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
 
       {allPosts.length === 0 && (
         <div class="text-center py-24">
-          <p class="text-brand-black/40">Brzy zde přibydou první články.</p>
+          <p class="text-brand-black/60">Brzy zde přibydou první články.</p>
         </div>
       )}
     </div>

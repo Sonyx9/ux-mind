@@ -43,6 +43,12 @@
     background-color: #0A0A0A;
     color: #FAFAFA;
   }
+
+  /* Čitelné placeholdery (výchozí šedá nesplňuje WCAG AA) */
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(10, 10, 10, 0.6);
+  }
 }
 
 @layer components {

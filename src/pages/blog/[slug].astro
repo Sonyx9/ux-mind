@@ -57,10 +57,10 @@ const dateFormatted = new Date(post.data.date).toLocaleDateString('cs-CZ', {
 
       <div class="flex justify-between items-center border-t border-b border-brand-black/10 py-4">
         <div class="flex items-center gap-4">
-          <p class="font-mono text-xs text-brand-black/40">AUTOR</p>
+          <p class="font-mono text-xs text-brand-black/60">AUTOR</p>
           <p class="font-mono text-xs font-medium">{post.data.author}</p>
         </div>
-        <p class="font-mono text-xs text-brand-black/40">{dateFormatted}</p>
+        <p class="font-mono text-xs text-brand-black/60">{dateFormatted}</p>
       </div>
     </div>
 
@@ -106,7 +106,7 @@ const dateFormatted = new Date(post.data.date).toLocaleDateString('cs-CZ', {
 
       <!-- Tags at bottom -->
       <div class="mt-16 pt-8 border-t border-brand-black/10">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ TAGY ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TAGY ]</p>
         <div class="flex flex-wrap gap-2">
           {post.data.tags.map((tag: string) => (
             <a
@@ -133,7 +133,7 @@ const dateFormatted = new Date(post.data.date).toLocaleDateString('cs-CZ', {
     <!-- Related posts -->
     {related.length > 0 && (
       <div class="max-w-7xl mx-auto px-6 mt-24 pt-12 border-t border-brand-black/10">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ PODOBNÉ ČLÁNKY ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PODOBNÉ ČLÁNKY ]</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {related.map(rpost => (
             <a href={`/blog/${rpost.slug}`} class="group">

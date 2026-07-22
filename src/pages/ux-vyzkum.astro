@@ -14,7 +14,7 @@ import Footer from '../components/Footer.astro';
     <div class="max-w-7xl mx-auto px-6">
 
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-4">[ UX VÝZKUM ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ UX VÝZKUM ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           DATA<br/>MÍSTO DOJMŮ.
         </h1>
@@ -25,7 +25,7 @@ import Footer from '../components/Footer.astro';
 
       <!-- Methods grid -->
       <div class="mb-24">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ METODY VÝZKUMU ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ METODY VÝZKUMU ]</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
           {[
             { title: 'Hloubkové rozhovory', type: 'Kvalitativní', desc: 'Individuální rozhovory s uživateli odhalují motivace, frustrace a mentální modely.' },
@@ -36,7 +36,7 @@ import Footer from '../components/Footer.astro';
             { title: 'Card sorting', type: 'Smíšené', desc: 'Zjišťujeme jak uživatelé kategorizují obsah pro lepší informační architekturu.' },
           ].map(method => (
             <div class="bg-brand-white p-8">
-              <span class="font-mono text-xs text-brand-black/30 border border-brand-black/20 px-2 py-0.5 mb-4 inline-block">{method.type}</span>
+              <span class="font-mono text-xs text-brand-black/50 border border-brand-black/20 px-2 py-0.5 mb-4 inline-block">{method.type}</span>
               <h3 class="font-display text-xl font-bold mb-3 mt-3">{method.title}</h3>
               <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
             </div>
@@ -46,7 +46,7 @@ import Footer from '../components/Footer.astro';
 
       <!-- Deliverables -->
       <div class="mb-24 border-t border-brand-black/10 pt-24">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ CO DOSTANETE ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           {[
             { title: 'Výzkumná zpráva', desc: 'Komplexní dokument s metodologií, zjištěními a doporučeními.' },

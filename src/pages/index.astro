@@ -122,27 +122,27 @@ const clientLogos = [
     <div class="hero-stats-box hidden md:block absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
-        <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
+        <p class="font-mono text-xs text-brand-black/60">/{yearSuffix}</p>
       </div>
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold leading-none stat-projects" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">50+</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">PROJEKTŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">PROJEKTŮ</p>
         </div>
         <div class="flex items-baseline justify-between">
           <p class="font-display font-bold leading-none stat-respondents" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">200+</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">RESPONDENTŮ</p>
         </div>
         <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
           <p class="font-display font-bold leading-none stat-clicks" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">50%</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">VÍCE PROKLIKŮ</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">VÍCE PROKLIKŮ</p>
         </div>
       </div>
     </div>
 
     <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
     <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
-      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ NAŠE SPECIALIZACE ]</p>
+      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/60">[ NAŠE SPECIALIZACE ]</p>
       <div class="space-y-3">
         {[
           { num: '01', label: 'UX AUDIT' },
@@ -151,7 +151,7 @@ const clientLogos = [
           { num: '04', label: 'TESTOVÁNÍ UŽIVATELŮ' },
         ].map((item) => (
           <div class="flex items-center gap-2">
-            <p class="font-mono text-xs text-brand-black/40 shrink-0">{item.num}.</p>
+            <p class="font-mono text-xs text-brand-black/60 shrink-0">{item.num}.</p>
             <span class="spec-dashes font-mono text-xs tracking-tight">
               {Array.from({length: 20}).map(() => (
                 <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
@@ -194,7 +194,7 @@ const clientLogos = [
 
     <!-- Scroll indicator -->
     <button type="button" aria-label="Posunout na obsah" class="hidden md:flex absolute bottom-6 z-10 flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
-      <p class="font-mono text-xs text-brand-black/40 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
       <div class="h-8 bg-brand-black/20" style="width: 1px;"></div>
     </button>
   </section>
@@ -273,7 +273,7 @@ const clientLogos = [
   <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
   <section id="main-content" class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
     <div class="mb-12 max-w-3xl">
-      <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ TŘI OTÁZKY, TŘI MĚŘENÍ ]</p>
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ TŘI OTÁZKY, TŘI MĚŘENÍ ]</p>
       <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Co uživatel vidí, jak reaguje<br/>a co ho to stojí<span style="color:#2D62FC">.</span></h2>
       <p class="text-sm text-brand-black/60 leading-relaxed">
         Analytika ukáže, KAM lidé klikli. Dotazník ukáže, CO si myslí. My měříme třetí vrstvu:
@@ -299,7 +299,7 @@ const clientLogos = [
         },
       ].map((item, i) => (
         <div class="bg-brand-white p-8 flex flex-col">
-          <p class="font-mono text-xs text-brand-black/30 mb-8">0{i + 1}</p>
+          <p class="font-mono text-xs text-brand-black/50 mb-8">0{i + 1}</p>
           <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
           <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
           <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
@@ -348,7 +348,7 @@ const clientLogos = [
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
           <div class="flex justify-between items-start mb-8">
-            <p class="font-mono text-xs text-brand-black/30 group-hover:text-brand-white/30">{service.num}</p>
+            <p class="font-mono text-xs text-brand-black/50 group-hover:text-brand-white/30">{service.num}</p>
             <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
           </div>
           <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
@@ -367,14 +367,14 @@ const clientLogos = [
   <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
-        <p class="font-mono text-xs text-brand-white/40 tracking-widest mb-6">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
+        <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
         <h2 class="font-display text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8">Mentální zátěž<br/>jako číslo<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-white/60 leading-relaxed mb-6">
           Heatmapa ukáže, kam se lidé dívali. Neřekne vám ale, <strong class="text-brand-white">jak moc je to stálo</strong>.
           EMLI převádí osm eye-tracking metrik do jednoho indexu zátěže 0–100. Porovnáte varianty designu,
           kroky formuláře i konkurenční řešení — na tvrdých datech, ne na dojmu.
         </p>
-        <p class="font-mono text-xs text-brand-white/40 leading-relaxed mb-10">
+        <p class="font-mono text-xs text-brand-white/70 leading-relaxed mb-10">
           Model vyvinutý a ověřovaný v akademickém výzkumu FIM UHK,<br class="hidden md:block"/> s plně dokumentovanou replikační metodikou.
         </p>
         <a href="/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
@@ -418,7 +418,7 @@ const clientLogos = [
         <div class="text-center">
           <p class="font-display text-5xl md:text-6xl font-bold mb-3">{stat.num}</p>
           <div class="border-t border-brand-black/15 mb-2"></div>
-          <p class="font-mono text-xs text-brand-black/50 tracking-widest uppercase">{stat.label}</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase">{stat.label}</p>
         </div>
       ))}
     </div>
@@ -428,7 +428,7 @@ const clientLogos = [
   <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ LABORATOŘ A TECHNOLOGIE ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ LABORATOŘ A TECHNOLOGIE ]</p>
         <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Výzkumné zázemí,<br/>ne marketingová kouzla<span style="color:#2D62FC">.</span></h2>
         <p class="text-sm text-brand-black/60 leading-relaxed mb-8">
           Měříme v Laboratoři kognitivních studií FIM UHK i v terénu. GSR používáme jako indikátor
@@ -459,7 +459,7 @@ const clientLogos = [
           />
         </div>
         <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
-          <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">VE SPOLUPRÁCI S:</p>
+          <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">VE SPOLUPRÁCI S:</p>
           <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto" />
         </div>
       </div>
@@ -472,7 +472,7 @@ const clientLogos = [
       <div>
       <div class="flex justify-between items-end mb-12">
         <div>
-          <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-2">[ BLOG ]</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ BLOG ]</p>
           <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Poslední<br/>články<span style="color:#2D62FC">.</span></h2>
         </div>
         <a href="/blog" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
@@ -494,12 +494,12 @@ const clientLogos = [
             )}
             <div class="flex gap-2 mb-2">
               {post.data.tags?.slice(0,2).map((tag: string) => (
-                <span class="font-mono text-xs text-brand-black/40">{tag}</span>
+                <span class="font-mono text-xs text-brand-black/60">{tag}</span>
               ))}
             </div>
             <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
             <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/30 mt-4">
+            <p class="font-mono text-xs text-brand-black/50 mt-4">
               {new Date(post.data.date).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </a>
@@ -512,7 +512,7 @@ const clientLogos = [
   <!-- CTA SECTION -->
   <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
     <div class="max-w-4xl mx-auto text-center">
-      <p class="font-mono text-xs text-brand-white/40 tracking-widest mb-6">[ ZAČNĚME SPOLUPRACOVAT ]</p>
+      <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ ZAČNĚME SPOLUPRACOVAT ]</p>
       <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">
         PŘIPRAVENI<br/>POMOCI<span style="color:#2D62FC">.</span>
       </h2>
