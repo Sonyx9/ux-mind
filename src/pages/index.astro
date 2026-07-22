@@ -34,14 +34,14 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <!-- Center CTA -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-[60] pt-5 hidden md:block">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-[60] hidden md:block" style="padding-top: var(--desktop-top-offset);">
       <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200" style="--tw-bg-opacity:1;" onmouseover="this.style.background='transparent';this.style.color='#0A0A0A';" onmouseout="this.style.background='#0A0A0A';this.style.color='#FCFCFC';">
         DOMLUVIT SCHŮZKU
       </a>
     </div>
 
     <!-- Large headline — inside top grid rectangle (0–33.333%) -->
-    <div class="absolute left-6 z-10" style="top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
+    <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
       <h1 class="m-0 p-0" style="line-height:0;">
         <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo.svg`} alt="UX Mind" style="width: clamp(11rem, 24vw, 360px); height:auto; display:block;" />
       </h1>
@@ -110,7 +110,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div><!-- end desktop gif container -->
 
     <!-- Info box: stats (top right) -->
-    <div class="hero-stats-box hidden md:block absolute right-6 z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top:clamp(62px,calc(5.5vh + 10px),90px); min-width:clamp(160px,14vw,200px);">
+    <div class="hero-stats-box hidden md:block absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: var(--desktop-top-offset); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
         <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
@@ -132,7 +132,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
-    <div class="hero-spec-list absolute left-6 z-10" style="top: 83.333%; transform: translateY(-50%);">
+    <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
       <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/40">[ NAŠE SPECIALIZACE ]</p>
       <div class="space-y-3">
         {[
@@ -159,23 +159,23 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <!-- Info box: about us — fills right half of bottom grid rectangle -->
-    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black bg-brand-white/90 backdrop-blur-sm flex-col justify-between overflow-hidden"
-      style="left:calc(75% + clamp(12px,1.8vw,32px)); right:clamp(12px,1.8vw,32px); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
+    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black bg-brand-black text-brand-white flex-col justify-between overflow-hidden"
+      style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
         <div class="mb-2">
-          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5" style="font-size:clamp(9px,0.75vw,11px);">NE AGENTURA – ODBORNÍCI</p>
+          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 inline-block" style="font-size:clamp(11px,0.85vw,13px);">NE AGENTURA – ODBORNÍCI</p>
         </div>
-        <p class="font-mono text-brand-black/60 leading-relaxed" style="font-size:clamp(9px,0.75vw,11px);">
+        <p class="font-mono text-brand-white/70 leading-relaxed" style="font-size:clamp(11px,0.85vw,13px);">
           Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
         </p>
         <div class="flex gap-2 mt-2">
-          <a href="/o-nas" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">O NÁS</a>
-          <a href="/kontakt" class="font-mono border border-brand-black px-2 py-0.5 hover:bg-brand-black hover:text-brand-white transition-colors" style="font-size:clamp(9px,0.75vw,11px);">KONTAKT</a>
+          <a href="/o-nas" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:clamp(11px,0.85vw,13px);">O NÁS</a>
+          <a href="/kontakt" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:clamp(11px,0.85vw,13px);">KONTAKT</a>
         </div>
       </div>
-      <div class="mt-2 pt-1 border-t border-brand-black/20 flex items-center justify-between">
-        <p class="font-mono text-brand-black/40 tracking-widest whitespace-nowrap" style="font-size:clamp(8px,0.65vw,10px);">PROJEKT ZA ÚČASTI:</p>
-        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(27px,3.12vh,47px);" />
+      <div class="mt-2 pt-1 border-t border-brand-white/20 flex items-center justify-between">
+        <p class="font-mono text-brand-white/50 tracking-widest whitespace-nowrap" style="font-size:clamp(10px,0.75vw,12px);">PROJEKT ZA ÚČASTI:</p>
+        <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(27px,3.12vh,47px); filter: invert(1);" />
       </div>
     </div>
 
@@ -190,18 +190,18 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   </section>
 
   <!-- Mobile info box — NE AGENTURA, above logo carousel -->
-  <div class="md:hidden border border-brand-black mx-6 my-8 p-6 flex flex-col gap-4">
+  <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
     <div>
-      <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 inline-block" style="font-size:11px;">NE AGENTURA – ODBORNÍCI</p>
+      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 inline-block" style="font-size:12px;">NE AGENTURA – ODBORNÍCI</p>
     </div>
-    <p class="font-mono text-xs text-brand-black/60 leading-relaxed">Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.</p>
+    <p class="font-mono text-sm text-brand-white/70 leading-relaxed">Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.</p>
     <div class="flex gap-2">
-      <a href="/o-nas" class="font-mono text-xs border border-brand-black px-2 py-1">O NÁS</a>
-      <a href="/kontakt" class="font-mono text-xs border border-brand-black px-2 py-1">KONTAKT</a>
+      <a href="/o-nas" class="font-mono text-xs border border-brand-white px-2 py-1">O NÁS</a>
+      <a href="/kontakt" class="font-mono text-xs border border-brand-white px-2 py-1">KONTAKT</a>
     </div>
-    <div class="border-t border-brand-black/20 pt-2 flex items-center justify-between">
-      <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">PROJEKT ZA ÚČASTI:</p>
-      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-[47px] w-auto" />
+    <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
+      <p class="font-mono text-[11px] text-brand-white/50 tracking-widest">PROJEKT ZA ÚČASTI:</p>
+      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-[47px] w-auto" style="filter: invert(1);" />
     </div>
   </div>
 

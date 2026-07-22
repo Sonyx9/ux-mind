@@ -23,9 +23,9 @@
     --hero-stat-width: 12.5rem;
     --hero-display-size: 4rem;
     --hero-mono-size: 0.75rem;
-    --hero-micro-size: 0.6875rem;
-    --hero-box-text-size: 0.75rem;
-    --hero-stat-number-size: 1.5rem;
+    --hero-micro-size: 0.75rem;
+    --hero-box-text-size: 0.875rem;
+    --hero-stat-number-size: 1.625rem;
   }
 
   body {
@@ -79,7 +79,7 @@
 
   /* Hero fluid micro text — scales with viewport */
   .hero-fluid-micro {
-    font-size: clamp(9px, 0.75vw, 11px);
+    font-size: clamp(11px, 0.85vw, 13px);
   }
 
   .desktop-shell {
@@ -137,10 +137,10 @@
     --hero-figure-height: clamp(34rem, 72vh, 49rem);
     --hero-stat-width: clamp(12rem, 16vw, 16rem);
     --hero-display-size: clamp(4.25rem, 9vw, 11rem);
-    --hero-mono-size: clamp(0.625rem, 0.28vw + 0.48rem, 0.75rem);
-    --hero-micro-size: clamp(0.55rem, 0.22vw + 0.45rem, 0.6875rem);
-    --hero-box-text-size: clamp(0.72rem, 0.3vw + 0.55rem, 0.875rem);
-    --hero-stat-number-size: clamp(1.6rem, 1.1vw + 1rem, 2.4rem);
+    --hero-mono-size: clamp(0.75rem, 0.3vw + 0.6rem, 0.8125rem);
+    --hero-micro-size: clamp(0.6875rem, 0.25vw + 0.55rem, 0.75rem);
+    --hero-box-text-size: clamp(0.8125rem, 0.3vw + 0.65rem, 1rem);
+    --hero-stat-number-size: clamp(1.8rem, 1.2vw + 1.1rem, 2.75rem);
   }
 }
 
