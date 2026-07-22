@@ -45,10 +45,10 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch flex items-end gap-1 font-mono" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button data-fs="1" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:10px; padding-top:3px; padding-bottom:3px;" title={lang === 'cs' ? 'Základní písmo' : 'Default font size'}>A</button>
-        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:12px; padding-top:2px; padding-bottom:2px;" title={lang === 'cs' ? 'Větší písmo' : 'Larger font size'}>A</button>
-        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:14px; padding-top:1px; padding-bottom:1px;" title={lang === 'cs' ? 'Největší písmo' : 'Largest font size'}>A</button>
+      <div class="fs-switch flex items-center gap-1 font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button data-fs="1" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Základní velikost písma' : 'Default font size'}>A</button>
+        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Větší písmo (+8 %)' : 'Larger font (+8%)'}>A+</button>
+        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Největší písmo (+16 %)' : 'Largest font (+16%)'}>A++</button>
       </div>
     </div>
 
@@ -60,10 +60,10 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch flex items-end gap-1 font-mono" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button data-fs="1" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:10px; padding-top:3px; padding-bottom:3px;" title={lang === 'cs' ? 'Základní písmo' : 'Default font size'}>A</button>
-        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:12px; padding-top:2px; padding-bottom:2px;" title={lang === 'cs' ? 'Větší písmo' : 'Larger font size'}>A</button>
-        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:14px; padding-top:1px; padding-bottom:1px;" title={lang === 'cs' ? 'Největší písmo' : 'Largest font size'}>A</button>
+      <div class="fs-switch flex items-center gap-1 font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button data-fs="1" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Základní velikost písma' : 'Default font size'}>A</button>
+        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Větší písmo (+8 %)' : 'Larger font (+8%)'}>A+</button>
+        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Největší písmo (+16 %)' : 'Largest font (+16%)'}>A++</button>
       </div>
     </div>
 
@@ -200,8 +200,10 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       document.documentElement.style.fontSize = v === 1 ? '' : (v * 100) + '%';
       buttons.forEach(b => {
         const active = parseFloat(b.dataset.fs || '1') === v;
+        b.style.background = active ? '#0A0A0A' : 'transparent';
+        b.style.color = active ? '#FCFCFC' : '';
         b.style.borderColor = active ? '#0A0A0A' : 'rgba(10,10,10,0.3)';
-        b.style.opacity = active ? '1' : '0.45';
+        b.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
     }
     let fs = parseFloat(localStorage.getItem(FS_KEY) || '1');
