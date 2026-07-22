@@ -47,7 +47,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={resolvedImage} />
-    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:locale" content={lang === 'cs' ? 'cs_CZ' : 'en_GB'} />
     <meta property="og:site_name" content="UX Mind" />
 
     <!-- Twitter -->
@@ -63,6 +63,9 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-brand-white text-brand-black">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-white focus:px-4 focus:py-2 font-mono text-xs tracking-widest">
+      {lang === 'cs' ? 'Přeskočit na obsah' : 'Skip to content'}
+    </a>
     <slot />
 
     <slot name="cursor" />

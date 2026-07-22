@@ -19,8 +19,8 @@ export default defineConfig({
     // Tailwind build.
     tailwind({ applyBaseStyles: false }),
     mdx(),
-    // sitemap() is disabled on Windows due to a known absolute-path bug in the sitemap package.
-    // Uncomment the line below when deploying on Linux/CI (GitHub Actions will work fine).
+    // sitemap() je vypnutá — balíček @astrojs/sitemap v této verzi padá při buildu
+    // (bug s absolutními cestami). Po upgradu Astro/sitemap znovu prověřit.
     // sitemap(),
   ],
   markdown: {

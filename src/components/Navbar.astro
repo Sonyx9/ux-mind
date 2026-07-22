@@ -134,6 +134,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   document.getElementById('mobile-menu-btn-sm')?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
   overlay?.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
   const nav = document.getElementById('main-nav');
   const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;
@@ -269,6 +270,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       });
     });
     document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
     window.addEventListener('scroll', closeAll, { passive: true });
   })();
 </script>

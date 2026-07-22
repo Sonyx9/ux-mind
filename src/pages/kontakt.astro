@@ -10,7 +10,7 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
 
-  <main class="pt-32 pb-24">
+  <main id="main-content" class="pt-32 pb-24">
     <div class="max-w-7xl mx-auto px-6">
 
       <div class="mb-16">
@@ -84,9 +84,10 @@ import Footer from '../components/Footer.astro';
         <div>
           <form class="space-y-6" name="kontakt" method="POST" data-netlify="true">
             <div>
-              <label class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">JMÉNO *</label>
+              <label for="f-name" class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">JMÉNO *</label>
               <input
                 type="text"
+                id="f-name"
                 name="name"
                 required
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
@@ -95,9 +96,10 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">EMAIL *</label>
+              <label for="f-email" class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">EMAIL *</label>
               <input
                 type="email"
+                id="f-email"
                 name="email"
                 required
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
@@ -106,9 +108,10 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">FIRMA</label>
+              <label for="f-company" class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">FIRMA</label>
               <input
                 type="text"
+                id="f-company"
                 name="company"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
                 placeholder="Název firmy"
@@ -116,8 +119,9 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">ZÁJEM O SLUŽBU</label>
+              <label for="f-service" class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">ZÁJEM O SLUŽBU</label>
               <select
+                id="f-service"
                 name="service"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent appearance-none"
               >
@@ -132,8 +136,9 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">ZPRÁVA *</label>
+              <label for="f-message" class="font-mono text-xs text-brand-black/40 tracking-widest block mb-2">ZPRÁVA *</label>
               <textarea
+                id="f-message"
                 name="message"
                 required
                 rows="5"
