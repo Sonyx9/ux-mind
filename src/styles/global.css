@@ -97,6 +97,12 @@
   .hero-shell .text-xs {
     font-size: calc(0.75rem * var(--fs, 1));
   }
+
+  /* Anotace u hero obrázku: pojistný max-width, ať delší jazykové verze
+     (FR/DE/ES) nikdy nezajedou pod boční boxy ani mimo obrazovku */
+  .ann p {
+    max-width: 10.5rem;
+  }
 }
 
 /* Prose styles for blog */
