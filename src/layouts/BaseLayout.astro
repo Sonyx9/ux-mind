@@ -9,15 +9,17 @@ export interface Props {
   lang?: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const {
   title,
   description = 'UX Mind — specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.',
-  image = `${import.meta.env.BASE_URL}hero.gif`,
+  image = `${base}/hero.gif`,
   type = 'website',
   lang = 'cs',
 } = Astro.props;
 
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = `${base}/`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const resolvedImage = image.startsWith('http://') || image.startsWith('https://')
   ? image
