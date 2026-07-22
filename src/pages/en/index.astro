@@ -710,8 +710,8 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     let overHotspot = false;
 
     const runner = document.createElement('div');
-    // z-index 5 < z-10 of hero boxes → the runner disappears BEHIND the black box
-    runner.style.cssText = 'position:fixed;z-index:5;pointer-events:none;display:none;transform:translate(-50%,-58%);';
+    // While running z-index 20 (in front of the boxes); on parachute descent it switches to 5 (the black box's z-10 covers him)
+    runner.style.cssText = 'position:fixed;z-index:20;pointer-events:none;display:none;transform:translate(-50%,-58%);';
     runner.innerHTML = `
       <div class="chute" style="display:none; position:absolute; left:50%; top:-20px; transform:translateX(-50%);">
         <svg width="36" height="20" viewBox="0 0 36 20" fill="none" style="overflow:visible" xmlns="http://www.w3.org/2000/svg">
@@ -807,6 +807,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
             phase = 'chute';
             phaseT = now;
             if (chuteEl) chuteEl.style.display = 'block';
+            runner.style.zIndex = '5'; // from now on he descends BEHIND the black box
           }
         } else if (phase === 'chute') {
           // slow parachute descent behind the black box
@@ -827,6 +828,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           runner.style.display = 'none';
           if (chuteEl) chuteEl.style.display = 'none';
           setPose('a');
+          runner.style.zIndex = '20'; // reset for the next run
           running = false;
           awayDone = true;
           restoreIfReady();
