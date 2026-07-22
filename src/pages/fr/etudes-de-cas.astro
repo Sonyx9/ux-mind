@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="fr"
+  title="Études de cas"
+  description="Exemples de projets UX : eye tracking, audit UX et recherche utilisateur pour l’e-commerce, le SaaS et les médias."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ÉTUDES DE CAS ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          LES RÉSULTATS<br/>PARLENT.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+        {[
+          {
+            category: 'E-commerce',
+            title: 'Eye tracking d’un e-shop — +34 % de conversions',
+            desc: 'L’eye tracking a révélé que les utilisateurs manquaient le CTA principal à cause de sa position défavorable dans le layout en F. Après le redesign, les conversions ont augmenté de 34 %.',
+            tags: ['Eye Tracking', 'E-commerce', 'Conversions'],
+            result: '+34 % conversions',
+          },
+          {
+            category: 'SaaS',
+            title: 'Audit UX de l’onboarding — churn réduit de 28 %',
+            desc: 'Un audit systématique du processus d’onboarding a révélé 12 problèmes critiques. La mise en œuvre des recommandations a réduit le taux d’attrition des nouveaux utilisateurs de 28 %.',
+            tags: ['Audit UX', 'SaaS', 'Onboarding'],
+            result: '−28 % churn',
+          },
+          {
+            category: 'Médias',
+            title: 'Lisibilité d’un portail d’actualités',
+            desc: 'L’analyse eye tracking a montré comment les lecteurs consomment l’information. Un redesign du layout a augmenté le temps de lecture moyen de 45 % et le taux de clic de 22 %.',
+            tags: ['Eye Tracking', 'Médias', 'Design UX'],
+            result: '+45 % temps de lecture',
+          },
+          {
+            category: 'Secteur financier',
+            title: 'Recherche utilisateur — banque mobile',
+            desc: 'Entretiens approfondis et tests d’utilisabilité d’une application bancaire mobile. L’identification de 8 points de friction clés a conduit au redesign des fonctions critiques.',
+            tags: ['Recherche UX', 'Mobile', 'Fintech'],
+            result: '8 points de friction → 0',
+          },
+        ].map(study => (
+          <div class="bg-brand-white p-10">
+            <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
+              <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
+              <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              {study.tags.map(tag => (
+                <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center py-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ENVIE DE RÉSULTATS SIMILAIRES ? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Travaillons sur votre projet</h2>
+        <a href="/fr/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          DEMANDER UN DEVIS →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

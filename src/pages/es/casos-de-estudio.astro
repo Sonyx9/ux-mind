@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="es"
+  title="Casos de estudio"
+  description="Ejemplos de proyectos UX: eye tracking, auditoría UX e investigación de usuarios para e-commerce, SaaS y medios."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CASOS DE ESTUDIO ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          LOS RESULTADOS<br/>HABLAN.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+        {[
+          {
+            category: 'E-commerce',
+            title: 'Eye tracking de un e-shop — +34 % de conversiones',
+            desc: 'El eye tracking reveló que los usuarios pasaban por alto el CTA principal por su mala posición en el layout en F. Tras el rediseño, las conversiones aumentaron un 34 %.',
+            tags: ['Eye Tracking', 'E-commerce', 'Conversiones'],
+            result: '+34 % conversiones',
+          },
+          {
+            category: 'SaaS',
+            title: 'Auditoría UX del onboarding — churn reducido un 28 %',
+            desc: 'Una auditoría sistemática del proceso de onboarding reveló 12 problemas críticos. Implementar las recomendaciones redujo la tasa de abandono de nuevos usuarios un 28 %.',
+            tags: ['Auditoría UX', 'SaaS', 'Onboarding'],
+            result: '−28 % churn',
+          },
+          {
+            category: 'Medios',
+            title: 'Legibilidad de un portal de noticias',
+            desc: 'El análisis de eye tracking mostró cómo los lectores consumen las noticias. Un rediseño del layout aumentó el tiempo medio de lectura un 45 % y la tasa de clics un 22 %.',
+            tags: ['Eye Tracking', 'Medios', 'Diseño UX'],
+            result: '+45 % tiempo de lectura',
+          },
+          {
+            category: 'Sector financiero',
+            title: 'Investigación de usuarios — banca móvil',
+            desc: 'Entrevistas en profundidad y pruebas de usabilidad de una app de banca móvil. La identificación de 8 puntos de fricción clave llevó al rediseño de funciones críticas.',
+            tags: ['Investigación UX', 'Móvil', 'Fintech'],
+            result: '8 puntos de fricción → 0',
+          },
+        ].map(study => (
+          <div class="bg-brand-white p-10">
+            <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
+              <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
+              <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              {study.tags.map(tag => (
+                <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center py-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ¿QUIERE RESULTADOS SIMILARES? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Trabajemos en su proyecto</h2>
+        <a href="/es/contacto" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          SOLICITAR PRESUPUESTO →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,4 +1,4 @@
-export type Lang = 'cs' | 'en' | 'de';
+export type Lang = 'cs' | 'en' | 'de' | 'fr' | 'es';
 
 export const defaultLang: Lang = 'cs';
 
@@ -7,6 +7,8 @@ export const languages: { code: Lang; label: string }[] = [
   { code: 'cs', label: 'CZ' },
   { code: 'en', label: 'EN' },
   { code: 'de', label: 'DE' },
+  { code: 'fr', label: 'FR' },
+  { code: 'es', label: 'ES' },
 ];
 
 // Maps page keys to URLs per language
@@ -38,6 +40,24 @@ const urlMap: Record<Lang, Record<string, string>> = {
     blog: '/de/blog',
     contact: '/de/kontakt',
   },
+  fr: {
+    home: '/fr/',
+    services: '/fr/services',
+    'eye-tracking': '/fr/eye-tracking',
+    'ux-research': '/fr/recherche-ux',
+    'case-studies': '/fr/etudes-de-cas',
+    blog: '/fr/blog',
+    contact: '/fr/contact',
+  },
+  es: {
+    home: '/es/',
+    services: '/es/servicios',
+    'eye-tracking': '/es/eye-tracking',
+    'ux-research': '/es/investigacion-ux',
+    'case-studies': '/es/casos-de-estudio',
+    blog: '/es/blog',
+    contact: '/es/contacto',
+  },
 };
 
 // Maps URL path → page key (vygenerováno z urlMap)
@@ -52,6 +72,8 @@ for (const lang of Object.keys(urlMap) as Lang[]) {
 export function getLang(pathname: string): Lang {
   if (pathname.startsWith('/en')) return 'en';
   if (pathname.startsWith('/de')) return 'de';
+  if (pathname.startsWith('/fr')) return 'fr';
+  if (pathname.startsWith('/es')) return 'es';
   return 'cs';
 }
 
@@ -72,6 +94,8 @@ const navLabels: Record<Lang, Record<string, string>> = {
   cs: { services: 'Služby', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', contact: 'Kontakt' },
   en: { services: 'Services', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact' },
   de: { services: 'Leistungen', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt' },
+  fr: { services: 'Services', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact' },
+  es: { services: 'Servicios', 'ux-research': 'Investigación UX', 'case-studies': 'Casos de estudio', contact: 'Contacto' },
 };
 
 export function getNavLinks(lang: Lang) {

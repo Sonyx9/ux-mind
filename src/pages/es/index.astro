@@ -1,0 +1,525 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+).slice(0, 3);
+
+const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
+const yearSuffix = new Date().getFullYear().toString().slice(-2);
+
+const clientLogos = [
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, alt: 'Škoda Auto' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, alt: 'FC Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, alt: 'University of Hradec Králové' },
+];
+---
+
+<BaseLayout lang="es" title="UXMIND | Investigación UX: eye-tracking, biometría y carga mental" description="Medimos lo que los usuarios ven, cómo reaccionan y dónde su interfaz los sobrecarga. Eye-tracking + biometría + nuestro propio modelo EMLI. Respaldo científico de la FIM UHK.">
+  <Navbar />
+
+  <!-- HERO SECTION -->
+  <section class="hero-shell relative overflow-hidden">
+
+    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
+      style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
+      {[0, 25, 50, 75, 100].flatMap(x =>
+        [0, 33.333, 66.667, 100].map(y => (
+          <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
+            <div class="relative" style="width:14px; height:14px;">
+              <div class="absolute" style="top:50%; left:0; width:14px; height:1px; background:rgba(10,10,10,0.22); transform:translateY(-50%);"></div>
+              <div class="absolute" style="left:50%; top:0; height:14px; width:1px; background:rgba(10,10,10,0.22); transform:translateX(-50%);"></div>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+
+    <!-- Center CTA — below the hero figure, on the same grid row axis as the spec list -->
+    <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] hidden md:block" style="top: 83.333%;">
+      <a href="/es/contacto" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200 hover:bg-transparent hover:text-brand-black">
+        CONCERTAR UNA CITA
+      </a>
+    </div>
+
+    <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
+      <h1 class="m-0 p-0 relative" style="line-height:0;">
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo.svg`} alt="UX Mind" style="width: clamp(11rem, 24vw, 360px); height:auto; display:block;" />
+        <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
+        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:93.5%; top:26%; width:9.5%; height:46%;"></span>
+        <span id="logo-dot-patch" style="position:absolute; left:95.2%; top:34%; width:5%; height:29.2%; background:#FCFCFC; border-radius:50%; display:none;"></span>
+      </h1>
+      <!-- Mobile-only: first annotation below heading -->
+      <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">DONDE LA INVESTIGACIÓN REVELA LA VERDAD</p>
+    </div>
+
+    <!-- Mobile hero image — static, shown immediately -->
+    <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.png`} alt="UX Mind" style="width:100vw; height:auto; object-fit:contain;" />
+    </div>
+
+    <!-- Center 3D Brain — desktop only -->
+    <div class="hidden md:flex absolute inset-0 items-center justify-center">
+      <div id="hero-gif-container" class="relative" style="width: min(48vw, 760px); height: min(50vh, 540px);">
+        <img
+          id="hero-gif"
+          src={gifSrc}
+          alt="UX Mind"
+          class="w-full h-full object-contain"
+        />
+
+        <!-- Annotation: top -->
+        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">DONDE LA INVESTIGACIÓN<br/>REVELA LA VERDAD</p>
+          <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+        </div>
+
+        <!-- Annotation: left -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
+          <div class="text-right mr-2">
+            <p class="font-mono hero-fluid-micro tracking-widest">DESDE LA PERSPECTIVA DEL<br/>USUARIO NACE EL DISEÑO</p>
+          </div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+        </div>
+
+        <!-- Annotation: right top — top 40% keeps the text below the stats box bottom edge -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:40%; transform:translate(100%,-50%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
+          <div class="ml-2">
+            <p class="font-mono hero-fluid-micro tracking-widest">EL EYE TRACKING<br/>REVELA LO QUE LA GENTE<br/>REALMENTE VE</p>
+          </div>
+        </div>
+
+        <!-- Annotation: right bottom -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
+          <div class="ml-2">
+            <p class="font-mono hero-fluid-micro tracking-widest">UNA BASE PARA<br/>EL CRECIMIENTO</p>
+          </div>
+        </div>
+
+        <!-- Annotation: bottom -->
+        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+          <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATOS, NO<br/>IMPRESIONES</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-stats-box hidden md:block absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
+      <div class="flex justify-between items-center mb-3">
+        <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
+        <p class="font-mono text-xs text-brand-black/60">/{yearSuffix}</p>
+      </div>
+      <div class="space-y-2">
+        <div class="flex items-baseline justify-between">
+          <p class="font-display font-bold leading-none stat-projects" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">50+</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">PROYECTOS</p>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <p class="font-display font-bold leading-none stat-respondents" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">200+</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">PARTICIPANTES</p>
+        </div>
+        <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
+          <p class="font-display font-bold leading-none stat-clicks" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * var(--fs, 1));">50%</p>
+          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">MÁS CLICS</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
+      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/60">[ NUESTRA ESPECIALIZACIÓN ]</p>
+      <div class="space-y-3">
+        {[
+          { num: '01', label: 'AUDITORÍA UX' },
+          { num: '02', label: 'EYE TRACKING' },
+          { num: '03', label: 'INVESTIGACIÓN UX' },
+          { num: '04', label: 'PRUEBAS DE USUARIO' },
+        ].map((item) => (
+          <div class="flex items-center gap-2">
+            <p class="font-mono text-xs text-brand-black/60 shrink-0">{item.num}.</p>
+            <span class="spec-dashes font-mono text-xs tracking-tight">
+              {Array.from({length: 20}).map(() => (
+                <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
+              ))}
+            </span>
+            <p class="font-mono text-xs font-medium tracking-widest whitespace-nowrap">{item.label}</p>
+          </div>
+        ))}
+      </div>
+      <div class="flex items-center gap-3 mt-3">
+        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
+      </div>
+    </div>
+
+    <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col justify-between overflow-hidden"
+      style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
+      <div>
+        <div class="mb-2">
+          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(11px,0.85vw,13px) * var(--fs, 1));">NO SOMOS AGENCIA – ESPECIALISTAS</p>
+        </div>
+        <p class="font-mono text-brand-white/90 leading-relaxed" style="font-size:calc(clamp(11px,0.85vw,13px) * var(--fs, 1));">
+          Somos un equipo de especialistas en UX. Ayudamos a las empresas a entender a sus usuarios mediante datos, investigación y eye-tracking.
+        </p>
+      </div>
+      <div>
+        <div class="flex gap-2 mb-2">
+          <a href="/es/contacto" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * var(--fs, 1));">SOBRE NOSOTROS</a>
+          <a href="/es/contacto" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * var(--fs, 1));">CONTACTO</a>
+        </div>
+        <div class="pt-2 border-t border-brand-white/20 flex items-center justify-between">
+          <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * var(--fs, 1));">PROYECTO CON:</p>
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universidad de Hradec Králové" class="ml-6" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; filter: invert(1);" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursor dot — only in hero area -->
+    <div id="cursor-dot" style="position:fixed; top:0; left:0; width:8px; height:8px; background:#2D62FC; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); opacity:0;"></div>
+
+    <button type="button" aria-label="Desplazarse al contenido" class="hidden md:flex absolute bottom-6 z-10 flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
+      <div class="h-8 bg-brand-black/20" style="width: 1px;"></div>
+    </button>
+  </section>
+
+  <!-- Mobile info box — NOT AN AGENCY, above logo carousel -->
+  <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
+    <div>
+      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">NO SOMOS AGENCIA – ESPECIALISTAS</p>
+    </div>
+    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Somos un equipo de especialistas en UX. Ayudamos a las empresas a entender a sus usuarios mediante datos, investigación y eye-tracking.</p>
+    <div class="flex gap-2">
+      <a href="/es/contacto" class="font-mono text-xs border border-brand-white px-2 py-1">SOBRE NOSOTROS</a>
+      <a href="/es/contacto" class="font-mono text-xs border border-brand-white px-2 py-1">CONTACTO</a>
+    </div>
+    <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
+      <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROYECTO CON:</p>
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+    </div>
+  </div>
+
+  <!-- LOGO STRIP -->
+  <div class="border-y border-brand-black/10 py-6 bg-brand-white">
+    <!-- Desktop: static strip -->
+    <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
+      {clientLogos.map(({ src, alt }) => (
+        <div class="px-4 py-1">
+          <img
+            src={src}
+            alt={alt}
+            class="logo-strip-img select-none"
+            style="height:42px; width:auto; max-width:170px; object-fit:contain; display:block;"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ))}
+    </div>
+    <!-- Mobile: auto-scrolling carousel, two logos per row -->
+    <div class="md:hidden overflow-hidden">
+      <div class="logo-marquee flex items-center">
+        {[...clientLogos, ...clientLogos].map(({ src, alt }) => (
+          <div class="flex-shrink-0 flex justify-center items-center px-4" style="width:50vw;">
+            <img
+              src={src}
+              alt={alt}
+              class="logo-strip-img select-none"
+              style="height:36px; width:auto; max-width:40vw; object-fit:contain; display:block;"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .logo-strip-img {
+      filter: grayscale(1);
+      opacity: 0.65;
+    }
+    .logo-marquee {
+      width: max-content;
+      /* the loop is visual only (transform) — logos download once and animate from cache */
+      animation: logo-scroll 10s linear infinite;
+    }
+    @keyframes logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-150vw); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .logo-marquee { animation: none; }
+    }
+  </style>
+
+  <!-- THREE QUESTIONS, THREE MEASUREMENTS -->
+  <section id="main-content" class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
+    <div class="mb-12 max-w-3xl">
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ TRES PREGUNTAS, TRES MEDICIONES ]</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Qué ven los usuarios, cómo reaccionan<br/>y cuánto les cuesta<span style="color:#2D62FC">.</span></h2>
+      <p class="text-sm text-brand-black/60 leading-relaxed">
+        La analítica muestra DÓNDE hizo clic la gente. Las encuestas muestran QUÉ piensan. Nosotros medimos la tercera capa:
+        qué vieron realmente, con qué intensidad reaccionaron y dónde la interfaz los sobrecargó mentalmente.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+      {[
+        {
+          q: '¿Siquiera lo ven?',
+          desc: 'Atención visual — fijaciones, TTFF, dwell time, análisis AOI y scanpaths. Un registro objetivo de lo que los usuarios realmente vieron y lo que pasaron por alto.',
+          tool: 'EYE-TRACKING',
+        },
+        {
+          q: '¿Con qué intensidad reaccionan?',
+          desc: 'Activación fisiológica y señales faciales en el contexto de la tarea. Siempre interpretadas con sus límites — nada de «lectura de emociones».',
+          tool: 'GSR + SEÑALES FACIALES',
+        },
+        {
+          q: '¿Lo logran sin esfuerzo?',
+          desc: 'La carga mental como una puntuación clara de 0 a 100. Descubra dónde su interfaz sobrecarga a los usuarios — incluso cuando al final completan la tarea.',
+          tool: 'MODELO EMLI',
+        },
+      ].map((item, i) => (
+        <div class="bg-brand-white p-8 flex flex-col">
+          <p class="font-mono text-xs text-brand-black/50 mb-8">0{i + 1}</p>
+          <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
+          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
+          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
+        </div>
+      ))}
+    </div>
+    <!-- Glossary of abbreviations -->
+    <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">
+      <span class="text-brand-black/60 font-medium">GLOSARIO:</span>
+      TTFF — tiempo hasta la primera fijación · AOI — área de interés · dwell time — tiempo total de mirada en un área · scanpath — recorrido de la mirada entre fijaciones · GSR — respuesta galvánica de la piel, indicador de activación fisiológica · EMLI — índice de carga mental derivado de métricas de eye-tracking
+    </p>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+      {[
+        {
+          num: '01',
+          title: 'Auditoría UX',
+          desc: 'Un análisis sistemático de los recorridos clave de su producto: navegación, CTA, formularios. El resultado no son solo gráficos — son recomendaciones priorizadas sobre qué mejorar primero.',
+          href: '/es/servicios',
+          tags: ['Análisis', 'Recomendaciones', 'Priorización'],
+        },
+        {
+          num: '02',
+          title: 'Eye Tracking',
+          desc: 'Un registro objetivo de la atención visual: fijaciones, time to first fixation (TTFF), dwell time, métricas AOI, heatmaps y scanpaths. Lo que la gente realmente ve — y lo que pasa por alto.',
+          href: '/es/eye-tracking',
+          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
+        },
+        {
+          num: '03',
+          title: 'Investigación UX',
+          desc: 'Combinamos medición objetiva del comportamiento, datos biométricos y encuestas en el contexto de la tarea. En laboratorio y en campo, con pilotaje, control de calidad de datos y límites honestos.',
+          href: '/es/investigacion-ux',
+          tags: ['Eye-tracking', 'Biometría', 'Encuestas'],
+        },
+        {
+          num: '04',
+          title: 'Casos de estudio',
+          desc: 'El 40 % de los candidatos no encontró las vacantes. El 92 % de las miradas aterrizó en el CTA principal. Números reales de mediciones reales — y las decisiones que generaron.',
+          href: '/es/casos-de-estudio',
+          tags: ['Resultados', 'Datos', 'Decisiones'],
+        },
+      ].map(service => (
+        <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
+          <div class="flex justify-between items-start mb-8">
+            <p class="font-mono text-xs text-brand-black/50 group-hover:text-brand-white/30">{service.num}</p>
+            <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
+          </div>
+          <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
+          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6">{service.desc}</p>
+          <div class="flex flex-wrap gap-2">
+            {service.tags.map(tag => (
+              <span class="font-mono text-xs border border-brand-black/20 group-hover:border-brand-white/20 px-2 py-1">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- EMLI SECTION -->
+  <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
+        <h2 class="font-display text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8">La carga mental<br/>en un número<span style="color:#2D62FC">.</span></h2>
+        <p class="text-brand-white/60 leading-relaxed mb-6">
+          Un heatmap muestra dónde miró la gente. Pero no le dirá <strong class="text-brand-white">cuánto les costó</strong>.
+          EMLI convierte ocho métricas de eye-tracking en un único índice de carga de 0 a 100. Compare variantes de diseño,
+          pasos de formulario o soluciones de la competencia — con datos sólidos, no intuiciones.
+        </p>
+        <p class="font-mono text-xs text-brand-white/70 leading-relaxed mb-10">
+          Un modelo desarrollado y probado continuamente en la investigación académica de la FIM UHK,<br class="hidden md:block"/> con una metodología de replicación totalmente documentada.
+        </p>
+        <a href="/es/contacto" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          MEDIR NUESTRA CARGA →
+        </a>
+      </div>
+      <div class="flex justify-center">
+        <!-- EMLI gauge 0–100 -->
+        <svg viewBox="0 0 320 200" class="w-full max-w-sm" role="img" aria-label="Ilustración del índice de carga mental EMLI en una escala de 0 a 100">
+          <path d="M 30 170 A 130 130 0 0 1 290 170" fill="none" stroke="rgba(252,252,252,0.15)" stroke-width="14" stroke-linecap="round" />
+          <path id="emli-arc" d="M 30 170 A 130 130 0 0 1 290 170" pathLength="100" fill="none" stroke="#FCFCFC" stroke-width="14" stroke-linecap="round" stroke-dasharray="65 100" />
+          {Array.from({ length: 11 }).map((_, i) => {
+            const a = Math.PI - (i * Math.PI) / 10;
+            const x1 = 160 + Math.cos(a) * 108, y1 = 170 - Math.sin(a) * 108;
+            const x2 = 160 + Math.cos(a) * 98,  y2 = 170 - Math.sin(a) * 98;
+            return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(252,252,252,0.35)" stroke-width="2" />;
+          })}
+          <g id="emli-needle" style="transform-box: view-box; transform-origin: 160px 170px; transform: rotate(117deg);">
+            <line x1="160" y1="170" x2="76" y2="170" stroke="#FCFCFC" stroke-width="2" />
+          </g>
+          <circle cx="160" cy="170" r="6" fill="#2D62FC" />
+          <text x="30" y="192" fill="rgba(252,252,252,0.5)" font-family="monospace" font-size="12">0</text>
+          <text x="278" y="192" fill="rgba(252,252,252,0.5)" font-family="monospace" font-size="12">100</text>
+          <text id="emli-value" x="160" y="130" fill="#FCFCFC" text-anchor="middle" font-family="monospace" font-size="38" font-weight="700">65</text>
+          <text x="160" y="150" fill="rgba(252,252,252,0.6)" text-anchor="middle" font-family="monospace" font-size="11" letter-spacing="3">EMLI</text>
+          <text x="160" y="196" fill="rgba(252,252,252,0.5)" text-anchor="middle" font-family="monospace" font-size="10" letter-spacing="2">8 MÉTRICAS → 1 ÍNDICE</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="desktop-gutter-x py-16 border-t border-brand-black/10">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      {[
+        { num: '5+', label: 'Estudios realizados' },
+        { num: '450+', label: 'Participantes en estudios' },
+        { num: '8', label: 'Métricas del modelo EMLI' },
+        { num: '0–100', label: 'Escala del índice de carga' },
+      ].map(stat => (
+        <div class="text-center">
+          <p class="font-display text-5xl md:text-6xl font-bold mb-2">{stat.num}</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- RESEARCH & TECHNOLOGY -->
+  <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ LABORATORIO Y TECNOLOGÍA ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Respaldo científico,<br/>no magia de marketing<span style="color:#2D62FC">.</span></h2>
+        <p class="text-sm text-brand-black/60 leading-relaxed mb-8">
+          Medimos en el Laboratorio de Estudios Cognitivos de la FIM UHK y en campo. Usamos el GSR como indicador
+          de activación fisiológica e interpretamos las señales faciales siempre en el contexto de la tarea. Cada
+          medición tiene una pregunta de investigación clara, un pilotaje, control de calidad de datos y límites declarados.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {['TOBII PRO X2-60', 'SMART EYE AURORA', 'PUPIL LABS NEON', 'IMOTIONS', 'SHIMMER3 GSR'].map(tech => (
+            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{tech}</span>
+          ))}
+        </div>
+        <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mt-8">CIENCIA, NO PROMESAS</p>
+        <p class="text-sm text-brand-black/60 leading-relaxed mt-4">
+          El equipo publica en Scientific Reports (Nature Portfolio), en el Journal of Environmental
+          Psychology y en ACM ETRA. UXMIND lleva este know-how académico a la práctica — incluida
+          la disciplina metodológica que exigen las mediciones para clientes.
+        </p>
+      </div>
+      <div class="flex flex-col">
+        <!-- Photo fills the column height (object-cover crop) -->
+        <div class="border border-brand-black flex flex-col flex-1 min-h-0">
+          <img
+            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+            alt="Investigador de UXMIND analizando datos de eye-tracking — heatmaps de atención visual en el monitor, grabaciones de expresiones faciales en la tableta"
+            title="Análisis de datos de eye-tracking en el Laboratorio de Estudios Cognitivos de la FIM UHK"
+            width="1920" height="1280" loading="lazy" decoding="async"
+            class="w-full flex-1 min-h-0 object-cover block"
+          />
+        </div>
+        <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
+          <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">EN COOPERACIÓN CON:</p>
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universidad de Hradec Králové" class="h-[40px] w-auto" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+      <div>
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ BLOG ]</p>
+          <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Últimos<br/>artículos<span style="color:#2D62FC">.</span></h2>
+        </div>
+        <a href="/es/blog" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+          TODOS LOS ARTÍCULOS →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="group">
+            {post.data.coverImage && (
+              <div class="aspect-video overflow-hidden mb-4 bg-brand-black/5">
+                <img
+                  src={post.data.coverImage}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div class="flex gap-2 mb-2">
+              {post.data.tags?.slice(0,2).map((tag: string) => (
+                <span class="font-mono text-xs text-brand-black/60">{tag}</span>
+              ))}
+            </div>
+            <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
+            <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
+            <p class="font-mono text-xs text-brand-black/50 mt-4">
+              {new Date(post.data.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </p>
+          </a>
+        ))}
+      </div>
+      </div>
+    </section>
+  )}
+
+  <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ TRABAJEMOS JUNTOS ]</p>
+      <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">
+        LISTOS<br/>PARA AYUDAR<span style="color:#2D62FC">.</span>
+      </h2>
+      <p class="text-lg text-brand-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
+        ¿No sabe si el problema está en el diseño, el contenido, la campaña o la propia tarea?
+        Envíenos su web, app o creatividad. Propondremos un escenario de medición que le ayude
+        a decidir con datos, no con intuiciones.
+      </p>
+      <a href="/es/contacto" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+        PROBAR NUESTRA UX →
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../../scripts/homepage';
+</script>

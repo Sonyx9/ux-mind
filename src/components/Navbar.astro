@@ -21,9 +21,11 @@ const t = {
   cs: { cta: 'DOMLUVIT SCHŮZKU', close: 'ZAVŘÍT', langTitle: 'Jazyk webu', fsTitle: 'Velikost písma', fsSmall: 'Malé písmo', fsMedium: 'Střední písmo', fsLarge: 'Velké písmo' },
   en: { cta: 'BOOK A MEETING', close: 'CLOSE', langTitle: 'Site language', fsTitle: 'Font size', fsSmall: 'Small text', fsMedium: 'Medium text', fsLarge: 'Large text' },
   de: { cta: 'TERMIN VEREINBAREN', close: 'SCHLIESSEN', langTitle: 'Sprache der Website', fsTitle: 'Schriftgröße', fsSmall: 'Kleine Schrift', fsMedium: 'Mittlere Schrift', fsLarge: 'Große Schrift' },
+  fr: { cta: 'PRENDRE RENDEZ-VOUS', close: 'FERMER', langTitle: 'Langue du site', fsTitle: 'Taille du texte', fsSmall: 'Petit texte', fsMedium: 'Texte moyen', fsLarge: 'Grand texte' },
+  es: { cta: 'CONCERTAR UNA CITA', close: 'CERRAR', langTitle: 'Idioma del sitio', fsTitle: 'Tamaño del texto', fsSmall: 'Texto pequeño', fsMedium: 'Texto mediano', fsLarge: 'Texto grande' },
 }[lang];
 const mobileCTALabel = t.cta;
-const isHome = ['/', '/en/', '/en', '/de/', '/de'].includes(path);
+const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es'].includes(path);
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">

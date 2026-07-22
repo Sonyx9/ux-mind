@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="es"
+  title="Investigación UX"
+  description="Investigación UX profunda de usuarios. Entrevistas, pruebas de usabilidad, personas y journey maps."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ INVESTIGACIÓN UX ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          DATOS, NO<br/>SUPOSICIONES.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          Decisiones basadas en datos, no en conjeturas. La investigación UX le muestra lo que sus usuarios realmente necesitan.
+        </p>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ MÉTODOS DE INVESTIGACIÓN ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+          {[
+            { title: 'Entrevistas en profundidad', type: 'Cualitativo', desc: 'Conversaciones individuales que revelan motivaciones, frustraciones y modelos mentales.' },
+            { title: 'Pruebas de usabilidad', type: 'Cualitativo', desc: 'Observamos a los usuarios completar tareas e identificamos dónde fallan.' },
+            { title: 'Investigación contextual', type: 'Cualitativo', desc: 'Observamos a los usuarios en su entorno natural para ver cómo trabajan realmente.' },
+            { title: 'Encuestas', type: 'Cuantitativo', desc: 'Grandes conjuntos de datos de muchos encuestados para conclusiones estadísticamente relevantes.' },
+            { title: 'Pruebas A/B', type: 'Cuantitativo', desc: 'Comparamos variantes de diseño con tráfico real y medimos los resultados.' },
+            { title: 'Card sorting', type: 'Mixto', desc: 'Descubrimos cómo los usuarios categorizan los contenidos para mejorar la arquitectura de la información.' },
+          ].map(method => (
+            <div class="bg-brand-white p-8">
+              <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 mb-4 inline-block">{method.type}</span>
+              <h3 class="font-display text-xl font-bold mb-3 mt-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-24 border-t border-brand-black/10 pt-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ RECIBE ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {[
+            { title: 'Informe de investigación', desc: 'Un documento completo con metodología, hallazgos y recomendaciones.' },
+            { title: 'Personas', desc: 'Personajes basados en datos que representan sus grupos clave de usuarios.' },
+            { title: 'Journey maps', desc: 'Visualización del recorrido del usuario por el producto, incluidos los puntos de fricción.' },
+            { title: 'Recomendaciones priorizadas', desc: 'Pasos concretos ordenados por impacto y esfuerzo de implementación.' },
+          ].map(item => (
+            <div>
+              <h3 class="font-display text-2xl font-bold mb-3">{item.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Conozca a fondo a sus usuarios</h2>
+        <a href="/es/contacto" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          INICIAR LA INVESTIGACIÓN →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="fr"
+  title="Contact"
+  description="Contactez UX Mind. Réservez une consultation gratuite pour un audit UX, de l’eye tracking ou de la recherche UX."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CONTACT ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          PARLONS-<br/>EN.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+
+        <div>
+          <p class="text-xl text-brand-black/60 leading-relaxed mb-12">
+            Nous serions ravis de découvrir votre projet. Écrivez-nous ou remplissez le formulaire — nous répondons sous 24 heures.
+          </p>
+
+          <div class="space-y-6">
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">E-MAIL</p>
+              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+                spoluprace@uxmind.cz
+              </a>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">TÉLÉPHONE</p>
+              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+                +420 728 601 160
+              </a>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SIÈGE</p>
+              <p class="font-display text-xl font-bold">K Lesu 180, Svinary<br/>500 09 Hradec Králové, Tchéquie</p>
+            </div>
+          </div>
+
+          <div class="mt-12 p-6 border border-brand-black/10">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ NOUS RÉPONDONS SOUS ]</p>
+            <p class="font-display text-3xl font-bold">24 heures</p>
+            <p class="text-sm text-brand-black/60 mt-1">les jours ouvrés</p>
+          </div>
+
+          <div class="mt-6 p-6 border border-brand-black/10">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ EXPLOITANT DU SITE ]</p>
+            <div class="space-y-3 text-sm">
+              <div>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">RAISON SOCIALE</p>
+                <p class="text-brand-black/80">UX MIND Research Lab s.r.o.</p>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">N° D’IDENTIFICATION (IČO)</p>
+                <p class="text-brand-black/80">29714966</p>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">DOSSIER</p>
+                <p class="text-brand-black/80">C 57053, tenu par le tribunal régional de Hradec Králové</p>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">DATE D’IMMATRICULATION</p>
+                <p class="text-brand-black/80">24 juin 2026</p>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">SIÈGE SOCIAL</p>
+                <p class="text-brand-black/80">K Lesu 180, Svinary, 500 09 Hradec Králové, Tchéquie</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <form class="space-y-6" name="contact-fr" method="POST" data-netlify="true">
+            <div>
+              <label for="f-name" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">NOM *</label>
+              <input
+                type="text"
+                id="f-name"
+                name="name"
+                required
+                class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
+                placeholder="Votre nom"
+              />
+            </div>
+
+            <div>
+              <label for="f-email" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">E-MAIL *</label>
+              <input
+                type="email"
+                id="f-email"
+                name="email"
+                required
+                class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
+                placeholder="votre@email.fr"
+              />
+            </div>
+
+            <div>
+              <label for="f-company" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">ENTREPRISE</label>
+              <input
+                type="text"
+                id="f-company"
+                name="company"
+                class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent"
+                placeholder="Nom de l’entreprise"
+              />
+            </div>
+
+            <div>
+              <label for="f-service" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">SERVICE SOUHAITÉ</label>
+              <select
+                id="f-service"
+                name="service"
+                class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent appearance-none"
+              >
+                <option value="">Choisir un service…</option>
+                <option value="audit-ux">Audit UX</option>
+                <option value="eye-tracking">Eye Tracking</option>
+                <option value="recherche-ux">Recherche UX</option>
+                <option value="tests-utilisateurs">Tests utilisateurs</option>
+                <option value="conseil">Conseil</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="f-message" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">MESSAGE *</label>
+              <textarea
+                id="f-message"
+                name="message"
+                required
+                rows="5"
+                class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent resize-none"
+                placeholder="Décrivez votre projet ou votre question…"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors"
+            >
+              ENVOYER LE MESSAGE →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

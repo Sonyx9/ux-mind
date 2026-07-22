@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="es"
+  title="Eye Tracking"
+  description="Eye tracking para sitios web, aplicaciones y materiales impresos. Heatmaps, análisis AOI y grabaciones de los movimientos oculares."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ EYE TRACKING ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          VEMOS LO QUE<br/>USTED NO VE.
+        </h1>
+        <p class="text-xl text-brand-black/60 max-w-2xl leading-relaxed">
+          El eye tracking proporciona datos precisos sobre cómo los usuarios perciben sus contenidos. Sabemos dónde miran, qué pasan por alto y qué capta su atención.
+        </p>
+      </div>
+
+      <div class="mb-24">
+        <img
+          src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+          alt="Participante durante una sesión de eye-tracking en el laboratorio — observa el estímulo de prueba en un monitor equipado con eye-tracker"
+          title="Una sesión de eye-tracking en el laboratorio"
+          width="1080" height="1920" loading="lazy" decoding="async"
+          class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Recogida de datos de atención visual en el laboratorio — las grabaciones de la mirada alimentan los análisis AOI y los heatmaps.</p>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CÓMO FUNCIONA ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10">
+          {[
+            { num: '01', title: 'Preparación', desc: 'Definimos escenarios de prueba según sus objetivos y las AOI (Areas of Interest) que queremos seguir.' },
+            { num: '02', title: 'Prueba', desc: 'Los usuarios interactúan con su producto mientras el eye-tracker registra con precisión sus movimientos oculares.' },
+            { num: '03', title: 'Análisis', desc: 'Convertimos los datos en heatmaps visuales, gaze plots y estadísticas AOI.' },
+            { num: '04', title: 'Recomendaciones', desc: 'Recibe recomendaciones concretas para mejorar el layout y la jerarquía de contenidos.' },
+          ].map(step => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/50 mb-6">{step.num}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ DÓNDE AYUDAMOS ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+          {[
+            { title: 'Sitios web', desc: 'Descubrimos dónde pasan tiempo los usuarios, qué pasan por alto y por qué no reaccionan a sus CTA.' },
+            { title: 'Apps móviles', desc: 'Probamos la navegación, la legibilidad y la usabilidad de sus productos móviles.' },
+            { title: 'E-commerce', desc: 'Optimizamos páginas de producto, carrito y checkout para mejores conversiones.' },
+            { title: 'Materiales impresos', desc: 'Banners, carteles, envases — mostramos qué atrae la atención en los materiales físicos.' },
+          ].map(usecase => (
+            <div class="bg-brand-white p-8">
+              <h3 class="font-display text-2xl font-bold mb-3">{usecase.title}</h3>
+              <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="text-center py-16 border-t border-brand-black/10">
+        <h2 class="font-display text-4xl font-bold mb-6">Descubra qué ven sus usuarios</h2>
+        <a href="/es/contacto" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          PROGRAMAR UNA PRUEBA →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

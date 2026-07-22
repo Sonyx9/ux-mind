@@ -25,6 +25,8 @@ const resolvedImage = image.startsWith('http://') || image.startsWith('https://'
   ? image
   : new URL(image.replace(/^\//, ''), new URL(baseUrl, Astro.site)).toString();
 const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
+const ogLocales: Record<string, string> = { cs: 'cs_CZ', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
+const skipLabels: Record<string, string> = { cs: 'Přeskočit na obsah', en: 'Skip to content', de: 'Zum Inhalt springen', fr: 'Aller au contenu', es: 'Saltar al contenido' };
 ---
 
 <!doctype html>
@@ -47,7 +49,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={resolvedImage} />
-    <meta property="og:locale" content={lang === 'cs' ? 'cs_CZ' : lang === 'de' ? 'de_DE' : 'en_GB'} />
+    <meta property="og:locale" content={ogLocales[lang] ?? 'en_GB'} />
     <meta property="og:site_name" content="UX Mind" />
 
     <!-- Twitter -->
@@ -61,7 +63,7 @@ const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
   </head>
   <body class="bg-brand-white text-brand-black">
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-white focus:px-4 focus:py-2 font-mono text-xs tracking-widest">
-      {lang === 'cs' ? 'Přeskočit na obsah' : lang === 'de' ? 'Zum Inhalt springen' : 'Skip to content'}
+      {skipLabels[lang] ?? 'Skip to content'}
     </a>
     <slot />
 
