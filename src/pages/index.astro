@@ -764,7 +764,7 @@ const clientLogos = [
     let px = 0, py = 0, vx = 0, vy = 0;
     let size = 14, baseSize = 14;
     let mx = -9999, my = -9999;
-    let lastNear = 0, lastT = 0;
+    let lastNear = 0, lastT = 0, lastBounce = 0;
     let raf = 0;
 
     const dot = document.createElement('div');
@@ -859,14 +859,16 @@ const clientLogos = [
 
       const m = size / 2 + 6;
       const bottom = Math.min(hr.bottom, window.innerHeight);
-      if (px < hr.left + m)  { px = hr.left + m;  vx = Math.abs(vx) * 0.8; }
-      if (px > hr.right - m) { px = hr.right - m; vx = -Math.abs(vx) * 0.8; }
-      if (py < Math.max(hr.top, 0) + m) { py = Math.max(hr.top, 0) + m; vy = Math.abs(vy) * 0.8; }
-      if (py > bottom - m)   { py = bottom - m;   vy = -Math.abs(vy) * 0.8; }
+      let bounced = false;
+      if (px < hr.left + m)  { px = hr.left + m;  if (vx < -0.4) bounced = true; vx = Math.abs(vx) * 0.8; }
+      if (px > hr.right - m) { px = hr.right - m; if (vx > 0.4) bounced = true;  vx = -Math.abs(vx) * 0.8; }
+      if (py < Math.max(hr.top, 0) + m) { py = Math.max(hr.top, 0) + m; if (vy < -0.4) bounced = true; vy = Math.abs(vy) * 0.8; }
+      if (py > bottom - m)   { py = bottom - m;   if (vy > 0.4) bounced = true;  vy = -Math.abs(vy) * 0.8; }
 
-      // chycená (kurzor přímo u ní) → nafukuje se, až praskne
-      if (d < size / 2 + 26) {
-        size += dt * 0.022;
+      // náraz do kraje → tečka viditelně povyroste; po několika nárazech praskne
+      if (bounced && now - lastBounce > 250) {
+        lastBounce = now;
+        size += 5;
         if (size >= 54) { pop(); return; }
       }
 
