@@ -45,15 +45,13 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch relative font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button class="fs-toggle border border-brand-black/30 px-1.5 py-0.5 flex items-center gap-1 hover:border-brand-black transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-          <span class="fs-current">A</span><span style="font-size:7px; line-height:1;">▼</span>
-        </button>
-        <div class="fs-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
-          <button data-fs="1" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A</button>
-          <button data-fs="1.08" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A+</button>
-          <button data-fs="1.16" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A++</button>
+      <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <div class="flex items-end" style="gap:3px;">
+          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={lang === 'cs' ? 'Malé písmo' : 'Small text'} aria-label={lang === 'cs' ? 'Malé písmo' : 'Small text'}></button>
+          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={lang === 'cs' ? 'Střední písmo' : 'Medium text'} aria-label={lang === 'cs' ? 'Střední písmo' : 'Medium text'}></button>
+          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={lang === 'cs' ? 'Velké písmo' : 'Large text'} aria-label={lang === 'cs' ? 'Velké písmo' : 'Large text'}></button>
         </div>
+        <span class="font-mono tracking-widest text-brand-black/40 mt-0.5" style="font-size:8px;">TEXT</span>
       </div>
     </div>
 
@@ -65,15 +63,13 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch relative font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button class="fs-toggle border border-brand-black/30 px-1.5 py-0.5 flex items-center gap-1 hover:border-brand-black transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-          <span class="fs-current">A</span><span style="font-size:7px; line-height:1;">▼</span>
-        </button>
-        <div class="fs-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
-          <button data-fs="1" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A</button>
-          <button data-fs="1.08" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A+</button>
-          <button data-fs="1.16" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A++</button>
+      <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <div class="flex items-end" style="gap:3px;">
+          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={lang === 'cs' ? 'Malé písmo' : 'Small text'} aria-label={lang === 'cs' ? 'Malé písmo' : 'Small text'}></button>
+          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={lang === 'cs' ? 'Střední písmo' : 'Medium text'} aria-label={lang === 'cs' ? 'Střední písmo' : 'Medium text'}></button>
+          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={lang === 'cs' ? 'Velké písmo' : 'Large text'} aria-label={lang === 'cs' ? 'Velké písmo' : 'Large text'}></button>
         </div>
+        <span class="font-mono tracking-widest text-brand-black/40 mt-0.5" style="font-size:8px;">TEXT</span>
       </div>
     </div>
 
@@ -202,56 +198,37 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   window.addEventListener('resize', updateNav);
   updateNav();
 
-  // Přepínač velikosti písma — rozbalovací menu (A / A+ / A++), volba se pamatuje
+  // Přepínač velikosti textu — tři sloupce (malý/střední/velký) s popiskem TEXT.
+  // Škáluje se POUZE obsah pod hero sekcí (zoom) — hero, navigace ani scroll indikátor se nemění.
   (function () {
     const FS_KEY = 'uxmind-font-scale';
-    const switches = document.querySelectorAll<HTMLElement>('.fs-switch');
-    const options = document.querySelectorAll<HTMLButtonElement>('.fs-menu button');
-    const LABELS: Record<string, string> = { '1': 'A', '1.08': 'A+', '1.16': 'A++' };
+    const LEVELS = [1, 1.08, 1.16];
+    const bars = document.querySelectorAll<HTMLButtonElement>('.fs-switch button');
 
     function applyFS(v: number) {
-      document.documentElement.style.fontSize = v === 1 ? '' : (v * 100) + '%';
-      document.querySelectorAll<HTMLElement>('.fs-current').forEach(el => {
-        el.textContent = LABELS[String(v)] || 'A';
+      const idx = LEVELS.indexOf(v);
+      // root font-size neškálujeme (kvůli art-directed hero layoutu)
+      document.documentElement.style.fontSize = '';
+      // zoom na obsahové bloky: vše za hero sekcí + main a footer na podstránkách
+      document.querySelectorAll<HTMLElement>('.hero-shell ~ *, main, footer').forEach(el => {
+        el.style.setProperty('zoom', v === 1 ? '' : String(v));
       });
-      options.forEach(b => {
-        const active = parseFloat(b.dataset.fs || '1') === v;
-        b.style.background = active ? '#0A0A0A' : '';
-        b.style.color = active ? '#FCFCFC' : '';
-        b.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-    }
-    function closeAll() {
-      switches.forEach(s => {
-        s.querySelector('.fs-menu')?.classList.add('hidden');
-        s.querySelector('.fs-toggle')?.setAttribute('aria-expanded', 'false');
+      bars.forEach(b => {
+        const bi = LEVELS.indexOf(parseFloat(b.dataset.fs || '1'));
+        const filled = bi > -1 && bi <= idx;
+        b.style.background = filled ? '#0A0A0A' : 'transparent';
+        b.setAttribute('aria-pressed', bi === idx ? 'true' : 'false');
       });
     }
 
     let fs = parseFloat(localStorage.getItem(FS_KEY) || '1');
-    if (![1, 1.08, 1.16].includes(fs)) fs = 1;
+    if (!LEVELS.includes(fs)) fs = 1;
     applyFS(fs);
 
-    switches.forEach(s => {
-      const toggle = s.querySelector<HTMLElement>('.fs-toggle');
-      const menu = s.querySelector<HTMLElement>('.fs-menu');
-      toggle?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const wasOpen = menu ? !menu.classList.contains('hidden') : false;
-        closeAll();
-        if (!wasOpen && menu && toggle) {
-          menu.classList.remove('hidden');
-          toggle.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-    options.forEach(b => b.addEventListener('click', (e) => {
-      e.stopPropagation();
+    bars.forEach(b => b.addEventListener('click', () => {
       fs = parseFloat(b.dataset.fs || '1');
       localStorage.setItem(FS_KEY, String(fs));
       applyFS(fs);
-      closeAll();
     }));
-    document.addEventListener('click', closeAll);
   })();
 </script>
