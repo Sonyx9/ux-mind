@@ -238,6 +238,7 @@
     let mx = -9999, my = -9999;
     let lastNear = 0, lastT = 0, lastBounce = 0;
     let raf = 0;
+    let boxRect: DOMRect | null = null; // černý info box — překážka, od které se tečka odráží
 
     const dot = document.createElement('div');
     dot.style.cssText = 'position:fixed;z-index:20;background:#2D62FC;border-radius:50%;pointer-events:none;display:none;transform:translate(-50%,-50%);';
@@ -337,6 +338,20 @@
       if (py < Math.max(hr.top, 0) + m) { py = Math.max(hr.top, 0) + m; if (vy < -0.4) bounced = true; vy = Math.abs(vy) * 0.8; }
       if (py > bottom - m)   { py = bottom - m;   if (vy > 0.4) bounced = true;  vy = -Math.abs(vy) * 0.8; }
 
+      // odraz od černého info boxu — tečka za něj nezajíždí, odráží se jako od zdi
+      if (boxRect) {
+        const m2 = size / 2 + 4;
+        const L = boxRect.left - m2, R = boxRect.right + m2, T = boxRect.top - m2, B = boxRect.bottom + m2;
+        if (px > L && px < R && py > T && py < B) {
+          const dL = px - L, dR = R - px, dT = py - T, dB = B - py;
+          const minD = Math.min(dL, dR, dT, dB);
+          if (minD === dL)      { px = L; if (vx > 0.4) bounced = true; vx = -Math.abs(vx) * 0.8; }
+          else if (minD === dR) { px = R; if (vx < -0.4) bounced = true; vx = Math.abs(vx) * 0.8; }
+          else if (minD === dT) { py = T; if (vy > 0.4) bounced = true; vy = -Math.abs(vy) * 0.8; }
+          else                  { py = B; if (vy < -0.4) bounced = true; vy = Math.abs(vy) * 0.8; }
+        }
+      }
+
       // náraz do kraje → tečka viditelně povyroste; po několika nárazech praskne
       if (bounced && now - lastBounce > 250) {
         lastBounce = now;
@@ -356,6 +371,8 @@
       if (active) return;
       active = true;
       patch!.style.display = 'block';
+      const infoBox = document.getElementById('info-box');
+      boxRect = infoBox ? infoBox.getBoundingClientRect() : null;
       const r = patch!.getBoundingClientRect();
       baseSize = Math.max(r.width, 10);
       size = baseSize;
