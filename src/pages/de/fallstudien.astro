@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  lang="de"
+  title="Fallstudien"
+  description="Beispiele für UX-Projekte: Eye Tracking, UX-Audit und Nutzerforschung für E-Commerce, SaaS und Medien."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FALLSTUDIEN ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          ERGEBNISSE<br/>SPRECHEN.
+        </h1>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+        {[
+          {
+            category: 'E-Commerce',
+            title: 'Eye Tracking im E-Shop — +34 % Conversions',
+            desc: 'Eye Tracking zeigte, dass Nutzer den Haupt-CTA wegen seiner ungünstigen Position im F-Pattern-Layout übersahen. Nach dem Redesign stiegen die Conversions um 34 %.',
+            tags: ['Eye Tracking', 'E-Commerce', 'Conversions'],
+            result: '+34 % Conversions',
+          },
+          {
+            category: 'SaaS',
+            title: 'UX-Audit des Onboardings — Churn um 28 % gesenkt',
+            desc: 'Ein systematisches Audit des Onboarding-Prozesses deckte 12 kritische Probleme auf. Die Umsetzung der Empfehlungen senkte die Abwanderungsrate neuer Nutzer um 28 %.',
+            tags: ['UX-Audit', 'SaaS', 'Onboarding'],
+            result: '−28 % Churn',
+          },
+          {
+            category: 'Medien',
+            title: 'Lesbarkeit eines Nachrichtenportals',
+            desc: 'Die Eye-Tracking-Analyse zeigte, wie Leser Nachrichten konsumieren. Ein Layout-Redesign erhöhte die durchschnittliche Lesezeit um 45 % und die Klickrate um 22 %.',
+            tags: ['Eye Tracking', 'Medien', 'UX-Design'],
+            result: '+45 % Lesezeit',
+          },
+          {
+            category: 'Finanzsektor',
+            title: 'Nutzerforschung — Mobile Banking',
+            desc: 'Tiefeninterviews und Usability-Tests einer Mobile-Banking-App. Die Identifikation von 8 zentralen Pain Points führte zum Redesign kritischer Funktionen.',
+            tags: ['UX-Forschung', 'Mobile', 'Fintech'],
+            result: '8 Pain Points → 0',
+          },
+        ].map(study => (
+          <div class="bg-brand-white p-10">
+            <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
+              <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
+              <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
+            </div>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <div class="flex flex-wrap gap-2">
+              {study.tags.map(tag => (
+                <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center py-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ÄHNLICHE ERGEBNISSE GEWÜNSCHT? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Arbeiten wir an Ihrem Projekt</h2>
+        <a href="/de/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          ANGEBOT ANFRAGEN →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/ux-mind',
   i18n: {
     defaultLocale: 'cs',
-    locales: ['cs', 'en'],
+    locales: ['cs', 'en', 'de'],
     routing: {
       prefixDefaultLocale: false,
     },

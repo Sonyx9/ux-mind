@@ -1,18 +1,29 @@
 ---
-import { getLang, getAlternatePath, getNavLinks } from '../i18n/utils';
+import { getLang, getPathInLang, getNavLinks, languages } from '../i18n/utils';
 
 const currentPath = Astro.url.pathname;
 // Strip base prefix so comparisons work both locally and on GitHub Pages
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = currentPath.startsWith(base) ? currentPath.slice(base.length) || '/' : currentPath;
 const lang = getLang(path);
-const alternatePath = base + getAlternatePath(path);
 const navLinks = getNavLinks(lang).map(l => ({ ...l, href: base + l.href }));
-const altLabel = lang === 'cs' ? 'EN' : 'CZ';
-const homeHref = base + (lang === 'cs' ? '/' : '/en/');
-const contactHref = base + (lang === 'cs' ? '/kontakt' : '/en/contact');
-const mobileCTALabel = lang === 'cs' ? 'DOMLUVIT SCHŮZKU' : 'BOOK A MEETING';
-const isHome = path === '/' || path === '/en/' || path === '/en';
+// Jazykové menu: aktuální jazyk + odkazy na tutéž stránku v ostatních jazycích
+const langItems = languages.map(l => ({
+  code: l.code,
+  label: l.label,
+  href: base + getPathInLang(path, l.code),
+  current: l.code === lang,
+}));
+const currentLangLabel = langItems.find(l => l.current)?.label ?? 'CZ';
+const homeHref = base + getPathInLang('/', lang);
+const contactHref = base + getPathInLang('/kontakt', lang);
+const t = {
+  cs: { cta: 'DOMLUVIT SCHŮZKU', close: 'ZAVŘÍT', langTitle: 'Jazyk webu', fsTitle: 'Velikost písma', fsSmall: 'Malé písmo', fsMedium: 'Střední písmo', fsLarge: 'Velké písmo' },
+  en: { cta: 'BOOK A MEETING', close: 'CLOSE', langTitle: 'Site language', fsTitle: 'Font size', fsSmall: 'Small text', fsMedium: 'Medium text', fsLarge: 'Large text' },
+  de: { cta: 'TERMIN VEREINBAREN', close: 'SCHLIESSEN', langTitle: 'Sprache der Website', fsTitle: 'Schriftgröße', fsSmall: 'Kleine Schrift', fsMedium: 'Mittlere Schrift', fsLarge: 'Große Schrift' },
+}[lang];
+const mobileCTALabel = t.cta;
+const isHome = ['/', '/en/', '/en', '/de/', '/de'].includes(path);
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
@@ -41,19 +52,21 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         </a>
       ))}
       <div class="lang-switch relative font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase">
-        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
-          {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
+        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
+          {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
         <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
-          <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
-          <a href={alternatePath} class="block px-3 py-1.5 opacity-60 hover:opacity-100 transition-opacity">{altLabel}</a>
+          {langItems.map(item => item.current
+            ? <span class="block px-3 py-1.5 font-medium" aria-current="true">{item.label}</span>
+            : <a href={item.href} class="block px-3 py-1.5 opacity-60 hover:opacity-100 transition-opacity">{item.label}</a>
+          )}
         </div>
       </div>
-      <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+      <div class="fs-switch flex flex-col items-center" aria-label={t.fsTitle}>
         <div class="flex items-end" style="gap:3px;">
-          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={lang === 'cs' ? 'Malé písmo' : 'Small text'} aria-label={lang === 'cs' ? 'Malé písmo' : 'Small text'}></button>
-          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={lang === 'cs' ? 'Střední písmo' : 'Medium text'} aria-label={lang === 'cs' ? 'Střední písmo' : 'Medium text'}></button>
-          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={lang === 'cs' ? 'Velké písmo' : 'Large text'} aria-label={lang === 'cs' ? 'Velké písmo' : 'Large text'}></button>
+          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
+          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
+          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
         </div>
         <span class="font-mono tracking-widest text-brand-black/60 mt-0.5" style="font-size:8px;">TEXT</span>
       </div>
@@ -63,19 +76,21 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
     <div id="nav-hamburger" class="hidden md:flex 3xl:hidden items-center gap-3">
       <button id="mobile-menu-btn" class="font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
       <div class="lang-switch relative font-mono text-xs tracking-widest uppercase">
-        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
-          {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
+        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
+          {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
         <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
-          <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
-          <a href={alternatePath} class="block px-3 py-1.5 opacity-60 hover:opacity-100 transition-opacity">{altLabel}</a>
+          {langItems.map(item => item.current
+            ? <span class="block px-3 py-1.5 font-medium" aria-current="true">{item.label}</span>
+            : <a href={item.href} class="block px-3 py-1.5 opacity-60 hover:opacity-100 transition-opacity">{item.label}</a>
+          )}
         </div>
       </div>
-      <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+      <div class="fs-switch flex flex-col items-center" aria-label={t.fsTitle}>
         <div class="flex items-end" style="gap:3px;">
-          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={lang === 'cs' ? 'Malé písmo' : 'Small text'} aria-label={lang === 'cs' ? 'Malé písmo' : 'Small text'}></button>
-          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={lang === 'cs' ? 'Střední písmo' : 'Medium text'} aria-label={lang === 'cs' ? 'Střední písmo' : 'Medium text'}></button>
-          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={lang === 'cs' ? 'Velké písmo' : 'Large text'} aria-label={lang === 'cs' ? 'Velké písmo' : 'Large text'}></button>
+          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
+          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
+          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
         </div>
         <span class="font-mono tracking-widest text-brand-black/60 mt-0.5" style="font-size:8px;">TEXT</span>
       </div>
@@ -98,7 +113,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   class="fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
   style="transform: translateX(100%); transition: transform 0.3s ease;"
 >
-  <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {lang === 'cs' ? 'ZAVŘÍT' : 'CLOSE'} ]</button>
+  <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {t.close} ]</button>
   {navLinks.map(link => (
     <a
       href={link.href}
@@ -107,9 +122,13 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       {link.label}
     </a>
   ))}
-  <a href={alternatePath} class="font-mono text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity mt-2">
-    {altLabel} ↗
-  </a>
+  <div class="flex gap-4 mt-2">
+    {langItems.filter(l => !l.current).map(item => (
+      <a href={item.href} class="font-mono text-sm tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity">
+        {item.label} ↗
+      </a>
+    ))}
+  </div>
 </div>
 
 <!-- Overlay backdrop -->

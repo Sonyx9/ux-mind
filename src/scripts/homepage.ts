@@ -381,7 +381,7 @@
     const mm = String(now.getMonth() + 1).padStart(2, '0');
     const yyyy = now.getFullYear();
     const date = `${dd}/${mm}/${yyyy}`;
-    const time = now.toLocaleTimeString(document.documentElement.lang === 'en' ? 'en-GB' : 'cs-CZ', {
+    const time = now.toLocaleTimeString(document.documentElement.lang === 'en' ? 'en-GB' : document.documentElement.lang === 'de' ? 'de-DE' : 'cs-CZ', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
