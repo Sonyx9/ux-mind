@@ -24,6 +24,18 @@ import Footer from '../../components/Footer.astro';
         </p>
       </div>
 
+      <!-- Photo from a session -->
+      <div class="mb-24">
+        <img
+          src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+          alt="Participant during an eye-tracking session in the lab, watching the test stimulus on a monitor fitted with an eye tracker"
+          title="An eye-tracking session in the lab"
+          width="1080" height="1920" loading="lazy" decoding="async"
+          class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/40 mt-2">Collecting visual attention data in the lab — gaze recordings feed AOI analysis and heatmaps.</p>
+      </div>
+
       <div class="mb-24">
         <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ HOW IT WORKS ]</p>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10">
@@ -35,7 +47,7 @@ import Footer from '../../components/Footer.astro';
           ].map(step => (
             <div class="bg-brand-white p-8">
               <p class="font-mono text-xs text-brand-black/30 mb-6">{step.num}</p>
-              <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+              <h3 class="font-display text-2xl font-bold mb-3">{step.title}</h3>
               <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
             </div>
           ))}
@@ -44,14 +56,14 @@ import Footer from '../../components/Footer.astro';
 
       <div class="mb-24">
         <p class="font-mono text-xs text-brand-black/40 tracking-widest mb-8">[ WHERE WE HELP ]</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
           {[
             { title: 'Websites', desc: 'We find out where users spend time, what they overlook, and why they don\'t respond to your CTAs.' },
             { title: 'Mobile Apps', desc: 'We test the navigation, readability and usability of your mobile products.' },
             { title: 'E-commerce', desc: 'We optimise product pages, carts and checkouts for better conversions.' },
             { title: 'Print Materials', desc: 'Banners, posters, packaging — we find out what draws attention on physical materials.' },
           ].map(usecase => (
-            <div class="border border-brand-black/10 p-8">
+            <div class="bg-brand-white p-8">
               <h3 class="font-display text-2xl font-bold mb-3">{usecase.title}</h3>
               <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
             </div>

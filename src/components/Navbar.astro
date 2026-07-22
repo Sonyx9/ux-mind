@@ -16,7 +16,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
 ---
 
 <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
-  <div id="nav-inner" class="desktop-gutter-x flex items-center justify-between max-w-7xl mx-auto">
+  <div id="nav-inner" class="desktop-gutter-x relative flex items-center justify-between">
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
     <a id="nav-logo" href={homeHref} class="block hover:opacity-50 transition-opacity ml-[5px]" style={`line-height:0; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
       <img src={`${base}/logo.svg`} alt="UX Mind" style="height:clamp(18px, 0.55vw + 14px, 22px); width:auto; display:block;" />
@@ -45,6 +45,11 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
+      <div class="fs-switch flex items-end gap-1 font-mono" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button data-fs="1" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:10px; padding-top:3px; padding-bottom:3px;" title={lang === 'cs' ? 'Základní písmo' : 'Default font size'}>A</button>
+        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:12px; padding-top:2px; padding-bottom:2px;" title={lang === 'cs' ? 'Větší písmo' : 'Larger font size'}>A</button>
+        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:14px; padding-top:1px; padding-bottom:1px;" title={lang === 'cs' ? 'Největší písmo' : 'Largest font size'}>A</button>
+      </div>
     </div>
 
     <!-- Hamburger row — md up to 1800px -->
@@ -54,6 +59,11 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="border border-brand-black px-1.5 py-0.5 font-medium">{lang === 'cs' ? 'CZ' : 'EN'}</span>
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
+      </div>
+      <div class="fs-switch flex items-end gap-1 font-mono" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button data-fs="1" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:10px; padding-top:3px; padding-bottom:3px;" title={lang === 'cs' ? 'Základní písmo' : 'Default font size'}>A</button>
+        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:12px; padding-top:2px; padding-bottom:2px;" title={lang === 'cs' ? 'Větší písmo' : 'Larger font size'}>A</button>
+        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 leading-tight" style="font-size:14px; padding-top:1px; padding-bottom:1px;" title={lang === 'cs' ? 'Největší písmo' : 'Largest font size'}>A</button>
       </div>
     </div>
 
@@ -122,12 +132,18 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   function applyHomeMenuVisibility(showLogo: boolean) {
     if (!navFull || !navHamburger) return;
     const w = window.innerWidth;
+    const menuBtn = document.getElementById('mobile-menu-btn');
 
     if (!showLogo) {
-      // Hero: jen sbalené [ MENU ] jako na menších šířkách (i na 3xl)
+      // Hero: jen sbalené [ MENU ] — vycentrované, vpravo zůstávají CZ/EN + velikost písma
       navFull.style.display = 'none';
       if (w >= 768) {
         navHamburger.style.display = 'flex';
+        if (menuBtn) {
+          menuBtn.style.position = 'absolute';
+          menuBtn.style.left = '50%';
+          menuBtn.style.transform = 'translateX(-50%)';
+        }
       } else {
         navHamburger.style.display = 'none';
         if (mobileMenuSm) mobileMenuSm.style.display = '';
@@ -135,7 +151,12 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
       return;
     }
 
-    // Po scrollu: rozbalená navigace jako na podstránkách
+    // Po scrollu: rozbalená navigace jako na podstránkách, [ MENU ] zpět vpravo
+    if (menuBtn) {
+      menuBtn.style.position = '';
+      menuBtn.style.left = '';
+      menuBtn.style.transform = '';
+    }
     if (mobileMenuSm) mobileMenuSm.style.display = '';
 
     if (w >= 1800) {
@@ -170,4 +191,26 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   window.addEventListener('scroll', updateNav, { passive: true });
   window.addEventListener('resize', updateNav);
   updateNav();
+
+  // Přepínač velikosti písma (A A A) — škáluje rem jednotky, volba se pamatuje
+  (function () {
+    const FS_KEY = 'uxmind-font-scale';
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.fs-switch button');
+    function applyFS(v: number) {
+      document.documentElement.style.fontSize = v === 1 ? '' : (v * 100) + '%';
+      buttons.forEach(b => {
+        const active = parseFloat(b.dataset.fs || '1') === v;
+        b.style.borderColor = active ? '#0A0A0A' : 'rgba(10,10,10,0.3)';
+        b.style.opacity = active ? '1' : '0.45';
+      });
+    }
+    let fs = parseFloat(localStorage.getItem(FS_KEY) || '1');
+    if (![1, 1.08, 1.16].includes(fs)) fs = 1;
+    applyFS(fs);
+    buttons.forEach(b => b.addEventListener('click', () => {
+      fs = parseFloat(b.dataset.fs || '1');
+      localStorage.setItem(FS_KEY, String(fs));
+      applyFS(fs);
+    }));
+  })();
 </script>

@@ -32,7 +32,8 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       )}
     </div>
 
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 z-[60] hidden md:block" style="padding-top: var(--desktop-top-offset);">
+    <!-- Center CTA — below the hero figure, on the same grid row axis as the spec list -->
+    <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] hidden md:block" style="top: 83.333%;">
       <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200" style="--tw-bg-opacity:1;" onmouseover="this.style.background='transparent';this.style.color='#0A0A0A';" onmouseout="this.style.background='#0A0A0A';this.style.color='#FCFCFC';">
         BOOK A MEETING
       </a>
@@ -115,15 +116,15 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       </div>
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold text-2xl leading-none stat-projects">50+</p>
+          <p class="font-display font-bold text-3xl leading-none stat-projects">50+</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">PROJECTS</p>
         </div>
         <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold text-2xl leading-none stat-respondents">200+</p>
+          <p class="font-display font-bold text-3xl leading-none stat-respondents">200+</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTS</p>
         </div>
         <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
-          <p class="font-display font-bold text-2xl leading-none stat-clicks">50%</p>
+          <p class="font-display font-bold text-3xl leading-none stat-clicks">50%</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
         </div>
       </div>
@@ -150,7 +151,6 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         ))}
       </div>
       <div class="flex items-center gap-3 mt-3">
-        <p class="font-mono text-xs text-brand-black/40 tracking-widest">UX RESEARCH</p>
         <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
       </div>
     </div>
@@ -170,9 +170,9 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           <a href="/en/about" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:clamp(11px,0.85vw,13px);">ABOUT US</a>
           <a href="/en/contact" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:clamp(11px,0.85vw,13px);">CONTACT</a>
         </div>
-        <div class="pt-1 border-t border-brand-white/20 flex items-center justify-between">
+        <div class="pt-2 border-t border-brand-white/20 flex items-center justify-between">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:clamp(10px,0.75vw,12px);">PROJECT WITH:</p>
-          <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="ml-2" style="height:clamp(27px,3.12vh,47px); filter: invert(1);" />
+          <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="University of Hradec Králové" class="ml-6" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; filter: invert(1);" />
         </div>
       </div>
     </div>
@@ -198,13 +198,13 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJECT WITH:</p>
-      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="UHK" class="h-[47px] w-auto" style="filter: invert(1);" />
+      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
   <!-- LOGO STRIP (static) -->
-  <div class="border-y border-brand-black/10 py-8 bg-brand-white">
-    <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 px-6">
+  <div class="border-y border-brand-black/10 py-6 bg-brand-white">
+    <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
       {[
         { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
         { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FC Hradec Králové' },
@@ -215,7 +215,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
             src={src}
             alt={alt}
             class="logo-strip-img select-none"
-            style="height:36px; width:auto; max-width:140px; object-fit:contain; display:block;"
+            style="height:42px; width:auto; max-width:170px; object-fit:contain; display:block;"
             loading="lazy"
             decoding="async"
           />
@@ -259,14 +259,19 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           tool: 'EMLI MODEL',
         },
       ].map((item, i) => (
-        <div class="bg-brand-white p-8">
+        <div class="bg-brand-white p-8 flex flex-col">
           <p class="font-mono text-xs text-brand-black/30 mb-8">0{i + 1}</p>
           <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
           <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
-          <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span>
+          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
         </div>
       ))}
     </div>
+    <!-- Glossary of abbreviations -->
+    <p class="font-mono text-[11px] text-brand-black/40 leading-relaxed mt-6">
+      <span class="text-brand-black/60 font-medium">GLOSSARY:</span>
+      TTFF — time to first fixation · AOI — area of interest · dwell time — total time spent looking at an area · scanpath — the path of the gaze between fixations · GSR — galvanic skin response, an indicator of physiological arousal · EMLI — mental load index derived from eye-tracking metrics
+    </p>
   </section>
 
   <!-- SERVICES SECTION -->
@@ -397,6 +402,13 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         </div>
       </div>
       <div class="md:pt-10">
+        <img
+          src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+          alt="UXMIND researcher analysing eye-tracking data — visual attention heatmaps on the monitor, facial expression recordings on the tablet"
+          title="Analysing eye-tracking data in the Cognitive Studies Lab at FIM UHK"
+          width="1920" height="1280" loading="lazy" decoding="async"
+          class="w-full h-auto border border-brand-black/10 mb-6"
+        />
         <div class="border border-brand-black p-8">
           <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 block w-full text-xs mb-4">SCIENCE, NOT PROMISES</p>
           <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
