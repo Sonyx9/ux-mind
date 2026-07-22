@@ -16,7 +16,8 @@ export default {
           black: '#0A0A0A',
           white: '#FAFAFA',
           gray: '#6B6B6B',
-          accent: '#FF4D00',
+          blue: '#2D62FC',
+          accent: '#2D62FC',
         }
       },
       fontSize: {
