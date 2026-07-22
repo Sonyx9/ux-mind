@@ -45,10 +45,15 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch flex items-center gap-1 font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button data-fs="1" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Základní velikost písma' : 'Default font size'}>A</button>
-        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Větší písmo (+8 %)' : 'Larger font (+8%)'}>A+</button>
-        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Největší písmo (+16 %)' : 'Largest font (+16%)'}>A++</button>
+      <div class="fs-switch relative font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button class="fs-toggle border border-brand-black/30 px-1.5 py-0.5 flex items-center gap-1 hover:border-brand-black transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+          <span class="fs-current">A</span><span style="font-size:7px; line-height:1;">▼</span>
+        </button>
+        <div class="fs-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
+          <button data-fs="1" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A</button>
+          <button data-fs="1.08" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A+</button>
+          <button data-fs="1.16" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A++</button>
+        </div>
       </div>
     </div>
 
@@ -60,10 +65,15 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <span class="opacity-30">/</span>
         <a href={alternatePath} class="border border-brand-black/30 px-1.5 py-0.5 opacity-40 hover:opacity-100 hover:border-brand-black transition-all">{altLabel}</a>
       </div>
-      <div class="fs-switch flex items-center gap-1 font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
-        <button data-fs="1" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Základní velikost písma' : 'Default font size'}>A</button>
-        <button data-fs="1.08" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Větší písmo (+8 %)' : 'Larger font (+8%)'}>A+</button>
-        <button data-fs="1.16" class="border border-brand-black/30 px-1.5 py-0.5" title={lang === 'cs' ? 'Největší písmo (+16 %)' : 'Largest font (+16%)'}>A++</button>
+      <div class="fs-switch relative font-mono text-xs tracking-widest" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+        <button class="fs-toggle border border-brand-black/30 px-1.5 py-0.5 flex items-center gap-1 hover:border-brand-black transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
+          <span class="fs-current">A</span><span style="font-size:7px; line-height:1;">▼</span>
+        </button>
+        <div class="fs-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
+          <button data-fs="1" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A</button>
+          <button data-fs="1.08" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A+</button>
+          <button data-fs="1.16" class="block w-full text-left px-2 py-1 whitespace-nowrap hover:bg-brand-black hover:text-brand-white transition-colors" role="option">A++</button>
+        </div>
       </div>
     </div>
 
@@ -192,27 +202,56 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
   window.addEventListener('resize', updateNav);
   updateNav();
 
-  // Přepínač velikosti písma (A A A) — škáluje rem jednotky, volba se pamatuje
+  // Přepínač velikosti písma — rozbalovací menu (A / A+ / A++), volba se pamatuje
   (function () {
     const FS_KEY = 'uxmind-font-scale';
-    const buttons = document.querySelectorAll<HTMLButtonElement>('.fs-switch button');
+    const switches = document.querySelectorAll<HTMLElement>('.fs-switch');
+    const options = document.querySelectorAll<HTMLButtonElement>('.fs-menu button');
+    const LABELS: Record<string, string> = { '1': 'A', '1.08': 'A+', '1.16': 'A++' };
+
     function applyFS(v: number) {
       document.documentElement.style.fontSize = v === 1 ? '' : (v * 100) + '%';
-      buttons.forEach(b => {
+      document.querySelectorAll<HTMLElement>('.fs-current').forEach(el => {
+        el.textContent = LABELS[String(v)] || 'A';
+      });
+      options.forEach(b => {
         const active = parseFloat(b.dataset.fs || '1') === v;
-        b.style.background = active ? '#0A0A0A' : 'transparent';
+        b.style.background = active ? '#0A0A0A' : '';
         b.style.color = active ? '#FCFCFC' : '';
-        b.style.borderColor = active ? '#0A0A0A' : 'rgba(10,10,10,0.3)';
-        b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
       });
     }
+    function closeAll() {
+      switches.forEach(s => {
+        s.querySelector('.fs-menu')?.classList.add('hidden');
+        s.querySelector('.fs-toggle')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+
     let fs = parseFloat(localStorage.getItem(FS_KEY) || '1');
     if (![1, 1.08, 1.16].includes(fs)) fs = 1;
     applyFS(fs);
-    buttons.forEach(b => b.addEventListener('click', () => {
+
+    switches.forEach(s => {
+      const toggle = s.querySelector<HTMLElement>('.fs-toggle');
+      const menu = s.querySelector<HTMLElement>('.fs-menu');
+      toggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = menu ? !menu.classList.contains('hidden') : false;
+        closeAll();
+        if (!wasOpen && menu && toggle) {
+          menu.classList.remove('hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    options.forEach(b => b.addEventListener('click', (e) => {
+      e.stopPropagation();
       fs = parseFloat(b.dataset.fs || '1');
       localStorage.setItem(FS_KEY, String(fs));
       applyFS(fs);
+      closeAll();
     }));
+    document.addEventListener('click', closeAll);
   })();
 </script>
