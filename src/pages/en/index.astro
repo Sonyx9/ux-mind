@@ -10,6 +10,12 @@ const posts = (await getCollection('blog')).sort(
 
 const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
+
+const clientLogos = [
+  { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
+  { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FC Hradec Králové' },
+  { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
+];
 ---
 
 <BaseLayout lang="en" title="UXMIND | UX Research: Eye-Tracking, Biometrics & Mental Load" description="We measure what users see, how they react and where your interface overloads them. Eye-tracking + biometrics + our own EMLI model. Research backing of FIM UHK.">
@@ -84,7 +90,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         <!-- Annotation: right top -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:28%; transform:translate(100%,-50%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
             <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>REVEALS WHAT<br/>PEOPLE TRULY SEE</p>
           </div>
@@ -93,7 +99,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         <!-- Annotation: right bottom -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
             <p class="font-mono hero-fluid-micro tracking-widest">FOUNDATION<br/>FOR GROWTH</p>
           </div>
@@ -111,20 +117,20 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     <div class="hero-stats-box hidden md:block absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
       <div class="flex justify-between items-center mb-3">
-        <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
-        <p class="font-mono text-xs text-brand-black/40">/{yearSuffix}</p>
+        <p class="font-mono font-medium tracking-widest" style="font-size:12px;">UX MIND</p>
+        <p class="font-mono text-brand-black/40" style="font-size:12px;">/{yearSuffix}</p>
       </div>
       <div class="space-y-2">
         <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold text-3xl leading-none stat-projects">50+</p>
+          <p class="font-display font-bold leading-none stat-projects" style="font-size: clamp(24px, 1.2vw + 14px, 32px);">50+</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">PROJECTS</p>
         </div>
         <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold text-3xl leading-none stat-respondents">200+</p>
+          <p class="font-display font-bold leading-none stat-respondents" style="font-size: clamp(24px, 1.2vw + 14px, 32px);">200+</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">RESPONDENTS</p>
         </div>
         <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
-          <p class="font-display font-bold text-3xl leading-none stat-clicks">50%</p>
+          <p class="font-display font-bold leading-none stat-clicks" style="font-size: clamp(24px, 1.2vw + 14px, 32px);">50%</p>
           <p class="font-mono hero-fluid-micro text-brand-black/50 tracking-widest">MORE CLICK-THROUGHS</p>
         </div>
       </div>
@@ -202,14 +208,11 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
   </div>
 
-  <!-- LOGO STRIP (static) -->
+  <!-- LOGO STRIP -->
   <div class="border-y border-brand-black/10 py-6 bg-brand-white">
-    <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
-      {[
-        { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
-        { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FC Hradec Králové' },
-        { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
-      ].map(({ src, alt }) => (
+    <!-- Desktop: static strip -->
+    <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
+      {clientLogos.map(({ src, alt }) => (
         <div class="px-4 py-1">
           <img
             src={src}
@@ -222,12 +225,40 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
         </div>
       ))}
     </div>
+    <!-- Mobile: auto-scrolling carousel, two logos per row -->
+    <div class="md:hidden overflow-hidden">
+      <div class="logo-marquee flex items-center">
+        {[...clientLogos, ...clientLogos].map(({ src, alt }) => (
+          <div class="flex-shrink-0 flex justify-center items-center px-4" style="width:50vw;">
+            <img
+              src={src}
+              alt={alt}
+              class="logo-strip-img select-none"
+              style="height:36px; width:auto; max-width:40vw; object-fit:contain; display:block;"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 
   <style>
     .logo-strip-img {
       filter: grayscale(1);
       opacity: 0.65;
+    }
+    .logo-marquee {
+      width: max-content;
+      animation: logo-scroll 10s linear infinite;
+    }
+    @keyframes logo-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-150vw); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .logo-marquee { animation: none; }
     }
   </style>
 
