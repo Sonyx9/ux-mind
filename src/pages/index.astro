@@ -163,7 +163,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
         <div class="mb-2">
-          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 inline-block" style="font-size:clamp(11px,0.85vw,13px);">NE AGENTURA – ODBORNÍCI</p>
+          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:clamp(11px,0.85vw,13px);">NE AGENTURA – ODBORNÍCI</p>
         </div>
         <p class="font-mono text-brand-white/90 leading-relaxed" style="font-size:clamp(11px,0.85vw,13px);">
           Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
@@ -192,7 +192,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
   <!-- Mobile info box — NE AGENTURA, above logo carousel -->
   <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
     <div>
-      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 inline-block" style="font-size:12px;">NE AGENTURA – ODBORNÍCI</p>
+      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">NE AGENTURA – ODBORNÍCI</p>
     </div>
     <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.</p>
     <div class="flex gap-2">
@@ -402,7 +402,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       </div>
       <div class="md:pt-10">
         <div class="border border-brand-black p-8">
-          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 inline-block text-xs mb-4">VĚDA, NE SLIBY</p>
+          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 block w-full text-xs mb-4">VĚDA, NE SLIBY</p>
           <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
             Tým publikuje v časopisech Scientific Reports (Nature Portfolio) a Journal of Environmental
             Psychology a na konferenci ACM ETRA. UXMIND převádí toto akademické know-how do praxe —
@@ -496,7 +496,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       function fillCycle(startDelay: number) {
         rows.forEach((row, ri) => {
           Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
-            setTimeout(() => { span.style.color = 'rgb(0,0,0)'; }, startDelay + ri * rowDelay + si * barDelay);
+            setTimeout(() => { span.style.color = '#2D62FC'; }, startDelay + ri * rowDelay + si * barDelay);
           });
         });
         const greyStart = startDelay + totalDuration + 600;
