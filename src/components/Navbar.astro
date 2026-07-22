@@ -44,7 +44,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
           {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
-        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white/95 backdrop-blur-sm border border-brand-black/10 z-[110]" role="listbox">
+        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
           <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
           <a href={alternatePath} class="block px-3 py-1.5 opacity-40 hover:opacity-100 transition-opacity">{altLabel}</a>
         </div>
@@ -66,7 +66,7 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
           {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
-        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white/95 backdrop-blur-sm border border-brand-black/10 z-[110]" role="listbox">
+        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
           <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
           <a href={alternatePath} class="block px-3 py-1.5 opacity-40 hover:opacity-100 transition-opacity">{altLabel}</a>
         </div>
@@ -242,14 +242,17 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
     }));
   })();
 
-  // Jazykový přepínač — rozbalovací menu (aktuální jazyk + další; připraveno na víc jazyků)
+  // Jazykový přepínač — rozbalovací menu (aktuální jazyk + další; připraveno na víc jazyků).
+  // Při otevření vypínáme mix-blend-multiply na navigaci, jinak by bílý podklad menu působil průhledně.
   (function () {
     const switches = document.querySelectorAll<HTMLElement>('.lang-switch');
+    const navEl = document.getElementById('main-nav');
     function closeAll() {
       switches.forEach(s => {
         s.querySelector('.lang-menu')?.classList.add('hidden');
         s.querySelector('.lang-toggle')?.setAttribute('aria-expanded', 'false');
       });
+      if (navEl) navEl.style.mixBlendMode = window.scrollY > 30 ? 'normal' : 'multiply';
     }
     switches.forEach(s => {
       const toggle = s.querySelector<HTMLElement>('.lang-toggle');
@@ -261,9 +264,11 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         if (!wasOpen && menu && toggle) {
           menu.classList.remove('hidden');
           toggle.setAttribute('aria-expanded', 'true');
+          if (navEl) navEl.style.mixBlendMode = 'normal';
         }
       });
     });
     document.addEventListener('click', closeAll);
+    window.addEventListener('scroll', closeAll, { passive: true });
   })();
 </script>
