@@ -433,23 +433,26 @@ const clientLogos = [
         </div>
       </div>
       <div class="md:pt-10">
-        <img
-          src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
-          alt="UXMIND researcher analysing eye-tracking data — visual attention heatmaps on the monitor, facial expression recordings on the tablet"
-          title="Analysing eye-tracking data in the Cognitive Studies Lab at FIM UHK"
-          width="1920" height="1280" loading="lazy" decoding="async"
-          class="w-full h-auto border border-brand-black/10 mb-6"
-        />
-        <div class="border border-brand-black p-8">
-          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white px-1 py-0.5 block w-full text-xs mb-4">SCIENCE, NOT PROMISES</p>
-          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
-            The team publishes in Scientific Reports (Nature Portfolio), the Journal of Environmental
-            Psychology and at ACM ETRA. UXMIND brings this academic know-how into practice — including
-            the methodological discipline client measurements require.
-          </p>
-          <div class="border-t border-brand-black/20 pt-4 flex items-center justify-between">
-            <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">IN COOPERATION WITH:</p>
-            <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="University of Hradec Králové" class="h-[40px] w-auto" />
+        <!-- Photo and box form one card: image → black title bar → content -->
+        <div class="border border-brand-black">
+          <img
+            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+            alt="UXMIND researcher analysing eye-tracking data — visual attention heatmaps on the monitor, facial expression recordings on the tablet"
+            title="Analysing eye-tracking data in the Cognitive Studies Lab at FIM UHK"
+            width="1920" height="1280" loading="lazy" decoding="async"
+            class="w-full h-auto block"
+          />
+          <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-8 py-2 block w-full">SCIENCE, NOT PROMISES</p>
+          <div class="p-8 pt-6">
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
+              The team publishes in Scientific Reports (Nature Portfolio), the Journal of Environmental
+              Psychology and at ACM ETRA. UXMIND brings this academic know-how into practice — including
+              the methodological discipline client measurements require.
+            </p>
+            <div class="border-t border-brand-black/20 pt-4 flex items-center justify-between">
+              <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">IN COOPERATION WITH:</p>
+              <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="University of Hradec Králové" class="h-[40px] w-auto" />
+            </div>
           </div>
         </div>
       </div>
