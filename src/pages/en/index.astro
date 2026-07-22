@@ -251,8 +251,8 @@ const clientLogos = [
     }
     .logo-marquee {
       width: max-content;
-      /* one pass — the strip scrolls through once and stops (duplicated logos make it end where it started) */
-      animation: logo-scroll 10s linear 1;
+      /* the loop is visual only (transform) — logos download once and animate from cache */
+      animation: logo-scroll 10s linear infinite;
     }
     @keyframes logo-scroll {
       from { transform: translateX(0); }

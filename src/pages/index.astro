@@ -258,8 +258,8 @@ const clientLogos = [
     }
     .logo-marquee {
       width: max-content;
-      /* jeden průběh — pás se protočí a zastaví (díky zdvojeným logům končí vizuálně tam, kde začal) */
-      animation: logo-scroll 10s linear 1;
+      /* smyčka je jen vizuální (transform) — loga se stahují jednorázově a běží z cache */
+      animation: logo-scroll 10s linear infinite;
     }
     @keyframes logo-scroll {
       from { transform: translateX(0); }
