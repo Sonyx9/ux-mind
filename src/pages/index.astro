@@ -708,161 +708,152 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     if (svg) io.observe(svg);
   })();
 
-  // Easter egg: tečka z loga se promění v panáčka, přeběhne obrazovku a skočí do neznáma;
-  // po skončení animace a odjetí myši z oblasti tečka zase naskočí
+  // Easter egg: tečka se snaží utéct před myší; když ji chytíš, postupně se nafukuje,
+  // až praskne; když ji přestaneš honit, po chvilce se vrátí na své místo
   (function () {
     if (window.innerWidth < 768) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const hotspot = document.getElementById('logo-dot-hotspot');
     const patch = document.getElementById('logo-dot-patch');
-    if (!hotspot || !patch) return;
+    const hero = document.querySelector<HTMLElement>('section.hero-shell');
+    if (!hotspot || !patch || !hero) return;
 
-    let running = false;
+    let active = false;
+    let px = 0, py = 0, vx = 0, vy = 0;
+    let size = 14, baseSize = 14;
+    let mx = -9999, my = -9999;
+    let lastNear = 0, lastT = 0;
+    let raf = 0;
 
-    const runner = document.createElement('div');
-    // z-index 20: před vším v hero kromě černého boxu (z-30), za kterým mizí
-    runner.style.cssText = 'position:fixed;z-index:20;pointer-events:none;display:none;transform:translate(-50%,-58%);';
-    runner.innerHTML = `
-      <div class="chute" style="display:none; position:absolute; left:50%; top:-20px; transform:translateX(-50%);">
-        <svg width="36" height="20" viewBox="0 0 36 20" fill="none" style="overflow:visible" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 12 A 16 12 0 0 1 34 12" stroke="#2D62FC" stroke-width="2" stroke-linecap="round" fill="rgba(45,98,252,0.12)"/>
-          <line x1="2" y1="12" x2="18" y2="26" stroke="#2D62FC" stroke-width="1"/>
-          <line x1="34" y1="12" x2="18" y2="26" stroke="#2D62FC" stroke-width="1"/>
-        </svg>
-      </div>
-      <svg width="30" height="40" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g stroke="#2D62FC" stroke-width="2" stroke-linecap="round">
-          <circle cx="12" cy="5" r="4" fill="#2D62FC" stroke="none"/>
-          <line x1="12" y1="9" x2="12" y2="19"/>
-          <g class="pose-a">
-            <line x1="12" y1="12" x2="6" y2="16"/>
-            <line x1="12" y1="12" x2="18" y2="9"/>
-            <line x1="12" y1="19" x2="6" y2="29"/>
-            <line x1="12" y1="19" x2="17" y2="27"/>
-          </g>
-          <g class="pose-b" style="display:none">
-            <line x1="12" y1="12" x2="18" y2="16"/>
-            <line x1="12" y1="12" x2="6" y2="9"/>
-            <line x1="12" y1="19" x2="17" y2="29"/>
-            <line x1="12" y1="19" x2="7" y2="27"/>
-          </g>
-          <g class="pose-chute" style="display:none">
-            <line x1="12" y1="12" x2="7" y2="6"/>
-            <line x1="12" y1="12" x2="17" y2="6"/>
-            <line x1="12" y1="19" x2="9" y2="28"/>
-            <line x1="12" y1="19" x2="15" y2="28"/>
-          </g>
-        </g>
-      </svg>`;
-    document.body.appendChild(runner);
-    const poseA = runner.querySelector<HTMLElement>('.pose-a');
-    const poseB = runner.querySelector<HTMLElement>('.pose-b');
+    const dot = document.createElement('div');
+    dot.style.cssText = 'position:fixed;z-index:20;background:#2D62FC;border-radius:50%;pointer-events:none;display:none;transform:translate(-50%,-50%);';
+    document.body.appendChild(dot);
+
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+    function draw() {
+      dot.style.left = px + 'px';
+      dot.style.top = py + 'px';
+      dot.style.width = size + 'px';
+      dot.style.height = size + 'px';
+    }
+
+    function finish() {
+      cancelAnimationFrame(raf);
+      dot.style.display = 'none';
+      active = false;
+    }
+
+    function pop() {
+      // PRÁSK — expandující prstenec + odlétající kapičky
+      const cx = px, cy = py, cs = size;
+      finish();
+      const ring = document.createElement('div');
+      ring.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;width:${cs}px;height:${cs}px;border:2px solid #2D62FC;border-radius:50%;pointer-events:none;z-index:20;transform:translate(-50%,-50%);opacity:1;transition:width .45s ease-out,height .45s ease-out,opacity .45s ease-out;`;
+      document.body.appendChild(ring);
+      const bits: HTMLElement[] = [];
+      for (let i = 0; i < 8; i++) {
+        const b = document.createElement('div');
+        b.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;width:5px;height:5px;background:#2D62FC;border-radius:50%;pointer-events:none;z-index:20;transform:translate(-50%,-50%);opacity:1;transition:transform .5s ease-out,opacity .5s ease-out;`;
+        document.body.appendChild(b);
+        bits.push(b);
+      }
+      requestAnimationFrame(() => {
+        ring.style.width = '90px';
+        ring.style.height = '90px';
+        ring.style.opacity = '0';
+        bits.forEach((b, i) => {
+          const a = (i / 8) * Math.PI * 2;
+          const r = 55 + Math.random() * 25;
+          b.style.transform = `translate(calc(-50% + ${Math.cos(a) * r}px), calc(-50% + ${Math.sin(a) * r}px))`;
+          b.style.opacity = '0';
+        });
+      });
+      setTimeout(() => { ring.remove(); bits.forEach(b => b.remove()); }, 650);
+      setTimeout(() => { patch!.style.display = 'none'; }, 900); // po prasknutí tečka po chvilce naskočí doma
+    }
+
+    function returnHome() {
+      // přestal ji honit → doplachtí zpět na své místo
+      cancelAnimationFrame(raf);
+      const r = patch!.getBoundingClientRect();
+      const hx = r.left + r.width / 2, hy = r.top + r.height / 2;
+      const sx = px, sy = py, ss = size;
+      const t0 = performance.now();
+      const D = 600;
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      function back(now: number) {
+        const p = Math.min((now - t0) / D, 1);
+        px = sx + (hx - sx) * ease(p);
+        py = sy + (hy - sy) * ease(p);
+        size = ss + (baseSize - ss) * ease(p);
+        draw();
+        if (p < 1) { requestAnimationFrame(back); return; }
+        finish();
+        patch!.style.display = 'none';
+      }
+      requestAnimationFrame(back);
+    }
+
+    function step(now: number) {
+      if (!active) return;
+      const dt = Math.min(now - lastT, 40);
+      lastT = now;
+
+      const hr = hero!.getBoundingClientRect();
+      if (hr.bottom < 40) { finish(); patch!.style.display = 'none'; return; }
+
+      const dx = px - mx, dy = py - my;
+      const d = Math.hypot(dx, dy) || 1;
+
+      // útěk před kurzorem — čím nafouknutější, tím pomalejší
+      if (d < 150) {
+        const f = ((150 - d) / 150) * 2.4 * (baseSize / size);
+        vx += (dx / d) * f;
+        vy += (dy / d) * f;
+      }
+      vx *= 0.93; vy *= 0.93;
+      px += vx; py += vy;
+
+      const m = size / 2 + 6;
+      const bottom = Math.min(hr.bottom, window.innerHeight);
+      if (px < hr.left + m)  { px = hr.left + m;  vx = Math.abs(vx) * 0.8; }
+      if (px > hr.right - m) { px = hr.right - m; vx = -Math.abs(vx) * 0.8; }
+      if (py < Math.max(hr.top, 0) + m) { py = Math.max(hr.top, 0) + m; vy = Math.abs(vy) * 0.8; }
+      if (py > bottom - m)   { py = bottom - m;   vy = -Math.abs(vy) * 0.8; }
+
+      // chycená (kurzor přímo u ní) → nafukuje se, až praskne
+      if (d < size / 2 + 26) {
+        size += dt * 0.022;
+        if (size >= 54) { pop(); return; }
+      }
+
+      // klid → po 1,5 s se vrátí domů
+      if (d < 260) lastNear = now;
+      if (now - lastNear > 1500) { returnHome(); return; }
+
+      draw();
+      raf = requestAnimationFrame(step);
+    }
 
     hotspot.addEventListener('mouseenter', () => {
-      if (running) return;
-      running = true;
-
+      if (active) return;
+      active = true;
       patch!.style.display = 'block';
       const r = patch!.getBoundingClientRect();
-      const x0 = r.left + r.width / 2;
-      const y0 = r.top + r.height / 2;
-      runner.style.left = x0 + 'px';
-      runner.style.top = y0 + 'px';
-      runner.style.display = 'block';
-      runner.style.opacity = '1';
-
-      const box = document.getElementById('info-box');
-      const boxRect = box ? box.getBoundingClientRect() : null;
-      const deployX = boxRect ? boxRect.left + boxRect.width / 2 : window.innerWidth - 120;
-      const landY = boxRect ? boxRect.top + 40 : window.innerHeight + 60;
-      const chuteEl = runner.querySelector<HTMLElement>('.chute');
-      const poseC = runner.querySelector<HTMLElement>('.pose-chute');
-      const SPEED = 0.55; // px/ms
-      const t0 = performance.now();
-      let lastToggle = 0;
-      let pose = false;
-      let phase = 'run';
-      let phaseT = 0;
-
-      function setPose(p: string) {
-        if (poseA) poseA.style.display = p === 'a' ? '' : 'none';
-        if (poseB) poseB.style.display = p === 'b' ? '' : 'none';
-        if (poseC) poseC.style.display = p === 'chute' ? '' : 'none';
-      }
-
-      function frame(now: number) {
-        const t = now - t0;
-        let x = x0 + t * SPEED;
-        let y = y0 + Math.sin(t / 60) * 2;
-
-        if (phase === 'run' && x >= deployX) { phase = 'hop'; phaseT = now; }
-
-        if (phase === 'hop') {
-          // výskok nad boxem, pak se otevře padák
-          const th = now - phaseT;
-          x = deployX;
-          y = y0 - 36 * Math.sin(Math.min(th / 280, 1) * Math.PI);
-          setPose('chute');
-          if (th >= 280) {
-            phase = 'chute';
-            phaseT = now;
-            if (chuteEl) chuteEl.style.display = 'block';
-          }
-        } else if (phase === 'chute') {
-          // pomalé snášení na padáku; zmizí až za černým boxem (z-30)
-          const tc = now - phaseT;
-          x = deployX + Math.sin(tc / 320) * 9;
-          y = y0 + tc * 0.18;
-        } else if (phase === 'run' && now - lastToggle > 100) {
-          lastToggle = now;
-          pose = !pose;
-          setPose(pose ? 'b' : 'a');
-        }
-
-        if (phase === 'chute' && y > landY) {
-          // zmizel za boxem → krátká pauza a návrat shora
-          phase = 'pause';
-          phaseT = now;
-          runner.style.display = 'none';
-          if (chuteEl) chuteEl.style.display = 'none';
-        }
-
-        if (phase === 'pause') {
-          if (now - phaseT > 600) {
-            phase = 'land';
-            phaseT = now;
-            if (chuteEl) chuteEl.style.display = 'block';
-            setPose('chute');
-            runner.style.display = 'block';
-          }
-        } else if (phase === 'land') {
-          // snáší se shora na padáku zpět na své místo v logu
-          const tl = now - phaseT;
-          y = -70 + tl * 0.18;
-          x = x0 + Math.sin(tl / 320) * 6 * Math.min(1, Math.max(0, (y0 - y) / 150));
-          if (y >= y0) {
-            x = x0; y = y0;
-            phase = 'touch';
-            phaseT = now;
-            if (chuteEl) chuteEl.style.display = 'none';
-            setPose('a');
-          }
-        } else if (phase === 'touch') {
-          x = x0; y = y0;
-          if (now - phaseT > 260) {
-            // dosedl na původní místo → zase je z něj tečka
-            runner.style.display = 'none';
-            patch!.style.display = 'none';
-            running = false;
-            return;
-          }
-        }
-
-        runner.style.left = x + 'px';
-        runner.style.top = y + 'px';
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
+      baseSize = Math.max(r.width, 10);
+      size = baseSize;
+      px = r.left + r.width / 2;
+      py = r.top + r.height / 2;
+      const dx = px - mx, dy = py - my;
+      const d = Math.hypot(dx, dy) || 1;
+      vx = (dx / d) * 12 + (Math.random() - 0.5) * 5;
+      vy = (dy / d) * 12 + (Math.random() - 0.5) * 5;
+      dot.style.display = 'block';
+      draw();
+      lastNear = performance.now();
+      lastT = performance.now();
+      raf = requestAnimationFrame(step);
     });
   })();
 
