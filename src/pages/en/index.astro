@@ -155,7 +155,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       </div>
     </div>
 
-    <div id="info-box" class="hidden md:flex absolute z-10 border border-brand-black bg-brand-black text-brand-white flex-col justify-between overflow-hidden"
+    <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col justify-between overflow-hidden"
       style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
         <div class="mb-2">
@@ -708,7 +708,7 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     let running = false;
 
     const runner = document.createElement('div');
-    // While running z-index 20 (in front of the boxes); on parachute descent it switches to 5 (the black box's z-10 covers him)
+    // z-index 20: in front of everything in the hero except the black box (z-30), which he disappears behind
     runner.style.cssText = 'position:fixed;z-index:20;pointer-events:none;display:none;transform:translate(-50%,-58%);';
     runner.innerHTML = `
       <div class="chute" style="display:none; position:absolute; left:50%; top:-20px; transform:translateX(-50%);">
@@ -763,8 +763,6 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       const boxRect = box ? box.getBoundingClientRect() : null;
       const deployX = boxRect ? boxRect.left + boxRect.width / 2 : window.innerWidth - 120;
       const landY = boxRect ? boxRect.top + 40 : window.innerHeight + 60;
-      const stats = document.querySelector<HTMLElement>('.hero-stats-box');
-      const statsBottom = stats ? stats.getBoundingClientRect().bottom : 0;
       const chuteEl = runner.querySelector<HTMLElement>('.chute');
       const poseC = runner.querySelector<HTMLElement>('.pose-chute');
       const SPEED = 0.55; // px/ms
@@ -799,11 +797,10 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
             if (chuteEl) chuteEl.style.display = 'block';
           }
         } else if (phase === 'chute') {
-          // slow parachute descent; in front of the top box, behind the black one only past its edge
+          // slow parachute descent; he only disappears behind the black box (z-30)
           const tc = now - phaseT;
           x = deployX + Math.sin(tc / 320) * 9;
           y = y0 + tc * 0.18;
-          if (y > statsBottom + 20) runner.style.zIndex = '5';
         } else if (phase === 'run' && now - lastToggle > 100) {
           lastToggle = now;
           pose = !pose;
@@ -822,7 +819,6 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
           if (now - phaseT > 600) {
             phase = 'land';
             phaseT = now;
-            runner.style.zIndex = '20';
             if (chuteEl) chuteEl.style.display = 'block';
             setPose('chute');
             runner.style.display = 'block';
