@@ -8,13 +8,13 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 ).slice(0, 3);
 
-const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.gif`;
+const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
 const clientLogos = [
-  { src: 'https://cdn.skoda-storyboard.com/2023/07/Skoda_Wordmark_RGB_Black_a351de07-1920x630.png', alt: 'Škoda Auto' },
-  { src: 'https://fchk.esports.cz/files/editor/Logo%20FCHK2.png', alt: 'FC Hradec Králové' },
-  { src: 'https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg', alt: 'University of Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, alt: 'Škoda Auto' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, alt: 'FC Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, alt: 'University of Hradec Králové' },
 ];
 ---
 
@@ -178,7 +178,7 @@ const clientLogos = [
         </div>
         <div class="pt-2 border-t border-brand-white/20 flex items-center justify-between">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * var(--fs, 1));">PROJECT WITH:</p>
-          <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="University of Hradec Králové" class="ml-6" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; filter: invert(1);" />
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="University of Hradec Králové" class="ml-6" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; filter: invert(1);" />
         </div>
       </div>
     </div>
@@ -204,7 +204,7 @@ const clientLogos = [
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJECT WITH:</p>
-      <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
@@ -451,7 +451,7 @@ const clientLogos = [
         </div>
         <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
           <p class="font-mono text-[10px] text-brand-black/40 tracking-widest">IN COOPERATION WITH:</p>
-          <img src="https://www.uhk.cz/img/svg/logo/uhk-uhk-cs_hor.svg" alt="University of Hradec Králové" class="h-[40px] w-auto" />
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="University of Hradec Králové" class="h-[40px] w-auto" />
         </div>
       </div>
     </div>
