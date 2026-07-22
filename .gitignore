@@ -26,3 +26,6 @@ pnpm-debug.log*
 # zdrojové obrázky (na web jdou optimalizované webp v public/images)
 Obrázky/*.jpg
 Obrázky/*.png
+
+# NFD varianta názvu složky (macOS)
+Obrázky/
