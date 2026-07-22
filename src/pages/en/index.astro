@@ -706,8 +706,6 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     if (!hotspot || !patch) return;
 
     let running = false;
-    let awayDone = false;
-    let overHotspot = false;
 
     const runner = document.createElement('div');
     // While running z-index 20 (in front of the boxes); on parachute descent it switches to 5 (the black box's z-10 covers him)
@@ -748,18 +746,8 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     const poseA = runner.querySelector<HTMLElement>('.pose-a');
     const poseB = runner.querySelector<HTMLElement>('.pose-b');
 
-    function restoreIfReady() {
-      if (awayDone && !overHotspot) {
-        awayDone = false;
-        setTimeout(() => { patch!.style.display = 'none'; }, 350); // the dot pops back
-      }
-    }
-
-    hotspot.addEventListener('mouseleave', () => { overHotspot = false; restoreIfReady(); });
-
     hotspot.addEventListener('mouseenter', () => {
-      overHotspot = true;
-      if (running || awayDone) return;
+      if (running) return;
       running = true;
 
       patch!.style.display = 'block';
@@ -775,6 +763,8 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
       const boxRect = box ? box.getBoundingClientRect() : null;
       const deployX = boxRect ? boxRect.left + boxRect.width / 2 : window.innerWidth - 120;
       const landY = boxRect ? boxRect.top + 40 : window.innerHeight + 60;
+      const stats = document.querySelector<HTMLElement>('.hero-stats-box');
+      const statsBottom = stats ? stats.getBoundingClientRect().bottom : 0;
       const chuteEl = runner.querySelector<HTMLElement>('.chute');
       const poseC = runner.querySelector<HTMLElement>('.pose-chute');
       const SPEED = 0.55; // px/ms
@@ -807,33 +797,61 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
             phase = 'chute';
             phaseT = now;
             if (chuteEl) chuteEl.style.display = 'block';
-            runner.style.zIndex = '5'; // from now on he descends BEHIND the black box
           }
         } else if (phase === 'chute') {
-          // slow parachute descent behind the black box
+          // slow parachute descent; in front of the top box, behind the black one only past its edge
           const tc = now - phaseT;
           x = deployX + Math.sin(tc / 320) * 9;
           y = y0 + tc * 0.18;
-        } else if (now - lastToggle > 100) {
+          if (y > statsBottom + 20) runner.style.zIndex = '5';
+        } else if (phase === 'run' && now - lastToggle > 100) {
           lastToggle = now;
           pose = !pose;
           setPose(pose ? 'b' : 'a');
         }
 
-        runner.style.left = x + 'px';
-        runner.style.top = y + 'px';
-
         if (phase === 'chute' && y > landY) {
-          // gone behind the box → the dot may return
+          // gone behind the box → short pause, then he returns from above
+          phase = 'pause';
+          phaseT = now;
           runner.style.display = 'none';
           if (chuteEl) chuteEl.style.display = 'none';
-          setPose('a');
-          runner.style.zIndex = '20'; // reset for the next run
-          running = false;
-          awayDone = true;
-          restoreIfReady();
-          return;
         }
+
+        if (phase === 'pause') {
+          if (now - phaseT > 600) {
+            phase = 'land';
+            phaseT = now;
+            runner.style.zIndex = '20';
+            if (chuteEl) chuteEl.style.display = 'block';
+            setPose('chute');
+            runner.style.display = 'block';
+          }
+        } else if (phase === 'land') {
+          // parachutes from the top of the screen back onto his spot in the logo
+          const tl = now - phaseT;
+          y = -70 + tl * 0.18;
+          x = x0 + Math.sin(tl / 320) * 6 * Math.min(1, Math.max(0, (y0 - y) / 150));
+          if (y >= y0) {
+            x = x0; y = y0;
+            phase = 'touch';
+            phaseT = now;
+            if (chuteEl) chuteEl.style.display = 'none';
+            setPose('a');
+          }
+        } else if (phase === 'touch') {
+          x = x0; y = y0;
+          if (now - phaseT > 260) {
+            // touched down on his spot → he becomes the dot again
+            runner.style.display = 'none';
+            patch!.style.display = 'none';
+            running = false;
+            return;
+          }
+        }
+
+        runner.style.left = x + 'px';
+        runner.style.top = y + 'px';
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
