@@ -39,8 +39,11 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
     </div>
 
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
-      <h1 class="m-0 p-0" style="line-height:0;">
+      <h1 class="m-0 p-0 relative" style="line-height:0;">
         <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo.svg`} alt="UX Mind" style="width: clamp(11rem, 24vw, 360px); height:auto; display:block;" />
+        <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
+        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:93.5%; top:26%; width:9.5%; height:46%;"></span>
+        <span id="logo-dot-patch" style="position:absolute; left:95.2%; top:34%; width:5%; height:29.2%; background:#FCFCFC; border-radius:50%; display:none;"></span>
       </h1>
       <!-- Mobile-only: first annotation below heading -->
       <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">WHERE RESEARCH REVEALS TRUTH</p>
@@ -691,6 +694,108 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
     const svg = needle.closest('svg');
     if (svg) io.observe(svg);
+  })();
+
+  // Easter egg: the logo dot turns into a stick figure, runs across the screen and leaps into the unknown;
+  // once the animation ends and the mouse leaves the area, the dot pops back in
+  (function () {
+    if (window.innerWidth < 768) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hotspot = document.getElementById('logo-dot-hotspot');
+    const patch = document.getElementById('logo-dot-patch');
+    if (!hotspot || !patch) return;
+
+    let running = false;
+    let awayDone = false;
+    let overHotspot = false;
+
+    const runner = document.createElement('div');
+    runner.style.cssText = 'position:fixed;z-index:9997;pointer-events:none;display:none;transform:translate(-50%,-58%);';
+    runner.innerHTML = `
+      <svg width="30" height="40" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#2D62FC" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="5" r="4" fill="#2D62FC" stroke="none"/>
+          <line x1="12" y1="9" x2="12" y2="19"/>
+          <g class="pose-a">
+            <line x1="12" y1="12" x2="6" y2="16"/>
+            <line x1="12" y1="12" x2="18" y2="9"/>
+            <line x1="12" y1="19" x2="6" y2="29"/>
+            <line x1="12" y1="19" x2="17" y2="27"/>
+          </g>
+          <g class="pose-b" style="display:none">
+            <line x1="12" y1="12" x2="18" y2="16"/>
+            <line x1="12" y1="12" x2="6" y2="9"/>
+            <line x1="12" y1="19" x2="17" y2="29"/>
+            <line x1="12" y1="19" x2="7" y2="27"/>
+          </g>
+        </g>
+      </svg>`;
+    document.body.appendChild(runner);
+    const poseA = runner.querySelector<HTMLElement>('.pose-a');
+    const poseB = runner.querySelector<HTMLElement>('.pose-b');
+
+    function restoreIfReady() {
+      if (awayDone && !overHotspot) {
+        awayDone = false;
+        setTimeout(() => { patch!.style.display = 'none'; }, 350); // the dot pops back
+      }
+    }
+
+    hotspot.addEventListener('mouseleave', () => { overHotspot = false; restoreIfReady(); });
+
+    hotspot.addEventListener('mouseenter', () => {
+      overHotspot = true;
+      if (running || awayDone) return;
+      running = true;
+
+      const r = patch!.getBoundingClientRect();
+      const x0 = r.left + r.width / 2;
+      const y0 = r.top + r.height / 2;
+      patch!.style.display = 'block';
+      runner.style.display = 'block';
+      runner.style.opacity = '1';
+
+      const jumpX = window.innerWidth - 70;
+      const SPEED = 0.55; // px/ms
+      const t0 = performance.now();
+      let lastToggle = 0;
+      let pose = false;
+      let jumpT: number | null = null;
+
+      function frame(now: number) {
+        const t = now - t0;
+        let x = x0 + t * SPEED;
+        let y = y0 + Math.sin(t / 60) * 2;
+
+        if (x >= jumpX && jumpT === null) jumpT = now;
+
+        if (jumpT !== null) {
+          const tj = (now - jumpT) / 1000;
+          x = jumpX + tj * 1000 * SPEED;
+          y = y0 - 420 * tj + 1100 * tj * tj; // leap and fall into the unknown
+          runner.style.opacity = String(Math.max(1 - Math.max(tj - 0.5, 0) * 2, 0));
+          if (poseA && poseB) { poseA.style.display = ''; poseB.style.display = 'none'; }
+        } else if (now - lastToggle > 100) {
+          lastToggle = now;
+          pose = !pose;
+          if (poseA && poseB) {
+            poseA.style.display = pose ? 'none' : '';
+            poseB.style.display = pose ? '' : 'none';
+          }
+        }
+
+        runner.style.left = x + 'px';
+        runner.style.top = y + 'px';
+
+        const gone = x > window.innerWidth + 60 || y > window.innerHeight + 60 || (jumpT !== null && (now - jumpT) > 1200);
+        if (!gone) { requestAnimationFrame(frame); return; }
+        runner.style.display = 'none';
+        running = false;
+        awayDone = true;
+        restoreIfReady();
+      }
+      requestAnimationFrame(frame);
+    });
   })();
 
   function updateTime() {
