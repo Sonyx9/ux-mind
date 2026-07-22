@@ -41,12 +41,12 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
         </a>
       ))}
       <div class="lang-switch relative font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase">
-        <button class="lang-toggle border border-brand-black px-1.5 py-0.5 font-medium flex items-center gap-1 hover:bg-brand-black hover:text-brand-white transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
+        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
           {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
-        <div class="lang-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
-          <span class="block px-2 py-1 bg-brand-black text-brand-white" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
-          <a href={alternatePath} class="block px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">{altLabel}</a>
+        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white/95 backdrop-blur-sm border border-brand-black/10 z-[110]" role="listbox">
+          <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
+          <a href={alternatePath} class="block px-3 py-1.5 opacity-40 hover:opacity-100 transition-opacity">{altLabel}</a>
         </div>
       </div>
       <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
@@ -63,12 +63,12 @@ const isHome = path === '/' || path === '/en/' || path === '/en';
     <div id="nav-hamburger" class="hidden md:flex 3xl:hidden items-center gap-3">
       <button id="mobile-menu-btn" class="font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
       <div class="lang-switch relative font-mono text-xs tracking-widest uppercase">
-        <button class="lang-toggle border border-brand-black px-1.5 py-0.5 font-medium flex items-center gap-1 hover:bg-brand-black hover:text-brand-white transition-colors" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
+        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={lang === 'cs' ? 'Jazyk webu' : 'Site language'}>
           {lang === 'cs' ? 'CZ' : 'EN'}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
-        <div class="lang-menu hidden absolute right-0 top-full mt-1 bg-brand-white border border-brand-black/30 z-[110]" role="listbox">
-          <span class="block px-2 py-1 bg-brand-black text-brand-white" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
-          <a href={alternatePath} class="block px-2 py-1 hover:bg-brand-black hover:text-brand-white transition-colors">{altLabel}</a>
+        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white/95 backdrop-blur-sm border border-brand-black/10 z-[110]" role="listbox">
+          <span class="block px-3 py-1.5 font-medium" aria-current="true">{lang === 'cs' ? 'CZ' : 'EN'}</span>
+          <a href={alternatePath} class="block px-3 py-1.5 opacity-40 hover:opacity-100 transition-opacity">{altLabel}</a>
         </div>
       </div>
       <div class="fs-switch flex flex-col items-center" aria-label={lang === 'cs' ? 'Velikost písma' : 'Font size'}>
