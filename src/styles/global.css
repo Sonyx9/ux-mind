@@ -35,9 +35,9 @@
 }
 
 @layer components {
-  /* Hero fluid micro text — scales with viewport */
+  /* Hero fluid micro text — scales with viewport and the TEXT size switch (--fs) */
   .hero-fluid-micro {
-    font-size: clamp(11px, 0.85vw, 13px);
+    font-size: calc(clamp(11px, 0.85vw, 13px) * var(--fs, 1));
   }
 
   .desktop-gutter-x {
@@ -63,8 +63,8 @@
   :root {
     --desktop-gutter: clamp(1.5rem, 2vw, 3rem);
     --desktop-top-offset: clamp(1.25rem, 1.4vw, 2rem);
-    --hero-mono-size: clamp(0.75rem, 0.3vw + 0.6rem, 0.8125rem);
-    --hero-micro-size: clamp(0.6875rem, 0.25vw + 0.55rem, 0.75rem);
+    --hero-mono-size: calc(clamp(0.75rem, 0.3vw + 0.6rem, 0.8125rem) * var(--fs, 1));
+    --hero-micro-size: calc(clamp(0.6875rem, 0.25vw + 0.55rem, 0.75rem) * var(--fs, 1));
   }
 
   .hero-spec-list p,
@@ -74,6 +74,11 @@
 
   .hero-stats-box .space-y-2 > div > p:last-child {
     font-size: var(--hero-micro-size);
+  }
+
+  /* Texty v hero s Tailwind text-xs se škálují s přepínačem TEXT */
+  .hero-shell .text-xs {
+    font-size: calc(0.75rem * var(--fs, 1));
   }
 }
 
