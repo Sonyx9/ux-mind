@@ -1,0 +1,447 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const metrics = [
+  { name: 'Průměr zornic', en: 'Pupil diameter', desc: 'Rozšíření zornic je jedním z nejspolehlivějších fyziologických indikátorů mentálního úsilí.', weight: 'Vysoká váha' },
+  { name: 'Míra mrkání', en: 'Blink rate', desc: 'Při vysoké koncentraci mrkáme méně. Jediná metrika s inverzní funkcí v modelu.', weight: 'Vysoká váha' },
+  { name: 'Doba fixace', en: 'Avg. fixation duration', desc: 'Delší fixace znamenají náročnější zpracování informace v daném místě.', weight: 'Střední–vysoká váha' },
+  { name: 'Počet fixací', en: 'Fixation count', desc: 'Více fixací může značit intenzivnější hledání a porovnávání.', weight: 'Kontextová váha' },
+  { name: 'Parametry sakád', en: 'Saccade velocity & amplitude', desc: 'Rychlost a délka očních skoků odráží strategii prohledávání rozhraní.', weight: 'Kontextová váha' },
+  { name: 'Čas do první fixace', en: 'Time to first fixation', desc: 'Jak rychle prvek přitáhne pozornost — vstupní metrika pro AOI analýzu.', weight: 'Doplňková' },
+];
+
+const steps = [
+  { num: '01', title: 'Sběr dat', desc: 'Eye tracker zaznamená fixace, sakády, mrkání a průměr zornic během plnění reálných úkolů — za celou stránku i za konkrétní oblasti zájmu (AOI).' },
+  { num: '02', title: 'Normalizace', desc: 'Metriky s různými jednotkami (ms, počty, stupně, mm) převedeme min-max normalizací na společnou škálu. Žádná informace se neztrácí, data jsou porovnatelná.' },
+  { num: '03', title: 'Korelační koeficient', desc: 'Závislosti mezi metrikami (např. počet × doba fixací) řeší souhrnný korelační koeficient, který výsledek zesílí, nebo oslabí podle síly vztahů v naměřených datech.' },
+  { num: '04', title: 'Index 0–100', desc: 'Výsledkem je jedno číslo na škále kompatibilní s NASA-TLX — standardem měření mentální zátěže. 0–9 nízká, 50–79 vysoká, 80+ velmi vysoká zátěž.' },
+];
+
+const faq = [
+  { q: 'Co přesně EMLI měří?', a: 'EMLI (Eye-tracking Mental Load Index) kvantifikuje kognitivní zátěž — tedy jak moc musí uživatel přemýšlet, aby rozhraní použil. Vychází výhradně z objektivních eye-tracking dat, ne z dotazníků. Výstupem je index 0–100 za celou stránku i za jednotlivé oblasti.' },
+  { q: 'Jak se EMLI liší od heatmapy?', a: 'Heatmapa ukáže, kam se lidé dívali. EMLI říká, jak náročné to pro ně bylo. Dvě varianty designu mohou mít podobné heatmapy, ale výrazně odlišnou kognitivní zátěž — a právě ta rozhoduje o dokončení nákupu či formuláře.' },
+  { q: 'Je EMLI vědecky ověřený?', a: 'Model byl vyvinut a publikován v rámci disertační práce na FIM UHK (2023) a v experimentu na reálných e-shopech rozlišil zátěž rozhraní se statistickou významností p < 0,001. Aktuálně prochází další validací proti metodě NASA-TLX. Jsme transparentní: říkáme „publikovaná metodika ve fázi validace“, ne „hotový standard“.' },
+  { q: 'Proč je metodika veřejně dostupná?', a: 'EMLI vznikl v akademickém výzkumu a jeho princip je veřejně publikovaný — kdokoli si ho může prostudovat a ověřit. Věříme, že transparentnost je v UX výzkumu výhoda, ne slabina. Naše know-how leží v přesném sběru dat, kalibrované laboratoři, interpretaci a rostoucí benchmarkové databázi.' },
+  { q: 'Kolik respondentů EMLI měření vyžaduje?', a: 'Pro spolehlivý výpočet indexu pracujeme se vzorky od 30 respondentů na variantu; pro benchmarkové studie nad 100. Menší vzorky používáme pouze pro kvalitativní vhledy, ne pro EMLI skóre.' },
+  { q: 'Pro co se EMLI hodí?', a: 'Porovnání variant designu (A/B na úrovni zátěže), audit checkout procesů a formulářů, srovnání s konkurencí, měření dopadu redesignu a hodnocení srozumitelnosti rozhraní v bankovnictví, e-commerce či veřejné správě.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'EMLI — měření kognitivní zátěže digitálních rozhraní',
+    description: 'Měření kognitivní zátěže webů a aplikací pomocí vědecky publikované metodiky EMLI (Eye-tracking Mental Load Index). Index 0–100 z objektivních eye-tracking dat.',
+    serviceType: 'Měření kognitivní zátěže',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'DefinedTerm',
+    name: 'EMLI (Eye-tracking Mental Load Index)',
+    description: 'Index kognitivní zátěže vypočtený z normalizovaných eye-tracking metrik (průměr zornic, míra mrkání, fixace, sakády) na škále 0–100 kompatibilní s NASA-TLX. Publikováno v disertační práci FIM UHK, 2023.',
+  },
+  {
+    '@type': 'Person',
+    name: 'Jan Petružálek',
+    honorificPrefix: 'Ing.',
+    honorificSuffix: 'Ph.D.',
+    jobTitle: 'Autor metodiky EMLI, UX výzkumník',
+    worksFor: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Univerzita Hradec Králové, Fakulta informatiky a managementu' },
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="EMLI — index kognitivní zátěže z eye-tracking dat"
+  description="EMLI (Eye-tracking Mental Load Index) převádí eye-tracking metriky do jednoho indexu kognitivní zátěže 0–100. Vědecky publikovaná metodika vyvinutá s FIM UHK. Změřte zátěž svého webu."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ============ HERO — art-directed, mřížka jako na homepage ============ -->
+    <section class="hero-shell relative overflow-hidden">
+
+      <!-- Background grid: 4 columns × 3 rows + markery na průsečících -->
+      <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
+        style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
+        <div class="hidden md:block">
+        {[0, 25, 50, 75, 100].flatMap(x =>
+          [0, 33.333, 66.667, 100].map(y => (
+            <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
+              <div class="relative" style="width:14px; height:14px;">
+                <div class="absolute" style="top:50%; left:0; width:14px; height:1px; background:rgba(10,10,10,0.22); transform:translateY(-50%);"></div>
+                <div class="absolute" style="left:50%; top:0; height:14px; width:1px; background:rgba(10,10,10,0.22); transform:translateX(-50%);"></div>
+              </div>
+            </div>
+          ))
+        )}
+        </div>
+      </div>
+
+      <!-- Headline — horní pás mřížky -->
+      <div class="absolute z-10" style="left: var(--desktop-gutter); right: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%);">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter" style="font-size: clamp(2.6rem, 7vw, 6.5rem);">
+          ZÁTĚŽ JAKO ČÍSLO<span style="color:#2D62FC">.</span>
+        </h1>
+      </div>
+
+      <!-- Velký gauge — střed hero -->
+      <div class="absolute inset-0 z-10 flex items-center justify-center" style="padding-top: 10vh;">
+        <svg id="emli-hero-gauge" viewBox="0 0 320 200" class="w-full px-6" style="max-width: min(88vw, 620px);" role="img" aria-label="Index mentální zátěže EMLI na škále 0 až 100 — animovaná ukázka">
+          <path d="M 30 170 A 130 130 0 0 1 290 170" fill="none" stroke="rgba(10,10,10,0.12)" stroke-width="14" stroke-linecap="round" />
+          <path id="emli-hero-arc" d="M 30 170 A 130 130 0 0 1 290 170" pathLength="100" fill="none" stroke="#0A0A0A" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 100" style="transition: stroke-dasharray 1.6s cubic-bezier(0.22, 0.61, 0.36, 1);" />
+          {Array.from({ length: 11 }).map((_, i) => {
+            const a = Math.PI - (i * Math.PI) / 10;
+            const x1 = 160 + Math.cos(a) * 108, y1 = 170 - Math.sin(a) * 108;
+            const x2 = 160 + Math.cos(a) * 98,  y2 = 170 - Math.sin(a) * 98;
+            return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(10,10,10,0.3)" stroke-width="2" />;
+          })}
+          <g id="emli-hero-needle" style="transform-box: view-box; transform-origin: 160px 170px; transform: rotate(0deg); transition: transform 1.6s cubic-bezier(0.22, 0.61, 0.36, 1);">
+            <line x1="160" y1="170" x2="76" y2="170" stroke="#0A0A0A" stroke-width="2" />
+          </g>
+          <circle cx="160" cy="170" r="6" fill="#2D62FC" />
+          <text x="30" y="192" fill="rgba(10,10,10,0.5)" font-family="monospace" font-size="12">0</text>
+          <text x="278" y="192" fill="rgba(10,10,10,0.5)" font-family="monospace" font-size="12">100</text>
+          <text id="emli-hero-value" x="160" y="128" fill="#0A0A0A" text-anchor="middle" font-family="monospace" font-size="44" font-weight="700">0</text>
+          <text x="160" y="150" fill="rgba(10,10,10,0.55)" text-anchor="middle" font-family="monospace" font-size="11" letter-spacing="3">EMLI</text>
+        </svg>
+      </div>
+
+      <!-- Podtitul — spodní pás -->
+      <div class="absolute z-10 hidden md:block" style="left: var(--desktop-gutter); bottom: 12%; max-width: 22rem;">
+        <p class="text-brand-black/60 leading-relaxed text-sm">
+          Uživatelé neodcházejí, protože je web ošklivý. Odcházejí, protože je
+          <strong class="text-brand-black">vyčerpává</strong>. EMLI to měří.
+        </p>
+      </div>
+
+      <!-- Spec list vpravo dole -->
+      <div class="absolute z-10 hidden md:block text-right" style="right: var(--desktop-gutter); bottom: 12%;">
+        <p class="font-mono text-xs tracking-widest text-brand-black/70 mb-1">8 METRIK → 1 INDEX</p>
+        <p class="font-mono text-xs tracking-widest text-brand-black/70 mb-1">ŠKÁLA 0–100 · NASA-TLX</p>
+        <p class="font-mono text-xs tracking-widest text-brand-black/70 mb-1">P &lt; 0,001 V PUBLIKOVANÉM EXPERIMENTU</p>
+        <p class="font-mono text-xs tracking-widest text-brand-black/70 mb-1">VYVINUTO S FIM UHK</p>
+        <p class="font-mono text-xs tracking-widest" style="color:#2D62FC">AUTOR METODIKY PŮSOBÍ V UX MIND</p>
+      </div>
+
+      <!-- Mobile: podtitul + spec pod gauge -->
+      <div class="absolute z-10 md:hidden left-6 right-6" style="bottom: 8%;">
+        <p class="text-brand-black/60 leading-relaxed text-sm mb-4">
+          Uživatelé neodcházejí, protože je web ošklivý. Odcházejí, protože je
+          <strong class="text-brand-black">vyčerpává</strong>. EMLI to měří.
+        </p>
+        <p class="font-mono text-[10px] tracking-widest text-brand-black/70">8 METRIK → 1 INDEX · ŠKÁLA 0–100 · FIM UHK</p>
+      </div>
+
+      <!-- Scroll indikátor -->
+      <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block" style="bottom: 2.5%;">
+        <p class="font-mono text-[10px] tracking-widest text-brand-black/50">SCROLL ↓</p>
+      </div>
+    </section>
+
+    <!-- ============ PROČ, JAK, METRIKY — světlé ============ -->
+    <section class="desktop-gutter-x py-24">
+      <div class="max-w-7xl mx-auto">
+
+        <!-- Proč zátěž -->
+        <div class="mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PROČ MĚŘIT KOGNITIVNÍ ZÁTĚŽ ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+            {[
+              { title: 'Heatmapa nestačí', desc: 'Heatmapa ukáže, kam se lidé dívají. Neřekne, jak moc je to stálo. Dvě varianty se stejnou pozorností mohou uživatele zatěžovat úplně jinak.' },
+              { title: 'Zátěž = konverze', desc: 'Každé zbytečné rozhodnutí, hledání a porovnávání zvyšuje šanci, že uživatel nákup či formulář nedokončí. Nižší zátěž znamená vyšší dokončení úkolů.' },
+              { title: 'Jedno srovnatelné číslo', desc: 'Varianty designu, kroky checkoutu i konkurenci porovnáte na stejné škále. Rozhodujete na datech, ne na dojmu z porady.' },
+            ].map(item => (
+              <div class="bg-brand-white p-8">
+                <h2 class="font-display text-2xl font-bold mb-3">{item.title}</h2>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Jak to funguje -->
+        <div class="mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK EMLI FUNGUJE ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10">
+            {steps.map(step => (
+              <div class="bg-brand-white p-8">
+                <p class="font-mono text-xs mb-6" style="color:#2D62FC">{step.num}</p>
+                <h2 class="font-display text-2xl font-bold mb-3">{step.title}</h2>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+          <p class="font-mono text-[11px] text-brand-black/60 mt-3">
+            NASA-TLX — standardizovaná subjektivní metoda hodnocení mentální zátěže (NASA, 1988). EMLI používá stejnou interpretační škálu, měří však objektivně z pohybu očí.
+          </p>
+        </div>
+
+        <!-- Metriky -->
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO VSTUPUJE DO MODELU ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+            {metrics.map(m => (
+              <div class="bg-brand-white p-8">
+                <p class="font-mono text-[10px] text-brand-black/40 tracking-widest uppercase mb-2">{m.en}</p>
+                <h2 class="font-display text-xl font-bold mb-3">{m.name}</h2>
+                <p class="text-sm text-brand-black/60 leading-relaxed mb-4">{m.desc}</p>
+                <p class="font-mono text-[10px] tracking-widest uppercase text-brand-black/60 border-t border-brand-black/10 pt-3">{m.weight}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ TMAVÝ AKCENT — NAŠE ZLATO: CLAIM + VÝSLEDKY ============ -->
+    <section class="bg-brand-black text-brand-white">
+      <div class="desktop-gutter-x py-24">
+        <div class="max-w-7xl mx-auto" id="emli-results">
+
+          <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ NAŠE VLASTNÍ METODIKA — EMLI V PRAXI ]</p>
+          <h2 class="font-display text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8">
+            Heatmapy má každý.<br/>EMLI máme my<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-white/60 leading-relaxed max-w-2xl mb-12">
+            V publikovaném experimentu hledali respondenti stejný produkt na třech reálných šablonách e-shopu.
+            Na úrovni produktových oblastí (AOI) rozlišil EMLI zátěž šablon se statistickou významností p&nbsp;&lt;&nbsp;0,001 —
+            šablona Classic vyčerpávala uživatele výrazně více než ostatní.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <p class="font-mono text-[10px] tracking-widest uppercase text-brand-white/50 mb-4">EMLI skóre — celé stránky</p>
+              {[
+                { name: 'STEP', score: 51.5 },
+                { name: 'CLASSIC', score: 48.7 },
+                { name: 'WALTZ', score: 45.5 },
+              ].map(row => (
+                <div class="mb-4">
+                  <div class="flex justify-between font-mono text-xs mb-1">
+                    <span>{row.name}</span><span>{row.score}</span>
+                  </div>
+                  <div class="h-2 bg-brand-white/10">
+                    <div class="emli-bar h-2 bg-brand-white/70" style="width:0" data-w={row.score}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div>
+              <p class="font-mono text-[10px] tracking-widest uppercase text-brand-white/50 mb-4">EMLI skóre — oblast hledaného produktu (AOI)</p>
+              {[
+                { name: 'CLASSIC', score: 62.2, hot: true },
+                { name: 'STEP', score: 51.9 },
+                { name: 'WALTZ', score: 49.9 },
+              ].map(row => (
+                <div class="mb-4">
+                  <div class="flex justify-between font-mono text-xs mb-1">
+                    <span>{row.name}</span><span>{row.score}</span>
+                  </div>
+                  <div class="h-2 bg-brand-white/10">
+                    <div class="emli-bar h-2" style={`width:0; background:${row.hot ? '#2D62FC' : 'rgba(252,252,252,0.7)'}`} data-w={row.score}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p class="font-mono text-[11px] text-brand-white/50 mt-8 mb-8">
+            Zdroj: Petružálek (2023), experiment na reálných šablonách e-shopů, n = 61 respondentů. Skóre na škále 0–100 (interpretace dle NASA-TLX).
+          </p>
+          <a href="/pripadove-studie/sablony-e-shopu" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+            CELÁ PŘÍPADOVÁ STUDIE →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VĚDECKÝ PŮVOD, POUŽITÍ, FAQ, CTA — světlé ============ -->
+    <div class="desktop-gutter-x pt-24">
+      <div class="max-w-7xl mx-auto px-0 md:px-6">
+
+        <!-- Vědecký původ + autor metodiky -->
+        <div class="mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ VĚDECKÝ PŮVOD A TRANSPARENTNOST ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
+                Autor metodiky<br/>pracuje u nás<span style="color:#2D62FC">.</span>
+              </h2>
+              <p class="text-brand-black/60 leading-relaxed mb-6">
+                EMLI vytvořil <strong class="text-brand-black">Ing. Jan Petružálek, Ph.D.</strong> v rámci disertačního
+                výzkumu na Fakultě informatiky a managementu Univerzity Hradec Králové
+                (2023: <em>Komparace a kombinace metod měření uživatelské zkušenosti (UX) s využitím
+                Eye-tracking technologie</em>) — a dnes je součástí týmu UX MIND. Metodiku u nás
+                nikdo „nepřevzal z literatury“: rozvíjí ji přímo její autor.
+              </p>
+              <p class="text-brand-black/60 leading-relaxed mb-6">
+                Celý princip modelu — metriky, normalizace i výpočet — je veřejně publikovaný
+                a kdokoli si ho může ověřit. Neslibujeme čtení myšlenek. Model je aktuálně ve fázi
+                další validace proti standardu NASA-TLX a průběžně jej rozvíjíme na datech
+                z reálných projektů. Přesně tohle považujeme za rozdíl mezi vědeckým přístupem
+                a „neuromarketingem“.
+              </p>
+              <div class="border border-brand-black/10 p-6">
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ V ČEM JE NAŠE KNOW-HOW ]</p>
+                <ul class="space-y-3">
+                  {[
+                    'Autor metodiky přímo v týmu — nikdo ji nezná lépe',
+                    'Kalibrovaná laboratoř a sběr dat ve výzkumné kvalitě',
+                    'Interpretace v kontextu úkolu — číslo bez kontextu je k ničemu',
+                    'Rostoucí benchmarková databáze EMLI skóre podle odvětví',
+                    'Kombinace s uživatelskými testy a subjektivními metodami',
+                  ].map(item => (
+                    <li class="flex gap-4 text-sm text-brand-black/70 leading-relaxed border-b border-brand-black/10 pb-3">
+                      <span class="font-mono text-xs shrink-0" style="color:#2D62FC">→</span>{item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Autorská karta -->
+            <div class="border border-brand-black flex flex-col">
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+                alt="Ing. Jan Petružálek, Ph.D., autor metodiky EMLI, při analýze eye-tracking dat v laboratoři"
+                title="Autor metodiky EMLI při analýze eye-tracking dat"
+                width="1920" height="1280" loading="lazy" decoding="async"
+                class="w-full flex-1 min-h-0 object-cover block"
+              />
+              <div class="p-6 border-t border-brand-black">
+                <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">AUTOR METODIKY EMLI</p>
+                <p class="font-display text-2xl font-bold mb-1">Ing. Jan Petružálek, Ph.D.</p>
+                <p class="text-sm text-brand-black/60 leading-relaxed">
+                  UX výzkumník, UX MIND Research Lab · disertační výzkum eye-trackingu a měření UX na FIM UHK ·
+                  laboratoř FIMEYELAB
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Použití -->
+        <div class="mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ KDY EMLI NASADIT ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+            {[
+              { title: 'Srovnání variant designu', desc: 'A/B test na úrovni zátěže: která varianta vede uživatele k cíli s menším úsilím — ještě před nasazením do produkce.' },
+              { title: 'Checkout a formuláře', desc: 'Krok po kroku identifikujeme, kde zátěž skokově roste a uživatelé to vzdávají. Typicky doprava, platba a validace polí.' },
+              { title: 'Benchmark s konkurencí', desc: 'Změříme váš web i konkurenční řešení na stejných úkolech. Zjistíte, kde vás konkurence poráží nižší námahou uživatele.' },
+              { title: 'Redesign s důkazem', desc: 'EMLI před a po redesignu = tvrdý důkaz o dopadu změn pro management i klienta. Ne dojem, ale delta indexu.' },
+            ].map(usecase => (
+              <div class="bg-brand-white p-8">
+                <h2 class="font-display text-2xl font-bold mb-3">{usecase.title}</h2>
+                <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY ]</p>
+          <div class="border-t border-brand-black/10">
+            {faq.map(f => (
+              <details class="group border-b border-brand-black/10">
+                <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                  {f.q}
+                  <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center py-16 border-t border-brand-black/10">
+          <h2 class="font-display text-4xl font-bold mb-6">Změřte EMLI svého webu</h2>
+          <p class="text-brand-black/60 max-w-xl mx-auto mb-8 leading-relaxed">
+            EMLI Audit: měření kognitivní zátěže vašeho webu či aplikace, srovnání s konkurencí
+            a prioritizovaná doporučení ve standardizovaném reportu.
+          </p>
+          <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            CHCI ZMĚŘIT ZÁTĚŽ →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    // Hero gauge: počítadlo 0→65, ručička a oblouk se rozjedou po načtení.
+    // Respektuje prefers-reduced-motion — pak se rovnou nastaví cílový stav.
+    (function () {
+      const TARGET = 65;
+      const valueEl = document.getElementById('emli-hero-value');
+      const needle = document.getElementById('emli-hero-needle');
+      const arc = document.getElementById('emli-hero-arc');
+      if (!valueEl || !needle || !arc) return;
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function setFinal() {
+        valueEl.textContent = String(TARGET);
+        needle.style.transform = `rotate(${TARGET * 1.8}deg)`;
+        arc.setAttribute('stroke-dasharray', `${TARGET} 100`);
+      }
+
+      if (reduced) { setFinal(); return; }
+
+      // start po krátké prodlevě, ať je animace vidět
+      setTimeout(() => {
+        needle.style.transform = `rotate(${TARGET * 1.8}deg)`;
+        arc.setAttribute('stroke-dasharray', `${TARGET} 100`);
+        const t0 = performance.now();
+        const DUR = 1600;
+        function tick(t) {
+          const p = Math.min((t - t0) / DUR, 1);
+          const e = 1 - Math.pow(1 - p, 3);
+          valueEl.textContent = String(Math.round(e * TARGET));
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }, 350);
+    })();
+
+    // Sloupce výsledků: dojedou na cílovou šířku, až když vjedou do viewportu.
+    (function () {
+      const bars = document.querySelectorAll('.emli-bar');
+      if (!bars.length) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) {
+        bars.forEach(b => { b.style.width = b.dataset.w + '%'; });
+        return;
+      }
+      bars.forEach(b => { b.style.transition = 'width 1.1s cubic-bezier(0.22, 0.61, 0.36, 1)'; });
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.style.width = en.target.dataset.w + '%';
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      bars.forEach(b => io.observe(b));
+    })();
+  </script>
+</BaseLayout>

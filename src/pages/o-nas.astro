@@ -24,10 +24,13 @@ import Footer from '../components/Footer.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
         <div>
           <p class="text-xl text-brand-black/60 leading-relaxed mb-6">
-            UX Mind je tým specialistů na výzkum uživatelů, kteří věří, že nejlepší produkty vznikají z hlubokého porozumění lidem.
+            UX Mind jsme dva: <strong class="text-brand-black">výzkumník</strong> a <strong class="text-brand-black">stratég</strong>.
+            Věříme, že nejlepší produkty vznikají z hlubokého porozumění lidem.
           </p>
           <p class="text-brand-black/60 leading-relaxed">
-            Kombinujeme pokročilé technologie eye trackingu s osvědčenými metodami UX výzkumu. Naši klienti jsou startupy i korporace, které chtějí dělat rozhodnutí na základě dat, ne domněnek.
+            Jeden měří v laboratoři, druhý převádí zjištění do webů, e-shopů a kampaní. Kombinujeme pokročilé technologie
+            eye trackingu s osvědčenými metodami UX výzkumu — pro startupy i korporace, které chtějí dělat rozhodnutí
+            na základě dat, ne domněnek.
           </p>
         </div>
         <div>
@@ -45,6 +48,72 @@ import Footer from '../components/Footer.astro';
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+
+      <!-- Kdo jsme — medailonky -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ KDO JSME ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+
+          <!-- Jan Petružálek -->
+          <div class="bg-brand-white flex flex-col">
+            <div class="border-b border-brand-black/10">
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+                alt="Ing. Jan Petružálek, Ph.D., autor metodiky EMLI, při analýze eye-tracking dat v laboratoři"
+                title="Autor metodiky EMLI při analýze eye-tracking dat"
+                width="1920" height="1280" loading="lazy" decoding="async"
+                class="w-full aspect-[3/2] object-cover block"
+              />
+            </div>
+            <div class="p-8 flex flex-col flex-1">
+              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">VÝZKUM A METODIKA · AUTOR EMLI</p>
+              <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Ing. Jan Petružálek, Ph.D.</h2>
+              <p class="text-brand-black/60 leading-relaxed mb-4">
+                UX výzkumník s doktorátem z FIM UHK. Ve své disertaci porovnal a zkombinoval metody
+                měření uživatelské zkušenosti s eye-tracking technologií a vytvořil metodiku
+                <strong class="text-brand-black"> EMLI</strong> — index kognitivní zátěže počítaný
+                z pohybu očí. Roky experimentů v laboratoři FIMEYELAB, stovky respondentů,
+                publikace v oblasti HCI a e-commerce.
+              </p>
+              <p class="text-brand-black/60 leading-relaxed mb-6">
+                V UX MIND vede výzkum: navrhuje experimenty, hlídá metodickou čistotu měření
+                a rozvíjí EMLI na datech z reálných projektů.
+              </p>
+              <a href="/emli" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                METODIKA EMLI →
+              </a>
+            </div>
+          </div>
+
+          <!-- Lukáš Koula -->
+          <div class="bg-brand-white flex flex-col">
+            <!-- Placeholder — nahradit fotkou Lukáše -->
+            <div class="border-b border-brand-black/10 aspect-[3/2] flex items-center justify-center"
+              style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
+              <p class="font-display text-6xl font-bold text-brand-black/20">LK</p>
+            </div>
+            <div class="p-8 flex flex-col flex-1">
+              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGIE, WEB A MARKETING</p>
+              <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Mgr. Lukáš Koula</h2>
+              <p class="text-brand-black/60 leading-relaxed mb-4">
+                Specialista na e-commerce a digitální marketing. Certifikovaný
+                <strong class="text-brand-black"> Shoptet Partner</strong> a
+                <strong class="text-brand-black"> Google Partner</strong> — staví e-shopy a weby,
+                které prodávají, a vede výkonnostní kampaně v Google Ads a Skliku.
+              </p>
+              <p class="text-brand-black/60 leading-relaxed mb-6">
+                V UX MIND překládá výzkum do praxe: z laboratorních zjištění dělá konkrétní úpravy
+                webů, e-shopů a kampaní, které se propíšou do konverzí. Vede projekty a komunikaci
+                s klienty.
+              </p>
+              <a href="https://lukaskoula.com" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                LUKASKOULA.COM ↗
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
 

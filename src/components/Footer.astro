@@ -18,9 +18,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         {[
           { href: '/sluzby', label: 'Služby' },
           { href: '/eye-tracking', label: 'Eye Tracking' },
+          { href: '/emli', label: 'EMLI — kognitivní zátěž' },
           { href: '/ux-vyzkum', label: 'UX Výzkum' },
           { href: '/pripadove-studie', label: 'Případové studie' },
           { href: '/blog', label: 'Blog' },
+          { href: '/o-nas', label: 'O nás' },
         ].map(link => (
           <li>
             <a href={link.href} class="text-sm text-brand-black/60 hover:text-brand-black transition-colors">
