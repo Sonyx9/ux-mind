@@ -37,31 +37,32 @@ const pageSchema = [
       </div>
 
       <!-- Statistický banner -->
-      <div class="bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
-        <p class="font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
-        <p class="text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p>
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
+        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
 
-          <section class="mb-12">
+          <section class="reveal mb-12">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
             <p class="text-lg text-brand-black/80 leading-relaxed">Kompozice s lidskou tváří patří k nejsilnějším prvkům reklamní kreativy. Tvář ale pozornost nejen přitahuje — umí ji i předat dál. Testovali jsme, jak silný tento efekt je a zda se dá spolehlivě využít.</p>
           </section>
 
-          <section class="mb-12 border-t border-brand-black/10 pt-10">
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— OBCHODNÍ OTÁZKA</span></p>
             <p class="font-display text-2xl font-bold leading-snug">Dokáže směr pohledu postavy na kreativě systematicky vést pozornost diváka ke sdělení?</p>
           </section>
 
-          <section class="mb-12 border-t border-brand-black/10 pt-10">
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
             <p class="text-brand-black/70 leading-relaxed">Eye-tracking experiment s manipulací vizuálního vodítka: varianty kreativy se lišily směrem pohledu postavy, měřilo se rozložení pozornosti mezi tváří, sdělením a produktem.</p>
           </section>
 
-          <section class="mb-12 border-t border-brand-black/10 pt-10">
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
@@ -73,7 +74,7 @@ const pageSchema = [
             </div>
           </section>
 
-          <section class="mb-12">
+          <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
@@ -107,12 +108,12 @@ const pageSchema = [
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma principu na vlastním demo stimulu: modrá plocha znázorňuje těžiště pozornosti. Statistika pochází z reálného měření.</p>
           </section>
 
-          <section class="mb-12 border-t border-brand-black/10 pt-10">
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CO SE ROZHODLO</span></p>
             <p class="text-brand-black/70 leading-relaxed">Postavy na kreativách orientovat pohledem směrem ke klíčovému sdělení nebo CTA, nikoli do kamery.</p>
           </section>
 
-          <section class="border border-brand-black p-8">
+          <section class="reveal border border-brand-black p-8">
             <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
             <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme kognitivní zátěž zpracování kreativy — zda vodítko sdělení jen zviditelní, nebo i usnadní jeho zpracování.</p>
           </section>
@@ -149,7 +150,7 @@ const pageSchema = [
       </div>
 
       <!-- Navigace mezi studiemi -->
-      <nav class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">
+      <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">
         <a href="/pripadove-studie/produktove-fotografie-e-commerce" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60 tracking-widest mb-2">← PŘEDCHOZÍ STUDIE</p>
           <p class="font-display font-bold leading-snug">Fotka „na člověku“ vypadá lépe. Ale zpomalila nákup.</p>
@@ -161,7 +162,7 @@ const pageSchema = [
       </nav>
 
       <!-- Závěrečné CTA -->
-      <div class="bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
+      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
         <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Porovnat dvě varianty kreativy<span style="color:#2D62FC">.</span></h2>
         <a href="/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
           NEZÁVAZNÁ POPTÁVKA →
@@ -172,3 +173,7 @@ const pageSchema = [
 
   <Footer />
 </BaseLayout>
+
+<script>
+  import '../../scripts/case-study';
+</script>
