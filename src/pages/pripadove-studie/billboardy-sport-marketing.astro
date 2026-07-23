@@ -175,6 +175,34 @@ const pageSchema = [
         </aside>
       </div>
 
+      <!-- Kompletní studie za jméno + e-mail -->
+      <section class="reveal mt-20 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-3">[ KOMPLETNÍ STUDIE ]</p>
+            <h2 class="font-display text-3xl font-bold mb-4">Chcete projít celou studii<span style="color:#2D62FC">?</span></h2>
+            <p class="text-brand-white/70 leading-relaxed">Kompletní report včetně metodiky, grafů a prioritizovaných doporučení zasíláme na vyžádání e-mailem. Stačí jméno a e-mail — do 24 hodin ho máte ve schránce.</p>
+          </div>
+          <form class="study-request space-y-4" data-study="16 návrhů billboardů, 79 párů očí">
+            <div>
+              <label for="sr-name" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">JMÉNO *</label>
+              <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"
+                class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
+            </div>
+            <div>
+              <label for="sr-email" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">E-MAIL *</label>
+              <input type="email" id="sr-email" name="email" required placeholder="vas@email.cz"
+                class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
+            </div>
+            <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              VYŽÁDAT KOMPLETNÍ STUDII →
+            </button>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/30 p-3">Děkujeme! Otevřeli jsme vám e-mail s předvyplněnou žádostí — stačí odeslat a studii pošleme do 24 hodin.</p>
+            <p class="font-mono text-[11px] text-brand-white/60 leading-relaxed">Žádný spam. E-mail použijeme pouze k zaslání studie.</p>
+          </form>
+        </div>
+      </section>
+
       <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>

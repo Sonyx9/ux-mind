@@ -2,6 +2,26 @@
 // rostoucí sloupce grafů a count-up hlavní statistiky. Respektuje prefers-reduced-motion;
 // bez JS zůstává vše viditelné (reveal se aktivuje až třídou na <body>).
 
+// Žádost o kompletní studii — bez backendu předává lead přes předvyplněný e-mail.
+// Až bude formulářový backend (Formspree/Netlify), stačí nahradit handler odesláním POST.
+(function () {
+  document.querySelectorAll<HTMLFormElement>('form.study-request').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = (form.querySelector('[name="name"]') as HTMLInputElement | null)?.value.trim();
+      const email = (form.querySelector('[name="email"]') as HTMLInputElement | null)?.value.trim();
+      if (!name || !email) return;
+      const study = form.dataset.study || document.title;
+      const subject = encodeURIComponent(`Žádost o kompletní studii: ${study}`);
+      const body = encodeURIComponent(
+        `Dobrý den,\n\nrád(a) bych získal(a) kompletní studii „${study}“.\n\nJméno: ${name}\nE-mail: ${email}\n\nDěkuji.`
+      );
+      window.location.href = `mailto:spoluprace@uxmind.cz?subject=${subject}&body=${body}`;
+      form.querySelector('.study-request-done')?.classList.remove('hidden');
+    });
+  });
+})();
+
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
