@@ -241,7 +241,7 @@ const pageSchema = [
       <section class="reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Chcete projít celou studii<span style="color:#2D62FC">?</span></p>
-          <p class="font-mono text-[11px] text-brand-white/60 tracking-wide mt-1">KOMPLETNÍ REPORT S METODIKOU A DOPORUČENÍMI — ZDARMA E-MAILEM</p>
+          <p class="font-mono text-[11px] text-brand-white/60 tracking-wide mt-1">KOMPLETNÍ REPORT S METODIKOU A DOPORUČENÍMI — ZDARMA V PDF</p>
         </div>
         <button type="button" class="study-modal-open shrink-0 border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
           VYŽÁDAT STUDII →
@@ -277,8 +277,8 @@ const pageSchema = [
             <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/60 transition-colors" aria-label="Zavřít okno">×</button>
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít celou studii<span style="color:#2D62FC">?</span></h2>
-          <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Kompletní report včetně metodiky, grafů a prioritizovaných doporučení zasíláme e-mailem do 24 hodin.</p>
-          <form class="study-request space-y-4" data-study="Tři šablony, stejný sortiment. Rozhodl úkol.">
+          <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Vyplňte údaje a kompletní studie v PDF se vám rovnou zobrazí.</p>
+          <form class="study-request space-y-4" data-pdf={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/studie/sablony-e-shopu.pdf`} data-study="Tři šablony, stejný sortiment. Rozhodl úkol.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"
@@ -295,9 +295,9 @@ const pageSchema = [
                 class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
             </div>
             <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              VYŽÁDAT KOMPLETNÍ STUDII →
+              ZOBRAZIT STUDII (PDF) →
             </button>
-            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/30 p-3">Děkujeme! Otevřeli jsme vám e-mail s předvyplněnou žádostí — stačí odeslat a studii pošleme do 24 hodin.</p>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/30 p-3">Děkujeme! Pokud se studie neotevřela sama, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">otevřete ji tímto odkazem</a>.</p>
             <p class="font-mono text-[11px] text-brand-white/60 leading-relaxed">Odesláním souhlasíte se zasláním studie a občasných obchodních nabídek UX MIND. Odhlásit se můžete kdykoli jedním kliknutím.</p>
           </form>
         </div>
