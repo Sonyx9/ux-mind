@@ -37,13 +37,29 @@ const pageSchema = [
       </div>
 
       <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ KONTEXT ]</p>
+        <p class="text-brand-black/70 leading-relaxed">Fotbalový klub připravoval kampaň na podporu návštěvnosti stadionu a měl na výběr 16 grafických návrhů billboardů. Místo hlasování v marketingovém týmu se rozhodl pro měření na cílové skupině.</p>
+      </section>
+
+      <section class="mb-12">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OBCHODNÍ OTÁZKA ]</p>
         <p class="text-lg text-brand-black/80 leading-relaxed">Který z 16 grafických návrhů billboardu nejlépe zaujme a vede k záměru koupit vstupenku — a liší se to podle pohlaví diváka?</p>
       </section>
 
       <section class="mb-12">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ MĚŘENÍ ]</p>
-        <p class="text-brand-black/70 leading-relaxed">Eye-tracking + hodnotící dotazník (celkové hodnocení, přehlednost, pozornost, nákupní záměr) + výběr TOP3. N = 79 (43 mužů, 36 žen), věk 17–25 let, 16 návrhů zobrazených přesně 10 sekund.</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MĚŘENÍ ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          <p class="text-brand-black/70 leading-relaxed md:col-span-3">Eye-tracking + hodnotící dotazník (celkové hodnocení, přehlednost, pozornost, nákupní záměr) + výběr TOP3. N = 79 (43 mužů, 36 žen), věk 17–25 let, 16 návrhů zobrazených přesně 10 sekund.</p>
+          <figure class="md:col-span-2">
+            <img
+              src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+              alt="Respondentka během eye-tracking měření v laboratoři"
+              width="1080" height="720" loading="lazy" decoding="async"
+              class="w-full h-44 object-cover border border-brand-black/10"
+            />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Respondentka během eye-tracking měření v laboratoři</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="mb-12">
@@ -56,6 +72,27 @@ const pageSchema = [
             </div>
           ))}
         </div>
+      </section>
+
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
+        <div class="border border-brand-black/10 p-6 md:p-8">
+          <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Vizuální reklamou je ovlivněno 39 procent žen a 16 procent mužů"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">PODÍL DIVÁKŮ OVLIVNĚNÝCH VIZUÁLNÍ REKLAMOU · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">ŽENY</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">MUŽI</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
+<svg viewBox="0 0 640 120" class="w-full mt-2" role="img" aria-label="Šest nejlépe hodnocených návrhů mělo černé pozadí, spodní shluk tvořily bílé varianty">
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">HODNOCENÍ 16 NÁVRHŮ · TOP 6 vs SPODNÍ SHLUK</text>
+  <g>
+    <rect x="0" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="48" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="96" y="36" width="40" height="26" fill="#0A0A0A"/>
+    <rect x="144" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="192" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="240" y="36" width="40" height="26" fill="#0A0A0A"/>
+    <text x="292" y="54" font-family="monospace" font-size="11" fill="#0A0A0A">TOP 6 = ČERNÉ POZADÍ</text>
+  </g>
+  <g stroke="rgba(10,10,10,0.4)" fill="none">
+    <rect x="0" y="76" width="40" height="26"/><rect x="48" y="76" width="40" height="26"/><rect x="96" y="76" width="40" height="26"/><rect x="144" y="76" width="40" height="26"/>
+    <text x="196" y="94" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)" stroke="none">SPODNÍ SHLUK = BÍLÉ VARIANTY</text>
+  </g>
+</svg>
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-3">Gender rozdíl je největší přenositelný insight studie; žebříček ukazuje jednoznačnou dominanci černých variant.</p>
       </section>
 
       <section class="mb-12">

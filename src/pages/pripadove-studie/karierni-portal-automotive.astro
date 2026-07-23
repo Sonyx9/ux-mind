@@ -37,13 +37,29 @@ const pageSchema = [
       </div>
 
       <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ KONTEXT ]</p>
+        <p class="text-brand-black/70 leading-relaxed">Kariérní portál velké automotive společnosti procházel redesignem. Interní tým považoval web za přehledný a data z analytiky nesignalizovala zásadní problém — jen konverze do odeslaných životopisů neodpovídala návštěvnosti. Klasické metriky neuměly říct proč.</p>
+      </section>
+
+      <section class="mb-12">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OBCHODNÍ OTÁZKA ]</p>
         <p class="text-lg text-brand-black/80 leading-relaxed">Kariérní web má jediný klíčový úkol — dovést uchazeče k nabídkám volných pozic. Plní ho?</p>
       </section>
 
       <section class="mb-12">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ MĚŘENÍ ]</p>
-        <p class="text-brand-black/70 leading-relaxed">Eye-tracking se scénářem „najděte volné pozice v IT“ doplněný dotazníkem. N = 102, převážně studentská populace s vysokým podílem IT studentů — limit vzorku uvádíme záměrně: odpovídá cílové skupině juniorního náboru, na seniorní role by bylo nutné měření rozšířit.</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MĚŘENÍ ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          <p class="text-brand-black/70 leading-relaxed md:col-span-3">Eye-tracking se scénářem „najděte volné pozice v IT“ doplněný dotazníkem. N = 102, převážně studentská populace s vysokým podílem IT studentů — limit vzorku uvádíme záměrně: odpovídá cílové skupině juniorního náboru, na seniorní role by bylo nutné měření rozšířit.</p>
+          <figure class="md:col-span-2">
+            <img
+              src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+              alt="Respondentka během eye-tracking měření v laboratoři"
+              width="1080" height="720" loading="lazy" decoding="async"
+              class="w-full h-44 object-cover border border-brand-black/10"
+            />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Respondentka během eye-tracking měření v laboratoři</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="mb-12">
@@ -56,6 +72,15 @@ const pageSchema = [
             </div>
           ))}
         </div>
+      </section>
+
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
+        <div class="border border-brand-black/10 p-6 md:p-8">
+          <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Ze 102 respondentů 60 procent našlo cestu k pozicím a 40 procent nenašlo"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">N = 102 · SCÉNÁŘ „NAJDĚTE VOLNÉ POZICE“</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">NAŠLO CESTU</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="240" height="22" fill="#0A0A0A"/><text x="430" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">60 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">NENAŠLO CESTU</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="160" height="22" fill="#2D62FC"/><text x="350" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">40 %</text></svg>
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-3">Čtyři z deseti uchazečů se k nabídkám vůbec nedostali — každý z nich je přímá ztráta náborového funnelu.</p>
       </section>
 
       <section class="mb-12">

@@ -37,13 +37,29 @@ const pageSchema = [
       </div>
 
       <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ KONTEXT ]</p>
+        <p class="text-brand-black/70 leading-relaxed">Volba mezi čistým packshotem a lifestyle fotografií patří k nejčastějším sporům mezi brand týmem a výkonnostním marketingem. Obě strany mají „svá“ data — my jsme spor rozhodli kontrolovaným experimentem.</p>
+      </section>
+
+      <section class="mb-12">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OBCHODNÍ OTÁZKA ]</p>
         <p class="text-lg text-brand-black/80 leading-relaxed">Packshot, nebo lifestyle fotka? Většina e-shopů rozhoduje vkusem. My jsme to změřili.</p>
       </section>
 
       <section class="mb-12">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ MĚŘENÍ ]</p>
-        <p class="text-brand-black/70 leading-relaxed">Experiment v e-commerce prostředí: eye-tracking + standardizovaný dotazník UEQ, N = 84.</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MĚŘENÍ ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          <p class="text-brand-black/70 leading-relaxed md:col-span-3">Experiment v e-commerce prostředí: eye-tracking + standardizovaný dotazník UEQ, N = 84.</p>
+          <figure class="md:col-span-2">
+            <img
+              src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+              alt="Analýza eye-tracking dat — heatmapy a mimické záznamy v softwaru iMotions"
+              width="1080" height="720" loading="lazy" decoding="async"
+              class="w-full h-44 object-cover border border-brand-black/10"
+            />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Analýza eye-tracking dat — heatmapy a mimické záznamy v softwaru iMotions</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="mb-12">
@@ -56,6 +72,31 @@ const pageSchema = [
             </div>
           ))}
         </div>
+      </section>
+
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
+        <div class="border border-brand-black/10 p-6 md:p-8">
+          
+<svg viewBox="0 0 640 330" class="w-full" role="img" aria-label="Rozhodovací matice: typ fotografie podle cíle stránky">
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ROZHODOVACÍ MATICE · TYP FOTKY PODLE CÍLE STRÁNKY</text>
+  <text x="230" y="52" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">INSPIRACE</text>
+  <text x="440" y="52" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">RYCHLÝ VÝBĚR</text>
+  <text x="8" y="130" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">LIFESTYLE</text>
+  <text x="8" y="240" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">PACKSHOT</text>
+  <g stroke="rgba(10,10,10,0.25)" fill="none">
+    <rect x="120" y="65" width="240" height="110"/><rect x="360" y="65" width="240" height="110"/>
+    <rect x="120" y="175" width="240" height="110"/><rect x="360" y="175" width="240" height="110"/>
+  </g>
+  <text x="240" y="125" font-family="monospace" font-size="26" font-weight="bold" fill="#2D62FC" text-anchor="middle">✓</text>
+  <text x="480" y="235" font-family="monospace" font-size="26" font-weight="bold" fill="#2D62FC" text-anchor="middle">✓</text>
+  <text x="480" y="125" font-family="monospace" font-size="20" fill="rgba(10,10,10,0.3)" text-anchor="middle">×</text>
+  <text x="240" y="235" font-family="monospace" font-size="20" fill="rgba(10,10,10,0.3)" text-anchor="middle">×</text>
+  <text x="0" y="318" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">SIGNIFIKANTNÍ EFEKT NA DOBU ÚKOLU: F(1,82) = 4,50 · p = 0,037 · N = 84</text>
+</svg>
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-3">Praktický závěr studie jako matice: lifestyle fotka pro inspirační stránky, packshot pro úkolový výběr a porovnání.</p>
       </section>
 
       <section class="mb-12">
