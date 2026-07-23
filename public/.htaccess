@@ -1,0 +1,30 @@
+# Cache hlavičky pro Apache hosting (FTP). Na GitHub Pages se ignoruje —
+# tam jsou hlavičky pevně dané (max-age=600) a změnit nejdou.
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Hashované assety (Astro /_astro/) a média — dlouhá platnost
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  # HTML vždy čerstvé
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|png|jpe?g|svg|woff2|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+# Komprese textových souborů
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>

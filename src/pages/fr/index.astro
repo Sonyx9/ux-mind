@@ -12,9 +12,9 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
 const clientLogos = [
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, alt: 'Škoda Auto' },
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, alt: 'FC Hradec Králové' },
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, alt: 'University of Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, w: 1920, h: 630, alt: 'Škoda Auto' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, w: 800, h: 800, alt: 'FC Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'University of Hradec Králové' },
 ];
 ---
 
@@ -26,6 +26,7 @@ const clientLogos = [
 
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
       style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
+      <div class="hidden md:block">
       {[0, 25, 50, 75, 100].flatMap(x =>
         [0, 33.333, 66.667, 100].map(y => (
           <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
@@ -36,6 +37,7 @@ const clientLogos = [
           </div>
         ))
       )}
+      </div>
     </div>
 
     <!-- Center CTA — below the hero figure, on the same grid row axis as the spec list -->
@@ -47,7 +49,7 @@ const clientLogos = [
 
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
       <h1 class="m-0 p-0 relative" style="line-height:0;">
-        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
         <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
         <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
         <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
@@ -58,7 +60,7 @@ const clientLogos = [
 
     <!-- Mobile hero image — static, shown immediately -->
     <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — recherche UX et eye tracking" style="width:100vw; height:auto; object-fit:contain;" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — recherche UX et eye tracking" style="width:100vw; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
     </div>
 
     <!-- Center 3D Brain — desktop only -->
@@ -69,6 +71,7 @@ const clientLogos = [
           src={gifSrc}
           alt="Réseau neuronal animé — visualisation reliant recherche UX, eye tracking et données"
           class="w-full h-full object-contain"
+          width="960" height="540" loading="lazy" decoding="async"
         />
 
         <!-- Annotation: top -->
@@ -212,11 +215,12 @@ const clientLogos = [
   <div class="border-y border-brand-black/10 py-6 bg-brand-white">
     <!-- Desktop: static strip -->
     <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
-      {clientLogos.map(({ src, alt }) => (
+      {clientLogos.map(({ src, alt, w, h }) => (
         <div class="px-4 py-1">
           <img
             src={src}
             alt={alt}
+            width={w} height={h}
             class="logo-strip-img select-none"
             style="height:42px; width:auto; max-width:170px; object-fit:contain; display:block;"
             loading="lazy"
@@ -228,11 +232,12 @@ const clientLogos = [
     <!-- Mobile: auto-scrolling carousel, two logos per row -->
     <div class="md:hidden overflow-hidden">
       <div class="logo-marquee flex items-center">
-        {[...clientLogos, ...clientLogos].map(({ src, alt }) => (
+        {[...clientLogos, ...clientLogos].map(({ src, alt, w, h }) => (
           <div class="flex-shrink-0 flex justify-center items-center px-4" style="width:50vw;">
             <img
               src={src}
               alt={alt}
+              width={w} height={h}
               class="logo-strip-img select-none"
               style="height:36px; width:auto; max-width:40vw; object-fit:contain; display:block;"
               loading="lazy"

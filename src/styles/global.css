@@ -1,5 +1,5 @@
-/* Self-hostované fonty (Fontsource) — žádné požadavky na Google servery */
-@import '@fontsource/inter/300.css';
+/* Self-hostované fonty (Fontsource) — žádné požadavky na Google servery.
+   Načítáme jen skutečně používané řezy (300 se nikde nepoužívá). */
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import '@fontsource/inter/600.css';
