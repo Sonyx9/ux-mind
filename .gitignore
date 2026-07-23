@@ -29,3 +29,8 @@ Obrázky/*.png
 
 # NFD varianta názvu složky (macOS)
 Obrázky/
+
+# interní podklady — nepatří do veřejného repozitáře
+*.docx
+BLOG-NAVOD.md
+UXMIND_byznys_plan.md

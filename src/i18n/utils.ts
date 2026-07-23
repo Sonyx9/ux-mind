@@ -17,6 +17,8 @@ const urlMap: Record<Lang, Record<string, string>> = {
     home: '/',
     services: '/sluzby',
     'eye-tracking': '/eye-tracking',
+    emli: '/emli',
+    about: '/o-nas',
     'ux-research': '/ux-vyzkum',
     'case-studies': '/pripadove-studie',
     blog: '/blog',
@@ -60,7 +62,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
   },
 };
 
-// Maps URL path → page key (vygenerováno z urlMap)
+// Mapa URL cesty → klíč stránky (odvozeno z urlMap)
 const pathToKey: Record<string, string> = {};
 for (const lang of Object.keys(urlMap) as Lang[]) {
   for (const [key, path] of Object.entries(urlMap[lang])) {
@@ -91,7 +93,7 @@ export function getAlternatePath(pathname: string): string {
 }
 
 const navLabels: Record<Lang, Record<string, string>> = {
-  cs: { services: 'Služby', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', contact: 'Kontakt' },
+  cs: { services: 'Služby', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', contact: 'Kontakt', about: 'O nás' },
   en: { services: 'Services', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact' },
   de: { services: 'Leistungen', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt' },
   fr: { services: 'Services', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact' },
@@ -103,9 +105,13 @@ export function getNavLinks(lang: Lang) {
   return [
     { href: urlMap[lang].services, label: t.services },
     { href: urlMap[lang]['eye-tracking'], label: 'Eye Tracking' },
+    // EMLI stránka zatím jen česky — v ostatních jazycích se položka nezobrazuje
+    ...(urlMap[lang].emli ? [{ href: urlMap[lang].emli, label: 'EMLI' }] : []),
     { href: urlMap[lang]['ux-research'], label: t['ux-research'] },
     { href: urlMap[lang]['case-studies'], label: t['case-studies'] },
     { href: urlMap[lang].blog, label: 'Blog' },
+    // Stránka O nás zatím jen česky — v ostatních jazycích se položka nezobrazuje
+    ...(urlMap[lang].about ? [{ href: urlMap[lang].about, label: t.about ?? 'O nás' }] : []),
     { href: urlMap[lang].contact, label: t.contact },
   ];
 }
