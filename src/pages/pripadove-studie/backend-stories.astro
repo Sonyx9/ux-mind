@@ -43,6 +43,23 @@ const pageSchema = [
         <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">pohledů skončilo na hlavním CTA — dlouhý odstavec dočetla jen třetina</p>
       </div>
 
+      <section class="reveal mb-16 max-w-4xl">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
+            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
+            <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
+            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
+          </dl>
+        </details>
+      </section>
+
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
@@ -84,23 +101,6 @@ const pageSchema = [
               <svg viewBox="0 0 640 278" class="w-full" role="img" aria-label="CTA zaznamenalo 92 procent, nadpis 86, krátký text 62 a dlouhý odstavec 33 procent respondentů"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">GRADIENT ČTENÍ · PODÍL RESPONDENTŮ, KTEŘÍ PRVEK ZAZNAMENALI</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">CTA „ČÍST ONLINE“</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="368" height="22" fill="#2D62FC" class="viz-bar"/><text x="558" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">92 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">TUČNÝ NADPIS</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="344" height="22" fill="#0A0A0A" class="viz-bar"/><text x="534" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">86 %</text><text x="0" y="171" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">KRÁTKÝ TEXT</text><rect x="190" y="156" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="156" width="248" height="22" fill="#0A0A0A" class="viz-bar"/><text x="438" y="171" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">62 %</text><text x="0" y="223" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">DLOUHÝ ODSTAVEC</text><rect x="190" y="208" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="208" width="132" height="22" fill="#0A0A0A" class="viz-bar"/><text x="322" y="223" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">33 %</text></svg>
             </div>
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Čím delší blok, tím méně očí: pozornost klesá z 92 % na třetinu. Hierarchie nese orientaci, ne množství textu.</p>
-          </section>
-
-          <section class="reveal mb-12">
-            <details class="group border border-brand-black/15">
-              <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-                [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
-                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-              </summary>
-              <dl class="px-5 pb-6 space-y-4">
-                <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
-                <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
-                <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
-                <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
-                <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
-                <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
-              </dl>
-            </details>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
