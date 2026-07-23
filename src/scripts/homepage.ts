@@ -105,7 +105,7 @@
 
   // Cursor circle + trail — only in hero section, desktop only
   (function() {
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 1024) return;
     const dot = document.getElementById('cursor-dot');
     const hero = document.querySelector<HTMLElement>('section');
     let mx = 0, my = 0, cx = 0, cy = 0;
@@ -225,7 +225,7 @@
   // Easter egg: tečka se snaží utéct před myší; když ji chytíš, postupně se nafukuje,
   // až praskne; když ji přestaneš honit, po chvilce se vrátí na své místo
   (function () {
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 1024) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const hotspot = document.getElementById('logo-dot-hotspot');
     const patch = document.getElementById('logo-dot-patch');

@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       screens: {
+        // Desktopový layout až od 1024px — tablety na výšku zobrazují mobilní verzi
+        md: '1024px',
         '3xl': '1800px',
       },
       fontFamily: {

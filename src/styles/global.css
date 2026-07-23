@@ -70,13 +70,13 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .hero-shell {
     min-height: 640px;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   :root {
     --desktop-gutter: clamp(1.5rem, 2vw, 3rem);
     --desktop-top-offset: clamp(1.25rem, 1.4vw, 2rem);
