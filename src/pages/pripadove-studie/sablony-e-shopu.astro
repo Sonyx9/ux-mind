@@ -157,6 +157,16 @@ const pageSchema = [
         <!-- Fakta + foto (sticky) -->
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 space-y-6">
+            <div class="border border-brand-black/10 p-6">
+              <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE VZNIKLA VE SPOLUPRÁCI S</p>
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
+                alt="Univerzita Hradec Králové — Fakulta informatiky a managementu"
+                title="Studie vznikla ve spolupráci s FIM UHK"
+                width="157" height="37" loading="lazy" decoding="async"
+                class="h-8 w-auto"
+              />
+            </div>
             <div class="border border-brand-black p-6">
               <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-5">FAKTA MĚŘENÍ</p>
               <dl class="space-y-4">
@@ -167,16 +177,6 @@ const pageSchema = [
                   </div>
                 ))}
               </dl>
-            </div>
-            <div class="border border-brand-black/10 p-6">
-              <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE VZNIKLA VE SPOLUPRÁCI S</p>
-              <img
-                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Univerzita Hradec Králové — Fakulta informatiky a managementu"
-                title="Studie vznikla ve spolupráci s FIM UHK"
-                width="157" height="37" loading="lazy" decoding="async"
-                class="h-8 w-auto"
-              />
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
