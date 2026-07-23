@@ -5,16 +5,29 @@
 // Žádost o kompletní studii — bez backendu předává lead přes předvyplněný e-mail.
 // Až bude formulářový backend (Formspree/Netlify), stačí nahradit handler odesláním POST.
 (function () {
+  const dialog = document.getElementById('study-dialog') as HTMLDialogElement | null;
+  if (dialog) {
+    document.querySelectorAll('.study-modal-open').forEach(btn =>
+      btn.addEventListener('click', () => dialog.showModal())
+    );
+    dialog.querySelector('.study-modal-close')?.addEventListener('click', () => dialog.close());
+    // Klik na backdrop zavře modal
+    dialog.addEventListener('click', e => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
   document.querySelectorAll<HTMLFormElement>('form.study-request').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const name = (form.querySelector('[name="name"]') as HTMLInputElement | null)?.value.trim();
       const email = (form.querySelector('[name="email"]') as HTMLInputElement | null)?.value.trim();
+      const company = (form.querySelector('[name="company"]') as HTMLInputElement | null)?.value.trim();
       if (!name || !email) return;
       const study = form.dataset.study || document.title;
       const subject = encodeURIComponent(`Žádost o kompletní studii: ${study}`);
       const body = encodeURIComponent(
-        `Dobrý den,\n\nrád(a) bych získal(a) kompletní studii „${study}“.\n\nJméno: ${name}\nE-mail: ${email}\n\nDěkuji.`
+        `Dobrý den,\n\nrád(a) bych získal(a) kompletní studii „${study}“.\n\nJméno: ${name}${company ? `\nFirma: ${company}` : ''}\nE-mail: ${email}\n\nDěkuji.`
       );
       window.location.href = `mailto:spoluprace@uxmind.cz?subject=${subject}&body=${body}`;
       form.querySelector('.study-request-done')?.classList.remove('hidden');
