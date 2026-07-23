@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 
 <BaseLayout
   title="Případové studie"
-  description="Výsledky UX projektů v číslech: eye tracking e-shopu +34 % konverzí, UX audit onboardingu −28 % churn. Uživatelské testování, které se vyplatí."
+  description="Reálná eye tracking měření s doložitelnými čísly: 40 % uchazečů nenašlo volné pozice, 92 % pohledů na hlavním CTA, p = 0,037. Uvádíme jen to, co umíme doložit daty."
 >
   <Navbar />
 
@@ -18,48 +18,71 @@ import Footer from '../components/Footer.astro';
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           VÝSLEDKY<br/>MLUVÍ.
         </h1>
+        <p class="text-xl text-brand-black/60 max-w-3xl leading-relaxed">
+          Reálná měření, reálné vzorky. Uvádíme jen čísla, která umíme doložit primárními daty — včetně metody, velikosti vzorku a limitů.
+        </p>
       </div>
 
-      <!-- Case studies grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
-            category: 'E-commerce',
-            title: 'Eye tracking e-shopu — +34 % konverzí',
-            desc: 'Eye tracking odhalil, že uživatelé přehlíží hlavní CTA tlačítko kvůli špatné pozici v F-pattern layoutu. Po redesignu konverze vzrostly o 34 %.',
-            tags: ['Eye Tracking', 'E-commerce', 'Konverze'],
-            result: '+34 % konverzí',
+            category: "Automotive · kariérní portál",
+            title: "40 % uchazečů nenašlo cestu k volným pozicím. Web přitom „vypadal přehledně“.",
+            desc: "Eye-tracking se scénářem „najděte volné pozice“ ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.",
+            method: "Eye-tracking + dotazník · N = 102",
+            tags: ["Eye tracking", "Navigace", "A/B test"],
+            result: "40 % ztraceno",
           },
           {
-            category: 'SaaS',
-            title: 'UX audit onboardingu — snížení churnu o 28 %',
-            desc: 'Systematický audit onboardingového procesu odhalil 12 kritických problémů. Implementace doporučení snížila míru odchodu nových uživatelů o 28 %.',
-            tags: ['UX Audit', 'SaaS', 'Onboarding'],
-            result: '-28 % churn',
+            category: "Edukační microsite",
+            title: "92 % pohledů skončilo na hlavním CTA. Dlouhý odstavec dočetla jen třetina.",
+            desc: "AOI analýza odhalila gradient čtení: tučný nadpis zaznamenalo ~86 % respondentů, krátký návazný text 62 % a dlouhý odstavec jen ~33 %. Orientaci nenese množství textu, ale hierarchie — primární CTA se proto zvýraznilo a dlouhé bloky zkrátily.",
+            method: "Eye-tracking, AOI analýza · cca 120 respondentů",
+            tags: ["AOI analýza", "Hierarchie obsahu", "CTA"],
+            result: "92 % na CTA",
           },
           {
-            category: 'Média',
-            title: 'Čitelnost zpravodajského portálu',
-            desc: 'Eye tracking analýza ukázala jak čtenáři konzumují zprávy. Redesign layoutu zvýšil průměrnou dobu čtení o 45 % a počet prokliků o 22 %.',
-            tags: ['Eye Tracking', 'Média', 'UX Design'],
-            result: '+45 % čtení',
+            category: "E-commerce",
+            title: "Fotka produktu „na člověku“ vypadá lépe. Ale zpomalila nákupní rozhodnutí.",
+            desc: "Experiment porovnal čistý packshot s lifestyle fotografií. Typ fotografie měl signifikantní vliv na dobu plnění úkolu — F(1,82) = 4,50; p = 0,037. Dopad na subjektivní hodnocení se nepotvrdil: „líbivější“ neznamená „výkonnější“. Typ fotky volte podle cíle stránky.",
+            method: "Eye-tracking + UEQ · N = 84",
+            tags: ["Produktové foto", "Experiment", "PDP"],
+            result: "p = 0,037",
           },
           {
-            category: 'Finanční sektor',
-            title: 'Výzkum uživatelů — mobilní bankovnictví',
-            desc: 'Hloubkové rozhovory a testování použitelnosti mobilní bankovní aplikace. Identifikace 8 hlavních pain points vedla k redesignu klíčových funkcí.',
-            tags: ['UX Výzkum', 'Mobile', 'Fintech'],
-            result: '8 pain points → 0',
+            category: "Reklamní kreativa",
+            title: "Kam se dívá postava na banneru, tam se dívá i váš zákazník.",
+            desc: "Manipulace vizuálního vodítka (směr pohledu postavy) měla silný statistický efekt na rozložení pozornosti: F(1,102) = 12,57; p < 0,001; ηp² = 0,11 — středně velký efekt. Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA.",
+            method: "Eye-tracking experiment · N = 104",
+            tags: ["Bannery", "Vizuální vodítka", "Pozornost"],
+            result: "ηp² = 0,11",
+          },
+          {
+            category: "E-shop šablony",
+            title: "Tři šablony, stejný sortiment. Pozornost se měnila podle zadaného úkolu.",
+            desc: "Stejná šablona vedla k různému rozložení pozornosti podle toho, jaký úkol uživatel dostal. Estetické hodnocení bez úkolového kontextu je proto zavádějící — šablonu e-shopu testujte se skutečnými nákupními úkoly, ne „na dojem“.",
+            method: "Eye-tracking + VisAWI · N = 61",
+            tags: ["E-commerce", "Estetika vs. výkon", "Úkolové testování"],
+            result: "3 šablony × 2 úkoly",
+          },
+          {
+            category: "Sport marketing · venkovní reklama",
+            title: "16 návrhů billboardů, 79 párů očí. Vyhrály černé minimalistické varianty.",
+            desc: "Všech šest nejlépe hodnocených návrhů mělo černé pozadí; vítězná varianta dosáhla nejvyššího skóre v TOP3 volbách i nejlepšího průměrného pořadí. Nejsilnější insight: vizuální reklamou je ovlivněno 39 % žen vs. 16 % mužů. Doporučení: čisté pozadí, jasný nadpis, neagresivní kompozice.",
+            method: "Eye-tracking + hodnotící dotazník · N = 79 · 16 stimulů á 10 s",
+            tags: ["Billboard", "OOH", "Gender insight"],
+            result: "39 % vs 16 %",
           },
         ].map(study => (
-          <div class="bg-brand-white p-10">
+          <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
               <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
-            <div class="flex flex-wrap gap-2">
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METODA: {study.method}</p>
+            <div class="flex flex-wrap gap-2 mt-auto">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
@@ -68,12 +91,11 @@ import Footer from '../components/Footer.astro';
         ))}
       </div>
 
-      <!-- CTA -->
       <div class="text-center py-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ CHCETE PODOBNÉ VÝSLEDKY? ]</p>
-        <h2 class="font-display text-5xl font-bold mb-8">Pojďme na váš projekt</h2>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ CHCETE TAKOVÁ DATA PRO SVŮJ WEB? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Pojďme měřit váš projekt</h2>
         <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-          NEZÁVAZNĚ POPTAT →
+          NEZÁVAZNÁ POPTÁVKA →
         </a>
       </div>
     </div>

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="fr"
   title="Études de cas"
-  description="Exemples de projets UX : eye tracking, audit UX et recherche utilisateur pour l’e-commerce, le SaaS et les médias."
+  description="De vraies études d’eye tracking aux chiffres vérifiables : 40 % de candidats perdus, 92 % des regards sur le CTA principal, p = 0,037. Nous ne publions que ce que les données prouvent."
 >
   <Navbar />
 
@@ -19,47 +19,71 @@ import Footer from '../../components/Footer.astro';
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           LES RÉSULTATS<br/>PARLENT.
         </h1>
+        <p class="text-xl text-brand-black/60 max-w-3xl leading-relaxed">
+          De vraies mesures, de vrais échantillons. Nous ne publions que des chiffres étayés par des données primaires — méthode, taille d’échantillon et limites comprises.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
-            category: 'E-commerce',
-            title: 'Eye tracking d’un e-shop — +34 % de conversions',
-            desc: 'L’eye tracking a révélé que les utilisateurs manquaient le CTA principal à cause de sa position défavorable dans le layout en F. Après le redesign, les conversions ont augmenté de 34 %.',
-            tags: ['Eye Tracking', 'E-commerce', 'Conversions'],
-            result: '+34 % conversions',
+            category: "Automobile · portail carrière",
+            title: "40 % des candidats n’ont pas trouvé les postes ouverts — sur un site pourtant « clair ».",
+            desc: "L’eye tracking avec le scénario « trouvez les postes ouverts » a montré que la clarté perçue ne correspond pas à la réussite de la tâche. Une comparaison A/B d’un CTA flottant a produit des différences mesurables dans les métriques de fixation et la durée de visite. Résultat : un parcours simplifié et une navigation repensée.",
+            method: "Eye tracking + questionnaire · N = 102",
+            tags: ["Eye tracking", "Navigation", "Test A/B"],
+            result: "40 % perdus",
           },
           {
-            category: 'SaaS',
-            title: 'Audit UX de l’onboarding — churn réduit de 28 %',
-            desc: 'Un audit systématique du processus d’onboarding a révélé 12 problèmes critiques. La mise en œuvre des recommandations a réduit le taux d’attrition des nouveaux utilisateurs de 28 %.',
-            tags: ['Audit UX', 'SaaS', 'Onboarding'],
-            result: '−28 % churn',
+            category: "Microsite éducatif",
+            title: "92 % des regards ont fini sur le CTA principal. Seul un tiers a lu le long paragraphe.",
+            desc: "L’analyse AOI a révélé un gradient de lecture : ~86 % des participants ont enregistré le titre en gras, 62 % le texte court et seulement ~33 % le long paragraphe. L’orientation vient de la hiérarchie, pas du volume de texte — le CTA principal a été renforcé, les longs blocs raccourcis.",
+            method: "Eye tracking, analyse AOI · ~120 participants",
+            tags: ["Analyse AOI", "Hiérarchie de contenu", "CTA"],
+            result: "92 % sur le CTA",
           },
           {
-            category: 'Médias',
-            title: 'Lisibilité d’un portail d’actualités',
-            desc: 'L’analyse eye tracking a montré comment les lecteurs consomment l’information. Un redesign du layout a augmenté le temps de lecture moyen de 45 % et le taux de clic de 22 %.',
-            tags: ['Eye Tracking', 'Médias', 'Design UX'],
-            result: '+45 % temps de lecture',
+            category: "E-commerce",
+            title: "Les photos lifestyle sont plus belles. Mais elles ont ralenti la décision d’achat — mesurablement.",
+            desc: "Une expérience a comparé un packshot épuré à une photo lifestyle. Le type de photo a eu un effet significatif sur le temps d’exécution de la tâche — F(1,82) = 4,50 ; p = 0,037. Pas d’effet clair sur les évaluations subjectives : « plus joli » ne veut pas dire « plus performant ».",
+            method: "Eye tracking + UEQ · N = 84",
+            tags: ["Photos produit", "Expérimentation", "PDP"],
+            result: "p = 0,037",
           },
           {
-            category: 'Secteur financier',
-            title: 'Recherche utilisateur — banque mobile',
-            desc: 'Entretiens approfondis et tests d’utilisabilité d’une application bancaire mobile. L’identification de 8 points de friction clés a conduit au redesign des fonctions critiques.',
-            tags: ['Recherche UX', 'Mobile', 'Fintech'],
-            result: '8 points de friction → 0',
+            category: "Créa publicitaire",
+            title: "Là où regarde le personnage de votre bannière, votre client regarde aussi.",
+            desc: "La manipulation de l’indice visuel (direction du regard du modèle) a eu un fort effet statistique sur la répartition de l’attention : F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11 — un effet de taille moyenne. La direction du regard est l’un des outils les moins chers pour guider l’attention vers le message et le CTA.",
+            method: "Expérience d’eye tracking · N = 104",
+            tags: ["Bannières", "Indices visuels", "Attention"],
+            result: "ηp² = 0,11",
+          },
+          {
+            category: "Templates e-shop",
+            title: "Trois templates, le même assortiment. L’attention changeait selon la tâche donnée.",
+            desc: "Le même template produisait des schémas d’attention différents selon la tâche reçue. Les évaluations esthétiques hors contexte de tâche sont trompeuses — testez votre template avec de vraies tâches d’achat, pas « à l’impression ».",
+            method: "Eye tracking + VisAWI · N = 61",
+            tags: ["E-commerce", "Esthétique vs performance", "Tests par tâches"],
+            result: "3 templates × 2 tâches",
+          },
+          {
+            category: "Marketing sportif · OOH",
+            title: "16 maquettes d’affichage, 79 paires d’yeux. Les variantes noires minimalistes ont gagné.",
+            desc: "Les six maquettes les mieux notées avaient toutes un fond noir ; la variante gagnante a obtenu le meilleur score TOP3 et le meilleur rang moyen. Insight le plus fort : la publicité visuelle influence 39 % des femmes contre 16 % des hommes. Recommandation : fond épuré, titre clair, composition non agressive.",
+            method: "Eye tracking + questionnaire d’évaluation · N = 79 · 16 stimuli de 10 s",
+            tags: ["Affichage", "OOH", "Insight genre"],
+            result: "39 % vs 16 %",
           },
         ].map(study => (
-          <div class="bg-brand-white p-10">
+          <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
               <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
-            <div class="flex flex-wrap gap-2">
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTHODE : {study.method}</p>
+            <div class="flex flex-wrap gap-2 mt-auto">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
@@ -69,8 +93,8 @@ import Footer from '../../components/Footer.astro';
       </div>
 
       <div class="text-center py-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ENVIE DE RÉSULTATS SIMILAIRES ? ]</p>
-        <h2 class="font-display text-5xl font-bold mb-8">Travaillons sur votre projet</h2>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ENVIE DE TELLES DONNÉES POUR VOTRE SITE ? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Mesurons votre projet</h2>
         <a href="/fr/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
           DEMANDER UN DEVIS →
         </a>

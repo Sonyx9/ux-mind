@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="en"
   title="Case Studies"
-  description="Examples of UX projects: eye tracking, UX audit and user research for e-commerce, SaaS and media."
+  description="Real eye tracking studies with verifiable numbers: 40% of applicants lost, 92% of gazes on the main CTA, p = 0.037. We only publish what we can back with data."
 >
   <Navbar />
 
@@ -19,47 +19,71 @@ import Footer from '../../components/Footer.astro';
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           RESULTS<br/>SPEAK.
         </h1>
+        <p class="text-xl text-brand-black/60 max-w-3xl leading-relaxed">
+          Real measurements, real samples. We only publish numbers we can back with primary data — including method, sample size and limits.
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
-            category: 'E-commerce',
-            title: 'Eye tracking e-shop — +34% conversions',
-            desc: 'Eye tracking revealed that users were missing the main CTA button due to its poor position in the F-pattern layout. After the redesign, conversions increased by 34%.',
-            tags: ['Eye Tracking', 'E-commerce', 'Conversions'],
-            result: '+34% conversions',
+            category: "Automotive · career portal",
+            title: "40% of applicants couldn’t find their way to open positions — on a site that “looked clear”.",
+            desc: "Eye tracking with a “find open positions” scenario showed that subjective clarity ratings don’t match task success. An A/B comparison of a floating CTA produced measurable differences in fixation metrics and visit length. The result: a simplified path to positions and a rebuilt navigation.",
+            method: "Eye tracking + survey · N = 102",
+            tags: ["Eye tracking", "Navigation", "A/B test"],
+            result: "40% lost",
           },
           {
-            category: 'SaaS',
-            title: 'UX audit of onboarding — churn reduced by 28%',
-            desc: 'A systematic audit of the onboarding process revealed 12 critical issues. Implementing the recommendations reduced the churn rate of new users by 28%.',
-            tags: ['UX Audit', 'SaaS', 'Onboarding'],
-            result: '-28% churn',
+            category: "Educational microsite",
+            title: "92% of gazes landed on the main CTA. Only a third finished the long paragraph.",
+            desc: "AOI analysis revealed a reading gradient: ~86% of participants registered the bold headline, 62% the short follow-up text and only ~33% the long paragraph. Orientation is carried by hierarchy, not text volume — so the primary CTA was emphasised and long blocks shortened.",
+            method: "Eye tracking, AOI analysis · ~120 participants",
+            tags: ["AOI analysis", "Content hierarchy", "CTA"],
+            result: "92% on CTA",
           },
           {
-            category: 'Media',
-            title: 'News portal readability',
-            desc: 'Eye tracking analysis showed how readers consume news. A layout redesign increased average reading time by 45% and click-through rate by 22%.',
-            tags: ['Eye Tracking', 'Media', 'UX Design'],
-            result: '+45% reading time',
+            category: "E-commerce",
+            title: "Lifestyle product photos look better. But they measurably slowed down purchase decisions.",
+            desc: "An experiment compared a clean packshot with a lifestyle photo. Photo type had a significant effect on task completion time — F(1,82) = 4.50; p = 0.037. No clear effect on subjective ratings: “prettier” doesn’t mean “more effective”. Choose photo type by page goal.",
+            method: "Eye tracking + UEQ · N = 84",
+            tags: ["Product photos", "Experiment", "PDP"],
+            result: "p = 0.037",
           },
           {
-            category: 'Financial Sector',
-            title: 'User research — mobile banking',
-            desc: 'In-depth interviews and usability testing of a mobile banking app. Identifying 8 key pain points led to a redesign of critical features.',
-            tags: ['UX Research', 'Mobile', 'Fintech'],
-            result: '8 pain points → 0',
+            category: "Ad creative",
+            title: "Where the person in your banner looks is where your customer looks.",
+            desc: "Manipulating the visual cue (the model’s gaze direction) had a strong statistical effect on attention distribution: F(1,102) = 12.57; p < 0.001; ηp² = 0.11 — a medium-sized effect. Gaze direction is one of the cheapest tools to guide attention to your message and CTA.",
+            method: "Eye tracking experiment · N = 104",
+            tags: ["Banners", "Visual cues", "Attention"],
+            result: "ηp² = 0.11",
+          },
+          {
+            category: "E-shop templates",
+            title: "Three templates, the same products. Attention shifted with the task given.",
+            desc: "The same template produced different attention patterns depending on the task users received. Aesthetic ratings without task context are misleading — test your e-shop template with real shopping tasks, not “by impression”.",
+            method: "Eye tracking + VisAWI · N = 61",
+            tags: ["E-commerce", "Aesthetics vs. performance", "Task-based testing"],
+            result: "3 templates × 2 tasks",
+          },
+          {
+            category: "Sports marketing · OOH",
+            title: "16 billboard designs, 79 pairs of eyes. The black minimalist variants won.",
+            desc: "All six top-rated designs had a black background; the winning variant scored highest in TOP3 picks and best average ranking. The strongest insight: visual advertising influences 39% of women vs. 16% of men. Recommendation: clean background, clear headline, non-aggressive composition.",
+            method: "Eye tracking + rating survey · N = 79 · 16 stimuli, 10 s each",
+            tags: ["Billboards", "OOH", "Gender insight"],
+            result: "39% vs 16%",
           },
         ].map(study => (
-          <div class="bg-brand-white p-10">
+          <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
               <span class="font-display text-2xl font-bold text-brand-black/10 leading-none md:text-right">{study.result}</span>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
-            <div class="flex flex-wrap gap-2">
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METHOD: {study.method}</p>
+            <div class="flex flex-wrap gap-2 mt-auto">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
@@ -69,8 +93,8 @@ import Footer from '../../components/Footer.astro';
       </div>
 
       <div class="text-center py-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ WANT SIMILAR RESULTS? ]</p>
-        <h2 class="font-display text-5xl font-bold mb-8">Let's work on your project</h2>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ WANT DATA LIKE THIS FOR YOUR SITE? ]</p>
+        <h2 class="font-display text-5xl font-bold mb-8">Let’s measure your project</h2>
         <a href="/en/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
           GET A QUOTE →
         </a>
