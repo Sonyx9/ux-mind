@@ -27,6 +27,7 @@ import Footer from '../components/Footer.astro';
         {[
           {
             category: "Automotive · kariérní portál",
+            href: "/pripadove-studie/karierni-portal-automotive",
             title: "40 % uchazečů nenašlo cestu k volným pozicím. Web přitom „vypadal přehledně“.",
             desc: "Eye-tracking se scénářem „najděte volné pozice“ ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.",
             method: "Eye-tracking + dotazník · N = 102",
@@ -35,6 +36,7 @@ import Footer from '../components/Footer.astro';
           },
           {
             category: "Edukační microsite",
+            href: "/pripadove-studie/backend-stories",
             title: "92 % pohledů skončilo na hlavním CTA. Dlouhý odstavec dočetla jen třetina.",
             desc: "AOI analýza odhalila gradient čtení: tučný nadpis zaznamenalo ~86 % respondentů, krátký návazný text 62 % a dlouhý odstavec jen ~33 %. Orientaci nenese množství textu, ale hierarchie — primární CTA se proto zvýraznilo a dlouhé bloky zkrátily.",
             method: "Eye-tracking, AOI analýza · cca 120 respondentů",
@@ -43,6 +45,7 @@ import Footer from '../components/Footer.astro';
           },
           {
             category: "E-commerce",
+            href: "/pripadove-studie/produktove-fotografie-e-commerce",
             title: "Fotka produktu „na člověku“ vypadá lépe. Ale zpomalila nákupní rozhodnutí.",
             desc: "Experiment porovnal čistý packshot s lifestyle fotografií. Typ fotografie měl signifikantní vliv na dobu plnění úkolu — F(1,82) = 4,50; p = 0,037. Dopad na subjektivní hodnocení se nepotvrdil: „líbivější“ neznamená „výkonnější“. Typ fotky volte podle cíle stránky.",
             method: "Eye-tracking + UEQ · N = 84",
@@ -51,6 +54,7 @@ import Footer from '../components/Footer.astro';
           },
           {
             category: "Reklamní kreativa",
+            href: "/pripadove-studie/reklamni-bannery-smer-pohledu",
             title: "Kam se dívá postava na banneru, tam se dívá i váš zákazník.",
             desc: "Manipulace vizuálního vodítka (směr pohledu postavy) měla silný statistický efekt na rozložení pozornosti: F(1,102) = 12,57; p < 0,001; ηp² = 0,11 — středně velký efekt. Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA.",
             method: "Eye-tracking experiment · N = 104",
@@ -59,6 +63,7 @@ import Footer from '../components/Footer.astro';
           },
           {
             category: "E-shop šablony",
+            href: "/pripadove-studie/sablony-e-shopu",
             title: "Tři šablony, stejný sortiment. Pozornost se měnila podle zadaného úkolu.",
             desc: "Stejná šablona vedla k různému rozložení pozornosti podle toho, jaký úkol uživatel dostal. Estetické hodnocení bez úkolového kontextu je proto zavádějící — šablonu e-shopu testujte se skutečnými nákupními úkoly, ne „na dojem“.",
             method: "Eye-tracking + VisAWI · N = 61",
@@ -67,6 +72,7 @@ import Footer from '../components/Footer.astro';
           },
           {
             category: "Sport marketing · venkovní reklama",
+            href: "/pripadove-studie/billboardy-sport-marketing",
             title: "16 návrhů billboardů, 79 párů očí. Vyhrály černé minimalistické varianty.",
             desc: "Všech šest nejlépe hodnocených návrhů mělo černé pozadí; vítězná varianta dosáhla nejvyššího skóre v TOP3 volbách i nejlepšího průměrného pořadí. Nejsilnější insight: vizuální reklamou je ovlivněno 39 % žen vs. 16 % mužů. Doporučení: čisté pozadí, jasný nadpis, neagresivní kompozice.",
             method: "Eye-tracking + hodnotící dotazník · N = 79 · 16 stimulů á 10 s",
@@ -82,11 +88,14 @@ import Footer from '../components/Footer.astro';
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METODA: {study.method}</p>
-            <div class="flex flex-wrap gap-2 mt-auto">
+            <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
             </div>
+            <a href={study.href} class="inline-block self-start border border-brand-black px-5 py-2.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PROJÍT STUDII →
+            </a>
           </div>
         ))}
       </div>

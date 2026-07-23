@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const pageSchema = [
+  {
+    '@type': 'Article',
+    headline: '16 návrhů billboardů, 79 párů očí. Vyhrály černé minimalistické varianty.',
+    about: 'Eye tracking, UX výzkum',
+    author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    inLanguage: 'cs',
+  },
+];
+---
+
+<BaseLayout
+  title='Case study: 16 billboardů, 79 respondentů'
+  description='Eye tracking 16 návrhů billboardů fotbalového klubu (N = 79): vyhrály černé minimalistické varianty. Vizuální reklama ovlivňuje 39 % žen vs. 16 % mužů.'
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-4xl mx-auto px-6">
+
+      <a href="/pripadove-studie" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← VŠECHNY STUDIE</a>
+
+      <div class="mt-8 mb-14">
+        <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
+          <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">Sport marketing · venkovní reklama</span>
+          <span class="font-display text-3xl font-bold text-brand-black/10 leading-none">39 % vs 16 %</span>
+        </div>
+        <h1 class="font-display font-bold leading-tight tracking-tight" style="font-size: clamp(1.9rem, 4.5vw, 3.2rem);">
+          16 návrhů billboardů, 79 párů očí. Vyhrály černé minimalistické varianty.
+        </h1>
+      </div>
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OBCHODNÍ OTÁZKA ]</p>
+        <p class="text-lg text-brand-black/80 leading-relaxed">Který z 16 grafických návrhů billboardu nejlépe zaujme a vede k záměru koupit vstupenku — a liší se to podle pohlaví diváka?</p>
+      </section>
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ MĚŘENÍ ]</p>
+        <p class="text-brand-black/70 leading-relaxed">Eye-tracking + hodnotící dotazník (celkové hodnocení, přehlednost, pozornost, nákupní záměr) + výběr TOP3. N = 79 (43 mužů, 36 žen), věk 17–25 let, 16 návrhů zobrazených přesně 10 sekund.</p>
+      </section>
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DATA UKÁZALA ]</p>
+        <div class="space-y-4">
+          {["Jasná dominance černých návrhů: všech šest nejvýše hodnocených variant mělo černé pozadí, spodní shluk tvořily bílé varianty.", "Vítězná varianta dosáhla nejvyššího váženého skóre ve výběru TOP3 i nejlepší průměrné finální pozice.", "Nejsilnější insight: vizuální reklamou je ovlivněno 39 % žen vs. 16 % mužů. Ženy více řeší i komfortní faktory — počasí (78 % vs. 56 %) a čas výkopu (72 % vs. 56 %).", "Férový limit: fixační metriky TOP3 a nejhůře hodnocených variant se lišily jen minimálně — o vítězi rozhodla subjektivní preference a čitelnost, ne dramatický rozdíl v chování oka."].map(item => (
+            <div class="flex gap-4 items-start">
+              <span class="font-mono text-xs text-brand-black/40 mt-1.5 shrink-0">→</span>
+              <p class="text-brand-black/80 leading-relaxed">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ CO SE ROZHODLO ]</p>
+        <p class="text-brand-black/70 leading-relaxed">Černé, jednoduché a minimalistické pozadí, výrazný nadpis, neagresivní kompozice postav a jasně definovaný cíl billboardu.</p>
+      </section>
+
+      <section class="mb-16 border border-brand-black p-8">
+        <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
+        <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme index zátěže EMLI — protože fixační metriky se mezi variantami téměř nelišily, byl by ideálním rozhodčím: ukázal by, zda „čisté“ návrhy skutečně snižují zátěž čtení sdělení.</p>
+      </section>
+
+      <div class="text-center py-12 border-t border-brand-black/10">
+        <h2 class="font-display text-3xl font-bold mb-8">Otestovat vizuál kampaně na reálných divácích</h2>
+        <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          NEZÁVAZNÁ POPTÁVKA →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
