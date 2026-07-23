@@ -163,6 +163,16 @@ const pageSchema = [
                 ))}
               </dl>
             </div>
+            <div class="border border-brand-black/10 p-6">
+              <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE VZNIKLA VE SPOLUPRÁCI S</p>
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
+                alt="Univerzita Hradec Králové — Fakulta informatiky a managementu"
+                title="Studie vznikla ve spolupráci s FIM UHK"
+                width="157" height="37" loading="lazy" decoding="async"
+                class="h-8 w-auto"
+              />
+            </div>
             <figure>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
@@ -259,6 +269,7 @@ const pageSchema = [
             <p class="font-mono text-[11px] text-brand-white/60 leading-relaxed">Žádný spam. Údaje použijeme pouze k zaslání studie.</p>
           </form>
           <div class="mt-6 pt-5 border-t border-brand-white/20 flex items-center gap-4">
+            <p class="font-mono text-[11px] text-brand-white/60 tracking-wide leading-relaxed">STUDIE VZNIKLA VE SPOLUPRÁCI S</p>
             <img
               src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
               alt="Univerzita Hradec Králové — Fakulta informatiky a managementu"
@@ -266,7 +277,6 @@ const pageSchema = [
               width="157" height="37" loading="lazy" decoding="async"
               class="h-7 w-auto invert opacity-80 shrink-0"
             />
-            <p class="font-mono text-[11px] text-brand-white/60 tracking-wide leading-relaxed">STUDIE VZNIKLA VE SPOLUPRÁCI S UNIVERZITOU HRADEC KRÁLOVÉ</p>
           </div>
         </div>
       </dialog>
