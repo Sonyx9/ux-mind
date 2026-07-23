@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const fakta = [["METODA", "Eye-tracking experiment"], ["VZOREK", "N = 104"], ["MANIPULACE", "Směr pohledu postavy"], ["STATISTIKA", "F(1,102) = 12,57 · p < 0,001"]];
-const zjisteni = ["Silný statistický efekt manipulace vizuálního vodítka: F(1,102) = 12,57; p < 0,001.", "Velikost efektu ηp² = 0,11 — středně velký efekt: rozdíl, který v praxi poznáte.", "Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA — nevyžaduje změnu layoutu, jen kompozice."];
+const fakta = [["METODA", "Eye-tracking experiment"], ["VZOREK", "104 respondentů"], ["MANIPULACE", "Směr pohledu postavy"], ["STATISTIKA", "p < 0,001 · šance na náhodu pod 0,1 %"]];
+const zjisteni = ["Silný efekt vizuálního vodítka: F(1,102) = 12,57; p < 0,001 — šance, že jde o náhodu, je menší než 0,1 %.", "Velikost efektu ηp² = 0,11 — středně velký efekt: rozdíl, který v praxi poznáte.", "Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA — nevyžaduje změnu layoutu, jen kompozice."];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -40,7 +40,7 @@ const pageSchema = [
       <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
         <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p>
+        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p><p class="font-mono text-xs text-brand-white/60 leading-relaxed mt-3">ηp² měří sílu efektu v praxi: 0,11 je středně silný vliv — rozdíl, který poznáte, ne jen statistická drobnost.</p></div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -106,6 +106,23 @@ const pageSchema = [
 </svg>
             </div>
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma principu na vlastním demo stimulu: modrá plocha znázorňuje těžiště pozornosti. Statistika pochází z reálného měření.</p>
+          </section>
+
+          <section class="reveal mb-12">
+            <details class="group border border-brand-black/15">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+                [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <dl class="px-5 pb-6 space-y-4">
+                <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
+                <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
+                <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
+                <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
+                <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
+                <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
+              </dl>
+            </details>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">

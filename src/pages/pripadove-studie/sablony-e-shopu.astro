@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const fakta = [["METODA", "Eye-tracking + VisAWI"], ["VZOREK", "N = 61"], ["STIMULY", "3 šablony · shodný sortiment"], ["VÝSTUPY", "Rozložení pozornosti dle úkolu"]];
+const fakta = [["METODA", "Eye-tracking + VisAWI"], ["VZOREK", "61 respondentů"], ["STIMULY", "3 šablony · shodný sortiment"], ["VÝSTUPY", "Rozložení pozornosti dle úkolu"]];
 const zjisteni = ["Stejná šablona vedla k různému rozložení pozornosti podle zadaného úkolu.", "Percepce designu se mění podle úlohy — estetické hodnocení bez úkolového kontextu je zavádějící.", "„Hezké“ a „funkční“ jsou dvě různé metriky a je třeba je měřit odděleně."];
 const pageSchema = [
   {
@@ -59,7 +59,7 @@ const pageSchema = [
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking tří šablon se stejným sortimentem, s různými zadanými úkoly, doplněný standardizovaným estetickým dotazníkem VisAWI.</p>
+            <p class="text-brand-black/70 leading-relaxed">Eye-tracking tří šablon se stejným sortimentem, s různými zadanými úkoly, doplněný dotazníkem VisAWI — standardizovaným nástrojem pro měření vnímané estetiky webu.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
@@ -111,6 +111,23 @@ const pageSchema = [
 </svg>
             </div>
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma principu: modré plochy znázorňují těžiště pozornosti při různých úkolech na téže šabloně.</p>
+          </section>
+
+          <section class="reveal mb-12">
+            <details class="group border border-brand-black/15">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+                [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <dl class="px-5 pb-6 space-y-4">
+                <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
+                <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
+                <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
+                <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
+                <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
+                <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
+              </dl>
+            </details>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">

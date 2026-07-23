@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const fakta = [["METODA", "Experiment · eye-tracking + UEQ"], ["VZOREK", "N = 84"], ["STIMULY", "Packshot vs. lifestyle fotografie"], ["STATISTIKA", "F(1,82) = 4,50 · p = 0,037"]];
-const zjisteni = ["Typ fotografie měl signifikantní efekt na dobu plnění úkolu: F(1,82) = 4,50; p = 0,037.", "Produkt „na člověku“ vedl k delšímu plnění úkolu než čistý packshot.", "Dopad na subjektivní hodnocení UX se jednoznačně nepotvrdil — „líbivější“ ≠ „výkonnější“."];
+const fakta = [["METODA", "Experiment · eye-tracking + UEQ"], ["VZOREK", "84 respondentů"], ["STIMULY", "Packshot vs. lifestyle fotografie"], ["STATISTIKA", "p = 0,037 · 3,7% šance na náhodu"]];
+const zjisteni = ["Typ fotografie prokazatelně ovlivnil dobu plnění úkolu: F(1,82) = 4,50; p = 0,037 — šance, že jde o náhodu, je jen 3,7 %.", "Produkt „na člověku“ vedl k delšímu plnění úkolu než čistý packshot.", "Dopad na subjektivní hodnocení UX se jednoznačně nepotvrdil — „líbivější“ ≠ „výkonnější“."];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -40,7 +40,7 @@ const pageSchema = [
       <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
         <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">p = 0,037</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">signifikantně delší nákupní rozhodování u lifestyle fotografie</p>
+        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">signifikantně delší nákupní rozhodování u lifestyle fotografie</p><p class="font-mono text-xs text-brand-white/60 leading-relaxed mt-3">p = pravděpodobnost, že rozdíl vznikl náhodou. Hodnota 0,037 znamená jen 3,7% šanci — výsledek je statisticky průkazný.</p></div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -59,7 +59,7 @@ const pageSchema = [
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Kontrolovaný experiment v e-commerce prostředí: respondenti plnili nákupní úkoly nad variantami produktových stránek, měřeno eye-trackingem a doplněno standardizovaným dotazníkem UEQ.</p>
+            <p class="text-brand-black/70 leading-relaxed">Kontrolovaný experiment v e-commerce prostředí: respondenti plnili nákupní úkoly nad variantami produktových stránek, měřeno eye-trackingem a doplněno dotazníkem UEQ — standardizovaným nástrojem pro měření uživatelského zážitku.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
@@ -99,6 +99,23 @@ const pageSchema = [
 </svg>
             </div>
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Praktický závěr studie jako matice: lifestyle fotka pro inspirační stránky, packshot pro úkolový výběr a porovnání.</p>
+          </section>
+
+          <section class="reveal mb-12">
+            <details class="group border border-brand-black/15">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+                [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <dl class="px-5 pb-6 space-y-4">
+                <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
+                <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
+                <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
+                <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
+                <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
+                <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
+              </dl>
+            </details>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
