@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getLang, getPathInLang, languages } from '../i18n/utils';
 
 export interface Props {
   title: string;
@@ -7,6 +8,8 @@ export interface Props {
   image?: string;
   type?: string;
   lang?: string;
+  /** Volitelná strukturovaná data (JSON-LD) — objekt nebo pole objektů */
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -17,6 +20,7 @@ const {
   image = `${base}/og-image.jpg`,
   type = 'website',
   lang = 'cs',
+  schema,
 } = Astro.props;
 
 const baseUrl = `${base}/`;
@@ -24,9 +28,59 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const resolvedImage = image.startsWith('http://') || image.startsWith('https://')
   ? image
   : new URL(image.replace(/^\//, ''), new URL(baseUrl, Astro.site)).toString();
-const fullTitle = title === 'UX Mind' ? title : `${title} | UX Mind`;
+// Nepřidávat sufix, pokud už titulek značku obsahuje
+const fullTitle = title === 'UX Mind' || title.includes('UXMIND') || title.includes('UX Mind')
+  ? title
+  : `${title} | UX Mind`;
 const ogLocales: Record<string, string> = { cs: 'cs_CZ', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
 const skipLabels: Record<string, string> = { cs: 'Přeskočit na obsah', en: 'Skip to content', de: 'Zum Inhalt springen', fr: 'Aller au contenu', es: 'Saltar al contenido' };
+
+// hreflang alternativy — stejná stránka ve všech jazycích
+const sitePath = Astro.url.pathname.startsWith(base)
+  ? Astro.url.pathname.slice(base.length) || '/'
+  : Astro.url.pathname;
+const alternates = languages.map(l => ({
+  code: l.code,
+  url: new URL((base + getPathInLang(sitePath, l.code)).replace(/^\//, ''), Astro.site).toString(),
+}));
+const defaultAlternate = alternates.find(a => a.code === 'cs');
+
+// Globální strukturovaná data: firma + web
+const siteUrl = new URL(baseUrl, Astro.site).toString();
+const orgSchema = {
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl}#organization`,
+  name: 'UX MIND Research Lab s.r.o.',
+  alternateName: 'UX Mind',
+  url: siteUrl,
+  logo: new URL('logo.svg', siteUrl).toString(),
+  image: resolvedImage,
+  email: 'spoluprace@uxmind.cz',
+  telephone: '+420728601160',
+  identifier: { '@type': 'PropertyValue', propertyID: 'IČO', value: '29714966' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'K Lesu 180, Svinary',
+    addressLocality: 'Hradec Králové',
+    postalCode: '500 09',
+    addressCountry: 'CZ',
+  },
+  areaServed: 'CZ',
+  knowsAbout: ['UX výzkum', 'Eye tracking', 'Uživatelské testování', 'UX audit', 'Kognitivní zátěž', 'EMLI'],
+};
+const webSiteSchema = {
+  '@type': 'WebSite',
+  '@id': `${siteUrl}#website`,
+  name: 'UX Mind',
+  url: siteUrl,
+  inLanguage: lang,
+  publisher: { '@id': `${siteUrl}#organization` },
+};
+const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [orgSchema, webSiteSchema, ...extraSchemas],
+};
 ---
 
 <!doctype html>
@@ -43,21 +97,37 @@ const skipLabels: Record<string, string> = { cs: 'Přeskočit na obsah', en: 'Sk
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- hreflang — jazykové verze stránky -->
+    {alternates.map(a => (
+      <link rel="alternate" hreflang={a.code} href={a.url} />
+    ))}
+    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.url} />}
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={resolvedImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta property="og:image:alt" content={fullTitle} />
     <meta property="og:locale" content={ogLocales[lang] ?? 'en_GB'} />
+    {languages.filter(l => l.code !== lang).map(l => (
+      <meta property="og:locale:alternate" content={ogLocales[l.code]} />
+    ))}
     <meta property="og:site_name" content="UX Mind" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={fullTitle} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={resolvedImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedImage} />
+    <meta name="twitter:image:alt" content={fullTitle} />
+
+    <!-- Strukturovaná data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Fonty jsou self-hostované přes Fontsource (import v global.css) -->
   </head>

@@ -2,12 +2,38 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+
+const faq = [
+  { q: "Combien de participants faut-il pour une étude d’eye tracking ?", a: "Pour des enseignements qualitatifs, 8 à 12 participants par segment suffisent. Pour des métriques quantitatives (heatmaps, statistiques AOI), nous recommandons 30 ou plus ; pour l’indice de charge cognitive EMLI, nous travaillons avec des échantillons de plus de 100 participants." },
+  { q: "Combien de temps dure un test d’eye tracking ?", a: "Un projet type dure 1 à 3 semaines après validation du scénario : préparation et pilote, collecte des données en laboratoire ou sur le terrain, analyse et rapport avec recommandations priorisées." },
+  { q: "L’eye tracking, est-ce du neuromarketing ?", a: "Non. L’eye tracking est un enregistrement objectif de l’attention visuelle — nous ne promettons ni « lecture de pensées » ni détection d’émotions. Nous interprétons toujours les données dans le contexte de la tâche, avec les limites clairement énoncées." },
+  { q: "Que montre une heatmap — et que ne montre-t-elle pas ?", a: "Une heatmap agrège les zones les plus regardées. Elle ne dit pas à quel point l’interface a été exigeante — c’est pourquoi nous la complétons par des métriques AOI (TTFF, dwell time) et l’indice de charge cognitive EMLI." },
+];
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: "Eye tracking & tests utilisateurs",
+    description: "Mesure de l’attention visuelle par eye tracking : heatmaps, analyse AOI, enregistrements du regard et tests utilisateurs de sites, apps et supports imprimés.",
+    serviceType: 'Eye tracking',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
 ---
 
 <BaseLayout
   lang="fr"
-  title="Eye Tracking"
-  description="Eye tracking pour sites web, applications et supports imprimés. Heatmaps, analyse AOI et enregistrements des mouvements oculaires."
+  title="Eye tracking & heatmaps d’attention"
+  description="Eye tracking pour sites, apps et imprimés : heatmaps, analyse AOI, enregistrements du regard et tests utilisateurs au laboratoire FIM UHK."
+  schema={pageSchema}
 >
   <Navbar />
 
@@ -66,6 +92,22 @@ import Footer from '../../components/Footer.astro';
               <h3 class="font-display text-2xl font-bold mb-3">{usecase.title}</h3>
               <p class="text-brand-black/60 leading-relaxed">{usecase.desc}</p>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
           ))}
         </div>
       </div>
