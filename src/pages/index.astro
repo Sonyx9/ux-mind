@@ -2,11 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { getCollection } from 'astro:content';
-
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).slice(0, 3);
+const homeStudies = [
+  {
+    href: '/pripadove-studie/karierni-portal-automotive',
+    category: 'Automotive · Kariérní portál',
+    title: '40 % uchazečů nenašlo cestu k volným pozicím — na webu, který působil „přehledně“.',
+    method: 'Eye tracking + dotazování · 102 respondentů',
+    result: '40 % ztraceno',
+  },
+  {
+    href: '/pripadove-studie/backend-stories',
+    category: 'Edukační microsite',
+    title: '92 % pohledů skončilo na hlavním CTA. Dlouhý odstavec četla jen třetina.',
+    method: 'Eye tracking, AOI analýza · cca 120 respondentů',
+    result: '92 % na CTA',
+  },
+  {
+    href: '/pripadove-studie/reklamni-bannery-smer-pohledu',
+    category: 'Reklamní kreativa',
+    title: 'Kam se dívá postava na vašem banneru, tam se dívá i váš zákazník.',
+    method: 'Eye-tracking experiment · 104 respondentů',
+    result: 'ηp² = 0,11',
+  },
+];
 
 const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
@@ -49,10 +67,10 @@ const clientLogos = [
     <!-- Large headline — inside top grid rectangle (0–33.333%) -->
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
       <h1 class="m-0 p-0 relative" style="line-height:0;">
-        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo.svg`} alt="UX Mind" style="width: clamp(11rem, 24vw, 360px); height:auto; display:block;" />
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" style="width: clamp(7rem, 14vw, 220px); height:auto; display:block;" />
         <!-- Easter egg: hotspot nad modrou tečkou loga + záslepka, když tečka "uteče" -->
-        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:93.5%; top:26%; width:9.5%; height:46%;"></span>
-        <span id="logo-dot-patch" style="position:absolute; left:95.2%; top:34%; width:5%; height:29.2%; background:#FCFCFC; border-radius:50%; display:none;"></span>
+        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
+        <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
       </h1>
       <!-- Mobile-only: first annotation below heading -->
       <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">KDE VÝZKUM ODHALUJE PRAVDU</p>
@@ -466,48 +484,34 @@ const clientLogos = [
     </div>
   </section>
 
-  <!-- BLOG SECTION -->
-  {posts.length > 0 && (
-    <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+  <!-- PŘÍPADOVÉ STUDIE (prozatím místo blogu) -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-12">
       <div>
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ BLOG ]</p>
-          <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Poslední<br/>články<span style="color:#2D62FC">.</span></h2>
-        </div>
-        <a href="/blog" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
-          VŠECHNY ČLÁNKY →
-        </a>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ PŘÍPADOVÉ STUDIE ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Výsledky<br/>mluví<span style="color:#2D62FC">.</span></h2>
       </div>
+      <a href="/pripadove-studie" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+        VŠECHNY STUDIE →
+      </a>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post, i) => (
-          <a href={`/blog/${post.slug}`} class="group">
-            {post.data.coverImage && (
-              <div class="aspect-video overflow-hidden mb-4 bg-brand-black/5">
-                <img
-                  src={post.data.coverImage}
-                  alt={post.data.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            )}
-            <div class="flex gap-2 mb-2">
-              {post.data.tags?.slice(0,2).map((tag: string) => (
-                <span class="font-mono text-xs text-brand-black/60">{tag}</span>
-              ))}
-            </div>
-            <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/60 mt-4">
-              {new Date(post.data.date).toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </p>
-          </a>
-        ))}
-      </div>
-      </div>
-    </section>
-  )}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+      {homeStudies.map(study => (
+        <a href={study.href} class="group bg-brand-white p-8 flex flex-col hover:bg-brand-black transition-colors">
+          <div class="flex justify-between items-start gap-3 mb-6">
+            <span class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 border border-brand-black/20 group-hover:border-brand-white/50 px-2 py-0.5 transition-colors">{study.category}</span>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-4 leading-tight group-hover:text-brand-white transition-colors">{study.title}</h3>
+          <p class="font-mono text-[11px] text-brand-black/60 group-hover:text-brand-white/70 tracking-wide mb-6 transition-colors">METODA: {study.method}</p>
+          <div class="mt-auto flex justify-between items-end gap-3">
+            <span class="font-mono text-xs tracking-widest group-hover:text-brand-white transition-colors">PROJÍT STUDII →</span>
+            <span class="font-display text-2xl font-bold text-brand-black/10 group-hover:text-brand-white/20 leading-none transition-colors">{study.result}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 
   <!-- CTA SECTION -->
   <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
