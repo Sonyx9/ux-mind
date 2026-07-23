@@ -1,0 +1,23 @@
+/* TÝM */
+
+    Provozovatel: UX MIND Research Lab s.r.o.
+    IČO: 29714966
+    Sídlo: Hradec Králové, Česká republika
+    Kontakt: spoluprace@uxmind.cz
+
+/* VÝVOJ */
+
+    Autor a vývoj: Lukáš Koula
+    Web: https://lukaskoula.com
+
+/* TECHNOLOGIE */
+
+    Statický web, HTML / CSS / JavaScript
+    Self-hostované fonty (bez externích trackerů)
+    Optimalizované WebP obrázky
+    Vícejazyčné (CS / EN / DE / FR / ES)
+
+/* OBSAH */
+
+    © UX MIND Research Lab s.r.o. Všechna práva vyhrazena.
+    Texty, grafika a případové studie jsou chráněny autorským právem.
