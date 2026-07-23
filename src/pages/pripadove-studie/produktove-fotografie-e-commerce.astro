@@ -144,13 +144,26 @@ const pageSchema = [
               </dl>
             </div>
             <figure>
-              <img
-                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
-                alt="Analýza eye-tracking dat — heatmapy a mimické záznamy v softwaru iMotions"
-                width="1080" height="720" loading="lazy" decoding="async"
-                class="w-full h-52 object-cover border border-brand-black/10"
-              />
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Analýza eye-tracking dat — heatmapy a mimické záznamy v softwaru iMotions</figcaption>
+              <div class="border border-brand-black/10 p-4 bg-brand-white">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schéma dvou variant produktové stránky: packshot a lifestyle fotografie">
+                  <rect x="4" y="4" width="150" height="170" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="24" y="24" width="110" height="90" fill="rgba(10,10,10,0.06)"/>
+                  <rect x="62" y="40" width="34" height="58" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="70" y="32" width="18" height="10" fill="#0A0A0A"/>
+                  <rect x="24" y="126" width="70" height="7" fill="rgba(10,10,10,0.35)"/>
+                  <rect x="24" y="140" width="46" height="7" fill="#2D62FC"/>
+                  <text x="4" y="196" font-family="monospace" font-size="11" fill="#0A0A0A">PACKSHOT</text>
+                  <rect x="166" y="4" width="150" height="170" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="186" y="24" width="110" height="90" fill="rgba(10,10,10,0.06)"/>
+                  <circle cx="222" cy="52" r="14" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <path d="M 200 114 Q 222 76 244 114" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="256" y="62" width="20" height="36" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="186" y="126" width="70" height="7" fill="rgba(10,10,10,0.35)"/>
+                  <rect x="186" y="140" width="46" height="7" fill="rgba(10,10,10,0.2)"/>
+                  <text x="166" y="196" font-family="monospace" font-size="11" fill="#0A0A0A">LIFESTYLE</text>
+                </svg>
+              </div>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schéma testovaných variant: čistý packshot vs. produkt „na člověku“</figcaption>
             </figure>
             <a href="/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               NEZÁVAZNÁ POPTÁVKA →
