@@ -66,7 +66,7 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
                 <p class="text-brand-black/60 leading-relaxed">{allPosts[0].data.excerpt}</p>
               </div>
               <div class="flex justify-between items-center mt-8">
-                <p class="font-mono text-xs text-brand-black/50">
+                <p class="font-mono text-xs text-brand-black/60">
                   {new Date(allPosts[0].data.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </p>
                 <span class="font-mono text-xs">READ →</span>
@@ -97,7 +97,7 @@ const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
               {post.data.title}
             </h2>
             <p class="text-sm text-brand-black/60 leading-relaxed mb-4">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/50">
+            <p class="font-mono text-xs text-brand-black/60">
               {new Date(post.data.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </a>

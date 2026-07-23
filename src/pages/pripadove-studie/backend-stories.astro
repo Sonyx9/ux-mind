@@ -97,7 +97,7 @@ const pageSchema = [
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
-                  <p class="font-mono text-xs text-brand-black/50 mt-1 shrink-0">0{i + 1}</p>
+                  <p class="font-mono text-xs text-brand-black/60 mt-1 shrink-0">0{i + 1}</p>
                   <p class="text-brand-black/80 leading-relaxed">{item}</p>
                 </div>
               ))}
@@ -187,7 +187,7 @@ const pageSchema = [
       <section class="reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Chcete projít celou studii<span style="color:#2D62FC">?</span></p>
-          <p class="font-mono text-[11px] text-brand-white/60 tracking-wide mt-1">PODROBNÝ REPORT S METODIKOU A DOPORUČENÍMI — ZDARMA V PDF</p>
+          <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">PODROBNÝ REPORT S METODIKOU A DOPORUČENÍMI — ZDARMA V PDF</p>
         </div>
         <button type="button" class="study-modal-open shrink-0 border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
           VYŽÁDAT STUDII →
@@ -197,11 +197,11 @@ const pageSchema = [
       <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">
         <a href="/pripadove-studie/karierni-portal-automotive" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
-          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60 tracking-widest mb-2">← PŘEDCHOZÍ STUDIE</p>
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← PŘEDCHOZÍ STUDIE</p>
           <p class="font-display font-bold leading-snug">40 % uchazečů nenašlo cestu k volným pozicím</p>
         </a>
         <a href="/pripadove-studie/produktove-fotografie-e-commerce" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
-          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60 tracking-widest mb-2">DALŠÍ STUDIE →</p>
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">DALŠÍ STUDIE →</p>
           <p class="font-display font-bold leading-snug">Fotka „na člověku“ vypadá lépe. Ale zpomalila nákup.</p>
         </a>
       </nav>
@@ -219,32 +219,32 @@ const pageSchema = [
       <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
         <div class="p-8">
           <div class="flex justify-between items-start mb-6">
-            <p class="font-mono text-xs text-brand-white/60 tracking-widest">[ PODROBNÁ STUDIE ]</p>
-            <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/60 transition-colors" aria-label="Zavřít okno">×</button>
+            <p class="font-mono text-xs text-brand-white/70 tracking-widest">[ PODROBNÁ STUDIE ]</p>
+            <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/70 transition-colors" aria-label="Zavřít okno">×</button>
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít celou studii<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Vyplňte údaje a podrobná studie v PDF se vám rovnou zobrazí. Studie jsou zkráceny a anonymizovány.</p>
           <form class="study-request space-y-4" data-pdf={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/studie/backend-stories.pdf`} data-study="92 % pohledů skončilo na hlavním CTA">
             <div>
-              <label for="sr-name" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">JMÉNO *</label>
+              <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"
-                class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
+                class="w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors" />
             </div>
             <div>
-              <label for="sr-company" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">FIRMA</label>
+              <label for="sr-company" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">FIRMA</label>
               <input type="text" id="sr-company" name="company" placeholder="Název firmy (nepovinné)"
-                class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
+                class="w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors" />
             </div>
             <div>
-              <label for="sr-email" class="font-mono text-xs text-brand-white/60 tracking-widest block mb-2">E-MAIL *</label>
+              <label for="sr-email" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">E-MAIL *</label>
               <input type="email" id="sr-email" name="email" required placeholder="vas@email.cz"
-                class="w-full border border-brand-white/30 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/40 focus:outline-none focus:border-brand-white transition-colors" />
+                class="w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors" />
             </div>
             <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
               ZOBRAZIT STUDII (PDF) →
             </button>
-            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/30 p-3">Děkujeme! Pokud se studie neotevřela sama, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">otevřete ji tímto odkazem</a>.</p>
-            <p class="font-mono text-[11px] text-brand-white/60 leading-relaxed">Odesláním souhlasíte se zobrazením studie a zasíláním občasných obchodních nabídek UX MIND. Odhlásit se můžete kdykoli jedním kliknutím.</p>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Děkujeme! Pokud se studie neotevřela sama, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">otevřete ji tímto odkazem</a>.</p>
+            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">Odesláním souhlasíte se zobrazením studie a zasíláním občasných obchodních nabídek UX MIND. Odhlásit se můžete kdykoli jedním kliknutím.</p>
           </form>
         </div>
       </dialog>

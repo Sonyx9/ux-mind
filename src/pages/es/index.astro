@@ -292,7 +292,7 @@ const clientLogos = [
         },
       ].map((item, i) => (
         <div class="bg-brand-white p-8 flex flex-col">
-          <p class="font-mono text-xs text-brand-black/50 mb-8">0{i + 1}</p>
+          <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
           <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
           <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
           <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
@@ -341,7 +341,7 @@ const clientLogos = [
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
           <div class="flex justify-between items-start mb-8">
-            <p class="font-mono text-xs text-brand-black/50 group-hover:text-brand-white/30">{service.num}</p>
+            <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60">{service.num}</p>
             <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
           </div>
           <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
@@ -490,7 +490,7 @@ const clientLogos = [
             </div>
             <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
             <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/50 mt-4">
+            <p class="font-mono text-xs text-brand-black/60 mt-4">
               {new Date(post.data.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
             </p>
           </a>
