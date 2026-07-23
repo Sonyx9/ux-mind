@@ -5,6 +5,11 @@ import Footer from '../../components/Footer.astro';
 
 const fakta = [["METODA", "Experiment · eye-tracking + UEQ"], ["VZOREK", "84 respondentů"], ["STIMULY", "Packshot vs. lifestyle fotografie"], ["STATISTIKA", "p = 0,037 · 3,7% šance na náhodu"]];
 const zjisteni = ["Typ fotografie prokazatelně ovlivnil dobu plnění úkolu: F(1,82) = 4,50; p = 0,037 — šance, že jde o náhodu, je jen 3,7 %.", "Produkt „na člověku“ vedl k delšímu plnění úkolu než čistý packshot.", "Dopad na subjektivní hodnocení UX se jednoznačně nepotvrdil — „líbivější“ ≠ „výkonnější“."];
+const faq = [
+  { q: "Je lepší packshot, nebo lifestyle fotografie?", a: "Záleží na cíli stránky. V měření s 84 respondenty prodloužila lifestyle fotografie dobu nákupního rozhodování (p = 0,037). Pro úkolový výběr a porovnání se hodí packshot, pro inspirační stránky lifestyle." },
+  { q: "Co znamená p = 0,037?", a: "Pravděpodobnost, že by naměřený rozdíl vznikl náhodou, je jen 3,7 %. Vše pod 5 % se považuje za statisticky průkazné." },
+  { q: "Ovlivnil typ fotky i to, jak se stránka líbila?", a: "Jednoznačně ne — dopad na subjektivní hodnocení UX se nepotvrdil. „Líbivější“ neznamená „výkonnější“." },
+];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -12,6 +17,14 @@ const pageSchema = [
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
 ];
 ---
@@ -43,7 +56,7 @@ const pageSchema = [
         <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">signifikantně delší nákupní rozhodování u lifestyle fotografie</p><p class="font-mono text-xs text-brand-white/60 leading-relaxed mt-3">p = pravděpodobnost, že rozdíl vznikl náhodou. Hodnota 0,037 znamená jen 3,7% šanci — výsledek je statisticky průkazný.</p></div>
       </div>
 
-      <section class="reveal mb-16 max-w-4xl">
+      <section class="reveal mb-16">
         <details class="group border border-brand-black/15">
           <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
             [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
@@ -171,6 +184,22 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <!-- FAQ ke studii -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">

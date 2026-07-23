@@ -5,6 +5,11 @@ import Footer from '../../components/Footer.astro';
 
 const fakta = [["METODA", "Eye-tracking, AOI analýza"], ["VZOREK", "cca 120 respondentů"], ["SCÉNÁŘE", "Více úkolových scénářů"], ["VÝSTUPY", "AOI statistiky, gradient čtení"]];
 const zjisteni = ["CTA „Číst online“ fixovalo ~92 % vzorku.", "Gradient čtení: tučný nadpis zaznamenalo ~86 % respondentů, krátký návazný text 62 %, dlouhý odstavec jen ~33 %.", "~75 % respondentů si všimlo spodní sekce stránky ještě před vyplněním formuláře."];
+const faq = [
+  { q: "Co je gradient čtení?", a: "Podíl lidí, kteří skutečně zaznamenali jednotlivé prvky stránky: tučný nadpis ~86 %, krátký text 62 %, dlouhý odstavec jen ~33 %. Pozornost strmě klesá s délkou bloku." },
+  { q: "Kolik lidí vidělo hlavní CTA?", a: "CTA „Číst online“ fixovalo ~92 % z přibližně 120 respondentů — byl to nejsledovanější prvek celé stránky." },
+  { q: "Co z toho plyne pro tvorbu obsahu?", a: "Orientaci nese hierarchie, ne množství textu: výrazný nadpis, krátký text a jasné CTA fungují lépe než dlouhé odstavce." },
+];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -12,6 +17,14 @@ const pageSchema = [
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
 ];
 ---
@@ -43,7 +56,7 @@ const pageSchema = [
         <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">pohledů skončilo na hlavním CTA — dlouhý odstavec dočetla jen třetina</p>
       </div>
 
-      <section class="reveal mb-16 max-w-4xl">
+      <section class="reveal mb-16">
         <details class="group border border-brand-black/15">
           <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
             [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
@@ -143,6 +156,22 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <!-- FAQ ke studii -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">

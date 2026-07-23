@@ -5,6 +5,11 @@ import Footer from '../../components/Footer.astro';
 
 const fakta = [["METODA", "Eye-tracking + dotazník + TOP3"], ["VZOREK", "79 respondentů (43 mužů, 36 žen) · 17–25 let"], ["STIMULY", "16 návrhů á 10 sekund"], ["VÝSTUPY", "Žebříček variant, gender analýza"]];
 const zjisteni = ["Jasná dominance černých návrhů: všech šest nejvýše hodnocených variant mělo černé pozadí, spodní shluk tvořily bílé varianty.", "Vítězná varianta dosáhla nejvyššího váženého skóre ve výběru TOP3 i nejlepší průměrné finální pozice.", "Nejsilnější insight: vizuální reklamou je ovlivněno 39 % žen vs. 16 % mužů. Ženy více řeší i komfortní faktory — počasí (78 % vs. 56 %) a čas výkopu (72 % vs. 56 %).", "Férový limit: fixační metriky TOP3 a nejhůře hodnocených variant se lišily jen minimálně — o vítězi rozhodla subjektivní preference a čitelnost, ne dramatický rozdíl v chování oka."];
+const faq = [
+  { q: "Jaké billboardy fungují nejlépe?", a: "V měření 16 návrhů na 79 respondentech jednoznačně vyhrály černé minimalistické varianty s výrazným nadpisem — všech šest nejlépe hodnocených mělo černé pozadí." },
+  { q: "Působí venkovní reklama na muže a ženy stejně?", a: "Ne — vizuální reklamou je ovlivněno 39 % žen vs. 16 % mužů. Ženy více zohledňují i komfortní faktory, jako je počasí nebo čas výkopu." },
+  { q: "Rozhodly o vítězi oční metriky?", a: "Ne — fixační metriky se mezi variantami lišily minimálně; rozhodla subjektivní preference a čitelnost. Právě proto dnes měření doplňujeme o index kognitivní zátěže EMLI." },
+];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -12,6 +17,14 @@ const pageSchema = [
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
 ];
 ---
@@ -43,7 +56,7 @@ const pageSchema = [
         <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">% žen vs. mužů ovlivněných vizuální reklamou — a jasné vítězství černých variant</p>
       </div>
 
-      <section class="reveal mb-16 max-w-4xl">
+      <section class="reveal mb-16">
         <details class="group border border-brand-black/15">
           <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
             [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
@@ -161,6 +174,22 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <!-- FAQ ke studii -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">

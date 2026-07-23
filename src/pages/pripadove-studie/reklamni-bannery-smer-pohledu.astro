@@ -5,6 +5,11 @@ import Footer from '../../components/Footer.astro';
 
 const fakta = [["METODA", "Eye-tracking experiment"], ["VZOREK", "104 respondentů"], ["MANIPULACE", "Směr pohledu postavy"], ["STATISTIKA", "p < 0,001 · šance na náhodu pod 0,1 %"]];
 const zjisteni = ["Silný efekt vizuálního vodítka: F(1,102) = 12,57; p < 0,001 — šance, že jde o náhodu, je menší než 0,1 %.", "Velikost efektu ηp² = 0,11 — středně velký efekt: rozdíl, který v praxi poznáte.", "Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA — nevyžaduje změnu layoutu, jen kompozice."];
+const faq = [
+  { q: "Funguje směr pohledu postavy na banneru?", a: "Ano, měřitelně: manipulace směru pohledu měla silný efekt na rozložení pozornosti (p < 0,001; ηp² = 0,11 — středně velký efekt na vzorku 104 respondentů)." },
+  { q: "Jak směr pohledu na kreativě využít?", a: "Postavu orientujte pohledem ke klíčovému sdělení nebo CTA, ne do kamery. Pozornost diváka směr pohledu následuje." },
+  { q: "Dá se efekt využít bez předělání celé kreativy?", a: "Ano — jde o změnu kompozice, ne layoutu. Často stačí zvolit fotografii s vhodným směrem pohledu postavy." },
+];
 const pageSchema = [
   {
     '@type': 'Article',
@@ -12,6 +17,14 @@ const pageSchema = [
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   },
 ];
 ---
@@ -43,7 +56,7 @@ const pageSchema = [
         <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p><p class="font-mono text-xs text-brand-white/60 leading-relaxed mt-3">ηp² měří sílu efektu v praxi: 0,11 je středně silný vliv — rozdíl, který poznáte, ne jen statistická drobnost.</p></div>
       </div>
 
-      <section class="reveal mb-16 max-w-4xl">
+      <section class="reveal mb-16">
         <details class="group border border-brand-black/15">
           <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
             [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
@@ -165,6 +178,22 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <!-- FAQ ke studii -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">
