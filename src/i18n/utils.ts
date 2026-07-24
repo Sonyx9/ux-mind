@@ -17,7 +17,6 @@ const urlMap: Record<Lang, Record<string, string>> = {
     home: '/',
     services: '/sluzby',
     'eye-tracking': '/eye-tracking',
-    emli: '/emli',
     about: '/o-nas',
     'ux-research': '/ux-vyzkum',
     'case-studies': '/pripadove-studie',
@@ -105,8 +104,6 @@ export function getNavLinks(lang: Lang) {
   return [
     { href: urlMap[lang].services, label: t.services },
     { href: urlMap[lang]['eye-tracking'], label: 'Eye Tracking' },
-    // EMLI stránka zatím jen česky — v ostatních jazycích se položka nezobrazuje
-    ...(urlMap[lang].emli ? [{ href: urlMap[lang].emli, label: 'EMLI' }] : []),
     { href: urlMap[lang]['ux-research'], label: t['ux-research'] },
     { href: urlMap[lang]['case-studies'], label: t['case-studies'] },
     { href: urlMap[lang].blog, label: 'Blog' },
