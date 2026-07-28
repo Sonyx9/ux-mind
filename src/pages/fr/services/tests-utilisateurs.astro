@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const formats = [
+  { t: 'Tests modérés', d: 'Un chercheur guide le participant à travers le scénario, pose des questions et approfondit là où quelque chose se passe.', tag: 'LAB / EN LIGNE' },
+  { t: 'Tests non modérés', d: 'Les participants accomplissent les tâches en autonomie. Collecte plus rapide, échantillon plus large, conditions plus naturelles.', tag: 'EN LIGNE' },
+  { t: 'Think-aloud', d: 'Le participant commente à voix haute ce qu’il voit et pourquoi il clique. Révèle le modèle mental, pas seulement le comportement.', tag: 'PROTOCOLE' },
+];
+
+const findings = [
+  'Si les utilisateurs accomplissent les tâches clés — et où exactement ils échouent',
+  'Combien de temps prennent les tâches et combien d’erreurs surviennent',
+  'Quels éléments les utilisateurs ne comprennent pas ou manquent',
+  'En quoi le comportement des novices diffère de celui des utilisateurs expérimentés',
+  'Ce que les utilisateurs disent vs ce qu’ils font réellement',
+];
+
+const process = [
+  { num: '01', title: 'Scénario et tâches', desc: 'Nous définissons ce qui doit être vérifié et préparons des tâches réalistes.' },
+  { num: '02', title: 'Recrutement des participants', desc: 'Nous recrutons selon votre cible, pas un public au hasard.' },
+  { num: '03', title: 'Tests', desc: 'En mode modéré ou non modéré, avec enregistrement d’écran et pilote.' },
+  { num: '04', title: 'Analyse et recommandations', desc: 'Taux de réussite, temps, taux d’erreur et propositions d’ajustements concrètes.' },
+];
+
+const faq = [
+  { q: 'Combien de participants faut-il ?', a: 'Pour révéler qualitativement les principaux problèmes, 5–8 participants par segment suffisent généralement. Pour comparer des variantes ou procéder à une évaluation statistique, il faut un échantillon plus large et conçu avec plus de précision — nous proposons l’étendue selon la question de recherche.' },
+  { q: 'Peut-on aussi tester un prototype ?', a: 'Oui. Nous testons les sites et applications en production ainsi que les prototypes cliquables (Figma et similaires). Plus le test intervient tôt, moins les ajustements coûtent cher.' },
+  { q: 'En quoi les tests diffèrent-ils d’un audit UX ?', a: 'L’audit est une évaluation par un expert sans participants — une première étape plus rapide. Les tests observent de vrais utilisateurs accomplissant des tâches et vérifient le comportement réel. Idéalement, l’un suit l’autre.' },
+  { q: 'Pourrons-nous suivre les tests en direct ?', a: 'Oui, pour les tests modérés, vous pouvez assister en salle d’observation. Voir ses propres utilisateurs est souvent l’argument le plus convaincant pour une équipe.' },
+  { q: 'Et si les utilisateurs évaluent le site positivement, mais échouent à la tâche ?', a: 'C’est exactement ce que les tests révèlent. L’impression subjective d’un « site clair » ne correspond souvent pas au taux de réussite réel — c’est pourquoi nous mesurons le comportement, pas seulement les opinions.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'Tests utilisateurs',
+    description: 'Tests utilisateurs modérés et non modérés de sites, applications et prototypes. Protocole think-aloud, enregistrement d’écran, analyse du taux de réussite des tâches et recommandations.',
+    serviceType: 'Tests utilisateurs',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="fr"
+  title="Tests utilisateurs | Tests UX modérés et non modérés"
+  description="Tests utilisateurs de sites, applications et prototypes avec de vrais utilisateurs. Tests modérés et non modérés, think-aloud, enregistrement d’écran et recommandations concrètes."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / TESTS UTILISATEURS ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          REGARDEZ<br/>OÙ ILS ÉCHOUENT<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Des tests avec de vrais utilisateurs, pas avec des impressions.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              Nous observons comment les gens accomplissent de vraies tâches dans votre produit. Vous découvrez
+              <strong class="text-brand-black">ce que les utilisateurs font</strong> — pas seulement ce qu’ils disent du produit.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/fr/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              DEMANDER DES TESTS →
+            </a>
+            <a href="/fr/services/packs-de-test" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PACKS DE TEST
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DURÉE', '1–4 semaines'],
+          ['FORMAT', 'Modéré et en ligne'],
+          ['ÉCHANTILLON', 'Selon la question de recherche'],
+          ['PACK', 'Test UX standard'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Formáty -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FORMATS DE TEST ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Trois façons d’observer<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {formats.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+          alt="Participante lors d’un test utilisateur en laboratoire"
+          title="Déroulement d’un test utilisateur"
+          width="1080" height="1920" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">En laboratoire, les tests peuvent être complétés par l’eye-tracking — vous voyez non seulement ce que l’utilisateur a fait, mais aussi ce qu’il a vu en le faisant.</p>
+      </div>
+
+      <!-- Co zjistíte + proces -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CE QUE VOUS DÉCOUVRIREZ ]</p>
+          <ul class="space-y-2">
+            {findings.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ COMMENT SE DÉROULENT LES TESTS ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Hranice -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ QUAND IL VOUS FAUT PLUS ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Le comportement, vous le voyez. L’attention et la charge, non<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Un test classique montre si l’utilisateur a accompli la tâche. Mais il ne montre pas ce qu’il a réellement vu,
+              ce qu’il a manqué ni combien cela lui a coûté. C’est pourquoi nous combinons les tests avec l’eye-tracking et la biométrie.
+            </p>
+          </div>
+          <a href="/fr/services/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            AJOUTER L’EYE-TRACKING →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            VOS UTILISATEURS<br/>RÉUSSIRONT-ILS <span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Envoyez-nous votre produit et le parcours clé. Nous proposerons un scénario de test et le format qui apportera la réponse le plus rapidement.
+          </p>
+          <a href="/fr/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            DEMANDER DES TESTS →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

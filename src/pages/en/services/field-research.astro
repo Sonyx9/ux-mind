@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const contexts = [
+  { t: 'Retail and stores', d: 'Wayfinding, product placement, signage, POS materials and shelf zones.', tag: 'IN-STORE' },
+  { t: 'Showrooms and events', d: 'What visitors notice, where they stop and what leads them to interact.', tag: 'SPACE' },
+  { t: 'Automotive and HMI', d: 'Attention while operating an interface in a vehicle or with a physical product.', tag: 'HMI' },
+];
+
+const findings = [
+  'How people actually move through a space — not how you think they move through it',
+  'What they notice, what they pass by and where they stop',
+  'Whether signage and communication guide attention to the goal',
+  'Where the environment supports decision-making and where it complicates it',
+  'How behaviour differs by customer type or situation',
+];
+
+const process = [
+  { num: '01', title: 'Brief and site survey', desc: 'What needs to be decided and where the measurement will take place.' },
+  { num: '02', title: 'Scenario and piloting', desc: 'Routes, tasks and the technical protocol verified with an on-site pilot.' },
+  { num: '03', title: 'Measurement in the field', desc: 'Mobile eye-tracking glasses, video recording, plus GSR and interviews as needed.' },
+  { num: '04', title: 'Analysis and recommendations', desc: 'Mapping the key moments and proposing changes to the space or communication.' },
+];
+
+const faq = [
+  { q: 'How does field research work technically?', a: 'The participant wears lightweight Pupil Labs NEON eye-tracking glasses that record both their gaze and the scene in front of them. As needed, we add a GSR wristband, video recording of the situation and post-walkthrough interviews.' },
+  { q: 'How does it differ from measuring in the lab?', a: 'The field offers more natural behaviour but less control over conditions — lighting, foot traffic, other customers. That is why we determine in advance which conclusions can be safely drawn from field measurement and which should be verified under more controlled conditions.' },
+  { q: 'Won\'t the glasses disturb natural behaviour?', a: 'Modern glasses look like ordinary glasses and participants usually forget about them after a few minutes. That is why we evaluate the first few minutes of the recording with caution.' },
+  { q: 'Do we need consent from the store or its visitors?', a: 'Yes, we always coordinate the measurement with the operator of the space, and participants sign an informed consent form. People in the background of the recording are anonymised.' },
+  { q: 'Where can you measure?', a: 'In stores, showrooms, at events, in work environments and in vehicles. The limit is not the technology, but safety and agreement with the operator.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'Field research',
+    description: 'Field UX research with Pupil Labs NEON mobile eye-tracking glasses: stores, showrooms, events, automotive and HMI. Attention and behaviour in real environments.',
+    serviceType: 'Field eye tracking',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Field research | Mobile eye tracking in stores and showrooms"
+  description="Field UX research with mobile eye-tracking glasses: stores, showrooms, events, automotive. Find out what your customers notice in real environments."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / FIELD RESEARCH ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          BEYOND<br/>THE SCREEN<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">We measure where the customer actually makes decisions.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              In a store, showroom, at an event or with a physical product. Mobile eye-tracking glasses
+              capture attention in real environments — <strong class="text-brand-black">equipment few others in the Czech Republic have</strong>.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              REQUEST A MEASUREMENT →
+            </a>
+            <a href="/en/services/test-packages" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              TEST PACKAGES
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info strip -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DURATION', '2–6 weeks'],
+          ['TECHNOLOGY', 'Pupil Labs NEON'],
+          ['ADD-ONS', 'GSR · video · interviews'],
+          ['PACKAGE', 'Field study'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Where we measure -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHERE WE MEASURE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          The customer journey doesn't end on the website<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {contexts.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Photo (TODO: replace with a real photo from the field — NEON glasses in a store) -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
+          alt="UXMIND research facilities — where we set off with mobile eye tracking into the field"
+          title="Research facilities for field research"
+          width="1200" height="800" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">The FIM UHK lab facilities — calibrating and preparing the equipment before heading into the field.</p>
+      </div>
+
+      <!-- What you learn + process -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT YOU LEARN ]</p>
+          <ul class="space-y-2">
+            {findings.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW THE MEASUREMENT WORKS ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Limits -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ LIMITS OF THE METHOD ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Naturalness at the cost of control<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              The field offers a more natural situation, but less control over conditions than the lab.
+              That is why we always determine in advance which conclusions can be safely drawn from field
+              measurement and which should be verified under more controlled conditions.
+            </p>
+          </div>
+          <a href="/en/services/test-packages#terenni-studie" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            FIELD STUDY PACKAGE →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ FREQUENTLY ASKED QUESTIONS ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            WHAT DOES THE CUSTOMER<br/>SEE IN YOUR STORE<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Describe the space and the decision you're facing. We'll propose a field measurement scenario and tell you what can be safely concluded from it.
+          </p>
+          <a href="/en/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            REQUEST A MEASUREMENT →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

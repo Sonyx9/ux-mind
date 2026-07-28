@@ -1,6 +1,11 @@
 ---
 import '../styles/global.css';
 import { getLang, getPathInLang, languages } from '../i18n/utils';
+import CookieConsent from '../components/CookieConsent.astro';
+
+// Google Analytics 4 — po vyplnění measurement ID (např. 'G-XXXXXXXXXX') se GA4 aktivuje.
+// Měření je řízeno Consent Mode v2: bez souhlasu běží jen anonymní cookieless pingy.
+const GA_ID = '';
 
 export interface Props {
   title: string;
@@ -88,6 +93,39 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Consent Mode v2 — výchozí stav: vše odmítnuto (EU opt-in). MUSÍ být před Google tagy. -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 500,
+      });
+      // Aplikuj dřívější volbu ještě před vykreslením (žádné blikání pro vracející se návštěvníky)
+      try {
+        var __c = JSON.parse(localStorage.getItem('uxmind-consent') || 'null');
+        if (__c && __c.v) {
+          gtag('consent', 'update', {
+            analytics_storage: __c.analytics ? 'granted' : 'denied',
+            ad_storage: __c.marketing ? 'granted' : 'denied',
+            ad_user_data: __c.marketing ? 'granted' : 'denied',
+            ad_personalization: __c.marketing ? 'granted' : 'denied',
+            personalization_storage: __c.marketing ? 'granted' : 'denied',
+          });
+        }
+      } catch (e) {}
+      gtag('js', new Date());
+    </script>
+    {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
+    {GA_ID && <script is:inline set:html={`gtag('config', '${GA_ID}', { anonymize_ip: true });`} />}
     <link rel="icon" type="image/png" sizes="512x512" href={`${baseUrl}favicon.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${baseUrl}apple-touch-icon.png`} />
     <link rel="author" type="text/plain" href={`${baseUrl}humans.txt`} />
@@ -139,5 +177,7 @@ const jsonLd = {
     <slot />
 
     <slot name="cursor" />
+
+    <CookieConsent />
   </body>
 </html>

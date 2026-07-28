@@ -44,4 +44,4 @@ Eye tracking přináší hodnotu v mnoha oblastech:
 
 Eye tracking transformuje subjektivní pocity na objektivní data. Místo dohadů o tom, co uživatelé vidí, máme přesná čísla. To umožňuje dělat rozhodnutí, která skutečně zlepšují produkty.
 
-Chcete vyzkoušet eye tracking pro váš projekt? [Kontaktujte nás](/kontakt).
+Chcete vyzkoušet eye tracking pro váš projekt? Prohlédněte si naše [testovací balíčky](/sluzby/testovaci-balicky) — od rychlé diagnostiky po komplexní biometrický výzkum — nebo nás rovnou [kontaktujte](/kontakt).

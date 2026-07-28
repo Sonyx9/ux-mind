@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const contexts = [
+  { t: 'Retail y tiendas', d: 'Orientación en el espacio, product placement, señalización, materiales POS y zonas de lineal.', tag: 'IN-STORE' },
+  { t: 'Showrooms y eventos', d: 'Qué llama la atención de los visitantes, dónde se detienen y qué los lleva a interactuar.', tag: 'ESPACIO' },
+  { t: 'Automotive y HMI', d: 'La atención al manejar una interfaz en el vehículo o junto a un producto físico.', tag: 'HMI' },
+];
+
+const findings = [
+  'Cómo recorre la gente realmente el espacio — no como usted cree que lo recorre',
+  'Qué le llama la atención, qué pasa de largo y dónde se detiene',
+  'Si la señalización y la comunicación guían la atención hacia el objetivo',
+  'Dónde el entorno facilita la decisión y dónde la complica',
+  'Cómo varía el comportamiento según el tipo de cliente o la situación',
+];
+
+const process = [
+  { num: '01', title: 'Encargo y reconocimiento', desc: 'Qué debe decidirse y dónde tendrá lugar la medición.' },
+  { num: '02', title: 'Escenario y pilotaje', desc: 'Rutas, tareas y protocolo técnico verificados con un piloto in situ.' },
+  { num: '03', title: 'Medición en campo', desc: 'Gafas móviles de eye-tracking, grabación en vídeo y, según las necesidades, GSR y entrevistas.' },
+  { num: '04', title: 'Análisis y recomendaciones', desc: 'Mapeo de los momentos clave y propuestas de ajustes del espacio o la comunicación.' },
+];
+
+const faq = [
+  { q: '¿Cómo se desarrolla técnicamente la medición de campo?', a: 'El participante lleva puestas unas ligeras gafas de eye-tracking Pupil Labs NEON que registran la mirada y la escena frente a él. Según las necesidades añadimos una pulsera GSR, la grabación en vídeo de la situación y entrevistas tras el recorrido.' },
+  { q: '¿En qué se diferencia de la medición en el laboratorio?', a: 'El campo ofrece un comportamiento más natural, pero menor control de las condiciones — iluminación, tráfico, otros clientes. Por eso determinamos de antemano qué conclusiones pueden extraerse con seguridad de la medición de campo y cuáles conviene verificar en condiciones más controladas.' },
+  { q: '¿Las gafas no alteran el comportamiento natural?', a: 'Las gafas modernas parecen gafas normales y los participantes suelen olvidarse de ellas a los pocos minutos. Por eso evaluamos con reserva los primeros minutos de la grabación.' },
+  { q: '¿Necesitamos el consentimiento de la tienda o de los visitantes?', a: 'Sí, la medición siempre se coordina con el operador del espacio y los participantes firman un consentimiento informado. Las personas que aparecen al fondo de la grabación se anonimizan.' },
+  { q: '¿En qué lugares pueden medir?', a: 'En tiendas, showrooms, eventos, entornos de trabajo y también en vehículos. El límite no es la tecnología, sino la seguridad y el acuerdo con el operador.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'Investigación de campo',
+    description: 'Investigación UX de campo con gafas móviles de eye-tracking Pupil Labs NEON: tiendas, showrooms, eventos, automotive y HMI. Atención y comportamiento en el entorno real.',
+    serviceType: 'Eye-tracking de campo',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="es"
+  title="Investigación de campo | Eye-tracking móvil en tiendas y showrooms"
+  description="Investigación UX de campo con gafas móviles de eye-tracking: tiendas, showrooms, eventos, automotive. Descubra qué llama la atención de sus clientes en el entorno real."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICIOS / INVESTIGACIÓN DE CAMPO ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          FUERA DE<br/>LA PANTALLA<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Medimos allí donde el cliente decide realmente.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              En la tienda, el showroom, un evento o junto a un producto físico. Las gafas móviles de eye-tracking
+              capturan la atención en el entorno real — <strong class="text-brand-black">un equipamiento que en la República Checa pocos tienen</strong>.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/es/contacto" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              SOLICITAR MEDICIÓN →
+            </a>
+            <a href="/es/servicios/paquetes-de-prueba" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PAQUETES DE PRUEBA
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Franja informativa -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DURACIÓN', '2–6 semanas'],
+          ['TECNOLOGÍA', 'Pupil Labs NEON'],
+          ['COMPLEMENTOS', 'GSR · vídeo · entrevistas'],
+          ['PAQUETE', 'Estudio de campo'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Dónde medimos -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ DÓNDE MEDIMOS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          El recorrido del cliente no termina en la web<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {contexts.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Foto (TODO: sustituir por una foto real de campo — gafas NEON en una tienda) -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
+          alt="Infraestructura de investigación de UXMIND — desde aquí salimos al campo con el eye-tracking móvil"
+          title="Infraestructura de investigación para las mediciones de campo"
+          width="1200" height="800" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Instalaciones del laboratorio de la FIM UHK — calibración y preparación de la técnica antes de salir al campo.</p>
+      </div>
+
+      <!-- Qué descubrirá + proceso -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ DESCUBRIRÁ ]</p>
+          <ul class="space-y-2">
+            {findings.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CÓMO SE DESARROLLA LA MEDICIÓN ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Límites -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ LÍMITES DEL MÉTODO ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Naturalidad a costa del control<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              El campo ofrece mayor naturalidad de la situación, pero menor control de las condiciones que el laboratorio.
+              Por eso siempre determinamos de antemano qué conclusiones pueden extraerse con seguridad de la medición
+              de campo y cuáles conviene verificar en condiciones aún más controladas.
+            </p>
+          </div>
+          <a href="/es/servicios/paquetes-de-prueba#terenni-studie" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            PAQUETE ESTUDIO DE CAMPO →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PREGUNTAS FRECUENTES ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            ¿QUÉ VE EL CLIENTE<br/>EN SU TIENDA<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Descríbanos el espacio y la decisión que está abordando. Propondremos un escenario de medición de campo y le diremos qué podrá concluirse de él con seguridad.
+          </p>
+          <a href="/es/contacto" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            SOLICITAR MEDICIÓN →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

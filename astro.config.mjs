@@ -6,6 +6,20 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sonyx9.github.io',
   base: '/ux-mind',
+  // Staré URL služeb — přesunuto pod /sluzby/ kvůli konzistentnímu stromu
+  // Pozn.: cíl musí obsahovat base prefix — Astro ho k destinaci sám nepřidává
+  redirects: {
+    '/eye-tracking': '/ux-mind/sluzby/eye-tracking',
+    '/ux-vyzkum': '/ux-mind/sluzby/ux-vyzkum',
+    '/en/eye-tracking': '/ux-mind/en/services/eye-tracking',
+    '/en/ux-research': '/ux-mind/en/services/ux-research',
+    '/de/eye-tracking': '/ux-mind/de/leistungen/eye-tracking',
+    '/de/ux-forschung': '/ux-mind/de/leistungen/ux-forschung',
+    '/fr/eye-tracking': '/ux-mind/fr/services/eye-tracking',
+    '/fr/recherche-ux': '/ux-mind/fr/services/recherche-ux',
+    '/es/eye-tracking': '/ux-mind/es/servicios/eye-tracking',
+    '/es/investigacion-ux': '/ux-mind/es/servicios/investigacion-ux',
+  },
   i18n: {
     defaultLocale: 'cs',
     locales: ['cs', 'en', 'de', 'fr', 'es'],

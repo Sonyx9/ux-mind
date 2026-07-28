@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const formats = [
+  { t: 'Moderované testy', d: 'Výzkumník vede respondenta scénářem, doptává se a jde do hloubky tam, kde se něco děje.', tag: 'LAB / ONLINE' },
+  { t: 'Nemoderované testy', d: 'Respondenti plní úkoly samostatně. Rychlejší sběr, větší vzorek, přirozenější podmínky.', tag: 'ONLINE' },
+  { t: 'Think-aloud', d: 'Respondent při práci nahlas komentuje, co vidí a proč kliká. Odhaluje mentální model, ne jen chování.', tag: 'PROTOKOL' },
+];
+
+const findings = [
+  'Zda uživatelé dokončí klíčové úkoly — a kde přesně selhávají',
+  'Jak dlouho úkoly trvají a kolik chyb při nich vzniká',
+  'Kterým prvkům uživatelé nerozumí nebo je míjejí',
+  'Jak se liší chování nováčků a zkušených uživatelů',
+  'Co uživatelé říkají vs. co skutečně dělají',
+];
+
+const process = [
+  { num: '01', title: 'Scénář a úkoly', desc: 'Definujeme, co se má ověřit, a připravíme realistické úkoly.' },
+  { num: '02', title: 'Nábor respondentů', desc: 'Rekrutujeme podle vaší cílové skupiny, ne náhodné publikum.' },
+  { num: '03', title: 'Testování', desc: 'Moderovaně či nemoderovaně, se záznamem obrazovky a pilotem.' },
+  { num: '04', title: 'Analýza a doporučení', desc: 'Úspěšnost, čas, chybovost a konkrétní návrhy úprav.' },
+];
+
+const faq = [
+  { q: 'Kolik respondentů je potřeba?', a: 'Pro kvalitativní odhalení hlavních problémů obvykle stačí 5–8 respondentů na segment. Pro srovnání variant nebo statistické vyhodnocení je potřeba větší, přesněji navržený vzorek — rozsah navrhujeme podle výzkumné otázky.' },
+  { q: 'Můžeme testovat i prototyp?', a: 'Ano. Testujeme produkční weby a aplikace i klikací prototypy (Figma a podobné). Čím dřív se testuje, tím levnější jsou úpravy.' },
+  { q: 'Jak se liší testování od UX auditu?', a: 'Audit je hodnocení expertem bez respondentů — rychlejší první krok. Testování sleduje reálné uživatele při plnění úkolů a ověřuje skutečné chování. Ideálně na sebe navazují.' },
+  { q: 'Uvidíme testování naživo?', a: 'Ano, u moderovaných testů můžete být na pozorovací lince. Sledovat vlastní uživatele bývá pro tým nejpřesvědčivější argument.' },
+  { q: 'Co když uživatelé web hodnotí kladně, ale úkol nesplní?', a: 'Přesně to testování odhaluje. Subjektivní dojem „přehledné stránky“ často neodpovídá reálné úspěšnosti — proto měříme chování, ne jen názory.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'Testování uživatelů',
+    description: 'Moderované i nemoderované uživatelské testování webů, aplikací a prototypů. Think-aloud protokol, záznam obrazovky, analýza úspěšnosti úkolů a doporučení.',
+    serviceType: 'Uživatelské testování',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="Testování uživatelů | Moderované a nemoderované UX testy"
+  description="Uživatelské testování webů, aplikací a prototypů s reálnými uživateli. Moderované i nemoderované testy, think-aloud, záznam obrazovky a konkrétní doporučení."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / TESTOVÁNÍ UŽIVATELŮ ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          DÍVEJTE SE,<br/>KDE SELHÁVAJÍ<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Testy s reálnými uživateli, ne s dojmy.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              Sledujeme, jak lidé plní skutečné úkoly ve vašem produktu. Zjistíte,
+              <strong class="text-brand-black">co uživatelé dělají</strong> — ne jen co o produktu říkají.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              POPTAT TESTOVÁNÍ →
+            </a>
+            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              TESTOVACÍ BALÍČKY
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DÉLKA', '1–4 týdny'],
+          ['FORMÁT', 'Moderované i online'],
+          ['VZOREK', 'Dle výzkumné otázky'],
+          ['BALÍČEK', 'Standardní UX test'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Formáty -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FORMÁTY TESTŮ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Tři způsoby, jak se dívat<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {formats.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+          alt="Respondentka během uživatelského testování v laboratoři"
+          title="Průběh uživatelského testování"
+          width="1080" height="1920" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">V laboratoři lze testy doplnit o eye-tracking — vidíte nejen co uživatel udělal, ale i co při tom viděl.</p>
+      </div>
+
+      <!-- Co zjistíte + proces -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO ZJISTÍTE ]</p>
+          <ul class="space-y-2">
+            {findings.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK TESTOVÁNÍ PROBÍHÁ ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Hranice -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ KDYŽ POTŘEBUJETE VÍC ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Chování vidíte. Pozornost a zátěž ne<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Klasický test ukáže, zda uživatel úkol splnil. Neukáže ale, co při tom skutečně viděl,
+              co přehlédl a jak moc ho to stálo. Proto testy kombinujeme s eye-trackingem a biometrií.
+            </p>
+          </div>
+          <a href="/sluzby/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            PŘIDAT EYE-TRACKING →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            SPLNÍ UŽIVATELÉ<br/>VÁŠ ÚKOL<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Pošlete nám produkt a klíčovou cestu. Navrhneme scénář testu a formát, který dá odpověď nejrychleji.
+          </p>
+          <a href="/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            POPTAT TESTOVÁNÍ →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

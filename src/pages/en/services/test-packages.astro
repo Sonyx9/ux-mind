@@ -1,0 +1,444 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const packages = [
+  {
+    num: '01',
+    id: 'rychla-diagnostika',
+    title: 'Rapid diagnostics',
+    tagline: 'You suspect something isn\'t working — you need to narrow the problem down fast.',
+    chips: ['Heuristic analysis', 'Eye tracking', 'Survey'],
+    findings: 'Where people lose their bearings, what they overlook and what deserves deeper testing.',
+    forWho: 'For teams who suspect their website, app, form or campaign isn\'t working ideally, but first need to narrow the problem down quickly. Useful before a larger redesign, when preparing a brief for an agency or as a first check of key screens.',
+    inside: 'Expert heuristic analysis, eye tracking on selected screens and a short survey.',
+    limits: 'Rapid diagnostics serves to identify likely problems. On its own it does not prove impact on conversion and may not explain all the causes of behaviour.',
+    output: 'A concise report with the main findings, sample visualisations and a prioritised list of recommendations.',
+  },
+  {
+    num: '02',
+    id: 'standardni-ux-test',
+    title: 'Standard UX test',
+    tagline: 'You\'re validating a user journey or comparing two variants.',
+    chips: ['Eye tracking', 'Behavioural data', 'Surveys', 'Scenario'],
+    findings: 'Which variant works better, where errors arise and whether attention translates into task completion.',
+    forWho: 'For situations where you need to validate a specific user journey, compare two interface variants or prove that a redesign really helps. Suitable for websites, apps, e-commerce stores, forms, campaigns and prototypes.',
+    inside: 'Eye tracking, behavioural data, standardised or custom surveys and a guided test scenario. When comparing variants, we use experimental design to keep the comparison as clean as possible.',
+    limits: 'The Standard UX test describes attention, orientation and task performance well. However, it does not capture physiological response and does not provide a deeper picture of arousal levels or mental effort.',
+    output: 'Research protocol, AOI metrics, heatmaps, gaze plots, task results, survey evaluation and recommendations for the next design decision.',
+  },
+  {
+    num: '03',
+    id: 'komplexni-biometricky-vyzkum',
+    title: 'Comprehensive biometric research',
+    tagline: 'An expensive or hard-to-reverse decision that has to stand up in front of leadership.',
+    chips: ['Everything in 02', 'GSR', 'Facial signals', 'EMLI', 'Workshop'],
+    findings: 'Not only what people saw and did, but also where arousal rises and which steps come across as more demanding.',
+    forWho: 'For decisions that are expensive, hard to reverse or must stand up in front of leadership, an investor or a client. Suitable for major redesigns, key campaigns, product innovations, HMI, retail situations or research where behaviour alone is not enough.',
+    inside: 'Everything in the Standard UX test, extended per brief with GSR, facial signal analysis, qualitative elicitation, a retrospective interview over the gaze recording and optionally mental load measurement using the EMLI model.',
+    limits: 'We do not interpret biometric data in isolation. GSR does not tell you whether a reaction is positive or negative, and facial signals are not standalone "emotion reading". They only make sense in combination with the task, the scenario, eye tracking and the participant\'s own account.',
+    output: 'An extended research report, a multimodal timeline of findings, interpretation of critical moments, study limits, redesign recommendations and a workshop on the results.',
+    featured: true,
+  },
+  {
+    num: '04',
+    id: 'terenni-studie',
+    title: 'Field study',
+    tagline: 'The decision-making doesn\'t happen on a screen, but in a store or a physical space.',
+    chips: ['NEON ET glasses', 'Video recording', 'GSR', 'Interviews'],
+    findings: 'How people move through a real environment, what they notice, what they pass by and where they stop.',
+    forWho: 'For situations where decision-making doesn\'t happen only on a screen. Typically in a store, showroom, with a physical product, at an event, in a work environment or in an automotive/HMI context.',
+    inside: 'Pupil Labs NEON mobile eye-tracking glasses, video recording of the situation, plus GSR, surveys, interviews and analysis of behaviour in the real environment as needed.',
+    limits: 'Field research offers a more natural situation, but less control over conditions than the lab. That is why we always determine in advance which conclusions can be safely drawn from field measurement and which should be verified under more controlled conditions.',
+    output: 'Video analysis, mapping of key moments, visualisation of attention in the environment, a summary of barriers and recommendations for adjusting the space, communication or customer journey.',
+  },
+];
+
+const chooseTable = [
+  { need: 'You don\'t know where the problem is', pkg: 'Rapid diagnostics', href: '#rychla-diagnostika' },
+  { need: 'You\'re comparing two variants of a website, app or campaign', pkg: 'Standard UX test', href: '#standardni-ux-test' },
+  { need: 'You need to defend a major decision with data', pkg: 'Comprehensive biometric research', href: '#komplexni-biometricky-vyzkum' },
+  { need: 'You\'re testing behaviour in a store, showroom or at an event', pkg: 'Field study', href: '#terenni-studie' },
+  { need: 'You have a specific brief or a combination of environments', pkg: 'Custom package', href: '#na-miru' },
+];
+
+const methods = [
+  { m: 'Screen-based eye tracking', tool: 'Tobii Pro X2-60, Smart Eye Aurora', brings: 'Reveals what people actually see, what they overlook, in what order and for how long' },
+  { m: 'Mobile eye tracking', tool: 'Pupil Labs NEON', brings: 'Captures attention in real environments and links it to a video recording of the situation' },
+  { m: 'GSR', tool: 'Shimmer3 GSR', brings: 'Shows moments of rising physiological arousal during the task' },
+  { m: 'Facial signal analysis', tool: 'iMotions / Facial Expression Analysis', brings: 'Helps track changes in facial response over time against a specific stimulus' },
+  { m: 'Survey research', tool: 'VisAWI, NASA-TLX, SUS, UEQ or custom items', brings: 'Complements objective measurement with conscious ratings of clarity, aesthetics, trustworthiness or load' },
+  { m: 'Qualitative elicitation', tool: 'Think-aloud, retrospective think-aloud, interview', brings: 'Explains why the user decided or stopped at a particular moment' },
+  { m: 'Behavioural data', tool: 'Task success, time, error rate, clicks', brings: 'Verifies whether attention translated into an actual result' },
+  { m: 'Expert heuristic analysis', tool: 'Interface evaluation by a specialist', brings: 'Quickly uncovers known usability problems before deeper measurement' },
+  { m: 'Experimental design', tool: 'Scenarios, piloting, randomisation, comparability of variants', brings: 'Ensures the results are not just an impression from a single situation' },
+];
+
+const outputs = [
+  'Research protocol with the brief and limits',
+  'Visual attention metrics',
+  'Task success, time, error rate',
+  'Heatmaps, gaze plots, AOI comparisons',
+  'Surveys vs. objective data',
+  'Qualitative findings',
+  'Interpretation of the impact on UX and product',
+  'Recommendations by impact and effort',
+  'Clearly stated study limits',
+  'Final workshop with your team',
+];
+
+const process = [
+  { num: '01', title: 'Brief', desc: 'We clarify what decision you need to make.' },
+  { num: '02', title: 'Package design', desc: 'Methods, sample, scenario and what can be safely concluded.' },
+  { num: '03', title: 'Preparation and piloting', desc: 'Scenario, stimuli, surveys, and a pilot for more complex projects.' },
+  { num: '04', title: 'Measurement', desc: 'Lab or field, calibration and data quality control.' },
+  { num: '05', title: 'Analysis and output', desc: 'Recommendations, not isolated charts.' },
+];
+
+const audiences = [
+  { title: 'Product & UX', desc: 'Journeys, forms, navigation, prototypes.' },
+  { title: 'Marketing', desc: 'Campaigns, banners, video, landing pages.' },
+  { title: 'E-commerce', desc: 'Listing, product detail, filters, basket, checkout.' },
+  { title: 'Retail & services', desc: 'Wayfinding, POS, product placement.' },
+  { title: 'Leadership', desc: 'Data for expensive decisions, understandable beyond the UX team.' },
+];
+
+const faq = [
+  { q: 'Do we have to pick a whole package?', a: 'No. The packages are starting configurations, not fixed products. Depending on the brief, we can add, simplify or combine methods.' },
+  { q: 'How does this differ from a heatmap in web analytics?', a: 'An analytics heatmap usually works with clicks, cursor movement or scrolling. Eye tracking measures the actual gaze. That way it also captures elements the user looked at but did not click on.' },
+  { q: 'Do you measure emotions?', a: 'We do not use the shortcut "we measure emotions" in the sense of reliably reading a person\'s inner state. We work with indicators of physiological arousal, facial signals and subjective ratings. We always interpret them in the context of the specific task.' },
+  { q: 'How many participants do we need?', a: 'It depends on the goal of the study. Rapid diagnostics can work with a smaller sample and a more qualitative interpretation. Comparing variants and statistical evaluation requires a larger, more precisely designed sample. We propose the recommended scope only once we know the research question.' },
+  { q: 'How much does testing cost?', a: 'We price by the scope of the package, the number of participants, the complexity of preparation, the type of measurement and the form of the output. Send us your brief and we\'ll prepare a no-obligation quote.' },
+  { q: 'Does testing have to take place in the lab?', a: 'No. The lab is suitable for controlled studies of websites, apps, campaigns or prototypes. For real environments we use mobile eye-tracking glasses and a field methodology.' },
+  { q: 'How do you handle participant data?', a: 'Before measurement we work with informed consent and a clearly defined research purpose. Client outputs are prepared in aggregated or pseudonymised form as standard. The specific data handling regime is set according to the project type, data sensitivity and client requirements.' },
+  { q: 'Do we only get a report?', a: 'No. For most projects we recommend a final workshop. It helps translate the results into priorities, a backlog of changes or further testing.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'UXMIND test packages',
+    description: 'UX research test packages: rapid diagnostics, standard UX test, comprehensive biometric research and field studies. Eye tracking, GSR, surveys and expert analysis based on the decision you need to make.',
+    serviceType: 'UX testing',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="UXMIND test packages | Eye tracking, biometrics and UX research"
+  description="Choose the scope of UX testing based on the decision you need to make. Rapid diagnostics, a standard UX test, comprehensive biometric research and field studies."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TEST PACKAGES ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          HOW DEEP<br/>TO MEASURE<span style="color:#2D62FC">?</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">From rapid diagnostics to comprehensive biometric UX research.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              A heatmap shows where people looked — not why they got lost. We build the packages around
+              <strong class="text-brand-black">the decision you need to make</strong>, not around what we happen to have in the lab.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              REQUEST A QUOTE →
+            </a>
+            <a href="#vyber" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              WHICH ONE FITS ME?
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope scale: quick picker -->
+      <div class="mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {packages.map(pkg => (
+            <a href={`#${pkg.id}`} class="group bg-brand-white p-5 hover:bg-brand-black hover:text-brand-white transition-colors">
+              <div class="flex justify-between items-start mb-4">
+                <span class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60">{pkg.num}</span>
+                <span class="font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">↓</span>
+              </div>
+              <p class="font-display font-bold leading-tight">{pkg.title}</p>
+            </a>
+          ))}
+        </div>
+        <!-- Scope axis -->
+        <div class="flex items-center gap-3 mt-3 font-mono text-[10px] text-brand-black/60 tracking-widest uppercase">
+          <span>Smaller scope</span>
+          <span class="flex-1 h-px bg-gradient-to-r from-brand-black/20 to-brand-black"></span>
+          <span>Deeper evidence</span>
+        </div>
+      </div>
+
+      <!-- Credibility strip -->
+      <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
+          FIM UHK research facilities · Tobii Pro X2-60 · Smart Eye Aurora · Pupil Labs NEON · iMotions CORE · BeSigma · Shimmer3 GSR · lab and field measurement
+        </p>
+      </div>
+
+      <!-- Why eye tracking alone isn't enough — three layers -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHY EYE TRACKING ALONE ISN'T ENOUGH ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Attention ≠ understanding ≠ conversion<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {[
+            { t: 'What they saw', d: 'Eye tracking shows what the user actually sees and what they pass by.', tag: 'GAZE' },
+            { t: 'What they did', d: 'Did they complete the task? How long did it take and where did they slip up?', tag: 'BEHAVIOUR' },
+            { t: 'Why', d: 'How they rated the interface and what they could explain in hindsight.', tag: 'ACCOUNT' },
+          ].map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 max-w-2xl">
+          Only combining all three layers separates a problem that merely attracts the gaze from a problem that prevents task completion.
+        </p>
+      </div>
+
+      <!-- Packages -->
+      <div class="mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ OUR TEST PACKAGES ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Four configurations<span style="color:#2D62FC">.</span></h2>
+        <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
+          These are not fixed products — we adapt them to the brief. With each one you know in advance what you'll get and what <strong class="text-brand-black">cannot be reliably claimed</strong> from that scope.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {packages.map(pkg => (
+            <div id={pkg.id} class={`reveal p-8 md:p-10 flex flex-col scroll-mt-28 ${pkg.featured ? 'bg-brand-black text-brand-white' : 'bg-brand-white'}`}>
+              <div class="flex justify-between items-start mb-6">
+                <span class={`font-mono text-xs ${pkg.featured ? 'text-brand-white/60' : 'text-brand-black/60'}`}>{pkg.num}</span>
+                {pkg.featured && (
+                  <span class="font-mono text-[10px] tracking-widest px-2 py-1" style="background:#2D62FC; color:#FCFCFC;">DEEPEST EVIDENCE</span>
+                )}
+              </div>
+              <h3 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight">{pkg.title}</h3>
+              <p class={`leading-relaxed mb-6 ${pkg.featured ? 'text-brand-white/70' : 'text-brand-black/60'}`}>{pkg.tagline}</p>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                {pkg.chips.map(chip => (
+                  <span class={`font-mono text-[11px] px-2 py-1 tracking-wide border ${pkg.featured ? 'border-brand-white/30 text-brand-white/80' : 'border-brand-black/20 text-brand-black/70'}`}>{chip}</span>
+                ))}
+              </div>
+
+              <p class={`text-sm leading-relaxed mb-6 ${pkg.featured ? 'text-brand-white/70' : 'text-brand-black/60'}`}>
+                <span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>You learn</span>
+                {pkg.findings}
+              </p>
+
+              <details class={`group mt-auto border-t pt-4 ${pkg.featured ? 'border-brand-white/20' : 'border-brand-black/10'}`}>
+                <summary class="flex justify-between items-center cursor-pointer font-mono text-xs tracking-widest uppercase list-none [&::-webkit-details-marker]:hidden">
+                  PACKAGE DETAIL
+                  <span class="font-mono text-lg transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class={`mt-4 space-y-4 text-sm leading-relaxed ${pkg.featured ? 'text-brand-white/70' : 'text-brand-black/60'}`}>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Who it's for</span>{pkg.forWho}</p>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>What's inside</span>{pkg.inside}</p>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Limits of the package</span>{pkg.limits}</p>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Typical output</span>{pkg.output}</p>
+                </div>
+              </details>
+            </div>
+          ))}
+        </div>
+
+        <!-- Custom package -->
+        <div id="na-miru" class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mt-px scroll-mt-28">
+          <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+          <div class="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+              <p class="font-mono text-xs text-brand-white/60 mb-2">05</p>
+              <h3 class="font-display text-2xl md:text-3xl font-bold mb-3">Custom package<span style="color:#2D62FC">.</span></h3>
+              <p class="text-brand-white/70 leading-relaxed max-w-xl">
+                A specific research question? We assemble the measurement individually — around the decision the results will inform, not around the lab's equipment.
+              </p>
+            </div>
+            <a href="/en/contact" class="shrink-0 inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              NOT SURE WHICH TO PICK →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to choose -->
+      <div id="vyber" class="reveal mb-24 scroll-mt-28">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW TO CHOOSE THE RIGHT PACKAGE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">What do you need to decide<span style="color:#2D62FC">?</span></h2>
+        <div class="border border-brand-black/10">
+          {chooseTable.map(row => (
+            <a href={row.href} class="group grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0 hover:bg-brand-black hover:text-brand-white transition-colors">
+              <p class="text-brand-black/60 group-hover:text-brand-white/70 leading-relaxed transition-colors">{row.need}</p>
+              <p class="font-display font-bold flex items-center justify-between gap-4">
+                {row.pkg}
+                <span class="font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+              </p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- What's inside the packages (expandable) -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT'S INSIDE THE PACKAGES ]</p>
+        <details class="group border border-brand-black/10">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-6 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+            9 methods and tools we work with
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <div class="border-t border-brand-black/10">
+            {methods.map(row => (
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0">
+                <p class="font-display font-bold">{row.m}</p>
+                <p class="font-mono text-xs text-brand-black/60 leading-relaxed pt-1">{row.tool}</p>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{row.brings}</p>
+              </div>
+            ))}
+          </div>
+        </details>
+        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 max-w-2xl">
+          More about the technology: <a href="/en/services/eye-tracking" class="underline hover:no-underline">Eye tracking</a> · <a href="/en/services/ux-research" class="underline hover:no-underline">UX research</a>
+        </p>
+      </div>
+
+      <!-- EMLI -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OPTIONAL: THE EMLI MENTAL LOAD INDEX ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Mental load as a single score<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Our own model, built on research at FIM UHK, composes eye-tracking metrics into a single load index.
+              It compares which steps, screens or variants demand more effort. We continuously validate it —
+              and use it as a complementary interpretive layer, not as standalone proof.
+            </p>
+          </div>
+          <p class="font-display font-bold leading-none shrink-0" style="font-size: clamp(3rem, 6vw, 5rem); color:#2D62FC;">0–100</p>
+        </div>
+      </div>
+
+      <!-- Output + process -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT YOU GET IN THE OUTPUT ]</p>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+            {outputs.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW THE COLLABORATION WORKS ]</p>
+          <div class="space-y-0">
+            {process.map((step, i) => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Who it's for -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHO THE PACKAGES ARE FOR ]</p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+          {audiences.map(a => (
+            <div class="bg-brand-white p-6">
+              <h3 class="font-display text-lg font-bold mb-2 leading-tight">{a.title}</h3>
+              <p class="text-xs text-brand-black/60 leading-relaxed">{a.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ FREQUENTLY ASKED QUESTIONS ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Final CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            SEND US<br/>YOUR BRIEF<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            A website, app, campaign or prototype. We'll propose a package matching your decision —
+            without convoluted methodology and without promises the data cannot safely support.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="/en/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+              SEND YOUR BRIEF →
+            </a>
+            <a href="/en/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              INTRO CONSULTATION
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    // Scroll-reveal — same pattern as on the case studies
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

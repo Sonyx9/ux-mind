@@ -6,7 +6,11 @@ const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const path = currentPath.startsWith(base) ? currentPath.slice(base.length) || '/' : currentPath;
 const lang = getLang(path);
-const navLinks = getNavLinks(lang).map(l => ({ ...l, href: base + l.href }));
+const navLinks = getNavLinks(lang).map(l => ({
+  ...l,
+  href: base + l.href,
+  children: l.children?.map(c => ({ ...c, href: base + c.href })),
+}));
 // Jazykové menu: aktuální jazyk + odkazy na tutéž stránku v ostatních jazycích
 const langItems = languages.map(l => ({
   code: l.code,
@@ -43,7 +47,34 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
     )}
 
     <div id="nav-full" class="hidden 3xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
-      {navLinks.map(link => (
+      {navLinks.map(link => link.children ? (
+        <div class="nav-drop relative">
+          <a
+            href={link.href}
+            class={`flex items-center gap-1 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
+              currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
+                ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+            }`}
+            aria-haspopup="true"
+          >
+            {link.label}<span style="font-size:7px; line-height:1;">▼</span>
+          </a>
+          <div class="nav-drop-menu hidden absolute left-0 top-full pt-2 z-[110]">
+            <div class="bg-brand-white border border-brand-black/20 shadow-sm min-w-max">
+              {link.children.map(c => (
+                <a
+                  href={c.href}
+                  class={`block px-4 py-2 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
+                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  {c.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
         <a
           href={link.href}
           class={`font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
@@ -117,12 +148,20 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
 >
   <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {t.close} ]</button>
   {navLinks.map(link => (
-    <a
-      href={link.href}
-      class="font-display text-2xl font-bold hover:opacity-50 transition-opacity border-b border-brand-black/10 pb-4"
-    >
-      {link.label}
-    </a>
+    <div class="border-b border-brand-black/10 pb-4">
+      <a href={link.href} class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+        {link.label}
+      </a>
+      {link.children && (
+        <div class="mt-3 flex flex-col gap-2.5 pl-4 border-l border-brand-black/15">
+          {link.children.map(c => (
+            <a href={c.href} class="font-mono text-xs tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity">
+              {c.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   ))}
   <div class="flex gap-4 mt-2">
     {langItems.filter(l => !l.current).map(item => (
@@ -262,6 +301,30 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       localStorage.setItem(FS_KEY, String(fs));
       applyFS(fs);
     }));
+  })();
+
+  // Dropdown Služby v desktop navigaci — otevírá se na hover/focus.
+  // Při otevření vypínáme mix-blend-multiply na navigaci (stejně jako u jazykového menu),
+  // jinak by bílý podklad menu působil průhledně.
+  (function () {
+    const navEl = document.getElementById('main-nav');
+    document.querySelectorAll<HTMLElement>('.nav-drop').forEach(drop => {
+      const menu = drop.querySelector<HTMLElement>('.nav-drop-menu');
+      const show = () => {
+        menu?.classList.remove('hidden');
+        if (navEl) navEl.style.mixBlendMode = 'normal';
+      };
+      const hide = () => {
+        menu?.classList.add('hidden');
+        if (navEl) navEl.style.mixBlendMode = window.scrollY > 30 ? 'normal' : 'multiply';
+      };
+      drop.addEventListener('mouseenter', show);
+      drop.addEventListener('mouseleave', hide);
+      drop.addEventListener('focusin', show);
+      drop.addEventListener('focusout', e => {
+        if (!drop.contains(e.relatedTarget as Node)) hide();
+      });
+    });
   })();
 
   // Jazykový přepínač — rozbalovací menu (aktuální jazyk + další; připraveno na víc jazyků).

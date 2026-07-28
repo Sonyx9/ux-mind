@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const updated = '28.07.2026';
+
+const categories = [
+  {
+    name: 'Notwendig',
+    consent: 'Keine Einwilligung nötig',
+    purpose: 'Grundlegender Betrieb der Website — Sprachwahl, Sicherheit und das Speichern Ihrer Cookie-Auswahl.',
+    examples: 'uxmind-consent, uxmind_consent (Einwilligungsspeicher), technische Server-Cookies',
+    expiry: 'Sitzung bis zu 6 Monate',
+  },
+  {
+    name: 'Analyse',
+    consent: 'Nur mit Ihrer Einwilligung',
+    purpose: 'Anonyme Zugriffsstatistiken — wie viele Menschen die Website besuchen und welche Seiten sie lesen. Sie helfen uns, die Website zu verbessern.',
+    examples: 'Google Analytics 4 (_ga, _ga_*)',
+    expiry: 'Bis zu 24 Monate',
+  },
+  {
+    name: 'Marketing',
+    consent: 'Nur mit Ihrer Einwilligung',
+    purpose: 'Remarketing und Messung der Werbewirkung — relevantere und messbare Werbung.',
+    examples: 'Google Ads (_gcl_*), Conversion- und Remarketing-Cookies',
+    expiry: 'Bis zu 24 Monate',
+  },
+];
+---
+
+<BaseLayout
+  lang="de"
+  title="Cookie-Richtlinie"
+  description="Wie UX MIND Cookies verwendet: notwendige, Analyse- und Marketing-Cookies. Einwilligung nach Google Consent Mode v2, DSGVO und Gesetz Nr. 127/2005 Slg. Jederzeit änderbar."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ RECHTLICHE INFORMATIONEN ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.25rem, 6vw, 4.5rem);">
+          Cookie-Richtlinie<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-sm text-brand-black/50 font-mono">Zuletzt aktualisiert: {updated}</p>
+      </div>
+
+      <div class="space-y-10 text-brand-black/70 leading-relaxed">
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Was Cookies sind</h2>
+          <p>
+            Cookies sind kleine Textdateien, die eine Website in Ihrem Browser speichert. Sie sorgen für die
+            grundlegenden Funktionen der Website, messen die Zugriffe und unterstützen gegebenenfalls das
+            Marketing. Einige setzen wir, andere Drittanbieter-Dienste (Google).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Wie wir die Einwilligung einholen</h2>
+          <p class="mb-3">
+            Bei Ihrem ersten Besuch zeigen wir ein Cookie-Banner. Notwendige Cookies laufen immer — sie sind
+            für den Betrieb der Website erforderlich. Analyse- und Marketing-Cookies aktivieren wir
+            <strong class="text-brand-black">erst nach Ihrer Einwilligung</strong>. Die Einwilligung ist
+            freiwillig, granular und kann jederzeit geändert oder widerrufen werden.
+          </p>
+          <p>
+            Wir verwenden <strong class="text-brand-black">Google Consent Mode v2</strong>. Bis zur Einwilligung
+            laufen keine Analyse- oder Werbe-Cookies; Google-Tags arbeiten in einem cookieless Modus ohne
+            Speicherung von Identifikatoren. Wir handeln gemäß der DSGVO-Verordnung (EU) 2016/679 und § 89 des
+            Gesetzes Nr. 127/2005 Slg. über die elektronische Kommunikation.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Cookie-Kategorien</h2>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {categories.map(c => (
+              <div class="bg-brand-white p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <h3 class="font-mono text-sm tracking-widest uppercase text-brand-black">{c.name}</h3>
+                  <span class="font-mono text-[10px] tracking-widest uppercase" style="color:#2D62FC">{c.consent}</span>
+                </div>
+                <p class="text-sm mb-2">{c.purpose}</p>
+                <dl class="text-xs text-brand-black/50 space-y-0.5">
+                  <div><dt class="inline font-mono">Beispiele: </dt><dd class="inline">{c.examples}</dd></div>
+                  <div><dt class="inline font-mono">Gültigkeit: </dt><dd class="inline">{c.expiry}</dd></div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Einwilligung ändern oder widerrufen</h2>
+          <p class="mb-4">
+            Sie können Ihre Einstellungen jederzeit ändern — öffnen Sie das Panel und passen Sie Ihre
+            Einwilligung an oder widerrufen Sie sie. Wir merken uns Ihre Auswahl 6 Monate, danach fragen wir
+            erneut. Cookies lassen sich auch direkt in den Browsereinstellungen löschen.
+          </p>
+          <button type="button" onclick="window.uxmindConsent && window.uxmindConsent.open()"
+            class="inline-block font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white px-6 py-3 hover:bg-[#2D62FC] transition-colors">
+            Cookie-Einstellungen öffnen →
+          </button>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Dritte</h2>
+          <p>
+            Analyse- und Marketing-Cookies werden von Google (Google Analytics, Google Ads) verarbeitet. Die
+            Bedingungen und die Datenverarbeitung sind in der
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">Google-Datenschutzerklärung ↗</a> beschrieben.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Verantwortlicher</h2>
+          <p>
+            UX MIND Research Lab s.r.o., Ident.-Nr.: 29714966.<br/>
+            Fragen zu Cookies und personenbezogenen Daten:
+            <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

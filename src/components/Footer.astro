@@ -1,6 +1,20 @@
 ---
+import { getLang, localizedPath } from '../i18n/utils';
 const currentYear = new Date().getFullYear();
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Strhnout base prefix (/ux-mind), jinak getLang na GitHub Pages vrátí vždy 'cs'
+const rawPath = Astro.url.pathname;
+const langPath = rawPath.startsWith(base) ? rawPath.slice(base.length) || '/' : rawPath;
+const lang = getLang(langPath);
+const cookiePolicyHref = base + localizedPath(lang, 'cookies');
+const cookieLabels: Record<string, { policy: string; settings: string }> = {
+  cs: { policy: 'Zásady cookies', settings: 'Nastavení cookies' },
+  en: { policy: 'Cookie policy', settings: 'Cookie settings' },
+  de: { policy: 'Cookie-Richtlinie', settings: 'Cookie-Einstellungen' },
+  fr: { policy: 'Politique cookies', settings: 'Paramètres cookies' },
+  es: { policy: 'Política de cookies', settings: 'Configuración de cookies' },
+};
+const cl = cookieLabels[lang] ?? cookieLabels.en;
 ---
 
 <footer class="border-t border-brand-black/10 desktop-gutter-x py-12 mt-24">
@@ -17,11 +31,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <ul class="space-y-2">
         {[
           { href: '/sluzby', label: 'Služby' },
-          { href: '/eye-tracking', label: 'Eye Tracking' },
-          { href: '/ux-vyzkum', label: 'UX Výzkum' },
           { href: '/pripadove-studie', label: 'Případové studie' },
           { href: '/blog', label: 'Blog' },
           { href: '/o-nas', label: 'O nás' },
+          { href: '/partneri', label: 'Partneři' },
         ].map(link => (
           <li>
             <a href={link.href} class="text-sm text-brand-black/60 hover:text-brand-black transition-colors">
@@ -57,8 +70,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <p class="font-mono text-xs text-brand-black/60">
       <a href="https://lukaskoula.com" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-brand-black/60">Lukáš Koula</a> © {currentYear} UX Mind. Všechna práva vyhrazena.
     </p>
-    <p class="font-mono text-xs text-brand-black/60">
-      UX / EYE TRACKING / VÝZKUM UŽIVATELŮ
-    </p>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+      <a href={cookiePolicyHref} class="font-mono text-xs text-brand-black/60 hover:text-brand-black transition-colors">{cl.policy}</a>
+      <button type="button" onclick="window.uxmindConsent && window.uxmindConsent.open()" class="font-mono text-xs text-brand-black/60 hover:text-brand-black transition-colors">{cl.settings}</button>
+      <p class="font-mono text-xs text-brand-black/60">UX / EYE TRACKING / VÝZKUM UŽIVATELŮ</p>
+    </div>
   </div>
 </footer>

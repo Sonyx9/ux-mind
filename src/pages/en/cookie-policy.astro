@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const updated = 'July 28, 2026';
+
+const categories = [
+  {
+    name: 'Necessary',
+    consent: 'No consent required',
+    purpose: 'Basic operation of the site — language choice, security and remembering your cookie choice.',
+    examples: 'uxmind-consent, uxmind_consent (consent storage), server technical cookies',
+    expiry: 'Session up to 6 months',
+  },
+  {
+    name: 'Analytics',
+    consent: 'Only with your consent',
+    purpose: 'Anonymous traffic statistics — how many people visit and which pages they read. They help us improve the site.',
+    examples: 'Google Analytics 4 (_ga, _ga_*)',
+    expiry: 'Up to 24 months',
+  },
+  {
+    name: 'Marketing',
+    consent: 'Only with your consent',
+    purpose: 'Remarketing and ad performance measurement — more relevant and measurable advertising.',
+    examples: 'Google Ads (_gcl_*), conversion and remarketing cookies',
+    expiry: 'Up to 24 months',
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Cookie Policy"
+  description="How UX MIND uses cookies: necessary, analytics and marketing. Consent under Google Consent Mode v2, GDPR and Act No. 127/2005 Coll. You can change it anytime."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LEGAL INFORMATION ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.25rem, 6vw, 4.5rem);">
+          Cookie policy<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-sm text-brand-black/50 font-mono">Last updated: {updated}</p>
+      </div>
+
+      <div class="space-y-10 text-brand-black/70 leading-relaxed">
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">What cookies are</h2>
+          <p>
+            Cookies are small text files that a website stores in your browser. They keep the site’s basic
+            functions working, measure traffic and, where relevant, support marketing. Some are set by us,
+            others by third-party services (Google).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">How we obtain consent</h2>
+          <p class="mb-3">
+            On your first visit we show a cookie banner. Necessary cookies always run — they are required to
+            operate the site. Analytics and marketing cookies are enabled
+            <strong class="text-brand-black">only after your consent</strong>. Consent is voluntary, granular
+            and can be changed or withdrawn at any time.
+          </p>
+          <p>
+            We use <strong class="text-brand-black">Google Consent Mode v2</strong>. Until consent is granted,
+            no analytics or advertising cookies run; Google tags operate in a cookieless mode without storing
+            identifiers. We comply with the GDPR Regulation (EU) 2016/679 and § 89 of Act No. 127/2005 Coll.,
+            on Electronic Communications.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Cookie categories</h2>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {categories.map(c => (
+              <div class="bg-brand-white p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <h3 class="font-mono text-sm tracking-widest uppercase text-brand-black">{c.name}</h3>
+                  <span class="font-mono text-[10px] tracking-widest uppercase" style="color:#2D62FC">{c.consent}</span>
+                </div>
+                <p class="text-sm mb-2">{c.purpose}</p>
+                <dl class="text-xs text-brand-black/50 space-y-0.5">
+                  <div><dt class="inline font-mono">Examples: </dt><dd class="inline">{c.examples}</dd></div>
+                  <div><dt class="inline font-mono">Duration: </dt><dd class="inline">{c.expiry}</dd></div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Changing or withdrawing consent</h2>
+          <p class="mb-4">
+            You can change your settings at any time — open the panel and adjust or withdraw your consent. We
+            remember your choice for 6 months, after which we ask again. Cookies can also be deleted directly
+            in your browser settings.
+          </p>
+          <button type="button" onclick="window.uxmindConsent && window.uxmindConsent.open()"
+            class="inline-block font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white px-6 py-3 hover:bg-[#2D62FC] transition-colors">
+            Open cookie settings →
+          </button>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Third parties</h2>
+          <p>
+            Analytics and marketing cookies are processed by Google (Google Analytics, Google Ads). Terms and
+            data processing are described in the
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">Google Privacy Policy ↗</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Controller</h2>
+          <p>
+            UX MIND Research Lab s.r.o., Company ID: 29714966.<br/>
+            Questions about cookies and personal data:
+            <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

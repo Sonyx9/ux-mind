@@ -198,7 +198,7 @@ const clientLogos = [
           Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
         </p>
       </div>
-      <div class="shrink-0">
+      <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
         <div class="flex gap-2 mb-3">
           <a href="/o-nas" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">O NÁS</a>
           <a href="/kontakt" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">KONTAKT</a>
@@ -351,14 +351,14 @@ const clientLogos = [
           num: '02',
           title: 'Eye Tracking',
           desc: 'Objektivní záznam vizuální pozornosti: fixace, čas do první fixace (TTFF), dwell time, AOI metriky, heatmapy a scanpathy. Co lidé skutečně vidí — a co míjejí.',
-          href: '/eye-tracking',
+          href: '/sluzby/eye-tracking',
           tags: ['Heatmapa', 'AOI · TTFF', 'Scanpath'],
         },
         {
           num: '03',
           title: 'UX Výzkum',
           desc: 'Kombinujeme objektivní měření chování, biometrická data a dotazníky v kontextu úkolu. Laboratorně i v terénu, s pilotáží, kontrolou kvality dat a interpretací limitů.',
-          href: '/ux-vyzkum',
+          href: '/sluzby/ux-vyzkum',
           tags: ['Eye-tracking', 'Biometrie', 'Dotazníky'],
         },
         {
@@ -384,6 +384,14 @@ const clientLogos = [
         </a>
       ))}
     </div>
+    <!-- Testovací balíčky -->
+    <a href="/sluzby/testovaci-balicky" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 border border-brand-black/10 border-t-0 p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
+      <div>
+        <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/60 tracking-widest mb-2">[ TESTOVACÍ BALÍČKY ]</p>
+        <p class="font-display text-2xl font-bold leading-tight">Od rychlé diagnostiky po komplexní biometrický UX výzkum — vyberte rozsah podle rozhodnutí, které potřebujete udělat.</p>
+      </div>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">PROHLÉDNOUT BALÍČKY →</span>
+    </a>
   </section>
 
   <!-- EMLI SECTION -->
@@ -514,6 +522,34 @@ const clientLogos = [
             <span class="font-display text-2xl font-bold leading-none" style="color:#2D62FC">{study.result}</span>
           </div>
         </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- JAK TO U NÁS FUNGUJE -->
+  <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ JAK TO U NÁS FUNGUJE ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Pět kroků<br/>k rozhodnutí<span style="color:#2D62FC">.</span></h2>
+      </div>
+      <a href="/sluzby/testovaci-balicky" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+        TESTOVACÍ BALÍČKY →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+      {[
+        { num: '01', title: 'Zadání', desc: 'Ujasníme si, jaké rozhodnutí potřebujete udělat. Od toho se odvíjí celý návrh měření.' },
+        { num: '02', title: 'Návrh balíčku', desc: 'Doporučíme metody, vzorek a formu výstupu — včetně toho, co z rozsahu nepůjde bezpečně vyvodit.' },
+        { num: '03', title: 'Příprava a pilotáž', desc: 'Scénář, stimuly, dotazníky a technický protokol. U složitějších projektů pilotní měření.' },
+        { num: '04', title: 'Měření', desc: 'V laboratoři nebo v terénu — s kalibrací, kontrolou kvality dat a jednotným postupem.' },
+        { num: '05', title: 'Analýza a výstup', desc: 'Pozornost, chování, dotazníky a výpovědi propojíme do doporučení, ne izolovaných grafů.' },
+      ].map(step => (
+        <div class="bg-brand-white p-6 md:p-8">
+          <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
+          <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+          <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+        </div>
       ))}
     </div>
   </section>

@@ -50,4 +50,4 @@ Záleží na rozsahu produktu. Typicky 2–4 týdny:
 4. Sepsání zprávy a doporučení
 5. Prezentace výstupů
 
-Chcete vědět co odhalí UX audit vašeho produktu? [Napište nám](/kontakt).
+Chcete vědět co odhalí UX audit vašeho produktu? UX audit je součástí balíčku [Rychlá diagnostika](/sluzby/testovaci-balicky) — nebo nám rovnou [napište](/kontakt).

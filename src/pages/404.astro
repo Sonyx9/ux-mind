@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="404 — stránka nenalezena"
+  description="Stránka nebyla nalezena. Pokračujte na úvodní stránku UX Mind."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CHYBA 404 ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 12vw, 10rem);">
+          TADY NIC<br/>NEVIDÍME<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl mb-4">
+          A že se na pozornost díváme profesionálně. Stránka neexistuje, byla přesunuta — nebo jste narazili na překlep v odkazu.
+        </p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-10">PAGE NOT FOUND / SEITE NICHT GEFUNDEN / PAGE INTROUVABLE / PÁGINA NO ENCONTRADA</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+            NA ÚVOD →
+          </a>
+          <a href="/sluzby" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            NAŠE SLUŽBY
+          </a>
+          <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            KONTAKT
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

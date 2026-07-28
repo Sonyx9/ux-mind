@@ -1,0 +1,325 @@
+---
+import { getLang, localizedPath } from '../i18n/utils';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Strhnout base prefix (/ux-mind), jinak getLang na GitHub Pages vrátí vždy 'cs'
+const rawPath = Astro.url.pathname;
+const path = rawPath.startsWith(base) ? rawPath.slice(base.length) || '/' : rawPath;
+const lang = getLang(path);
+
+// Lokalizovaná stránka se zásadami cookies dle jazyka
+const policyHref = base + localizedPath(lang, 'cookies');
+
+type Str = {
+  title: string;
+  body: string;
+  policy: string;
+  acceptAll: string;
+  rejectAll: string;
+  settings: string;
+  save: string;
+  back: string;
+  necessaryT: string;
+  necessaryD: string;
+  analyticsT: string;
+  analyticsD: string;
+  marketingT: string;
+  marketingD: string;
+  always: string;
+  reopen: string;
+};
+
+const t: Record<string, Str> = {
+  cs: {
+    title: 'Vážíme si vašeho soukromí',
+    body: 'Používáme cookies, abychom web zajistili funkční, měřili jeho návštěvnost a případně přizpůsobili marketing. Nezbytné cookies běží vždy; analytické a marketingové jen s vaším souhlasem.',
+    policy: 'Zásady cookies',
+    acceptAll: 'Přijmout vše',
+    rejectAll: 'Odmítnout vše',
+    settings: 'Nastavení',
+    save: 'Uložit volbu',
+    back: 'Zpět',
+    necessaryT: 'Nezbytné',
+    necessaryD: 'Potřebné pro základní chod webu (jazyk, bezpečnost, zapamatování této volby). Nelze vypnout.',
+    analyticsT: 'Analytické',
+    analyticsD: 'Anonymní statistiky návštěvnosti (Google Analytics) — pomáhají nám web zlepšovat.',
+    marketingT: 'Marketingové',
+    marketingD: 'Remarketing a měření reklam (Google Ads). Umožňují cílenější a měřitelnou reklamu.',
+    always: 'Vždy aktivní',
+    reopen: 'Nastavení cookies',
+  },
+  en: {
+    title: 'We value your privacy',
+    body: 'We use cookies to keep the site working, measure traffic and, where relevant, tailor marketing. Necessary cookies always run; analytics and marketing only with your consent.',
+    policy: 'Cookie policy',
+    acceptAll: 'Accept all',
+    rejectAll: 'Reject all',
+    settings: 'Settings',
+    save: 'Save choice',
+    back: 'Back',
+    necessaryT: 'Necessary',
+    necessaryD: 'Required for the basic functioning of the site (language, security, remembering this choice). Cannot be turned off.',
+    analyticsT: 'Analytics',
+    analyticsD: 'Anonymous traffic statistics (Google Analytics) — they help us improve the site.',
+    marketingT: 'Marketing',
+    marketingD: 'Remarketing and ad measurement (Google Ads). Enable more relevant, measurable advertising.',
+    always: 'Always on',
+    reopen: 'Cookie settings',
+  },
+  de: {
+    title: 'Wir schätzen Ihre Privatsphäre',
+    body: 'Wir verwenden Cookies, damit die Website funktioniert, die Zugriffe gemessen und Marketing ggf. angepasst werden. Notwendige Cookies laufen immer; Analyse und Marketing nur mit Ihrer Einwilligung.',
+    policy: 'Cookie-Richtlinie',
+    acceptAll: 'Alle akzeptieren',
+    rejectAll: 'Alle ablehnen',
+    settings: 'Einstellungen',
+    save: 'Auswahl speichern',
+    back: 'Zurück',
+    necessaryT: 'Notwendig',
+    necessaryD: 'Für den grundlegenden Betrieb der Website erforderlich (Sprache, Sicherheit, Speichern dieser Auswahl). Nicht abschaltbar.',
+    analyticsT: 'Analyse',
+    analyticsD: 'Anonyme Zugriffsstatistiken (Google Analytics) — sie helfen uns, die Website zu verbessern.',
+    marketingT: 'Marketing',
+    marketingD: 'Remarketing und Anzeigenmessung (Google Ads). Ermöglichen relevantere, messbare Werbung.',
+    always: 'Immer aktiv',
+    reopen: 'Cookie-Einstellungen',
+  },
+  fr: {
+    title: 'Nous respectons votre vie privée',
+    body: 'Nous utilisons des cookies pour faire fonctionner le site, mesurer l’audience et, le cas échéant, adapter le marketing. Les cookies nécessaires sont toujours actifs ; l’analyse et le marketing uniquement avec votre consentement.',
+    policy: 'Politique cookies',
+    acceptAll: 'Tout accepter',
+    rejectAll: 'Tout refuser',
+    settings: 'Paramètres',
+    save: 'Enregistrer',
+    back: 'Retour',
+    necessaryT: 'Nécessaires',
+    necessaryD: 'Requis pour le fonctionnement de base du site (langue, sécurité, mémorisation de ce choix). Non désactivables.',
+    analyticsT: 'Analyse',
+    analyticsD: 'Statistiques de fréquentation anonymes (Google Analytics) — elles nous aident à améliorer le site.',
+    marketingT: 'Marketing',
+    marketingD: 'Remarketing et mesure publicitaire (Google Ads). Pour une publicité plus pertinente et mesurable.',
+    always: 'Toujours actif',
+    reopen: 'Paramètres cookies',
+  },
+  es: {
+    title: 'Valoramos tu privacidad',
+    body: 'Usamos cookies para que el sitio funcione, medir el tráfico y, cuando proceda, personalizar el marketing. Las cookies necesarias siempre se ejecutan; las de análisis y marketing solo con tu consentimiento.',
+    policy: 'Política de cookies',
+    acceptAll: 'Aceptar todo',
+    rejectAll: 'Rechazar todo',
+    settings: 'Configuración',
+    save: 'Guardar elección',
+    back: 'Atrás',
+    necessaryT: 'Necesarias',
+    necessaryD: 'Necesarias para el funcionamiento básico del sitio (idioma, seguridad, recordar esta elección). No se pueden desactivar.',
+    analyticsT: 'Analíticas',
+    analyticsD: 'Estadísticas de tráfico anónimas (Google Analytics) — nos ayudan a mejorar el sitio.',
+    marketingT: 'Marketing',
+    marketingD: 'Remarketing y medición de anuncios (Google Ads). Permiten publicidad más relevante y medible.',
+    always: 'Siempre activo',
+    reopen: 'Configuración de cookies',
+  },
+};
+
+const s = t[lang] ?? t.en;
+---
+
+<!-- Cookie consent — Google Consent Mode v2, granulární souhlas (GDPR + § 89 z. 127/2005 Sb.) -->
+<div id="cookie-consent" class="hidden" data-policy={policyHref} aria-live="polite">
+  <!-- ztmavení pozadí jen u detailního nastavení -->
+  <div id="cc-overlay" class="hidden fixed inset-0 bg-brand-black/40 z-[997]"></div>
+
+  <!-- BANNER -->
+  <div id="cc-banner" role="dialog" aria-modal="false" aria-label={s.title}
+    class="fixed inset-x-0 bottom-0 z-[999] border-t border-brand-white/20 bg-brand-black text-brand-white">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
+      <div class="flex-1 min-w-0">
+        <p class="font-mono text-xs tracking-widest uppercase mb-1.5" style="color:#2D62FC">{s.title}</p>
+        <p class="text-sm text-brand-white/80 leading-relaxed">
+          {s.body} <a href={policyHref} class="underline hover:text-brand-white whitespace-nowrap">{s.policy} ↗</a>
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <button type="button" data-cc="reject" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.rejectAll}</button>
+        <button type="button" data-cc="settings" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
+        <button type="button" data-cc="accept" class="font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors">{s.acceptAll}</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAILNÍ NASTAVENÍ -->
+  <div id="cc-settings" role="dialog" aria-modal="true" aria-label={s.settings}
+    class="hidden fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] w-[92vw] max-w-lg max-h-[85vh] overflow-y-auto border border-brand-black bg-brand-white text-brand-black shadow-2xl">
+    <div class="p-6 md:p-8">
+      <p class="font-mono text-xs tracking-widest uppercase mb-1.5" style="color:#2D62FC">{s.settings}</p>
+      <p class="text-sm text-brand-black/70 leading-relaxed mb-6">{s.body}</p>
+
+      <!-- Nezbytné -->
+      <div class="border-t border-brand-black/10 py-4 flex items-start justify-between gap-4">
+        <div>
+          <p class="font-mono text-xs tracking-widest uppercase mb-1">{s.necessaryT}</p>
+          <p class="text-xs text-brand-black/60 leading-relaxed">{s.necessaryD}</p>
+        </div>
+        <span class="font-mono text-[10px] tracking-widest uppercase text-brand-black/40 whitespace-nowrap mt-1">{s.always}</span>
+      </div>
+
+      <!-- Analytické -->
+      <label class="border-t border-brand-black/10 py-4 flex items-start justify-between gap-4 cursor-pointer">
+        <div>
+          <p class="font-mono text-xs tracking-widest uppercase mb-1">{s.analyticsT}</p>
+          <p class="text-xs text-brand-black/60 leading-relaxed">{s.analyticsD}</p>
+        </div>
+        <input type="checkbox" data-cc-cat="analytics" class="cc-toggle mt-1 shrink-0" />
+      </label>
+
+      <!-- Marketingové -->
+      <label class="border-t border-b border-brand-black/10 py-4 flex items-start justify-between gap-4 cursor-pointer mb-6">
+        <div>
+          <p class="font-mono text-xs tracking-widest uppercase mb-1">{s.marketingT}</p>
+          <p class="text-xs text-brand-black/60 leading-relaxed">{s.marketingD}</p>
+        </div>
+        <input type="checkbox" data-cc-cat="marketing" class="cc-toggle mt-1 shrink-0" />
+      </label>
+
+      <div class="flex flex-wrap gap-2 justify-end">
+        <button type="button" data-cc="back" class="font-mono text-xs tracking-widest uppercase border border-brand-black/40 px-4 py-2.5 hover:bg-brand-black hover:text-brand-white transition-colors">{s.back}</button>
+        <button type="button" data-cc="save" class="font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white px-4 py-2.5 hover:bg-[#2D62FC] transition-colors">{s.save}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Přepínače kategorií ve stylu webu — hranaté, modrý akcent při zapnutí */
+  .cc-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 44px;
+    height: 24px;
+    border: 1px solid rgba(10, 10, 10, 0.4);
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    flex: none;
+  }
+  .cc-toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: #0A0A0A;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  .cc-toggle:checked {
+    background: #2D62FC;
+    border-color: #2D62FC;
+  }
+  .cc-toggle:checked::after {
+    transform: translateX(20px);
+    background: #FCFCFC;
+  }
+  .cc-toggle:focus-visible {
+    outline: 2px solid #2D62FC;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  // Google Consent Mode v2 — granulární souhlas, uložení volby + časové razítko (doklad souhlasu).
+  // Výchozí stav (vše denied) se nastavuje v <head> (BaseLayout). Zde jen UI + update.
+  (function () {
+    const KEY = 'uxmind-consent';
+    const VERSION = 1; // zvyš při změně kategorií → znovu se vyžádá souhlas
+    const root = document.getElementById('cookie-consent');
+    if (!root) return;
+    const overlay = document.getElementById('cc-overlay');
+    const banner = document.getElementById('cc-banner');
+    const settings = document.getElementById('cc-settings');
+    const toggles = root.querySelectorAll<HTMLInputElement>('.cc-toggle');
+
+    function gtagUpdate(analytics: boolean, marketing: boolean) {
+      const g = (window as any).gtag;
+      if (typeof g !== 'function') return;
+      g('consent', 'update', {
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: marketing ? 'granted' : 'denied',
+        ad_user_data: marketing ? 'granted' : 'denied',
+        ad_personalization: marketing ? 'granted' : 'denied',
+        personalization_storage: marketing ? 'granted' : 'denied',
+      });
+    }
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; }
+    }
+
+    function persist(analytics: boolean, marketing: boolean) {
+      const rec = { v: VERSION, ts: new Date().toISOString(), analytics, marketing };
+      try { localStorage.setItem(KEY, JSON.stringify(rec)); } catch {}
+      // doklad souhlasu i v cookie (6 měsíců) — čitelné i mimo JS
+      try {
+        const val = encodeURIComponent(JSON.stringify(rec));
+        document.cookie = `uxmind_consent=${val};path=/;max-age=${60 * 60 * 24 * 180};SameSite=Lax`;
+      } catch {}
+    }
+
+    function showBanner() { banner?.classList.remove('hidden'); root!.classList.remove('hidden'); }
+    function hideBanner() { banner?.classList.add('hidden'); }
+    function openSettings() {
+      root!.classList.remove('hidden');
+      banner?.classList.add('hidden');
+      overlay?.classList.remove('hidden');
+      settings?.classList.remove('hidden');
+      // předvyplnit aktuální volbou
+      const c = load();
+      toggles.forEach(t => {
+        const cat = t.dataset.ccCat;
+        t.checked = c ? !!c[cat as string] : false;
+      });
+    }
+    function closeSettings() {
+      overlay?.classList.add('hidden');
+      settings?.classList.add('hidden');
+      if (!load()) showBanner(); // pokud ještě nebyla volba, vrať banner
+      else root!.classList.add('hidden');
+    }
+
+    function decide(analytics: boolean, marketing: boolean) {
+      persist(analytics, marketing);
+      gtagUpdate(analytics, marketing);
+      overlay?.classList.add('hidden');
+      settings?.classList.add('hidden');
+      hideBanner();
+      root!.classList.add('hidden');
+    }
+
+    root.addEventListener('click', (e) => {
+      const el = (e.target as HTMLElement).closest('[data-cc]') as HTMLElement | null;
+      if (!el) return;
+      const action = el.dataset.cc;
+      if (action === 'accept') decide(true, true);
+      else if (action === 'reject') decide(false, false);
+      else if (action === 'settings') openSettings();
+      else if (action === 'back') closeSettings();
+      else if (action === 'save') {
+        const get = (c: string) => !!root.querySelector<HTMLInputElement>(`.cc-toggle[data-cc-cat="${c}"]`)?.checked;
+        decide(get('analytics'), get('marketing'));
+      }
+    });
+    overlay?.addEventListener('click', closeSettings);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !settings?.classList.contains('hidden')) closeSettings();
+    });
+
+    // Veřejné API pro znovuotevření z patičky
+    (window as any).uxmindConsent = { open: openSettings };
+
+    // Zobraz banner, jen když ještě není platná volba
+    const stored = load();
+    if (!stored || stored.v !== VERSION) showBanner();
+  })();
+</script>

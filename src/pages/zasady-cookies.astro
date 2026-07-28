@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const updated = '28. 7. 2026';
+
+const categories = [
+  {
+    name: 'Nezbytné',
+    consent: 'Nevyžadují souhlas',
+    purpose: 'Základní chod webu — jazyková volba, bezpečnost a zapamatování vaší volby cookies.',
+    examples: 'uxmind-consent, uxmind_consent (uložení souhlasu), technické cookies serveru',
+    expiry: 'Relace až 6 měsíců',
+  },
+  {
+    name: 'Analytické',
+    consent: 'Jen s vaším souhlasem',
+    purpose: 'Anonymní statistiky návštěvnosti — kolik lidí web navštíví, které stránky čtou. Pomáhají nám web zlepšovat.',
+    examples: 'Google Analytics 4 (_ga, _ga_*)',
+    expiry: 'Až 24 měsíců',
+  },
+  {
+    name: 'Marketingové',
+    consent: 'Jen s vaším souhlasem',
+    purpose: 'Remarketing a měření účinnosti reklamy, cílenější a měřitelná reklama.',
+    examples: 'Google Ads (_gcl_*), konverzní a remarketingové cookies',
+    expiry: 'Až 24 měsíců',
+  },
+];
+---
+
+<BaseLayout
+  title="Zásady používání cookies"
+  description="Jak UX MIND používá cookies: nezbytné, analytické a marketingové. Souhlas dle Google Consent Mode v2, GDPR a zákona č. 127/2005 Sb. Kdykoli lze změnit."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PRÁVNÍ INFORMACE ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.25rem, 6vw, 4.5rem);">
+          Zásady cookies<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-sm text-brand-black/50 font-mono">Naposledy aktualizováno: {updated}</p>
+      </div>
+
+      <div class="space-y-10 text-brand-black/70 leading-relaxed">
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Co jsou cookies</h2>
+          <p>
+            Cookies jsou malé textové soubory, které web ukládá do vašeho prohlížeče. Slouží k zajištění
+            základních funkcí webu, k měření návštěvnosti a případně k marketingu. Některé nastavujeme my,
+            jiné služby třetích stran (Google).
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Jak získáváme souhlas</h2>
+          <p class="mb-3">
+            Při první návštěvě zobrazíme cookies lištu. Nezbytné cookies běží vždy — jsou nutné pro provoz webu.
+            Analytické a marketingové cookies aktivujeme <strong class="text-brand-black">až po vašem souhlasu</strong>.
+            Souhlas je dobrovolný, granulární a lze ho kdykoli změnit nebo odvolat.
+          </p>
+          <p>
+            Používáme <strong class="text-brand-black">Google Consent Mode v2</strong>. Do udělení souhlasu
+            neběží žádné analytické ani reklamní cookies; Google tagy se do té doby chovají v tzv. cookieless
+            režimu bez ukládání identifikátorů. Postupujeme dle Nařízení GDPR (EU) 2016/679 a § 89 zákona
+            č. 127/2005 Sb., o elektronických komunikacích.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Kategorie cookies</h2>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {categories.map(c => (
+              <div class="bg-brand-white p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <h3 class="font-mono text-sm tracking-widest uppercase text-brand-black">{c.name}</h3>
+                  <span class="font-mono text-[10px] tracking-widest uppercase" style="color:#2D62FC">{c.consent}</span>
+                </div>
+                <p class="text-sm mb-2">{c.purpose}</p>
+                <dl class="text-xs text-brand-black/50 space-y-0.5">
+                  <div><dt class="inline font-mono">Příklady: </dt><dd class="inline">{c.examples}</dd></div>
+                  <div><dt class="inline font-mono">Platnost: </dt><dd class="inline">{c.expiry}</dd></div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Změna nebo odvolání souhlasu</h2>
+          <p class="mb-4">
+            Své nastavení můžete kdykoli změnit — otevřete panel a souhlas upravte nebo odvolejte. Volbu si
+            pamatujeme 6 měsíců, poté se zeptáme znovu. Cookies lze také smazat přímo v nastavení prohlížeče.
+          </p>
+          <button type="button" onclick="window.uxmindConsent && window.uxmindConsent.open()"
+            class="inline-block font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white px-6 py-3 hover:bg-[#2D62FC] transition-colors">
+            Otevřít nastavení cookies →
+          </button>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Třetí strany</h2>
+          <p>
+            Analytické a marketingové cookies zpracovává společnost Google (Google Analytics, Google Ads).
+            Podmínky a zpracování dat popisují
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">Zásady ochrany soukromí Google ↗</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Správce</h2>
+          <p>
+            UX MIND Research Lab s.r.o., IČO: 29714966.<br/>
+            Dotazy k cookies a osobním údajům:
+            <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

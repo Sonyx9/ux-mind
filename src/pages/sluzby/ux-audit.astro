@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const reveals = [
+  { t: 'Bariéry v cestě', d: 'Kde uživatelé ztrácejí orientaci, kde se zasekávají a co je nutí odejít.', tag: 'CESTA' },
+  { t: 'Známé problémy', d: 'Prohřešky proti ověřeným principům použitelnosti — dřív, než je najdou zákazníci.', tag: 'HEURISTIKY' },
+  { t: 'Quick wins', d: 'Úpravy s velkým dopadem a malou náročností, které lze nasadit hned.', tag: 'PRIORITY' },
+];
+
+const process = [
+  { num: '01', title: 'Zadání a rozsah', desc: 'Klíčové cesty, cíle a byznysový kontext produktu.' },
+  { num: '02', title: 'Heuristická analýza', desc: 'Systematický průchod rozhraní podle ověřených principů.' },
+  { num: '03', title: 'Analýza cest a dat', desc: 'Toky uživatelů; máte-li analytiku, zapojíme ji.' },
+  { num: '04', title: 'Report a workshop', desc: 'Prioritizovaná doporučení a společné plánování úprav.' },
+];
+
+const outputs = [
+  'Prioritizovaný seznam problémů podle dopadu',
+  'Konkrétní doporučení s návrhy řešení',
+  'Quick wins k okamžitému nasazení',
+  'Výstupní zpráva s mockupy',
+  'Workshop s vaším týmem',
+];
+
+const faq = [
+  { q: 'Jak dlouho UX audit trvá?', a: 'Typicky 2–4 týdny podle rozsahu produktu: úvodní analýza, heuristické hodnocení, analýza dat a prezentace výstupů.' },
+  { q: 'Čím se audit liší od uživatelského testování?', a: 'Audit je expertní hodnocení — rozhraní posuzuje specialista podle ověřených principů, bez respondentů. Testování sleduje reálné uživatele při plnění úkolů. Audit je rychlejší a levnější první krok, testování ověřuje chování v praxi.' },
+  { q: 'Kdy audit nestačí?', a: 'Audit identifikuje pravděpodobné problémy, ale neprokazuje jejich dopad na chování uživatelů ani konverzi. Pokud potřebujete rozhodnutí podložit daty, navazuje na něj měření — eye-tracking, testování s uživateli nebo biometrie.' },
+  { q: 'Co potřebujete od nás?', a: 'Přístup k produktu (web, aplikace, prototyp), popis klíčových cest a cílů. Máte-li analytiku, zapojíme ji do analýzy.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'UX audit',
+    description: 'Expertní UX audit webu, e-shopu nebo aplikace: heuristická analýza, analýza uživatelských cest, prioritizovaná doporučení a workshop. Rychlý základ každého zlepšování.',
+    serviceType: 'UX audit',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="UX audit webu a e-shopu | Expertní analýza použitelnosti"
+  description="UX audit webu, e-shopu nebo aplikace za 2–4 týdny. Heuristická analýza, analýza cest, prioritizovaná doporučení a quick wins. Rychlý základ každého zlepšování."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / UX AUDIT ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          ZAČNĚTE<br/>AUDITEM<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Rychlý základ každého zlepšování.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              Specialista projde vaše rozhraní z pohledu uživatele a najde bariéry dřív,
+              než je najdou zákazníci. Výstupem je <strong class="text-brand-black">prioritizovaný plán úprav</strong>, ne jen seznam chyb.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              POPTAT AUDIT →
+            </a>
+            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              TESTOVACÍ BALÍČKY
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DÉLKA', '2–4 týdny'],
+          ['METODA', 'Expertní hodnocení'],
+          ['RESPONDENTI', 'Nejsou potřeba'],
+          ['BALÍČEK', 'Rychlá diagnostika'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Co audit odhalí -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO AUDIT ODHALÍ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Problémy, které uživatelé tiše snášejí<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {reveals.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
+          alt="Specialista při analýze dat z UX auditu a eye-trackingu"
+          title="Analýza dat při UX auditu"
+          width="1200" height="800" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Audit není dojmologie — každé zjištění dokládáme konkrétním místem v rozhraní a principem, který porušuje.</p>
+      </div>
+
+      <!-- Proces + výstup -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK AUDIT PROBÍHÁ ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
+          <ul class="space-y-2">
+            {outputs.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Hranice služby -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ HRANICE AUDITU ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Audit ukáže kde, měření dokáže proč<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Expertní hodnocení identifikuje pravděpodobné problémy, ale neprokazuje jejich dopad na chování a konverzi.
+              Když potřebujete rozhodnutí obhájit daty, na audit navazuje eye-tracking, testování s uživateli nebo biometrie.
+            </p>
+          </div>
+          <a href="/sluzby/testovaci-balicky" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            NAVAZUJÍCÍ MĚŘENÍ →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            CO VÁS STOJÍ<br/>VÁŠ WEB<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Pošlete nám odkaz. Do pár dní řekneme, zda dává audit smysl a co od něj čekat.
+          </p>
+          <a href="/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            POPTAT AUDIT →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

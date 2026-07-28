@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const methods = [
+  { title: 'Tiefeninterviews', type: 'QUALITATIV', desc: 'Einzelinterviews decken Motivationen, Frustrationen und mentale Modelle auf.' },
+  { title: 'Usability-Tests', type: 'QUALITATIV', desc: 'Wir beobachten Nutzer beim Lösen von Aufgaben und identifizieren, woran sie scheitern.' },
+  { title: 'Kontextuelle Forschung', type: 'QUALITATIV', desc: 'Wir beobachten Nutzer in ihrer natürlichen Umgebung, wie sie wirklich arbeiten.' },
+  { title: 'Fragebogenerhebungen', type: 'QUANTITATIV', desc: 'Daten von vielen Testpersonen für statistisch belastbare Schlüsse.' },
+  { title: 'A/B-Tests', type: 'QUANTITATIV', desc: 'Wir vergleichen Designvarianten im Live-Betrieb und messen die Ergebnisse.' },
+  { title: 'Card Sorting', type: 'GEMISCHT', desc: 'Wie Nutzer Inhalte kategorisieren — die Basis einer besseren Informationsarchitektur.' },
+];
+
+const deliverables = [
+  'Forschungsbericht mit Methodik und Erkenntnissen',
+  'Personas — datenbasierte Profile der Schlüsselgruppen',
+  'Journey Maps inklusive Pain Points',
+  'Priorisierte Empfehlungen nach Wirkung',
+  'Grundlagen für Redesign oder weiteres Testing',
+];
+
+const process = [
+  { num: '01', title: 'Forschungsfrage', desc: 'Was Sie entscheiden müssen und wen es betrifft.' },
+  { num: '02', title: 'Methodendesign', desc: 'Kombination qualitativer und quantitativer Methoden je nach Frage.' },
+  { num: '03', title: 'Datenerhebung', desc: 'Interviews, Tests, Fragebögen — mit Pilotierung und Qualitätskontrolle.' },
+  { num: '04', title: 'Synthese und Ergebnis', desc: 'Wir verdichten die Erkenntnisse zu Empfehlungen, Personas und Journey Maps.' },
+];
+
+const faq = [
+  { q: 'Wann ist tiefgehende Forschung sinnvoller als ein schneller Test?', a: 'Wenn Sie nicht über ein einzelnes Interface entscheiden, sondern über die Produktstrategie: für wen Sie bauen, welche Bedürfnisse Sie lösen, wo die User Journey am schwächsten ist. Ein schneller Test überprüft eine konkrete Lösung, Forschung sagt, was überhaupt gebaut werden sollte.' },
+  { q: 'Wie lange dauert UX-Forschung?', a: 'Je nach Umfang typischerweise 3–8 Wochen: Forschungsdesign, Rekrutierung, Datenerhebung, Analyse und Synthese zu Empfehlungen.' },
+  { q: 'Kombinieren Sie Forschung mit Biometrie?', a: 'Ja. Interviews und Beobachtungen können wir um Eye-Tracking, GSR oder den Index mentaler Belastung EMLI ergänzen — subjektive Aussagen überprüfen wir so gegen objektive Daten.' },
+  { q: 'Was, wenn wir bereits eigene Daten haben?', a: 'Ausgezeichnet — Analytics, Kundensupport oder frühere Studien beziehen wir in die Synthese ein. Die neue Erhebung zielt dann nur auf die Stellen, an denen Daten fehlen.' },
+];
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'UX-Forschung',
+    description: 'Tiefgehende UX-Forschung mit qualitativen und quantitativen Methoden: Interviews, Usability-Tests, Fragebögen, Personas und Journey Maps.',
+    serviceType: 'UX-Forschung',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="de"
+  title="UX-Forschung und Nutzertests für Websites"
+  description="Nutzertests, Tiefeninterviews, Usability-Tests, Personas und Journey Maps. Entscheiden Sie auf Basis von Daten, nicht von Vermutungen."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LEISTUNGEN / UX-FORSCHUNG ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          DATEN<br/>STATT EINDRÜCKE<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Der tiefste Umfang: Nutzer verstehen, nicht nur das Interface.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              Wir kombinieren qualitative und quantitative Methoden, um die
+              <strong class="text-brand-black">Bedürfnisse, Frustrationen und mentalen Modelle</strong> Ihrer Nutzer aufzudecken.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href="/de/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              FORSCHUNG STARTEN →
+            </a>
+            <a href="/de/leistungen/test-pakete" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              TEST-PAKETE
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Infoleiste -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['DAUER', '3–8 Wochen'],
+          ['METHODEN', 'Qualitativ + quantitativ'],
+          ['ERGEBNISSE', 'Personas · Journey Maps'],
+          ['PAKET', 'Umfassende Biometrie'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Methoden -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FORSCHUNGSMETHODEN ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Die richtige Methode für die richtige Frage<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {methods.map(method => (
+            <div class="bg-brand-white p-8">
+              <span class="font-mono text-[10px] text-brand-black/60 border border-brand-black/20 px-2 py-0.5 tracking-widest">{method.type}</span>
+              <h3 class="font-display text-xl font-bold mb-3 mt-4">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
+          alt="UX-Forschungslabor — Umfeld für Interviews, Tests und biometrische Messungen"
+          title="UX-Forschungslabor"
+          width="1200" height="800" loading="lazy" decoding="async"
+          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Forschungsumfeld der FIM UHK — Interviews und Tests lassen sich in derselben Session um Eye-Tracking und Biometrie ergänzen.</p>
+      </div>
+
+      <!-- Was Sie erhalten + Prozess -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WAS SIE ERHALTEN ]</p>
+          <ul class="space-y-2">
+            {deliverables.map(o => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ SO LÄUFT DIE FORSCHUNG AB ]</p>
+          <div class="space-y-0">
+            {process.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Biometrie -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ AUSSAGEN + OBJEKTIVE DATEN ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Was Menschen sagen vs. was sie tun<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Deklarierte Antworten überprüfen wir gegen das Verhalten: Interviews und Fragebögen kombinieren wir
+              mit Eye-Tracking, GSR und dem Index mentaler Belastung EMLI. Sie entscheiden dann auf Basis dessen, was wirklich passiert ist.
+            </p>
+          </div>
+          <a href="/de/leistungen/test-pakete#komplexni-biometricky-vyzkum" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            BIOMETRIE-PAKET →
+          </a>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HÄUFIGE FRAGEN ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            LERNEN SIE IHRE<br/>NUTZER KENNEN<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Beschreiben Sie uns, was Sie entscheiden müssen. Wir entwerfen eine Forschung, die genau darauf antwortet — ohne überflüssige Methoden.
+          </p>
+          <a href="/de/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            FORSCHUNG STARTEN →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>
