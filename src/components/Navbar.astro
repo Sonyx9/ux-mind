@@ -74,6 +74,13 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
             </div>
           </div>
         </div>
+      ) : link.href === contactHref ? (
+        <a
+          href={link.href}
+          class="font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
+        >
+          {link.label}
+        </a>
       ) : (
         <a
           href={link.href}
