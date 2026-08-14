@@ -127,23 +127,23 @@ const s = t[lang] ?? t.en;
 
 <!-- Cookie consent — Google Consent Mode v2, granulární souhlas (GDPR + § 89 z. 127/2005 Sb.) -->
 <div id="cookie-consent" class="hidden" data-policy={policyHref} aria-live="polite">
-  <!-- ztmavení pozadí jen u detailního nastavení -->
-  <div id="cc-overlay" class="hidden fixed inset-0 bg-brand-black/40 z-[997]"></div>
+  <!-- lehký overlay za lištou i detailním nastavením -->
+  <div id="cc-overlay" class="hidden fixed inset-0 bg-brand-black/25 z-[997]"></div>
 
-  <!-- BANNER -->
+  <!-- BANNER — vycentrovaný box dole, ne přes celou šířku -->
   <div id="cc-banner" role="dialog" aria-modal="false" aria-label={s.title}
-    class="fixed inset-x-0 bottom-0 z-[999] border-t border-brand-white/20 bg-brand-black text-brand-white">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-      <div class="flex-1 min-w-0">
+    class="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-[92vw] max-w-2xl z-[999] border border-brand-white/15 bg-brand-black text-brand-white shadow-2xl">
+    <div class="px-6 py-5 flex flex-col gap-4">
+      <div>
         <p class="font-mono text-xs tracking-widest uppercase mb-1.5" style="color:#2D62FC">{s.title}</p>
         <p class="text-sm text-brand-white/80 leading-relaxed">
           {s.body} <a href={policyHref} class="underline hover:text-brand-white whitespace-nowrap">{s.policy} ↗</a>
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-2 shrink-0">
+      <div class="flex flex-wrap items-center gap-2">
         <button type="button" data-cc="reject" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.rejectAll}</button>
         <button type="button" data-cc="settings" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
-        <button type="button" data-cc="accept" class="font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors">{s.acceptAll}</button>
+        <button type="button" data-cc="accept" class="font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors ml-auto">{s.acceptAll}</button>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@ const s = t[lang] ?? t.en;
       } catch {}
     }
 
-    function showBanner() { banner?.classList.remove('hidden'); root!.classList.remove('hidden'); }
+    function showBanner() { banner?.classList.remove('hidden'); overlay?.classList.remove('hidden'); root!.classList.remove('hidden'); }
     function hideBanner() { banner?.classList.add('hidden'); }
     function openSettings() {
       root!.classList.remove('hidden');
@@ -310,7 +310,11 @@ const s = t[lang] ?? t.en;
         decide(get('analytics'), get('marketing'));
       }
     });
-    overlay?.addEventListener('click', closeSettings);
+    // Klik na overlay zavře jen detailní nastavení; když je vidět jen lišta,
+    // klik mimo nic neudělá (žádný implicitní souhlas).
+    overlay?.addEventListener('click', () => {
+      if (!settings?.classList.contains('hidden')) closeSettings();
+    });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !settings?.classList.contains('hidden')) closeSettings();
     });

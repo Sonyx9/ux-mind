@@ -8,13 +8,10 @@ const langPath = rawPath.startsWith(base) ? rawPath.slice(base.length) || '/' : 
 const lang = getLang(langPath);
 const cookiePolicyHref = base + localizedPath(lang, 'cookies');
 
-// Kompletní navigace (služby + podstránky, studie, o nás, partneři, kontakt) — lokalizovaně
+// Navigace v patičce — jen hlavní položky (podstránky služeb jsou sbalené)
 const nav = getNavLinks(lang);
-const flatNav: { href: string; label: string; indent: boolean }[] = [];
-for (const l of nav) {
-  flatNav.push({ href: base + l.href, label: l.label, indent: false });
-  if (l.children) for (const c of l.children) flatNav.push({ href: base + c.href, label: c.label, indent: true });
-}
+const flatNav: { href: string; label: string; indent: boolean }[] =
+  nav.map(l => ({ href: base + l.href, label: l.label, indent: false }));
 
 const t = {
   cs: { desc: 'Specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.', nav: 'Navigace', contact: 'Kontakt', rights: 'Všechna práva vyhrazena.', tagline: 'UX / EYE TRACKING / VÝZKUM UŽIVATELŮ', policy: 'Zásady cookies', settings: 'Nastavení cookies' },
