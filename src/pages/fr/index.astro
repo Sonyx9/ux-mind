@@ -302,10 +302,20 @@ const clientLogos = [
       ))}
     </div>
     <!-- Glossary of abbreviations -->
-    <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">
-      <span class="text-brand-black/60 font-medium">GLOSSAIRE :</span>
-      TTFF — temps jusqu’à la première fixation · AOI — zone d’intérêt · dwell time — temps total de regard sur une zone · scanpath — trajet du regard entre les fixations · GSR — réponse électrodermale, indicateur d’excitation physiologique · EMLI — indice de charge mentale dérivé des métriques d’eye-tracking
-    </p>
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSSAIRE ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">temps jusqu’à la première fixation</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">zone d’intérêt</dd></div>
+            <div><dt class="font-display font-bold mb-1">dwell time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">temps total de regard sur une zone</dd></div>
+            <div><dt class="font-display font-bold mb-1">scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">trajet du regard entre les fixations</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">réponse électrodermale, indicateur d’excitation physiologique</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">indice de charge mentale dérivé des métriques d’eye-tracking</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- SERVICES SECTION -->

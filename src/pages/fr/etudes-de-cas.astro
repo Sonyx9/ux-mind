@@ -48,7 +48,7 @@ import Footer from '../../components/Footer.astro';
             desc: "Une expérience a comparé un packshot épuré à une photo lifestyle. Le type de photo a eu un effet significatif sur le temps d’exécution de la tâche — F(1,82) = 4,50 ; p = 0,037. Pas d’effet clair sur les évaluations subjectives : « plus joli » ne veut pas dire « plus performant ».",
             method: "Eye tracking + UEQ · N = 84",
             tags: ["Photos produit", "Expérimentation", "PDP"],
-            result: "p = 0,037",
+            result: "Beau mais lent",
           },
           {
             category: "Créa publicitaire",
@@ -56,7 +56,7 @@ import Footer from '../../components/Footer.astro';
             desc: "La manipulation de l’indice visuel (direction du regard du modèle) a eu un fort effet statistique sur la répartition de l’attention : F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11 — un effet de taille moyenne. La direction du regard est l’un des outils les moins chers pour guider l’attention vers le message et le CTA.",
             method: "Expérience d’eye tracking · N = 104",
             tags: ["Bannières", "Indices visuels", "Attention"],
-            result: "ηp² = 0,11",
+            result: "Le regard guide",
           },
           {
             category: "Templates e-shop",
@@ -64,7 +64,7 @@ import Footer from '../../components/Footer.astro';
             desc: "Le même template produisait des schémas d’attention différents selon la tâche reçue. Les évaluations esthétiques hors contexte de tâche sont trompeuses — testez votre template avec de vraies tâches d’achat, pas « à l’impression ».",
             method: "Eye tracking + VisAWI · N = 61",
             tags: ["E-commerce", "Esthétique vs performance", "Tests par tâches"],
-            result: "3 templates × 2 tâches",
+            result: "Le contexte prime",
           },
           {
             category: "Marketing sportif · OOH",
@@ -78,9 +78,9 @@ import Footer from '../../components/Footer.astro';
           <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
-              <span class="font-display text-2xl font-bold leading-none md:text-right" style="color:#2D62FC">{study.result}</span>
+              <a href={study.href} class="font-display text-2xl font-bold leading-none md:text-right hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
             </div>
-            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTHODE : {study.method}</p>
             <div class="flex flex-wrap gap-2 mt-auto">
@@ -92,7 +92,18 @@ import Footer from '../../components/Footer.astro';
         ))}
       </div>
 
-      <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">GLOSSAIRE : p = probabilité que le résultat soit dû au hasard (0,037 = 3,7 % — plus c’est bas, plus c’est concluant) · ηp² = taille d’effet (0,11 ≈ effet moyen, visible en pratique) · N = nombre de personnes testées · AOI = zone observée de la page</p>
+      <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSSAIRE ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">probabilité que le résultat soit dû au hasard (0,037 = 3,7 % — plus c’est bas, plus c’est concluant)</dd></div>
+            <div><dt class="font-display font-bold mb-1">ηp²</dt><dd class="text-sm text-brand-black/70 leading-relaxed">taille d’effet (0,11 ≈ effet moyen, visible en pratique)</dd></div>
+            <div><dt class="font-display font-bold mb-1">N</dt><dd class="text-sm text-brand-black/70 leading-relaxed">nombre de personnes testées</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">zone observée de la page</dd></div>
+        </dl>
+      </details>
 
       <div class="text-center py-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ENVIE DE TELLES DONNÉES POUR VOTRE SITE ? ]</p>

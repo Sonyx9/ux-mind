@@ -302,10 +302,20 @@ const clientLogos = [
       ))}
     </div>
     <!-- Glossary of abbreviations -->
-    <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">
-      <span class="text-brand-black/60 font-medium">GLOSSAR:</span>
-      TTFF — Zeit bis zur ersten Fixation · AOI — Area of Interest (untersuchter Bereich) · Dwell Time — Gesamtzeit des Blicks in einem Bereich · Scanpath — Blickpfad zwischen Fixationen · GSR — Hautleitwert, Indikator physiologischer Erregung · EMLI — aus Eye-Tracking-Metriken abgeleiteter Index mentaler Belastung
-    </p>
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSSAR ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Zeit bis zur ersten Fixation</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Area of Interest (untersuchter Bereich)</dd></div>
+            <div><dt class="font-display font-bold mb-1">Dwell Time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Gesamtzeit des Blicks in einem Bereich</dd></div>
+            <div><dt class="font-display font-bold mb-1">Scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Blickpfad zwischen Fixationen</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Hautleitwert, Indikator physiologischer Erregung</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">aus Eye-Tracking-Metriken abgeleiteter Index mentaler Belastung</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- SERVICES SECTION -->

@@ -327,10 +327,20 @@ const clientLogos = [
       ))}
     </div>
     <!-- Slovníček zkratek -->
-    <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">
-      <span class="text-brand-black/60 font-medium">SLOVNÍČEK:</span>
-      TTFF — čas do první fixace pohledu · AOI — sledovaná oblast zájmu (Area of Interest) · dwell time — celkový čas strávený pohledem v oblasti · scanpath — dráha pohledu mezi fixacemi · GSR — měření kožní vodivosti, indikátor fyziologického arousalu · EMLI — index mentální (kognitivní) zátěže odvozený z eye-tracking metrik
-    </p>
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ SLOVNÍK POJMŮ ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">čas do první fixace pohledu</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">sledovaná oblast zájmu (Area of Interest)</dd></div>
+            <div><dt class="font-display font-bold mb-1">dwell time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">celkový čas strávený pohledem v oblasti</dd></div>
+            <div><dt class="font-display font-bold mb-1">scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">dráha pohledu mezi fixacemi</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">měření kožní vodivosti, indikátor fyziologického arousalu</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">index mentální (kognitivní) zátěže odvozený z eye-tracking metrik</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- SERVICES SECTION -->

@@ -48,7 +48,7 @@ import Footer from '../../components/Footer.astro';
             desc: "Un experimento comparó un packshot limpio con una foto lifestyle. El tipo de foto tuvo un efecto significativo en el tiempo de la tarea — F(1,82) = 4,50; p = 0,037. Sin efecto claro en las valoraciones subjetivas: «más bonito» no significa «más eficaz».",
             method: "Eye tracking + UEQ · N = 84",
             tags: ["Fotos de producto", "Experimento", "PDP"],
-            result: "p = 0,037",
+            result: "Bonito pero lento",
           },
           {
             category: "Creatividad publicitaria",
@@ -56,7 +56,7 @@ import Footer from '../../components/Footer.astro';
             desc: "La manipulación de la señal visual (dirección de la mirada del modelo) tuvo un fuerte efecto estadístico en la distribución de la atención: F(1,102) = 12,57; p < 0,001; ηp² = 0,11 — un efecto de tamaño medio. La dirección de la mirada es una de las herramientas más baratas para guiar la atención al mensaje y al CTA.",
             method: "Experimento de eye tracking · N = 104",
             tags: ["Banners", "Señales visuales", "Atención"],
-            result: "ηp² = 0,11",
+            result: "La mirada guía",
           },
           {
             category: "Plantillas de e-shop",
@@ -64,7 +64,7 @@ import Footer from '../../components/Footer.astro';
             desc: "La misma plantilla producía patrones de atención distintos según la tarea recibida. Las valoraciones estéticas sin contexto de tarea son engañosas — pruebe su plantilla con tareas de compra reales, no «por impresión».",
             method: "Eye tracking + VisAWI · N = 61",
             tags: ["E-commerce", "Estética vs. rendimiento", "Pruebas por tareas"],
-            result: "3 plantillas × 2 tareas",
+            result: "El contexto manda",
           },
           {
             category: "Marketing deportivo · OOH",
@@ -78,9 +78,9 @@ import Footer from '../../components/Footer.astro';
           <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
-              <span class="font-display text-2xl font-bold leading-none md:text-right" style="color:#2D62FC">{study.result}</span>
+              <a href={study.href} class="font-display text-2xl font-bold leading-none md:text-right hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
             </div>
-            <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{study.title}</h3>
+            <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTODO: {study.method}</p>
             <div class="flex flex-wrap gap-2 mt-auto">
@@ -92,7 +92,18 @@ import Footer from '../../components/Footer.astro';
         ))}
       </div>
 
-      <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">GLOSARIO: p = probabilidad de que el resultado sea casualidad (0,037 = 3,7 % — cuanto menor, más concluyente) · ηp² = tamaño del efecto (0,11 ≈ efecto medio, visible en la práctica) · N = número de personas testadas · AOI = área observada de la página</p>
+      <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSARIO ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">probabilidad de que el resultado sea casualidad (0,037 = 3,7 % — cuanto menor, más concluyente)</dd></div>
+            <div><dt class="font-display font-bold mb-1">ηp²</dt><dd class="text-sm text-brand-black/70 leading-relaxed">tamaño del efecto (0,11 ≈ efecto medio, visible en la práctica)</dd></div>
+            <div><dt class="font-display font-bold mb-1">N</dt><dd class="text-sm text-brand-black/70 leading-relaxed">número de personas testadas</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">área observada de la página</dd></div>
+        </dl>
+      </details>
 
       <div class="text-center py-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ¿QUIERE DATOS ASÍ PARA SU WEB? ]</p>

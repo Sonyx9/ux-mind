@@ -302,10 +302,20 @@ const clientLogos = [
       ))}
     </div>
     <!-- Glossary of abbreviations -->
-    <p class="font-mono text-[11px] text-brand-black/60 leading-relaxed mt-6">
-      <span class="text-brand-black/60 font-medium">GLOSSARY:</span>
-      TTFF — time to first fixation · AOI — area of interest · dwell time — total time spent looking at an area · scanpath — the path of the gaze between fixations · GSR — galvanic skin response, an indicator of physiological arousal · EMLI — mental load index derived from eye-tracking metrics
-    </p>
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSSARY ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">time to first fixation</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">area of interest</dd></div>
+            <div><dt class="font-display font-bold mb-1">dwell time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">total time spent looking at an area</dd></div>
+            <div><dt class="font-display font-bold mb-1">scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">the path of the gaze between fixations</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">galvanic skin response, an indicator of physiological arousal</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">mental load index derived from eye-tracking metrics</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- SERVICES SECTION -->
