@@ -16,6 +16,7 @@ type Str = {
   policy: string;
   acceptAll: string;
   rejectAll: string;
+  necessaryOnly: string;
   settings: string;
   save: string;
   back: string;
@@ -36,6 +37,7 @@ const t: Record<string, Str> = {
     policy: 'Zásady cookies',
     acceptAll: 'Přijmout vše',
     rejectAll: 'Odmítnout vše',
+    necessaryOnly: 'Jen nezbytné',
     settings: 'Nastavení',
     save: 'Uložit volbu',
     back: 'Zpět',
@@ -54,6 +56,7 @@ const t: Record<string, Str> = {
     policy: 'Cookie policy',
     acceptAll: 'Accept all',
     rejectAll: 'Reject all',
+    necessaryOnly: 'Only necessary',
     settings: 'Settings',
     save: 'Save choice',
     back: 'Back',
@@ -72,6 +75,7 @@ const t: Record<string, Str> = {
     policy: 'Cookie-Richtlinie',
     acceptAll: 'Alle akzeptieren',
     rejectAll: 'Alle ablehnen',
+    necessaryOnly: 'Nur notwendige',
     settings: 'Einstellungen',
     save: 'Auswahl speichern',
     back: 'Zurück',
@@ -90,6 +94,7 @@ const t: Record<string, Str> = {
     policy: 'Politique cookies',
     acceptAll: 'Tout accepter',
     rejectAll: 'Tout refuser',
+    necessaryOnly: 'Uniquement nécessaires',
     settings: 'Paramètres',
     save: 'Enregistrer',
     back: 'Retour',
@@ -108,6 +113,7 @@ const t: Record<string, Str> = {
     policy: 'Política de cookies',
     acceptAll: 'Aceptar todo',
     rejectAll: 'Rechazar todo',
+    necessaryOnly: 'Solo necesarias',
     settings: 'Configuración',
     save: 'Guardar elección',
     back: 'Atrás',
@@ -140,7 +146,8 @@ const s = t[lang] ?? t.en;
           {s.body} <a href={policyHref} class="underline text-brand-white hover:text-brand-white/70 whitespace-nowrap">{s.policy} ↗</a>
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-2">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <button type="button" data-cc="reject" class="font-mono text-xs tracking-widest uppercase text-brand-white/70 underline underline-offset-4 hover:text-brand-white transition-colors">{s.necessaryOnly}</button>
         <button type="button" data-cc="settings" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 text-brand-white px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
         <button type="button" data-cc="accept" class="font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors ml-auto">{s.acceptAll}</button>
       </div>
