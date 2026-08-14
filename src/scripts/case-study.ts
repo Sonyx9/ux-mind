@@ -42,18 +42,7 @@
 
   // Aktivace reveal režimu (progressive enhancement)
   document.body.classList.add('reveal-ready');
-
-  // Progress bar čtení — tenká modrá linka nahoře
-  const bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:#2D62FC;z-index:90;pointer-events:none;transition:width .1s linear;';
-  document.body.appendChild(bar);
-  function updateProgress() {
-    const doc = document.documentElement;
-    const max = doc.scrollHeight - window.innerHeight;
-    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-  }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
+  // Progress bar čtení řeší globálně BaseLayout (všude mimo homepage)
 
   // Scroll-reveal sekcí
   const revealIO = new IntersectionObserver(entries => {

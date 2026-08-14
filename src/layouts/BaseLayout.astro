@@ -44,6 +44,8 @@ const skipLabels: Record<string, string> = { cs: 'Přeskočit na obsah', en: 'Sk
 const sitePath = Astro.url.pathname.startsWith(base)
   ? Astro.url.pathname.slice(base.length) || '/'
   : Astro.url.pathname;
+// Progress bar čtení se zobrazuje všude kromě homepage
+const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es'].includes(sitePath);
 const alternates = languages.map(l => ({
   code: l.code,
   url: new URL((base + getPathInLang(sitePath, l.code)).replace(/^\//, ''), Astro.site).toString(),
@@ -179,5 +181,24 @@ const jsonLd = {
     <slot name="cursor" />
 
     <CookieConsent />
+
+    {!isHome && (
+      <script is:inline>
+        (function () {
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          var bar = document.createElement('div');
+          bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;width:0;background:#2D62FC;z-index:90;pointer-events:none;transition:width .1s linear;';
+          document.body.appendChild(bar);
+          function update() {
+            var d = document.documentElement;
+            var max = d.scrollHeight - window.innerHeight;
+            bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+          }
+          window.addEventListener('scroll', update, { passive: true });
+          window.addEventListener('resize', update);
+          update();
+        })();
+      </script>
+    )}
   </body>
 </html>
