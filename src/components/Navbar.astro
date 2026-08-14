@@ -46,7 +46,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       </a>
     )}
 
-    <div id="nav-full" class="hidden 3xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
+    <div id="nav-full" class="hidden xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
       {navLinks.map(link => link.children ? (
         <div class="nav-drop relative">
           <a
@@ -105,8 +105,8 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       </div>
     </div>
 
-    <!-- Hamburger row — md up to 1800px -->
-    <div id="nav-hamburger" class="hidden md:flex 3xl:hidden items-center gap-3">
+    <!-- Hamburger row — tablety (md 1024 až <xl 1280); PC má plné menu -->
+    <div id="nav-hamburger" class="hidden md:flex xl:hidden items-center gap-3">
       <button id="mobile-menu-btn" class="font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
       <div class="lang-switch relative font-mono text-xs tracking-widest uppercase">
         <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
@@ -204,29 +204,12 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   const navHamburger = document.getElementById('nav-hamburger') as HTMLElement | null;
   const mobileMenuSm = document.getElementById('mobile-menu-btn-sm');
 
-  function applyHomeMenuVisibility(showLogo: boolean) {
+  function applyHomeMenuVisibility(_showLogo: boolean) {
     if (!navFull || !navHamburger) return;
     const w = window.innerWidth;
     const menuBtn = document.getElementById('mobile-menu-btn');
 
-    if (!showLogo) {
-      // Hero: jen sbalené [ MENU ] — vycentrované, vpravo zůstávají CZ/EN + velikost písma
-      navFull.style.display = 'none';
-      if (w >= 768) {
-        navHamburger.style.display = 'flex';
-        if (menuBtn) {
-          menuBtn.style.position = 'absolute';
-          menuBtn.style.left = '50%';
-          menuBtn.style.transform = 'translateX(-50%)';
-        }
-      } else {
-        navHamburger.style.display = 'none';
-        if (mobileMenuSm) mobileMenuSm.style.display = '';
-      }
-      return;
-    }
-
-    // Po scrollu: rozbalená navigace jako na podstránkách, [ MENU ] zpět vpravo
+    // [ MENU ] nikdy necentrujeme — na PC je vždy plné menu, na tabletu hamburger vpravo
     if (menuBtn) {
       menuBtn.style.position = '';
       menuBtn.style.left = '';
@@ -234,13 +217,16 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
     }
     if (mobileMenuSm) mobileMenuSm.style.display = '';
 
-    if (w >= 1800) {
+    if (w >= 1280) {
+      // PC: rozbalené menu pořád
       navFull.style.display = 'flex';
       navHamburger.style.display = 'none';
     } else if (w >= 768) {
-      navFull.style.display = 'flex';
-      navHamburger.style.display = 'none';
+      // tablet: sbalené [ MENU ]
+      navFull.style.display = 'none';
+      navHamburger.style.display = 'flex';
     } else {
+      // mobil: jen tlačítko [ MENU ] (mobile-menu-btn-sm)
       navFull.style.display = 'none';
       navHamburger.style.display = 'none';
     }

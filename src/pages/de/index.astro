@@ -22,7 +22,7 @@ const clientLogos = [
   <Navbar />
 
   <!-- HERO SECTION -->
-  <section class="hero-shell relative overflow-hidden">
+  <section class="hero-shell relative overflow-hidden" style="background:#FDFDFD;">
 
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
       style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
@@ -47,7 +47,7 @@ const clientLogos = [
       </a>
     </div>
 
-    <div class="absolute z-10" style="left: var(--desktop-gutter); top: 16.666%; transform: translateY(-50%); line-height: 1; margin: 0; padding: 0;">
+    <div class="absolute z-10" style="left: var(--desktop-gutter); top: calc(var(--desktop-top-offset) + 3rem); line-height: 1; margin: 0; padding: 0;">
       <h1 class="m-0 p-0 relative" style="line-height:0;">
         <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
         <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
@@ -118,7 +118,7 @@ const clientLogos = [
       </div>
     </div>
 
-    <div class="hero-stats-box hidden md:block absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
+    <div class="hero-stats-box hidden absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
         <p class="font-mono text-xs text-brand-black/60">/{yearSuffix}</p>
@@ -144,9 +144,10 @@ const clientLogos = [
       <div class="space-y-3">
         {[
           { num: '01', label: 'UX AUDIT' },
-          { num: '02', label: 'EYE TRACKING' },
-          { num: '03', label: 'UX-FORSCHUNG' },
-          { num: '04', label: 'NUTZERTESTS' },
+          { num: '02', label: 'NUTZERTESTS' },
+          { num: '03', label: 'EYE TRACKING' },
+          { num: '04', label: 'FELDFORSCHUNG' },
+          { num: '05', label: 'UX-FORSCHUNG' },
         ].map((item) => (
           <div class="flex items-center gap-2">
             <p class="font-mono text-xs text-brand-black/60 shrink-0">{item.num}.</p>
@@ -164,9 +165,9 @@ const clientLogos = [
       </div>
     </div>
 
-    <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col justify-between overflow-hidden"
-      style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top:calc(66.667% + clamp(10px,1.3vh,28px)); bottom:clamp(8px,1vh,18px); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
-      <div class="flex-1 min-h-0 overflow-hidden">
+    <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col"
+      style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
+      <div>
         <div class="mb-2">
           <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">KEINE AGENTUR – SPEZIALISTEN</p>
         </div>
@@ -175,10 +176,6 @@ const clientLogos = [
         </p>
       </div>
       <div class="shrink-0">
-        <div class="flex gap-2 mb-3">
-          <a href="/de/kontakt" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">ÜBER UNS</a>
-          <a href="/de/kontakt" class="font-mono border border-brand-white px-2 py-0.5 hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">KONTAKT</a>
-        </div>
         <div class="pt-2 border-t border-brand-white/20 flex flex-col items-start gap-1.5">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * min(var(--fs, 1), 1.08));">PROJEKT MIT:</p>
           <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universität Hradec Králové" class="max-w-full shrink-0" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; object-fit:contain; filter: invert(1);" />
@@ -212,7 +209,7 @@ const clientLogos = [
   </div>
 
   <!-- LOGO STRIP -->
-  <div class="border-y border-brand-black/10 py-6 bg-brand-white">
+  <div class="border-y border-brand-black/10 py-6" style="background:#FDFDFD;">
     <!-- Desktop: static strip -->
     <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
       {clientLogos.map(({ src, alt, w, h }) => (
