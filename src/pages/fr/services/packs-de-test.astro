@@ -192,7 +192,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Důvěryhodnostní pás -->
       <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
         <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
           Infrastructure de recherche FIM UHK · Tobii Pro X2-60 · Smart Eye Aurora · Pupil Labs NEON · iMotions CORE · BeSigma · Shimmer3 GSR · mesures en laboratoire et sur le terrain
@@ -271,7 +270,6 @@ const pageSchema = [
           ))}
         </div>
 
-        <!-- Balíček na míru -->
         <div id="na-miru" class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mt-px scroll-mt-28">
           <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
           <div class="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -289,7 +287,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Jak vybrat -->
       <div id="vyber" class="reveal mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ COMMENT CHOISIR LE BON PACK ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Que devez-vous décider <span style="color:#2D62FC">?</span></h2>
@@ -373,7 +370,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Pro koho -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ À QUI S’ADRESSENT LES PACKS ]</p>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
@@ -386,7 +382,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- FAQ -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES ]</p>
         <div class="border-t border-brand-black/10">
@@ -429,7 +424,6 @@ const pageSchema = [
   <Footer />
 
   <script>
-    // Scroll-reveal — stejný pattern jako na případových studiích
     document.body.classList.add('reveal-ready');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {

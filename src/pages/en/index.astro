@@ -2,11 +2,30 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-).slice(0, 3);
+const homeStudies = [
+  {
+    href: '/en/case-studies',
+    category: "Automotive · career portal",
+    title: "40% of applicants couldn’t find their way to open positions — on a site that “looked clear”.",
+    method: "Eye tracking + survey · N = 102",
+    result: "40% lost",
+  },
+  {
+    href: '/en/case-studies',
+    category: "Educational microsite",
+    title: "92% of gazes landed on the main CTA. Only a third finished the long paragraph.",
+    method: "Eye tracking, AOI analysis · ~120 participants",
+    result: "92% on CTA",
+  },
+  {
+    href: '/en/case-studies',
+    category: "Ad creative",
+    title: "Where the person in your banner looks is where your customer looks.",
+    method: "Eye tracking experiment · N = 104",
+    result: "Gaze leads gaze",
+  },
+];
 
 const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
@@ -199,12 +218,12 @@ const clientLogos = [
     </div>
     <p class="font-mono text-sm text-brand-white/90 leading-relaxed">We are a team of UX specialists. We help companies understand their users through data, research and eye tracking.</p>
     <div class="flex gap-2">
-      <a href="/en/case-studies" class="font-mono text-xs border border-brand-white px-2 py-1">CASE STUDIES</a>
+      <a href="/en/about" class="font-mono text-xs border border-brand-white px-2 py-1">ABOUT</a>
       <a href="/en/contact" class="font-mono text-xs border border-brand-white px-2 py-1">CONTACT</a>
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJECT WITH:</p>
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="University of Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
@@ -492,47 +511,62 @@ const clientLogos = [
     </div>
   </section>
 
-  {false && posts.length > 0 && (
-    <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+  <!-- CASE STUDIES -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-12">
       <div>
-      <div class="flex justify-between items-end mb-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ BLOG ]</p>
-          <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Latest<br/>articles<span style="color:#2D62FC">.</span></h2>
-        </div>
-        <a href="/en/blog" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
-          ALL ARTICLES →
-        </a>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ CASE STUDIES ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Results<br/>speak<span style="color:#2D62FC">.</span></h2>
       </div>
+      <a href="/en/case-studies" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+        ALL STUDIES →
+      </a>
+    </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map((post) => (
-          <a href={`/blog/${post.slug}`} class="group">
-            {post.data.coverImage && (
-              <div class="aspect-video overflow-hidden mb-4 bg-brand-black/5">
-                <img
-                  src={post.data.coverImage}
-                  alt={post.data.title}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            )}
-            <div class="flex gap-2 mb-2">
-              {post.data.tags?.slice(0,2).map((tag: string) => (
-                <span class="font-mono text-xs text-brand-black/60">{tag}</span>
-              ))}
-            </div>
-            <h3 class="font-display text-xl font-bold mb-2 group-hover:opacity-60 transition-opacity">{post.data.title}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed">{post.data.excerpt}</p>
-            <p class="font-mono text-xs text-brand-black/60 mt-4">
-              {new Date(post.data.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-            </p>
-          </a>
-        ))}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+      {homeStudies.map(study => (
+        <a href={study.href} class="group bg-brand-white p-8 flex flex-col hover:bg-brand-black transition-colors">
+          <div class="flex justify-between items-start gap-3 mb-6">
+            <span class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 border border-brand-black/20 group-hover:border-brand-white/50 px-2 py-0.5 transition-colors">{study.category}</span>
+          </div>
+          <h3 class="font-display text-xl font-bold mb-4 leading-tight group-hover:text-brand-white transition-colors">{study.title}</h3>
+          <p class="font-mono text-[11px] text-brand-black/60 group-hover:text-brand-white/70 tracking-wide mb-6 transition-colors">METHOD: {study.method}</p>
+          <div class="mt-auto flex justify-between items-end gap-3">
+            <span class="font-mono text-xs tracking-widest group-hover:text-brand-white transition-colors">VIEW STUDY →</span>
+            <span class="font-display text-2xl font-bold leading-none" style="color:#2D62FC">{study.result}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ HOW WE WORK ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Five steps<br/>to a decision<span style="color:#2D62FC">.</span></h2>
       </div>
-      </div>
-    </section>
-  )}
+      <a href="/en/services/test-packages" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+        TEST PACKAGES →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+      {[
+        { num: '01', title: "Brief", desc: "We clarify the decision you need to make. The whole measurement design follows from it." },
+        { num: '02', title: "Package proposal", desc: "We recommend methods, sample and output format — including what the scope can’t safely conclude." },
+        { num: '03', title: "Preparation & piloting", desc: "Scenario, stimuli, questionnaires and a technical protocol. For complex projects, a pilot measurement." },
+        { num: '04', title: "Measurement", desc: "In the lab or in the field — with calibration, data-quality control and a consistent procedure." },
+        { num: '05', title: "Analysis & output", desc: "We connect attention, behaviour, surveys and statements into recommendations, not isolated charts." },
+      ].map(step => (
+        <div class="bg-brand-white p-6 md:p-8">
+          <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
+          <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+          <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 
   <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
     <div class="max-w-4xl mx-auto text-center">
