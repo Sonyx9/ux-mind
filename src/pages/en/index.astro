@@ -324,31 +324,45 @@ const clientLogos = [
       {[
         {
           num: '01',
-          title: 'UX Audit',
-          desc: 'A systematic analysis of your product\'s key journeys: navigation, CTAs, forms. The output isn\'t just charts — it\'s prioritised recommendations on what to improve first.',
-          href: '/en/services',
-          tags: ['Analysis', 'Recommendations', 'Prioritisation'],
+          title: "UX Audit",
+          desc: "A systematic analysis of your product's key journeys: navigation, CTAs, forms. The output isn't just charts — it's prioritised recommendations on what to improve first.",
+          href: '/en/services/ux-audit',
+          tags: ["Analysis", "Recommendations", "Prioritisation"],
         },
         {
           num: '02',
-          title: 'Eye Tracking',
-          desc: 'An objective record of visual attention: fixations, time to first fixation (TTFF), dwell time, AOI metrics, heatmaps and scanpaths. What people actually see — and what they miss.',
-          href: '/en/services/eye-tracking',
-          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
+          title: "User Testing",
+          desc: "Task scenarios with real users: where they hesitate, where they get lost, why they leave. Moderated and unmoderated, with measurable success rate and qualitative insight.",
+          href: '/en/services/user-testing',
+          tags: ["Task scenarios", "Success rate", "Qualitative insight"],
         },
         {
           num: '03',
-          title: 'UX Research',
-          desc: 'We combine objective behavioural measurement, biometric data and surveys in the context of the task. In the lab and in the field, with piloting, data quality control and honest limits.',
-          href: '/en/services/ux-research',
-          tags: ['Eye-tracking', 'Biometrics', 'Surveys'],
+          title: "Eye Tracking",
+          desc: "An objective record of visual attention: fixations, time to first fixation (TTFF), dwell time, AOI metrics, heatmaps and scanpaths. What people actually see — and what they miss.",
+          href: '/en/services/eye-tracking',
+          tags: ["Heatmap", "AOI · TTFF", "Scanpath"],
         },
         {
           num: '04',
-          title: 'Case Studies',
-          desc: '40% of applicants couldn\'t find open positions. 92% of gazes landed on the main CTA. Real numbers from real measurements — and the decisions they led to.',
+          title: "Field Research",
+          desc: "Eye-tracking and observation on site — in the store, at an event, in the real environment. Mobile eye-tracking glasses and authentic behaviour outside the lab.",
+          href: '/en/services/field-research',
+          tags: ["Mobile eye-tracking", "Real context", "Observation"],
+        },
+        {
+          num: '05',
+          title: "UX Research",
+          desc: "We combine objective behavioural measurement, biometric data and surveys in the context of the task. In the lab and in the field, with piloting, data quality control and honest limits.",
+          href: '/en/services/ux-research',
+          tags: ["Eye-tracking", "Biometrics", "Surveys"],
+        },
+        {
+          num: '06',
+          title: "Case Studies",
+          desc: "40% of applicants couldn't find open positions. 92% of gazes landed on the main CTA. Real numbers from real measurements — and the decisions they led to.",
           href: '/en/case-studies',
-          tags: ['Results', 'Data', 'Decisions'],
+          tags: ["Results", "Data", "Decisions"],
         },
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
@@ -366,6 +380,14 @@ const clientLogos = [
         </a>
       ))}
     </div>
+    <!-- Test packages — black strip -->
+    <a href="/en/services/test-packages" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-black text-brand-white border border-brand-black p-8 hover:bg-[#2D62FC] transition-colors duration-300">
+      <div>
+        <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-2">[ TEST PACKAGES ]</p>
+        <p class="font-display text-2xl font-bold leading-tight">From a quick diagnostic to a full biometric UX study — choose the scope by the decision you need to make.</p>
+      </div>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">VIEW PACKAGES →</span>
+    </a>
   </section>
 
   <!-- EMLI SECTION -->

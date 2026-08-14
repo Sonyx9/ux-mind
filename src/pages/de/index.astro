@@ -324,31 +324,45 @@ const clientLogos = [
       {[
         {
           num: '01',
-          title: 'UX Audit',
-          desc: 'Eine systematische Analyse der Schlüsselpfade Ihres Produkts: Navigation, CTAs, Formulare. Das Ergebnis sind nicht nur Diagramme — sondern priorisierte Empfehlungen, was zuerst zu verbessern ist.',
-          href: '/de/leistungen',
-          tags: ['Analyse', 'Empfehlungen', 'Priorisierung'],
+          title: "UX-Audit",
+          desc: "Systematische Analyse der wichtigsten Journeys Ihres Produkts: Navigation, CTAs, Formulare. Das Ergebnis sind nicht nur Diagramme, sondern priorisierte Empfehlungen, was zuerst zu verbessern ist.",
+          href: '/de/leistungen/ux-audit',
+          tags: ["Analyse", "Empfehlungen", "Priorisierung"],
         },
         {
           num: '02',
-          title: 'Eye Tracking',
-          desc: 'Eine objektive Aufzeichnung visueller Aufmerksamkeit: Fixationen, Time to First Fixation (TTFF), Dwell Time, AOI-Metriken, Heatmaps und Scanpaths. Was Menschen wirklich sehen — und was sie übersehen.',
-          href: '/de/leistungen/eye-tracking',
-          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
+          title: "Nutzertests",
+          desc: "Aufgabenszenarien mit echten Nutzern: wo sie zögern, wo sie sich verlieren, warum sie abspringen. Moderiert und unmoderiert, mit messbarer Erfolgsquote und qualitativen Einsichten.",
+          href: '/de/leistungen/nutzertests',
+          tags: ["Aufgabenszenarien", "Erfolgsquote", "Qualitative Einsichten"],
         },
         {
           num: '03',
-          title: 'UX-Forschung',
-          desc: 'Wir kombinieren objektive Verhaltensmessung, biometrische Daten und Befragungen im Kontext der Aufgabe. Im Labor und im Feld, mit Pilotierung, Datenqualitätskontrolle und ehrlichen Limits.',
-          href: '/de/leistungen/ux-forschung',
-          tags: ['Eye-Tracking', 'Biometrie', 'Befragungen'],
+          title: "Eye Tracking",
+          desc: "Objektive Aufzeichnung der visuellen Aufmerksamkeit: Fixationen, Time to First Fixation (TTFF), Dwell Time, AOI-Metriken, Heatmaps und Scanpaths. Was Menschen wirklich sehen — und was sie übersehen.",
+          href: '/de/leistungen/eye-tracking',
+          tags: ["Heatmap", "AOI · TTFF", "Scanpath"],
         },
         {
           num: '04',
-          title: 'Fallstudien',
-          desc: '40 % der Bewerber fanden die offenen Stellen nicht. 92 % der Blicke landeten auf dem Haupt-CTA. Echte Zahlen aus echten Messungen — und die Entscheidungen, die daraus folgten.',
+          title: "Feldforschung",
+          desc: "Eye-Tracking und Beobachtung vor Ort — im Geschäft, auf Veranstaltungen, im realen Umfeld. Mobile Eye-Tracking-Brillen und authentisches Verhalten außerhalb des Labors.",
+          href: '/de/leistungen/feldforschung',
+          tags: ["Mobiles Eye-Tracking", "Realer Kontext", "Beobachtung"],
+        },
+        {
+          num: '05',
+          title: "UX-Forschung",
+          desc: "Wir kombinieren objektive Verhaltensmessung, biometrische Daten und Fragebögen im Kontext der Aufgabe. Im Labor und im Feld, mit Piloten, Datenqualitätskontrolle und ehrlichen Grenzen.",
+          href: '/de/leistungen/ux-forschung',
+          tags: ["Eye-Tracking", "Biometrie", "Fragebögen"],
+        },
+        {
+          num: '06',
+          title: "Fallstudien",
+          desc: "40 % der Bewerber fanden keine offenen Stellen. 92 % der Blicke landeten auf dem Haupt-CTA. Echte Zahlen aus echten Messungen — und die Entscheidungen, die daraus folgten.",
           href: '/de/fallstudien',
-          tags: ['Ergebnisse', 'Daten', 'Entscheidungen'],
+          tags: ["Ergebnisse", "Daten", "Entscheidungen"],
         },
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
@@ -366,6 +380,14 @@ const clientLogos = [
         </a>
       ))}
     </div>
+    <!-- Test packages — black strip -->
+    <a href="/de/leistungen/test-pakete" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-black text-brand-white border border-brand-black p-8 hover:bg-[#2D62FC] transition-colors duration-300">
+      <div>
+        <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-2">[ TEST-PAKETE ]</p>
+        <p class="font-display text-2xl font-bold leading-tight">Von der schnellen Diagnose bis zur umfassenden biometrischen UX-Studie — wählen Sie den Umfang nach der Entscheidung, die Sie treffen müssen.</p>
+      </div>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">PAKETE ANSEHEN →</span>
+    </a>
   </section>
 
   <!-- EMLI SECTION -->

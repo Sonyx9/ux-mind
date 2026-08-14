@@ -324,31 +324,45 @@ const clientLogos = [
       {[
         {
           num: '01',
-          title: 'Audit UX',
-          desc: 'Une analyse systématique des parcours clés de votre produit : navigation, CTA, formulaires. Le résultat n\'est pas que des graphiques — ce sont des recommandations priorisées sur quoi améliorer en premier.',
-          href: '/fr/services',
-          tags: ['Analyse', 'Recommandations', 'Priorisation'],
+          title: "Audit UX",
+          desc: "Analyse systématique des parcours clés de votre produit : navigation, CTA, formulaires. Le résultat n'est pas juste des graphiques — ce sont des recommandations priorisées sur ce qu'il faut améliorer d'abord.",
+          href: '/fr/services/audit-ux',
+          tags: ["Analyse", "Recommandations", "Priorisation"],
         },
         {
           num: '02',
-          title: 'Eye Tracking',
-          desc: 'Un enregistrement objectif de l\'attention visuelle : fixations, time to first fixation (TTFF), dwell time, métriques AOI, heatmaps et scanpaths. Ce que les gens voient vraiment — et ce qu\'ils manquent.',
-          href: '/fr/services/eye-tracking',
-          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
+          title: "Tests utilisateurs",
+          desc: "Scénarios de tâches avec de vrais utilisateurs : où ils hésitent, où ils se perdent, pourquoi ils partent. Modérés et non modérés, avec taux de réussite mesurable et insights qualitatifs.",
+          href: '/fr/services/tests-utilisateurs',
+          tags: ["Scénarios de tâches", "Taux de réussite", "Insights qualitatifs"],
         },
         {
           num: '03',
-          title: 'Recherche UX',
-          desc: 'Nous combinons mesure comportementale objective, données biométriques et questionnaires dans le contexte de la tâche. En laboratoire comme sur le terrain, avec pilote, contrôle qualité des données et limites assumées.',
-          href: '/fr/services/recherche-ux',
-          tags: ['Eye-tracking', 'Biométrie', 'Questionnaires'],
+          title: "Eye Tracking",
+          desc: "Enregistrement objectif de l'attention visuelle : fixations, temps jusqu'à la première fixation (TTFF), dwell time, métriques AOI, heatmaps et scanpaths. Ce que les gens voient vraiment — et ce qu'ils manquent.",
+          href: '/fr/services/eye-tracking',
+          tags: ["Heatmap", "AOI · TTFF", "Scanpath"],
         },
         {
           num: '04',
-          title: 'Études de cas',
-          desc: '40 % des candidats n\'ont pas trouvé les postes ouverts. 92 % des regards ont atterri sur le CTA principal. Des chiffres réels issus de mesures réelles — et les décisions qui en ont découlé.',
+          title: "Recherche terrain",
+          desc: "Eye-tracking et observation sur site — en magasin, en événement, en environnement réel. Lunettes d'eye-tracking mobiles et comportement authentique hors du laboratoire.",
+          href: '/fr/services/recherche-terrain',
+          tags: ["Eye-tracking mobile", "Contexte réel", "Observation"],
+        },
+        {
+          num: '05',
+          title: "Recherche UX",
+          desc: "Nous combinons mesure objective du comportement, données biométriques et questionnaires dans le contexte de la tâche. En laboratoire et sur le terrain, avec pilotage, contrôle qualité et limites honnêtes.",
+          href: '/fr/services/recherche-ux',
+          tags: ["Eye-tracking", "Biométrie", "Questionnaires"],
+        },
+        {
+          num: '06',
+          title: "Études de cas",
+          desc: "40 % des candidats n'ont pas trouvé les postes ouverts. 92 % des regards ont atterri sur le CTA principal. Des chiffres réels issus de mesures réelles — et les décisions qui en ont découlé.",
           href: '/fr/etudes-de-cas',
-          tags: ['Résultats', 'Données', 'Décisions'],
+          tags: ["Résultats", "Données", "Décisions"],
         },
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
@@ -366,6 +380,14 @@ const clientLogos = [
         </a>
       ))}
     </div>
+    <!-- Test packages — black strip -->
+    <a href="/fr/services/packs-de-test" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-black text-brand-white border border-brand-black p-8 hover:bg-[#2D62FC] transition-colors duration-300">
+      <div>
+        <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-2">[ PACKS DE TEST ]</p>
+        <p class="font-display text-2xl font-bold leading-tight">Du diagnostic rapide à l'étude UX biométrique complète — choisissez l'ampleur selon la décision à prendre.</p>
+      </div>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">VOIR LES PACKS →</span>
+    </a>
   </section>
 
   <!-- EMLI SECTION -->

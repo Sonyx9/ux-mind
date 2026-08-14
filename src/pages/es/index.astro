@@ -324,31 +324,45 @@ const clientLogos = [
       {[
         {
           num: '01',
-          title: 'Auditoría UX',
-          desc: 'Un análisis sistemático de los recorridos clave de su producto: navegación, CTA, formularios. El resultado no son solo gráficos — son recomendaciones priorizadas sobre qué mejorar primero.',
-          href: '/es/servicios',
-          tags: ['Análisis', 'Recomendaciones', 'Priorización'],
+          title: "Auditoría UX",
+          desc: "Análisis sistemático de los recorridos clave de tu producto: navegación, CTA, formularios. El resultado no son solo gráficos, sino recomendaciones priorizadas sobre qué mejorar primero.",
+          href: '/es/servicios/auditoria-ux',
+          tags: ["Análisis", "Recomendaciones", "Priorización"],
         },
         {
           num: '02',
-          title: 'Eye Tracking',
-          desc: 'Un registro objetivo de la atención visual: fijaciones, time to first fixation (TTFF), dwell time, métricas AOI, heatmaps y scanpaths. Lo que la gente realmente ve — y lo que pasa por alto.',
-          href: '/es/servicios/eye-tracking',
-          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
+          title: "Pruebas de usuario",
+          desc: "Escenarios de tareas con usuarios reales: dónde dudan, dónde se pierden, por qué se van. Moderadas y no moderadas, con tasa de éxito medible e insights cualitativos.",
+          href: '/es/servicios/pruebas-de-usuario',
+          tags: ["Escenarios de tareas", "Tasa de éxito", "Insights cualitativos"],
         },
         {
           num: '03',
-          title: 'Investigación UX',
-          desc: 'Combinamos medición objetiva del comportamiento, datos biométricos y encuestas en el contexto de la tarea. En laboratorio y en campo, con pilotaje, control de calidad de datos y límites honestos.',
-          href: '/es/servicios/investigacion-ux',
-          tags: ['Eye-tracking', 'Biometría', 'Encuestas'],
+          title: "Eye Tracking",
+          desc: "Registro objetivo de la atención visual: fijaciones, tiempo hasta la primera fijación (TTFF), dwell time, métricas AOI, mapas de calor y scanpaths. Lo que la gente ve realmente — y lo que se pierde.",
+          href: '/es/servicios/eye-tracking',
+          tags: ["Mapa de calor", "AOI · TTFF", "Scanpath"],
         },
         {
           num: '04',
-          title: 'Casos de estudio',
-          desc: 'El 40 % de los candidatos no encontró las vacantes. El 92 % de las miradas aterrizó en el CTA principal. Números reales de mediciones reales — y las decisiones que generaron.',
+          title: "Investigación de campo",
+          desc: "Eye-tracking y observación in situ — en la tienda, en un evento, en el entorno real. Gafas de eye-tracking móviles y comportamiento auténtico fuera del laboratorio.",
+          href: '/es/servicios/investigacion-de-campo',
+          tags: ["Eye-tracking móvil", "Contexto real", "Observación"],
+        },
+        {
+          num: '05',
+          title: "Investigación UX",
+          desc: "Combinamos medición objetiva del comportamiento, datos biométricos y cuestionarios en el contexto de la tarea. En laboratorio y en campo, con pilotaje, control de calidad de datos y límites honestos.",
+          href: '/es/servicios/investigacion-ux',
+          tags: ["Eye-tracking", "Biometría", "Cuestionarios"],
+        },
+        {
+          num: '06',
+          title: "Casos de estudio",
+          desc: "El 40 % de los candidatos no encontró las vacantes. El 92 % de las miradas aterrizó en el CTA principal. Números reales de mediciones reales — y las decisiones que surgieron de ellas.",
           href: '/es/casos-de-estudio',
-          tags: ['Resultados', 'Datos', 'Decisiones'],
+          tags: ["Resultados", "Datos", "Decisiones"],
         },
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
@@ -366,6 +380,14 @@ const clientLogos = [
         </a>
       ))}
     </div>
+    <!-- Test packages — black strip -->
+    <a href="/es/servicios/paquetes-de-prueba" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-black text-brand-white border border-brand-black p-8 hover:bg-[#2D62FC] transition-colors duration-300">
+      <div>
+        <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-2">[ PAQUETES DE PRUEBA ]</p>
+        <p class="font-display text-2xl font-bold leading-tight">Desde un diagnóstico rápido hasta un estudio UX biométrico completo — elige el alcance según la decisión que necesitas tomar.</p>
+      </div>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">VER LOS PAQUETES →</span>
+    </a>
   </section>
 
   <!-- EMLI SECTION -->
