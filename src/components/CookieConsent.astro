@@ -135,14 +135,13 @@ const s = t[lang] ?? t.en;
     class="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-[92vw] max-w-2xl z-[999] border border-brand-white/15 bg-brand-black text-brand-white shadow-2xl">
     <div class="px-6 py-5 flex flex-col gap-4">
       <div>
-        <p class="font-mono text-xs tracking-widest uppercase mb-1.5" style="color:#2D62FC">{s.title}</p>
-        <p class="text-sm text-brand-white/80 leading-relaxed">
-          {s.body} <a href={policyHref} class="underline hover:text-brand-white whitespace-nowrap">{s.policy} ↗</a>
+        <p class="font-mono text-xs tracking-widest uppercase mb-1.5 text-brand-white">{s.title}</p>
+        <p class="text-sm text-brand-white leading-relaxed">
+          {s.body} <a href={policyHref} class="underline text-brand-white hover:text-brand-white/70 whitespace-nowrap">{s.policy} ↗</a>
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2">
-        <button type="button" data-cc="reject" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.rejectAll}</button>
-        <button type="button" data-cc="settings" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
+        <button type="button" data-cc="settings" class="font-mono text-xs tracking-widest uppercase border border-brand-white/60 text-brand-white px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
         <button type="button" data-cc="accept" class="font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors ml-auto">{s.acceptAll}</button>
       </div>
     </div>
