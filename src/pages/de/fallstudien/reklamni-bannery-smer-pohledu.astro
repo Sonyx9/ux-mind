@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const fakta = [["METHODE", "Eye-Tracking-Experiment"], ["STICHPROBE", "104 Probanden"], ["MANIPULATION", "Blickrichtung der Person"], ["STATISTIK", "p < 0,001 · Zufallswahrscheinlichkeit unter 0,1 %"]];
+const zjisteni = ["Starker Effekt des visuellen Hinweisreizes: F(1,102) = 12,57; p < 0,001 — die Wahrscheinlichkeit, dass es Zufall ist, liegt unter 0,1 %.", "Effektgröße ηp² = 0,11 — ein mittelgroßer Effekt: ein Unterschied, den Sie in der Praxis bemerken.", "Die Blickrichtung ist eines der günstigsten Mittel, um Aufmerksamkeit zu Botschaft und CTA zu lenken — sie erfordert keine Änderung des Layouts, nur der Komposition."];
+const faq = [
+  { q: "Funktioniert die Blickrichtung der Person auf einem Banner?", a: "Ja, messbar: Die Manipulation der Blickrichtung hatte einen starken Effekt auf die Verteilung der Aufmerksamkeit (p < 0,001; ηp² = 0,11 — ein mittelgroßer Effekt bei einer Stichprobe von 104 Probanden)." },
+  { q: "Wie nutzt man die Blickrichtung in der Kreation?", a: "Orientieren Sie die Person mit ihrem Blick zur zentralen Botschaft oder zum CTA, nicht in die Kamera. Die Aufmerksamkeit des Betrachters folgt der Blickrichtung." },
+  { q: "Lässt sich der Effekt nutzen, ohne die ganze Kreation umzubauen?", a: "Ja — es geht um eine Änderung der Komposition, nicht des Layouts. Oft genügt es, ein Foto mit passender Blickrichtung der Person zu wählen." },
+];
+const pageSchema = [
+  {
+    '@type': 'Article',
+    headline: "Wohin die Person auf dem Banner schaut, dorthin schaut auch Ihr Kunde",
+    about: 'Eye Tracking, UX-Forschung',
+    author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    inLanguage: 'de',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="de"
+  title="Fallstudie: Blickrichtung auf dem Banner (ηp² = 0,11)"
+  description="Eye-Tracking-Experiment N = 104: Die Blickrichtung der Person auf einem Banner beeinflusst stark die Aufmerksamkeitsverteilung — F(1,102) = 12,57; p < 0,001; ηp² = 0,11."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <a href="/de/fallstudien" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← ALLE FALLSTUDIEN</a>
+
+      <!-- Studien-Kopf -->
+      <div class="mt-8 mb-10">
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Werbekreation</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
+          Wohin die Person auf dem Banner schaut, dorthin schaut auch Ihr Kunde<span style="color:#2D62FC">.</span>
+        </h1>
+      </div>
+
+      <!-- Statistik-Banner -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
+        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">mittelgroßer Effekt der Blickrichtung der Person auf die Aufmerksamkeitsverteilung</p><p class="font-mono text-xs text-brand-white/70 leading-relaxed mt-3">ηp² misst die Stärke des Effekts in der Praxis: 0,11 ist ein mittelstarker Einfluss — ein Unterschied, den Sie bemerken, keine bloße statistische Kleinigkeit.</p></div>
+      </div>
+
+      <section class="reveal mb-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAR — WAS DIE ZAHLEN IN DIESER STUDIE BEDEUTEN ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">N (Stichprobe)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Anzahl der tatsächlichen Personen, die an der Messung teilgenommen haben. N = 102 bedeutet 102 Probanden.</dd></div>
+            <div><dt class="font-display font-bold mb-1">p-Wert</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Wahrscheinlichkeit, dass der gemessene Unterschied rein zufällig entstanden ist. Je kleiner, desto aussagekräftiger das Ergebnis — p = 0,037 bedeutet nur eine 3,7%ige Zufallswahrscheinlichkeit (als aussagekräftig gilt alles unter 5 %).</dd></div>
+            <div><dt class="font-display font-bold mb-1">Effektgröße (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Sagt aus, wie groß der Unterschied in der Praxis ist — nicht nur, ob er existiert. Zur Orientierung: 0,01 klein, 0,06 mittel, 0,14 großer Effekt.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Kurzes Verweilen des Auges an einer Stelle (Bruchteile einer Sekunde). Aus der Abfolge von Fixationen setzt sich alles zusammen, was ein Mensch auf der Seite tatsächlich „gesehen“ hat.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (beobachteter Bereich)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ein vorab markierter Teil der Seite — Schaltfläche, Überschrift, Foto —, für den wir messen, wie viel Aufmerksamkeit er erhalten hat.</dd></div>
+            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardisierte wissenschaftliche Fragebögen: UEQ misst das gesamte Nutzererlebnis, VisAWI die wahrgenommene Ästhetik der Website. Dank der Standardisierung sind die Ergebnisse zwischen Studien vergleichbar.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Inhalt -->
+        <div class="lg:col-span-2">
+
+          <section class="reveal mb-12">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
+            <p class="text-lg text-brand-black/80 leading-relaxed">Eine Komposition mit einem menschlichen Gesicht gehört zu den stärksten Elementen einer Werbekreation. Ein Gesicht zieht die Aufmerksamkeit aber nicht nur an — es kann sie auch weitergeben. Wir haben getestet, wie stark dieser Effekt ist und ob er sich zuverlässig nutzen lässt.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— GESCHÄFTSFRAGE</span></p>
+            <p class="font-display text-2xl font-bold leading-snug">Kann die Blickrichtung der Person in der Kreation die Aufmerksamkeit des Betrachters systematisch zur Botschaft lenken?</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESSUNG</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Eye-Tracking-Experiment mit Manipulation des visuellen Hinweisreizes: Die Varianten der Kreation unterschieden sich in der Blickrichtung der Person, gemessen wurde die Verteilung der Aufmerksamkeit zwischen Gesicht, Botschaft und Produkt.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WAS DIE DATEN ZEIGTEN</span></p>
+            <div class="space-y-5">
+              {zjisteni.map((item, i) => (
+                <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
+                  <p class="font-mono text-xs text-brand-black/60 mt-1 shrink-0">0{i + 1}</p>
+                  <p class="text-brand-black/80 leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="reveal mb-12">
+            <div class="relative border border-brand-black/15 p-6 md:p-10">
+              <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATEN IM BILD ]</p>
+              <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Illustratives Schema: die Blickrichtung der Person lenkt die Aufmerksamkeit des Betrachters">
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILLUSTRATIVES SCHEMA DES EFFEKTS · EIGENER DEMO-STIMULUS</text>
+  <g>
+    <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
+    <circle cx="70" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+    <circle cx="62" cy="105" r="3" fill="#0A0A0A"/><circle cx="80" cy="105" r="3" fill="#0A0A0A"/>
+    <rect x="200" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+    <circle cx="70" cy="110" r="44" fill="#2D62FC" opacity="0.25"/>
+    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">BLICK IN DIE KAMERA</text>
+    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">Aufmerksamkeit bleibt auf dem Gesicht</text>
+  </g>
+  <g>
+    <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
+    <circle cx="410" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+    <circle cx="424" cy="108" r="3" fill="#0A0A0A"/><circle cx="432" cy="112" r="3" fill="#0A0A0A"/>
+    <line x1="440" y1="118" x2="530" y2="152" stroke="#2D62FC" stroke-width="2" stroke-dasharray="4 4"/>
+    <rect x="540" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+    <circle cx="575" cy="163" r="44" fill="#2D62FC" opacity="0.25"/>
+    <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">BLICK AUF DAS PRODUKT</text>
+    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">Aufmerksamkeit folgt der Blickrichtung</text>
+  </g>
+  <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EFFEKT DES HINWEISREIZES: F(1,102) = 12,57 · p &lt; 0,001 · ηp² = 0,11 (MITTELGROSSER EFFEKT)</text>
+</svg>
+            </div>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schema des Prinzips an einem eigenen Demo-Stimulus: die blaue Fläche stellt den Schwerpunkt der Aufmerksamkeit dar. Die Statistik stammt aus einer realen Messung.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WAS ENTSCHIEDEN WURDE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Personen in Kreationen mit dem Blick zur zentralen Botschaft oder zum CTA orientieren, nicht in die Kamera.</p>
+          </section>
+
+          <section class="reveal border border-brand-black p-8">
+            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">WAS EMLI HEUTE ERGÄNZEN WÜRDE</p>
+            <p class="text-brand-black/70 leading-relaxed">Bei einer ähnlichen Aufgabe messen wir heute zusätzlich die kognitive Belastung bei der Verarbeitung der Kreation — ob der Hinweisreiz die Botschaft nur sichtbarer macht oder auch ihre Verarbeitung erleichtert.</p>
+          </section>
+        </div>
+
+        <!-- Fakten + Foto (sticky) -->
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-28 space-y-6">
+            <div class="border border-brand-black/10 p-6">
+              <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE ENTSTAND IN ZUSAMMENARBEIT MIT</p>
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
+                alt="Universität Hradec Králové — Fakultät für Informatik und Management"
+                title="Studie entstand in Zusammenarbeit mit der FIM UHK"
+                width="157" height="37" loading="lazy" decoding="async"
+                class="h-8 w-auto"
+              />
+            </div>
+            <div class="border border-brand-black p-6">
+              <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-5">MESSDATEN</p>
+              <dl class="space-y-4">
+                {fakta.map(([k, v]) => (
+                  <div>
+                    <dt class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-0.5">{k}</dt>
+                    <dd class="text-sm text-brand-black/80 leading-snug">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <figure>
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
+                alt="Visualisierung des Testarbeitsplatzes im Labor — getrennte Boxen mit Arbeitsstationen"
+                width="1080" height="720" loading="lazy" decoding="async"
+                class="w-full h-52 object-cover border border-brand-black/10"
+              />
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Visualisierung der Test-Boxen, in denen die Messung der Kreationen ohne Störung erfolgt</figcaption>
+            </figure>
+            <a href="/de/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              UNVERBINDLICHE ANFRAGE →
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- FAQ zur Studie -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HÄUFIGE FRAGEN ZUR STUDIE ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Schmaler Streifen: vollständige Studie (öffnet Modal) -->
+      <section class="reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+        <div>
+          <p class="font-display text-xl md:text-2xl font-bold leading-tight">Möchten Sie die Studie im Detail durchgehen<span style="color:#2D62FC">?</span></p>
+          <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">AUSFÜHRLICHER REPORT MIT METHODIK UND EMPFEHLUNGEN — KOSTENLOS ALS PDF</p>
+        </div>
+        <button type="button" class="study-modal-open shrink-0 border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          STUDIE ANFORDERN →
+        </button>
+      </section>
+
+      <!-- Navigation zwischen Studien -->
+      <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Weitere Fallstudien">
+        <a href="/de/fallstudien/produktove-fotografie-e-commerce" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← VORHERIGE STUDIE</p>
+          <p class="font-display font-bold leading-snug">Ein Foto „am Model“ sieht besser aus. Aber es verlangsamte den Kauf.</p>
+        </a>
+        <a href="/de/fallstudien/sablony-e-shopu" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">NÄCHSTE STUDIE →</p>
+          <p class="font-display font-bold leading-snug">Drei Templates, dasselbe Sortiment. Die Aufgabe entschied.</p>
+        </a>
+      </nav>
+
+      <!-- Abschluss-CTA -->
+      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Zwei Varianten der Kreation vergleichen<span style="color:#2D62FC">.</span></h2>
+        <a href="/de/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          UNVERBINDLICHE ANFRAGE →
+        </a>
+        <p class="font-mono text-xs text-brand-white/60 mt-6">TYPISCHES PAKET FÜR DIESE ART VON AUFTRAG: <a href="/de/leistungen/test-pakete" class="text-brand-white underline hover:no-underline">Standard-UX-Test</a></p>
+      </div>
+    </div>
+
+      <!-- Modal: Anforderung der vollständigen Studie -->
+      <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
+        <div class="p-8">
+          <div class="flex justify-between items-start mb-6">
+            <p class="font-mono text-xs text-brand-white/70 tracking-widest">[ AUSFÜHRLICHE STUDIE ]</p>
+            <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/70 transition-colors" aria-label="Fenster schließen">×</button>
+          </div>
+          <h2 class="font-display text-2xl font-bold mb-3">Möchten Sie die Studie im Detail durchgehen<span style="color:#2D62FC">?</span></h2>
+          <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Die Studien sind gekürzt und anonymisiert.</p>
+          <form class="study-request space-y-4" data-pdf={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/studie/reklamni-bannery-smer-pohledu.pdf`} data-study="Wohin die Person auf dem Banner schaut, dorthin schaut auch Ihr Kunde">
+            <div>
+              <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
+              <input type="text" id="sr-name" name="name" required placeholder="Ihr Name"
+                class="study-input" />
+            </div>
+            <div>
+              <label for="sr-company" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">FIRMA</label>
+              <input type="text" id="sr-company" name="company" placeholder="Firmenname (optional)"
+                class="study-input" />
+            </div>
+            <div>
+              <label for="sr-email" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">E-MAIL *</label>
+              <input type="email" id="sr-email" name="email" required placeholder="ihre@email.de"
+                class="study-input" />
+            </div>
+            <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              STUDIE ANZEIGEN (PDF) →
+            </button>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Danke! Falls sich die Studie nicht von selbst geöffnet hat, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">öffnen Sie sie über diesen Link</a>.</p>
+            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">Mit dem Absenden stimmen Sie der Anzeige der Studie und dem gelegentlichen Erhalt von Geschäftsangeboten von UX MIND zu. Sie können sich jederzeit mit einem Klick abmelden.</p>
+          </form>
+        </div>
+      </dialog>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../../../scripts/case-study';
+</script>

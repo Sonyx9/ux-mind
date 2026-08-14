@@ -1,0 +1,278 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const fakta = [["METHOD", "Eye tracking + questionnaire + TOP3"], ["SAMPLE", "79 respondents (43 men, 36 women) · 17–25 years"], ["STIMULI", "16 designs · 10 seconds each"], ["OUTPUTS", "Ranking of variants, gender analysis"]];
+const zjisteni = ["A clear dominance of black designs: all six top-rated variants had a black background, and the bottom cluster was made up of white variants.", "The winning variant achieved the highest weighted score in the TOP3 selection as well as the best average final position.", "The strongest insight: 39% of women vs. 16% of men are influenced by visual advertising. Women also weigh comfort factors more — the weather (78% vs. 56%) and the kick-off time (72% vs. 56%).", "A fair caveat: the fixation metrics of the TOP3 and the worst-rated variants differed only minimally — the winner was decided by subjective preference and legibility, not by a dramatic difference in eye behaviour."];
+const faq = [
+  { q: "Which billboards work best?", a: "In the measurement of 16 designs on 79 respondents, the black minimalist variants with a strong heading clearly won — all six of the top-rated had a black background." },
+  { q: "Does outdoor advertising affect men and women the same way?", a: "No — 39% of women vs. 16% of men are influenced by visual advertising. Women also take comfort factors more into account, such as the weather or the kick-off time." },
+  { q: "Did eye metrics decide the winner?", a: "No — the fixation metrics differed only minimally between variants; the winner was decided by subjective preference and legibility. That's exactly why today we supplement the measurement with the EMLI cognitive load index." },
+];
+const pageSchema = [
+  {
+    '@type': 'Article',
+    headline: "16 billboard designs, 79 pairs of eyes",
+    about: 'Eye tracking, UX research',
+    author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    inLanguage: 'en',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  lang="en"
+  title="Case study: 16 billboards, 79 respondents"
+  description="Eye tracking of 16 billboard designs for a football club (N = 79): the black minimalist variants won. Visual advertising influences 39% of women vs. 16% of men."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <a href="/en/case-studies" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← ALL STUDIES</a>
+
+      <!-- Study header -->
+      <div class="mt-8 mb-10">
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Sports marketing · outdoor advertising</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
+          16 billboard designs, 79 pairs of eyes<span style="color:#2D62FC">.</span>
+        </h1>
+      </div>
+
+      <!-- Statistics banner -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252.252.252.0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252.252.252.0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">39 : 16</p>
+        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">% of women vs. men influenced by visual advertising — and a clear win for the black variants</p>
+      </div>
+
+      <section class="reveal mb-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSARY — WHAT THE NUMBERS IN THIS STUDY MEAN ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">N (sample)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The number of real people who took part in the measurement. N = 102 means 102 respondents.</dd></div>
+            <div><dt class="font-display font-bold mb-1">p-value</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The probability that the measured difference arose by pure chance. The smaller it is, the more conclusive the result — p = 0.037 means only a 3.7% chance of coincidence (anything below 5% is considered conclusive).</dd></div>
+            <div><dt class="font-display font-bold mb-1">Effect size (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Tells you how large the difference is in practice — not just whether it exists. As a rough guide: 0.01 small, 0.06 medium, 0.14 large effect.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A brief stop of the eye on one spot (fractions of a second). The sequence of fixations makes up everything a person actually “saw” on the page.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (area of interest)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A predefined part of the page — a button, a heading, a photo — for which we measure how much attention it received.</dd></div>
+            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardized scientific questionnaires: UEQ measures the overall user experience, VisAWI the perceived aesthetics of a website. Thanks to standardization, results are comparable across studies.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Content -->
+        <div class="lg:col-span-2">
+
+          <section class="reveal mb-12">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXT</span></p>
+            <p class="text-lg text-brand-black/80 leading-relaxed">A football club was preparing a campaign to boost stadium attendance and had 16 graphic billboard designs to choose from. Instead of a vote within the marketing team, it chose measurement on the target group.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— BUSINESS QUESTION</span></p>
+            <p class="font-display text-2xl font-bold leading-snug">Which of the 16 graphic billboard designs best grabs attention and leads to an intent to buy a ticket — and does it differ by the viewer's gender?</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MEASUREMENT</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Each respondent saw all 16 designs for exactly 10 seconds. Eye tracking was supplemented by an evaluation questionnaire (overall rating, clarity, attention, purchase intent) and a selection of the TOP3 variants.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WHAT THE DATA SHOWED</span></p>
+            <div class="space-y-5">
+              {zjisteni.map((item, i) => (
+                <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
+                  <p class="font-mono text-xs text-brand-black/60 mt-1 shrink-0">0{i + 1}</p>
+                  <p class="text-brand-black/80 leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section class="reveal mb-12">
+            <div class="relative border border-brand-black/15 p-6 md:p-10">
+              <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
+          <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA VISUALIZED ]</p>
+              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Visual advertising influences 39 percent of women and 16 percent of men"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10.10.10.0.6)">SHARE OF VIEWERS INFLUENCED BY VISUAL ADVERTISING · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">WOMEN</text><rect x="190" y="52" width="400" height="22" fill="rgba(10.10.10.0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC" class="viz-bar"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">MEN</text><rect x="190" y="104" width="400" height="22" fill="rgba(10.10.10.0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A" class="viz-bar"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
+<svg viewBox="0 0 640 120" class="w-full mt-2" role="img" aria-label="The six top-rated designs had a black background, the bottom cluster was made up of white variants">
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10.10.10.0.6)">RATING OF 16 DESIGNS · TOP 6 vs BOTTOM CLUSTER</text>
+  <g>
+    <rect x="0" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="48" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="96" y="36" width="40" height="26" fill="#0A0A0A"/>
+    <rect x="144" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="192" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="240" y="36" width="40" height="26" fill="#0A0A0A"/>
+    <text x="292" y="54" font-family="monospace" font-size="11" fill="#0A0A0A">TOP 6 = BLACK BACKGROUND</text>
+  </g>
+  <g stroke="rgba(10.10.10.0.4)" fill="none">
+    <rect x="0" y="76" width="40" height="26"/><rect x="48" y="76" width="40" height="26"/><rect x="96" y="76" width="40" height="26"/><rect x="144" y="76" width="40" height="26"/>
+    <text x="196" y="94" font-family="monospace" font-size="11" fill="rgba(10.10.10.0.6)" stroke="none">BOTTOM CLUSTER = WHITE VARIANTS</text>
+  </g>
+</svg>
+            </div>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">The gender difference is the study's most transferable insight; the ranking shows the clear dominance of the black variants.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WHAT WAS DECIDED</span></p>
+            <p class="text-brand-black/70 leading-relaxed">A black, simple and minimalist background, a strong heading, a non-aggressive composition of figures and a clearly defined goal for the billboard.</p>
+          </section>
+
+          <section class="reveal border border-brand-black p-8">
+            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">WHAT EMLI WOULD ADD TODAY</p>
+            <p class="text-brand-black/70 leading-relaxed">For a similar brief today we additionally measure the EMLI load index — because the fixation metrics barely differed between variants, it would be the ideal referee: it would show whether “clean” designs really reduce the load of reading the message.</p>
+          </section>
+        </div>
+
+        <!-- Facts + photo (sticky) -->
+        <aside class="lg:col-span-1">
+          <div class="lg:sticky lg:top-28 space-y-6">
+            <div class="border border-brand-black/10 p-6">
+              <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDY PRODUCED IN COLLABORATION WITH</p>
+              <img
+                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
+                alt="University of Hradec Králové — Faculty of Informatics and Management"
+                title="Study produced in collaboration with FIM UHK"
+                width="157" height="37" loading="lazy" decoding="async"
+                class="h-8 w-auto"
+              />
+            </div>
+            <div class="border border-brand-black p-6">
+              <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-5">MEASUREMENT FACTS</p>
+              <dl class="space-y-4">
+                {fakta.map(([k, v]) => (
+                  <div>
+                    <dt class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-0.5">{k}</dt>
+                    <dd class="text-sm text-brand-black/80 leading-snug">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <figure>
+              <div class="border border-brand-black/10 p-4 bg-brand-white">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Diagram of the winning billboard principle: a black minimalist background with a strong heading">
+                  <rect x="24" y="16" width="272" height="120" fill="#0A0A0A"/>
+                  <rect x="48" y="44" width="130" height="14" fill="#FCFCFC"/>
+                  <rect x="48" y="68" width="90" height="8" fill="rgba(252.252.252.0.5)"/>
+                  <rect x="48" y="100" width="64" height="16" fill="#2D62FC"/>
+                  <circle cx="248" cy="76" r="26" fill="none" stroke="rgba(252.252.252.0.6)" stroke-width="2"/>
+                  <rect x="96" y="136" width="10" height="52" fill="#0A0A0A"/>
+                  <rect x="214" y="136" width="10" height="52" fill="#0A0A0A"/>
+                  <text x="24" y="204" font-family="monospace" font-size="11" fill="#0A0A0A">WINNING PRINCIPLE: BLACK · MINIMALISM · CLEAR HEADING</text>
+                </svg>
+              </div>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Diagram of the winning principle — black background, strong heading, one clear goal</figcaption>
+            </figure>
+            <a href="/en/contact" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              GET A QUOTE →
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Study FAQ -->
+      <section class="reveal mt-20">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ FREQUENTLY ASKED QUESTIONS ]</p>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Narrow strip: full study (opens modal) -->
+      <section class="reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+        <div>
+          <p class="font-display text-xl md:text-2xl font-bold leading-tight">Want to go through the study in more detail<span style="color:#2D62FC">?</span></p>
+          <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">DETAILED REPORT WITH METHODOLOGY AND RECOMMENDATIONS — FREE PDF</p>
+        </div>
+        <button type="button" class="study-modal-open shrink-0 border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          REQUEST STUDY →
+        </button>
+      </section>
+
+      <!-- Navigation between studies -->
+      <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="More case studies">
+        <a href="/en/case-studies/sablony-e-shopu" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← PREVIOUS STUDY</p>
+          <p class="font-display font-bold leading-snug">Three templates, same catalog. The task decided.</p>
+        </a>
+        <a href="/en/case-studies/karierni-portal-automotive" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
+          <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">NEXT STUDY →</p>
+          <p class="font-display font-bold leading-snug">40% of applicants couldn't find their way to open positions</p>
+        </a>
+      </nav>
+
+      <!-- Closing CTA -->
+      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
+        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Test your campaign visuals on real viewers<span style="color:#2D62FC">.</span></h2>
+        <a href="/en/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          GET A QUOTE →
+        </a>
+        <p class="font-mono text-xs text-brand-white/60 mt-6">TYPICAL PACKAGE FOR THIS KIND OF WORK: <a href="/en/services/test-packages" class="text-brand-white underline hover:no-underline">Standard UX test</a></p>
+      </div>
+    </div>
+
+      <!-- Modal: request the full study -->
+      <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
+        <div class="p-8">
+          <div class="flex justify-between items-start mb-6">
+            <p class="font-mono text-xs text-brand-white/70 tracking-widest">[ DETAILED STUDY ]</p>
+            <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/70 transition-colors" aria-label="Close window">×</button>
+          </div>
+          <h2 class="font-display text-2xl font-bold mb-3">Want to go through the study in more detail<span style="color:#2D62FC">?</span></h2>
+          <p class="text-brand-white/70 text-sm leading-relaxed mb-6">The studies are abridged and anonymized.</p>
+          <form class="study-request space-y-4" data-pdf={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/studie/billboardy-sport-marketing.pdf`} data-study="16 billboard designs, 79 pairs of eyes">
+            <div>
+              <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
+              <input type="text" id="sr-name" name="name" required placeholder="Your name"
+                class="study-input" />
+            </div>
+            <div>
+              <label for="sr-company" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">COMPANY</label>
+              <input type="text" id="sr-company" name="company" placeholder="Company name (optional)"
+                class="study-input" />
+            </div>
+            <div>
+              <label for="sr-email" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">E-MAIL *</label>
+              <input type="email" id="sr-email" name="email" required placeholder="you@email.com"
+                class="study-input" />
+            </div>
+            <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              VIEW STUDY (PDF) →
+            </button>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Thank you! If the study didn't open by itself, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">open it with this link</a>.</p>
+            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">By submitting you agree to view the study and to receive occasional business offers from UX MIND. You can unsubscribe at any time with a single click.</p>
+          </form>
+        </div>
+      </dialog>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import '../../../scripts/case-study';
+</script>

@@ -27,6 +27,7 @@ import Footer from '../../components/Footer.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
+            href: '/es/casos-de-estudio/karierni-portal-automotive',
             category: "Automoción · portal de empleo",
             title: "El 40 % de los candidatos no encontró las vacantes — en una web que «parecía clara».",
             desc: "El eye tracking con el escenario «encuentre las vacantes» mostró que la claridad percibida no coincide con el éxito en la tarea. Una comparación A/B de un CTA flotante produjo diferencias medibles en métricas de fijación y duración de la visita. Resultado: recorrido simplificado y navegación rediseñada.",
@@ -35,6 +36,7 @@ import Footer from '../../components/Footer.astro';
             result: "40 % perdidos",
           },
           {
+            href: '/es/casos-de-estudio/backend-stories',
             category: "Microsite educativo",
             title: "El 92 % de las miradas terminó en el CTA principal. Solo un tercio leyó el párrafo largo.",
             desc: "El análisis AOI reveló un gradiente de lectura: ~86 % registró el titular en negrita, 62 % el texto corto y solo ~33 % el párrafo largo. La orientación la aporta la jerarquía, no la cantidad de texto — se destacó el CTA principal y se acortaron los bloques largos.",
@@ -43,6 +45,7 @@ import Footer from '../../components/Footer.astro';
             result: "92 % en el CTA",
           },
           {
+            href: '/es/casos-de-estudio/produktove-fotografie-e-commerce',
             category: "E-commerce",
             title: "Las fotos lifestyle se ven mejor. Pero ralentizaron la decisión de compra — de forma medible.",
             desc: "Un experimento comparó un packshot limpio con una foto lifestyle. El tipo de foto tuvo un efecto significativo en el tiempo de la tarea — F(1,82) = 4,50; p = 0,037. Sin efecto claro en las valoraciones subjetivas: «más bonito» no significa «más eficaz».",
@@ -51,6 +54,7 @@ import Footer from '../../components/Footer.astro';
             result: "Bonito pero lento",
           },
           {
+            href: '/es/casos-de-estudio/reklamni-bannery-smer-pohledu',
             category: "Creatividad publicitaria",
             title: "Adonde mira la persona de su banner, mira también su cliente.",
             desc: "La manipulación de la señal visual (dirección de la mirada del modelo) tuvo un fuerte efecto estadístico en la distribución de la atención: F(1,102) = 12,57; p < 0,001; ηp² = 0,11 — un efecto de tamaño medio. La dirección de la mirada es una de las herramientas más baratas para guiar la atención al mensaje y al CTA.",
@@ -59,6 +63,7 @@ import Footer from '../../components/Footer.astro';
             result: "La mirada guía",
           },
           {
+            href: '/es/casos-de-estudio/sablony-e-shopu',
             category: "Plantillas de e-shop",
             title: "Tres plantillas, el mismo surtido. La atención cambiaba según la tarea asignada.",
             desc: "La misma plantilla producía patrones de atención distintos según la tarea recibida. Las valoraciones estéticas sin contexto de tarea son engañosas — pruebe su plantilla con tareas de compra reales, no «por impresión».",
@@ -67,6 +72,7 @@ import Footer from '../../components/Footer.astro';
             result: "El contexto manda",
           },
           {
+            href: '/es/casos-de-estudio/billboardy-sport-marketing',
             category: "Marketing deportivo · OOH",
             title: "16 diseños de vallas, 79 pares de ojos. Ganaron las variantes negras minimalistas.",
             desc: "Los seis diseños mejor valorados tenían fondo negro; la variante ganadora logró la mejor puntuación TOP3 y el mejor puesto medio. El insight más fuerte: la publicidad visual influye en el 39 % de las mujeres frente al 16 % de los hombres. Recomendación: fondo limpio, titular claro, composición no agresiva.",
@@ -83,11 +89,14 @@ import Footer from '../../components/Footer.astro';
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTODO: {study.method}</p>
-            <div class="flex flex-wrap gap-2 mt-auto">
+            <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
             </div>
+            <a href={study.href} class="inline-block self-start border border-brand-black px-5 py-2.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VER EL ESTUDIO →
+            </a>
           </div>
         ))}
       </div>

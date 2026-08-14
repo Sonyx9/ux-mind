@@ -27,6 +27,7 @@ import Footer from '../../components/Footer.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
+            href: '/en/case-studies/karierni-portal-automotive',
             category: "Automotive · career portal",
             title: "40% of applicants couldn’t find their way to open positions — on a site that “looked clear”.",
             desc: "Eye tracking with a “find open positions” scenario showed that subjective clarity ratings don’t match task success. An A/B comparison of a floating CTA produced measurable differences in fixation metrics and visit length. The result: a simplified path to positions and a rebuilt navigation.",
@@ -35,6 +36,7 @@ import Footer from '../../components/Footer.astro';
             result: "40% lost",
           },
           {
+            href: '/en/case-studies/backend-stories',
             category: "Educational microsite",
             title: "92% of gazes landed on the main CTA. Only a third finished the long paragraph.",
             desc: "AOI analysis revealed a reading gradient: ~86% of participants registered the bold headline, 62% the short follow-up text and only ~33% the long paragraph. Orientation is carried by hierarchy, not text volume — so the primary CTA was emphasised and long blocks shortened.",
@@ -43,6 +45,7 @@ import Footer from '../../components/Footer.astro';
             result: "92% on CTA",
           },
           {
+            href: '/en/case-studies/produktove-fotografie-e-commerce',
             category: "E-commerce",
             title: "Lifestyle product photos look better. But they measurably slowed down purchase decisions.",
             desc: "An experiment compared a clean packshot with a lifestyle photo. Photo type had a significant effect on task completion time — F(1,82) = 4.50; p = 0.037. No clear effect on subjective ratings: “prettier” doesn’t mean “more effective”. Choose photo type by page goal.",
@@ -51,6 +54,7 @@ import Footer from '../../components/Footer.astro';
             result: "Prettier, slower",
           },
           {
+            href: '/en/case-studies/reklamni-bannery-smer-pohledu',
             category: "Ad creative",
             title: "Where the person in your banner looks is where your customer looks.",
             desc: "Manipulating the visual cue (the model’s gaze direction) had a strong statistical effect on attention distribution: F(1,102) = 12.57; p < 0.001; ηp² = 0.11 — a medium-sized effect. Gaze direction is one of the cheapest tools to guide attention to your message and CTA.",
@@ -59,6 +63,7 @@ import Footer from '../../components/Footer.astro';
             result: "Gaze leads gaze",
           },
           {
+            href: '/en/case-studies/sablony-e-shopu',
             category: "E-shop templates",
             title: "Three templates, the same products. Attention shifted with the task given.",
             desc: "The same template produced different attention patterns depending on the task users received. Aesthetic ratings without task context are misleading — test your e-shop template with real shopping tasks, not “by impression”.",
@@ -67,6 +72,7 @@ import Footer from '../../components/Footer.astro';
             result: "Context wins",
           },
           {
+            href: '/en/case-studies/billboardy-sport-marketing',
             category: "Sports marketing · OOH",
             title: "16 billboard designs, 79 pairs of eyes. The black minimalist variants won.",
             desc: "All six top-rated designs had a black background; the winning variant scored highest in TOP3 picks and best average ranking. The strongest insight: visual advertising influences 39% of women vs. 16% of men. Recommendation: clean background, clear headline, non-aggressive composition.",
@@ -83,11 +89,14 @@ import Footer from '../../components/Footer.astro';
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METHOD: {study.method}</p>
-            <div class="flex flex-wrap gap-2 mt-auto">
+            <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
             </div>
+            <a href={study.href} class="inline-block self-start border border-brand-black px-5 py-2.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VIEW STUDY →
+            </a>
           </div>
         ))}
       </div>

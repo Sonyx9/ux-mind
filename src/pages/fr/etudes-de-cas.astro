@@ -27,6 +27,7 @@ import Footer from '../../components/Footer.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
+            href: '/fr/etudes-de-cas/karierni-portal-automotive',
             category: "Automobile · portail carrière",
             title: "40 % des candidats n’ont pas trouvé les postes ouverts — sur un site pourtant « clair ».",
             desc: "L’eye tracking avec le scénario « trouvez les postes ouverts » a montré que la clarté perçue ne correspond pas à la réussite de la tâche. Une comparaison A/B d’un CTA flottant a produit des différences mesurables dans les métriques de fixation et la durée de visite. Résultat : un parcours simplifié et une navigation repensée.",
@@ -35,6 +36,7 @@ import Footer from '../../components/Footer.astro';
             result: "40 % perdus",
           },
           {
+            href: '/fr/etudes-de-cas/backend-stories',
             category: "Microsite éducatif",
             title: "92 % des regards ont fini sur le CTA principal. Seul un tiers a lu le long paragraphe.",
             desc: "L’analyse AOI a révélé un gradient de lecture : ~86 % des participants ont enregistré le titre en gras, 62 % le texte court et seulement ~33 % le long paragraphe. L’orientation vient de la hiérarchie, pas du volume de texte — le CTA principal a été renforcé, les longs blocs raccourcis.",
@@ -43,6 +45,7 @@ import Footer from '../../components/Footer.astro';
             result: "92 % sur le CTA",
           },
           {
+            href: '/fr/etudes-de-cas/produktove-fotografie-e-commerce',
             category: "E-commerce",
             title: "Les photos lifestyle sont plus belles. Mais elles ont ralenti la décision d’achat — mesurablement.",
             desc: "Une expérience a comparé un packshot épuré à une photo lifestyle. Le type de photo a eu un effet significatif sur le temps d’exécution de la tâche — F(1,82) = 4,50 ; p = 0,037. Pas d’effet clair sur les évaluations subjectives : « plus joli » ne veut pas dire « plus performant ».",
@@ -51,6 +54,7 @@ import Footer from '../../components/Footer.astro';
             result: "Beau mais lent",
           },
           {
+            href: '/fr/etudes-de-cas/reklamni-bannery-smer-pohledu',
             category: "Créa publicitaire",
             title: "Là où regarde le personnage de votre bannière, votre client regarde aussi.",
             desc: "La manipulation de l’indice visuel (direction du regard du modèle) a eu un fort effet statistique sur la répartition de l’attention : F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11 — un effet de taille moyenne. La direction du regard est l’un des outils les moins chers pour guider l’attention vers le message et le CTA.",
@@ -59,6 +63,7 @@ import Footer from '../../components/Footer.astro';
             result: "Le regard guide",
           },
           {
+            href: '/fr/etudes-de-cas/sablony-e-shopu',
             category: "Templates e-shop",
             title: "Trois templates, le même assortiment. L’attention changeait selon la tâche donnée.",
             desc: "Le même template produisait des schémas d’attention différents selon la tâche reçue. Les évaluations esthétiques hors contexte de tâche sont trompeuses — testez votre template avec de vraies tâches d’achat, pas « à l’impression ».",
@@ -67,6 +72,7 @@ import Footer from '../../components/Footer.astro';
             result: "Le contexte prime",
           },
           {
+            href: '/fr/etudes-de-cas/billboardy-sport-marketing',
             category: "Marketing sportif · OOH",
             title: "16 maquettes d’affichage, 79 paires d’yeux. Les variantes noires minimalistes ont gagné.",
             desc: "Les six maquettes les mieux notées avaient toutes un fond noir ; la variante gagnante a obtenu le meilleur score TOP3 et le meilleur rang moyen. Insight le plus fort : la publicité visuelle influence 39 % des femmes contre 16 % des hommes. Recommandation : fond épuré, titre clair, composition non agressive.",
@@ -83,11 +89,14 @@ import Footer from '../../components/Footer.astro';
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
             <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTHODE : {study.method}</p>
-            <div class="flex flex-wrap gap-2 mt-auto">
+            <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (
                 <span class="font-mono text-xs text-brand-black/60 border border-brand-black/10 px-2 py-1">{tag}</span>
               ))}
             </div>
+            <a href={study.href} class="inline-block self-start border border-brand-black px-5 py-2.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VOIR L’ÉTUDE →
+            </a>
           </div>
         ))}
       </div>
