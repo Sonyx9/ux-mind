@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const partners = [{"num":"01","name":"Univerzita Hradec Králové","claim":"Là où vit UXMIND.","logo":`${base}/logos/uhk.svg`,"logoAlt":"Logo de l’Université de Hradec Králové","logoClass":"h-16 md:h-20","text":["Nous ne faisons pas de recherche « en coopération avec des universitaires » — nous la faisons directement dans le laboratoire d’eye-tracking de la Faculté d’informatique et de management de l’UHK. Une base universitaire, c’est du matériel calibré, de la rigueur méthodologique et du pilotage avant qu’un seul point de données réel ne soit collecté.","C’est ici qu’est né notre indice de charge mentale EMLI, et c’est d’ici que nous partons aussi sur le terrain. Précision académique, rythme commercial."],"tags":["FIM UHK","Laboratoire","EMLI"],"links":[{"label":"UHK.CZ →","href":"https://www.uhk.cz"},{"label":"FACULTÉ D’INFORMATIQUE ET DE MANAGEMENT","href":"https://www.uhk.cz/cs/fakulta-informatiky-a-managementu"}]},{"num":"02","name":"MindSense","claim":"Science of attention.","logo":`${base}/logos/mindsense.png`,"logoAlt":"Logo MindSense — solutions pour laboratoires de recherche","logoClass":"h-10 md:h-12","text":["Un partenaire technologique qui comprend notre laboratoire — parce qu’il a aidé à le construire. MindSense a étendu le laboratoire d’eye-tracking de l’UHK avec de nouveaux équipements de recherche et, en tant que distributeur Tobii exclusif et agréé pour la Tchéquie et la Slovaquie, maintient notre technique au niveau mondial.","Biocapteurs, EEG, GSR, motion capture et eye tracking en réalité virtuelle : quand nous devons mesurer quelque chose de nouveau, nous savons où trouver le matériel, le logiciel et le savoir-faire."],"tags":["Tobii","Biocapteurs","VR"],"links":[{"label":"MINDSENSE.CZ →","href":"https://mindsense.cz"}]}];
+
+const pageSchema = [
+  {
+    '@type': 'WebPage',
+    name: "Partenaires du projet UXMIND",
+    description: "Partenaires du projet UXMIND : Université de Hradec Králové (base de recherche de la FIM UHK) et MindSense (technologie pour laboratoires de recherche, distributeur Tobii).",
+  },
+];
+---
+
+<BaseLayout
+  lang="fr"
+  title="Partenaires"
+  description="Partenaires du projet UXMIND : Université de Hradec Králové — base de recherche du laboratoire FIM UHK, et MindSense — technologie pour laboratoires de recherche et distributeur Tobii pour la CZ et la SK."
+  schema={pageSchema}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PARTENAIRES DU PROJET ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          NOUS NE MESURONS<br/>PAS SEULS<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-2xl">
+          Derrière chaque bonne mesure, il y a une base, une technologie et des personnes qui la maîtrisent. UXMIND repose sur deux piliers — <strong class="text-brand-black">la recherche universitaire et une technologie de pointe</strong>.
+        </p>
+      </div>
+
+      <div class="space-y-px border border-brand-black/10">
+        {partners.map(p => (
+          <div class="reveal p-8 md:p-12 border-b border-brand-black/10 last:border-0">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+              <div class="flex flex-col gap-6">
+                <span class="font-mono text-xs text-brand-black/60">{p.num}</span>
+                <img src={p.logo} alt={p.logoAlt} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
+                <div class="flex flex-wrap gap-2">
+                  {p.tags.map(tag => (
+                    <span class="font-mono text-[11px] border border-brand-black/20 px-2 py-1 tracking-widest">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="md:col-span-2">
+                <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">{p.name}</h2>
+                <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-6">{p.claim}</p>
+                {p.text.map(t => (
+                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl">{t}</p>
+                ))}
+                <div class="flex flex-wrap gap-4 mt-6">
+                  {p.links.map(l => (
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                      {l.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="reveal mt-24 grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[{"t":"Base","d":"Le laboratoire FIM UHK — conditions contrôlées, calibrage, pilotage.","tag":"UHK"},{"t":"Technique","d":"Tobii, Shimmer GSR, Pupil Labs NEON et d’autres biocapteurs maintenus à jour par MindSense.","tag":"MINDSENSE"},{"t":"Livrable","d":"Vous obtenez une mesure qui tient — sur le plan méthodologique et technique.","tag":"UXMIND"}].map((v, i) => (
+          <div class="bg-brand-white p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+            <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16 mt-24">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            VOUS VOULEZ MESURER<br/>AVEC NOUS<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            Une base universitaire et une technologie de pointe, c’est la moitié du travail. L’autre moitié commence avec votre brief.
+          </p>
+          <a href="/fr/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            NOUS CONTACTER →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

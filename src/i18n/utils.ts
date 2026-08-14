@@ -40,6 +40,8 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/en/services/field-research',
     'ux-research': '/en/services/ux-research',
     'case-studies': '/en/case-studies',
+    about: '/en/about',
+    partners: '/en/partners',
     blog: '/en/blog',
     contact: '/en/contact',
     cookies: '/en/cookie-policy',
@@ -54,6 +56,8 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/de/leistungen/feldforschung',
     'ux-research': '/de/leistungen/ux-forschung',
     'case-studies': '/de/fallstudien',
+    about: '/de/ueber-uns',
+    partners: '/de/partner',
     blog: '/de/blog',
     contact: '/de/kontakt',
     cookies: '/de/cookie-richtlinie',
@@ -68,6 +72,8 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/fr/services/recherche-terrain',
     'ux-research': '/fr/services/recherche-ux',
     'case-studies': '/fr/etudes-de-cas',
+    about: '/fr/a-propos',
+    partners: '/fr/partenaires',
     blog: '/fr/blog',
     contact: '/fr/contact',
     cookies: '/fr/politique-cookies',
@@ -82,6 +88,8 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/es/servicios/investigacion-de-campo',
     'ux-research': '/es/servicios/investigacion-ux',
     'case-studies': '/es/casos-de-estudio',
+    about: '/es/sobre-nosotros',
+    partners: '/es/socios',
     blog: '/es/blog',
     contact: '/es/contacto',
     cookies: '/es/politica-de-cookies',
@@ -125,10 +133,10 @@ export function getAlternatePath(pathname: string): string {
 
 const navLabels: Record<Lang, Record<string, string>> = {
   cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', contact: 'Kontakt', about: 'O nás', partners: 'Partneři' },
-  en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact' },
-  de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt' },
-  fr: { services: 'Services', 'test-packages': 'Packs de test', 'ux-audit': 'Audit UX', 'user-testing': 'Tests utilisateurs', 'field-research': 'Recherche terrain', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact' },
-  es: { services: 'Servicios', 'test-packages': 'Paquetes de prueba', 'ux-audit': 'Auditoría UX', 'user-testing': 'Pruebas de usuario', 'field-research': 'Investigación de campo', 'ux-research': 'Investigación UX', 'case-studies': 'Casos de estudio', contact: 'Contacto' },
+  en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact', about: 'About', partners: 'Partners' },
+  de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt', about: 'Über uns', partners: 'Partner' },
+  fr: { services: 'Services', 'test-packages': 'Packs de test', 'ux-audit': 'Audit UX', 'user-testing': 'Tests utilisateurs', 'field-research': 'Recherche terrain', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact', about: 'À propos', partners: 'Partenaires' },
+  es: { services: 'Servicios', 'test-packages': 'Paquetes de prueba', 'ux-audit': 'Auditoría UX', 'user-testing': 'Pruebas de usuario', 'field-research': 'Investigación de campo', 'ux-research': 'Investigación UX', 'case-studies': 'Casos de estudio', contact: 'Contacto', about: 'Sobre nosotros', partners: 'Socios' },
 };
 
 export type NavLink = {
