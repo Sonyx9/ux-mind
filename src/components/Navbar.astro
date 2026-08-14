@@ -53,7 +53,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
             href={link.href}
             class={`flex items-center gap-1 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
               currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
-                ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
             }`}
             aria-haspopup="true"
           >
@@ -65,7 +65,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
                 <a
                   href={c.href}
                   class={`block px-4 py-2 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
-                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
                   }`}
                 >
                   {c.label}
@@ -85,7 +85,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <a
           href={link.href}
           class={`font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
-            currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+            currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
           }`}
         >
           {link.label}
@@ -156,13 +156,13 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {t.close} ]</button>
   {navLinks.map(link => (
     <div class="border-b border-brand-black/10 pb-4">
-      <a href={link.href} class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+      <a href={link.href} class="font-display text-2xl font-bold hover:text-[#2D62FC] transition-colors">
         {link.label}
       </a>
       {link.children && (
         <div class="mt-3 flex flex-col gap-2.5 pl-4 border-l border-brand-black/15">
           {link.children.map(c => (
-            <a href={c.href} class="font-mono text-xs tracking-widest uppercase opacity-60 hover:opacity-100 transition-opacity">
+            <a href={c.href} class="font-mono text-xs tracking-widest uppercase opacity-60 hover:opacity-100 hover:text-[#2D62FC] transition-colors">
               {c.label}
             </a>
           ))}
