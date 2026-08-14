@@ -156,3 +156,8 @@ rect.viz-bar {
 .prose img { @apply w-full my-8; }
 .prose hr { @apply border-brand-black/20 my-12; }
 .prose strong { @apply font-semibold; }
+
+/* Textové pole formuláře žádosti o studii (na tmavém pozadí) */
+.study-input {
+  @apply w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors;
+}

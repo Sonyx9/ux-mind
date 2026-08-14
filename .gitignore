@@ -24,13 +24,18 @@ pnpm-debug.log*
 .DS_Store
 
 # zdrojové obrázky (na web jdou optimalizované webp v public/images)
-Obrázky/*.jpg
-Obrázky/*.png
+Obrázky/
 
-# NFD varianta názvu složky (macOS)
-Obrázky/
+# zdrojové assety loga (na web jdou optimalizované z public/)
+UX MIND LOGO.png
+UXMIND*.svg
+UXMind logo*.png
 
-# interní podklady — nepatří do veřejného repozitáře
+# interní podklady a plánovací dokumenty — nepatří do veřejného repozitáře
 *.docx
-BLOG-NAVOD.md
-UXMIND_byznys_plan.md
+*.md
+!src/**/*.md
+!README.md
+
+# pomocné skripty
+stahni-loga.sh

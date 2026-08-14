@@ -160,7 +160,6 @@ export function getNavLinks(lang: Lang): NavLink[] {
   return [
     { href: urlMap[lang].services, label: t.services, children: serviceChildren },
     { href: urlMap[lang]['case-studies'], label: t['case-studies'] },
-    // Stránky O nás a Partneři zatím jen česky — v ostatních jazycích se položky nezobrazují
     ...(urlMap[lang].about ? [{ href: urlMap[lang].about, label: t.about ?? 'O nás' }] : []),
     ...(urlMap[lang].partners ? [{ href: urlMap[lang].partners, label: t.partners ?? 'Partneři' }] : []),
     { href: urlMap[lang].contact, label: t.contact },

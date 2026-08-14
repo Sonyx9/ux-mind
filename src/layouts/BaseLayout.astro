@@ -3,8 +3,7 @@ import '../styles/global.css';
 import { getLang, getPathInLang, languages } from '../i18n/utils';
 import CookieConsent from '../components/CookieConsent.astro';
 
-// Google Analytics 4 — po vyplnění measurement ID (např. 'G-XXXXXXXXXX') se GA4 aktivuje.
-// Měření je řízeno Consent Mode v2: bez souhlasu běží jen anonymní cookieless pingy.
+// Google Analytics 4 — doplněním measurement ID (G-XXXXXXXXXX) se aktivuje; měření řídí Consent Mode v2.
 const GA_ID = '';
 
 export interface Props {
@@ -96,7 +95,7 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Consent Mode v2 — výchozí stav: vše odmítnuto (EU opt-in). MUSÍ být před Google tagy. -->
+    <!-- Google Consent Mode v2 — výchozí stav (opt-in), načítá se před Google tagy -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}

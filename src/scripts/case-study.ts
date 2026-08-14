@@ -2,8 +2,7 @@
 // rostoucí sloupce grafů a count-up hlavní statistiky. Respektuje prefers-reduced-motion;
 // bez JS zůstává vše viditelné (reveal se aktivuje až třídou na <body>).
 
-// Žádost o kompletní studii — bez backendu předává lead přes předvyplněný e-mail.
-// Až bude formulářový backend (Formspree/Netlify), stačí nahradit handler odesláním POST.
+// Žádost o kompletní studii: po odeslání formuláře otevře PDF studie.
 (function () {
   const dialog = document.getElementById('study-dialog') as HTMLDialogElement | null;
   if (dialog) {
@@ -24,8 +23,6 @@
       const email = (form.querySelector('[name="email"]') as HTMLInputElement | null)?.value.trim();
       const company = (form.querySelector('[name="company"]') as HTMLInputElement | null)?.value.trim();
       if (!name || !email) return;
-      // TODO backend: POST { name, company, email, study: form.dataset.study } na endpoint,
-      // který lead uloží a vrátí odkaz na PDF. Zatím se PDF otevírá přímo.
       void company;
       const pdf = form.dataset.pdf;
       if (!pdf) return;
