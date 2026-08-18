@@ -48,14 +48,9 @@ import Footer from '../../components/Footer.astro';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
 
           <div class="bg-brand-white flex flex-col">
-            <div class="border-b border-brand-black/10">
-              <img
-                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
-                alt="Ing. Jan Petružálek, Ph.D., autor de la metodología EMLI, analizando datos de eye-tracking en el laboratorio"
-                title="Autor de la metodología EMLI analizando datos de eye-tracking"
-                width="1920" height="1280" loading="lazy" decoding="async"
-                class="w-full aspect-[3/2] object-cover block"
-              />
+            <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ FOTO EN CAMINO ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Medimos adónde miras. Aún no hemos girado la cámara hacia nosotros.</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">INVESTIGACIÓN Y METODOLOGÍA · AUTOR DE EMLI</p>
@@ -73,9 +68,9 @@ import Footer from '../../components/Footer.astro';
           </div>
 
           <div class="bg-brand-white flex flex-col">
-            <div class="border-b border-brand-black/10 aspect-[3/2] flex items-center justify-center"
-              style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
-              <p class="font-display text-6xl font-bold text-brand-black/20">LK</p>
+            <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ FOTO EN CAMINO ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Retrato en preparación. Prometido — nada de foto de stock.</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">ESTRATEGIA, WEB Y MARKETING</p>
