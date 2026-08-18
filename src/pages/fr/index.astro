@@ -34,6 +34,7 @@ const clientLogos = [
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, w: 1920, h: 630, alt: 'Škoda Auto' },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, w: 800, h: 800, alt: 'FC Hradec Králové' },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'University of Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/texopluslogo.png`, w: 216, h: 46, alt: 'TEXO Plus' },
 ];
 ---
 
@@ -236,6 +237,7 @@ const clientLogos = [
           <img
             src={src}
             alt={alt}
+            title={alt}
             width={w} height={h}
             class="logo-strip-img select-none"
             style="height:42px; width:auto; max-width:170px; object-fit:contain; display:block;"
@@ -253,6 +255,7 @@ const clientLogos = [
             <img
               src={src}
               alt={alt}
+              title={alt}
               width={w} height={h}
               class="logo-strip-img select-none"
               style="height:36px; width:auto; max-width:40vw; object-fit:contain; display:block;"
