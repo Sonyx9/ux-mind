@@ -30,8 +30,8 @@ const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
 const clientLogos = [
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, w: 1920, h: 630, alt: 'Škoda Auto' },
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, w: 800, h: 800, alt: 'FC Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.png`, w: 1920, h: 630, alt: 'Škoda Auto' , dh: 50 },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.png`, w: 800, h: 800, alt: 'FC Hradec Králové' , dh: 54 },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'Univerzita Hradec Králové' },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/texopluslogo.png`, w: 216, h: 46, alt: 'TEXO Plus' },
 ];
@@ -238,7 +238,7 @@ const clientLogos = [
   <div class="border-y border-brand-black/10 py-6" style="background:#FDFDFD;">
     <!-- Desktop: statický pás -->
     <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
-      {clientLogos.map(({ src, alt, w, h }) => (
+      {clientLogos.map(({ src, alt, w, h, dh }) => (
         <div class="px-4 py-1">
           <img
             src={src}
@@ -246,7 +246,7 @@ const clientLogos = [
             title={alt}
             width={w} height={h}
             class="logo-strip-img select-none"
-            style="height:42px; width:auto; max-width:170px; object-fit:contain; display:block;"
+            style={`height:${dh || 42}px; width:auto; max-width:170px; object-fit:contain; display:block;`}
             loading="lazy"
             decoding="async"
           />
@@ -256,7 +256,7 @@ const clientLogos = [
     <!-- Mobil: automatický carousel, dvě loga na řádek -->
     <div class="md:hidden overflow-hidden">
       <div class="logo-marquee flex items-center">
-        {[...clientLogos, ...clientLogos].map(({ src, alt, w, h }) => (
+        {[...clientLogos, ...clientLogos].map(({ src, alt, w, h, dh }) => (
           <div class="flex-shrink-0 flex justify-center items-center px-4" style="width:50vw;">
             <img
               src={src}
@@ -264,7 +264,7 @@ const clientLogos = [
               title={alt}
               width={w} height={h}
               class="logo-strip-img select-none"
-              style="height:36px; width:auto; max-width:40vw; object-fit:contain; display:block;"
+              style={`height:${dh ? Math.round(dh * 36 / 42) : 36}px; width:auto; max-width:40vw; object-fit:contain; display:block;`}
               loading="lazy"
               decoding="async"
             />
