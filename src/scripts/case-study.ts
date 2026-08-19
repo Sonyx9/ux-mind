@@ -2,7 +2,9 @@
 // rostoucí sloupce grafů a count-up hlavní statistiky. Respektuje prefers-reduced-motion;
 // bez JS zůstává vše viditelné (reveal se aktivuje až třídou na <body>).
 
-// Žádost o kompletní studii: po odeslání formuláře otevře PDF studie.
+import { submitForm } from './forms';
+
+// Žádost o kompletní studii: uloží lead (Google Sheet přes Apps Script) a otevře PDF studie.
 (function () {
   const dialog = document.getElementById('study-dialog') as HTMLDialogElement | null;
   if (dialog) {
@@ -23,9 +25,21 @@
       const email = (form.querySelector('[name="email"]') as HTMLInputElement | null)?.value.trim();
       const company = (form.querySelector('[name="company"]') as HTMLInputElement | null)?.value.trim();
       if (!name || !email) return;
-      void company;
       const pdf = form.dataset.pdf;
       if (!pdf) return;
+
+      // Ulož lead do Google Sheetu + Apps Script pošle PDF e-mailem (viz apps-script/)
+      submitForm({
+        form: 'study',
+        name,
+        email,
+        company: company || '',
+        study: form.dataset.study || '',
+        pdf,
+        consent: 'ano',
+        source: location.pathname,
+      });
+
       window.open(pdf, '_blank', 'noopener');
       const done = form.querySelector('.study-request-done');
       done?.querySelector<HTMLAnchorElement>('.study-pdf-link')?.setAttribute('href', pdf);
