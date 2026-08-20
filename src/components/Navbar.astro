@@ -39,12 +39,10 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       <img src={`${base}/logo.svg`} alt="UX Mind" style="height:clamp(18px, 0.55vw + 14px, 22px); width:auto; display:block;" />
     </a>
 
-    <!-- Mobile CTA — only on homepage, left side -->
-    {isHome && (
-      <a href={contactHref} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5">
-        {mobileCTALabel}
-      </a>
-    )}
+    <!-- Mobile CTA — na všech stránkách (mezi logem a [ MENU ]) -->
+    <a href={contactHref} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5 whitespace-nowrap shrink-0">
+      {mobileCTALabel}
+    </a>
 
     <div id="nav-full" class="hidden xl:flex items-center gap-[clamp(1rem,1.8vw,2rem)]">
       {navLinks.map(link => link.children ? (
@@ -156,11 +154,16 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   <button id="mobile-menu-close" class="absolute top-5 right-6 font-mono text-xs tracking-widest">[ {t.close} ]</button>
   {navLinks.map(link => (
     <div class="border-b border-brand-black/10 pb-4">
-      <a href={link.href} class="font-display text-2xl font-bold hover:text-[#2D62FC] transition-colors">
-        {link.label}
-      </a>
-      {link.children && (
-        <div class="mt-3 flex flex-col gap-2.5 pl-4 border-l border-brand-black/15">
+      <div class="flex items-center justify-between gap-3">
+        <a href={link.href} class="font-display text-2xl font-bold hover:text-[#2D62FC] transition-colors">
+          {link.label}
+        </a>
+        {link.children && link.children.length > 0 && (
+          <button type="button" class="mobile-submenu-toggle font-mono text-2xl leading-none w-8 h-8 flex items-center justify-center shrink-0 transition-transform" aria-expanded="false" aria-label="Rozbalit podpoložky">+</button>
+        )}
+      </div>
+      {link.children && link.children.length > 0 && (
+        <div class="mobile-submenu hidden mt-3 flex-col gap-2.5 pl-4 border-l border-brand-black/15">
           {link.children.map(c => (
             <a href={c.href} class="font-mono text-xs tracking-widest uppercase opacity-60 hover:opacity-100 hover:text-[#2D62FC] transition-colors">
               {c.label}
@@ -202,6 +205,18 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   closeBtn?.addEventListener('click', closeMenu);
   overlay?.addEventListener('click', closeMenu);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+  // Mobilní podmenu (Služby, Pro koho): sbalené, rozbalí se po kliku na „+"
+  document.querySelectorAll<HTMLButtonElement>('.mobile-submenu-toggle').forEach(toggle => {
+    const sub = toggle.closest('div')?.parentElement?.querySelector<HTMLElement>('.mobile-submenu');
+    if (!sub) return;
+    toggle.addEventListener('click', () => {
+      const open = sub.classList.toggle('hidden') === false;
+      sub.classList.toggle('flex', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.style.transform = open ? 'rotate(45deg)' : '';
+    });
+  });
 
   const nav = document.getElementById('main-nav');
   const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;

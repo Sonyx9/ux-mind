@@ -14,6 +14,8 @@ export interface Props {
   lang?: string;
   /** Volitelná strukturovaná data (JSON-LD) — objekt nebo pole objektů */
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  /** false = neemitovat hreflang (stránka existuje jen v jednom jazyce, např. segmenty) */
+  hreflang?: boolean;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -25,6 +27,7 @@ const {
   type = 'website',
   lang = 'cs',
   schema,
+  hreflang = true,
 } = Astro.props;
 
 const baseUrl = `${base}/`;
@@ -146,11 +149,11 @@ const jsonLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- hreflang — jazykové verze stránky -->
-    {alternates.map(a => (
+    <!-- hreflang — jazykové verze stránky (vynecháno u jednojazyčných stránek, např. segmenty) -->
+    {hreflang && alternates.map(a => (
       <link rel="alternate" hreflang={a.code} href={a.url} />
     ))}
-    {defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.url} />}
+    {hreflang && defaultAlternate && <link rel="alternate" hreflang="x-default" href={defaultAlternate.url} />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />

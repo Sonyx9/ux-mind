@@ -1,0 +1,305 @@
+---
+// Detailní stránka segmentu. Renderuje jeden Segment (viz src/data/segmenty.ts).
+// Vizuálně i strukturálně vychází z src/pages/sluzby/ux-audit.astro.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+import { localizedPath } from '../i18n/utils';
+import { sousedniSegmenty, type Segment } from '../data/segmenty';
+
+interface Props {
+  segment: Segment;
+}
+const { segment } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ? Astro.site.origin : 'https://sonyx9.github.io';
+const abs = (p: string) => `${origin}${base}${p}`;
+
+// H1 — koncová interpunkce posledního řádku se obarví modře (drobná hříčka značky)
+const h1Head = segment.h1.slice(0, -1);
+const lastLine = segment.h1[segment.h1.length - 1];
+const m = lastLine.match(/^(.*?)([.?!]+)$/);
+const lastPrefix = m ? m[1] : lastLine;
+const lastPunct = m ? m[2] : '';
+
+// Rozdělení důkazů dle typu → dvě vizuálně oddělené sekce
+const vlastniDukazy = segment.dukazy.filter((d) => d.typ === 'vlastni');
+const ciziDukazy = segment.dukazy.filter((d) => d.typ === 'cizi');
+const dukazLabel = segment.maVlastniData ? 'DŮKAZ — MÁME VLASTNÍ DATA' : 'DŮKAZ';
+
+// Související služby (klíče z urlMap → odkaz + český název)
+const SERVICE_LABELS: Record<string, string> = {
+  'test-packages': 'Testovací balíčky',
+  'ux-audit': 'UX Audit',
+  'user-testing': 'Testování uživatelů',
+  'eye-tracking': 'Eye Tracking',
+  'field-research': 'Terénní měření',
+  'ux-research': 'UX Výzkum',
+  'case-studies': 'Případové studie',
+};
+const relatedServices = segment.souvisejiciSluzby
+  .map((key) => ({ href: localizedPath('cs', key), label: SERVICE_LABELS[key] }))
+  .filter((s) => s.label);
+
+const { prev, next } = sousedniSegmenty(segment.slug);
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: `Eye tracking — ${segment.nazev}`,
+    description: segment.metaDescription,
+    serviceType: 'Eye tracking a UX výzkum',
+    provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: segment.faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Domů', item: abs('/') },
+      { '@type': 'ListItem', position: 2, name: 'Pro koho', item: abs('/segmenty') },
+      { '@type': 'ListItem', position: 3, name: segment.nazev, item: abs(`/segmenty/${segment.slug}`) },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={segment.metaTitle}
+  description={segment.metaDescription}
+  schema={pageSchema}
+  hreflang={false}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- 1 · Hero -->
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SEGMENTY / {segment.nazevKratky.toUpperCase()} ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          {h1Head.map((line) => (<>{line}<br/></>))}{lastPrefix}<span style="color:#2D62FC">{lastPunct}</span>
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            {segment.perex.map((p, i) => (
+              <p class:list={["text-lg text-brand-black/60 leading-relaxed max-w-xl", i > 0 && "mt-4"]}>{p}</p>
+            ))}
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href={segment.cta.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              {segment.cta.text}
+            </a>
+            {segment.ctaSekundarni && (
+              <a href={segment.ctaSekundarni.href} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                {segment.ctaSekundarni.text}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {segment.infoPas.map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- 3 · Co měříme -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-10">[ {segment.coMerimeLabel ?? 'CO MĚŘÍME'} ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {segment.coMerime.map((c, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h2 class="font-display text-2xl font-bold mb-3 leading-tight">{c.nadpis}</h2>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- 4 · Obrázek (volitelný) -->
+      {segment.obrazek && (
+        <div class="reveal mb-24">
+          <img
+            src={`${base}${segment.obrazek.src}`}
+            alt={segment.obrazek.alt}
+            width="1200" height="800" loading="lazy" decoding="async"
+            class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
+          />
+          <p class="font-mono text-[11px] text-brand-black/60 mt-2">{segment.obrazek.popisek}</p>
+        </div>
+      )}
+
+      <!-- 5 · Typické zadání + Co dostanete -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ TYPICKÉ ZADÁNÍ ]</p>
+          <ul class="space-y-2">
+            {segment.typickeZadani.map((z) => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {z}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
+          <ul class="space-y-2">
+            {segment.coDostanete.map((o) => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6 · Důkaz -->
+      <div class="reveal mb-24">
+        {(segment.dukazUvod || vlastniDukazy.length > 0) && (
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ {dukazLabel} ]</p>
+        )}
+        {segment.dukazUvod && (
+          <p class="text-lg text-brand-black/70 leading-relaxed max-w-3xl mb-10">{segment.dukazUvod}</p>
+        )}
+
+        {vlastniDukazy.length > 0 && (
+          <div class="space-y-6 mb-12">
+            {vlastniDukazy.map((d) => (
+              <div class="border border-brand-black/10 p-8 md:p-10">
+                <h2 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight max-w-3xl">{d.nadpis}</h2>
+                <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-5">{d.text}</p>
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+                  {d.metoda && <p class="font-mono text-[11px] text-brand-black/60 tracking-widest">METODA: {d.metoda}</p>}
+                  {d.odkaz && (
+                    <a href={d.odkaz} class="font-mono text-xs tracking-widest uppercase hover:text-[#2D62FC] transition-colors">Projít studii →</a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {ciziDukazy.length > 0 && (
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DOLOŽENÉ POUŽITÍ VE SVĚTĚ ]</p>
+            <ul class="space-y-3 max-w-3xl">
+              {ciziDukazy.map((d) => (
+                <li class="flex gap-3 text-sm text-brand-black/60 leading-relaxed py-1">
+                  <span class="font-mono text-xs pt-0.5 text-brand-black/40">—</span>
+                  <span>{d.text}{d.zdroj && <span class="text-brand-black/45"> (zdroj: {d.zdroj})</span>}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      <!-- 7 · Hranice -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ HRANICE ]</p>
+        <h2 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight max-w-2xl">{segment.hranice.nadpis}<span style="color:#2D62FC">.</span></h2>
+        <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl">{segment.hranice.text}</p>
+      </div>
+
+      <!-- 8 · FAQ -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY ]</p>
+        <div class="border-t border-brand-black/10">
+          {segment.faq.map((f) => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- 9 · Související služby -->
+      {relatedServices.length > 0 && (
+        <div class="reveal mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ SOUVISEJÍCÍ SLUŽBY ]</p>
+          <div class="flex flex-wrap gap-3">
+            {relatedServices.map((s) => (
+              <a href={s.href} class="inline-block border border-brand-black/20 px-5 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- 10 · Sousední segmenty -->
+      {(prev || next) && (
+        <div class="reveal mb-24 grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {prev ? (
+            <a href={`/segmenty/${prev.slug}`} class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
+              <p class="font-mono text-[10px] text-brand-black/50 tracking-widest mb-2 group-hover:text-brand-white/60">← PŘEDCHOZÍ SEGMENT</p>
+              <p class="font-display text-xl font-bold">{prev.nazevKratky}</p>
+            </a>
+          ) : <div class="bg-brand-white p-6"></div>}
+          {next ? (
+            <a href={`/segmenty/${next.slug}`} class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
+              <p class="font-mono text-[10px] text-brand-black/50 tracking-widest mb-2 group-hover:text-brand-white/60">DALŠÍ SEGMENT →</p>
+              <p class="font-display text-xl font-bold">{next.nazevKratky}</p>
+            </a>
+          ) : <div class="bg-brand-white p-6"></div>}
+        </div>
+      )}
+
+      <!-- 11 · Závěrečný CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            {segment.zaver.nadpis.map((line, i) => (
+              <>{i > 0 && <br/>}{line}</>
+            ))}
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">{segment.zaver.text}</p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href={segment.cta.href} class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+              {segment.cta.text}
+            </a>
+            <a href="/segmenty" class="inline-block border border-brand-white/40 px-8 py-4 font-mono text-xs tracking-widest uppercase text-brand-white/80 hover:border-brand-white hover:text-brand-white transition-colors">
+              VŠECHNY SEGMENTY
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

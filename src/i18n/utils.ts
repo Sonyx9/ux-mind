@@ -24,6 +24,17 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/sluzby/terenni-mereni',
     'ux-research': '/sluzby/ux-vyzkum',
     about: '/o-nas',
+    segments: '/segmenty',
+    'seg-e-shopy': '/segmenty/e-shopy',
+    'seg-weby': '/segmenty/weby',
+    'seg-sport': '/segmenty/sport-a-stadiony',
+    'seg-automotive': '/segmenty/automotive',
+    'seg-univerzity': '/segmenty/univerzity-a-vyzkum',
+    'seg-doprava': '/segmenty/doprava-a-mesta',
+    'seg-prumysl': '/segmenty/prumysl-a-energetika',
+    'seg-zdravotnictvi': '/segmenty/zdravotnictvi',
+    'seg-finance': '/segmenty/finance-a-poradenstvi',
+    'seg-letectvi': '/segmenty/letectvi',
     'case-studies': '/pripadove-studie',
     'cs-karierni-portal-automotive': '/pripadove-studie/karierni-portal-automotive',
     'cs-backend-stories': '/pripadove-studie/backend-stories',
@@ -162,7 +173,7 @@ export function getAlternatePath(pathname: string): string {
 }
 
 const navLabels: Record<Lang, Record<string, string>> = {
-  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', contact: 'Kontakt', about: 'O nás', partners: 'Partneři' },
+  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři' },
   en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact', about: 'About', partners: 'Partners' },
   de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt', about: 'Über uns', partners: 'Partner' },
   fr: { services: 'Services', 'test-packages': 'Packs de test', 'ux-audit': 'Audit UX', 'user-testing': 'Tests utilisateurs', 'field-research': 'Recherche terrain', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact', about: 'À propos', partners: 'Partenaires' },
@@ -176,6 +187,17 @@ export type NavLink = {
   children?: { href: string; label: string }[];
 };
 
+// Segmenty do patičky — 4 hlavní segmenty (zatím jen čeština; jinak prázdné)
+export function getFooterSegments(lang: Lang): { href: string; label: string }[] {
+  if (!urlMap[lang].segments) return [];
+  return [
+    { href: urlMap[lang]['seg-e-shopy'], label: 'E-shopy' },
+    { href: urlMap[lang]['seg-weby'], label: 'Weby a aplikace' },
+    { href: urlMap[lang]['seg-sport'], label: 'Sport a stadiony' },
+    { href: urlMap[lang]['seg-automotive'], label: 'Automotive' },
+  ];
+}
+
 export function getNavLinks(lang: Lang): NavLink[] {
   const t = navLabels[lang];
   // Jednotný strom služeb ve všech jazycích (v pořadí stránky Služby)
@@ -187,8 +209,24 @@ export function getNavLinks(lang: Lang): NavLink[] {
     { href: urlMap[lang]['field-research'], label: t['field-research'] },
     { href: urlMap[lang]['ux-research'], label: t['ux-research'] },
   ];
+  // Segmenty („Pro koho") — zatím jen čeština; dropdown = všech 9 segmentů
+  const segmentChildren = urlMap[lang].segments
+    ? [
+        { href: urlMap[lang]['seg-e-shopy'], label: 'E-shopy' },
+        { href: urlMap[lang]['seg-weby'], label: 'Weby a aplikace' },
+        { href: urlMap[lang]['seg-sport'], label: 'Sport a stadiony' },
+        { href: urlMap[lang]['seg-automotive'], label: 'Automotive' },
+        { href: urlMap[lang]['seg-univerzity'], label: 'Univerzity a výzkum' },
+        { href: urlMap[lang]['seg-doprava'], label: 'Doprava a města' },
+        { href: urlMap[lang]['seg-prumysl'], label: 'Průmysl a energetika' },
+        { href: urlMap[lang]['seg-zdravotnictvi'], label: 'Zdravotnictví' },
+        { href: urlMap[lang]['seg-finance'], label: 'Finance a poradenství' },
+        { href: urlMap[lang]['seg-letectvi'], label: 'Letectví' },
+      ]
+    : [];
   return [
     { href: urlMap[lang].services, label: t.services, children: serviceChildren },
+    ...(urlMap[lang].segments ? [{ href: urlMap[lang].segments, label: t.segments ?? 'Pro koho', children: segmentChildren }] : []),
     { href: urlMap[lang]['case-studies'], label: t['case-studies'] },
     ...(urlMap[lang].about ? [{ href: urlMap[lang].about, label: t.about ?? 'O nás' }] : []),
     ...(urlMap[lang].partners ? [{ href: urlMap[lang].partners, label: t.partners ?? 'Partneři' }] : []),

@@ -1,0 +1,89 @@
+---
+// Rozcestník „Pro koho" — dlaždice všech segmentů dle pořadí (nahoře to, co umíme doložit).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { segmentyByPoradi } from '../../data/segmenty';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const origin = Astro.site ? Astro.site.origin : 'https://sonyx9.github.io';
+const abs = (p: string) => `${origin}${base}${p}`;
+
+const pageSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Domů', item: abs('/') },
+      { '@type': 'ListItem', position: 2, name: 'Pro koho', item: abs('/segmenty') },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Pro koho měříme | Segmenty a využití eye trackingu"
+  description="E-shopy, weby a aplikace, sport a stadiony, automotive, univerzity, zdravotnictví, doprava, průmysl. Kde všude se dá eye tracking a měření kognitivní zátěže využít — a co z toho konkrétně máte."
+  schema={pageSchema}
+  hreflang={false}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PRO KOHO ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          KDE TO<br/>DÁVÁ SMYSL<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="max-w-3xl space-y-4">
+          <p class="text-xl text-brand-black/60 leading-relaxed">
+            Eye tracking není nástroj pro weby. Je to nástroj na jednu otázku: <strong class="text-brand-black">kam se člověk dívá a co ho to stojí.</strong> Ta otázka má smysl všude, kde na pozornosti závisí výsledek — od košíku v e-shopu po mantinel na stadionu.
+          </p>
+          <p class="text-lg text-brand-black/60 leading-relaxed">
+            Níže je deset oblastí, kde měříme nebo kde má měření prokazatelný přínos. U každé poctivě uvádíme, co už máme vlastními daty doložené a co zatím ne.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+        {segmentyByPoradi.map(seg => (
+          <a href={`/segmenty/${seg.slug}`} class="bg-brand-white p-8 md:p-10 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors group">
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <span class="font-mono text-[10px] tracking-widest text-brand-black/40 group-hover:text-brand-white/50">{String(seg.poradi).padStart(2, '0')}</span>
+              <span class:list={[
+                "font-mono text-[10px] tracking-widest px-2 py-1 border",
+                seg.maVlastniData
+                  ? "border-[#2D62FC] text-[#2D62FC]"
+                  : "border-brand-black/20 text-brand-black/45 group-hover:border-brand-white/30 group-hover:text-brand-white/50",
+              ]}>
+                {seg.maVlastniData ? 'VLASTNÍ DATA' : 'ZATÍM BEZ VLASTNÍ REFERENCE'}
+              </span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3 leading-tight">{seg.nazevKratky}</h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6 group-hover:text-brand-white/70">{seg.bolest}</p>
+            <span class="mt-auto font-mono text-xs tracking-widest uppercase group-hover:text-brand-white">ZOBRAZIT SEGMENT →</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Váš obor tu není? -->
+      <div class="mt-6 border border-brand-black/10 p-8 md:p-12">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div class="max-w-2xl">
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight">Váš obor tu není<span style="color:#2D62FC">?</span></h2>
+            <p class="text-brand-black/60 leading-relaxed">
+              Metoda je stejná pro cokoliv, co má rozhraní nebo prostor, ve kterém se lidé rozhodují. Napište nám, co řešíte — do pár dní řekneme, jestli to umíme změřit a co z toho vyleze.
+            </p>
+          </div>
+          <a href="/kontakt" class="shrink-0 inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+            NAPSAT NÁM →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+// Detail segmentu — jedna routa generuje všech 9 stránek z src/data/segmenty.ts.
+import SegmentLayout from '../../components/SegmentLayout.astro';
+import { segmenty } from '../../data/segmenty';
+
+export function getStaticPaths() {
+  return segmenty.map((segment) => ({
+    params: { slug: segment.slug },
+    props: { segment },
+  }));
+}
+
+const { segment } = Astro.props;
+---
+
+<SegmentLayout segment={segment} />
