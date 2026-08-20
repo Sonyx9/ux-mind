@@ -2,64 +2,374 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import { localizedPath } from '../../i18n/utils';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const vrstvy = [
+  {
+    t: 'Visual attention',
+    d: 'Where a person looks, in what order, how long they stay there and what they miss entirely. Heatmaps, areas of interest, time to first fixation, dwell time.',
+    tag: 'EYE TRACKING',
+  },
+  {
+    t: 'Emotion and arousal',
+    d: 'What a questionnaire fails to capture, because the person is unaware of it or will not admit it. Skin conductance measures the physiological response; facial expression analysis reads the expression on the face.',
+    tag: 'GSR + FACIAL EXPRESSION',
+  },
+  {
+    t: 'Cognitive load',
+    d: 'How much effort it takes to use an interface. Load is the silent killer of both conversion and clarity — the user does not leave thinking "that was hard", they simply leave.',
+    tag: 'MENTAL EFFORT',
+  },
+];
+
+const vybaveni = [
+  { nazev: 'Smart Eye Aurora', typ: 'desktop eye tracking', k: 'The current configuration for controlled on-screen studies.' },
+  { nazev: 'Tobii Pro X2-60', typ: 'desktop eye tracking', k: '60 Hz platform, a portable rig for fixation-focused studies.' },
+  { nazev: 'Pupil Labs Neon (2×)', typ: 'mobile glasses', k: 'Measurement in real environments — shop floor, stadium, traffic, street.' },
+  { nazev: 'iMotions + facial expression analysis', typ: 'software', k: 'Synchronisation of all signals with stimuli and recognition of facial expression.' },
+  { nazev: 'Shimmer3 GSR', typ: 'biometrics', k: 'Skin conductance — physiological response and level of arousal.' },
+];
+
+const postup = [
+  { num: '01', title: 'Study design', desc: 'Research question, definition of metrics, sample size and structure, task scenarios.' },
+  { num: '02', title: 'Data collection', desc: 'Protocol for the lab or the field, calibration, stimuli, simultaneous recording of all signals.' },
+  { num: '03', title: 'Analysis', desc: 'Metrics over areas of interest, temporal indicators, linking gaze with biometrics, statistics.' },
+  { num: '04', title: 'Transfer into practice', desc: 'Prioritised recommendations, a report with the methodology and a workshop with your team.' },
+];
+
+const rizika = [
+  'calibration drift during measurement',
+  'respondent fatigue',
+  'order effect — hence randomisation and counterbalancing',
+  'an ambiguously worded task',
+  'overreliance on a single metric',
+];
+
+const etika = [
+  'A standardised protocol and pilot testing before every study',
+  'Informed consent from every respondent',
+  'Data processing in line with GDPR, routinely under NDA',
+  'The option of fully anonymised data and a reproducible report',
+  'For research projects, review by an ethics committee as needed',
+];
+
+const tymLaboratore = [
+  ['01', 'Research lead'],
+  ['01', 'Senior researcher'],
+  ['01', 'Lab management'],
+  ['02', 'Senior operators'],
+  ['06', 'Junior operators'],
+];
+
+const pageSchema = [
+  {
+    '@type': 'ResearchOrganization',
+    name: 'FIMEYELAB',
+    description:
+      'The eye tracking and biometrics laboratory of the Faculty of Informatics and Management at the University of Hradec Králové. Measuring visual attention, emotional response and cognitive load in the lab and in the field.',
+    parentOrganization: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Univerzita Hradec Králové — Fakulta informatiky a managementu',
+    },
+  },
+  {
+    '@type': 'AboutPage',
+    name: 'About us — the FIMEYELAB laboratory',
+    description:
+      'UX MIND measures at the FIMEYELAB laboratory at FIM UHK. Five measurement systems, eight academic publications, two defended dissertations.',
+  },
+];
 ---
 
 <BaseLayout
   lang="en"
-  title="About"
-  description="A team of UX specialists focused on user research, eye tracking and UX audits. We help companies build better products."
+  title="The FIMEYELAB laboratory | Who is behind UX MIND"
+  description="We do not measure in a meeting room. UX MIND measures at the FIMEYELAB laboratory at the Faculty of Informatics and Management, UHK — five measurement systems, eight academic publications, two defended dissertations."
+  schema={pageSchema}
 >
   <Navbar />
 
   <main id="main-content" class="pt-32 pb-24">
     <div class="max-w-7xl mx-auto px-6">
 
+      <!-- Hero -->
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ABOUT ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ABOUT / LAB ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          A TEAM<br/>OF EXPERTS<span style="color:#2D62FC">.</span>
+          A LABORATORY,<br/>NOT AN AGENCY<span style="color:#2D62FC">.</span>
         </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+          <div>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl mb-4">
+              There are plenty of UX agencies in the Czech Republic. Laboratories that measure eye movement, skin
+              conductance and facial expression at once — and have publications in peer-reviewed journals behind them —
+              are considerably rarer.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
+              UX MIND measures at the <strong class="text-brand-black">FIMEYELAB</strong> laboratory at the Faculty of
+              Informatics and Management of the University of Hradec Králové. That is not a marketing flourish: it means
+              methodological rigour, instruments a commercial agency would not acquire, and the obligation to defend
+              every conclusion before a reviewer.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 md:justify-end">
+            <a href={localizedPath('en', 'contact')} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              ARRANGE A VISIT →
+            </a>
+            <a href={localizedPath('en', 'case-studies')} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              CASE STUDIES
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-24">
-        <div>
-          <p class="text-xl text-brand-black/60 leading-relaxed mb-6">
-            UX Mind is two of us: a <strong class="text-brand-black">researcher</strong> and a <strong class="text-brand-black">strategist</strong>. We believe the best products come from a deep understanding of people.
-          </p>
-          <p class="text-brand-black/60 leading-relaxed">
-            One measures in the lab, the other turns findings into websites, e-shops and campaigns. We combine advanced eye-tracking technology with proven UX research methods — for startups and enterprises that want to decide on data, not assumptions.
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['MEASUREMENT SYSTEMS', '5'],
+          ['ACADEMIC PUBLICATIONS', '8'],
+          ['DEFENDED DISSERTATIONS', '2'],
+          ['WE MEASURE', 'Lab and field'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight text-xl">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Foto laboratoře -->
+      <div class="reveal mb-24 grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-2">
+          <img
+            src={`${base}/images/eye-tracking-mereni-respondentka-laborator.webp`}
+            alt="A respondent during measurement at a rig with an eye tracker in the FIMEYELAB laboratory"
+            title="Measurement in the FIMEYELAB laboratory"
+            width="1080" height="1920" loading="lazy" decoding="async"
+            class="w-full border border-brand-black/10"
+          />
+          <p class="font-mono text-[11px] text-brand-black/60 mt-2">
+            The FIMEYELAB laboratory, FIM UHK. No render, no stock photo.
           </p>
         </div>
+        <div class="md:col-span-3">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT IS IN THE PHOTO ]</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
+            None of it is a prop<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mb-4">
+            Below the monitor is the eye tracker bar, which captures eye movement sixty times a second.
+            Above the monitor, a camera for facial expression analysis. The respondent is completing a set task on a
+            real page — not commenting on what she likes.
+          </p>
+          <p class="text-brand-black/60 leading-relaxed">
+            That is exactly the difference between measurement and a focus group. We do not ask people what they think
+            they do. We watch what they actually do.
+          </p>
+        </div>
+      </div>
+
+      <!-- Jak to spolu souvisí -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW IT ALL FITS TOGETHER ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 max-w-3xl">
+          A university laboratory, at a commercial pace<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">LABORATORY</p>
+            <p class="text-brand-black/60 leading-relaxed text-sm">
+              FIMEYELAB belongs to the University of Hradec Králové. It serves research, teaching and the supervision of
+              master's and doctoral theses — and in doing so it holds a methodological bar that a commercial operation
+              would not set for itself.
+            </p>
+          </div>
+          <div>
+            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">UX MIND</p>
+            <p class="text-brand-black/60 leading-relaxed text-sm">
+              Commercial work in the laboratory always runs through UX MIND. We are the contractual partner with whom you
+              sign the engagement, receive a deadline, a price and a deliverable — and who is accountable for the result.
+            </p>
+          </div>
+          <div>
+            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">THE LINK</p>
+            <p class="text-brand-black/60 leading-relaxed text-sm">
+              Jan Petružálek is the head of the FIMEYELAB laboratory and, at the same time, a co-owner of UX MIND. So
+              methodology and execution are not two worlds tossing things to each other over a fence.
+            </p>
+          </div>
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          In practice, that means one thing for you: you get academic methodology without academic timelines. This is how
+          we measured a careers portal for <strong class="text-brand-black">ŠKODA AUTO</strong>, a football club's
+          campaign and the product pages of e-shops.
+        </p>
+      </div>
+
+      <!-- Co umíme změřit -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT WE CAN MEASURE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Three layers of what goes on in the user's head<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {vrstvy.map((v, i) => (
+            <div class="bg-brand-white p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          The methods keep each other in check. When eye tracking shows prolonged viewing, biometrics show heightened
+          arousal and the questionnaire shows calm, we know something is happening — and we know where.
+        </p>
+      </div>
+
+      <!-- Čím měříme -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT WE MEASURE WITH ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Five systems, one synchronised recording<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="border border-brand-black/10">
+          {vybaveni.map(z => (
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 p-6 border-b border-brand-black/10 last:border-0">
+              <div class="md:col-span-4">
+                <p class="font-display text-lg font-bold leading-tight">{z.nazev}</p>
+                <p class="font-mono text-[11px] text-brand-black/60 tracking-wide uppercase">{z.typ}</p>
+              </div>
+              <p class="md:col-span-8 text-sm text-brand-black/60 leading-relaxed">{z.k}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          Two pairs of mobile glasses mean we can measure two people at once — or carry on when one set happens to be
+          charging. In the field, that is the difference between "we made it" and "we'll come back next time".
+        </p>
+      </div>
+
+      <!-- Vizualizace laboratoře -->
+      <div class="reveal mb-24">
+        <img
+          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
+          alt="A visualisation of the planned layout of the FIMEYELAB laboratory"
+          title="The planned layout of the laboratory"
+          width="1600" height="1127" loading="lazy" decoding="async"
+          class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
+        />
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">
+          A visualisation of the planned layout of the laboratory — separate measurement stations for simultaneous testing.
+        </p>
+      </div>
+
+      <!-- Jak měření probíhá -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ OUR VALUES ]</p>
-          <ul class="space-y-4">
-            {[{"title":"Data over impressions","desc":"Every recommendation backed by research."},{"title":"Empathy for users","desc":"We understand people, not just metrics."},{"title":"Practical recommendations","desc":"Outputs you can actually implement."},{"title":"Transparency","desc":"Clear communication of process and results."}].map(value => (
-              <li class="border-b border-brand-black/10 pb-4">
-                <p class="font-semibold mb-1">{value.title}</p>
-                <p class="text-sm text-brand-black/60">{value.desc}</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW MEASUREMENT WORKS ]</p>
+          <div class="space-y-0">
+            {postup.map(step => (
+              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
+                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
+                <div>
+                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT THE PROTOCOL WATCHES FOR ]</p>
+          <ul class="space-y-2 mb-6">
+            {rizika.map(r => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {r}
               </li>
             ))}
           </ul>
+          <p class="text-sm text-brand-black/60 leading-relaxed">
+            This list is the reason lab measurement is not the same as "we played back a screen recording". Each of those
+            five things can turn a result upside down, and all of them can only be dealt with in advance.
+          </p>
         </div>
       </div>
 
-      <div class="mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHO WE ARE ]</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
+      <!-- Akademické zázemí -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ACADEMIC BACKGROUND ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          What you will not find out at an agency<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          <div class="bg-brand-white p-8">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">PUBLICATIONS</p>
+            <p class="font-display text-5xl font-bold mb-2">8</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
+              academic publications focused on eye tracking.
+            </p>
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">Q1 JOURNAL (2021–2025)</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Franěk, M., &amp; Petružálek, J. (2025). <em>Perceptual fluency and eye movements when viewing
+              urban and natural scenes.</em> Scientific Reports, 15(1), art. 25772.
+            </p>
+          </div>
+          <div class="bg-brand-white p-8">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">SCHOOL AND YOUNG TALENT</p>
+            <ul class="space-y-3 text-sm text-brand-black/60 leading-relaxed">
+              <li class="pb-3 border-b border-brand-black/5">
+                <strong class="text-brand-black">2 defended dissertations</strong><br/>
+                Jan Petružálek (2023) — Comparison and combination of methods for measuring user experience
+                using eye-tracking technology<br/>
+                Denis Šefara (2022) — Business dashboards working with the user's attention
+              </li>
+              <li class="pb-3 border-b border-brand-black/5">
+                <strong class="text-brand-black">8 defended master's and bachelor's theses</strong><br/>
+                2 master's, 6 bachelor's
+              </li>
+              <li>
+                <strong class="text-brand-black">10 new topics for 2025/2026</strong><br/>
+                5 of them focused on eye tracking
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          Students are not cheap labour. They are the reason the laboratory is constantly testing its own methods on new
+          briefs — and why you cannot settle comfortably into a single procedure.
+        </p>
+      </div>
 
+      <!-- Lidé -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PEOPLE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-3xl">
+          Two of us run the company. Two do not do the measuring<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-10">
+          UX MIND has two partners. Behind the collection and processing of data stands the laboratory team — research
+          leadership, lab management and trained operators.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mb-px">
+
+          <!-- Jan Petružálek -->
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
-              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO COMING SOON ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">We measure where you look. Just haven’t turned the camera on ourselves yet.</p>
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO IN PREPARATION ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">We measure where you look. We haven't yet turned the camera on ourselves.</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
-              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">RESEARCH & METHODOLOGY · AUTHOR OF EMLI</p>
-              <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Ing. Jan Petružálek, Ph.D.</h2>
-              <p class="text-brand-black/60 leading-relaxed mb-4">
-                A UX researcher with a doctorate from FIM UHK. In his dissertation he compared and combined user-experience measurement methods with eye-tracking technology and created the <strong class="text-brand-black">EMLI</strong> methodology — a cognitive load index computed from eye movement. Years of experiments in the FIMEYELAB lab, hundreds of respondents, publications in HCI and e-commerce.
-              </p>
+              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">HEAD OF THE FIMEYELAB LABORATORY · CO-OWNER OF UX MIND</p>
+              <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Ing. Jan Petružálek, Ph.D.</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                At UX MIND he leads research: designing experiments, guarding methodological rigour and developing EMLI on data from real projects.
+                He leads both the laboratory and the research: he designs experiments, guards the methodological cleanliness
+                of measurement and is responsible for the interpretation of data. A doctorate from FIM UHK, a dissertation
+                on combining methods for measuring user experience with eye tracking, publications in HCI and e-commerce.
               </p>
               <a href="https://www.linkedin.com/in/jan-petru%C5%BE%C3%A1lek-79167474/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
@@ -67,37 +377,97 @@ import Footer from '../../components/Footer.astro';
             </div>
           </div>
 
+          <!-- Lukáš Koula -->
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
-              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO COMING SOON ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Portrait in the making. We promise — no stock photo.</p>
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO IN PREPARATION ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Portrait in the works. We promise — no stock photo.</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
-              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGY, WEB & MARKETING</p>
-              <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Mgr. Lukáš Koula</h2>
-              <p class="text-brand-black/60 leading-relaxed mb-4">
-                An e-commerce and digital marketing specialist. Certified <strong class="text-brand-black">Shoptet Partner</strong> and <strong class="text-brand-black">Google Partner</strong> — he builds e-shops and websites that sell, and runs performance campaigns in Google Ads and Sklik.
-              </p>
+              <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGY, WEB AND MARKETING · CO-OWNER OF UX MIND</p>
+              <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Mgr. Lukáš Koula</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                At UX MIND he turns research into practice: from lab findings he makes concrete changes to websites, e-shops and campaigns that show up in conversions. He leads projects and client communication.
+                He translates research into practice: he turns lab findings into concrete changes to websites, e-shops
+                and campaigns. Certified Shoptet Partner and Google Partner. He leads projects and client communication.
               </p>
               <a href="https://www.linkedin.com/in/lukaskoula/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
               </a>
             </div>
           </div>
+        </div>
 
+        <!-- Tým laboratoře -->
+        <div class="border border-brand-black/10 p-8 md:p-10">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ THE LABORATORY TEAM ]</p>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10 mb-6">
+            {tymLaboratore.map(([pocet, role]) => (
+              <div class="bg-brand-white p-5">
+                <p class="font-display text-3xl font-bold leading-none mb-2">{pocet}</p>
+                <p class="font-mono text-[11px] text-brand-black/60 tracking-wide uppercase leading-snug">{role}</p>
+              </div>
+            ))}
+          </div>
+          <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl">
+            Data collection is done by trained operators following a protocol. That is what repeatability rests on — the
+            result of a measurement must not depend on who happens to be sitting at the computer.
+          </p>
         </div>
       </div>
 
-      <div class="text-center py-16 border-t border-brand-black/10">
-        <h2 class="font-display text-4xl font-bold mb-6">Let’s work together</h2>
-        <a href="/en/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-          WRITE TO US →
-        </a>
+      <!-- Etika a data -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ETHICS AND DATA ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">
+              We measure people's eyes, skin and facial expression<span style="color:#2D62FC">.</span>
+            </h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              This is not a footer section. Without a proper protocol and consent, nothing gets measured here.
+            </p>
+          </div>
+          <ul class="space-y-2">
+            {etika.map(e => (
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5 last:border-0">
+                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {e}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
+        <div class="relative">
+          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+            WANT TO<br/>TAKE A LOOK<span style="color:#2D62FC">?</span>
+          </h2>
+          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
+            The laboratory can be visited. We will show you the equipment, play a real measurement recording and tell you
+            straight whether measurement makes sense for your brief — or whether a cheaper tool will do.
+          </p>
+          <a href={localizedPath('en', 'contact')} class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
+            ARRANGE A VISIT →
+          </a>
+        </div>
       </div>
     </div>
   </main>
 
   <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </BaseLayout>
