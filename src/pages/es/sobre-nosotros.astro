@@ -6,6 +6,12 @@ import { localizedPath } from '../../i18n/utils';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const fotkaLegenda = [
+  ['Eye tracker', 'Una barra bajo el monitor capta el movimiento de los ojos 60 veces por segundo.'],
+  ['Análisis de expresiones', 'Una cámara sobre el monitor reconoce la expresión facial.'],
+  ['Una tarea real', 'La participante realiza la tarea en una página real —sin comentar qué le gusta—.'],
+];
+
 const vrstvy = [
   {
     t: 'Atención visual',
@@ -166,6 +172,17 @@ const pageSchema = [
             Esa es precisamente la diferencia entre una medición y un grupo focal. No preguntamos a la gente qué cree
             que hace. Observamos qué hace realmente.
           </p>
+          <dl class="mt-8 border-t border-brand-black/10 pt-6 space-y-4">
+            {fotkaLegenda.map(([label, desc], i) => (
+              <div class="flex gap-4">
+                <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
+                <div>
+                  <dt class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70 mb-0.5">{label}</dt>
+                  <dd class="text-sm text-brand-black/60 leading-relaxed">{desc}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 

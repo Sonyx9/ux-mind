@@ -6,6 +6,12 @@ import { localizedPath } from '../../i18n/utils';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const fotkaLegenda = [
+  ['Eye tracker', 'A bar below the monitor captures eye movement 60 times a second.'],
+  ['Facial expression analysis', 'A camera above the monitor reads facial expression.'],
+  ['A real task', 'The respondent completes a set task on a real page — not commenting on what she likes.'],
+];
+
 const vrstvy = [
   {
     t: 'Visual attention',
@@ -168,6 +174,17 @@ const pageSchema = [
             That is exactly the difference between measurement and a focus group. We do not ask people what they think
             they do. We watch what they actually do.
           </p>
+          <dl class="mt-8 border-t border-brand-black/10 pt-6 space-y-4">
+            {fotkaLegenda.map(([label, desc], i) => (
+              <div class="flex gap-4">
+                <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
+                <div>
+                  <dt class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70 mb-0.5">{label}</dt>
+                  <dd class="text-sm text-brand-black/60 leading-relaxed">{desc}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 

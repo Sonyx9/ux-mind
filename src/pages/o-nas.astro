@@ -5,6 +5,12 @@ import Footer from '../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const fotkaLegenda = [
+  ['Eye tracker', 'Lišta pod monitorem snímá pohyb očí 60× za sekundu.'],
+  ['Analýza mimiky', 'Kamera nad monitorem rozpoznává výraz obličeje.'],
+  ['Reálný úkol', 'Respondentka plní zadání na reálné stránce — neříká, co se jí líbí.'],
+];
+
 const vrstvy = [
   {
     t: 'Vizuální pozornost',
@@ -164,6 +170,17 @@ const pageSchema = [
             Přesně v tom je rozdíl mezi měřením a fokusní skupinou. Neptáme se lidí, co si myslí,
             že dělají. Díváme se, co skutečně dělají.
           </p>
+          <dl class="mt-8 border-t border-brand-black/10 pt-6 space-y-4">
+            {fotkaLegenda.map(([label, desc], i) => (
+              <div class="flex gap-4">
+                <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
+                <div>
+                  <dt class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70 mb-0.5">{label}</dt>
+                  <dd class="text-sm text-brand-black/60 leading-relaxed">{desc}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 
