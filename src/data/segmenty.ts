@@ -225,7 +225,7 @@ export const segmenty: Segment[] = [
       {
         typ: 'vlastni',
         nadpis: '40 % uchazečů nenašlo cestu k volným pozicím. Web přitom „vypadal přehledně".',
-        text: 'Eye-tracking se scénářem „najděte volné pozice" ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.',
+        text: 'Kariérní portál ŠKODA AUTO — eye-tracking se scénářem „najděte volné pozice" ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.',
         metoda: 'Eye-tracking + dotazník · N = 102',
         odkaz: '/pripadove-studie/karierni-portal-automotive',
       },
@@ -442,7 +442,7 @@ export const segmenty: Segment[] = [
       {
         typ: 'vlastni',
         nadpis: '40 % uchazečů nenašlo cestu k volným pozicím. Web přitom „vypadal přehledně".',
-        text: 'Eye-tracking se scénářem „najděte volné pozice" ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.',
+        text: 'Kariérní portál ŠKODA AUTO — eye-tracking se scénářem „najděte volné pozice" ukázal, že subjektivní hodnocení přehlednosti neodpovídá schopnosti splnit úkol. A/B porovnání plovoucího CTA přineslo měřitelné rozdíly ve fixačních metrikách i délce návštěvy. Výsledkem bylo zjednodušení cesty k pozicím a přestavba navigace.',
         metoda: 'Eye-tracking + dotazník · N = 102',
         odkaz: '/pripadove-studie/karierni-portal-automotive',
       },
