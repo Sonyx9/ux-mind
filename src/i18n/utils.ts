@@ -216,12 +216,12 @@ export function getNavLinks(lang: Lang): NavLink[] {
         { href: urlMap[lang]['seg-weby'], label: 'Weby a aplikace' },
         { href: urlMap[lang]['seg-sport'], label: 'Sport a stadiony' },
         { href: urlMap[lang]['seg-automotive'], label: 'Automotive' },
-        { href: urlMap[lang]['seg-univerzity'], label: 'Univerzity a výzkum' },
         { href: urlMap[lang]['seg-doprava'], label: 'Doprava a města' },
         { href: urlMap[lang]['seg-prumysl'], label: 'Průmysl a energetika' },
         { href: urlMap[lang]['seg-zdravotnictvi'], label: 'Zdravotnictví' },
         { href: urlMap[lang]['seg-finance'], label: 'Finance a poradenství' },
         { href: urlMap[lang]['seg-letectvi'], label: 'Letectví' },
+        { href: urlMap[lang]['seg-univerzity'], label: 'Univerzity a výzkum' },
       ]
     : [];
   return [

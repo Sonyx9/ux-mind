@@ -473,10 +473,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['user-testing', 'field-research', 'eye-tracking', 'test-packages'],
   },
 
-  // ── 5. Univerzity, výzkum a vzdělávání ────────────────────────
+  // ── 10. Univerzity, výzkum a vzdělávání ──────────────────────
   {
     slug: 'univerzity-a-vyzkum',
-    poradi: 5,
+    poradi: 10,
     nazev: 'Univerzity, výzkum a vzdělávání',
     nazevKratky: 'Univerzity a výzkum',
     bolest: 'Recenzent se neptá, jestli je závěr zajímavý. Ptá se, jak jste sbírali data.',
@@ -567,10 +567,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['ux-research', 'eye-tracking', 'field-research', 'test-packages'],
   },
 
-  // ── 6. Doprava, města a veřejný prostor ───────────────────────
+  // ── 5. Doprava, města a veřejný prostor ───────────────────────
   {
     slug: 'doprava-a-mesta',
-    poradi: 6,
+    poradi: 5,
     nazev: 'Doprava, města a veřejný prostor',
     nazevKratky: 'Doprava a města',
     bolest: 'Značka, kterou nikdo nezaregistruje, je jen náklad.',
@@ -661,10 +661,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['field-research', 'eye-tracking', 'ux-research', 'test-packages'],
   },
 
-  // ── 7. Průmysl, energetika a kritická infrastruktura ──────────
+  // ── 6. Průmysl, energetika a kritická infrastruktura ──────────
   {
     slug: 'prumysl-a-energetika',
-    poradi: 7,
+    poradi: 6,
     nazev: 'Průmysl, energetika a kritická infrastruktura',
     nazevKratky: 'Průmysl a energetika',
     bolest: 'Expert pozná vadu za vteřinu a neumí vysvětlit jak. Zaškolení pak trvá měsíce.',
@@ -757,10 +757,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['field-research', 'eye-tracking', 'ux-research', 'test-packages'],
   },
 
-  // ── 8. Zdravotnictví a zdravotnické prostředky ────────────────
+  // ── 7. Zdravotnictví a zdravotnické prostředky ────────────────
   {
     slug: 'zdravotnictvi',
-    poradi: 8,
+    poradi: 7,
     nazev: 'Zdravotnictví a zdravotnické prostředky',
     nazevKratky: 'Zdravotnictví',
     bolest: 'Špatné rozhraní tu není otázkou konverze, ale rizika.',
@@ -853,10 +853,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['user-testing', 'eye-tracking', 'field-research', 'test-packages'],
   },
 
-  // ── 9. Banky, pojišťovny a poradenství ────────────────────────
+  // ── 8. Banky, pojišťovny a poradenství ────────────────────────
   {
     slug: 'finance-a-poradenstvi',
-    poradi: 9,
+    poradi: 8,
     nazev: 'Banky, pojišťovny a poradenství',
     nazevKratky: 'Finance a poradenství',
     bolest: 'Finanční produkty se prodávají textem, který skoro nikdo nečte.',
@@ -946,10 +946,10 @@ export const segmenty: Segment[] = [
     souvisejiciSluzby: ['ux-audit', 'eye-tracking', 'user-testing', 'test-packages'],
   },
 
-  // ── 10. Letectví a doprava vzduchem ───────────────────────────
+  // ── 9. Letectví a doprava vzduchem ────────────────────────────
   {
     slug: 'letectvi',
-    poradi: 10,
+    poradi: 9,
     nazev: 'Letectví a doprava vzduchem',
     nazevKratky: 'Letectví',
     bolest: 'Kam se dívá pilot, instruktor a cestující — a kde jim dochází kapacita.',
