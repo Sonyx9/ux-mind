@@ -47,9 +47,9 @@ const { prev, next } = sousedniSegmenty(segment.slug);
 const pageSchema = [
   {
     '@type': 'Service',
-    name: `Eye tracking — ${segment.nazev}`,
+    name: segment.schemaName ?? (segment.moderni ? `UX výzkum a testování — ${segment.nazev}` : `Eye tracking — ${segment.nazev}`),
     description: segment.metaDescription,
-    serviceType: 'Eye tracking a UX výzkum',
+    serviceType: segment.schemaServiceType ?? (segment.moderni ? 'UX audit, uživatelské testování a eye tracking' : 'Eye tracking a UX výzkum'),
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
   },
@@ -85,27 +85,48 @@ const pageSchema = [
 
       <!-- 1 · Hero -->
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SEGMENTY / {segment.nazevKratky.toUpperCase()} ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ {segment.moderni ? 'PRO KOHO' : 'SEGMENTY'} / {segment.nazevKratky.toUpperCase()} ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           {h1Head.map((line) => (<>{line}<br/></>))}{lastPrefix}<span style="color:#2D62FC">{lastPunct}</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
-          <div>
-            {segment.perex.map((p, i) => (
-              <p class:list={["text-lg text-brand-black/60 leading-relaxed max-w-xl", i > 0 && "mt-4"]}>{p}</p>
-            ))}
-          </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
-            <a href={segment.cta.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              {segment.cta.text}
-            </a>
-            {segment.ctaSekundarni && (
-              <a href={segment.ctaSekundarni.href} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-                {segment.ctaSekundarni.text}
+        {segment.moderni ? (
+          <div class="max-w-3xl">
+            <div>
+              <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">{segment.heroNadpis}</h2>
+              {segment.perex.map((p, i) => (
+                <p class:list={["text-lg text-brand-black/60 leading-relaxed text-justify", i > 0 && "mt-4"]}>{p}</p>
+              ))}
+            </div>
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href={segment.cta.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+                {segment.cta.text}
               </a>
-            )}
+              {segment.ctaSekundarni && (
+                <a href={segment.ctaSekundarni.href} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                  {segment.ctaSekundarni.text}
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+            <div>
+              {segment.perex.map((p, i) => (
+                <p class:list={["text-lg text-brand-black/60 leading-relaxed max-w-xl", i > 0 && "mt-4"]}>{p}</p>
+              ))}
+            </div>
+            <div class="flex flex-wrap gap-4 md:justify-end">
+              <a href={segment.cta.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+                {segment.cta.text}
+              </a>
+              {segment.ctaSekundarni && (
+                <a href={segment.ctaSekundarni.href} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+                  {segment.ctaSekundarni.text}
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       <!-- 2 · Info pás -->
@@ -119,18 +140,60 @@ const pageSchema = [
       </div>
 
       <!-- 3 · Co měříme -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-10">[ {segment.coMerimeLabel ?? 'CO MĚŘÍME'} ]</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {segment.coMerime.map((c, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h2 class="font-display text-2xl font-bold mb-3 leading-tight">{c.nadpis}</h2>
-              <p class="text-sm text-brand-black/60 leading-relaxed">{c.text}</p>
+      {segment.moderni ? (
+        <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+          <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+            <div>
+              <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ {segment.coMerimeLabel ?? 'CO OVĚŘÍME'} ]</p>
+              <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+                {segment.coMerimeNadpis}<span style="color:#2D62FC">.</span>
+              </h2>
             </div>
-          ))}
+            <div class="border-t border-brand-white/20">
+              {segment.coMerime.map((c, i) => (
+                <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                  <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                  <h3 class="font-display text-lg font-bold leading-tight">{c.nadpis}</h3>
+                  <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{c.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div class="reveal mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-10">[ {segment.coMerimeLabel ?? 'CO MĚŘÍME'} ]</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+            {segment.coMerime.map((c, i) => (
+              <div class="bg-brand-white p-8">
+                <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+                <h2 class="font-display text-2xl font-bold mb-3 leading-tight">{c.nadpis}</h2>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Volba rozsahu -->
+      {segment.rozsahy && (
+        <div class="reveal mb-24">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAKÝ ROZSAH ZVOLIT ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+            Podle toho, co potřebujete rozhodnout<span style="color:#2D62FC">.</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+            {segment.rozsahy.map((rozsah, i) => (
+              <a href={rozsah.href} class="group bg-brand-white p-8 min-h-72 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors">
+                <span class="font-mono text-xs text-brand-black/50 mb-8 group-hover:text-brand-white/50">0{i + 1}</span>
+                <h3 class="font-display text-2xl font-bold mb-3 leading-tight">{rozsah.nadpis}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed mb-8 group-hover:text-brand-white/70">{rozsah.text}</p>
+                <p class="font-mono text-[10px] tracking-widest mt-auto pt-5 border-t border-current/20">{rozsah.stitek} <span class="float-right">→</span></p>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
 
       <!-- 4 · Obrázek (volitelný) -->
       {segment.obrazek && (
@@ -146,30 +209,69 @@ const pageSchema = [
       )}
 
       <!-- 5 · Typické zadání + Co dostanete -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ TYPICKÉ ZADÁNÍ ]</p>
-          <ul class="space-y-2">
-            {segment.typickeZadani.map((z) => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {z}
-              </li>
-            ))}
-          </ul>
+      {segment.moderni ? (
+        <>
+          <div class="reveal mb-24">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TYPICKÁ ZADÁNÍ ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+              {segment.typickeNadpis}<span style="color:#2D62FC">.</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+              {segment.typickeZadani.map((z, i) => (
+                <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+                  <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{z}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+              <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+                {segment.vystupNadpis}<span style="color:#2D62FC">.</span>
+              </h2>
+              <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+                Rozsah výstupu odpovídá zvolené metodě. Vždy ale dostanete vysvětlení problému, jeho důležitost a konkrétní doporučení, jak pokračovat.
+              </p>
+            </div>
+            <div class="border-t border-brand-black/20">
+              {segment.coDostanete.map((o, i) => (
+                <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-5 border-b border-brand-black/20">
+                  <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+                  <p class="text-sm text-brand-black/60 leading-relaxed">{o}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ TYPICKÉ ZADÁNÍ ]</p>
+            <ul class="space-y-2">
+              {segment.typickeZadani.map((z) => (
+                <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                  <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {z}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
+            <ul class="space-y-2">
+              {segment.coDostanete.map((o) => (
+                <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
+                  <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
-          <ul class="space-y-2">
-            {segment.coDostanete.map((o) => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      )}
 
       <!-- 6 · Důkaz -->
+      {(segment.dukazUvod || vlastniDukazy.length > 0 || ciziDukazy.length > 0) && (
       <div class="reveal mb-24">
         {(segment.dukazUvod || vlastniDukazy.length > 0) && (
           <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ {dukazLabel} ]</p>
@@ -179,8 +281,25 @@ const pageSchema = [
         )}
 
         {vlastniDukazy.length > 0 && (
-          <div class="space-y-6 mb-12">
-            {vlastniDukazy.map((d) => (
+          <div class:list={[segment.moderni ? `grid grid-cols-1 ${vlastniDukazy.length > 1 ? 'md:grid-cols-2' : ''} gap-5` : "space-y-6", "mb-12"]}>
+            {vlastniDukazy.map((d) => segment.moderni && d.odkaz ? (
+              <a href={d.odkaz} class:list={["group border border-brand-black/15 p-8 md:p-10 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors", vlastniDukazy.length > 1 ? "min-h-96" : "min-h-72"]}>
+                {d.vysledek && <p class="font-display text-xl font-bold leading-tight mb-6" style="color:#2D62FC">{d.vysledek}</p>}
+                <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">{d.nadpis}</h2>
+                <p class="text-brand-black/60 leading-relaxed mb-8 group-hover:text-brand-white/70">{d.text}</p>
+                <div class="mt-auto pt-5 border-t border-current/20">
+                  {d.metoda && <p class="font-mono text-[11px] opacity-60 tracking-widest mb-4">METODA: {d.metoda}</p>}
+                  <span class="font-mono text-xs tracking-widest uppercase">Projít studii →</span>
+                </div>
+              </a>
+            ) : segment.moderni ? (
+              <div class:list={["border border-brand-black/15 p-8 md:p-10 flex flex-col", vlastniDukazy.length > 1 ? "min-h-96" : "min-h-72"]}>
+                {d.vysledek && <p class="font-display text-xl font-bold leading-tight mb-6" style="color:#2D62FC">{d.vysledek}</p>}
+                <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">{d.nadpis}</h2>
+                <p class="text-brand-black/60 leading-relaxed mb-8">{d.text}</p>
+                {d.metoda && <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mt-auto pt-5 border-t border-brand-black/20">METODA: {d.metoda}</p>}
+              </div>
+            ) : (
               <div class="border border-brand-black/10 p-8 md:p-10">
                 <h2 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight max-w-3xl">{d.nadpis}</h2>
                 <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-5">{d.text}</p>
@@ -209,6 +328,7 @@ const pageSchema = [
           </div>
         )}
       </div>
+      )}
 
       <!-- 7 · Hranice -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">

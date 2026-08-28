@@ -58,7 +58,7 @@ const pageSchema = [
   {
     '@type': 'Service',
     name: 'UX výzkum',
-    description: 'Hloubkový UX výzkum kombinující kvalitativní a kvantitativní metody: rozhovory, testování použitelnosti, dotazníky, personas a journey mapy.',
+    description: 'UX výzkum pro produktová rozhodnutí: rozhovory, pozorování, uživatelské testování, dotazníky, analýza dat a prioritizovaná doporučení.',
     serviceType: 'UX výzkum',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -75,8 +75,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="UX výzkum a uživatelské testování webu"
-  description="Uživatelské testování webu, hloubkové rozhovory, testování použitelnosti, personas a journey mapy. Rozhodujte na datech, ne na domněnkách."
+  title="UX výzkum pro produktová rozhodnutí | UX MIND"
+  description="UX výzkum pomocí rozhovorů, pozorování, uživatelského testování a analýzy dat. Získejte jasná zjištění, priority a doporučení pro produkt."
   schema={pageSchema}
 >
   <Navbar />
@@ -88,22 +88,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / UX VÝZKUM ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          DATA<br/>MÍSTO DOJMŮ<span style="color:#2D62FC">.</span>
+          POCHOPTE<br/>SOUVISLOSTI<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Nejhlubší rozsah: porozumět uživatelům, ne jen rozhraní.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Kombinujeme kvalitativní a kvantitativní metody, abychom odhalili
-              <strong class="text-brand-black">potřeby, frustrace a mentální modely</strong> vašich uživatelů.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Rozhodněte, co má smysl vytvářet a zlepšovat.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              UX výzkum odpovídá na širší otázky než test jedné obrazovky. Pomůže zjistit, kdo jsou vaši uživatelé, co potřebují, jak se rozhodují a které části jejich cesty mají největší vliv na zkušenost s produktem nebo službou.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Podle cíle kombinujeme rozhovory, pozorování, uživatelské testování, dotazníky a dostupná data. Výstupem jsou <strong class="text-brand-black">srozumitelná zjištění, priority a doporučení pro produktová rozhodnutí</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              ZAHÁJIT VÝZKUM →
+              POPTAT UX VÝZKUM →
             </a>
-            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TESTOVACÍ BALÍČKY
+            <a href="/sluzby#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PROJÍT BALÍČKY
             </a>
           </div>
         </div>
@@ -113,9 +115,9 @@ const pageSchema = [
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DÉLKA', '3–8 týdnů'],
-          ['METODY', 'Kvali + kvanti'],
-          ['VÝSTUPY', 'Personas · journey mapy'],
-          ['BALÍČEK', 'Komplexní biometrický'],
+          ['METODY', 'Rozhovory · pozorování · data'],
+          ['VÝSTUPY', 'Zjištění · priority · doporučení'],
+          ['FORMA', 'Výzkum na míru'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -124,18 +126,62 @@ const pageSchema = [
         ))}
       </div>
 
+      <!-- Výzkumné otázky -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ NA CO UX VÝZKUM ODPOVÍDÁ ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Nejdřív otázka. Potom metoda<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {researchQuestions.map((question, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{question.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{question.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Kdy dává smysl -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDY UX VÝZKUM DÁVÁ SMYSL ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Když nestačí upravit jednu obrazovku<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {situations.map((situation, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{situation.title}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{situation.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- Metody -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ METODY VÝZKUMU ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Správná metoda na správnou otázku<span style="color:#2D62FC">.</span>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK METODY SKLÁDÁME ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Rozsah určuje rozhodnutí, ne seznam metod<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {methods.map(method => (
-            <div class="bg-brand-white p-8">
-              <span class="font-mono text-[10px] text-brand-black/60 border border-brand-black/20 px-2 py-0.5 tracking-widest">{method.type}</span>
-              <h3 class="font-display text-xl font-bold mb-3 mt-4">{method.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-10">
+          Nezačínáme tím, že do projektu vložíme všechny dostupné techniky. Nejprve určíme, jaký typ odpovědi potřebujete, a teprve potom navrhneme nejmenší smysluplnou kombinaci metod.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {methods.map((method, i) => (
+            <div class="bg-brand-white p-8 flex flex-col min-h-64">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold mb-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{method.desc}</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mt-auto pt-5 border-t border-brand-black/10">{method.methods}</p>
             </div>
           ))}
         </div>
@@ -150,50 +196,60 @@ const pageSchema = [
           width="1200" height="800" loading="lazy" decoding="async"
           class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Výzkumné zázemí FIM UHK — rozhovory a testování lze doplnit o eye-tracking a biometrii v téže session.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Výzkumné zázemí FIMEYELAB na FIM UHK — prostor pro rozhovory, uživatelské testování a podle potřeby také synchronizované měření.</p>
       </div>
 
-      <!-- Co dostanete + proces -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
         <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
-          <ul class="space-y-2">
-            {deliverables.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Podklady pro rozhodnutí, ne dokument do archivu<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Podobu výstupu volíme podle toho, kdo s výsledky bude pracovat a jaké rozhodnutí má následovat. Journey mapa ani persona nejsou povinná položka — vzniknou jen tehdy, když pomohou další práci.
+          </p>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK VÝZKUM PROBÍHÁ ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div class="border-t border-brand-black/20">
+          {deliverables.map((deliverable, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{deliverable.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{deliverable.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Biometrie -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK UX VÝZKUM PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Od otázky k dalšímu produktovému kroku<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pokročilé měření -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ VÝPOVĚDI + OBJEKTIVNÍ DATA ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Co lidé říkají vs. co dělají<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ VOLITELNÉ POKROČILÉ MĚŘENÍ ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Když výpovědi a pozorování nestačí<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Deklarované odpovědi ověřujeme proti chování: rozhovory a dotazníky kombinujeme
-              s eye-trackingem, GSR a indexem mentální zátěže EMLI. Rozhodujete pak na tom, co se skutečně stalo.
+              Pokud výzkumná otázka vyžaduje přesně změřit vizuální pozornost, fyziologickou aktivaci nebo mentální zátěž, můžeme studii rozšířit o eye tracking, GSR, analýzu mimických signálů nebo EMLI. Metodu přidáváme pouze tehdy, když přinese potřebný typ důkazu.
             </p>
           </div>
-          <a href="/sluzby/testovaci-balicky#komplexni-biometricky-vyzkum" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            BIOMETRICKÝ BALÍČEK →
+          <a href="/sluzby/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            PROJÍT EYE TRACKING →
           </a>
         </div>
       </div>
