@@ -16,7 +16,7 @@ import Footer from '../components/Footer.astro';
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KONTAKT ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          POJĎME<br/>MLUVIT<span style="color:#2D62FC">.</span>
+          POJĎME TO<br/>OVĚŘIT<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
@@ -24,20 +24,20 @@ import Footer from '../components/Footer.astro';
 
         <!-- Contact info -->
         <div>
-          <p class="text-xl text-brand-black/60 leading-relaxed mb-12">
-            Rádi si vyslechneme váš projekt. Napište nám nebo rovnou vyplňte formulář a ozveme se do 48 hodin.
+          <p class="text-xl text-brand-black/60 leading-relaxed mb-12 text-justify">
+            Pošlete nám web, aplikaci, kampaň nebo stručný popis problému. Ozveme se do 48 hodin a navrhneme, co má smysl ověřit a jaký postup zvolit.
           </p>
 
           <div class="space-y-6">
             <div>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">EMAIL</p>
-              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
                 spoluprace@uxmind.cz
               </a>
             </div>
             <div>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">TELEFON</p>
-              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
                 +420 728 601 160
               </a>
             </div>
@@ -47,37 +47,6 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
 
-          <div class="mt-12 p-6 border border-brand-black/10">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ODPOVÍDÁME DO ]</p>
-            <p class="font-display text-3xl font-bold">48 hodin</p>
-            <p class="text-sm text-brand-black/60 mt-1">v pracovní dny</p>
-          </div>
-
-          <div class="mt-6 p-6 border border-brand-black/10">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PROVOZOVATEL WEBU ]</p>
-            <div class="space-y-3 text-sm">
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">NÁZEV SUBJEKTU</p>
-                <p class="text-brand-black/80">UX MIND Research Lab s.r.o.</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">IČO</p>
-                <p class="text-brand-black/80">29714966</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">SPISOVÁ ZNAČKA</p>
-                <p class="text-brand-black/80">C 57053 vedená u Krajského soudu v Hradci Králové</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">DEN ZÁPISU</p>
-                <p class="text-brand-black/80">24. června 2026</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">SÍDLO</p>
-                <p class="text-brand-black/80">K Lesu 180, Svinary, 500 09 Hradec Králové</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- Contact form -->
@@ -119,13 +88,13 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label for="f-service" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">ZÁJEM O SLUŽBU</label>
+              <label for="f-service" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">ČEHO SE PROJEKT TÝKÁ</label>
               <select
                 id="f-service"
                 name="service"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent appearance-none"
               >
-                <option value="">Vyberte službu...</option>
+                <option value="">Vyberte oblast...</option>
                 <option value="ux-audit">UX Audit</option>
                 <option value="eye-tracking">Eye Tracking</option>
                 <option value="ux-vyzkum">UX Výzkum</option>
@@ -136,14 +105,14 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div>
-              <label for="f-message" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">ZPRÁVA *</label>
+              <label for="f-message" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">CO POTŘEBUJETE ZJISTIT? *</label>
               <textarea
                 id="f-message"
                 name="message"
                 required
                 rows="5"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent resize-none"
-                placeholder="Popište váš projekt nebo dotaz..."
+                placeholder="Stačí stručně popsat projekt, problém nebo rozhodnutí, se kterým potřebujete pomoci."
               ></textarea>
             </div>
 
@@ -151,9 +120,52 @@ import Footer from '../components/Footer.astro';
               type="submit"
               class="w-full border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors"
             >
-              ODESLAT ZPRÁVU →
+              ODESLAT DOTAZ →
             </button>
           </form>
+        </div>
+      </div>
+
+      <!-- Provozovatel a bankovní spojení -->
+      <div class="mt-16 border border-brand-black/10 p-8 md:p-10">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PROVOZOVATEL WEBU ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8 text-sm">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">NÁZEV SUBJEKTU</p>
+            <p class="text-brand-black/80">UX MIND Research Lab s.r.o.</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">IČO</p>
+            <p class="text-brand-black/80">29714966</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">DEN ZÁPISU</p>
+            <p class="text-brand-black/80">24. června 2026</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SPISOVÁ ZNAČKA</p>
+            <p class="text-brand-black/80">C 57053 vedená u Krajského soudu v Hradci Králové</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SÍDLO</p>
+            <p class="text-brand-black/80">K Lesu 180, Svinary, 500 09 Hradec Králové</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">BANKA</p>
+            <p class="text-brand-black/80">MONETA Money Bank, a.s.</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">ČÍSLO ÚČTU</p>
+            <p class="text-brand-black/80">283221603/0600</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">IBAN</p>
+            <p class="text-brand-black/80 break-words">CZ96 0600 0000 0002 8322 1603</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SWIFT / BIC</p>
+            <p class="text-brand-black/80">AGBACZPP</p>
+          </div>
         </div>
       </div>
     </div>

@@ -14,58 +14,56 @@ const vystupyMereni = [
 const vrstvy = [
   {
     t: 'Vizuální pozornost',
-    d: 'Kam se člověk podívá, v jakém pořadí, jak dlouho tam zůstane a co mine úplně. Heatmapy, oblasti zájmu, doba do první fixace, doba prohlížení.',
+    d: 'Eye tracking ukáže, kam se uživatel dívá, v jakém pořadí a co úplně přehlédne. Zjistíme také, jak rychle důležitý prvek najde a jak dlouho mu věnuje pozornost.',
     tag: 'EYE TRACKING',
   },
   {
-    t: 'Emoce a aktivace',
-    d: 'Co dotazník nezachytí, protože o tom člověk neví nebo to nepřizná. Kožní vodivost měří fyziologickou reakci, analýza mimiky rozpoznává výraz obličeje.',
+    t: 'Emoční reakce',
+    d: 'Kožní vodivost zachytí změny fyziologické aktivace a analýza mimiky výraz obličeje. Pomáhají určit okamžiky, které vyvolávají reakci — samy ale neříkají, proč vznikla.',
     tag: 'GSR + MIMIKA',
   },
   {
-    t: 'Kognitivní zátěž',
-    d: 'Kolik úsilí stojí použití rozhraní. Zátěž je tichý zabiják konverze i srozumitelnosti — uživatel neodejde s tím, že „to bylo náročné“, prostě odejde.',
+    t: 'Mentální zátěž',
+    d: 'Měříme, kde rozhraní vyžaduje více pozornosti a úsilí. Odhalíme místa, která uživatele zpomalují, matou nebo zbytečně komplikují dokončení úkolu.',
     tag: 'MENTÁLNÍ ÚSILÍ',
   },
 ];
 
 const vybaveni = [
-  { nazev: 'Smart Eye Aurora', typ: 'stolní eye tracking', k: 'Současná konfigurace pro řízené studie na obrazovce.' },
-  { nazev: 'Tobii Pro X2-60', typ: 'stolní eye tracking', k: 'Platforma 60 Hz, přenosná sestava pro fixačně orientované studie.' },
-  { nazev: 'Pupil Labs Neon (2×)', typ: 'mobilní brýle', k: 'Měření v reálném prostředí — prodejna, stadion, provoz, ulice.' },
-  { nazev: 'iMotions + analýza mimiky', typ: 'software', k: 'Synchronizace všech signálů se stimuly a rozpoznání výrazu obličeje.' },
-  { nazev: 'Shimmer3 GSR', typ: 'biometrie', k: 'Kožní vodivost — fyziologická reakce a míra aktivace.' },
+  { nazev: 'Smart Eye Aurora', typ: 'stolní eye tracking', k: 'Přesné sledování pohledu při testování webů, aplikací a dalších digitálních rozhraní.' },
+  { nazev: 'Tobii Pro X2-60', typ: 'stolní eye tracking', k: 'Přenosný eye tracker pro studie na obrazovce a porovnávání různých variant.' },
+  { nazev: 'Pupil Labs Neon (2×)', typ: 'mobilní eye tracking', k: 'Brýle pro sledování pozornosti v prodejnách, showroomech, na stadionech nebo v provozu.' },
+  { nazev: 'iMotions + analýza mimiky', typ: 'výzkumný software', k: 'Propojuje eye tracking, mimiku a další signály do jednoho časově sladěného záznamu.' },
+  { nazev: 'Shimmer3 GSR', typ: 'biometrie', k: 'Snímá změny kožní vodivosti, které ukazují míru fyziologické aktivace.' },
 ];
 
 const postup = [
-  { num: '01', title: 'Návrh studie', desc: 'Výzkumná otázka, definice metrik, velikost a struktura vzorku, scénáře úkolů.' },
-  { num: '02', title: 'Sběr dat', desc: 'Protokol pro laboratoř nebo terén, kalibrace, stimuly, souběžný záznam všech signálů.' },
-  { num: '03', title: 'Analýza', desc: 'Metriky nad oblastmi zájmu, časové ukazatele, propojení pohledu s biometrií, statistika.' },
-  { num: '04', title: 'Přenos do praxe', desc: 'Prioritizovaná doporučení, report s metodikou a workshop s vaším týmem.' },
+  { num: '01', title: 'Návrh studie', desc: 'Ujasníme si, co potřebujete zjistit, koho má smysl testovat a podle čeho budeme výsledek hodnotit.' },
+  { num: '02', title: 'Příprava a měření', desc: 'Připravíme úkoly, nastavíme techniku a provedeme měření v laboratoři nebo přímo v terénu.' },
+  { num: '03', title: 'Analýza', desc: 'Propojíme pohled, chování, reakce a výpovědi účastníků. Hledáme souvislosti, ne jednotlivá čísla bez kontextu.' },
+  { num: '04', title: 'Doporučení pro praxi', desc: 'Dostanete jasné závěry, priority a konkrétní doporučení, co změnit.' },
 ];
 
 const rizika = [
-  'posun kalibrace v průběhu měření',
-  'únava respondentů',
-  'efekt pořadí — proto randomizace a protivyvážení',
-  'nejednoznačně zadaný úkol',
-  'přeceňování jediné metriky',
+  'správnou kalibraci po celou dobu měření',
+  'únavu účastníků',
+  'pořadí úkolů, aby neovlivnilo výsledek',
+  'jednoznačné a srozumitelné zadání',
+  'aby závěr nestál pouze na jedné metrice',
 ];
 
 const etika = [
-  'Standardizovaný protokol a pilotní testování před každou studií',
-  'Informovaný souhlas každého respondenta',
-  'Zpracování dat podle GDPR, běžně pod NDA',
-  'Možnost plně anonymizovaných dat a reprodukovatelného reportu',
-  'U výzkumných projektů posouzení etickou komisí podle potřeby',
+  'Standardizovaný protokol a pilotní ověření studie',
+  'Informovaný souhlas každého účastníka',
+  'Zpracování dat podle GDPR a podle potřeby také pod NDA',
+  'Možnost anonymizace dat a výstupu s popsanou metodikou',
+  'Posouzení etickou komisí, pokud to povaha projektu vyžaduje',
 ];
 
 const tymLaboratore = [
-  ['01', 'Vedení výzkumu'],
-  ['01', 'Senior výzkumník'],
+  ['02', 'Vedení a metodika'],
   ['01', 'Správa laboratoře'],
-  ['02', 'Senior operátoři'],
-  ['06', 'Junior operátoři'],
+  ['08', 'Vyškolení operátoři'],
 ];
 
 const pageSchema = [
@@ -224,21 +222,21 @@ const pageSchema = [
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO UMÍME ZMĚŘIT ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Tři vrstvy toho, co se děje v hlavě uživatele<span style="color:#2D62FC">.</span>
+          Tři vrstvy uživatelské zkušenosti<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
           {vrstvy.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="mt-auto self-start font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
             </div>
           ))}
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          Metody se navzájem kontrolují. Když eye tracking ukáže dlouhé prohlížení, biometrie zvýšenou
-          aktivaci a dotazník klid, víme, že se něco děje — a víme kde.
+          Jedna metrika nestačí. Proto propojujeme pohled, průběh úkolu, reakce a výpověď uživatele.
+          Teprve jejich souvislost ukáže, kde problém vzniká a co má smysl změnit.
         </p>
       </div>
 
@@ -246,7 +244,7 @@ const pageSchema = [
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ČÍM MĚŘÍME ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Pět systémů, jeden synchronizovaný záznam<span style="color:#2D62FC">.</span>
+          Pět systémů pro laboratoř i terén<span style="color:#2D62FC">.</span>
         </h2>
         <div class="border border-brand-black/10">
           {vybaveni.map(z => (
@@ -260,8 +258,7 @@ const pageSchema = [
           ))}
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          Dvoje mobilní brýle znamenají, že umíme měřit dva lidi současně — nebo pokračovat, když jedna
-          sada zrovna nabíjí. V terénu je to rozdíl mezi „stihli jsme to“ a „přijedeme příště“.
+          Dvě sady mobilních brýlí nám umožňují měřit více účastníků nebo situací v kratším čase.
         </p>
       </div>
 
@@ -280,33 +277,31 @@ const pageSchema = [
       </div>
 
       <!-- Jak měření probíhá -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK MĚŘENÍ PROBÍHÁ ]</p>
-          <div class="space-y-0">
-            {postup.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK MĚŘENÍ PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Od otázky ke konkrétnímu doporučení<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {postup.map(step => (
+            <div class="bg-brand-white p-6 md:p-8 flex flex-col">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO V PROTOKOLU HLÍDÁME ]</p>
-          <ul class="space-y-2 mb-6">
+        <div class="mt-6 border border-brand-black/10 p-8 md:p-10">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ CO V PROTOKOLU HLÍDÁME ]</p>
+          <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-x-8 gap-y-4 mb-8">
             {rizika.map(r => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {r}
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed">
+                <span class="font-mono text-xs pt-0.5 shrink-0" style="color:#2D62FC;">→</span> {r}
               </li>
             ))}
           </ul>
-          <p class="text-sm text-brand-black/60 leading-relaxed">
-            Tenhle seznam je důvod, proč měření v laboratoři není totéž co „pustili jsme si nahrávku obrazovky“.
-            Každá z těch pěti věcí umí výsledek otočit naruby a všechny se dají ošetřit jen předem.
+          <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl border-t border-brand-black/10 pt-6">
+            Díky tomu jsou výsledky srovnatelné a doporučení nevycházejí z náhody ani z jediné nahrávky.
           </p>
         </div>
       </div>
@@ -315,44 +310,39 @@ const pageSchema = [
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ AKADEMICKÉ ZÁZEMÍ ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          To, co u agentury nezjistíte<span style="color:#2D62FC">.</span>
+          Odborné zázemí v číslech<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
           <div class="bg-brand-white p-8">
             <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">PUBLIKACE</p>
             <p class="font-display text-5xl font-bold mb-2">8</p>
             <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
-              odborných publikací zaměřených na eye tracking.
+              odborných publikací zaměřených na eye tracking a uživatelskou zkušenost.
             </p>
-            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">Q1 ČASOPIS (2021–2025)</p>
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">PŘÍKLAD PUBLIKACE</p>
             <p class="text-sm text-brand-black/60 leading-relaxed">
               Franěk, M., &amp; Petružálek, J. (2025). <em>Perceptual fluency and eye movements when viewing
               urban and natural scenes.</em> Scientific Reports, 15(1), čl. 25772.
             </p>
           </div>
           <div class="bg-brand-white p-8">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">ŠKOLA A DOROST</p>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">VÝZKUM A VZDĚLÁVÁNÍ</p>
             <ul class="space-y-3 text-sm text-brand-black/60 leading-relaxed">
               <li class="pb-3 border-b border-brand-black/5">
                 <strong class="text-brand-black">2 obhájené disertace</strong><br/>
-                Jan Petružálek (2023) — Komparace a kombinace metod měření uživatelské zkušenosti
-                s využitím eye-tracking technologie<br/>
-                Denis Šefara (2022) — Business dashboardy pracující s pozorností uživatele
-              </li>
-              <li class="pb-3 border-b border-brand-black/5">
-                <strong class="text-brand-black">8 obhájených diplomových a bakalářských prací</strong><br/>
-                2 magisterské, 6 bakalářských
+                Jan Petružálek (2023) — kombinace metod měření uživatelské zkušenosti s využitím eye trackingu<br/>
+                Denis Šefara (2022) — využití pozornosti při návrhu business dashboardů
               </li>
               <li>
-                <strong class="text-brand-black">10 nových témat pro rok 2025/2026</strong><br/>
-                z toho 5 zaměřených na eye tracking
+                <strong class="text-brand-black">8 obhájených diplomových a bakalářských prací</strong><br/>
+                2 diplomové práce, 6 bakalářských prací
               </li>
             </ul>
           </div>
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          Studenti nejsou levná pracovní síla. Jsou důvod, proč laboratoř neustále testuje vlastní metody
-          na nových zadáních — a proč se v ní nedá zabydlet u jednoho postupu.
+          Průběžná práce na výzkumných tématech nám umožňuje metody ověřovat, porovnávat a rozvíjet
+          na různých typech zadání.
         </p>
       </div>
 
@@ -360,11 +350,11 @@ const pageSchema = [
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LIDÉ ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-3xl">
-          Firmu vedeme dva. Měření nedělají dva<span style="color:#2D62FC">.</span>
+          Dva společníci, širší výzkumný tým<span style="color:#2D62FC">.</span>
         </h2>
         <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-10">
-          UX MIND má dva společníky. Za sběrem a zpracováním dat stojí tým laboratoře — vedení výzkumu,
-          správa laboratoře a vyškolení operátoři.
+          UX MIND vedou dva společníci. Na návrhu studie, měření a zpracování dat se podle rozsahu projektu
+          podílí také vedení laboratoře a vyškolení operátoři.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mb-px">
@@ -379,9 +369,9 @@ const pageSchema = [
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">VEDOUCÍ LABORATOŘE FIMEYELAB · SPOLUMAJITEL UX MIND</p>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Ing. Jan Petružálek, Ph.D.</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                Vede laboratoř i výzkum: navrhuje experimenty, hlídá metodickou čistotu měření a odpovídá
-                za interpretaci dat. Doktorát z FIM UHK, disertace o kombinaci metod měření uživatelské
-                zkušenosti s eye trackingem, publikace v oblasti HCI a e-commerce.
+                Navrhuje výzkum, dohlíží na průběh měření a odpovídá za analýzu a interpretaci dat.
+                Ve své disertaci se věnoval kombinaci metod UX výzkumu s eye trackingem. Publikuje
+                v oblasti uživatelské zkušenosti a e-commerce.
               </p>
               <a href="https://www.linkedin.com/in/jan-petru%C5%BE%C3%A1lek-79167474/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
@@ -399,9 +389,9 @@ const pageSchema = [
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGIE, WEB A MARKETING · SPOLUMAJITEL UX MIND</p>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Mgr. Lukáš Koula</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                Překládá výzkum do praxe: z laboratorních zjištění dělá konkrétní úpravy webů, e-shopů
-                a kampaní. Certifikovaný Shoptet Partner a Google Partner. Vede projekty a komunikaci
-                s klienty.
+                Převádí výsledky výzkumu do konkrétních doporučení pro weby, e-shopy a kampaně. Vede projekty,
+                komunikaci s klienty a propojuje výzkum s obchodními a marketingovými cíli. Je certifikovaný
+                Shoptet Partner a Google Partner.
               </p>
               <a href="https://www.linkedin.com/in/lukaskoula/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
@@ -427,8 +417,8 @@ const pageSchema = [
             ))}
           </div>
           <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl">
-            Sběr dat dělají vyškolení operátoři podle protokolu. Na tom stojí opakovatelnost — výsledek
-            měření nesmí záviset na tom, kdo zrovna sedí u počítače.
+            Každé měření probíhá podle jednotného protokolu a pod odborným dohledem. Díky tomu zůstává
+            sběr dat konzistentní bez ohledu na složení realizačního týmu.
           </p>
         </div>
       </div>
@@ -439,10 +429,10 @@ const pageSchema = [
           <div>
             <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ETIKA A DATA ]</p>
             <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">
-              Měříme lidem oči, kůži a výraz obličeje<span style="color:#2D62FC">.</span>
+              Souhlas a ochrana dat jsou součástí měření<span style="color:#2D62FC">.</span>
             </h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Tohle není sekce do patičky. Bez pořádného protokolu a souhlasu se u nás neměří nic.
+              Každý účastník předem ví, co zaznamenáváme, proč data sbíráme a jak s nimi budeme pracovat.
             </p>
           </div>
           <ul class="space-y-2">

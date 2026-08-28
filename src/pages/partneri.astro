@@ -9,13 +9,13 @@ const partners = [
   {
     num: '01',
     name: 'Univerzita Hradec Králové',
-    claim: 'Tam, kde UXMIND bydlí.',
+    claim: 'Výzkumné zázemí a metodika.',
     logo: `${base}/logos/uhk.svg`,
     logoAlt: 'Logo Univerzity Hradec Králové',
     logoClass: 'h-16 md:h-20',
     text: [
-      'Výzkum neděláme „ve spolupráci s akademiky“ — děláme ho přímo v eye-trackingové laboratoři Fakulty informatiky a managementu UHK. Univerzitní zázemí znamená kalibrovanou techniku, metodickou přísnost a pilotáž dřív, než se sbírá jediný ostrý datový bod.',
-      'Právě tady vznikl náš index mentální zátěže EMLI a odsud vyrážíme i do terénu. Akademická přesnost, komerční tempo.',
+      'V laboratoři kognitivních studií FIM UHK testujeme digitální i fyzická rozhraní v kontrolovaných podmínkách i v terénu. Zázemí nám umožňuje připravit metodiku, ověřit scénář a propojit eye tracking s dalšími výzkumnými metodami.',
+      'Součástí výzkumného prostředí jsou také odborné publikace, studentské práce a rozvoj vlastních metod včetně indexu mentální zátěže EMLI.',
     ],
     tags: ['FIM UHK', 'Laboratoř', 'EMLI'],
     links: [
@@ -26,13 +26,13 @@ const partners = [
   {
     num: '02',
     name: 'MindSense',
-    claim: 'Science of attention.',
+    claim: 'Technologie a odborná podpora.',
     logo: `${base}/logos/mindsense.webp`,
     logoAlt: 'Logo MindSense — řešení pro výzkumné laboratoře',
     logoClass: 'h-10 md:h-12',
     text: [
-      'Technologický partner, který naší laboratoři rozumí — protože ji pomáhal stavět. MindSense rozšířil eye-trackingovou laboratoř UHK o nové výzkumné vybavení a jako výhradní autorizovaný distributor Tobii pro Česko a Slovensko drží naši techniku na světové špičce.',
-      'Biosenzory, EEG, GSR, motion capture i eye tracking ve virtuální realitě: když potřebujeme měřit něco nového, víme, kam si jít pro hardware, software i know-how.',
+      'MindSense se podílel na rozšíření laboratoře o nové výzkumné vybavení a zajišťuje odbornou podporu pro používané technologie. Je výhradním autorizovaným distributorem Tobii pro Českou republiku a Slovensko.',
+      'Pomáhá s propojením eye trackingu, biosenzorů, virtuální reality a softwaru tak, aby jednotlivé zdroje dat fungovaly jako jeden výzkumný celek.',
     ],
     tags: ['Tobii', 'Biosenzory', 'VR'],
     links: [
@@ -44,15 +44,15 @@ const partners = [
 const pageSchema = [
   {
     '@type': 'WebPage',
-    name: 'Partneři projektu UXMIND',
-    description: 'Partneři projektu UXMIND: Univerzita Hradec Králové (výzkumné zázemí FIM UHK) a MindSense (technologie pro výzkumné laboratoře, distributor Tobii).',
+    name: 'Partneři UX MIND',
+    description: 'Partneři UX MIND: Univerzita Hradec Králové poskytuje výzkumné zázemí a MindSense technologickou a odbornou podporu.',
   },
 ];
 ---
 
 <BaseLayout
   title="Partneři projektu"
-  description="Partneři projektu UXMIND: Univerzita Hradec Králové — výzkumné zázemí laboratoře FIM UHK, a MindSense — technologie pro výzkumné laboratoře a distributor Tobii pro ČR a SR."
+  description="Partneři UX MIND: Univerzita Hradec Králové poskytuje výzkumné zázemí a MindSense technologickou a odbornou podporu."
   schema={pageSchema}
 >
   <Navbar />
@@ -62,13 +62,12 @@ const pageSchema = [
 
       <!-- Hero -->
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PARTNEŘI PROJEKTU ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PARTNEŘI ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           NEMĚŘÍME<br/>SAMI<span style="color:#2D62FC">.</span>
         </h1>
-        <p class="text-lg text-brand-black/60 leading-relaxed max-w-2xl">
-          Za každým dobrým měřením stojí zázemí, technika a lidé, kteří jí rozumí.
-          UXMIND stojí na dvou pilířích — <strong class="text-brand-black">univerzitním výzkumu a špičkových technologiích</strong>.
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl text-justify">
+          Kvalitní výzkum nestojí jen na technice. Potřebuje správnou metodiku, spolehlivé vybavení a lidi, kteří umějí data interpretovat. UX MIND proto propojuje <strong class="text-brand-black">výzkumné zázemí FIM UHK s technologickým know-how MindSense</strong>.
         </p>
       </div>
 
@@ -92,7 +91,7 @@ const pageSchema = [
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">{p.name}</h2>
                 <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-6">{p.claim}</p>
                 {p.text.map(t => (
-                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl">{t}</p>
+                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl text-justify">{t}</p>
                 ))}
                 <div class="flex flex-wrap gap-4 mt-6">
                   {p.links.map(l => (
@@ -110,15 +109,15 @@ const pageSchema = [
       <!-- Jak spolupráce zapadá do měření -->
       <div class="reveal mt-24 grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
-          { t: 'Zázemí', d: 'Laboratoř FIM UHK — kontrolované podmínky, kalibrace, pilotáž.', tag: 'UHK' },
-          { t: 'Technika', d: 'Tobii, Shimmer GSR, Pupil Labs NEON a další biosenzory drží MindSense aktuální.', tag: 'MINDSENSE' },
-          { t: 'Výstup', d: 'Vy dostanete měření, které obstojí — metodicky i technicky.', tag: 'UXMIND' },
+          { t: 'Výzkumné zázemí', d: 'Laboratoř FIM UHK poskytuje podmínky pro přípravu, pilotní ověření a realizaci studií.', tag: 'UHK' },
+          { t: 'Technologická podpora', d: 'MindSense pomáhá s vybavením, jeho propojením a odbornou podporou.', tag: 'MINDSENSE' },
+          { t: 'Výsledek pro klienta', d: 'UX MIND převádí naměřená data do srozumitelných závěrů a konkrétních doporučení.', tag: 'UX MIND' },
         ].map((v, i) => (
-          <div class="bg-brand-white p-8">
+          <div class="bg-brand-white p-8 flex flex-col h-full">
             <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
             <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{v.d}</p>
+            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
           </div>
         ))}
       </div>
