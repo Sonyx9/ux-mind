@@ -49,12 +49,7 @@ const clientLogos = [
       <div class="hidden md:block">
       {[0, 25, 50, 75, 100].flatMap(x =>
         [0, 33.333, 66.667, 100].map(y => (
-          <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
-            <div class="relative" style="width:14px; height:14px;">
-              <div class="absolute" style="top:50%; left:0; width:14px; height:1px; background:rgba(10,10,10,0.22); transform:translateY(-50%);"></div>
-              <div class="absolute" style="left:50%; top:0; height:14px; width:1px; background:rgba(10,10,10,0.22); transform:translateX(-50%);"></div>
-            </div>
-          </div>
+          <div class="absolute" style={`left:${x}%; top:${y}%; width:14px; height:14px; transform:translate(-50%,-50%); background:linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/14px 1px no-repeat, linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/1px 14px no-repeat;`}></div>
         ))
       )}
       </div>
@@ -218,6 +213,8 @@ const clientLogos = [
     </button>
   </section>
 
+  <main id="main-content">
+
   <!-- Mobile info box — NE AGENTURA, above logo carousel -->
   <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
     <div>
@@ -294,7 +291,7 @@ const clientLogos = [
   </style>
 
   <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
-  <section id="main-content" class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
+  <section class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
     <div class="mb-12 max-w-3xl">
       <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ TŘI OTÁZKY, TŘI MĚŘENÍ ]</p>
       <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Co uživatel vidí, jak reaguje<br/>a co ho zatěžuje<span style="color:#2D62FC">.</span></h2>
@@ -586,6 +583,8 @@ const clientLogos = [
       ))}
     </div>
   </section>
+
+  </main>
 
   <Footer />
 
