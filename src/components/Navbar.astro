@@ -58,12 +58,12 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
             {link.label}<span style="font-size:7px; line-height:1;">▼</span>
           </a>
           <div class="nav-drop-menu hidden absolute left-0 top-full pt-2 z-[110]">
-            <div class="bg-brand-white border border-brand-black/20 shadow-sm min-w-max">
+            <div class="isolate bg-brand-white border border-brand-black/20 shadow-sm min-w-max">
               {link.children.map(c => (
                 <a
                   href={c.href}
-                  class={`block px-4 py-2 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
-                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
+                  class={`block px-4 py-2 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-colors ${
+                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
                   {c.label}
