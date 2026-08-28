@@ -50,8 +50,19 @@ import Footer from '../components/Footer.astro';
         </div>
 
         <!-- Contact form -->
-        <div>
-          <form class="space-y-6" name="kontakt" method="POST" data-netlify="true">
+        <div class="relative min-h-[620px]">
+          <div class="absolute inset-0 z-10 border border-brand-black/10 bg-brand-white/95 flex items-center justify-center p-8 text-center">
+            <div class="max-w-sm">
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KONTAKTNÍ FORMULÁŘ ]</p>
+              <p class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-5">PŘIPRAVUJEME<span class="text-brand-blue">.</span></p>
+              <p class="text-brand-black/60 leading-relaxed">
+                Než formulář spustíme, napište nám na <a href="mailto:spoluprace@uxmind.cz" class="font-bold text-brand-black hover:text-brand-blue transition-colors">spoluprace@uxmind.cz</a>.
+              </p>
+            </div>
+          </div>
+          <form class="space-y-6 opacity-20 pointer-events-none select-none" name="kontakt" method="POST" data-netlify="true" aria-hidden="true">
+            <fieldset disabled>
+            <div class="space-y-6">
             <div>
               <label for="f-name" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">JMÉNO *</label>
               <input
@@ -122,6 +133,8 @@ import Footer from '../components/Footer.astro';
             >
               ODESLAT DOTAZ →
             </button>
+            </div>
+            </fieldset>
           </form>
         </div>
       </div>
