@@ -7,93 +7,75 @@ const packages = [
   {
     num: '01',
     id: 'rychla-diagnostika',
-    title: 'Rychlá diagnostika',
-    tagline: 'Tušíte, že něco nefunguje — potřebujete rychle zúžit problém.',
-    chips: ['Heuristická analýza', 'Eye-tracking', 'Dotazník'],
-    findings: 'Kde lidé ztrácejí orientaci, co přehlížejí a co stojí za hlubší testování.',
-    forWho: 'Pro týmy, které tuší, že web, aplikace, formulář nebo kampaň nefunguje ideálně, ale potřebují nejprve rychle zúžit problém. Hodí se před větším redesignem, při přípravě zadání pro agenturu nebo jako první ověření klíčových obrazovek.',
-    inside: 'Expertní heuristická analýza, eye-tracking na vybraných obrazovkách a krátké dotazníkové šetření.',
-    limits: 'Rychlá diagnostika slouží k identifikaci pravděpodobných problémů. Sama o sobě neprokazuje dopad na konverzi a nemusí vysvětlit všechny příčiny chování.',
-    output: 'Stručný report s hlavními zjištěními, ukázkami vizualizací a prioritizovaným seznamem doporučení.',
+    title: 'Rychlý UX audit',
+    tagline: 'Rychlá odborná kontrola, která odhalí hlavní problémy webu nebo aplikace.',
+    chips: ['Expertní UX audit', 'Klíčové obrazovky', 'Priority úprav'],
+    findings: 'Kde může rozhraní uživatele mást, co komplikuje dokončení úkolu a které nedostatky má smysl řešit jako první.',
+    forWho: 'Pro týmy, které potřebují rychle prověřit web, e-shop, aplikaci nebo formulář. Hodí se před redesignem, při poklesu konverzí nebo jako podklad pro další úpravy.',
+    inside: 'Expertní kontrola klíčových stránek a uživatelských cest. Posoudíme jejich srozumitelnost, navigaci, obsah, vizuální hierarchii a překážky při dokončení úkolu.',
+    limits: 'Audit nepracuje s měřením skutečných uživatelů. Odhalí pravděpodobné problémy a určí priority, které lze následně ověřit uživatelským testováním.',
+    output: 'Přehled hlavních problémů, konkrétní příklady a doporučené úpravy seřazené podle důležitosti.',
   },
   {
     num: '02',
     id: 'standardni-ux-test',
-    title: 'Standardní UX test',
-    tagline: 'Ověřujete uživatelskou cestu nebo porovnáváte dvě varianty.',
-    chips: ['Eye-tracking', 'Behaviorální data', 'Dotazníky', 'Scénář'],
-    findings: 'Která varianta funguje lépe, kde vznikají chyby a zda se pozornost promítá do splnění úkolu.',
-    forWho: 'Pro situace, kdy potřebujete ověřit konkrétní uživatelskou cestu, porovnat dvě varianty rozhraní nebo doložit, že redesign opravdu pomáhá. Hodí se pro weby, aplikace, e-shopy, formuláře, kampaně i prototypy.',
-    inside: 'Eye-tracking, behaviorální data, standardizované nebo vlastní dotazníky a řízený testovací scénář. U variant pracujeme s experimentálním designem, aby bylo srovnání co nejčistší.',
-    limits: 'Standardní UX test dobře popisuje pozornost, orientaci a výkon v úkolu. Nezachycuje ale fyziologickou odezvu a neposkytuje hlubší obraz o míře arousalu nebo mentálního úsilí.',
-    output: 'Výzkumný protokol, AOI metriky, heatmapy, gaze ploty, výsledky úkolů, dotazníkové vyhodnocení a doporučení pro další návrhové rozhodnutí.',
+    title: 'Uživatelské testování',
+    tagline: 'Sledujeme, jak skuteční uživatelé procházejí rozhraním a kde se při plnění úkolů zastavují.',
+    chips: ['Testování s uživateli', 'Úkolové scénáře', 'Rozhovory', 'Dotazníky'],
+    findings: 'Zda uživatelé zvládnou důležité úkoly, kde chybují, čemu nerozumějí a která varianta se používá snadněji.',
+    forWho: 'Pro týmy, které potřebují ověřit konkrétní uživatelskou cestu, nový návrh nebo prototyp se skutečnými uživateli. Hodí se pro weby, aplikace, e-shopy i formuláře.',
+    inside: 'Řízené testování s uživateli podle připravených úkolů. Sledujeme úspěšnost, čas, chyby a způsob práce s rozhraním. Chování doplňujeme rozhovorem a podle potřeby dotazníkem.',
+    limits: 'Test ukáže, co uživatelé udělali a jak své chování vysvětlují. Neměří přesný pohyb očí ani fyziologickou reakci — pro tyto otázky slouží prémiové laboratorní měření.',
+    output: 'Výsledky jednotlivých úkolů, hlavní bariéry, ukázky chování uživatelů a doporučení seřazená podle dopadu.',
   },
   {
     num: '03',
     id: 'komplexni-biometricky-vyzkum',
-    title: 'Komplexní biometrický výzkum',
-    tagline: 'Drahé nebo těžko vratné rozhodnutí, které musí obstát před vedením.',
+    title: 'Eye tracking a biometrie',
+    tagline: 'Prémiové laboratorní měření pro důležitá rozhodnutí, která potřebujete podložit více zdroji dat.',
     chips: ['Vše ze 02', 'GSR', 'Mimické signály', 'EMLI', 'Workshop'],
-    findings: 'Nejen co lidé viděli a udělali, ale i kde roste arousal a které kroky působí náročněji.',
+    findings: 'Co uživatelé skutečně viděli, jak postupovali a ve kterých okamžicích rostla jejich fyziologická nebo mentální zátěž.',
     forWho: 'Pro rozhodnutí, která jsou drahá, obtížně vratná nebo musí obstát před vedením, investorem či klientem. Hodí se pro významné redesigny, klíčové kampaně, produktové inovace, HMI, retailové situace nebo výzkumy, kde samotné chování nestačí.',
-    inside: 'Vše ze Standardního UX testu, doplněné podle zadání o GSR, analýzu mimických signálů, kvalitativní elicitaci, retrospektivní rozhovor nad záznamem pohledu a volitelně také měření mentální zátěže pomocí modelu EMLI.',
+    inside: 'Uživatelské testování doplníme o eye tracking a podle zadání také o GSR, analýzu mimických signálů, zpětný rozhovor nad záznamem pohledu nebo měření mentální zátěže pomocí modelu EMLI.',
     limits: 'Biometrická data neinterpretujeme izolovaně. GSR neříká, zda je reakce pozitivní nebo negativní, a mimické signály nejsou samostatným „čtením emocí“. Smysl dávají až ve spojení s úkolem, scénářem, eye-trackingem a výpovědí respondenta.',
-    output: 'Rozšířený výzkumný report, multimodální časová osa zjištění, interpretace kritických momentů, limity studie, redesign doporučení a workshop nad výsledky.',
+    output: 'Rozšířený výzkumný report, propojení jednotlivých zdrojů dat, vysvětlení kritických momentů, doporučení pro úpravy a workshop nad výsledky.',
     featured: true,
   },
   {
     num: '04',
     id: 'terenni-studie',
     title: 'Terénní studie',
-    tagline: 'Rozhodování se neodehrává na obrazovce, ale v prodejně či prostoru.',
-    chips: ['ET brýle NEON', 'Videozáznam', 'GSR', 'Rozhovory'],
+    tagline: 'Sledujeme chování tam, kde skutečně probíhá — v prodejně, provozu nebo jiném fyzickém prostoru.',
+    chips: ['Pozorování v terénu', 'Videozáznam', 'Rozhovory', 'Mobilní eye tracking'],
     findings: 'Jak lidé procházejí reálným prostředím, čeho si všímají, co míjejí a kde se zastavují.',
     forWho: 'Pro situace, kdy se rozhodování neodehrává jen na obrazovce. Typicky v prodejně, showroomu, u fyzického produktu, na eventu, v pracovním prostředí nebo v automotive/HMI kontextu.',
-    inside: 'Mobilní eye-tracking brýle Pupil Labs NEON, videozáznam situace, podle potřeby GSR, dotazníky, rozhovory a analýza chování v reálném prostředí.',
+    inside: 'Pozorování a videozáznam situace, rozhovory a analýza chování v reálném prostředí. Podle výzkumné otázky můžeme zapojit také mobilní eye-tracking brýle Pupil Labs NEON nebo GSR.',
     limits: 'Terénní výzkum nabízí vyšší přirozenost situace, ale menší kontrolu podmínek než laboratoř. Proto vždy dopředu určujeme, které závěry lze z terénního měření vyvozovat bezpečně a které je vhodné ověřit ještě kontrolovaněji.',
     output: 'Videoanalýza, mapování klíčových momentů, vizualizace pozornosti v prostředí, shrnutí bariér a doporučení pro úpravu prostoru, komunikace nebo zákaznické cesty.',
   },
 ];
 
-const chooseTable = [
-  { need: 'Nevíte, kde je problém', pkg: 'Rychlá diagnostika', href: '#rychla-diagnostika' },
-  { need: 'Porovnáváte dvě varianty webu, aplikace nebo kampaně', pkg: 'Standardní UX test', href: '#standardni-ux-test' },
-  { need: 'Potřebujete obhájit významné rozhodnutí daty', pkg: 'Komplexní biometrický výzkum', href: '#komplexni-biometricky-vyzkum' },
-  { need: 'Testujete chování v prodejně, showroomu nebo eventu', pkg: 'Terénní studie', href: '#terenni-studie' },
-  { need: 'Máte specifické zadání nebo kombinaci prostředí', pkg: 'Balíček na míru', href: '#na-miru' },
-];
-
-const methods = [
-  { m: 'Eye-tracking na obrazovce', tool: 'Tobii Pro X2-60, Smart Eye Aurora', brings: 'Zjišťuje, co lidé skutečně vidí, co přehlížejí, v jakém pořadí a jak dlouho' },
-  { m: 'Mobilní eye-tracking', tool: 'Pupil Labs NEON', brings: 'Zachycuje pozornost v reálném prostředí a propojuje ji s videozáznamem situace' },
-  { m: 'GSR', tool: 'Shimmer3 GSR', brings: 'Ukazuje momenty růstu fyziologického arousalu během úkolu' },
-  { m: 'Analýza mimických signálů', tool: 'iMotions / Facial Expression Analysis', brings: 'Pomáhá sledovat změny mimické odezvy v čase vůči konkrétnímu stimulu' },
-  { m: 'Dotazníková šetření', tool: 'VisAWI, NASA-TLX, SUS, UEQ nebo vlastní položky', brings: 'Doplňují objektivní měření o vědomé hodnocení srozumitelnosti, estetiky, důvěryhodnosti nebo zátěže' },
-  { m: 'Kvalitativní elicitace', tool: 'Think-aloud, retrospektivní think-aloud, rozhovor', brings: 'Vysvětluje, proč se uživatel v určitém momentu rozhodl nebo zastavil' },
-  { m: 'Behaviorální data', tool: 'Úspěšnost úkolu, čas, chybovost, kliky', brings: 'Ověřují, zda se pozornost promítla do skutečného výsledku' },
-  { m: 'Expertní heuristická analýza', tool: 'Hodnocení rozhraní specialistou', brings: 'Rychle odhaluje známé problémy použitelnosti před hlubším měřením' },
-  { m: 'Experimentální design', tool: 'Scénáře, pilotáž, randomizace, srovnatelnost variant', brings: 'Zajišťuje, aby výsledky nebyly jen dojmem z jedné situace' },
-];
-
 const outputs = [
-  'Výzkumný protokol se zadáním a limity',
-  'Metriky vizuální pozornosti',
-  'Úspěšnost úkolu, čas, chybovost',
-  'Heatmapy, gaze ploty, AOI srovnání',
-  'Dotazníky vs. objektivní data',
-  'Kvalitativní zjištění',
-  'Interpretace dopadu na UX i produkt',
-  'Doporučení podle dopadu a náročnosti',
-  'Jasně popsané limity studie',
-  'Závěrečný workshop s týmem',
+  {
+    title: 'Hlavní zjištění',
+    desc: 'Přehled problémů, výsledky úkolů a vizualizace odpovídající zvolenému balíčku.',
+  },
+  {
+    title: 'Vysvětlení souvislostí',
+    desc: 'Ukážeme, co se stalo, proč je to důležité a co lze z výsledků bezpečně vyvodit.',
+  },
+  {
+    title: 'Priority a další kroky',
+    desc: 'Doporučené úpravy seřazené podle dopadu a náročnosti. U rozsáhlejších studií také společný workshop nad výsledky.',
+  },
 ];
 
 const process = [
-  { num: '01', title: 'Zadání', desc: 'Ujasníme si, jaké rozhodnutí potřebujete udělat.' },
-  { num: '02', title: 'Návrh balíčku', desc: 'Metody, vzorek, scénář a co půjde bezpečně vyvodit.' },
-  { num: '03', title: 'Příprava a pilotáž', desc: 'Scénář, stimuly, dotazníky, u složitějších projektů pilot.' },
-  { num: '04', title: 'Měření', desc: 'Laboratoř nebo terén, kalibrace a kontrola kvality dat.' },
-  { num: '05', title: 'Analýza a výstup', desc: 'Doporučení, ne izolované grafy.' },
+  { num: '01', title: 'Cíl', desc: 'Ujasníme si, co potřebujete zjistit a jaké rozhodnutí má výzkum podpořit.' },
+  { num: '02', title: 'Návrh', desc: 'Doporučíme vhodný balíček, metody, rozsah a účastníky.' },
+  { num: '03', title: 'Příprava', desc: 'Připravíme scénář, podklady a podle potřeby pilotní ověření.' },
+  { num: '04', title: 'Realizace', desc: 'Provedeme audit, uživatelské testování nebo měření v laboratoři či terénu.' },
+  { num: '05', title: 'Výsledky', desc: 'Data vyhodnotíme a převedeme do konkrétních doporučení.' },
 ];
 
 const audiences = [
@@ -118,8 +100,8 @@ const faq = [
 const pageSchema = [
   {
     '@type': 'Service',
-    name: 'Testovací balíčky UXMIND',
-    description: 'Testovací balíčky UX výzkumu: rychlá diagnostika, standardní UX test, komplexní biometrický výzkum a terénní studie. Eye-tracking, GSR, dotazníky a expertní analýza podle rozhodnutí, které potřebujete udělat.',
+    name: 'Testovací balíčky UX MIND',
+    description: 'Testovací balíčky UX výzkumu: rychlý UX audit, uživatelské testování, prémiový eye tracking s biometrií a terénní studie.',
     serviceType: 'UX testování',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -136,8 +118,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Testovací balíčky UXMIND | Eye-tracking, biometrie a UX výzkum"
-  description="Vyberte rozsah UX testování podle rozhodnutí, které potřebujete udělat. Rychlá diagnostika, standardní UX test, komplexní biometrický výzkum i terénní studie."
+  title="Testovací balíčky UX MIND | Eye tracking, biometrie a UX výzkum"
+  description="Vyberte rozsah UX testování podle toho, co potřebujete zjistit. Rychlý UX audit, uživatelské testování, eye tracking s biometrií i terénní studie."
   schema={pageSchema}
 >
   <Navbar />
@@ -149,22 +131,21 @@ const pageSchema = [
       <div class="mb-12">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TESTOVACÍ BALÍČKY ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          JAK HLUBOKO<br/>MĚŘIT<span style="color:#2D62FC">?</span>
+          VYBERTE ROZSAH<br/>TESTOVÁNÍ<span style="color:#2D62FC">.</span>
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Od rychlé diagnostiky po komplexní biometrický UX výzkum.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Heatmapa ukáže, kam se lidé dívali — ne proč se ztratili. Balíčky skládáme podle
-              <strong class="text-brand-black">rozhodnutí, které potřebujete udělat</strong>, ne podle toho, co máme v laboratoři.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Podle toho, co potřebujete zjistit.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl text-justify">
+              Někdy stačí rychle odhalit hlavní překážky. Jindy potřebujete porovnat varianty nebo podložit důležité rozhodnutí více zdroji dat. Doporučíme rozsah, který odpovídá vašemu cíli, prostředí i požadované míře jistoty.
             </p>
           </div>
           <div class="flex flex-wrap gap-4 md:justify-end">
-            <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              POPTAT NABÍDKU →
+            <a href="#balicky" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              PROJÍT BALÍČKY ↓
             </a>
-            <a href="#vyber" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              KTERÝ SE MI HODÍ?
+            <a href="/kontakt" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PORADIT S VÝBĚREM →
             </a>
           </div>
         </div>
@@ -187,7 +168,7 @@ const pageSchema = [
         <div class="flex items-center gap-3 mt-3 font-mono text-[10px] text-brand-black/60 tracking-widest uppercase">
           <span>Menší rozsah</span>
           <span class="flex-1 h-px bg-gradient-to-r from-brand-black/20 to-brand-black"></span>
-          <span>Hlubší evidence</span>
+          <span>Podrobnější výzkum</span>
         </div>
       </div>
 
@@ -224,7 +205,7 @@ const pageSchema = [
       </div>
 
       <!-- Balíčky -->
-      <div class="mb-24">
+      <div id="balicky" class="mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ NAŠE TESTOVACÍ BALÍČKY ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Čtyři konfigurace<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
@@ -237,7 +218,7 @@ const pageSchema = [
               <div class="flex justify-between items-start mb-6">
                 <span class={`font-mono text-xs ${pkg.featured ? 'text-brand-white/60' : 'text-brand-black/60'}`}>{pkg.num}</span>
                 {pkg.featured && (
-                  <span class="font-mono text-[10px] tracking-widest px-2 py-1" style="background:#2D62FC; color:#FCFCFC;">NEJHLUBŠÍ EVIDENCE</span>
+                  <span class="font-mono text-[10px] tracking-widest px-2 py-1" style="background:#2D62FC; color:#FCFCFC;">PRÉMIOVÉ MĚŘENÍ</span>
                 )}
               </div>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight">{pkg.title}</h3>
@@ -262,7 +243,7 @@ const pageSchema = [
                 <div class={`mt-4 space-y-4 text-sm leading-relaxed ${pkg.featured ? 'text-brand-white/70' : 'text-brand-black/60'}`}>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Pro koho</span>{pkg.forWho}</p>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Co je uvnitř</span>{pkg.inside}</p>
-                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Hranice balíčku</span>{pkg.limits}</p>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Co je dobré vědět</span>{pkg.limits}</p>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Typický výstup</span>{pkg.output}</p>
                 </div>
               </details>
@@ -288,87 +269,54 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Jak vybrat -->
-      <div id="vyber" class="reveal mb-24 scroll-mt-28">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK VYBRAT SPRÁVNÝ BALÍČEK ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Co potřebujete rozhodnout<span style="color:#2D62FC">?</span></h2>
-        <div class="border border-brand-black/10">
-          {chooseTable.map(row => (
-            <a href={row.href} class="group grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0 hover:bg-brand-black hover:text-brand-white transition-colors">
-              <p class="text-brand-black/60 group-hover:text-brand-white/70 leading-relaxed transition-colors">{row.need}</p>
-              <p class="font-display font-bold flex items-center justify-between gap-4">
-                {row.pkg}
-                <span class="font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-              </p>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <!-- Co je uvnitř balíčků (rozbalovací) -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO JE UVNITŘ BALÍČKŮ ]</p>
-        <details class="group border border-brand-black/10">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-6 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
-            9 metod a nástrojů, se kterými pracujeme
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <div class="border-t border-brand-black/10">
-            {methods.map(row => (
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0">
-                <p class="font-display font-bold">{row.m}</p>
-                <p class="font-mono text-xs text-brand-black/60 leading-relaxed pt-1">{row.tool}</p>
-                <p class="text-sm text-brand-black/60 leading-relaxed">{row.brings}</p>
-              </div>
-            ))}
-          </div>
-        </details>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 max-w-2xl">
-          Víc o technologiích: <a href="/sluzby/eye-tracking" class="underline hover:no-underline">Eye tracking</a> · <a href="/sluzby/ux-vyzkum" class="underline hover:no-underline">UX výzkum</a>
-        </p>
-      </div>
-
       <!-- EMLI -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(240px,1fr)] md:items-center gap-10 md:gap-16">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ DOPLŇKOVĚ: INDEX MENTÁLNÍ ZÁTĚŽE EMLI ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Mentální zátěž jako jedno skóre<span style="color:#2D62FC">.</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Vlastní model z výzkumu na FIM UHK skládá eye-trackingové metriky do jednoho indexu zátěže.
-              Porovná, které kroky, obrazovky nebo varianty vyžadují víc úsilí. Průběžně ho ověřujeme —
-              používáme ho jako doplňkovou interpretační vrstvu, ne jako samostatný důkaz.
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ EMLI: INDEX MENTÁLNÍ ZÁTĚŽE ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Kde rozhraní vyžaduje nejvíc úsilí<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-4">
+              EMLI převádí vybrané ukazatele z eye trackingu do skóre od 0 do 100. Díky tomu můžeme porovnat jednotlivé obrazovky, kroky nebo varianty a určit, kde je zpracování informací pro uživatele náročnější.
+            </p>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify">
+              <strong class="text-brand-black">Čím vyšší skóre, tím větší zátěž.</strong> Výsledek vždy hodnotíme společně s chováním uživatele a dalšími daty, ne jako samostatný verdikt.
             </p>
           </div>
-          <p class="font-display font-bold leading-none shrink-0" style="font-size: clamp(3rem, 6vw, 5rem); color:#2D62FC;">0–100</p>
+          <div aria-label="Stupnice EMLI od nižší po vyšší mentální zátěž">
+            <div class="emli-scale h-2 mb-4" aria-hidden="true">
+              <div class="emli-fill"></div>
+            </div>
+            <div class="flex items-start justify-between gap-6 font-mono text-[10px] tracking-widest uppercase">
+              <p><strong class="block font-display text-3xl leading-none mb-2 text-brand-blue">0</strong>Nižší zátěž</p>
+              <p class="text-right"><strong class="block font-display text-3xl leading-none mb-2 text-brand-blue">100</strong>Vyšší zátěž</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Výstup + proces -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE VE VÝSTUPU ]</p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-            {outputs.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
+      <!-- Proces a výstupy -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK SPOLUPRÁCE PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Od cíle ke konkrétním úpravám<span style="color:#2D62FC">.</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+          {process.map(step => (
+            <div class="bg-brand-white p-6 md:p-7 min-h-64 flex flex-col">
+              <span class="font-mono text-xs text-brand-black/60 mb-10">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mt-auto">{step.desc}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK SPOLUPRÁCE PROBÍHÁ ]</p>
-          <div class="space-y-0">
-            {process.map((step, i) => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mt-16 mb-8">[ CO DOSTANETE VE VÝSTUPU ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {outputs.map((output, i) => (
+            <div class="bg-brand-white p-7 md:p-8 min-h-56 flex flex-col">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold leading-tight mb-3">{output.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mt-auto">{output.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -419,4 +367,29 @@ const pageSchema = [
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
+
+  <style>
+    /* EMLI stupnice — čára se plní zleva (0 → 100) a mizí, ve smyčce */
+    .emli-scale {
+      position: relative;
+      overflow: hidden;
+      background: rgba(45, 98, 252, 0.1);
+    }
+    .emli-fill {
+      position: absolute;
+      inset: 0;
+      transform-origin: left center;
+      background: linear-gradient(90deg, rgba(45, 98, 252, 0.16), #2d62fc);
+      animation: emliFill 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes emliFill {
+      0% { transform: scaleX(0); opacity: 1; }
+      55% { transform: scaleX(1); opacity: 1; }
+      80% { transform: scaleX(1); opacity: 0; }
+      100% { transform: scaleX(0); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .emli-fill { animation: none; transform: scaleX(1); opacity: 1; }
+    }
+  </style>
 </BaseLayout>
