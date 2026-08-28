@@ -4,16 +4,17 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
 const fakta = [["METODA", "Eye-tracking, AOI analýza"], ["VZOREK", "cca 120 respondentů"], ["SCÉNÁŘE", "Více úkolových scénářů"], ["VÝSTUPY", "AOI statistiky, gradient čtení"]];
-const zjisteni = ["CTA „Číst online“ fixovalo ~92 % vzorku.", "Gradient čtení: tučný nadpis zaznamenalo ~86 % respondentů, krátký návazný text 62 %, dlouhý odstavec jen ~33 %.", "~75 % respondentů si všimlo spodní sekce stránky ještě před vyplněním formuláře."];
+const zjisteni = ["CTA „Číst online“ zaznamenalo přibližně 92 % respondentů.", "Pozornost postupně klesala: výrazný nadpis zaznamenalo přibližně 86 % respondentů, krátký návazný text 62 % a dlouhý odstavec 33 %.", "Přibližně 75 % respondentů zaznamenalo spodní část stránky ještě před vyplněním formuláře."];
 const faq = [
-  { q: "Co je gradient čtení?", a: "Podíl lidí, kteří skutečně zaznamenali jednotlivé prvky stránky: tučný nadpis ~86 %, krátký text 62 %, dlouhý odstavec jen ~33 %. Pozornost strmě klesá s délkou bloku." },
-  { q: "Kolik lidí vidělo hlavní CTA?", a: "CTA „Číst online“ fixovalo ~92 % z přibližně 120 respondentů — byl to nejsledovanější prvek celé stránky." },
-  { q: "Co z toho plyne pro tvorbu obsahu?", a: "Orientaci nese hierarchie, ne množství textu: výrazný nadpis, krátký text a jasné CTA fungují lépe než dlouhé odstavce." },
+  { q: "Co znamená gradient pozornosti?", a: "Podíl respondentů, kteří zaznamenali jednotlivé prvky, postupně klesal: výrazný nadpis přibližně 86 %, krátký text 62 % a dlouhý odstavec 33 %. Výsledek popisuje tuto konkrétní stránku a testované scénáře." },
+  { q: "Kolik respondentů zaznamenalo hlavní CTA?", a: "CTA „Číst online“ zaznamenalo přibližně 92 % z přibližně 120 respondentů. Ze všech sledovaných prvků získalo nejvyšší zásah." },
+  { q: "Znamená fixace, že člověk text přečetl?", a: "Ne. Fixace dokládá, že pohled směřoval do dané oblasti, nikoli úplné přečtení nebo porozumění. Proto výsledek formulujeme jako zaznamenání prvku a interpretujeme ho v kontextu úkolu." },
+  { q: "Co z výsledků plyne pro tvorbu obsahu?", a: "Na testované stránce pomohly pozornost soustředit jasné CTA, výrazný nadpis a krátký návazný text. U jiného webu je potřeba stejný princip ověřit v jeho vlastním obsahu a kontextu." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "92 % pohledů skončilo na hlavním CTA",
+    headline: "Čím delší text, tím méně pozornosti",
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
@@ -30,8 +31,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Case study: 92 % pohledů na hlavním CTA"
-  description="AOI analýza edukační microsite: gradient čtení 86/62/33 %, 92 % pohledů na CTA. Orientaci nese hierarchie, ne množství textu."
+  title="Case study: Jak délka textu ovlivnila pozornost"
+  description="Eye-trackingová AOI analýza edukační microsite: CTA zaznamenalo 92 % respondentů, výrazný nadpis 86 %, krátký text 62 % a dlouhý odstavec 33 %."
   schema={pageSchema}
 >
   <Navbar />
@@ -44,56 +45,33 @@ const pageSchema = [
       <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Edukační microsite</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          92 % pohledů skončilo na hlavním CTA<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Čím delší text, tím méně pozornosti<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistický banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-2 lg:grid-cols-4">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);" data-count="92" data-suffix=" %">92 %</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">pohledů skončilo na hlavním CTA — dlouhý odstavec dočetla jen třetina</p>
+        {[
+          ['92 %', 'CTA'],
+          ['86 %', 'výrazný nadpis'],
+          ['62 %', 'krátký text'],
+          ['33 %', 'dlouhý odstavec'],
+        ].map(([value, label], i) => (
+          <div class:list={["relative p-6 md:p-8 border-brand-white/15", i === 0 && "border-t-4 border-t-brand-blue", i < 2 && "border-b lg:border-b-0", i % 2 === 0 && "border-r", i === 1 && "lg:border-r", i === 2 && "lg:border-r"]}>
+            <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">{value}</p>
+            <p class="text-brand-white/70 text-sm md:text-base leading-relaxed">respondentů zaznamenalo {label}</p>
+          </div>
+        ))}
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Edukační microsite kombinovala delší odborné texty s výzvou k akci. Otázka zněla, jestli návštěvníci obsah skutečně čtou — a jestli má smysl investovat do dlouhých textových bloků, nebo spíš do struktury.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— OBCHODNÍ OTÁZKA</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Který obsah na microsite skutečně nese pozornost — a který jen zabírá místo?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking s více scénáři a podrobnou AOI analýzou — měřením pozornosti zvlášť pro každý vyznačený prvek stránky.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -102,6 +80,17 @@ const pageSchema = [
                 </div>
               ))}
             </div>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CO BYLO POTŘEBA ZJISTIT</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Které prvky návštěvník zaznamená a kde pozornost začíná klesat?</p>
+            <p class="text-brand-black/70 leading-relaxed">Edukační microsite kombinovala odborný obsah s hlavní výzvou k akci. Cílem bylo ověřit, jakou pozornost získají jednotlivé vrstvy stránky — CTA, nadpisy, krátké texty i delší odstavce.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— JAK PROBĚHLO MĚŘENÍ</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Přibližně 120 respondentů prošlo několika úkolovými scénáři. Eye tracking zachytil jejich vizuální pozornost a AOI analýza spočítala podíl respondentů, kteří fixovali předem vyznačené prvky stránky.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -113,17 +102,19 @@ const pageSchema = [
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
               <svg viewBox="0 0 640 278" class="w-full" role="img" aria-label="CTA zaznamenalo 92 procent, nadpis 86, krátký text 62 a dlouhý odstavec 33 procent respondentů"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">GRADIENT ČTENÍ · PODÍL RESPONDENTŮ, KTEŘÍ PRVEK ZAZNAMENALI</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">CTA „ČÍST ONLINE“</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="368" height="22" fill="#2D62FC" class="viz-bar"/><text x="558" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">92 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">TUČNÝ NADPIS</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="344" height="22" fill="#0A0A0A" class="viz-bar"/><text x="534" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">86 %</text><text x="0" y="171" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">KRÁTKÝ TEXT</text><rect x="190" y="156" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="156" width="248" height="22" fill="#0A0A0A" class="viz-bar"/><text x="438" y="171" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">62 %</text><text x="0" y="223" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">DLOUHÝ ODSTAVEC</text><rect x="190" y="208" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="208" width="132" height="22" fill="#0A0A0A" class="viz-bar"/><text x="322" y="223" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">33 %</text></svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Čím delší blok, tím méně očí: pozornost klesá z 92 % na třetinu. Hierarchie nese orientaci, ne množství textu.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Podíl respondentů, kteří prvek zaznamenali, klesal od hlavního CTA přes nadpis a krátký text až k dlouhému odstavci.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CO SE ROZHODLO</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Zvýraznění primárního CTA, zkrácení dlouhých textových bloků a přestavba hierarchie — orientaci nenese „více textu“, ale správná hierarchie.</p>
+            <p class="text-brand-black/70 leading-relaxed">Výsledky podpořily výrazné oddělení hlavního CTA, zkrácení dlouhých textových bloků a důslednější práci s informační hierarchií. Tým získal konkrétní data pro rozhodnutí, které části obsahu zvýraznit, zkrátit nebo přeskládat.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
-            <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme kognitivní zátěž formulářové stránky vs. obsahové stránky — kde přesně čtenář „vypíná“.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO SI Z TOHO ODNÉST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Informace na stránce ještě neznamená informace zaznamenaná<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Eye tracking ukáže, zda informační hierarchie skutečně vede pozornost k tomu, co má návštěvník vidět a použít.</p>
+            <a href="/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">PROBRAT VLASTNÍ STUDII →</a>
           </section>
         </div>
 
@@ -167,6 +158,21 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ SLOVNÍK — CO ZNAMENAJÍ POJMY V TÉTO STUDII ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka v určité oblasti. Dokládá vizuální pozornost, nikoli úplné přečtení nebo porozumění.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky, například CTA, nadpis nebo textový blok, pro kterou počítáme metriky.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Zásah prvku</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Podíl respondentů, kteří během scénáře alespoň jednou fixovali danou oblast.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Gradient pozornosti</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Postupný pokles podílu respondentů, kteří zaznamenali jednotlivé vrstvy obsahu.</dd></div>
+          </dl>
+        </details>
+      </section>
+
       <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
@@ -202,7 +208,7 @@ const pageSchema = [
         </a>
         <a href="/pripadove-studie/produktove-fotografie-e-commerce" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">DALŠÍ STUDIE →</p>
-          <p class="font-display font-bold leading-snug">Fotka „na člověku“ vypadá lépe. Ale zpomalila nákup.</p>
+          <p class="font-display font-bold leading-snug">Stejný produkt. Jinak dlouhé rozhodování</p>
         </a>
       </nav>
 
@@ -217,7 +223,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít studii podrobněji<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Studie jsou zkráceny a anonymizovány.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="92 % pohledů skončilo na hlavním CTA">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Čím delší text, tím méně pozornosti">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"

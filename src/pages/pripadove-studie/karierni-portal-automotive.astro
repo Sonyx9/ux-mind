@@ -44,56 +44,34 @@ const pageSchema = [
       <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">ŠKODA AUTO · kariérní portál</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          40 % uchazečů nenašlo cestu k volným pozicím<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Přehledný web nestačí<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistický banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);" data-count="40" data-suffix=" %">40 %</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">uchazečů nenašlo cestu k volným pozicím — na webu, který „vypadal přehledně“</p>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);" data-count="40" data-suffix=" %">40 %</p>
+          <p class="text-brand-white/70 leading-relaxed">uchazečů nenašlo volné pozice</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">102</p>
+          <p class="text-brand-white/70 leading-relaxed">respondentů prošlo stejným úkolem</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-mono text-xs tracking-widest text-brand-blue mb-5">DOJEM ≠ VÝKON</p>
+          <p class="text-brand-white/70 leading-relaxed">Web působil přehledně i na část lidí, kteří úkol nesplnili.</p>
+        </div>
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Kariérní portál ŠKODA AUTO procházel redesignem. Interní tým považoval web za přehledný a data z analytiky nesignalizovala zásadní problém — jen konverze do odeslaných životopisů neodpovídala návštěvnosti. Klasické metriky neuměly říct proč.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— OBCHODNÍ OTÁZKA</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Kariérní web má jediný klíčový úkol — dovést uchazeče k nabídkám volných pozic. Plní ho?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking se scénářem „najděte volné pozice v IT“ doplněný dotazníkem. Vzorek tvořila převážně studentská populace s vysokým podílem IT studentů — limit uvádíme záměrně: odpovídá cílové skupině juniorního náboru, na seniorní role by bylo nutné měření rozšířit.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -102,6 +80,17 @@ const pageSchema = [
                 </div>
               ))}
             </div>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CO BYLO POTŘEBA ZJISTIT</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Dokáže kariérní portál dovést uchazeče k nabídkám volných pozic?</p>
+            <p class="text-brand-black/70 leading-relaxed">Kariérní portál ŠKODA AUTO procházel redesignem. Web působil přehledně, ale návštěvnost se nepromítala do odpovídajícího počtu odeslaných životopisů. Běžná analytika ukázala výsledek cesty, ne důvod, proč ji část uchazečů nedokončila.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— JAK PROBĚHLO MĚŘENÍ</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Všech 102 respondentů plnilo stejný scénář: „Najděte volné pozice v IT.“ Eye tracking zachytil práci s obsahem a CTA, dotazník doplnil subjektivní hodnocení webu. Vzorek tvořila převážně studentská populace s vysokým podílem IT studentů, proto výsledky vztahujeme především k juniornímu náboru.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -113,17 +102,19 @@ const pageSchema = [
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
               <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Ze 102 respondentů 60 procent našlo cestu k pozicím a 40 procent nenašlo"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">N = 102 · SCÉNÁŘ „NAJDĚTE VOLNÉ POZICE“</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">NAŠLO CESTU</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="240" height="22" fill="#0A0A0A" class="viz-bar"/><text x="430" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">60 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">NENAŠLO CESTU</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="160" height="22" fill="#2D62FC" class="viz-bar"/><text x="350" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">40 %</text></svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Čtyři z deseti uchazečů se k nabídkám vůbec nedostali — každý z nich je přímá ztráta náborového funnelu.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Čtyři z deseti uchazečů se během zadaného scénáře k volným pozicím nedostali.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CO SE ROZHODLO</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Zjednodušení cesty k pozicím, přestavba navigace a práce s CTA v kontextu úkolu uchazeče.</p>
+            <p class="text-brand-black/70 leading-relaxed">Výsledky podpořily zjednodušení cesty k volným pozicím, úpravu navigace a práci s CTA podle konkrétního úkolu uchazeče. Tým tak nedostal jen seznam dojmů, ale konkrétní místa, na která se při redesignu zaměřit.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
-            <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme index kognitivní zátěže EMLI pro každý krok cesty — ukázal by, zda úspěšných 60 % uživatelů uspělo snadno, nebo na hraně frustrace.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO SI Z TOHO ODNÉST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Přehledný dojem ještě neznamená dokončený úkol<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Pokud analytika ukazuje slabý výsledek, uživatelské měření pomůže najít konkrétní překážku mezi návštěvou a dokončením cíle.</p>
+            <a href="/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">PROBRAT VLASTNÍ STUDII →</a>
           </section>
         </div>
 
@@ -167,6 +158,21 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ SLOVNÍK — CO ZNAMENAJÍ POJMY V TÉTO STUDII ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě. Ze sledu fixací lze popsat, kterým částem stránky člověk věnoval pozornost.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky, například tlačítko, nadpis nebo fotografie, pro kterou počítáme metriky pozornosti.</dd></div>
+            <div><dt class="font-display font-bold mb-1">A/B srovnání</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Porovnání dvou variant stejného prvku nebo stránky za předem stanovených podmínek.</dd></div>
+          </dl>
+        </details>
+      </section>
+
       <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
@@ -202,7 +208,7 @@ const pageSchema = [
         </a>
         <a href="/pripadove-studie/backend-stories" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">DALŠÍ STUDIE →</p>
-          <p class="font-display font-bold leading-snug">92 % pohledů skončilo na hlavním CTA</p>
+          <p class="font-display font-bold leading-snug">Čím delší text, tím méně pozornosti</p>
         </a>
       </nav>
 
