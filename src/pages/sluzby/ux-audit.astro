@@ -6,31 +6,32 @@ import Footer from '../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const reveals = [
-  { t: 'Bariéry v cestě', d: 'Kde uživatelé ztrácejí orientaci, kde se zasekávají a co je nutí odejít.', tag: 'CESTA' },
-  { t: 'Známé problémy', d: 'Prohřešky proti ověřeným principům použitelnosti — dřív, než je najdou zákazníci.', tag: 'HEURISTIKY' },
-  { t: 'Quick wins', d: 'Úpravy s velkým dopadem a malou náročností, které lze nasadit hned.', tag: 'PRIORITY' },
+  { t: 'Překážky v cestě', d: 'Kroky, ve kterých může být obtížné se zorientovat, pokračovat nebo najít správnou informaci.', tag: 'UŽIVATELSKÁ CESTA' },
+  { t: 'Nejasné rozhraní', d: 'Nesrozumitelné názvy, slabá vizuální hierarchie a prvky, u kterých není jasné, co udělají.', tag: 'SROZUMITELNOST' },
+  { t: 'Priority úprav', d: 'Problémy seřazené podle dopadu a náročnosti, aby bylo jasné, co řešit nejdříve.', tag: 'DALŠÍ KROKY' },
 ];
 
 const process = [
-  { num: '01', title: 'Zadání a rozsah', desc: 'Klíčové cesty, cíle a byznysový kontext produktu.' },
-  { num: '02', title: 'Heuristická analýza', desc: 'Systematický průchod rozhraní podle ověřených principů.' },
-  { num: '03', title: 'Analýza cest a dat', desc: 'Toky uživatelů; máte-li analytiku, zapojíme ji.' },
-  { num: '04', title: 'Report a workshop', desc: 'Prioritizovaná doporučení a společné plánování úprav.' },
+  { num: '01', title: 'Cíl a rozsah', desc: 'Vybereme klíčové stránky, uživatelské cesty a cíle auditu.' },
+  { num: '02', title: 'Expertní kontrola', desc: 'Prověříme navigaci, obsah, hierarchii a srozumitelnost rozhraní.' },
+  { num: '03', title: 'Souvislosti a data', desc: 'Zjištění zasadíme do kontextu produktu a zapojíme dostupnou analytiku.' },
+  { num: '04', title: 'Doporučení a předání', desc: 'Problémy seřadíme podle důležitosti a společně projdeme další kroky.' },
 ];
 
 const outputs = [
-  'Prioritizovaný seznam problémů podle dopadu',
-  'Konkrétní doporučení s návrhy řešení',
-  'Quick wins k okamžitému nasazení',
-  'Výstupní zpráva s mockupy',
-  'Workshop s vaším týmem',
+  { title: 'Přehled problémů', desc: 'Každé zjištění spojíme s konkrétním místem v rozhraní a vysvětlíme jeho dopad.' },
+  { title: 'Priority podle dopadu', desc: 'Rozlišíme, co je potřeba řešit hned, co později a co zatím není důležité.' },
+  { title: 'Konkrétní návrhy úprav', desc: 'Doporučíme, jak problém odstranit. U vybraných míst doplníme návrh nebo ukázku řešení.' },
+  { title: 'Společné předání výsledků', desc: 'Závěry projdeme s vaším týmem, aby bylo jasné, jak je převést do praxe.' },
 ];
 
 const faq = [
-  { q: 'Jak dlouho UX audit trvá?', a: 'Typicky 2–4 týdny podle rozsahu produktu: úvodní analýza, heuristické hodnocení, analýza dat a prezentace výstupů.' },
-  { q: 'Čím se audit liší od uživatelského testování?', a: 'Audit je expertní hodnocení — rozhraní posuzuje specialista podle ověřených principů, bez respondentů. Testování sleduje reálné uživatele při plnění úkolů. Audit je rychlejší a levnější první krok, testování ověřuje chování v praxi.' },
-  { q: 'Kdy audit nestačí?', a: 'Audit identifikuje pravděpodobné problémy, ale neprokazuje jejich dopad na chování uživatelů ani konverzi. Pokud potřebujete rozhodnutí podložit daty, navazuje na něj měření — eye-tracking, testování s uživateli nebo biometrie.' },
-  { q: 'Co potřebujete od nás?', a: 'Přístup k produktu (web, aplikace, prototyp), popis klíčových cest a cílů. Máte-li analytiku, zapojíme ji do analýzy.' },
+  { q: 'Co UX audit obsahuje?', a: 'Prověříme klíčové stránky a uživatelské cesty, navigaci, obsah, vizuální hierarchii i srozumitelnost rozhraní. Výstupem je přehled problémů, jejich priority a konkrétní doporučení k úpravám.' },
+  { q: 'Jak dlouho UX audit trvá?', a: 'Nejčastěji 2–4 týdny podle rozsahu produktu a počtu prověřovaných cest. Termín upřesníme po krátkém úvodním zadání.' },
+  { q: 'Kolik UX audit stojí?', a: 'Cena závisí na rozsahu produktu, počtu klíčových cest a požadované podobě výstupu. Po seznámení se zadáním připravíme konkrétní nabídku bez skrytých položek.' },
+  { q: 'Čím se UX audit liší od uživatelského testování?', a: 'UX audit je expertní kontrola rozhraní bez respondentů. Uživatelské testování sleduje skutečné uživatele při plnění úkolů a ověřuje, jak se problémy projevují v praxi.' },
+  { q: 'Lze auditovat také e-shop, aplikaci nebo prototyp?', a: 'Ano. Auditujeme weby, e-shopy, aplikace i dostatečně propracované prototypy. Rozsah vždy přizpůsobíme fázi produktu a rozhodnutí, které potřebujete udělat.' },
+  { q: 'Co potřebujete k zahájení auditu?', a: 'Přístup k produktu nebo prototypu, popis cílových uživatelů a klíčových úkolů, které mají zvládnout. Pokud máte webovou analytiku nebo předchozí výzkum, můžeme je zapojit jako další kontext.' },
 ];
 
 const pageSchema = [
@@ -84,7 +85,7 @@ const pageSchema = [
               POPTAT UX AUDIT →
             </a>
             <a href="/sluzby#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TESTOVACÍ BALÍČKY
+              PROJÍT BALÍČKY
             </a>
           </div>
         </div>
@@ -107,17 +108,17 @@ const pageSchema = [
 
       <!-- Co audit odhalí -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO AUDIT ODHALÍ ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO UX AUDIT ODHALÍ ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Problémy, které uživatelé tiše snášejí<span style="color:#2D62FC">.</span>
+          Co zbytečně komplikuje dokončení úkolu<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
           {reveals.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col h-full">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
             </div>
           ))}
         </div>
@@ -135,47 +136,57 @@ const pageSchema = [
         <p class="font-mono text-[11px] text-brand-black/60 mt-2">Audit není dojmologie — každé zjištění dokládáme konkrétním místem v rozhraní a principem, který porušuje.</p>
       </div>
 
-      <!-- Proces + výstup -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK AUDIT PROBÍHÁ ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Proces -->
+      <div class="reveal mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK AUDIT PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Čtyři kroky od zadání k doporučením<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Výstup -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Jasný plán, co upravit jako první<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {outputs.map((output, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_12rem_1fr] gap-x-4 gap-y-2 py-5 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{output.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO DOSTANETE ]</p>
-          <ul class="space-y-2">
-            {outputs.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
-      <!-- Hranice služby -->
+      <!-- Kdy audit stačí a kdy testovat -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ HRANICE AUDITU ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Audit ukáže kde, měření dokáže proč<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ KDY AUDIT STAČÍ A KDY TESTOVAT ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Audit odhalí slabá místa. Testování ověří jejich dopad<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Expertní hodnocení identifikuje pravděpodobné problémy, ale neprokazuje jejich dopad na chování a konverzi.
-              Když potřebujete rozhodnutí obhájit daty, na audit navazuje eye-tracking, testování s uživateli nebo biometrie.
+              UX audit je vhodný, když potřebujete rychle najít problémy a získat konkrétní plán úprav.
+              Pokud chcete ověřit, jak se v rozhraní skutečně chovají uživatelé a které překážky mají největší vliv, navážeme uživatelským testováním nebo eye trackingem.
             </p>
           </div>
           <a href="/sluzby/testovaci-balicky" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            NAVAZUJÍCÍ MĚŘENÍ →
+            PROJÍT MOŽNOSTI TESTOVÁNÍ →
           </a>
         </div>
       </div>
