@@ -87,14 +87,34 @@ const audiences = [
 ];
 
 const faq = [
-  { q: 'Musíme si vybrat celý balíček?', a: 'Ne. Balíčky jsou výchozí konfigurace, ne pevně uzavřené produkty. Podle zadání můžeme metody doplnit, zjednodušit nebo zkombinovat.' },
-  { q: 'Jaký je rozdíl proti heatmapě z webové analytiky?', a: 'Analytická heatmapa obvykle pracuje s kliky, pohybem kurzoru nebo scrollováním. Eye-tracking měří skutečný pohled. Díky tomu zachytí i prvky, na které se uživatel díval, ale neklikl na ně.' },
-  { q: 'Měříte emoce?', a: 'Nepoužíváme zkratku „měříme emoce“ ve smyslu spolehlivého čtení vnitřního stavu člověka. Pracujeme s indikátory fyziologického arousalu, mimickými signály a subjektivním hodnocením. Interpretujeme je vždy v kontextu konkrétního úkolu.' },
-  { q: 'Kolik respondentů potřebujeme?', a: 'Záleží na cíli studie. Pro rychlou diagnostiku stačí menší vzorek a kvalitativnější interpretace. Pro srovnání variant a statistické vyhodnocení je potřeba větší a přesněji navržený soubor. Doporučený rozsah navrhujeme až podle výzkumné otázky.' },
-  { q: 'Kolik testování stojí?', a: 'Cenu stanovujeme podle rozsahu balíčku, počtu respondentů, náročnosti přípravy, typu měření a formy výstupu. Pošlete nám zadání a připravíme nezávaznou nabídku.' },
-  { q: 'Musí testování probíhat v laboratoři?', a: 'Ne. Laboratoř je vhodná pro kontrolované studie webů, aplikací, kampaní nebo prototypů. Pro reálné prostředí používáme mobilní eye-tracking brýle a terénní metodiku.' },
-  { q: 'Jak nakládáte s daty respondentů?', a: 'Před měřením pracujeme s informovaným souhlasem a jasně vymezeným účelem výzkumu. Výstupy pro klienty připravujeme standardně v agregované nebo pseudonymizované podobě. Konkrétní režim nakládání s daty nastavujeme podle typu projektu, citlivosti dat a požadavků zadavatele.' },
-  { q: 'Dostaneme jen report?', a: 'Ne. U většiny projektů doporučujeme závěrečný workshop. Díky němu lze výsledky převést do priorit, backlogu úprav nebo dalšího testování.' },
+  {
+    q: 'Jaký je rozdíl mezi UX auditem a uživatelským testováním?',
+    a: 'UX audit provádí specialista bez účasti respondentů a rychle odhalí pravděpodobné problémy rozhraní. Při uživatelském testování sledujeme skutečné uživatele při plnění konkrétních úkolů. Díky tomu ověříme, kde se opravdu zastavují, chybují nebo něčemu nerozumějí.',
+  },
+  {
+    q: 'Jaký je rozdíl mezi uživatelským testováním a eye trackingem?',
+    a: 'Uživatelské testování ukáže, zda lidé zvládnou důležité úkoly a jak s rozhraním pracují. Eye tracking navíc přesně měří jejich pohled — co viděli, co přehlédli a v jakém pořadí prvky sledovali. Proto ho používáme jako prémiovou metodu pro otázky, na které samotné pozorování nestačí.',
+  },
+  {
+    q: 'Jak se eye tracking liší od heatmapy z webové analytiky?',
+    a: 'Heatmapa z webové analytiky obvykle vychází z kliknutí, pohybu kurzoru nebo posouvání stránky. Eye tracking měří skutečný pohled uživatele. Zachytí proto i prvky, kterých si člověk všiml, ale neklikl na ně — nebo místa, která zcela přehlédl.',
+  },
+  {
+    q: 'Kolik respondentů je pro uživatelské testování potřeba?',
+    a: 'Počet závisí na cíli výzkumu, rozmanitosti cílové skupiny a způsobu vyhodnocení. Pro odhalování problémů často pracujeme s menším vzorkem. Pro spolehlivé porovnání variant nebo statistické závěry je potřeba větší soubor. Konkrétní počet doporučíme podle výzkumné otázky.',
+  },
+  {
+    q: 'Kolik stojí UX audit nebo uživatelské testování?',
+    a: 'Cena závisí na rozsahu, počtu testovaných cest nebo variant, počtu respondentů, použitých metodách a podobě výstupu. Po krátkém zadání doporučíme vhodný rozsah a připravíme nezávaznou nabídku.',
+  },
+  {
+    q: 'Musí testování probíhat v laboratoři?',
+    a: 'Nemusí. Web, aplikaci nebo prototyp můžeme testovat v laboratoři i vzdáleně podle cíle projektu. Chování v prodejně, provozu nebo jiném fyzickém prostoru sledujeme přímo v terénu.',
+  },
+  {
+    q: 'Jak chráníte data respondentů?',
+    a: 'Před testováním vymezíme účel zpracování a získáme informovaný souhlas každého účastníka. Data zabezpečujeme a výstupy standardně připravujeme v agregované nebo pseudonymizované podobě. Konkrétní režim nastavíme podle citlivosti projektu, požadavků klienta a GDPR.',
+  },
 ];
 
 const pageSchema = [
@@ -336,7 +356,8 @@ const pageSchema = [
 
       <!-- FAQ -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ČASTÉ OTÁZKY K TESTOVÁNÍ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Co je dobré vědět před výběrem<span style="color:#2D62FC">.</span></h2>
         <div class="border-t border-brand-black/10">
           {faq.map(f => (
             <details class="group border-b border-brand-black/10">
@@ -370,7 +391,7 @@ const pageSchema = [
   </script>
 
   <style>
-    /* EMLI stupnice — čára se plní zleva (0 → 100) a mizí, ve smyčce */
+    /* EMLI stupnice — čára jednou najede (0 → 100) a ustálí se na 63; spustí se, až sekce naroluje do viewportu */
     .emli-scale {
       position: relative;
       overflow: hidden;
@@ -381,16 +402,19 @@ const pageSchema = [
       inset: 0;
       transform-origin: left center;
       background: linear-gradient(90deg, rgba(45, 98, 252, 0.16), #2d62fc);
-      animation: emliFill 6s ease-in-out infinite;
+      transform: scaleX(0.63);
+    }
+    .reveal.is-visible .emli-fill {
+      animation: emliFill 2.8s ease-in-out both;
     }
     @keyframes emliFill {
       0% { transform: scaleX(0); }
-      45% { transform: scaleX(1); }
-      55% { transform: scaleX(1); }
-      100% { transform: scaleX(0); }
+      65% { transform: scaleX(1); }
+      100% { transform: scaleX(0.63); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .emli-fill { animation: none; transform: scaleX(1); opacity: 1; }
+      .reveal.is-visible .emli-fill { animation: none; }
+      .emli-fill { transform: scaleX(0.63); }
     }
   </style>
 </BaseLayout>
