@@ -79,11 +79,11 @@ const process = [
 ];
 
 const audiences = [
-  { title: 'Produkt & UX', desc: 'Cesty, formuláře, navigace, prototypy.' },
-  { title: 'Marketing', desc: 'Kampaně, bannery, video, landing pages.' },
-  { title: 'E-commerce', desc: 'Listing, detail, filtry, košík, checkout.' },
-  { title: 'Retail & služby', desc: 'Orientace v prostoru, POS, product placement.' },
-  { title: 'Vedení', desc: 'Data pro dražší rozhodnutí, srozumitelná i mimo UX tým.' },
+  'Produkt & UX',
+  'Marketing',
+  'E-commerce',
+  'Retail & služby',
+  'Vedení',
 ];
 
 const faq = [
@@ -321,14 +321,15 @@ const pageSchema = [
       </div>
 
       <!-- Pro koho -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PRO KOHO JSOU BALÍČKY VHODNÉ ]</p>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+      <div class="reveal mb-24 max-w-4xl">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PRO KOHO JSOU BALÍČKY VHODNÉ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">Pro týmy, které chtějí rozhodovat podle dat<span style="color:#2D62FC">.</span></h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify mb-8 max-w-3xl">
+          Testovací balíčky využijí produktové a UX týmy, marketing, e-commerce, retail i vedení firem. Rozsah přizpůsobíme tomu, zda řešíte navigaci, formulář, kampaň, nákupní proces, fyzický prostor nebo podklady pro důležité rozhodnutí.
+        </p>
+        <div class="flex flex-wrap gap-x-5 gap-y-3">
           {audiences.map(a => (
-            <div class="bg-brand-white p-6">
-              <h3 class="font-display text-lg font-bold mb-2 leading-tight">{a.title}</h3>
-              <p class="text-xs text-brand-black/60 leading-relaxed">{a.desc}</p>
-            </div>
+            <span class="font-mono text-[11px] text-brand-black/60 tracking-widest uppercase">{a}</span>
           ))}
         </div>
       </div>
@@ -380,13 +381,13 @@ const pageSchema = [
       inset: 0;
       transform-origin: left center;
       background: linear-gradient(90deg, rgba(45, 98, 252, 0.16), #2d62fc);
-      animation: emliFill 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      animation: emliFill 6s ease-in-out infinite;
     }
     @keyframes emliFill {
-      0% { transform: scaleX(0); opacity: 1; }
-      55% { transform: scaleX(1); opacity: 1; }
-      80% { transform: scaleX(1); opacity: 0; }
-      100% { transform: scaleX(0); opacity: 0; }
+      0% { transform: scaleX(0); }
+      45% { transform: scaleX(1); }
+      55% { transform: scaleX(1); }
+      100% { transform: scaleX(0); }
     }
     @media (prefers-reduced-motion: reduce) {
       .emli-fill { animation: none; transform: scaleX(1); opacity: 1; }
