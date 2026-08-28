@@ -1,0 +1,24 @@
+---
+interface Props {
+  href?: string;
+}
+
+const { href = '/kontakt' } = Astro.props;
+---
+
+<section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ POJĎME TO OVĚŘIT ]</p>
+    <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+      PŘESTAŇTE HÁDAT,<br/>ZAČNĚTE MĚŘIT<span style="color:#2D62FC">.</span>
+    </h2>
+    <p class="text-lg text-brand-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
+      Máte web, aplikaci nebo kampaň, která nefunguje tak, jak očekáváte? Nemusíte hádat proč.
+      Pošlete nám odkaz nebo krátký popis problému. Ozveme se s návrhem, co má smysl otestovat
+      a jaké odpovědi můžete získat.
+    </p>
+    <a href={href} class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+      DOMLUVIT ÚVODNÍ KONZULTACI →
+    </a>
+  </div>
+</section>

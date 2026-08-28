@@ -5,10 +5,10 @@ import Footer from '../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const fotkaLegenda = [
-  ['Eye tracker', 'Lišta pod monitorem snímá pohyb očí 60× za sekundu.'],
-  ['Analýza mimiky', 'Kamera nad monitorem rozpoznává výraz obličeje.'],
-  ['Reálný úkol', 'Respondentka plní zadání na reálné stránce — neříká, co se jí líbí.'],
+const vystupyMereni = [
+  ['Pozornost', 'Které prvky uživatel zaznamená, v jakém pořadí a co úplně přehlédne.'],
+  ['Průběh úkolu', 'Kde postupuje plynule, kde se vrací a ve kterém kroku se zastaví.'],
+  ['Reakce', 'Ve kterých místech roste aktivace nebo mentální zátěž.'],
 ];
 
 const vrstvy = [
@@ -102,24 +102,22 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ O NÁS / LABORATOŘ ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          LABORATOŘ,<br/>NE AGENTURA<span style="color:#2D62FC">.</span>
+          VÝZKUM<br/>MÍSTO DOJMŮ<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-4xl">
           <div>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl mb-4">
-              UX agentur je v Česku spousta. Laboratoří, které měří pohyb očí, kožní vodivost a mimiku
-              najednou — a mají za sebou publikace v recenzovaných časopisech — je podstatně míň.
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              UX MIND propojuje zkušenosti s digitálními produkty a výzkumné zázemí laboratoře
+              <strong class="text-brand-black">FIMEYELAB</strong> na Fakultě informatiky a managementu
+              Univerzity Hradec Králové. Pomocí eye trackingu, uživatelského testování a biometrických metod
+              zjišťujeme, co lidé skutečně vidí, čemu nerozumějí a kde se při rozhodování ztrácejí.
             </p>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              UX MIND měří v laboratoři <strong class="text-brand-black">FIMEYELAB</strong> na Fakultě informatiky
-              a managementu Univerzity Hradec Králové. To není marketingová ozdoba: znamená to metodickou kontrolu,
-              přístroje, které si komerční agentura nepořídí, a povinnost obhájit každý závěr před recenzentem.
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Výsledkem nejsou jen heatmapy a grafy. Dostanete srozumitelné závěry a konkrétní doporučení
+              pro web, aplikaci, kampaň nebo fyzický prostor.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
-            <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              DOMLUVIT NÁVŠTĚVU →
-            </a>
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/pripadove-studie" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               PŘÍPADOVÉ STUDIE
             </a>
@@ -153,25 +151,24 @@ const pageSchema = [
             class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
           />
           <p class="font-mono text-[11px] text-brand-black/60 mt-2">
-            Laboratoř FIMEYELAB, FIM UHK. Žádný render, žádné stock foto.
+            Laboratoř FIMEYELAB, Fakulta informatiky a managementu UHK.
           </p>
         </div>
         <div class="md:col-span-3">
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO NA TÉ FOTCE JE ]</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MĚŘENÍ V PRAXI ]</p>
           <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
-            Nic z toho není kulisa<span style="color:#2D62FC">.</span>
+            Co během testování sledujeme<span style="color:#2D62FC">.</span>
           </h2>
-          <p class="text-brand-black/60 leading-relaxed mb-4">
-            Pod monitorem je lišta eye trackeru, která snímá pohyb očí šedesátkrát za sekundu.
-            Nad monitorem kamera pro analýzu mimiky. Respondentka plní zadaný úkol na reálné stránce
-            — nekomentuje, co se jí líbí.
+          <p class="text-brand-black/60 leading-relaxed text-justify mb-4">
+            Eye tracker pod monitorem zaznamenává pohyb očí šedesátkrát za sekundu. Kamera nad monitorem
+            zachycuje mimické reakce a respondentka mezitím plní konkrétní úkol na testované stránce.
           </p>
-          <p class="text-brand-black/60 leading-relaxed">
-            Přesně v tom je rozdíl mezi měřením a fokusní skupinou. Neptáme se lidí, co si myslí,
-            že dělají. Díváme se, co skutečně dělají.
+          <p class="text-brand-black/60 leading-relaxed text-justify">
+            Propojením pohledu, chování a reakcí zjistíme, čeho si uživatel všiml, co přehlédl
+            a ve kterém místě při plnění úkolu zaváhal.
           </p>
           <dl class="mt-8 border-t border-brand-black/10 pt-6 space-y-4">
-            {fotkaLegenda.map(([label, desc], i) => (
+            {vystupyMereni.map(([label, desc], i) => (
               <div class="flex gap-4">
                 <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
                 <div>
@@ -185,35 +182,38 @@ const pageSchema = [
       </div>
 
       <!-- Jak to spolu souvisí -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-12">
+      <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK TO SPOLU SOUVISÍ ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 max-w-3xl">
           Univerzitní laboratoř, komerční tempo<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">LABORATOŘ</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">01</p>
+            <h3 class="font-display text-2xl font-bold mb-3">Laboratoř FIMEYELAB</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
               FIMEYELAB patří Univerzitě Hradec Králové. Slouží výzkumu, výuce a vedení diplomových
               a disertačních prací — a drží tím metodickou laťku, kterou si komerční provoz sám na sebe neklade.
             </p>
           </div>
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">UX MIND</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">02</p>
+            <h3 class="font-display text-2xl font-bold mb-3">UX MIND</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
               Komerční zakázky v laboratoři běží vždy přes UX MIND. Jsme smluvní partner, se kterým
               podepíšete zakázku, dostanete termín, cenu i výstup — a který za výsledek odpovídá.
             </p>
           </div>
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">SPOJKA</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">03</p>
+            <h3 class="font-display text-2xl font-bold mb-3">Propojení</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
               Jan Petružálek je vedoucím laboratoře FIMEYELAB a zároveň spolumajitelem UX MIND.
               Metodika a exekuce tak nejsou dva světy, které si něco přehazují přes plot.
             </p>
           </div>
         </div>
-        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+        <p class="text-brand-black/60 leading-relaxed text-justify mt-8 max-w-3xl">
           Prakticky to pro vás znamená jediné: dostanete akademickou metodiku bez akademických lhůt.
           Měřili jsme takhle kariérní portál pro <strong class="text-brand-black">ŠKODA AUTO</strong>,
           kampaň fotbalového klubu i produktové stránky e-shopů.
@@ -372,8 +372,8 @@ const pageSchema = [
           <!-- Jan Petružálek -->
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
-              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ FOTO SE PŘIPRAVUJE ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Měříme, kam se díváte. Na sebe jsme kameru ještě neotočili.</p>
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PORTRÉT SE PŘIPRAVUJE ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Jan Petružálek</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">VEDOUCÍ LABORATOŘE FIMEYELAB · SPOLUMAJITEL UX MIND</p>
@@ -392,8 +392,8 @@ const pageSchema = [
           <!-- Lukáš Koula -->
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
-              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ FOTO SE PŘIPRAVUJE ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Portrét ve výrobě. Slibujeme — žádné stock foto.</p>
+              <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PORTRÉT SE PŘIPRAVUJE ]</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Lukáš Koula</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGIE, WEB A MARKETING · SPOLUMAJITEL UX MIND</p>
@@ -455,22 +455,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            CHCETE SE<br/>PODÍVAT<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Laboratoř se dá navštívit. Ukážeme vybavení, pustíme reálný záznam měření a řekneme rovnou,
-            jestli má u vašeho zadání měření smysl — nebo jestli si vystačíte s levnějším nástrojem.
-          </p>
-          <a href="/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            DOMLUVIT NÁVŠTĚVU →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

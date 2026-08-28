@@ -34,7 +34,7 @@ export type Segment = {
   nazevKratky: string;
   /** Jednořádková bolest oboru (dlaždice na rozcestníku) */
   bolest: string;
-  /** true → štítek VLASTNÍ DATA; false → ZATÍM BEZ VLASTNÍ REFERENCE */
+  /** true → štítek VLASTNÍ DATA; false → ZAHRANIČNÍ STUDIE */
   maVlastniData: boolean;
   metaTitle: string;
   metaDescription: string;

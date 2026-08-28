@@ -30,8 +30,8 @@ import Footer from '../components/Footer.astro';
             id: 'ux-audit',
             href: '/sluzby/ux-audit',
             title: 'UX Audit',
-            desc: 'Rychlý základ každého zlepšování. Systematická analýza vašeho digitálního produktu — procházíme rozhraní z pohledu uživatele, identifikujeme bariéry a navrhujeme konkrétní zlepšení s prioritizací podle dopadu.',
-            details: ['Heuristická analýza', 'Analýza tok uživatele', 'Prioritizovaný seznam doporučení', 'Workshop s týmem', 'Výstupní zpráva s mockupy'],
+            desc: 'Projdeme váš web, e-shop nebo aplikaci očima uživatele. Najdeme místa, kde lidé tápou, odcházejí nebo nedokončí důležitý krok. Dostanete konkrétní doporučení seřazená podle dopadu.',
+            details: ['Heuristická analýza', 'Analýza uživatelských cest', 'Prioritizovaný seznam doporučení', 'Workshop s týmem', 'Výstupní zpráva s návrhy úprav'],
             duration: '2–4 týdny',
             pkg: 'Rychlá diagnostika',
           },
@@ -40,8 +40,8 @@ import Footer from '../components/Footer.astro';
             id: 'testovani-uzivatelu',
             href: '/sluzby/testovani-uzivatelu',
             title: 'Testování uživatelů',
-            desc: 'Moderované i nemoderované testy s reálnými uživateli. Sledujeme jak uživatelé plní úkoly ve vašem produktu a identifikujeme, kde selhávají.',
-            details: ['Moderované session testy', 'Nemoderované online testy', 'Think-aloud protokol', 'Záznam obrazovky', 'Analýza a doporučení'],
+            desc: 'Dáme reálným uživatelům konkrétní úkoly a sledujeme, zda je dokážou splnit. Zjistíte, kde se ztrácejí, čemu nerozumějí a proč odcházejí.',
+            details: ['Moderované testování', 'Nemoderované online testování', 'Uživatel nahlas popisuje své kroky', 'Záznam obrazovky', 'Výsledky a doporučení'],
             duration: '1–4 týdny',
             pkg: 'Standardní UX test',
           },
@@ -49,7 +49,7 @@ import Footer from '../components/Footer.astro';
             num: '03',
             href: '/sluzby/eye-tracking',
             title: 'Eye Tracking',
-            desc: 'Přesná data o vizuálním vnímání vašeho obsahu. Sledujeme pohyb očí uživatelů při interakci s webem, aplikací nebo tiskovými materiály.',
+            desc: 'Pomocí eye trackingu změříme, kam se lidé skutečně dívají. Zjistíte, čeho si všimnou, co přehlédnou a zda důležitý obsah vede jejich pozornost správným směrem.',
             details: ['Heatmapy pozornosti', 'Analýza AOI (Areas of Interest)', 'Záznamy pohybu očí', 'F-pattern & Z-pattern analýza', 'Srovnávací testování variant'],
             duration: '1–3 týdny',
             pkg: 'Standardní UX test',
@@ -59,7 +59,7 @@ import Footer from '../components/Footer.astro';
             id: 'terenni-mereni',
             href: '/sluzby/terenni-mereni',
             title: 'Terénní měření',
-            desc: 'Měříme tam, kde se zákazník skutečně rozhoduje — v prodejně, showroomu, na eventu nebo u fyzického produktu. Mobilní eye-tracking brýle zachytí pozornost v reálném prostředí, ne jen na obrazovce. Vybavení, které v ČR jen tak někdo nemá.',
+            desc: 'Sledujeme zákazníky přímo tam, kde se rozhodují — v prodejně, showroomu, na akci nebo u fyzického produktu. Mobilní eye-tracking brýle ukážou, čeho si v reálném prostředí všimnou a co minou.',
             details: ['Mobilní eye-tracking brýle Pupil Labs NEON', 'Videozáznam situace a chování v prostoru', 'GSR a rozhovory podle potřeby', 'Product placement, značení, POS materiály', 'Doporučení pro úpravu prostoru a zákaznické cesty'],
             duration: '2–6 týdnů',
             pkg: 'Terénní studie',
@@ -68,7 +68,7 @@ import Footer from '../components/Footer.astro';
             num: '05',
             href: '/sluzby/ux-vyzkum',
             title: 'UX Výzkum',
-            desc: 'Nejhlubší rozsah: kombinace kvalitativních a kvantitativních metod. Pomáháme porozumět potřebám, frustracím a mentálním modelům vašich uživatelů.',
+            desc: 'Pomůžeme vám pochopit, co uživatelé potřebují, co je frustruje a proč se chovají určitým způsobem. Podle výzkumné otázky propojíme rozhovory, pozorování, testování a data.',
             details: ['Hloubkové rozhovory', 'Kontextuální výzkum', 'Testování použitelnosti', 'Analýza dat', 'Personas & Journey mapy'],
             duration: '3–8 týdnů',
             pkg: 'Komplexní biometrický výzkum',
@@ -100,7 +100,7 @@ import Footer from '../components/Footer.astro';
                   <a href="/sluzby/testovaci-balicky" class="font-display text-lg font-semibold underline hover:no-underline">{service.pkg}</a>
                 </div>
                 <div class="flex flex-col gap-2 mt-6">
-                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors text-center">
+                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-[#2D62FC] hover:border-[#2D62FC] hover:text-brand-white transition-colors text-center">
                     DETAIL SLUŽBY →
                   </a>
                   <a href="/kontakt" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors text-center">
@@ -114,22 +114,22 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <!-- Testovací balíčky -->
-      <div class="mt-24 bg-brand-black text-brand-white p-8 md:p-12">
+      <a href="/sluzby/testovaci-balicky" class="group block mt-24 border border-brand-black bg-brand-black text-brand-white p-8 md:p-12 hover:bg-brand-white hover:text-brand-black transition-colors duration-300">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div class="md:col-span-2">
-            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ TESTOVACÍ BALÍČKY ]</p>
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Od rychlé diagnostiky po komplexní biometrický výzkum</h2>
-            <p class="text-brand-white/70 leading-relaxed max-w-2xl">
-              Služby skládáme do testovacích balíčků podle rozhodnutí, které potřebujete udělat — eye-tracking, behaviorální data, dotazníky, GSR i terénní měření. Předem víte, co z testování získáte i co z daného rozsahu nepůjde spolehlivě tvrdit.
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4 group-hover:text-brand-black/60 transition-colors">[ TESTOVACÍ BALÍČKY ]</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Od rychlé kontroly po výzkum do hloubky<span style="color:#2D62FC">.</span></h2>
+            <p class="text-brand-white/70 leading-relaxed max-w-2xl group-hover:text-brand-black/70 transition-colors">
+              Vyberte si rozsah podle toho, co potřebujete zjistit. Propojíme vhodné metody a předem vysvětlíme, jaké odpovědi z testování získáte.
             </p>
           </div>
           <div class="flex md:justify-end">
-            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              PROHLÉDNOUT BALÍČKY →
-            </a>
+            <span class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase group-hover:border-brand-black group-hover:text-brand-black transition-colors">
+              POROVNAT BALÍČKY →
+            </span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Pro koho — odkaz na segmenty -->
       <a href="/segmenty" class="block border border-brand-black/10 p-8 md:p-10 mt-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
@@ -137,7 +137,7 @@ import Footer from '../components/Footer.astro';
           <div class="max-w-2xl">
             <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3 group-hover:text-brand-white/60">[ PRO KOHO ]</p>
             <h2 class="font-display text-2xl md:text-3xl font-bold leading-tight">Kde všude to dává smysl<span style="color:#2D62FC">?</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed mt-2 group-hover:text-brand-white/70">Stejná metoda, devět oborů — od e-shopu po stadion. Podívejte se, co konkrétně měříme ve vašem segmentu.</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed mt-2 group-hover:text-brand-white/70">Od e-shopu po stadion. Podívejte se, co konkrétně měříme ve vašem segmentu.</p>
           </div>
           <span class="shrink-0 font-mono text-xs tracking-widest uppercase group-hover:text-brand-white">VŠECHNY SEGMENTY →</span>
         </div>

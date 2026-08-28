@@ -187,7 +187,7 @@ export type NavLink = {
   children?: { href: string; label: string }[];
 };
 
-// Segmenty do patičky — 4 hlavní segmenty (zatím jen čeština; jinak prázdné)
+// Segmenty do patičky — stejný úplný seznam jako v menu „Pro koho“ (zatím jen čeština)
 export function getFooterSegments(lang: Lang): { href: string; label: string }[] {
   if (!urlMap[lang].segments) return [];
   return [
@@ -195,6 +195,12 @@ export function getFooterSegments(lang: Lang): { href: string; label: string }[]
     { href: urlMap[lang]['seg-weby'], label: 'Weby a aplikace' },
     { href: urlMap[lang]['seg-sport'], label: 'Sport a stadiony' },
     { href: urlMap[lang]['seg-automotive'], label: 'Automotive' },
+    { href: urlMap[lang]['seg-doprava'], label: 'Doprava a města' },
+    { href: urlMap[lang]['seg-prumysl'], label: 'Průmysl a energetika' },
+    { href: urlMap[lang]['seg-zdravotnictvi'], label: 'Zdravotnictví' },
+    { href: urlMap[lang]['seg-finance'], label: 'Finance a poradenství' },
+    { href: urlMap[lang]['seg-letectvi'], label: 'Letectví' },
+    { href: urlMap[lang]['seg-univerzity'], label: 'Univerzity a výzkum' },
   ];
 }
 
