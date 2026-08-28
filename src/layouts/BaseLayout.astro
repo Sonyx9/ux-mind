@@ -98,15 +98,6 @@ const jsonLd = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Heslová brána (klientská — deterrent před spuštěním, ne skutečné zabezpečení) -->
-    <script is:inline>
-      if (localStorage.getItem('uxmind-gate') === 'ok') document.documentElement.setAttribute('data-gate', 'ok');
-    </script>
-    <style>
-      html:not([data-gate]) body { overflow: hidden; }
-      html[data-gate] #uxmind-gate { display: none !important; }
-    </style>
-
     <!-- Google Consent Mode v2 — výchozí stav (opt-in), načítá se před Google tagy -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -187,41 +178,6 @@ const jsonLd = {
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-white focus:px-4 focus:py-2 font-mono text-xs tracking-widest">
       {skipLabels[lang] ?? 'Skip to content'}
     </a>
-
-    <!-- Heslová brána -->
-    <div id="uxmind-gate" class="fixed inset-0 z-[100000] bg-brand-black text-brand-white flex items-center justify-center px-6">
-      <form id="uxmind-gate-form" class="w-full max-w-sm text-center">
-        <p class="font-display text-3xl font-bold mb-2">UX MIND<span style="color:#2D62FC">.</span></p>
-        <p class="font-mono text-xs text-brand-white/60 tracking-widest uppercase mb-8">Web v přípravě — zadejte heslo</p>
-        <input id="uxmind-gate-input" type="password" autocomplete="off" aria-label="Heslo"
-          class="w-full bg-transparent border border-brand-white/50 text-brand-white text-center font-mono px-4 py-3 mb-4 focus:outline-none focus:border-brand-white" />
-        <button type="submit" class="w-full bg-brand-white text-brand-black font-mono text-xs tracking-widest uppercase px-4 py-3 hover:bg-[#2D62FC] hover:text-brand-white transition-colors">Vstoupit →</button>
-        <p id="uxmind-gate-err" class="font-mono text-xs text-[#2D62FC] mt-4 hidden">Nesprávné heslo</p>
-      </form>
-    </div>
-    <script is:inline>
-      (function () {
-        var g = document.getElementById('uxmind-gate');
-        if (!g) return;
-        if (localStorage.getItem('uxmind-gate') === 'ok') { g.remove(); return; }
-        var input = document.getElementById('uxmind-gate-input');
-        var err = document.getElementById('uxmind-gate-err');
-        var form = document.getElementById('uxmind-gate-form');
-        if (input) input.focus();
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          if (input.value === 'UXmind2022') {
-            localStorage.setItem('uxmind-gate', 'ok');
-            document.documentElement.setAttribute('data-gate', 'ok');
-            g.remove();
-          } else {
-            if (err) err.classList.remove('hidden');
-            input.value = '';
-            input.focus();
-          }
-        });
-      })();
-    </script>
 
     <slot />
 
