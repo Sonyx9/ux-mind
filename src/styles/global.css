@@ -76,15 +76,6 @@
   }
 }
 
-/* Hero info box na nízkém tabletu na šířku (často jako druhý monitor, výška ~600–720 px):
-   box má pevnou výšku, takže popisný odstavec skryjeme — jinak by přetekl a text
-   by zmizel za tlačítky. Zůstává badge, tlačítka a kredit univerzity. */
-@media (min-width: 1024px) and (max-height: 730px) {
-  #info-box .infobox-desc {
-    display: none;
-  }
-}
-
 @media (min-width: 1024px) {
   :root {
     --desktop-gutter: clamp(1.5rem, 2vw, 3rem);
