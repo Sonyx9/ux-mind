@@ -5,35 +5,53 @@ import Footer from '../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const researchQuestions = [
+  { title: 'Pro koho produkt vytváříte', desc: 'Poznáme potřeby, očekávání a rozdíly mezi skupinami, které produkt nebo službu používají.' },
+  { title: 'Jaký problém lidé řeší', desc: 'Odhalíme skutečné cíle, motivace a překážky, ne pouze požadavky formulované bez kontextu.' },
+  { title: 'Jak probíhá celá cesta', desc: 'Propojíme jednotlivé kontaktní body a ukážeme, kde zkušenost funguje a kde se rozpadá.' },
+  { title: 'Co změnit jako první', desc: 'Zjištění převedeme do priorit podle dopadu, jistoty a návaznosti na vaše produktové cíle.' },
+];
+
 const methods = [
-  { title: 'Hloubkové rozhovory', type: 'KVALITATIVNÍ', desc: 'Individuální rozhovory odhalují motivace, frustrace a mentální modely.' },
-  { title: 'Testování použitelnosti', type: 'KVALITATIVNÍ', desc: 'Sledujeme uživatele při plnění úkolů a identifikujeme, kde selhávají.' },
-  { title: 'Kontextuální výzkum', type: 'KVALITATIVNÍ', desc: 'Pozorujeme uživatele v jejich přirozeném prostředí, jak skutečně pracují.' },
-  { title: 'Dotazníkové šetření', type: 'KVANTITATIVNÍ', desc: 'Data od mnoha respondentů pro statisticky relevantní závěry.' },
-  { title: 'A/B testování', type: 'KVANTITATIVNÍ', desc: 'Porovnáváme varianty designu na reálném provozu a měříme výsledky.' },
-  { title: 'Card sorting', type: 'SMÍŠENÉ', desc: 'Jak uživatelé kategorizují obsah — základ lepší informační architektury.' },
+  { title: 'Porozumět potřebám', methods: 'ROZHOVORY · KONTEXTUÁLNÍ VÝZKUM', desc: 'Když potřebujete pochopit motivace, pracovní postupy, rozhodování a okolnosti, ve kterých problém vzniká.' },
+  { title: 'Ověřit skutečné chování', methods: 'UŽIVATELSKÉ TESTOVÁNÍ · POZOROVÁNÍ', desc: 'Když chcete zjistit, zda lidé zvládnou důležité úkoly a co jim v konkrétní situaci brání.' },
+  { title: 'Změřit rozsah problému', methods: 'DOTAZNÍKY · ANALYTIKA · PROVOZNÍ DATA', desc: 'Když potřebujete ověřit, jak často se určitý vzorec objevuje a kterých skupin se týká.' },
+  { title: 'Porovnat možné směry', methods: 'KONCEPTY · PROTOTYPY · VARIANTY', desc: 'Když vybíráte mezi řešeními a potřebujete rozhodnutí podložit chováním i zpětnou vazbou.' },
 ];
 
 const deliverables = [
-  'Výzkumná zpráva s metodologií a zjištěními',
-  'Personas — datové osoby klíčových skupin',
-  'Journey mapy včetně pain points',
-  'Prioritizovaná doporučení podle dopadu',
-  'Podklady pro redesign nebo další testování',
+  { title: 'Odpověď na výzkumnou otázku', desc: 'Jasně shrneme, co data dovolují říct, co zůstává nejisté a co je potřeba ověřit dál.' },
+  { title: 'Důkazy a souvislosti', desc: 'Zjištění doložíme konkrétními situacemi, výroky, vzorci chování a dostupnými daty.' },
+  { title: 'Priority a příležitosti', desc: 'Oddělíme zásadní problémy od jednotlivostí a ukážeme, kde má změna největší smysl.' },
+  { title: 'Podklady pro další práci', desc: 'Podle cíle připravíme doporučení, journey mapu, segmentaci, zadání pro návrh nebo plán dalšího ověření.' },
+];
+
+const situations = [
+  { title: 'Nový produkt nebo služba', desc: 'Potřebujete ověřit, komu má řešení sloužit a jaký problém má skutečně řešit.' },
+  { title: 'Redesign nebo změna směru', desc: 'Nechcete pouze překreslit současný stav, ale rozhodnout, co zachovat a co změnit.' },
+  { title: 'Slabý výkon bez jasné příčiny', desc: 'Data ukazují problém, ale nevysvětlují motivace, očekávání ani kontext chování.' },
+  { title: 'Nová cílová skupina nebo trh', desc: 'Potřebujete pochopit rozdílné potřeby dříve, než přenesete stávající řešení jinam.' },
+  { title: 'Cesta napříč kanály', desc: 'Zkušenost vzniká mezi webem, podporou, pobočkou, prodejnou nebo fyzickým produktem.' },
+  { title: 'Rozhodnutí s vysokým dopadem', desc: 'Potřebujete doložit směr vývoje, investici nebo změnu procesu před širším nasazením.' },
 ];
 
 const process = [
-  { num: '01', title: 'Výzkumná otázka', desc: 'Co potřebujete rozhodnout a koho se to týká.' },
-  { num: '02', title: 'Návrh metod', desc: 'Kombinace kvalitativních a kvantitativních metod podle otázky.' },
-  { num: '03', title: 'Sběr dat', desc: 'Rozhovory, testování, dotazníky — s pilotáží a kontrolou kvality.' },
-  { num: '04', title: 'Syntéza a výstup', desc: 'Zjištění propojíme do doporučení, personas a journey map.' },
+  { num: '01', title: 'Rozhodnutí a kontext', desc: 'Ujasníme si, co potřebujete rozhodnout, co už víte a kde jsou největší mezery.' },
+  { num: '02', title: 'Návrh výzkumu', desc: 'Zvolíme vhodné metody, cílové skupiny, vzorek a způsob vyhodnocení.' },
+  { num: '03', title: 'Příprava a nábor', desc: 'Připravíme scénář, ověříme jej pilotem a zajistíme vhodné účastníky.' },
+  { num: '04', title: 'Sběr a syntéza dat', desc: 'Propojíme rozhovory, chování a dostupná data a hledáme opakující se souvislosti.' },
+  { num: '05', title: 'Doporučení a předání', desc: 'Výsledky převedeme do priorit a společně určíme další produktové kroky.' },
 ];
 
 const faq = [
-  { q: 'Kdy dává smysl hloubkový výzkum místo rychlého testu?', a: 'Když nerozhodujete o jednom rozhraní, ale o produktové strategii: pro koho stavíte, jaké potřeby řešíte, kde je cesta uživatele nejslabší. Rychlý test ověří konkrétní řešení, výzkum říká, co vůbec stavět.' },
-  { q: 'Jak dlouho UX výzkum trvá?', a: 'Podle rozsahu typicky 3–8 týdnů: návrh výzkumu, nábor, sběr dat, analýza a syntéza do doporučení.' },
-  { q: 'Kombinujete výzkum s biometrií?', a: 'Ano. Rozhovory a pozorování můžeme doplnit o eye-tracking, GSR nebo index mentální zátěže EMLI — subjektivní výpovědi tak ověřujeme proti objektivním datům.' },
-  { q: 'Co když už máme vlastní data?', a: 'Skvělé — analytiku, zákaznickou podporu nebo předchozí výzkumy zapojíme do syntézy. Nový sběr pak míří jen na místa, kde data chybí.' },
+  { q: 'Co je UX výzkum?', a: 'UX výzkum systematicky zjišťuje, kdo jsou uživatelé, co potřebují, jak se chovají a proč. Pomáhá rozhodnout, jaký problém řešit, co navrhnout a které změny mají největší smysl.' },
+  { q: 'Jak se UX výzkum liší od uživatelského testování?', a: 'Uživatelské testování ověřuje konkrétní rozhraní nebo prototyp. UX výzkum může řešit širší otázky o potřebách, cílových skupinách, celé zákaznické cestě nebo směru produktu a podle cíle kombinuje více metod.' },
+  { q: 'Jak se UX výzkum liší od průzkumu trhu?', a: 'Průzkum trhu se často zaměřuje na velikost trhu, preference nebo značku. UX výzkum jde více do kontextu používání produktu či služby a hledá podklady pro konkrétní návrh a produktová rozhodnutí. Oba přístupy se mohou vhodně doplňovat.' },
+  { q: 'Kolik účastníků potřebujeme?', a: 'Počet závisí na výzkumné otázce, počtu cílových skupin a zvolených metodách. Kvalitativní rozhovory pracují s jiným vzorkem než dotazník nebo porovnání variant, proto rozsah určujeme až při návrhu studie.' },
+  { q: 'Jak dlouho UX výzkum trvá a kolik stojí?', a: 'Nejčastěji 3–8 týdnů podle počtu cílových skupin, způsobu náboru, metod a rozsahu výstupu. Po úvodním zadání připravíme konkrétní návrh, harmonogram i cenu.' },
+  { q: 'Co když už máme analytiku nebo předchozí výzkum?', a: 'Stávající data nejprve projdeme a využijeme jako výchozí bod. Nový sběr navrhneme pouze tam, kde potřebujeme doplnit chybějící souvislosti nebo ověřit nejisté závěry.' },
+  { q: 'Musí výzkum probíhat osobně?', a: 'Nemusí. Rozhovory a uživatelské testování lze podle cíle vést osobně i vzdáleně. Terénní výzkum naopak probíhá přímo v prostředí, kde lidé službu, produkt nebo pracovní postup používají.' },
+  { q: 'Kdy do UX výzkumu zapojujete eye tracking a biometrii?', a: 'Pouze tehdy, když výzkumná otázka vyžaduje přesně měřit vizuální pozornost, fyziologickou aktivaci nebo mentální zátěž. Nejde o automatickou součást každého výzkumu, ale o volitelné rozšíření.' },
 ];
 
 const pageSchema = [

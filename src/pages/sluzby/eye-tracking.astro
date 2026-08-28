@@ -5,25 +5,60 @@ import Footer from '../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const faq = [
-  { q: "Kolik respondentů je potřeba pro eye tracking studii?", a: "Pro kvalitativní vhledy stačí 8–12 respondentů na segment. Pro kvantitativní metriky (heatmapy, AOI statistiky) doporučujeme 30 a více a pro výpočet indexu kognitivní zátěže EMLI pracujeme se vzorky nad 100 respondentů." },
-  { q: "Jak dlouho trvá eye tracking testování?", a: "Typický projekt trvá 1–3 týdny od schválení scénáře: příprava a pilotáž, sběr dat v laboratoři nebo v terénu, analýza a report s prioritizovanými doporučeními." },
-  { q: "Je eye tracking totéž co neuromarketing?", a: "Není. Eye tracking je objektivní záznam vizuální pozornosti — neslibujeme „čtení myšlenek“ ani emocí. Data interpretujeme vždy v kontextu úkolu a s jasně popsanými limity metody." },
-  { q: "Co ukáže heatmapa a co z ní nevyčtu?", a: "Heatmapa agreguje, kam se respondenti dívali nejčastěji. Neřekne ale, jak náročné pro ně rozhraní bylo — proto ji doplňujeme AOI metrikami (TTFF, dwell time) a indexem kognitivní zátěže EMLI." },
-];
-
-const steps = [
-  { num: '01', title: 'Příprava', desc: 'Testovací scénáře podle vašich cílů a definice AOI (Areas of Interest).' },
-  { num: '02', title: 'Testování', desc: 'Uživatelé interagují s produktem, eye tracker zaznamenává pohled.' },
-  { num: '03', title: 'Analýza', desc: 'Heatmapy, gaze ploty a AOI statistiky z nasbíraných dat.' },
-  { num: '04', title: 'Doporučení', desc: 'Konkrétní úpravy rozvržení a hierarchie obsahu.' },
+const attentionSignals = [
+  { title: 'Co lidé uvidí jako první', desc: 'Změříme, který prvek získá první pohled a v jakém pořadí lidé obsah procházejí.' },
+  { title: 'Co zůstane bez povšimnutí', desc: 'Odhalíme důležité informace, nabídky nebo ovládací prvky, ke kterým se pohled vůbec nedostane.' },
+  { title: 'Kde lidé hledají a vracejí se', desc: 'Opakované pohledy a dlouhé hledání ukážou místa, kde vizuální hierarchie nevede uživatele dostatečně jasně.' },
+  { title: 'Která varianta funguje lépe', desc: 'Návrhy porovnáme podle stejných metrik a ukážeme, která varianta lépe směruje pozornost k důležitému obsahu.' },
 ];
 
 const usecases = [
-  { t: 'Webové stránky', d: 'Kde uživatelé tráví čas, co přehlíží a proč nereagují na vaše CTA.', tag: 'WEB' },
-  { t: 'Mobilní aplikace', d: 'Navigace, čitelnost a použitelnost mobilních produktů.', tag: 'APP' },
-  { t: 'E-commerce', d: 'Produktové stránky, košík a checkout pro lepší konverze.', tag: 'E-SHOP' },
-  { t: 'Tiskové materiály', d: 'Bannery, plakáty, obaly — co přitahuje pozornost na fyzických materiálech.', tag: 'PRINT' },
+  { t: 'E-shopy', d: 'Produkty, filtry, košík, checkout a rozhodování mezi variantami.', href: '/segmenty/e-shopy' },
+  { t: 'Weby a aplikace', d: 'Navigace, formuláře, obsah, prototypy a důležité uživatelské cesty.', href: '/segmenty/weby' },
+  { t: 'Sport a stadiony', d: 'Reklama, sponzorské plochy, orientace v areálu a zážitek návštěvníka.', href: '/segmenty/sport-a-stadiony' },
+  { t: 'Automotive', d: 'Digitální rozhraní, infotainment, prezentace vozů a prostředí showroomu.', href: '/segmenty/automotive' },
+  { t: 'Doprava a města', d: 'Navigace, informační systémy, mapy, značení a pohyb veřejným prostorem.', href: '/segmenty/doprava-a-mesta' },
+  { t: 'Průmysl a energetika', d: 'Řídicí rozhraní, dashboardy, pracovní postupy a bezpečnostní informace.', href: '/segmenty/prumysl-a-energetika' },
+  { t: 'Zdravotnictví', d: 'Zdravotnická rozhraní, instrukce, formuláře a orientace pacientů.', href: '/segmenty/zdravotnictvi' },
+  { t: 'Finance a poradenství', d: 'Smlouvy, kalkulačky, klientské portály, dashboardy a složitá rozhodnutí.', href: '/segmenty/finance-a-poradenstvi' },
+  { t: 'Letectví', d: 'Informační rozhraní, navigace cestujících, provozní postupy a výcvik.', href: '/segmenty/letectvi' },
+  { t: 'Univerzity a výzkum', d: 'Experimentální studie, ověřování hypotéz a výzkumné projekty.', href: '/segmenty/univerzity-a-vyzkum' },
+];
+
+const outputs = [
+  { title: 'Heatmapy a záznam pohledu', desc: 'Přehledně ukážou rozložení pozornosti i cestu očí konkrétního účastníka.' },
+  { title: 'Metriky sledovaných oblastí', desc: 'U důležitých prvků změříme první zaznamenání, počet návratů i dobu věnované pozornosti.' },
+  { title: 'Souvislosti s úkolem', desc: 'Pohled propojíme s úspěšností, časem, chybami a výpověďmi účastníků.' },
+  { title: 'Priority a doporučení', desc: 'Výsledky převedeme do konkrétních úprav obsahu, rozvržení a vizuální hierarchie.' },
+];
+
+const steps = [
+  { num: '01', title: 'Výzkumná otázka', desc: 'Ujasníme si rozhodnutí, které mají data podpořit, a zvolíme vhodný rozsah studie.' },
+  { num: '02', title: 'Scénář a pilotáž', desc: 'Připravíme úkoly, sledované oblasti a před sběrem ověříme, že měření funguje správně.' },
+  { num: '03', title: 'Sběr dat', desc: 'Provedeme kalibraci a měření v laboratoři nebo terénu podle jednotného protokolu.' },
+  { num: '04', title: 'Analýza a doporučení', desc: 'Pohled spojíme s kontextem úkolu a výsledky převedeme do priorit pro praxi.' },
+];
+
+const technology = [
+  { name: 'Smart Eye Aurora', type: 'LABORATORNÍ MĚŘENÍ', desc: 'Stolní eye tracker pro řízené studie webů, aplikací a dalších digitálních rozhraní.' },
+  { name: 'Tobii Pro X2-60', type: 'PŘENOSNÁ SESTAVA', desc: 'Eye tracker s frekvencí 60 Hz pro měření na obrazovce a porovnávání variant.' },
+  { name: 'Pupil Labs Neon (2×)', type: 'MOBILNÍ BRÝLE', desc: 'Dvě sady pro sledování pozornosti v prodejnách, showroomech, na stadionech nebo v provozu.' },
+];
+
+const studies = [
+  { href: '/pripadove-studie/reklamni-bannery-smer-pohledu', result: 'Pozornost následovala pohled', title: 'Kam se dívá postava na banneru, tam se dívá i zákazník.', meta: 'EYE TRACKING · N = 104' },
+  { href: '/pripadove-studie/produktove-fotografie-e-commerce', result: 'Fotka zpomalila rozhodnutí', title: 'Lifestyle fotografie vypadala lépe, ale prodloužila nákupní úkol.', meta: 'EYE TRACKING + UEQ · N = 84' },
+  { href: '/pripadove-studie/billboardy-sport-marketing', result: 'Porovnání 16 návrhů', title: 'Billboardy jsme místo hlasování porovnali na 79 lidech.', meta: 'EYE TRACKING + DOTAZNÍK · N = 79' },
+];
+
+const faq = [
+  { q: 'Co je eye tracking a jak funguje?', a: 'Eye tracking pomocí specializované kamery zaznamenává, kam se člověk dívá, v jakém pořadí a jak dlouho. Z pohybu očí vytváříme záznam pohledu a metriky vizuální pozornosti.' },
+  { q: 'Co lze pomocí eye trackingu zjistit?', a: 'Zjistíme, čeho si lidé všimnou jako první, které prvky přehlížejí, kde hledají a jak se pozornost mění mezi variantami. Výsledek vždy vyhodnocujeme v kontextu konkrétního úkolu.' },
+  { q: 'Jaký je rozdíl mezi eye trackingem a heatmapou z webové analytiky?', a: 'Analytická heatmapa obvykle vychází z kliknutí nebo pohybu kurzoru. Eye tracking zaznamenává skutečný směr pohledu účastníka. Ani oční heatmapa však nestačí sama o sobě, proto ji doplňujeme dalšími metrikami a průběhem úkolu.' },
+  { q: 'Kolik účastníků je pro eye tracking potřeba?', a: 'Počet závisí na cíli studie, počtu cílových skupin a na tom, zda hledáme kvalitativní problémy, nebo porovnáváme varianty. Vhodný vzorek navrhneme až podle výzkumné otázky; jedno univerzální číslo neexistuje.' },
+  { q: 'Jak dlouho eye tracking studie trvá a kolik stojí?', a: 'Typická studie trvá přibližně 1–3 týdny. Cena závisí na počtu účastníků, prostředí, rozsahu stimulů a požadovaných výstupech. Po úvodním zadání připravíme konkrétní návrh i cenu.' },
+  { q: 'Musí měření probíhat v laboratoři?', a: 'Nemusí. Weby, aplikace a vizuály měříme nejčastěji na obrazovce v laboratoři. Pro prodejny, služby, akce nebo jiné reálné prostředí používáme mobilní eye-trackingové brýle.' },
+  { q: 'Měří eye tracking emoce nebo mentální zátěž?', a: 'Samotný eye tracking měří vizuální pozornost, nikoliv konkrétní emoce. Podle cíle studie jej můžeme doplnit o biometrické metody a o EMLI, náš doplňkový index mentální zátěže odvozený z vybraných očních metrik.' },
 ];
 
 const pageSchema = [
@@ -60,22 +95,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / EYE TRACKING ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          VIDÍME<br/>CO VY NE<span style="color:#2D62FC">.</span>
+          ZMĚŘTE<br/>POZORNOST<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Objektivní záznam vizuální pozornosti.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Eye tracking odhaluje přesná data o tom, jak uživatelé vnímají váš obsah.
-              Víme, <strong class="text-brand-black">kam se dívají, co přehlíží a co je zaujme</strong>.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Zjistěte, co lidé skutečně vidí.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Eye tracking zaznamenává, kam se lidé při práci s webem, aplikací nebo vizuálem dívají, v jakém pořadí a jak dlouho. Odhalí prvky, které přitahují pozornost, i důležité informace, které zůstávají bez povšimnutí.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Data spojíme s průběhem úkolu a převedeme do <strong class="text-brand-black">konkrétních doporučení pro obsah, rozvržení a vizuální hierarchii</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              DOMLUVIT TESTOVÁNÍ →
+              POPTAT EYE TRACKING →
             </a>
-            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TESTOVACÍ BALÍČKY
+            <a href="/sluzby#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PROJÍT BALÍČKY
             </a>
           </div>
         </div>
@@ -85,9 +122,9 @@ const pageSchema = [
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DÉLKA', '1–3 týdny'],
-          ['TECHNOLOGIE', 'Tobii Pro · Smart Eye'],
+          ['PROSTŘEDÍ', 'Laboratoř i terén'],
           ['VÝSTUPY', 'Heatmapy · AOI · gaze ploty'],
-          ['BALÍČEK', 'Standardní UX test'],
+          ['BALÍČEK', 'Eye tracking a biometrie'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -105,56 +142,162 @@ const pageSchema = [
           width="1080" height="1920" loading="lazy" decoding="async"
           class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Sběr dat vizuální pozornosti v laboratoři — záznam pohledu se ukládá pro AOI analýzu a heatmapy.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Řízená eye-trackingová studie v laboratoři — každý záznam začíná kalibrací a probíhá podle předem připraveného scénáře.</p>
       </div>
 
-      <!-- Kde pomůžeme -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDE POMŮŽEME ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Obrazovka, papír i regál<span style="color:#2D62FC">.</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
-          {usecases.map((v, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h3 class="font-display text-xl font-bold mb-3 leading-tight">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
-            </div>
-          ))}
-        </div>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4">
-          Mimo laboratoř měříme s mobilními brýlemi — viz <a href="/sluzby/terenni-mereni" class="underline hover:no-underline">terénní měření</a>.
-        </p>
-      </div>
-
-      <!-- Jak to funguje + EMLI -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK TO FUNGUJE ]</p>
-          <div class="space-y-0">
-            {steps.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Co dokážeme změřit -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO DOKÁŽEME ZMĚŘIT ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Pozornost není dojem. Je to datová stopa<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {attentionSignals.map((signal, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{signal.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{signal.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div class="border border-brand-black/10 p-8 flex flex-col justify-between">
+      </div>
+
+      <!-- Oblasti využití -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDE EYE TRACKING POMÁHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Všude, kde o výsledku rozhoduje pozornost<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-12">
+          Eye tracking není jen nástroj pro testování webů. Pomáhá všude, kde potřebujete zjistit, čeho si lidé všimnou, co přehlédnou a jak vizuální informace ovlivňují jejich orientaci nebo rozhodnutí.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {usecases.map((v, i) => (
+            <a href={v.href} class="group grid grid-cols-[2rem_1fr_auto] gap-x-4 py-6 border-t border-brand-black/20 hover:text-brand-blue transition-colors">
+              <span class="font-mono text-xs text-brand-black/50 pt-1 group-hover:text-brand-blue">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{v.t}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed group-hover:text-brand-blue/75">{v.d}</p>
+              </div>
+              <span class="font-mono text-sm pt-0.5" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+        <a href="/segmenty" class="inline-block mt-8 border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          PROJÍT VŠECHNY OBORY →
+        </a>
+      </div>
+
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Nejen heatmapu. Podklady pro rozhodnutí<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Samotný obrázek s barevnými místy nestačí. Každý výstup interpretujeme podle úkolu, porovnáváme s chováním účastníků a převádíme do změn, které lze použít v praxi.
+          </p>
+        </div>
+        <div class="border-t border-brand-black/20">
+          {outputs.map((output, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK MĚŘENÍ PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Od otázky k obhajitelnému závěru<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {steps.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Technologie -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.75fr_1.4fr] gap-10 lg:gap-16 mb-10">
           <div>
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ NAVÍC: INDEX EMLI ]</p>
-            <h3 class="font-display text-2xl font-bold mb-3">Pohled + zátěž v jednom skóre<span style="color:#2D62FC">.</span></h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Z eye-trackingových metrik skládáme index mentální zátěže EMLI (0–100).
-              Porovnáte, které varianty nebo kroky uživatele stojí nejvíc úsilí.
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TECHNOLOGICKÉ ZÁZEMÍ ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Laboratoř i terén<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <p class="text-brand-black/60 leading-relaxed text-justify max-w-2xl">
+            Zařízení volíme podle prostředí a výzkumné otázky. Stolní systémy používáme pro přesně řízené studie na obrazovce, mobilní brýle pro měření pozornosti během skutečného pohybu a rozhodování v prostoru.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
+          {technology.map(tool => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-4">{tool.type}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{tool.name}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{tool.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mt-10 pt-5 border-t border-brand-black/10">
+          Výzkumné zázemí FIMEYELAB · Fakulta informatiky a managementu Univerzity Hradec Králové
+        </p>
+      </div>
+
+      <!-- EMLI -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(240px,1fr)] md:items-center gap-10 md:gap-16">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ DOPLŇKOVĚ: INDEX MENTÁLNÍ ZÁTĚŽE EMLI ]</p>
+            <h2 class="font-display text-2xl md:text-4xl font-bold mb-4">Kde rozhraní vyžaduje nejvíc úsilí<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-4">
+              EMLI převádí vybrané ukazatele z eye trackingu do skóre od 0 do 100. Umožňuje porovnat jednotlivé obrazovky, kroky nebo varianty a určit, kde je zpracování informací náročnější.
+            </p>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify">
+              <strong class="text-brand-black">Čím vyšší skóre, tím větší zátěž.</strong> EMLI průběžně ověřujeme a používáme jako doplňkovou interpretační vrstvu, ne jako samostatný důkaz.
             </p>
           </div>
-          <p class="font-display font-bold leading-none mt-6" style="font-size: clamp(2.5rem, 5vw, 4rem); color:#2D62FC;">0–100</p>
+          <div aria-label="Stupnice EMLI od nižší po vyšší mentální zátěž">
+            <div class="h-2 mb-4 bg-gradient-to-r from-brand-black/10 via-brand-blue/50 to-brand-blue" aria-hidden="true"></div>
+            <div class="flex items-start justify-between gap-6 font-mono text-[10px] tracking-widest uppercase">
+              <p><strong class="block font-display text-4xl leading-none mb-2" style="color:#2D62FC">0</strong>Nižší zátěž</p>
+              <p class="text-right"><strong class="block font-display text-4xl leading-none mb-2" style="color:#2D62FC">100</strong>Vyšší zátěž</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studie -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ EYE TRACKING V PRAXI ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Rozhodnutí podložená měřením<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {studies.map(study => (
+            <a href={study.href} class="group border border-brand-black/15 p-7 min-h-72 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors">
+              <p class="font-display text-xl font-bold leading-tight mb-6" style="color:#2D62FC">{study.result}</p>
+              <h3 class="font-display text-2xl font-bold leading-tight mb-8">{study.title}</h3>
+              <div class="mt-auto">
+                <p class="font-mono text-[10px] tracking-widest opacity-60 mb-4">{study.meta}</p>
+                <span class="font-mono text-xs tracking-widest">PROJÍT STUDII →</span>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 

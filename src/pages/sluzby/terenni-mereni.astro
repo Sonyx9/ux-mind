@@ -6,32 +6,54 @@ import Footer from '../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const contexts = [
-  { t: 'Retail a prodejny', d: 'Orientace v prostoru, product placement, značení, POS materiály a regálové zóny.', tag: 'IN-STORE' },
-  { t: 'Showroomy a eventy', d: 'Čeho si návštěvníci všímají, kde se zastavují a co je vede k interakci.', tag: 'PROSTOR' },
-  { t: 'Automotive a HMI', d: 'Pozornost při obsluze rozhraní ve vozidle nebo u fyzického produktu.', tag: 'HMI' },
+  { t: 'Retail a prodejny', d: 'Pohyb mezi regály, viditelnost kategorií, vystavení produktů, cenovky a POS materiály.' },
+  { t: 'Služby a showroomy', d: 'Orientace návštěvníka, práce s vystavenými produkty a momenty, které vedou k interakci.' },
+  { t: 'Sport a eventy', d: 'Navigace v areálu, sponzorské plochy, občerstvení, bezpečnostní značení a návštěvnický zážitek.' },
+  { t: 'Doprava a města', d: 'Informační systémy, mapy, přestupní body, značení a orientace ve veřejném prostoru.' },
+  { t: 'Automotive a mobilita', d: 'Pozornost při obsluze vozidla, infotainmentu, nabíjecího bodu nebo fyzického produktu.' },
+  { t: 'Průmysl a pracoviště', d: 'Pracovní postupy, řídicí panely, bezpečnostní informace a interakce s vybavením.' },
+  { t: 'Zdravotnictví a služby', d: 'Orientace pacientů, instrukce, samoobslužné prvky a průchod poskytovanou službou.' },
+  { t: 'Letectví', d: 'Navigace cestujících, provozní postupy, informační rozhraní a výcvikové situace.' },
 ];
 
 const findings = [
-  'Jak lidé skutečně procházejí prostorem — ne jak si myslíte, že jím procházejí',
-  'Čeho si všímají, co míjejí a kde se zastavují',
-  'Zda značení a komunikace vedou pozornost k cíli',
-  'Kde prostředí rozhodování podporuje a kde ho komplikuje',
-  'Jak se chování liší podle typu zákazníka nebo situace',
+  { title: 'Skutečný pohyb prostorem', desc: 'Zachytíme trasu, zastavení, návraty a místa, ve kterých lidé mění směr nebo váhají.' },
+  { title: 'Pozornost v kontextu', desc: 'Zjistíme, čeho si lidé všimnou během pohybu a které informace, produkty nebo značení minou.' },
+  { title: 'Okamžiky rozhodnutí', desc: 'Propojíme pohled s interakcí, volbou produktu, dokončením úkolu nebo žádostí o pomoc.' },
+  { title: 'Vliv prostředí', desc: 'Vyhodnotíme, jak chování ovlivňuje uspořádání prostoru, provoz, osvětlení nebo přítomnost dalších lidí.' },
 ];
 
 const process = [
-  { num: '01', title: 'Zadání a rekognoskace', desc: 'Co se má rozhodnout a kde se měření odehraje.' },
-  { num: '02', title: 'Scénář a pilotáž', desc: 'Trasy, úkoly a technický protokol ověříme pilotem na místě.' },
-  { num: '03', title: 'Měření v terénu', desc: 'Mobilní eye-tracking brýle, videozáznam, podle potřeby GSR a rozhovory.' },
-  { num: '04', title: 'Analýza a doporučení', desc: 'Mapování klíčových momentů a návrhy úprav prostoru či komunikace.' },
+  { num: '01', title: 'Cíl a lokalita', desc: 'Ujasníme si rozhodnutí, které má studie podpořit, a podmínky konkrétního prostředí.' },
+  { num: '02', title: 'Průzkum místa', desc: 'Projdeme lokalitu, rizika, potřebná povolení a okamžiky, které má smysl sledovat.' },
+  { num: '03', title: 'Scénář a pilotáž', desc: 'Připravíme úkoly, trasy a protokol a ověříme je přímo na místě.' },
+  { num: '04', title: 'Měření v terénu', desc: 'Provedeme kalibraci a sběr dat s mobilními brýlemi, pozorováním nebo rozhovory.' },
+  { num: '05', title: 'Analýza a doporučení', desc: 'Propojíme pohled, pohyb a situaci a navrhneme konkrétní změny prostředí či postupu.' },
+];
+
+const outputs = [
+  { title: 'Záznam pohledu v první osobě', desc: 'Video ukáže scénu před účastníkem i místo, na které se v daném okamžiku díval.' },
+  { title: 'Mapa klíčových momentů', desc: 'Označíme místa, kde lidé hledají, zastavují se, vracejí nebo reagují na podnět.' },
+  { title: 'Chování a kontext', desc: 'Pohled spojíme s trasou, interakcemi, úspěšností úkolu a následným vysvětlením účastníka.' },
+  { title: 'Doporučení pro reálný provoz', desc: 'Navrhneme úpravy značení, rozmístění, komunikace, vybavení nebo pracovního postupu.' },
+];
+
+const controls = [
+  { title: 'Kalibrace v pohybu', desc: 'Kvalitu záznamu kontrolujeme před měřením i v jeho průběhu.' },
+  { title: 'Proměnlivé podmínky', desc: 'Zaznamenáváme provoz, světlo, hluk a další vlivy, které mohou výsledek změnit.' },
+  { title: 'Srovnatelný protokol', desc: 'Úkoly, trasy a pořadí nastavujeme tak, aby šlo záznamy smysluplně porovnat.' },
+  { title: 'Souhlas a soukromí', desc: 'Studii koordinujeme s provozovatelem, pracujeme s informovaným souhlasem a chráníme osoby v záznamu.' },
 ];
 
 const faq = [
-  { q: 'Jak terénní měření technicky probíhá?', a: 'Respondent má nasazené lehké eye-tracking brýle Pupil Labs NEON, které zaznamenávají pohled i scénu před ním. Podle potřeby doplňujeme GSR náramek, videozáznam situace a rozhovory po průchodu.' },
-  { q: 'Čím se liší od měření v laboratoři?', a: 'Terén nabízí přirozenější chování, ale menší kontrolu podmínek — osvětlení, provoz, jiní zákazníci. Proto dopředu určujeme, které závěry lze z terénního měření vyvozovat bezpečně a které je vhodné ověřit kontrolovaněji.' },
-  { q: 'Nenaruší brýle přirozené chování?', a: 'Moderní brýle vypadají jako běžné brýle a respondenti na ně obvykle po pár minutách zapomenou. Prvních pár minut záznamu proto vyhodnocujeme s rezervou.' },
-  { q: 'Potřebujeme souhlas prodejny nebo návštěvníků?', a: 'Ano, měření vždy koordinujeme s provozovatelem prostoru a respondenti podepisují informovaný souhlas. Osoby v pozadí záznamu anonymizujeme.' },
-  { q: 'Kde všude umíte měřit?', a: 'V prodejnách, showroomech, na eventech, v pracovním prostředí i ve vozidlech. Limitem nejsou technologie, ale bezpečnost a domluva s provozovatelem.' },
+  { q: 'Co je terénní výzkum a kdy dává smysl?', a: 'Terénní výzkum sleduje chování lidí přímo v prostředí, kde úkol běžně vykonávají. Hodí se tehdy, když výsledek ovlivňuje prostor, pohyb, okolní provoz nebo fyzická interakce a laboratorní situace by tento kontext nedokázala věrně zachytit.' },
+  { q: 'Musí terénní studie obsahovat eye tracking?', a: 'Nemusí. Podle cíle může stačit pozorování, videozáznam a rozhovor. Mobilní eye tracking zapojujeme tehdy, když potřebujete přesně zjistit, čeho si lidé během pohybu všimli a co přehlédli.' },
+  { q: 'Jak mobilní eye tracking technicky probíhá?', a: 'Účastník má nasazené lehké brýle Pupil Labs Neon, které zaznamenávají scénu před ním a směr pohledu. Před každým měřením provedeme kalibraci a kvalitu záznamu průběžně kontrolujeme.' },
+  { q: 'Čím se terénní měření liší od laboratoře?', a: 'V terénu zachytíme skutečný prostor, provoz a rozhodování v kontextu. Podmínky se ale více mění, proto používáme pilotáž, jednotný protokol a zaznamenáváme okolnosti, které mohou výsledky ovlivnit.' },
+  { q: 'Nenaruší brýle přirozené chování?', a: 'Každé pozorování může chování do určité míry ovlivnit. Účastníkům proto necháváme čas si na vybavení zvyknout a úvodní část záznamu vyhodnocujeme s rezervou.' },
+  { q: 'Potřebujeme souhlas provozovatele a účastníků?', a: 'Ano. Měření koordinujeme s provozovatelem prostoru a každý účastník podepisuje informovaný souhlas. Zachycené osoby a citlivé informace chráníme podle předem dohodnutého datového protokolu.' },
+  { q: 'Kolik účastníků potřebujeme?', a: 'Počet závisí na cíli studie, počtu prostředí a skupin, které potřebujete porovnat. Vzorek navrhujeme podle výzkumné otázky, ne podle jednoho univerzálního čísla.' },
+  { q: 'Jak dlouho terénní studie trvá a kolik stojí?', a: 'Nejčastěji 2–6 týdnů podle lokality, povolení, počtu účastníků a rozsahu analýzy. Po úvodním zadání a seznámení s prostředím připravíme konkrétní harmonogram i cenu.' },
 ];
 
 const pageSchema = [
@@ -55,8 +77,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Terénní měření | Mobilní eye-tracking v prodejně i showroomu"
-  description="Terénní UX výzkum s mobilními eye-tracking brýlemi: prodejny, showroomy, eventy, automotive. Zjistěte, čeho si zákazníci všímají v reálném prostředí."
+  title="Terénní měření a mobilní eye tracking | UX MIND"
+  description="Terénní výzkum a mobilní eye tracking v prodejnách, dopravě, automotive, průmyslu i službách. Změřte pozornost a chování v reálném prostředí."
   schema={pageSchema}
 >
   <Navbar />
@@ -68,22 +90,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / TERÉNNÍ MĚŘENÍ ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          MIMO<br/>OBRAZOVKU<span style="color:#2D62FC">.</span>
+          ZMĚŘTE<br/>REALITU<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Měříme tam, kde se zákazník skutečně rozhoduje.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              V prodejně, showroomu, na eventu nebo u fyzického produktu. Mobilní eye-tracking brýle
-              zachytí pozornost v reálném prostředí — <strong class="text-brand-black">vybavení, které v ČR jen tak někdo nemá</strong>.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Sledujte rozhodování tam, kde skutečně probíhá.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Terénní měření ukáže, jak se lidé orientují a rozhodují v prodejně, showroomu, na stadionu, v dopravě, na pracovišti nebo v jiném reálném prostředí. Zachytíme pohled, pohyb i okolnosti, které nelze v laboratoři plně napodobit.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Mobilní eye tracking podle cíle studie doplníme pozorováním, videozáznamem nebo následným rozhovorem. Výsledkem jsou <strong class="text-brand-black">konkrétní doporučení pro prostor, značení, vystavení produktů i pracovní postupy</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              POPTAT MĚŘENÍ →
+              POPTAT TERÉNNÍ STUDII →
             </a>
-            <a href="/sluzby/testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TESTOVACÍ BALÍČKY
+            <a href="/sluzby#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PROJÍT BALÍČKY
             </a>
           </div>
         </div>
@@ -93,8 +117,8 @@ const pageSchema = [
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DÉLKA', '2–6 týdnů'],
-          ['TECHNOLOGIE', 'Pupil Labs NEON'],
-          ['DOPLŇKY', 'GSR · video · rozhovory'],
+          ['MĚŘENÍ', 'Pozorování · mobilní eye tracking'],
+          ['DOPLNĚNÍ', 'Video · rozhovory · GSR'],
           ['BALÍČEK', 'Terénní studie'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
@@ -104,77 +128,136 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Kde měříme -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDE MĚŘÍME ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Zákaznická cesta nekončí na webu<span style="color:#2D62FC">.</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {contexts.map((v, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="reveal mb-24">
-        <img
-          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
-          alt="Výzkumné zázemí UXMIND — odsud vyrážíme s mobilním eye-trackingem do terénu"
-          title="Výzkumné zázemí pro terénní měření"
-          width="1200" height="800" loading="lazy" decoding="async"
-          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
-        />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Zázemí laboratoře FIM UHK — kalibrace a příprava techniky před výjezdem do terénu.</p>
-      </div>
-
-      <!-- Co zjistíte + proces -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CO ZJISTÍTE ]</p>
-          <ul class="space-y-2">
-            {findings.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ JAK MĚŘENÍ PROBÍHÁ ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Co zachytíme -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO V TERÉNU ZACHYTÍME ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Chování v kontextu, ne v izolaci<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {findings.map((finding, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{finding.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{finding.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <!-- Hranice -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ HRANICE METODY ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Přirozenost za cenu kontroly<span style="color:#2D62FC">.</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Terén nabízí vyšší přirozenost situace, ale menší kontrolu podmínek než laboratoř.
-              Vždy proto dopředu určujeme, které závěry lze z terénního měření vyvozovat bezpečně
-              a které je vhodné ověřit ještě kontrolovaněji.
-            </p>
+      <!-- Kde měříme -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDE MĚŘÍME ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Všude, kde prostředí mění rozhodování<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-12">
+          Terénní studie dává smysl všude tam, kde nestačí ukázat člověku obrazovku. Sledujeme skutečný pohyb, fyzickou interakci a vlivy okolí, které rozhodují o tom, zda se člověk zorientuje a dokončí úkol.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {contexts.map((context, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{context.t}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{context.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Technologie -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 border border-brand-black/15">
+        <div class="min-h-[360px]">
+          <img
+            src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
+            alt="Výzkumné zázemí UX MIND pro přípravu mobilního eye trackingu do terénu"
+            title="Příprava techniky pro terénní měření"
+            width="1200" height="800" loading="lazy" decoding="async"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MOBILNÍ EYE TRACKING ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">
+            Dvě sady. Jeden přesný protokol<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed text-justify mb-5">
+            Pupil Labs Neon zaznamenává scénu před účastníkem a současně místo, na které se dívá. Lehká konstrukce umožňuje měření během přirozeného pohybu v prostoru.
+          </p>
+          <p class="text-brand-black/60 leading-relaxed text-justify">
+            Máme dvě sady mobilních brýlí. Podle návrhu studie tak můžeme měřit dva účastníky současně, pracovat na více místech nebo držet záložní sestavu pro plynulý sběr dat.
+          </p>
+          <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mt-8 pt-5 border-t border-brand-black/10">
+            PUPIL LABS NEON (2×) · VIDEO · POZOROVÁNÍ · VOLITELNĚ GSR
+          </p>
+        </div>
+      </div>
+
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Záznam nestačí. Potřebujete vědět, co změnit<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Hodiny videa nepředáváme bez kontextu. Klíčové okamžiky propojujeme s úkolem, prostředím a chováním účastníka a převádíme je do priorit pro reálný provoz.
+          </p>
+        </div>
+        <div class="border-t border-brand-black/20">
+          {outputs.map((output, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ JAK TERÉNNÍ STUDIE PROBÍHÁ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Od průzkumu místa ke změně v provozu<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Kontrola kvality -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.75fr_1.4fr] gap-10 lg:gap-16 mb-10">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KONTROLA KVALITY V TERÉNU ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Reálný kontext. Řízený protokol<span style="color:#2D62FC">.</span>
+            </h2>
           </div>
-          <a href="/sluzby/testovaci-balicky#terenni-studie" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            BALÍČEK TERÉNNÍ STUDIE →
-          </a>
+          <p class="text-brand-black/60 leading-relaxed text-justify max-w-2xl">
+            Terén se mění každou minutou. Právě proto předem určujeme, co lze porovnat, zaznamenáváme podmínky měření a oddělujeme skutečné zjištění od situace, která vznikla náhodou.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {controls.map(control => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <h3 class="font-display text-lg font-bold leading-tight mb-3">{control.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{control.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
