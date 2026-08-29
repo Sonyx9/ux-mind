@@ -180,6 +180,29 @@ const navLabels: Record<Lang, Record<string, string>> = {
   es: { services: 'Servicios', 'test-packages': 'Paquetes de prueba', 'ux-audit': 'Auditoría UX', 'user-testing': 'Pruebas de usuario', 'field-research': 'Investigación de campo', 'ux-research': 'Investigación UX', 'case-studies': 'Casos de estudio', contact: 'Contacto', about: 'Sobre nosotros', partners: 'Socios' },
 };
 
+// Popisky pro drobečkovou navigaci ve strukturovaných datech (JSON-LD, nezobrazuje se)
+const homeLabels: Record<Lang, string> = { cs: 'Úvod', en: 'Home', de: 'Startseite', fr: 'Accueil', es: 'Inicio' };
+
+/**
+ * Nadřazené úrovně stránky odvozené z reálné struktury URL (urlMap).
+ * Vrací jen ty úrovně, pro které známe skutečný název — nic si nedomýšlí.
+ */
+export function getBreadcrumbTrail(pathname: string, lang: Lang): { name: string; path: string }[] {
+  const trail: { name: string; path: string }[] = [{ name: homeLabels[lang], path: urlMap[lang].home }];
+  const clean = (pathname.replace(/\/$/, '') || '/');
+  if (clean === '/' || clean === urlMap[lang].home.replace(/\/$/, '')) return [];
+  const parts = clean.split('/').filter(Boolean);
+  // Jazykový prefix (/en, /de, ...) není samostatná úroveň
+  const startIdx = lang === 'cs' ? 0 : 1;
+  for (let i = startIdx; i < parts.length - 1; i++) {
+    const candidate = '/' + parts.slice(0, i + 1).join('/');
+    const key = pathToKey[candidate];
+    const label = key ? navLabels[lang][key] : undefined;
+    if (key && label) trail.push({ name: label, path: candidate });
+  }
+  return trail;
+}
+
 export type NavLink = {
   href: string;
   label: string;

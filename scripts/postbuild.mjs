@@ -28,16 +28,40 @@ function htmlFiles(dir) {
 
 const files = htmlFiles(DIST);
 let rewritten = 0;
+let slashed = 0;
 
 // 1) Base prefix interních odkazů
 // Prefixuje href/src začínající "/", pokud už nezačínají BASE nebo "//"
 const attrRe = /(href|src)="(\/(?!\/)[^"]*)"/g;
+
+/**
+ * Koncové lomítko u interních odkazů na stránky.
+ * Astro staví adresářové URL (/kontakt/index.html), takže /kontakt bez lomítka
+ * server přesměrovává (301) — každý interní odkaz i každý klik by šel přes redirect
+ * a rozcházel by se s canonical URL. Přidáváme lomítko jen tam, kde jde o stránku:
+ * ne u souborů s příponou, ne u odkazů s dotazem, kotvu řešíme zvlášť.
+ */
+function withTrailingSlash(path) {
+  if (path.includes('?')) return path;
+  const hash = path.indexOf('#');
+  const base = hash === -1 ? path : path.slice(0, hash);
+  const frag = hash === -1 ? '' : path.slice(hash);
+  if (base === '' || base.endsWith('/')) return path;
+  if (/\.[a-zA-Z0-9]{1,8}$/.test(base.split('/').pop())) return path; // soubor, ne stránka
+  slashed++;
+  return `${base}/${frag}`;
+}
+
 for (const file of files) {
   const before = readFileSync(file, 'utf8');
   const after = before.replace(attrRe, (m, attr, path) => {
-    if (path === BASE || path.startsWith(`${BASE}/`)) return m;
-    rewritten++;
-    return `${attr}="${BASE}${path}"`;
+    let p = path;
+    if (!(p === BASE || p.startsWith(`${BASE}/`))) {
+      rewritten++;
+      p = `${BASE}${p}`;
+    }
+    if (attr === 'href') p = withTrailingSlash(p);
+    return p === path ? m : `${attr}="${p}"`;
   });
   if (after !== before) writeFileSync(file, after);
 }
@@ -49,11 +73,11 @@ for (const file of files) {
   if (html.includes('http-equiv="refresh"')) continue; // redirect stránky
   const rel = relative(DIST, file).replace(/\\/g, '/');
   if (rel === '404.html') continue;
-  const path = rel === 'index.html' ? '' : rel.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+  const path = rel === 'index.html' ? '' : rel.replace(/\/index\.html$/, '/').replace(/\.html$/, '/');
   urls.push(`${SITE}${BASE}/${path}`);
 }
 urls.sort();
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 
-console.log(`[postbuild] Prefixováno ${rewritten} odkazů, sitemap: ${urls.length} URL.`);
+console.log(`[postbuild] Prefixováno ${rewritten} odkazů, doplněno ${slashed} koncových lomítek, sitemap: ${urls.length} URL.`);

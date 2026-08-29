@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { getLang, getPathInLang, languages } from '../i18n/utils';
+import { getLang, getPathInLang, getBreadcrumbTrail, languages } from '../i18n/utils';
 import CookieConsent from '../components/CookieConsent.astro';
 
 // Google Analytics 4 — doplněním measurement ID (G-XXXXXXXXXX) se aktivuje; měření řídí Consent Mode v2.
@@ -16,6 +16,10 @@ export interface Props {
   schema?: Record<string, unknown> | Record<string, unknown>[];
   /** false = neemitovat hreflang (stránka existuje jen v jednom jazyce, např. segmenty) */
   hreflang?: boolean;
+  /** true = <meta name="robots" content="noindex, follow"> (např. 404) */
+  noindex?: boolean;
+  /** Cesta k LCP obrázku k přednačtení (volitelně omezená media dotazem) */
+  preloadImage?: { href: string; media?: string };
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -28,13 +32,25 @@ const {
   lang = 'cs',
   schema,
   hreflang = true,
+  noindex = false,
+  preloadImage,
 } = Astro.props;
 
 const baseUrl = `${base}/`;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const resolvedImage = image.startsWith('http://') || image.startsWith('https://')
-  ? image
-  : new URL(image.replace(/^\//, ''), new URL(baseUrl, Astro.site)).toString();
+const siteOrigin = new URL(Astro.site!).origin;
+/** Absolutní URL z cesty; interní cesty vždy s koncovým lomítkem (GitHub Pages jinak přesměrovává). */
+const withSlash = (p: string) => (p.endsWith('/') || /\.[a-z0-9]+$/i.test(p) ? p : `${p}/`);
+/** Cesta ke statickému souboru v /public — doplní base prefix jen tehdy, když tam ještě není. */
+const asset = (p: string) => {
+  if (p.startsWith('http://') || p.startsWith('https://')) return p;
+  const clean = p.startsWith('/') ? p : `/${p}`;
+  return siteOrigin + (clean.startsWith(`${base}/`) ? clean : base + clean);
+};
+const canonicalPath = withSlash(
+  Astro.url.pathname.startsWith(base) ? Astro.url.pathname : base + Astro.url.pathname,
+);
+const canonicalURL = siteOrigin + canonicalPath;
+const resolvedImage = asset(image);
 // Nepřidávat sufix, pokud už titulek značku obsahuje
 const fullTitle = title === 'UX Mind' || title.includes('UXMIND') || title.includes('UX Mind')
   ? title
@@ -50,7 +66,7 @@ const sitePath = Astro.url.pathname.startsWith(base)
 const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es'].includes(sitePath);
 const alternates = languages.map(l => ({
   code: l.code,
-  url: new URL((base + getPathInLang(sitePath, l.code)).replace(/^\//, ''), Astro.site).toString(),
+  url: siteOrigin + withSlash(base + getPathInLang(sitePath, l.code)),
 }));
 const defaultAlternate = alternates.find(a => a.code === 'cs');
 
@@ -77,6 +93,17 @@ const orgSchema = {
   areaServed: 'CZ',
   knowsAbout: ['UX výzkum', 'Eye tracking', 'Uživatelské testování', 'UX audit', 'Kognitivní zátěž', 'EMLI'],
 };
+const webPageSchema = {
+  '@type': 'WebPage',
+  '@id': `${canonicalURL}#webpage`,
+  url: canonicalURL,
+  name: fullTitle,
+  description,
+  isPartOf: { '@id': `${siteUrl}#website` },
+  about: { '@id': `${siteUrl}#organization` },
+  primaryImageOfPage: resolvedImage,
+  inLanguage: lang,
+};
 const webSiteSchema = {
   '@type': 'WebSite',
   '@id': `${siteUrl}#website`,
@@ -85,10 +112,85 @@ const webSiteSchema = {
   inLanguage: lang,
   publisher: { '@id': `${siteUrl}#organization` },
 };
-const extraSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const rawExtras = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
+/**
+ * Jedna identita firmy v grafu: kdekoliv je vnořená kopie organizace
+ * (provider / author / publisher), nahradíme ji odkazem na #organization.
+ * Zároveň doplníme Article/Service o vazby, které lze bezpečně odvodit.
+ */
+const ORG_REF = { '@id': `${siteUrl}#organization` };
+const PAGE_TYPES = new Set(['WebPage', 'AboutPage', 'ContactPage', 'CollectionPage', 'ItemPage', 'ProfilePage', 'CheckoutPage', 'QAPage']);
+const isOrgCopy = (v: any) =>
+  v && typeof v === 'object' && !Array.isArray(v) && !v['@id'] &&
+  (v['@type'] === 'Organization' || v['@type'] === 'ProfessionalService') &&
+  typeof v.name === 'string' && v.name.startsWith('UX MIND');
+function normalize(node: any): any {
+  if (Array.isArray(node)) return node.map(normalize);
+  if (!node || typeof node !== 'object') return node;
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(node)) out[k] = isOrgCopy(v) ? ORG_REF : normalize(v);
+  const t = out['@type'];
+  if (t === 'Article' || t === 'NewsArticle' || t === 'BlogPosting' || t === 'ScholarlyArticle') {
+    out['@id'] ??= `${canonicalURL}#article`;
+    out.url ??= canonicalURL;
+    out.mainEntityOfPage ??= { '@id': `${canonicalURL}#webpage` };
+    out.publisher ??= ORG_REF;
+    out.author ??= ORG_REF;
+    out.image ??= resolvedImage;
+    out.inLanguage ??= lang;
+    out.isPartOf ??= { '@id': `${siteUrl}#website` };
+  }
+  if (t === 'Service') {
+    out['@id'] ??= `${canonicalURL}#service`;
+    out.provider ??= ORG_REF;
+    out.url ??= canonicalURL;
+  }
+  if (t === 'FAQPage') {
+    out['@id'] ??= `${canonicalURL}#faq`;
+    out.isPartOf ??= { '@id': `${canonicalURL}#webpage` };
+    out.inLanguage ??= lang;
+  }
+  if (PAGE_TYPES.has(String(t))) {
+    out['@id'] ??= `${canonicalURL}#webpage`;
+    out.url ??= canonicalURL;
+    out.name ??= fullTitle;
+    out.description ??= description;
+    out.isPartOf ??= { '@id': `${siteUrl}#website` };
+    out.inLanguage ??= lang;
+  }
+  return out;
+}
+const extraSchemas = rawExtras.map(normalize);
+// Drobečková navigace odvozená ze skutečné struktury URL; poslední položka = tato stránka
+const trail = getBreadcrumbTrail(sitePath, lang as any);
+const breadcrumbSchema = trail.length
+  ? {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalURL}#breadcrumb`,
+      itemListElement: [
+        ...trail.map((t, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: t.name,
+          item: siteOrigin + withSlash(base + t.path),
+        })),
+        { '@type': 'ListItem', position: trail.length + 1, name: title, item: canonicalURL },
+      ],
+    }
+  : null;
+// Vlastní stránkový uzel má přednost — jinak by v grafu byla dvě @id #webpage
+const hasOwnPageNode = extraSchemas.some((n: any) => PAGE_TYPES.has(String(n?.['@type'])));
+const hasOwnBreadcrumb = extraSchemas.some((n: any) => n?.['@type'] === 'BreadcrumbList');
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [orgSchema, webSiteSchema, ...extraSchemas],
+  '@graph': [
+    orgSchema,
+    webSiteSchema,
+    ...(hasOwnPageNode ? [] : [webPageSchema]),
+    ...(breadcrumbSchema && !hasOwnBreadcrumb ? [breadcrumbSchema] : []),
+    ...extraSchemas,
+  ],
 };
 ---
 
@@ -138,7 +240,17 @@ const jsonLd = {
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage.href}
+        media={preloadImage.media}
+        fetchpriority="high"
+      />
+    )}
 
     <!-- hreflang — jazykové verze stránky (vynecháno u jednojazyčných stránek, např. segmenty) -->
     {hreflang && alternates.map(a => (
@@ -154,6 +266,7 @@ const jsonLd = {
     <meta property="og:image" content={resolvedImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="675" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:alt" content={fullTitle} />
     <meta property="og:locale" content={ogLocales[lang] ?? 'en_GB'} />
     {languages.filter(l => l.code !== lang).map(l => (
