@@ -3,17 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const fakta = [["METODA", "Eye-tracking experiment"], ["VZOREK", "104 respondentů"], ["MANIPULACE", "Směr pohledu postavy"], ["STATISTIKA", "p < 0,001 · šance na náhodu pod 0,1 %"]];
-const zjisteni = ["Silný efekt vizuálního vodítka: F(1,102) = 12,57; p < 0,001 — šance, že jde o náhodu, je menší než 0,1 %.", "Velikost efektu ηp² = 0,11 — středně velký efekt: rozdíl, který v praxi poznáte.", "Směr pohledu je jeden z nejlevnějších nástrojů, jak vést pozornost ke sdělení a CTA — nevyžaduje změnu layoutu, jen kompozice."];
+const fakta = [["METODA", "Eye-trackingový experiment"], ["VZOREK", "104 respondentů"], ["PROMĚNNÁ", "Směr pohledu postavy"], ["STATISTIKA", "F(1,102) = 12,57 · p < 0,001 · ηp² = 0,11"]];
+const zjisteni = ["Změna směru pohledu postavy statisticky významně ovlivnila rozložení vizuální pozornosti: F(1,102) = 12,57; p < 0,001.", "Velikost efektu ηp² = 0,11 odpovídá podle běžně používaných orientačních hranic středně velkému efektu.", "Kompozice postavy tedy v testovaných kreativách fungovala jako vizuální vodítko. Studie však neměřila kliknutí, zapamatování sdělení ani konverzi."];
 const faq = [
-  { q: "Funguje směr pohledu postavy na banneru?", a: "Ano, měřitelně: manipulace směru pohledu měla silný efekt na rozložení pozornosti (p < 0,001; ηp² = 0,11 — středně velký efekt na vzorku 104 respondentů)." },
-  { q: "Jak směr pohledu na kreativě využít?", a: "Postavu orientujte pohledem ke klíčovému sdělení nebo CTA, ne do kamery. Pozornost diváka směr pohledu následuje." },
-  { q: "Dá se efekt využít bez předělání celé kreativy?", a: "Ano — jde o změnu kompozice, ne layoutu. Často stačí zvolit fotografii s vhodným směrem pohledu postavy." },
+  { q: "Ovlivnil směr pohledu postavy pozornost?", a: "Ano, v testovaných kreativách a na vzorku 104 respondentů se rozložení pozornosti mezi variantami statisticky významně lišilo: p < 0,001; ηp² = 0,11." },
+  { q: "Znamená to, že máme postavu vždy otočit k CTA?", a: "Ne automaticky. Výsledek podporuje směr pohledu jako relevantní proměnnou kompozice. Vhodná varianta závisí na konkrétní fotografii, sdělení, formátu a cíli kreativy, proto doporučujeme porovnat reálné návrhy." },
+  { q: "Prokázala studie více kliknutí nebo konverzí?", a: "Ne. Studie měřila rozložení vizuální pozornosti, nikoli kliknutí, zapamatování, nákup nebo jinou obchodní metriku. Přesun pozornosti je důležitý mezikrok, ale sám o sobě nezaručuje akci." },
+  { q: "Co znamená ηp² = 0,11?", a: "Parciální eta kvadrát popisuje velikost efektu v použitém statistickém modelu. Hodnota 0,11 se podle běžných orientačních hranic interpretuje jako středně velký efekt; neznamená však automaticky 11% nárůst výkonu kampaně." },
+  { q: "Co znamená p < 0,001?", a: "Pokud by směr pohledu ve skutečnosti neměl v použitém modelu žádný efekt a byly splněny jeho předpoklady, stejně nebo více výrazný výsledek by byl velmi neobvyklý. Hodnota p sama nepopisuje velikost ani obchodní hodnotu efektu." },
+  { q: "Musíme kvůli testu předělat celou kreativu?", a: "Ne nutně. Často stačí připravit kontrolované varianty fotografie, ořezu nebo polohy postavy. Ostatní prvky by měly zůstat co nejpodobnější, aby šel rozdíl smysluplně interpretovat." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "Kam se dívá postava na banneru, tam se dívá i váš zákazník",
+    headline: "Pohled postavy nasměroval pozornost návštěvníků.",
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
@@ -30,8 +33,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Case study: směr pohledu na banneru (ηp² = 0,11)"
-  description="Eye tracking experiment N = 104: směr pohledu postavy na banneru silně ovlivňuje rozložení pozornosti — F(1,102) = 12,57; p < 0,001; ηp² = 0,11."
+  title="Case study: Jak směr pohledu ovlivnil pozornost"
+  description="Eye-trackingový experiment se 104 respondenty: změna směru pohledu postavy ovlivnila rozložení pozornosti, F(1,102) = 12,57; p < 0,001; ηp² = 0,11."
   schema={pageSchema}
 >
   <Navbar />
@@ -45,55 +48,33 @@ const pageSchema = [
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Reklamní kreativa</span>
         <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
-          Kam se dívá postava na banneru, tam se dívá i váš zákazník<span style="color:#2D62FC">.</span>
+          Pohled postavy nasměroval pozornost návštěvníků<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistický banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
-        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">středně velký efekt směru pohledu postavy na rozložení pozornosti</p><p class="font-mono text-xs text-brand-white/70 leading-relaxed mt-3">ηp² měří sílu efektu v praxi: 0,11 je středně silný vliv — rozdíl, který poznáte, ne jen statistická drobnost.</p></div>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-mono text-xs tracking-widest text-brand-white/60 mb-5">SMĚR POHLEDU</p>
+          <p class="font-display text-2xl md:text-3xl font-bold leading-tight">Změnil rozložení pozornosti</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">104</p>
+          <p class="text-brand-white/70 leading-relaxed">respondentů v experimentu</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.2rem, 4.5vw, 4rem);">ηp² = 0,11</p>
+          <p class="text-brand-white/70 leading-relaxed">středně velký efekt · p &lt; 0,001</p>
+        </div>
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Kompozice s lidskou tváří patří k nejsilnějším prvkům reklamní kreativy. Tvář ale pozornost nejen přitahuje — umí ji i předat dál. Testovali jsme, jak silný tento efekt je a zda se dá spolehlivě využít.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— OBCHODNÍ OTÁZKA</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Dokáže směr pohledu postavy na kreativě systematicky vést pozornost diváka ke sdělení?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking experiment s manipulací vizuálního vodítka: varianty kreativy se lišily směrem pohledu postavy, měřilo se rozložení pozornosti mezi tváří, sdělením a produktem.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -104,23 +85,33 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CO BYLO POTŘEBA ZJISTIT</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Změní směr pohledu postavy rozložení pozornosti v kreativě?</p>
+            <p class="text-brand-black/70 leading-relaxed">Lidská tvář v reklamě přitahuje pozornost. Experiment ověřoval, zda změna směru pohledu postavy ovlivní také to, jak respondenti rozdělí pozornost mezi tvář a další části testované kreativy.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— JAK PROBĚHLO MĚŘENÍ</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Eye-trackingového experimentu se zúčastnilo 104 respondentů. Varianty kreativy se lišily směrem pohledu postavy a analýza porovnávala rozložení vizuální pozornosti mezi předem vyznačenými oblastmi.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIP TESTOVANÝCH VARIANT ]</p>
               <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Ilustrační schéma: směr pohledu postavy vede pozornost diváka">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILUSTRAČNÍ SCHÉMA EFEKTU · VLASTNÍ DEMO STIMUL</text>
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILUSTRAČNÍ SCHÉMA VARIANT · NEJDE O HEATMAPU</text>
   <g>
     <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
     <circle cx="70" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
     <circle cx="62" cy="105" r="3" fill="#0A0A0A"/><circle cx="80" cy="105" r="3" fill="#0A0A0A"/>
     <rect x="200" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="70" cy="110" r="44" fill="#2D62FC" opacity="0.25"/>
     <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">POHLED DO KAMERY</text>
-    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">pozornost zůstává na tváři</text>
+    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">varianta kompozice A</text>
   </g>
   <g>
     <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
@@ -128,24 +119,25 @@ const pageSchema = [
     <circle cx="424" cy="108" r="3" fill="#0A0A0A"/><circle cx="432" cy="112" r="3" fill="#0A0A0A"/>
     <line x1="440" y1="118" x2="530" y2="152" stroke="#2D62FC" stroke-width="2" stroke-dasharray="4 4"/>
     <rect x="540" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="575" cy="163" r="44" fill="#2D62FC" opacity="0.25"/>
     <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">POHLED NA PRODUKT</text>
-    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">pozornost následuje směr pohledu</text>
+    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">varianta kompozice B</text>
   </g>
   <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EFEKT VODÍTKA: F(1,102) = 12,57 · p &lt; 0,001 · ηp² = 0,11 (STŘEDNĚ VELKÝ EFEKT)</text>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma principu na vlastním demo stimulu: modrá plocha znázorňuje těžiště pozornosti. Statistika pochází z reálného měření.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma pouze vysvětluje manipulovanou proměnnou. Nezobrazuje skutečné stimuly ani heatmapu účastníků; statistika pochází z reálného měření.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CO SE ROZHODLO</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Postavy na kreativách orientovat pohledem směrem ke klíčovému sdělení nebo CTA, nikoli do kamery.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— DOPORUČENÍ PRO PRAXI</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Směr pohledu zahrnout mezi proměnné při návrhu a testování kreativy. Pokud má postava podpořit pozornost konkrétního sdělení nebo produktu, připravit kontrolované varianty a ověřit je společně s metrikami kampaně.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
-            <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme kognitivní zátěž zpracování kreativy — zda vodítko sdělení jen zviditelní, nebo i usnadní jeho zpracování.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO SI Z TOHO ODNÉST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">I malá změna kompozice může změnit rozložení pozornosti<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Eye tracking pomůže vybrat variantu podle toho, co lidé skutečně zaznamenají. Dopad na kliknutí nebo konverzi je potřeba ověřit navazujícími daty.</p>
+            <a href="/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">PROBRAT TEST KREATIVY →</a>
           </section>
         </div>
 
@@ -189,6 +181,21 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ SLOVNÍK — CO ZNAMENAJÍ POJMY V TÉTO STUDII ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet lidí zahrnutých do analýzy. V této studii N = 104.</dd></div>
+            <div><dt class="font-display font-bold mb-1">F(1,102)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Hodnota testové statistiky a její stupně volnosti v použitém statistickém testu.</dd></div>
+            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pomáhá posoudit, nakolik jsou data slučitelná s předpokladem, že směr pohledu neměl v použitém modelu žádný efekt.</dd></div>
+            <div><dt class="font-display font-bold mb-1">ηp²</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Parciální eta kvadrát vyjadřuje velikost efektu v daném statistickém modelu. Není to procento zvýšení výkonu kampaně.</dd></div>
+          </dl>
+        </details>
+      </section>
+
       <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ ČASTÉ DOTAZY KE STUDII ]</p>
@@ -224,7 +231,7 @@ const pageSchema = [
         </a>
         <a href="/pripadove-studie/sablony-e-shopu" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">DALŠÍ STUDIE →</p>
-          <p class="font-display font-bold leading-snug">Tři šablony, stejný sortiment. Rozhodl úkol.</p>
+          <p class="font-display font-bold leading-snug">Úkol změnil, kam lidé zaměřili pozornost.</p>
         </a>
       </nav>
 
@@ -239,7 +246,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít studii podrobněji<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Studie jsou zkráceny a anonymizovány.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Kam se dívá postava na banneru, tam se dívá i váš zákazník">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Pohled postavy nasměroval pozornost návštěvníků.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"

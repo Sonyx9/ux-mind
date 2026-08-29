@@ -3,17 +3,20 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 
-const fakta = [["METODA", "Eye-tracking + VisAWI"], ["VZOREK", "61 respondentů"], ["STIMULY", "3 šablony · shodný sortiment"], ["VÝSTUPY", "Rozložení pozornosti dle úkolu"]];
-const zjisteni = ["Stejná šablona vedla k různému rozložení pozornosti podle zadaného úkolu.", "Percepce designu se mění podle úlohy — estetické hodnocení bez úkolového kontextu je zavádějící.", "„Hezké“ a „funkční“ jsou dvě různé metriky a je třeba je měřit odděleně."];
+const fakta = [["METODA", "Eye tracking + VisAWI"], ["VZOREK", "61 respondentů"], ["STIMULY", "3 šablony · shodný sortiment"], ["SCÉNÁŘE", "Volné prohlížení · cílený úkol"]];
+const zjisteni = ["Na stejné šabloně se rozložení vizuální pozornosti měnilo podle zadaného úkolu.", "Volné prohlížení a cílené hledání produktu vedly účastníky k jiným částem stránky.", "Estetické hodnocení a chování při konkrétním úkolu popisují rozdílné stránky zkušenosti. Jedna metrika proto nemůže automaticky zastoupit druhou."];
 const faq = [
-  { q: "Jak vybrat šablonu e-shopu?", a: "Podle testu se skutečnými nákupními úkoly, ne podle vzhledu náhledu. V měření s 61 respondenty se pozornost na téže šabloně měnila podle zadaného úkolu." },
-  { q: "Proč nestačí estetické hodnocení šablony?", a: "Protože se mění podle úlohy — „hezké“ a „funkční“ jsou dvě různé metriky a je třeba je měřit odděleně (dotazník VisAWI + výkonová data)." },
-  { q: "Kolik šablon a úkolů se testovalo?", a: "Tři šablony se stejným sortimentem a různé typy úkolů (volné prohlížení vs. cílený nákup) na vzorku 61 respondentů." },
+  { q: "Jak vybrat šablonu e-shopu?", a: "Nejprve podle sortimentu, obsahu, technických požadavků a klíčových zákaznických cest. Užší výběr je vhodné ověřit na realistických úkolech, protože náhled šablony sám neukáže, jak se v ní lidé budou orientovat." },
+  { q: "Proč nestačí estetické hodnocení šablony?", a: "Vnímaná estetika a chování při úkolu jsou rozdílné konstrukty. Šablona může působit dobře, ale konkrétní cesta v ní může být obtížná — nebo naopak. Proto kombinujeme dotazník s úkolovými a behaviorálními daty." },
+  { q: "Kolik šablon a úkolů se testovalo?", a: "Studie zahrnovala tři šablony se shodným sortimentem, dva odlišné kontexty úkolu a 61 respondentů. Jeden scénář podporoval volné prohlížení, druhý cílenou práci s nabídkou." },
+  { q: "Našla studie jednu nejlepší šablonu?", a: "Ne univerzálně. Hlavním zjištěním bylo, že interpretace šablony závisí na úkolu. Vítěznou variantu je proto potřeba definovat podle konkrétní cesty a metrik, které má e-shop podporovat." },
+  { q: "Dokazuje rozložení pozornosti vyšší konverzi?", a: "Ne. Eye tracking ukazuje, kam lidé zaměřili pohled, nikoli automaticky nákup nebo tržbu. Pro obchodní závěr je potřeba výsledek propojit s úspěšností úkolu, analytikou nebo navazujícím experimentem." },
+  { q: "Lze otestovat šablonu ještě před spuštěním e-shopu?", a: "Ano. Testovat lze funkční demo, prototyp nebo několik kandidátních šablon naplněných realistickým obsahem. Čím více se podmínky blíží skutečnému použití, tím lépe lze výsledek interpretovat." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "Tři šablony, stejný sortiment. Rozhodl úkol.",
+    headline: "Úkol změnil, kam lidé zaměřili pozornost.",
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
@@ -30,8 +33,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Case study: šablony e-shopů a vliv úkolu"
-  description="Eye tracking tří e-shopových šablon (N = 61): rozložení pozornosti se měnilo podle zadaného úkolu. Estetické hodnocení bez úkolu je zavádějící."
+  title="Case study: Jak úkol změnil pozornost v e-shopu"
+  description="Eye tracking tří e-shopových šablon se 61 respondenty: rozložení pozornosti na stejné šabloně se měnilo podle zadaného úkolu."
   schema={pageSchema}
 >
   <Navbar />
@@ -45,55 +48,33 @@ const pageSchema = [
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-shop šablony</span>
         <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
-          Tři šablony, stejný sortiment. Rozhodl úkol<span style="color:#2D62FC">.</span>
+          Úkol změnil, kam lidé zaměřili pozornost<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistický banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Design studie -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">3 × 2</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">tři šablony, dva úkoly — pokaždé jiná mapa pozornosti</p>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
+          <p class="text-brand-white/70 leading-relaxed">e-shopové šablony se stejným sortimentem</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">2</p>
+          <p class="text-brand-white/70 leading-relaxed">odlišné kontexty úkolu</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">61</p>
+          <p class="text-brand-white/70 leading-relaxed">respondentů ve studii</p>
+        </div>
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ SLOVNÍK — CO ZNAMENAJÍ ČÍSLA V TÉTO STUDII ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet skutečných lidí, kteří se měření zúčastnili. N = 102 znamená 102 respondentů.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-hodnota</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Pravděpodobnost, že by naměřený rozdíl vznikl čirou náhodou. Čím menší, tím průkaznější výsledek — p = 0,037 znamená jen 3,7% šanci na náhodu (za průkazné se považuje vše pod 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Velikost efektu (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Říká, jak velký je rozdíl v praxi — ne jen jestli existuje. Orientačně: 0,01 malý, 0,06 střední, 0,14 velký efekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka na jednom místě (zlomky sekundy). Ze sledu fixací se skládá vše, co člověk na stránce skutečně „viděl“.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (sledovaná oblast)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená část stránky — tlačítko, nadpis, fotografie — pro kterou měříme, kolik pozornosti dostala.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizované vědecké dotazníky: UEQ měří celkový uživatelský zážitek, VisAWI vnímanou estetiku webu. Díky standardizaci jsou výsledky porovnatelné mezi studiemi.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Výběr šablony je jedno z prvních rozhodnutí každého e-shopu — a většinou probíhá podle vzhledu náhledu. Měřili jsme, jestli je estetický dojem dobrým vodítkem pro reálný nákupní výkon.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— OBCHODNÍ OTÁZKA</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Stačí vybrat šablonu e-shopu podle toho, jak vypadá? Nebo záleží na tom, co na ní mají zákazníci udělat?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking tří šablon se stejným sortimentem, s různými zadanými úkoly, doplněný dotazníkem VisAWI — standardizovaným nástrojem pro měření vnímané estetiky webu.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CO DATA UKÁZALA</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -104,15 +85,26 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CO BYLO POTŘEBA ZJISTIT</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Popíše samotný vzhled šablony, jak v ní lidé zvládnou konkrétní úkol?</p>
+            <p class="text-brand-black/70 leading-relaxed">Studie porovnávala tři e-shopové šablony naplněné shodným sortimentem. Cílem bylo sledovat, jak rozdílný kontext — volné prohlížení a cílená práce s nabídkou — změní způsob, kterým lidé stránku vizuálně procházejí.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— JAK PROBĚHLO MĚŘENÍ</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Studie se zúčastnilo 61 respondentů. Eye tracking zaznamenal rozložení vizuální pozornosti při odlišných úkolech a dotazník VisAWI doplnil subjektivní hodnocení vnímané estetiky šablon.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA V OBRAZE ]</p>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIP TESTOVANÝCH SCÉNÁŘŮ ]</p>
               <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Ilustrační schéma: stejná šablona, dva úkoly, dvě různá rozložení pozornosti">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILUSTRAČNÍ SCHÉMA · STEJNÁ ŠABLONA, DVA ÚKOLY</text>
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILUSTRAČNÍ SCHÉMA · NEJDE O SKUTEČNOU HEATMAPU</text>
   <g>
     <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
     <rect x="12" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
@@ -140,17 +132,19 @@ const pageSchema = [
   <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EYE-TRACKING + VisAWI · N = 61 · TŘI ŠABLONY SE STEJNÝM SORTIMENTEM</text>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma principu: modré plochy znázorňují těžiště pozornosti při různých úkolech na téže šabloně.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma vysvětluje rozdíl mezi scénáři. Modré plochy jsou pouze ilustrativní a nezobrazují skutečná naměřená data účastníků.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CO SE ROZHODLO</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Šablonu e-shopu vybírat na základě testování se skutečnými nákupními úkoly, ne podle dojmu z náhledu.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— DOPORUČENÍ PRO PRAXI</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Šablonu neposuzovat pouze při volném prohlížení nebo podle statického náhledu. Kandidátní řešení naplnit realistickým obsahem a ověřit na úkolech, které odpovídají skutečným zákaznickým cestám.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CO BY DNES PŘIDALO EMLI</p>
-            <p class="text-brand-black/70 leading-relaxed">U podobného zadání dnes navíc měříme index zátěže EMLI pro každý úkol a šablonu — kvantifikuje, která kombinace zákazníka nejméně vyčerpává.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO SI Z TOHO ODNÉST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Šablona nefunguje sama o sobě. Funguje pro konkrétní úkol<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Uživatelský test ukáže, zda vybrané řešení podporuje hledání, porovnání a nákup tak, jak váš e-shop potřebuje.</p>
+            <a href="/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">PROBRAT TEST E-SHOPU →</a>
           </section>
         </div>
 
@@ -180,7 +174,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schéma tří různých šablon e-shopu se stejným sortimentem">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Ilustrační schéma tří různých šablon e-shopu se stejným sortimentem">
                   <g>
                     <rect x="4" y="20" width="96" height="130" fill="none" stroke="#0A0A0A" stroke-width="2"/>
                     <rect x="12" y="28" width="80" height="16" fill="rgba(10,10,10,0.25)"/>
@@ -209,10 +203,10 @@ const pageSchema = [
                     <circle cx="268" cy="90" r="16" fill="#2D62FC" opacity="0.3"/>
                   </g>
                   <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">3 ŠABLONY · STEJNÝ SORTIMENT</text>
-                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">modře: těžiště pozornosti</text>
+                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">ilustrační náhled variant</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schéma tří testovaných šablon — pozornost se přesouvala podle úkolu</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Ilustrační schéma tří šablon se shodným sortimentem</figcaption>
             </figure>
             <a href="/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               NEZÁVAZNÁ POPTÁVKA →
@@ -220,6 +214,21 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ SLOVNÍK — CO ZNAMENAJÍ POJMY V TÉTO STUDII ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (vzorek)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Počet lidí zahrnutých do studie. V tomto případě N = 61.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Úkolový scénář</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Konkrétní zadání, které určuje, čeho má účastník na stránce dosáhnout.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka v určité oblasti. Popisuje vizuální pozornost, nikoli automaticky porozumění nebo nákup.</dd></div>
+            <div><dt class="font-display font-bold mb-1">VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizovaný dotazník zaměřený na subjektivně vnímanou estetiku webového rozhraní.</dd></div>
+          </dl>
+        </details>
+      </section>
 
       <!-- FAQ ke studii -->
       <section class="reveal mt-20">
@@ -252,11 +261,11 @@ const pageSchema = [
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Další případové studie">
         <a href="/pripadove-studie/reklamni-bannery-smer-pohledu" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← PŘEDCHOZÍ STUDIE</p>
-          <p class="font-display font-bold leading-snug">Kam se dívá postava na banneru, tam se dívá i váš zákazník</p>
+          <p class="font-display font-bold leading-snug">Pohled postavy nasměroval pozornost návštěvníků</p>
         </a>
         <a href="/pripadove-studie/billboardy-sport-marketing" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">DALŠÍ STUDIE →</p>
-          <p class="font-display font-bold leading-snug">16 návrhů billboardů, 79 párů očí</p>
+          <p class="font-display font-bold leading-snug">Prvních šest míst patřilo černým billboardům.</p>
         </a>
       </nav>
 
@@ -271,7 +280,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít studii podrobněji<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Studie jsou zkráceny a anonymizovány.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Tři šablony, stejný sortiment. Rozhodl úkol.">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Úkol změnil, kam lidé zaměřili pozornost.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"

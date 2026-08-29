@@ -167,9 +167,9 @@ export const segmenty: Segment[] = [
       },
       {
         typ: 'vlastni',
-        vysledek: 'Zadaný úkol změnil pozornost',
-        nadpis: 'Tři šablony, stejný sortiment. Pozornost se měnila podle zadaného úkolu.',
-        text: 'Estetické hodnocení bez úkolového kontextu je zavádějící — šablonu testujte se skutečnými nákupními úkoly, ne „na dojem".',
+        vysledek: '3 šablony · 2 typy úkolu',
+        nadpis: 'Úkol změnil, kam lidé zaměřili pozornost.',
+        text: 'Eye tracking ukázal, že se pozornost na stejné šabloně měnila podle zadaného úkolu. Subjektivní hodnocení vzhledu proto posuzujeme odděleně od chování při nákupu.',
         metoda: 'Eye-tracking + VisAWI · N = 61',
         odkaz: '/pripadove-studie/sablony-e-shopu',
       },
@@ -456,8 +456,8 @@ export const segmenty: Segment[] = [
       {
         typ: 'vlastni',
         vysledek: '16 návrhů. 79 účastníků.',
-        nadpis: '16 návrhů billboardů, 79 párů očí. Vyhrály černé minimalistické varianty.',
-        text: 'Fotbalový klub vybíral z 16 návrhů kampaně na podporu návštěvnosti. Eye tracking jsme spojili s hodnotícím dotazníkem a výběrem TOP3. Všech šest nejlépe hodnocených variant mělo černé pozadí.',
+        nadpis: 'Prvních šest míst patřilo černým billboardům.',
+        text: 'Fotbalový klub vybíral z 16 návrhů kampaně. Všech šest nejlépe hodnocených variant mělo černé pozadí, samotné fixační metriky však výsledné pořadí nevysvětlily.',
         metoda: 'Eye-tracking + hodnotící dotazník · N = 79 · 16 stimulů á 10 s',
         odkaz: '/pripadove-studie/billboardy-sport-marketing',
       },
