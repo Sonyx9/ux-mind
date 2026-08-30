@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Build with Astro
         run: npm run build
+      - name: Check internal links
+        run: node scripts/check-links.mjs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

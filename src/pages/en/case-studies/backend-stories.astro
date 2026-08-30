@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { features } from '../../../config';
 
 const fakta = [["METHOD", "Eye tracking, AOI analysis"], ["SAMPLE", "approx. 120 respondents"], ["SCENARIOS", "Multiple task scenarios"], ["OUTPUTS", "AOI statistics, reading gradient"]];
 const zjisteni = ["The “Read online” CTA was noticed by approximately 92% of respondents.", "Attention gradually declined: the bold heading was noticed by approximately 86% of respondents, the short follow-up text by 62% and the long paragraph by 33%.", "Approximately 75% of respondents noticed the bottom part of the page before even filling in the form."];
@@ -191,7 +192,7 @@ const pageSchema = [
       </section>
 
       <!-- Narrow strip: full study (opens modal) -->
-      <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+      <section class:list={["reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5", !features.studyDownloads && "!hidden"]}>
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Want to go through the study in more detail<span style="color:#2D62FC">?</span></p>
           <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">DETAILED REPORT WITH METHODOLOGY AND RECOMMENDATIONS — FREE PDF</p>

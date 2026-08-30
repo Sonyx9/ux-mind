@@ -1,4 +1,4 @@
-export type Lang = 'cs' | 'en' | 'de' | 'fr' | 'es';
+export type Lang = 'cs' | 'en' | 'de';
 
 export const defaultLang: Lang = 'cs';
 
@@ -7,10 +7,8 @@ export const languages: { code: Lang; label: string }[] = [
   { code: 'cs', label: 'CZ' },
   { code: 'en', label: 'EN' },
   { code: 'de', label: 'DE' },
-  // Dočasně skryté — stránky existují a buildí se, jen nejsou v přepínači ani v hreflang.
-  // Zpět stačí odkomentovat:
-  // { code: 'fr', label: 'FR' },
-  // { code: 'es', label: 'ES' },
+  // Pozn.: FR a ES se nebuildují (viz astro.config.mjs redirects → EN). Pokud je
+  // někdy vrátíme, přidat sem, do Lang, urlMap, navLabels a homeLabels + obnovit stránky.
 ];
 
 // Maps page keys to URLs per language
@@ -96,50 +94,6 @@ const urlMap: Record<Lang, Record<string, string>> = {
     cookies: '/de/cookie-richtlinie',
     privacy: '/de/datenschutz',
   },
-  fr: {
-    home: '/fr/',
-    services: '/fr/services',
-    'test-packages': '/fr/services/packs-de-test',
-    'ux-audit': '/fr/services/audit-ux',
-    'user-testing': '/fr/services/tests-utilisateurs',
-    'eye-tracking': '/fr/services/eye-tracking',
-    'field-research': '/fr/services/recherche-terrain',
-    'ux-research': '/fr/services/recherche-ux',
-    'case-studies': '/fr/etudes-de-cas',
-    'cs-karierni-portal-automotive': '/fr/etudes-de-cas/portail-carriere-automobile',
-    'cs-backend-stories': '/fr/etudes-de-cas/backend-stories',
-    'cs-produktove-fotografie-e-commerce': '/fr/etudes-de-cas/photographie-produit-e-commerce',
-    'cs-reklamni-bannery-smer-pohledu': '/fr/etudes-de-cas/bannieres-direction-regard',
-    'cs-sablony-e-shopu': '/fr/etudes-de-cas/modeles-boutique-en-ligne',
-    'cs-billboardy-sport-marketing': '/fr/etudes-de-cas/panneaux-sport-marketing',
-    about: '/fr/a-propos',
-    partners: '/fr/partenaires',
-    blog: '/fr/blog',
-    contact: '/fr/contact',
-    cookies: '/fr/politique-cookies',
-  },
-  es: {
-    home: '/es/',
-    services: '/es/servicios',
-    'test-packages': '/es/servicios/paquetes-de-prueba',
-    'ux-audit': '/es/servicios/auditoria-ux',
-    'user-testing': '/es/servicios/pruebas-de-usuario',
-    'eye-tracking': '/es/servicios/eye-tracking',
-    'field-research': '/es/servicios/investigacion-de-campo',
-    'ux-research': '/es/servicios/investigacion-ux',
-    'case-studies': '/es/casos-de-estudio',
-    'cs-karierni-portal-automotive': '/es/casos-de-estudio/portal-empleo-automocion',
-    'cs-backend-stories': '/es/casos-de-estudio/backend-stories',
-    'cs-produktove-fotografie-e-commerce': '/es/casos-de-estudio/fotografia-producto-e-commerce',
-    'cs-reklamni-bannery-smer-pohledu': '/es/casos-de-estudio/banners-direccion-mirada',
-    'cs-sablony-e-shopu': '/es/casos-de-estudio/plantillas-tienda-online',
-    'cs-billboardy-sport-marketing': '/es/casos-de-estudio/vallas-marketing-deportivo',
-    about: '/es/sobre-nosotros',
-    partners: '/es/socios',
-    blog: '/es/blog',
-    contact: '/es/contacto',
-    cookies: '/es/politica-de-cookies',
-  },
 };
 
 // Mapa URL cesty → klíč stránky (odvozeno z urlMap)
@@ -154,8 +108,6 @@ for (const lang of Object.keys(urlMap) as Lang[]) {
 export function getLang(pathname: string): Lang {
   if (pathname.startsWith('/en')) return 'en';
   if (pathname.startsWith('/de')) return 'de';
-  if (pathname.startsWith('/fr')) return 'fr';
-  if (pathname.startsWith('/es')) return 'es';
   return 'cs';
 }
 
@@ -181,12 +133,10 @@ const navLabels: Record<Lang, Record<string, string>> = {
   cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři' },
   en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact', about: 'About', partners: 'Partners' },
   de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt', about: 'Über uns', partners: 'Partner' },
-  fr: { services: 'Services', 'test-packages': 'Packs de test', 'ux-audit': 'Audit UX', 'user-testing': 'Tests utilisateurs', 'field-research': 'Recherche terrain', 'ux-research': 'Recherche UX', 'case-studies': 'Études de cas', contact: 'Contact', about: 'À propos', partners: 'Partenaires' },
-  es: { services: 'Servicios', 'test-packages': 'Paquetes de prueba', 'ux-audit': 'Auditoría UX', 'user-testing': 'Pruebas de usuario', 'field-research': 'Investigación de campo', 'ux-research': 'Investigación UX', 'case-studies': 'Casos de estudio', contact: 'Contacto', about: 'Sobre nosotros', partners: 'Socios' },
 };
 
 // Popisky pro drobečkovou navigaci ve strukturovaných datech (JSON-LD, nezobrazuje se)
-const homeLabels: Record<Lang, string> = { cs: 'Úvod', en: 'Home', de: 'Startseite', fr: 'Accueil', es: 'Inicio' };
+const homeLabels: Record<Lang, string> = { cs: 'Úvod', en: 'Home', de: 'Startseite' };
 
 /**
  * Nadřazené úrovně stránky odvozené z reálné struktury URL (urlMap).

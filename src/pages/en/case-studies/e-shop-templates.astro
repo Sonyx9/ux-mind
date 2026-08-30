@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { features } from '../../../config';
 
 const fakta = [["METHOD", "Eye tracking + VisAWI"], ["SAMPLE", "61 respondents"], ["STIMULI", "3 templates · same product range"], ["SCENARIOS", "Free browsing · targeted task"]];
 const zjisteni = ["On the same template, the distribution of visual attention changed with the task given.", "Free browsing and targeted product search led participants to different parts of the page.", "Aesthetic rating and behaviour during a specific task describe different aspects of the experience. One metric therefore cannot automatically stand in for the other."];
@@ -248,7 +249,7 @@ const pageSchema = [
       </section>
 
       <!-- Narrow strip: full study (opens modal) -->
-      <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+      <section class:list={["reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5", !features.studyDownloads && "!hidden"]}>
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Want to go through the study in more detail<span style="color:#2D62FC">?</span></p>
           <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">DETAILED REPORT WITH METHODOLOGY AND RECOMMENDATIONS — FREE PDF</p>

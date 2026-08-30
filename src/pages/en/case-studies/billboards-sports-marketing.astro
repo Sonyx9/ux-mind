@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
+import { features } from '../../../config';
 
 const fakta = [["METHOD", "Eye tracking + rating survey + TOP3"], ["SAMPLE", "79 respondents · 43 men, 36 women · 17–25 years"], ["STIMULI", "16 designs · each shown for 10 seconds"], ["OUTPUTS", "Ranking of variants + visual attention metrics"]];
 const zjisteni = ["All six top-rated designs had a black background. The white variants clustered in the lower part of the ranking.", "The winning design achieved the highest weighted score in the TOP3 selection and also the best average ranking.", "Fixation metrics differed only slightly between the best- and worst-rated variants. The ranking was therefore not decided by the level of visual attention alone.", "In the survey, 39% of women and 16% of men stated that visual advertising influences their attendance of a sports event. This is a declared influence, not a measured change in purchasing behaviour."];
@@ -217,7 +218,7 @@ const pageSchema = [
       </section>
 
       <!-- Narrow strip: full study (opens modal) -->
-      <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+      <section class:list={["reveal mt-16 bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5", !features.studyDownloads && "!hidden"]}>
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Want to go through the study in more detail<span style="color:#2D62FC">?</span></p>
           <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">DETAILED REPORT WITH METHODOLOGY AND RECOMMENDATIONS — FREE PDF</p>

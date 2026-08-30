@@ -46,13 +46,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <script is:inline define:vars={{ base }}>
     (function () {
       const rel = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : location.pathname;
-      const lang = rel.startsWith('/en') ? 'en' : rel.startsWith('/de') ? 'de' : rel.startsWith('/fr') ? 'fr' : rel.startsWith('/es') ? 'es' : 'cs';
+      const lang = rel.startsWith('/en') ? 'en' : rel.startsWith('/de') ? 'de' : 'cs';
       const T = {
         cs: { title: '404 — stránka nenalezena', tag: '[ CHYBA 404 ]', h1: 'TADY NIC<br/>NEVIDÍME<span style="color:#2D62FC">.</span>', body: 'A že se na pozornost díváme profesionálně. Stránka neexistuje, byla přesunuta — nebo jste narazili na překlep v odkazu.', home: 'NA ÚVOD →', homeHref: '/', services: 'NAŠE SLUŽBY', servicesHref: '/sluzby', contact: 'KONTAKT', contactHref: '/kontakt' },
         en: { title: '404 — page not found', tag: '[ ERROR 404 ]', h1: 'NOTHING<br/>TO SEE HERE<span style="color:#2D62FC">.</span>', body: 'And attention is literally our job. The page doesn’t exist, was moved — or you hit a typo in the link.', home: 'HOME →', homeHref: '/en/', services: 'OUR SERVICES', servicesHref: '/en/services', contact: 'CONTACT', contactHref: '/en/contact' },
         de: { title: '404 — Seite nicht gefunden', tag: '[ FEHLER 404 ]', h1: 'HIER GIBT ES<br/>NICHTS ZU SEHEN<span style="color:#2D62FC">.</span>', body: 'Und dabei ist Aufmerksamkeit unser Beruf. Die Seite existiert nicht, wurde verschoben — oder Sie sind auf einen Tippfehler im Link gestoßen.', home: 'STARTSEITE →', homeHref: '/de/', services: 'LEISTUNGEN', servicesHref: '/de/leistungen', contact: 'KONTAKT', contactHref: '/de/kontakt' },
-        fr: { title: '404 — page introuvable', tag: '[ ERREUR 404 ]', h1: 'RIEN<br/>À VOIR ICI<span style="color:#2D62FC">.</span>', body: 'Et pourtant, l’attention, c’est notre métier. La page n’existe pas, a été déplacée — ou vous avez rencontré une faute de frappe dans le lien.', home: 'ACCUEIL →', homeHref: '/fr/', services: 'NOS SERVICES', servicesHref: '/fr/services', contact: 'CONTACT', contactHref: '/fr/contact' },
-        es: { title: '404 — página no encontrada', tag: '[ ERROR 404 ]', h1: 'AQUÍ NO HAY<br/>NADA QUE VER<span style="color:#2D62FC">.</span>', body: 'Y eso que la atención es literalmente nuestro trabajo. La página no existe, se ha movido — o has dado con una errata en el enlace.', home: 'INICIO →', homeHref: '/es/', services: 'SERVICIOS', servicesHref: '/es/servicios', contact: 'CONTACTO', contactHref: '/es/contacto' },
       };
       const t = T[lang];
       if (lang !== 'cs') {
