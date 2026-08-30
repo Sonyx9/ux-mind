@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+// Pozn.: sitemap.xml generuje scripts/postbuild.mjs (integrace @astrojs/sitemap
+// je vypnutá kvůli bugu s absolutními cestami v této verzi).
 
 export default defineConfig({
   site: 'https://sonyx9.github.io',

@@ -10,8 +10,11 @@
  */
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const DIST = new URL('../dist', import.meta.url).pathname;
+// fileURLToPath správně dekóduje cestu (mj. mezery → %20), takže build funguje
+// i v adresáři s mezerou v názvu ("UX Mind"), nejen na CI.
+const DIST = fileURLToPath(new URL('../dist', import.meta.url));
 const BASE = '/ux-mind';
 const SITE = 'https://sonyx9.github.io';
 
