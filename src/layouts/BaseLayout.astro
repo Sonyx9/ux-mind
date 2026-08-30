@@ -232,6 +232,13 @@ const jsonLd = {
     </script>
     {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
     {GA_ID && <script is:inline set:html={`gtag('config', '${GA_ID}', { anonymize_ip: true });`} />}
+    <!-- Google Tag Manager (načítá se po nastavení Consent Mode v2 defaultů výše) -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WJ9BBVG8');</script>
+    <!-- End Google Tag Manager -->
     <link rel="icon" type="image/png" sizes="512x512" href={`${baseUrl}favicon.png`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${baseUrl}apple-touch-icon.png`} />
     <link rel="author" type="text/plain" href={`${baseUrl}humans.txt`} />
@@ -288,6 +295,9 @@ const jsonLd = {
     <!-- Fonty jsou self-hostované přes Fontsource (import v global.css) -->
   </head>
   <body class="bg-brand-white text-brand-black">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJ9BBVG8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-brand-black focus:text-brand-white focus:px-4 focus:py-2 font-mono text-xs tracking-widest">
       {skipLabels[lang] ?? 'Skip to content'}
     </a>
