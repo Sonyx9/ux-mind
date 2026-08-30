@@ -15,8 +15,8 @@ import { fileURLToPath } from 'node:url';
 // fileURLToPath správně dekóduje cestu (mj. mezery → %20), takže build funguje
 // i v adresáři s mezerou v názvu ("UX Mind"), nejen na CI.
 const DIST = fileURLToPath(new URL('../dist', import.meta.url));
-const BASE = '/ux-mind';
-const SITE = 'https://sonyx9.github.io';
+const BASE = ''; // custom doména uxmind.cz servíruje web v kořeni (žádný base prefix)
+const SITE = 'https://uxmind.cz';
 
 /** Rekurzivně posbírá všechny .html soubory */
 function htmlFiles(dir) {

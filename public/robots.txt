@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sonyx9.github.io/ux-mind/sitemap.xml
+Sitemap: https://uxmind.cz/sitemap.xml

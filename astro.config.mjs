@@ -5,21 +5,21 @@ import mdx from '@astrojs/mdx';
 // je vypnutá kvůli bugu s absolutními cestami v této verzi).
 
 export default defineConfig({
-  site: 'https://sonyx9.github.io',
-  base: '/ux-mind',
+  // Web běží na custom doméně uxmind.cz, kterou GitHub Pages servíruje v kořeni,
+  // proto ŽÁDNÝ base prefix (assety i odkazy jsou v /). CNAME je v public/CNAME.
+  site: 'https://uxmind.cz',
   // Staré URL služeb — přesunuto pod /sluzby/ kvůli konzistentnímu stromu
-  // Pozn.: cíl musí obsahovat base prefix — Astro ho k destinaci sám nepřidává
   redirects: {
-    '/eye-tracking': '/ux-mind/sluzby/eye-tracking',
-    '/ux-vyzkum': '/ux-mind/sluzby/ux-vyzkum',
-    '/en/eye-tracking': '/ux-mind/en/services/eye-tracking',
-    '/en/ux-research': '/ux-mind/en/services/ux-research',
-    '/de/eye-tracking': '/ux-mind/de/leistungen/eye-tracking',
-    '/de/ux-forschung': '/ux-mind/de/leistungen/ux-forschung',
-    '/fr/eye-tracking': '/ux-mind/fr/services/eye-tracking',
-    '/fr/recherche-ux': '/ux-mind/fr/services/recherche-ux',
-    '/es/eye-tracking': '/ux-mind/es/servicios/eye-tracking',
-    '/es/investigacion-ux': '/ux-mind/es/servicios/investigacion-ux',
+    '/eye-tracking': '/sluzby/eye-tracking',
+    '/ux-vyzkum': '/sluzby/ux-vyzkum',
+    '/en/eye-tracking': '/en/services/eye-tracking',
+    '/en/ux-research': '/en/services/ux-research',
+    '/de/eye-tracking': '/de/leistungen/eye-tracking',
+    '/de/ux-forschung': '/de/leistungen/ux-forschung',
+    '/fr/eye-tracking': '/fr/services/eye-tracking',
+    '/fr/recherche-ux': '/fr/services/recherche-ux',
+    '/es/eye-tracking': '/es/servicios/eye-tracking',
+    '/es/investigacion-ux': '/es/servicios/investigacion-ux',
   },
   i18n: {
     defaultLocale: 'cs',
