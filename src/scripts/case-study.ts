@@ -36,9 +36,11 @@ import { submitForm } from './forms';
         company: company || '',
         study: form.dataset.study || '',
         pdf,
-        // Souhlas je udělen odesláním formuláře (viz text u tlačítka), ne zaškrtnutím
-        // políčka — do Sheetu proto zapisujeme skutečný právní základ, ne fiktivní „ano".
-        consent: 'odesláním formuláře',
+        // Zobrazení studie = na základě žádosti (odeslání formuláře). Marketingový
+        // souhlas je oddělený, nepovinný checkbox — zapisujeme jeho skutečný stav,
+        // ne fiktivní „ano". Retroaktivně je tak jasné, kdo marketing odsouhlasil.
+        consent: 'zobrazení studie (žádost odesláním)',
+        marketing: (form.querySelector('[name="marketing"]') as HTMLInputElement | null)?.checked ? 'ano' : 'ne',
         source: location.pathname,
       });
 

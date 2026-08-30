@@ -267,11 +267,15 @@ const pageSchema = [
               <input type="email" id="sr-email" name="email" required placeholder="ihre@email.de"
                 class="study-input" />
             </div>
+            <label class="flex items-start gap-2.5 cursor-pointer">
+              <input type="checkbox" name="marketing" class="mt-0.5 shrink-0 accent-[#2D62FC]" />
+              <span class="font-mono text-[11px] text-brand-white/70 leading-relaxed">Ich möchte gelegentlich Tipps und Angebote von UX MIND erhalten (optional).</span>
+            </label>
             <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
               STUDIE ANZEIGEN (PDF) →
             </button>
             <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Danke! Falls sich die Studie nicht von selbst geöffnet hat, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">öffnen Sie sie über diesen Link</a>.</p>
-            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">Mit dem Absenden stimmen Sie der Anzeige der Studie und dem gelegentlichen Erhalt von Geschäftsangeboten von UX MIND zu. Sie können sich jederzeit mit einem Klick abmelden.</p>
+            <p class="font-mono text-[11px] text-brand-white/60 leading-relaxed">Wir zeigen Ihnen die Studie auf Ihre Anfrage hin. Wie wir mit Ihren Daten umgehen, beschreibt unsere <a href="/de/datenschutz/" class="underline hover:text-brand-white" target="_blank" rel="noopener">Datenschutzerklärung</a>.</p>
           </form>
         </div>
       </dialog>
