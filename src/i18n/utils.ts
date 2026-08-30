@@ -7,8 +7,10 @@ export const languages: { code: Lang; label: string }[] = [
   { code: 'cs', label: 'CZ' },
   { code: 'en', label: 'EN' },
   { code: 'de', label: 'DE' },
-  { code: 'fr', label: 'FR' },
-  { code: 'es', label: 'ES' },
+  // Dočasně skryté — stránky existují a buildí se, jen nejsou v přepínači ani v hreflang.
+  // Zpět stačí odkomentovat:
+  // { code: 'fr', label: 'FR' },
+  // { code: 'es', label: 'ES' },
 ];
 
 // Maps page keys to URLs per language
