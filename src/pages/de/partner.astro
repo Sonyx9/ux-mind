@@ -13,6 +13,7 @@ const partners = [
     logo: `${base}/logos/uhk.svg`,
     logoAlt: 'Logo der Univerzita Hradec Králové',
     logoClass: 'h-16 md:h-20',
+    logoW: 157, logoH: 37,
     text: [
       'Im Labor für kognitive Studien der FIM UHK testen wir digitale wie physische Oberflächen unter kontrollierten Bedingungen sowie im Feld. Das Umfeld ermöglicht es uns, die Methodik vorzubereiten, das Szenario zu überprüfen und Eye Tracking mit weiteren Forschungsmethoden zu verbinden.',
       'Zum Forschungsumfeld gehören auch Fachpublikationen, studentische Arbeiten und die Entwicklung eigener Methoden — einschließlich des Index der mentalen Belastung EMLI.',
@@ -30,6 +31,7 @@ const partners = [
     logo: `${base}/logos/mindsense.webp`,
     logoAlt: 'MindSense-Logo — Lösungen für Forschungslabore',
     logoClass: 'h-10 md:h-12',
+    logoW: 1118, logoH: 194,
     text: [
       'MindSense war an der Erweiterung des Labors um neue Forschungsausrüstung beteiligt und bietet fachlichen Support für die eingesetzten Technologien. Das Unternehmen ist exklusiver autorisierter Tobii-Distributor für Tschechien und die Slowakei.',
       'Es hilft dabei, Eye Tracking, Biosensoren, virtuelle Realität und Software so zu verbinden, dass die einzelnen Datenquellen als ein zusammenhängendes Forschungssystem funktionieren.',
@@ -67,7 +69,7 @@ const pageSchema = [
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           WIR MESSEN<br/>NICHT ALLEIN<span style="color:#2D62FC">.</span>
         </h1>
-        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl text-justify">
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl">
           Guter Forschung genügt Technik allein nicht. Es braucht die richtige Methodik, verlässliche Ausrüstung und Menschen, die Daten interpretieren können. UX MIND verbindet deshalb <strong class="text-brand-black">das Forschungsfundament der FIM UHK mit dem technologischen Know-how von MindSense</strong>.
         </p>
       </div>
@@ -80,7 +82,7 @@ const pageSchema = [
               <!-- Logo -->
               <div class="flex flex-col gap-6">
                 <span class="font-mono text-xs text-brand-black/60">{p.num}</span>
-                <img src={p.logo} alt={p.logoAlt} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
+                <img src={p.logo} alt={p.logoAlt} width={p.logoW} height={p.logoH} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
                 <div class="flex flex-wrap gap-2">
                   {p.tags.map(tag => (
                     <span class="font-mono text-[11px] border border-brand-black/20 px-2 py-1 tracking-widest">{tag}</span>
@@ -92,7 +94,7 @@ const pageSchema = [
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">{p.name}</h2>
                 <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-6">{p.claim}</p>
                 {p.text.map(t => (
-                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl text-justify">{t}</p>
+                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl">{t}</p>
                 ))}
                 <div class="flex flex-wrap gap-4 mt-6">
                   {p.links.map(l => (
@@ -117,7 +119,7 @@ const pageSchema = [
           <div class="bg-brand-white p-8 flex flex-col h-full">
             <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
             <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{v.d}</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
             <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
           </div>
         ))}

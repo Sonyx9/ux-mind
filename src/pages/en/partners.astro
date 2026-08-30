@@ -71,7 +71,7 @@ const pageSchema = [
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           WE DON’T<br/>MEASURE ALONE<span style="color:#2D62FC">.</span>
         </h1>
-        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl text-justify">
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl">
           Quality research doesn’t rest on technology alone. It needs the right methodology, reliable equipment and people who can interpret the data. That’s why UX MIND connects <strong class="text-brand-black">the research facilities of FIM UHK with the technological know-how of MindSense</strong>.
         </p>
       </div>
@@ -96,7 +96,7 @@ const pageSchema = [
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">{p.name}</h2>
                 <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-6">{p.claim}</p>
                 {p.text.map(t => (
-                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl text-justify">{t}</p>
+                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl">{t}</p>
                 ))}
                 <div class="flex flex-wrap gap-4 mt-6">
                   {p.links.map(l => (
@@ -121,7 +121,7 @@ const pageSchema = [
           <div class="bg-brand-white p-8 flex flex-col h-full">
             <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
             <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{v.d}</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
             <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
           </div>
         ))}

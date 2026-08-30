@@ -231,7 +231,7 @@ const jsonLd = {
       gtag('js', new Date());
     </script>
     {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
-    {GA_ID && <script is:inline set:html={`gtag('config', '${GA_ID}', { anonymize_ip: true });`} />}
+    {GA_ID && <script is:inline set:html={`gtag('config', '${GA_ID}');`} />}
     <!-- Google Tag Manager (načítá se po nastavení Consent Mode v2 defaultů výše) -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -245,7 +245,6 @@ const jsonLd = {
 
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
-    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />

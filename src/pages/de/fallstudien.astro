@@ -87,7 +87,7 @@ import Footer from '../../components/Footer.astro';
               <a href={study.href} class="font-display text-lg font-bold leading-tight md:text-right md:whitespace-nowrap hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
-            <p class="text-brand-black/60 leading-relaxed mb-6 text-justify">{study.desc}</p>
+            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METHODE: {study.method}</p>
             <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (

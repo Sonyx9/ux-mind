@@ -136,26 +136,6 @@ const clientLogos = [
     </div><!-- end desktop gif container -->
 
     <!-- Info box: stats (top right) -->
-    <div class="hero-stats-box hidden absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
-      <div class="flex justify-between items-center mb-3">
-        <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
-        <p class="font-mono text-xs text-brand-black/60">/{yearSuffix}</p>
-      </div>
-      <div class="space-y-2">
-        <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold leading-none stat-projects" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * min(var(--fs, 1), 1.08));">50+</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">PROJEKTE</p>
-        </div>
-        <div class="flex items-baseline justify-between">
-          <p class="font-display font-bold leading-none stat-respondents" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * min(var(--fs, 1), 1.08));">200+</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">PROBANDEN</p>
-        </div>
-        <div class="flex items-baseline justify-between gap-3 border-t border-brand-black/20 pt-2 mt-1">
-          <p class="font-display font-bold leading-none stat-clicks" style="font-size: calc(clamp(24px, 1.2vw + 14px, 32px) * min(var(--fs, 1), 1.08));">50%</p>
-          <p class="font-mono hero-fluid-micro text-brand-black/60 tracking-widest">MEHR KLICKS</p>
-        </div>
-      </div>
-    </div>
 
     <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
     <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
@@ -191,14 +171,14 @@ const clientLogos = [
         <div class="mb-2">
           <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">KEINE AGENTUR – SPEZIALISTEN</p>
         </div>
-        <p class="font-mono text-brand-white/90 leading-relaxed text-justify infobox-desc" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">
+        <p class="font-mono text-brand-white/90 leading-relaxed infobox-desc" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">
           Wir sind ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten, Forschung und Eye-Tracking zu verstehen.
         </p>
       </div>
       <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
         <div class="pt-2 border-t border-brand-white/20 flex flex-col items-start gap-1.5">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * min(var(--fs, 1), 1.08));">PROJEKT MIT:</p>
-          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="max-w-full shrink-0" style="height:clamp(24px,2.8vh,40px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
+          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="max-w-full shrink-0" style="height:clamp(24px,2.8vh,40px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
         </div>
       </div>
     </div>
@@ -220,14 +200,14 @@ const clientLogos = [
     <div>
       <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">KEINE AGENTUR – SPEZIALISTEN</p>
     </div>
-    <p class="font-mono text-sm text-brand-white/90 leading-relaxed text-justify">Wir sind ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten, Forschung und Eye-Tracking zu verstehen.</p>
+    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Wir sind ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten, Forschung und Eye-Tracking zu verstehen.</p>
     <div class="flex gap-2">
       <a href="/de/ueber-uns" class="font-mono text-xs border border-brand-white px-2 py-1">ÜBER UNS</a>
       <a href="/de/kontakt" class="font-mono text-xs border border-brand-white px-2 py-1">KONTAKT</a>
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJEKT MIT:</p>
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+      <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
@@ -321,7 +301,7 @@ const clientLogos = [
         <div class="bg-brand-white p-8 flex flex-col">
           <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
           <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
-          <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{item.desc}</p>
+          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
           <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
         </div>
       ))}
@@ -403,7 +383,7 @@ const clientLogos = [
             <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
           </div>
           <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
-          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6 text-justify">{service.desc}</p>
+          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6">{service.desc}</p>
           <div class="flex flex-wrap gap-2">
             {service.tags.map(tag => (
               <span class="font-mono text-xs border border-brand-black/20 group-hover:border-brand-white/20 px-2 py-1">{tag}</span>
@@ -428,7 +408,7 @@ const clientLogos = [
       <div>
         <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
         <h2 class="font-display text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8">Mentale Belastung<br/>als Zahl<span style="color:#2D62FC">.</span></h2>
-        <p class="text-brand-white/60 leading-relaxed mb-6 text-justify">
+        <p class="text-brand-white/60 leading-relaxed mb-6">
           Eine Heatmap zeigt, wohin Menschen geschaut haben. Sie allein erkennt aber nicht, ob die Oberfläche für sie einfach war
           oder sie bei der Aufgabe unnötig belastete. EMLI verbindet acht Eye-Tracking-Metriken zu einem einzigen
           Score der kognitiven Belastung von 0 bis 100. <strong class="text-brand-white">Je höher der Score, desto größer die Belastung.</strong> So vergleichen Sie leicht
@@ -490,7 +470,7 @@ const clientLogos = [
       <div>
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ LABOR UND TECHNOLOGIE ]</p>
         <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Technologie allein reicht nicht.<br/>Entscheidend ist die Methodik<span style="color:#2D62FC">.</span></h2>
-        <p class="text-sm text-brand-black/60 leading-relaxed mb-8 text-justify">
+        <p class="text-sm text-brand-black/60 leading-relaxed mb-8">
           Wir messen im Labor für kognitive Studien der FIM UHK sowie direkt im Feld. Moderne Geräte allein
           garantieren aber kein verlässliches Ergebnis. Deshalb beginnt jede Untersuchung mit einer klaren
           Fragestellung, wir prüfen das Szenario vorab und kontrollieren während der Messung die Datenqualität.
@@ -503,7 +483,7 @@ const clientLogos = [
           ))}
         </div>
         <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mt-8">AKADEMISCHER HINTERGRUND</p>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 text-justify">
+        <p class="text-sm text-brand-black/60 leading-relaxed mt-4">
           Mitglieder des Teams veröffentlichen ihre Ergebnisse in den Fachzeitschriften Scientific Reports
           (Nature Portfolio) und Journal of Environmental Psychology sowie auf der Konferenz ACM ETRA. Dieselbe
           Sorgfalt bringen wir in Kundenprojekte ein — von der Messplanung bis zur verständlichen Interpretation
@@ -523,7 +503,7 @@ const clientLogos = [
         </div>
         <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
           <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">IN ZUSAMMENARBEIT MIT:</p>
-          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto" />
+          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto" />
         </div>
       </div>
     </div>

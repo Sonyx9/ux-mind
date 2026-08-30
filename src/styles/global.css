@@ -89,10 +89,6 @@
     font-size: var(--hero-mono-size);
   }
 
-  .hero-stats-box .space-y-2 > div > p:last-child {
-    font-size: var(--hero-micro-size);
-  }
-
   /* Texty v hero s Tailwind text-xs se škálují s přepínačem TEXT */
   .hero-shell .text-xs {
     font-size: calc(0.75rem * var(--fs, 1));

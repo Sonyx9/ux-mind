@@ -1,12 +1,12 @@
 /**
- * Postbuild krok pro GitHub Pages:
- * 1. Doplní base prefix (/ux-mind) všem interním odkazům v HTML,
- *    které ho nemají (href="/kontakt" → href="/ux-mind/kontakt").
- *    Řeší i odkazy z markdown obsahu (blog), kam Astro base nedoplňuje.
- * 2. Vygeneruje sitemap.xml ze všech stránek v dist
- *    (přeskakuje redirect stránky s meta refresh).
- *
- * Spouští se přes `npm run build` (astro build && node scripts/postbuild.mjs).
+ * Postbuild krok (spouští se přes `npm run build`: astro build && node scripts/postbuild.mjs).
+ * Web běží na custom doméně uxmind.cz v kořeni, takže se NEdoplňuje žádný base prefix.
+ * Skript dělá dvě věci nad hotovým dist/:
+ * 1. Doplní koncové lomítko interním odkazům na stránky (href="/kontakt" → "/kontakt/"),
+ *    aby se neshodovaly s canonical URL a nešly přes 301. Soubory a odkazy s dotazem
+ *    nechává být, kotvu řeší zvlášť.
+ * 2. Vygeneruje sitemap.xml ze všech stránek (přeskakuje redirect stránky s meta refresh
+ *    a 404) včetně obrázkové sitemapy (image extension).
  */
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -15,7 +15,6 @@ import { fileURLToPath } from 'node:url';
 // fileURLToPath správně dekóduje cestu (mj. mezery → %20), takže build funguje
 // i v adresáři s mezerou v názvu ("UX Mind"), nejen na CI.
 const DIST = fileURLToPath(new URL('../dist', import.meta.url));
-const BASE = ''; // custom doména uxmind.cz servíruje web v kořeni (žádný base prefix)
 const SITE = 'https://uxmind.cz';
 
 /** Rekurzivně posbírá všechny .html soubory */
@@ -30,12 +29,11 @@ function htmlFiles(dir) {
 }
 
 const files = htmlFiles(DIST);
-let rewritten = 0;
 let slashed = 0;
 
-// 1) Base prefix interních odkazů
-// Prefixuje href/src začínající "/", pokud už nezačínají BASE nebo "//"
-const attrRe = /(href|src)="(\/(?!\/)[^"]*)"/g;
+// 1) Koncové lomítko interních odkazů na stránky
+// Bere jen href začínající "/" (ne "//" = protokol-relativní externí odkaz).
+const attrRe = /href="(\/(?!\/)[^"]*)"/g;
 
 /**
  * Koncové lomítko u interních odkazů na stránky.
@@ -57,14 +55,9 @@ function withTrailingSlash(path) {
 
 for (const file of files) {
   const before = readFileSync(file, 'utf8');
-  const after = before.replace(attrRe, (m, attr, path) => {
-    let p = path;
-    if (!(p === BASE || p.startsWith(`${BASE}/`))) {
-      rewritten++;
-      p = `${BASE}${p}`;
-    }
-    if (attr === 'href') p = withTrailingSlash(p);
-    return p === path ? m : `${attr}="${p}"`;
+  const after = before.replace(attrRe, (m, path) => {
+    const p = withTrailingSlash(path);
+    return p === path ? m : `href="${p}"`;
   });
   if (after !== before) writeFileSync(file, after);
 }
@@ -82,7 +75,7 @@ for (const file of files) {
   const rel = relative(DIST, file).replace(/\\/g, '/');
   if (rel === '404.html') continue;
   const path = rel === 'index.html' ? '' : rel.replace(/\/index\.html$/, '/').replace(/\.html$/, '/');
-  const loc = `${SITE}${BASE}/${path}`;
+  const loc = `${SITE}/${path}`;
 
   // Interní obrázky na stránce: <img src="/…"> (bez data: a externích), absolutní a bez duplicit
   const imgs = new Set();
@@ -107,4 +100,4 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="${SITEMA
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 
 const totalImgs = entries.reduce((n, e) => n + e.imgs.length, 0);
-console.log(`[postbuild] Prefixováno ${rewritten} odkazů, doplněno ${slashed} koncových lomítek, sitemap: ${entries.length} URL, ${totalImgs} obrázků.`);
+console.log(`[postbuild] Doplněno ${slashed} koncových lomítek, sitemap: ${entries.length} URL, ${totalImgs} obrázků.`);

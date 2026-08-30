@@ -68,40 +68,6 @@
     }
   })();
 
-  // Count-up animation for stats box
-  (function () {
-    const stats = [
-      { selector: '.stat-projects',     end: 50,  suffix: '+' },
-      { selector: '.stat-respondents',  end: 200, suffix: '+' },
-      { selector: '.stat-clicks',       end: 50,  suffix: '%' },
-    ];
-    const duration = 3330;
-    const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    function runCounter(el: HTMLElement, end: number, suffix: string) {
-      const start = performance.now();
-      function step(now: number) {
-        const progress = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(easeOut(progress) * end) + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        stats.forEach(({ selector, end, suffix }) => {
-          const el = document.querySelector<HTMLElement>(selector);
-          if (el) runCounter(el, end, suffix);
-        });
-        observer.disconnect();
-      });
-    }, { threshold: 0.3 });
-
-    const box = document.querySelector('.stat-projects')?.closest('div.space-y-2');
-    if (box) observer.observe(box);
-  })();
 
   // Cursor circle + trail — only in hero section, desktop only
   (function() {
