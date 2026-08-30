@@ -36,6 +36,7 @@ UXMind logo*.png
 *.md
 !src/**/*.md
 !README.md
+!docs/studie-sablony-shoptet-data.md
 
 # pomocné skripty
 stahni-loga.sh

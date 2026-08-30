@@ -167,9 +167,9 @@ export const segmenty: Segment[] = [
       },
       {
         typ: 'vlastni',
-        vysledek: '3 šablony · 2 typy úkolu',
-        nadpis: 'Úkol změnil, kam lidé zaměřili pozornost.',
-        text: 'Eye tracking ukázal, že se pozornost na stejné šabloně měnila podle zadaného úkolu. Subjektivní hodnocení vzhledu proto posuzujeme odděleně od chování při nákupu.',
+        vysledek: '60 z 61 našlo produkt',
+        nadpis: 'Více informací v kartě výběr neurychlilo.',
+        text: 'Při testování tří šablon Shoptetu se rozdíly ukázaly hlavně uvnitř produktových karet. Nejkomplexnější karta vyžadovala více fixací, celkový čas dokončení však nezkrátila.',
         metoda: 'Eye-tracking + VisAWI · N = 61',
         odkaz: '/pripadove-studie/sablony-e-shopu',
       },

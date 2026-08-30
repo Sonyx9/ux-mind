@@ -32,7 +32,7 @@
 - [Edukační microsite — čtení textu](https://uxmind.cz/pripadove-studie/backend-stories/): pozornost nese hierarchie, ne množství textu; dlouhý odstavec dočte ~třetina; AOI analýza, cca 120 respondentů.
 - [Produktové fotografie v e-commerce](https://uxmind.cz/pripadove-studie/produktove-fotografie-e-commerce/): lifestyle foto prodloužilo dobu rozhodnutí oproti packshotu; F(1,82) = 4,50; p = 0,037; N = 84.
 - [Směr pohledu na bannerech](https://uxmind.cz/pripadove-studie/reklamni-bannery-smer-pohledu/): směr pohledu postavy silně řídí pozornost; F(1,102) = 12,57; p < 0,001; ηp² = 0,11; N = 104.
-- [Šablony e-shopů](https://uxmind.cz/pripadove-studie/sablony-e-shopu/): rozložení pozornosti se mění s úlohou, estetika bez úlohového kontextu klame; eye tracking + VisAWI, N = 61.
+- [Šablony e-shopů](https://uxmind.cz/pripadove-studie/sablony-e-shopu/): tři reálné šablony Shoptetu (Classic, Step, Waltz) s jedním vyhledávacím úkolem; produkt do 60 s našlo 60 z 61 lidí, celková doba se mezi šablonami významně nelišila, rozdíly hlavně v cílové produktové kartě (nejkomplexnější Classic vyžadoval více fixací, ale úkol nezrychlil). Šablony měly různý sortiment, takže studie neizoluje čistý efekt šablony; eye tracking + VisAWI, N = 61.
 - [Billboardy ve sport marketingu](https://uxmind.cz/pripadove-studie/billboardy-sport-marketing/): černé minimalistické návrhy zvítězily; N = 79, 16 stimulů á 10 s.
 
 ## Klíčové stránky

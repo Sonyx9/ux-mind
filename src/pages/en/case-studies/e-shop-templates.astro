@@ -4,20 +4,20 @@ import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 import { features } from '../../../config';
 
-const fakta = [["METHOD", "Eye tracking + VisAWI"], ["SAMPLE", "61 respondents"], ["STIMULI", "3 templates · same product range"], ["SCENARIOS", "Free browsing · targeted task"]];
-const zjisteni = ["On the same template, the distribution of visual attention changed with the task given.", "Free browsing and targeted product search led participants to different parts of the page.", "Aesthetic rating and behaviour during a specific task describe different aspects of the experience. One metric therefore cannot automatically stand in for the other."];
+const fakta = [["METHOD", "Eye tracking + VisAWI"], ["SAMPLE", "61 respondents · aged 18–26"], ["TEMPLATES", "Shoptet Classic · Step · Waltz"], ["TASK", "Find and open a specific product · 60 s limit"]];
+const zjisteni = ["60 of the 61 participants found the target product within the time limit. Overall completion time did not differ significantly between the templates.", "The differences appeared inside the product cards. Classic, with the most information, required more fixations when working with the target product than Step and Waltz, and a longer dwell time than Waltz.", "Waltz received the highest aesthetics rating, followed by Step and then Classic. Each template worked with a different product range, however, so the result cannot be read as a universal ranking of templates."];
 const faq = [
-  { q: "How do you choose an e-shop template?", a: "First by the product range, content, technical requirements and the key customer journeys. It is worth validating the shortlist on realistic tasks, because a template preview alone does not show how people will navigate it." },
-  { q: "Why isn't an aesthetic rating of the template enough?", a: "Perceived aesthetics and behaviour during a task are different constructs. A template can look good, but a specific path within it can be difficult — or the other way around. That's why we combine a questionnaire with task-based and behavioural data." },
-  { q: "How many templates and tasks were tested?", a: "The study covered three templates with the same product range, two different task contexts and 61 respondents. One scenario supported free browsing, the other targeted work with the offering." },
-  { q: "Did the study find one best template?", a: "Not universally. The main finding was that the interpretation of a template depends on the task. The winning variant therefore needs to be defined by the specific journey and metrics the e-shop is meant to support." },
-  { q: "Does the distribution of attention prove higher conversion?", a: "No. Eye tracking shows where people directed their gaze, not automatically purchase or revenue. For a business conclusion, the result needs to be linked with task success, analytics or a follow-up experiment." },
-  { q: "Can a template be tested before the e-shop launches?", a: "Yes. You can test a working demo, a prototype or several candidate templates filled with realistic content. The closer the conditions are to real use, the better the result can be interpreted." },
+  { q: "Which Shoptet templates did the study compare?", a: "Three real Shoptet templates available at the time: Classic with home goods, Step with fashion and Waltz with confectionery." },
+  { q: "What task did participants perform?", a: "On each template they had to find and open a predetermined product. The time limit was 60 seconds, and every participant went through the same type of search task on all three templates." },
+  { q: "Which template was best?", a: "The study does not name a universal winner. Waltz received the highest visual rating and its simpler product cards required less visual work than the most complex Classic. But the templates had a different product range and content, which limits any direct ranking." },
+  { q: "Were people able to find the product?", a: "Yes. 60 of 61 participants succeeded within the time limit and overall completion time did not differ significantly between the templates. The differences showed mainly when working with the information inside the product card." },
+  { q: "Does the distribution of attention prove higher conversion?", a: "No. Eye tracking shows where people directed their gaze, not automatically a purchase or revenue. For a business conclusion the result needs to be linked with task success, analytics or a follow-up experiment." },
+  { q: "Do the results apply to today's Shoptet templates?", a: "They cannot be transferred automatically. The study worked with three specific templates of the time, one task type and participants aged 18–26. Current templates should be re-tested on the same content and across more customer journeys." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "The task changed where people focused their attention.",
+    headline: "More information in the card didn't speed up the choice.",
     about: 'Eye tracking, UX research',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'en',
@@ -35,8 +35,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="en"
-  title="Case study: how the task changed attention in an e-shop"
-  description="Eye tracking of three e-shop templates with 61 respondents: on the same template the distribution of attention changed with the task given."
+  title="Case study: eye tracking of Shoptet templates"
+  description="Eye tracking of the Shoptet Classic, Step and Waltz templates with 61 respondents: 60 people found the product; the differences showed in the amount of information in the product cards."
   schema={pageSchema}
 >
   <Navbar />
@@ -48,9 +48,9 @@ const pageSchema = [
 
       <!-- Study header -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-shop templates</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Shoptet · e-shop templates</span>
         <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
-          The task changed where people focused their attention<span style="color:#2D62FC">.</span>
+          More information in the card didn't speed up the choice<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
@@ -58,12 +58,12 @@ const pageSchema = [
       <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
         <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
-          <p class="text-brand-white/70 leading-relaxed">e-shop templates with the same product range</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">60/61</p>
+          <p class="text-brand-white/70 leading-relaxed">participants found the product within the 60-second limit</p>
         </div>
         <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">2</p>
-          <p class="text-brand-white/70 leading-relaxed">different task contexts</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
+          <p class="text-brand-white/70 leading-relaxed">real Shoptet templates</p>
         </div>
         <div class="relative p-7 md:p-9">
           <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">61</p>
@@ -89,13 +89,13 @@ const pageSchema = [
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— WHAT WE NEEDED TO FIND OUT</span></p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Does a template's appearance alone describe how well people will handle a specific task in it?</p>
-            <p class="text-brand-black/70 leading-relaxed">The study compared three e-shop templates filled with the same product range. The goal was to observe how a different context — free browsing versus targeted work with the offering — changes the way people visually scan the page.</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Does the way a product is presented affect finding it and rating the template?</p>
+            <p class="text-brand-black/70 leading-relaxed">The study compared the real Shoptet templates Classic, Step and Waltz. Each worked with a different product category and a differently complex product card — from a large amount of information in Classic to the simplest listing in Waltz.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— HOW THE MEASUREMENT WORKED</span></p>
-            <p class="text-brand-black/70 leading-relaxed">61 respondents took part in the study. Eye tracking recorded the distribution of visual attention across the different tasks, and the VisAWI questionnaire added a subjective rating of the perceived aesthetics of the templates.</p>
+            <p class="text-brand-black/70 leading-relaxed">61 respondents aged 18–26 took part. Each of them searched for a predetermined product on all three templates and had to open it within 60 seconds. A Tobii X2-60 recorded eye movements at 60 Hz, and the VisAWI questionnaire then measured the perceived aesthetics of the page.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -104,48 +104,37 @@ const pageSchema = [
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIPLE OF THE TESTED SCENARIOS ]</p>
-              <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Illustrative diagram: the same template, two tasks, two different distributions of attention">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILLUSTRATIVE DIAGRAM · NOT A REAL HEATMAP</text>
-  <g>
-    <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <rect x="12" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
-    <g fill="rgba(10,10,10,0.08)">
-      <rect x="12" y="92" width="84" height="52"/><rect x="108" y="92" width="84" height="52"/><rect x="204" y="92" width="84" height="52"/>
-      <rect x="12" y="156" width="84" height="52"/><rect x="108" y="156" width="84" height="52"/><rect x="204" y="156" width="84" height="52"/>
-    </g>
-    <circle cx="150" cy="65" r="38" fill="#2D62FC" opacity="0.25"/>
-    <circle cx="54" cy="118" r="30" fill="#2D62FC" opacity="0.18"/>
-    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">TASK: “BROWSE THE E-SHOP”</text>
-    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">attention on branding and the intro</text>
-  </g>
-  <g>
-    <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <rect x="352" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
-    <g fill="rgba(10,10,10,0.08)">
-      <rect x="352" y="92" width="84" height="52"/><rect x="448" y="92" width="84" height="52"/><rect x="544" y="92" width="84" height="52"/>
-      <rect x="352" y="156" width="84" height="52"/><rect x="448" y="156" width="84" height="52"/><rect x="544" y="156" width="84" height="52"/>
-    </g>
-    <circle cx="490" cy="118" r="34" fill="#2D62FC" opacity="0.25"/>
-    <circle cx="586" cy="182" r="30" fill="#2D62FC" opacity="0.22"/>
-    <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">TASK: “FIND AND BUY A PRODUCT”</text>
-    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">attention on products and price</text>
-  </g>
-  <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EYE-TRACKING + VisAWI · N = 61 · THREE TEMPLATES WITH THE SAME PRODUCT RANGE</text>
-</svg>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ WHAT DIFFERED IN THE PRODUCT CARD ]</p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/15 border border-brand-black/15">
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">CLASSIC · HOME GOODS</p>
+                  <p class="font-display text-lg font-bold mb-3">Most information</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">Code, rating, shipping, price with and without VAT, and a button right in the listing.</p>
+                </div>
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">STEP · FASHION</p>
+                  <p class="font-display text-lg font-bold mb-3">Medium complexity</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">Sizes, labels and other details supplemented the basic product description.</p>
+                </div>
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">WALTZ · CONFECTIONERY</p>
+                  <p class="font-display text-lg font-bold mb-3">Least information</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">By default only a photo, name and price.</p>
+                </div>
+              </div>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">The diagram explains the difference between the scenarios. The blue areas are illustrative only and do not show the participants' actual measured data.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">The templates also differed in appearance, layout and product range. The study therefore does not isolate the pure effect of the template itself.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— RECOMMENDATION FOR PRACTICE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Don't assess a template only during free browsing or from a static preview. Fill candidate solutions with realistic content and validate them on tasks that match real customer journeys.</p>
+            <p class="text-brand-black/70 leading-relaxed">The study does not isolate the effect of the template itself, so it does not follow that less information is always better. It does show, though, that a larger amount of data in the card did not speed up the choice on its own — so it is worth checking whether every field in the listing genuinely helps the customer recognize and compare the product, and moving less important details into the product detail. When comparing templates, test the same products and the same customer journeys; only then can a difference be attributed to the interface design.</p>
           </section>
 
           <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
             <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ THE TAKEAWAY ]</p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">A template doesn't work on its own. It works for a specific task<span style="color:#2D62FC">.</span></p>
-            <p class="text-brand-white/70 leading-relaxed mb-7">A user test shows whether the chosen solution supports searching, comparison and purchase the way your e-shop needs.</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">More information doesn't have to mean a faster choice<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">What matters is whether the card helps the customer quickly recognize the right product. That can only be verified on real content and specific tasks.</p>
             <a href="/en/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUSS AN E-SHOP TEST →</a>
           </section>
         </div>
@@ -176,7 +165,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Illustrative diagram of three different e-shop templates with the same product range">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Illustrative diagram of the three tested Shoptet templates Classic, Step and Waltz">
                   <g>
                     <rect x="4" y="20" width="96" height="130" fill="none" stroke="#0A0A0A" stroke-width="2"/>
                     <rect x="12" y="28" width="80" height="16" fill="rgba(10,10,10,0.25)"/>
@@ -204,11 +193,11 @@ const pageSchema = [
                     <rect x="286" y="77" width="22" height="25" fill="rgba(10,10,10,0.08)"/>
                     <circle cx="268" cy="90" r="16" fill="#2D62FC" opacity="0.3"/>
                   </g>
-                  <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">3 TEMPLATES · SAME PRODUCT RANGE</text>
-                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">illustrative preview of the variants</text>
+                  <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">CLASSIC · STEP · WALTZ</text>
+                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">three different product categories</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Illustrative diagram of three templates with the same product range</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Illustrative diagram of the Shoptet templates Classic, Step and Waltz</figcaption>
             </figure>
             <a href="/en/contact" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               NO-OBLIGATION ENQUIRY →
@@ -228,6 +217,8 @@ const pageSchema = [
             <div><dt class="font-display font-bold mb-1">Task scenario</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A specific brief that determines what the participant is meant to achieve on the page.</dd></div>
             <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A brief stop of the eye in a certain area. It describes visual attention, not automatically comprehension or purchase.</dd></div>
             <div><dt class="font-display font-bold mb-1">VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A standardized questionnaire focused on the subjectively perceived aesthetics of a web interface.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Product AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A predefined area of the target product card, for which gaze metrics are evaluated separately.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Statistically significant difference</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A difference that, according to the chosen test, probably did not arise by chance alone. On its own it does not yet say whether the impact is important for business.</dd></div>
           </dl>
         </details>
       </section>
@@ -282,7 +273,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Want to go through the study in more detail<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">The studies are abridged and anonymized.</p>
-          <form class="study-request space-y-4" data-pdf="" data-study="The task changed where people focused their attention.">
+          <form class="study-request space-y-4" data-pdf="" data-study="More information in the card didn't speed up the choice.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Your name"

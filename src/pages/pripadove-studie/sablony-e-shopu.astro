@@ -4,20 +4,20 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { features } from '../../config';
 
-const fakta = [["METODA", "Eye tracking + VisAWI"], ["VZOREK", "61 respondentů"], ["STIMULY", "3 šablony · shodný sortiment"], ["SCÉNÁŘE", "Volné prohlížení · cílený úkol"]];
-const zjisteni = ["Na stejné šabloně se rozložení vizuální pozornosti měnilo podle zadaného úkolu.", "Volné prohlížení a cílené hledání produktu vedly účastníky k jiným částem stránky.", "Estetické hodnocení a chování při konkrétním úkolu popisují rozdílné stránky zkušenosti. Jedna metrika proto nemůže automaticky zastoupit druhou."];
+const fakta = [["METODA", "Eye tracking + VisAWI"], ["VZOREK", "61 respondentů · 18–26 let"], ["ŠABLONY", "Shoptet Classic · Step · Waltz"], ["ÚKOL", "Najít a otevřít konkrétní produkt · limit 60 s"]];
+const zjisteni = ["Cílový produkt našlo v časovém limitu 60 z 61 účastníků. Celková doba dokončení se mezi šablonami významně nelišila.", "Rozdíly se objevily uvnitř produktových karet. Classic s největším množstvím informací vyžadoval při ověřování cílového produktu více fixací než Step a Waltz a delší dobu setrvání než Waltz.", "Waltz získal nejvyšší hodnocení estetiky, následoval Step a poté Classic. Každá šablona ale pracovala s jiným sortimentem, takže výsledek nelze číst jako univerzální pořadí šablon."];
 const faq = [
-  { q: "Jak vybrat šablonu e-shopu?", a: "Nejprve podle sortimentu, obsahu, technických požadavků a klíčových zákaznických cest. Užší výběr je vhodné ověřit na realistických úkolech, protože náhled šablony sám neukáže, jak se v ní lidé budou orientovat." },
-  { q: "Proč nestačí estetické hodnocení šablony?", a: "Vnímaná estetika a chování při úkolu jsou rozdílné konstrukty. Šablona může působit dobře, ale konkrétní cesta v ní může být obtížná — nebo naopak. Proto kombinujeme dotazník s úkolovými a behaviorálními daty." },
-  { q: "Kolik šablon a úkolů se testovalo?", a: "Studie zahrnovala tři šablony se shodným sortimentem, dva odlišné kontexty úkolu a 61 respondentů. Jeden scénář podporoval volné prohlížení, druhý cílenou práci s nabídkou." },
-  { q: "Našla studie jednu nejlepší šablonu?", a: "Ne univerzálně. Hlavním zjištěním bylo, že interpretace šablony závisí na úkolu. Vítěznou variantu je proto potřeba definovat podle konkrétní cesty a metrik, které má e-shop podporovat." },
+  { q: "Které šablony Shoptetu studie porovnávala?", a: "Testovaly se tři tehdy dostupné reálné šablony Shoptetu: Classic s domácími potřebami, Step s módou a Waltz s cukrářskými výrobky." },
+  { q: "Jaký úkol účastníci plnili?", a: "Na každé šabloně měli najít a otevřít předem určený produkt. Časový limit byl 60 sekund a stejným typem vyhledávacího úkolu prošel každý účastník na všech třech šablonách." },
+  { q: "Která šablona byla nejlepší?", a: "Univerzálního vítěze studie neurčuje. Waltz získal nejvyšší hodnocení vzhledu a jeho jednodušší produktové karty vyžadovaly méně vizuální práce než nejkomplexnější Classic. Šablony ale měly rozdílný sortiment i obsah, což přímé pořadí omezuje." },
+  { q: "Zvládli lidé hledaný produkt najít?", a: "Ano. V časovém limitu uspělo 60 z 61 účastníků a celková doba dokončení se mezi šablonami významně nelišila. Rozdíly se ukázaly především při práci s informacemi uvnitř produktové karty." },
   { q: "Dokazuje rozložení pozornosti vyšší konverzi?", a: "Ne. Eye tracking ukazuje, kam lidé zaměřili pohled, nikoli automaticky nákup nebo tržbu. Pro obchodní závěr je potřeba výsledek propojit s úspěšností úkolu, analytikou nebo navazujícím experimentem." },
-  { q: "Lze otestovat šablonu ještě před spuštěním e-shopu?", a: "Ano. Testovat lze funkční demo, prototyp nebo několik kandidátních šablon naplněných realistickým obsahem. Čím více se podmínky blíží skutečnému použití, tím lépe lze výsledek interpretovat." },
+  { q: "Platí výsledky i pro dnešní šablony Shoptetu?", a: "Nelze je automaticky přenést. Studie pracovala se třemi konkrétními tehdejšími šablonami, jedním typem úkolu a účastníky ve věku 18–26 let. Současné šablony je vhodné ověřit znovu na stejném obsahu a více zákaznických cestách." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "Úkol změnil, kam lidé zaměřili pozornost.",
+    headline: "Více informací v kartě výběr neurychlilo.",
     about: 'Eye tracking, UX výzkum',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'cs',
@@ -34,8 +34,8 @@ const pageSchema = [
 ---
 
 <BaseLayout
-  title="Case study: Jak úkol změnil pozornost v e-shopu"
-  description="Eye tracking tří e-shopových šablon se 61 respondenty: rozložení pozornosti na stejné šabloně se měnilo podle zadaného úkolu."
+  title="Case study: Eye tracking šablon Shoptetu"
+  description="Eye tracking šablon Shoptet Classic, Step a Waltz se 61 respondenty: 60 lidí produkt našlo, rozdíly se ukázaly v množství informací v produktových kartách."
   schema={pageSchema}
 >
   <Navbar />
@@ -47,9 +47,9 @@ const pageSchema = [
 
       <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-shop šablony</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Shoptet · e-shopové šablony</span>
         <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
-          Úkol změnil, kam lidé zaměřili pozornost<span style="color:#2D62FC">.</span>
+          Více informací v kartě výběr neurychlilo<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
@@ -57,12 +57,12 @@ const pageSchema = [
       <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
         <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
-          <p class="text-brand-white/70 leading-relaxed">e-shopové šablony se stejným sortimentem</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">60/61</p>
+          <p class="text-brand-white/70 leading-relaxed">účastníků našlo produkt v limitu 60 sekund</p>
         </div>
         <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">2</p>
-          <p class="text-brand-white/70 leading-relaxed">odlišné kontexty úkolu</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
+          <p class="text-brand-white/70 leading-relaxed">reálné šablony Shoptetu</p>
         </div>
         <div class="relative p-7 md:p-9">
           <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">61</p>
@@ -88,13 +88,13 @@ const pageSchema = [
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CO BYLO POTŘEBA ZJISTIT</span></p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Popíše samotný vzhled šablony, jak v ní lidé zvládnou konkrétní úkol?</p>
-            <p class="text-brand-black/70 leading-relaxed">Studie porovnávala tři e-shopové šablony naplněné shodným sortimentem. Cílem bylo sledovat, jak rozdílný kontext — volné prohlížení a cílená práce s nabídkou — změní způsob, kterým lidé stránku vizuálně procházejí.</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Ovlivní způsob prezentace produktu hledání a hodnocení šablony?</p>
+            <p class="text-brand-black/70 leading-relaxed">Studie porovnávala reálné šablony Shoptetu Classic, Step a Waltz. Každá pracovala s jinou kategorií zboží a jinak komplexní produktovou kartou — od velkého množství informací u Classic po nejjednodušší výpis u Waltz.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— JAK PROBĚHLO MĚŘENÍ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Studie se zúčastnilo 61 respondentů. Eye tracking zaznamenal rozložení vizuální pozornosti při odlišných úkolech a dotazník VisAWI doplnil subjektivní hodnocení vnímané estetiky šablon.</p>
+            <p class="text-brand-black/70 leading-relaxed">Studie se zúčastnilo 61 respondentů ve věku 18–26 let. Každý na všech třech šablonách hledal předem určený produkt a měl jej otevřít do 60 sekund. Tobii X2-60 zaznamenával pohyb očí frekvencí 60 Hz a dotazník VisAWI následně měřil vnímanou estetiku stránky.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -103,48 +103,37 @@ const pageSchema = [
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIP TESTOVANÝCH SCÉNÁŘŮ ]</p>
-              <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Ilustrační schéma: stejná šablona, dva úkoly, dvě různá rozložení pozornosti">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILUSTRAČNÍ SCHÉMA · NEJDE O SKUTEČNOU HEATMAPU</text>
-  <g>
-    <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <rect x="12" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
-    <g fill="rgba(10,10,10,0.08)">
-      <rect x="12" y="92" width="84" height="52"/><rect x="108" y="92" width="84" height="52"/><rect x="204" y="92" width="84" height="52"/>
-      <rect x="12" y="156" width="84" height="52"/><rect x="108" y="156" width="84" height="52"/><rect x="204" y="156" width="84" height="52"/>
-    </g>
-    <circle cx="150" cy="65" r="38" fill="#2D62FC" opacity="0.25"/>
-    <circle cx="54" cy="118" r="30" fill="#2D62FC" opacity="0.18"/>
-    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">ÚKOL: „PROHLÉDNĚTE SI E-SHOP“</text>
-    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">pozornost na brandingu a úvodu</text>
-  </g>
-  <g>
-    <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <rect x="352" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
-    <g fill="rgba(10,10,10,0.08)">
-      <rect x="352" y="92" width="84" height="52"/><rect x="448" y="92" width="84" height="52"/><rect x="544" y="92" width="84" height="52"/>
-      <rect x="352" y="156" width="84" height="52"/><rect x="448" y="156" width="84" height="52"/><rect x="544" y="156" width="84" height="52"/>
-    </g>
-    <circle cx="490" cy="118" r="34" fill="#2D62FC" opacity="0.25"/>
-    <circle cx="586" cy="182" r="30" fill="#2D62FC" opacity="0.22"/>
-    <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">ÚKOL: „NAJDĚTE A KUPTE PRODUKT“</text>
-    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">pozornost na produktech a ceně</text>
-  </g>
-  <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EYE-TRACKING + VisAWI · N = 61 · TŘI ŠABLONY SE STEJNÝM SORTIMENTEM</text>
-</svg>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ CO SE LIŠILO V PRODUKTOVÉ KARTĚ ]</p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/15 border border-brand-black/15">
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">CLASSIC · DOMÁCÍ POTŘEBY</p>
+                  <p class="font-display text-lg font-bold mb-3">Nejvíce informací</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">Kód, hodnocení, doprava, cena s DPH i bez DPH a tlačítko přímo ve výpisu.</p>
+                </div>
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">STEP · MÓDA</p>
+                  <p class="font-display text-lg font-bold mb-3">Střední komplexita</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">Velikosti, štítky a další údaje doplňovaly základní popis produktu.</p>
+                </div>
+                <div class="bg-brand-white p-5">
+                  <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">WALTZ · CUKRÁŘSKÉ VÝROBKY</p>
+                  <p class="font-display text-lg font-bold mb-3">Nejméně informací</p>
+                  <p class="text-sm text-brand-black/70 leading-relaxed">Ve výchozím stavu pouze fotografie, název a cena.</p>
+                </div>
+              </div>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma vysvětluje rozdíl mezi scénáři. Modré plochy jsou pouze ilustrativní a nezobrazují skutečná naměřená data účastníků.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Šablony se lišily také vzhledem, rozložením a sortimentem. Studie proto neizoluje čistý efekt samotné šablony.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— DOPORUČENÍ PRO PRAXI</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Šablonu neposuzovat pouze při volném prohlížení nebo podle statického náhledu. Kandidátní řešení naplnit realistickým obsahem a ověřit na úkolech, které odpovídají skutečným zákaznickým cestám.</p>
+            <p class="text-brand-black/70 leading-relaxed">Studie neizoluje efekt samotné šablony, takže z ní neplyne, že méně informací je vždy lepší. Ukazuje ale, že větší množství údajů v kartě samo o sobě výběr nezrychlilo — vyplatí se proto ověřit, zda každý údaj ve výpisu zákazníkovi skutečně pomáhá produkt rozpoznat a porovnat, a méně důležité případně přesunout do detailu. Při srovnávání šablon testovat stejné produkty i stejné zákaznické cesty; teprve pak lze rozdíl připsat návrhu rozhraní.</p>
           </section>
 
           <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
             <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO SI Z TOHO ODNÉST ]</p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Šablona nefunguje sama o sobě. Funguje pro konkrétní úkol<span style="color:#2D62FC">.</span></p>
-            <p class="text-brand-white/70 leading-relaxed mb-7">Uživatelský test ukáže, zda vybrané řešení podporuje hledání, porovnání a nákup tak, jak váš e-shop potřebuje.</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Více informací nemusí znamenat rychlejší výběr<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Rozhoduje, zda karta pomůže zákazníkovi rychle rozpoznat správný produkt. To lze ověřit jen na reálném obsahu a konkrétních úkolech.</p>
             <a href="/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">PROBRAT TEST E-SHOPU →</a>
           </section>
         </div>
@@ -175,7 +164,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Ilustrační schéma tří různých šablon e-shopu se stejným sortimentem">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Ilustrační schéma tří testovaných šablon Shoptetu Classic, Step a Waltz">
                   <g>
                     <rect x="4" y="20" width="96" height="130" fill="none" stroke="#0A0A0A" stroke-width="2"/>
                     <rect x="12" y="28" width="80" height="16" fill="rgba(10,10,10,0.25)"/>
@@ -203,11 +192,11 @@ const pageSchema = [
                     <rect x="286" y="77" width="22" height="25" fill="rgba(10,10,10,0.08)"/>
                     <circle cx="268" cy="90" r="16" fill="#2D62FC" opacity="0.3"/>
                   </g>
-                  <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">3 ŠABLONY · STEJNÝ SORTIMENT</text>
-                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">ilustrační náhled variant</text>
+                  <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">CLASSIC · STEP · WALTZ</text>
+                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">tři různé kategorie zboží</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Ilustrační schéma tří šablon se shodným sortimentem</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Ilustrační schéma šablon Shoptetu Classic, Step a Waltz</figcaption>
             </figure>
             <a href="/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               NEZÁVAZNÁ POPTÁVKA →
@@ -227,6 +216,8 @@ const pageSchema = [
             <div><dt class="font-display font-bold mb-1">Úkolový scénář</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Konkrétní zadání, které určuje, čeho má účastník na stránce dosáhnout.</dd></div>
             <div><dt class="font-display font-bold mb-1">Fixace</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Krátké zastavení oka v určité oblasti. Popisuje vizuální pozornost, nikoli automaticky porozumění nebo nákup.</dd></div>
             <div><dt class="font-display font-bold mb-1">VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardizovaný dotazník zaměřený na subjektivně vnímanou estetiku webového rozhraní.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI produktu</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Předem vyznačená oblast cílové produktové karty, pro kterou se samostatně vyhodnocují metriky pohledu.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Statisticky významný rozdíl</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Rozdíl, který podle zvoleného testu pravděpodobně nevznikl jen náhodou. Sám o sobě ještě neříká, zda je dopad obchodně důležitý.</dd></div>
           </dl>
         </details>
       </section>
@@ -281,7 +272,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Chcete projít studii podrobněji<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Studie jsou zkráceny a anonymizovány.</p>
-          <form class="study-request space-y-4" data-pdf="" data-study="Úkol změnil, kam lidé zaměřili pozornost.">
+          <form class="study-request space-y-4" data-pdf="" data-study="Více informací v kartě výběr neurychlilo.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">JMÉNO *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Vaše jméno"
