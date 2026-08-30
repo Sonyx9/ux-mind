@@ -36,7 +36,9 @@ import { submitForm } from './forms';
         company: company || '',
         study: form.dataset.study || '',
         pdf,
-        consent: 'ano',
+        // Souhlas je udělen odesláním formuláře (viz text u tlačítka), ne zaškrtnutím
+        // políčka — do Sheetu proto zapisujeme skutečný právní základ, ne fiktivní „ano".
+        consent: 'odesláním formuláře',
         source: location.pathname,
       });
 
