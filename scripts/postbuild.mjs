@@ -69,18 +69,42 @@ for (const file of files) {
   if (after !== before) writeFileSync(file, after);
 }
 
-// 2) sitemap.xml (bez redirect stránek a 404)
-const urls = [];
+// 2) sitemap.xml (bez redirect stránek a 404) + obrázková sitemapa (image extension)
+const SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+const IMAGE_NS = 'http://www.google.com/schemas/sitemap-image/1.1';
+const xmlEscape = (s) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+const entries = [];
 for (const file of files) {
   const html = readFileSync(file, 'utf8');
   if (html.includes('http-equiv="refresh"')) continue; // redirect stránky
   const rel = relative(DIST, file).replace(/\\/g, '/');
   if (rel === '404.html') continue;
   const path = rel === 'index.html' ? '' : rel.replace(/\/index\.html$/, '/').replace(/\.html$/, '/');
-  urls.push(`${SITE}${BASE}/${path}`);
+  const loc = `${SITE}${BASE}/${path}`;
+
+  // Interní obrázky na stránce: <img src="/…"> (bez data: a externích), absolutní a bez duplicit
+  const imgs = new Set();
+  for (const m of html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/gi)) {
+    const src = m[1];
+    if (src.startsWith('/') && !src.startsWith('//')) imgs.add(`${SITE}${src}`);
+  }
+  entries.push({ loc, imgs: [...imgs].sort() });
 }
-urls.sort();
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`;
+entries.sort((a, b) => a.loc.localeCompare(b.loc));
+
+const body = entries
+  .map(({ loc, imgs }) => {
+    if (!imgs.length) return `  <url><loc>${xmlEscape(loc)}</loc></url>`;
+    const images = imgs
+      .map((u) => `\n    <image:image><image:loc>${xmlEscape(u)}</image:loc></image:image>`)
+      .join('');
+    return `  <url>\n    <loc>${xmlEscape(loc)}</loc>${images}\n  </url>`;
+  })
+  .join('\n');
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="${SITEMAP_NS}" xmlns:image="${IMAGE_NS}">\n${body}\n</urlset>\n`;
 writeFileSync(join(DIST, 'sitemap.xml'), sitemap);
 
-console.log(`[postbuild] Prefixováno ${rewritten} odkazů, doplněno ${slashed} koncových lomítek, sitemap: ${urls.length} URL.`);
+const totalImgs = entries.reduce((n, e) => n + e.imgs.length, 0);
+console.log(`[postbuild] Prefixováno ${rewritten} odkazů, doplněno ${slashed} koncových lomítek, sitemap: ${entries.length} URL, ${totalImgs} obrázků.`);
