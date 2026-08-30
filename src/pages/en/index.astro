@@ -37,7 +37,7 @@ const clientLogos = [
 ];
 ---
 
-<BaseLayout lang="en" title="UX Research, Eye Tracking & User Testing | UXMIND" description="User testing, eye tracking and cognitive load measurement (EMLI model). Objective UX research backed by the FIM UHK science lab. Test your website on data." preloadImage={{ href: gifSrc, media: "(min-width: 768px)" }}>
+<BaseLayout lang="en" title="UX Research, Eye Tracking & User Testing | UXMIND" description="User testing, eye tracking and cognitive load measurement (EMLI model). Objective UX research backed by the FIM UHK science lab. Test your website on data." preloadImages={[{ href: gifSrc, media: "(min-width: 768px)" }, { href: `${import.meta.env.BASE_URL.replace(/\/$/, "")}/hero-mobile.webp`, media: "(max-width: 767px)" }]}>
   <Navbar />
 
   <!-- HERO SECTION -->

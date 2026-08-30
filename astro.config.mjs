@@ -7,6 +7,9 @@ export default defineConfig({
   // Web běží na custom doméně uxmind.cz, kterou GitHub Pages servíruje v kořeni,
   // proto ŽÁDNÝ base prefix (assety i odkazy jsou v /). CNAME je v public/CNAME.
   site: 'https://uxmind.cz',
+  // CSS bundle inlineovat do <head> — ušetří render-blocking request (klíčové pro
+  // LCP/FCP na mobilu; jinak se web nevykreslí, dokud se nestáhne externí .css).
+  build: { inlineStylesheets: 'always' },
   redirects: {
     // Staré URL služeb — přesunuto pod /sluzby/ kvůli konzistentnímu stromu
     '/eye-tracking': '/sluzby/eye-tracking',

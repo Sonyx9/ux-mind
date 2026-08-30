@@ -16,7 +16,7 @@ export interface Props {
   /** true = <meta name="robots" content="noindex, follow"> (např. 404) */
   noindex?: boolean;
   /** Cesta k LCP obrázku k přednačtení (volitelně omezená media dotazem) */
-  preloadImage?: { href: string; media?: string };
+  preloadImages?: { href: string; media?: string }[];
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -30,7 +30,7 @@ const {
   schema,
   hreflang = true,
   noindex = false,
-  preloadImage,
+  preloadImages,
 } = Astro.props;
 
 const baseUrl = `${base}/`;
@@ -243,15 +243,15 @@ const jsonLd = {
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />
-    {preloadImage && (
+    {preloadImages?.map((img) => (
       <link
         rel="preload"
         as="image"
-        href={preloadImage.href}
-        media={preloadImage.media}
+        href={img.href}
+        media={img.media}
         fetchpriority="high"
       />
-    )}
+    ))}
 
     <!-- hreflang — jazykové verze stránky (vynecháno u jednojazyčných stránek, např. segmenty) -->
     {hreflang && alternates.map(a => (
