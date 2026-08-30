@@ -110,29 +110,8 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       </div>
     </div>
 
-    <!-- Hamburger row — tablety (md 1024 až <xl 1280); PC má plné menu -->
-    <div id="nav-hamburger" class="hidden md:flex xl:hidden items-center gap-3">
-      <button id="mobile-menu-btn" class="font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
-      <div class="lang-switch relative font-mono text-xs tracking-widest uppercase">
-        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
-          {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
-        </button>
-        <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
-          {langItems.map(item => item.current
-            ? <span class="block px-3 py-1.5 font-medium" aria-current="true">{item.label}</span>
-            : <a href={item.href} class="block px-3 py-1.5 opacity-60 hover:opacity-100 transition-opacity">{item.label}</a>
-          )}
-        </div>
-      </div>
-      <div class="fs-switch flex flex-col items-center" aria-label={t.fsTitle}>
-        <div class="flex items-end" style="gap:3px;">
-          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
-          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
-          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
-        </div>
-        <span class="font-mono tracking-widest text-brand-black/60 mt-0.5" style="font-size:8px;">TEXT</span>
-      </div>
-    </div>
+    <!-- Tablet (md–<xl): jen [ MENU ]. Jazyk je v rozbalovacím menu, přepínač písma je jen na PC. -->
+    <button id="mobile-menu-btn" class="hidden md:block xl:hidden font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
 
     <!-- Mobile-only menu button (< md) -->
     <button
@@ -222,38 +201,9 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;
   const isHomePage = document.querySelector('h1') !== null && logo?.style.opacity === '0';
 
-  const navFull = document.getElementById('nav-full') as HTMLElement | null;
-  const navHamburger = document.getElementById('nav-hamburger') as HTMLElement | null;
-  const mobileMenuSm = document.getElementById('mobile-menu-btn-sm');
-
-  function applyHomeMenuVisibility(_showLogo: boolean) {
-    if (!navFull || !navHamburger) return;
-    const w = window.innerWidth;
-    const menuBtn = document.getElementById('mobile-menu-btn');
-
-    // [ MENU ] nikdy necentrujeme — na PC je vždy plné menu, na tabletu hamburger vpravo
-    if (menuBtn) {
-      menuBtn.style.position = '';
-      menuBtn.style.left = '';
-      menuBtn.style.transform = '';
-    }
-    if (mobileMenuSm) mobileMenuSm.style.display = '';
-
-    if (w >= 1280) {
-      // PC: rozbalené menu pořád
-      navFull.style.display = 'flex';
-      navHamburger.style.display = 'none';
-    } else if (w >= 768) {
-      // tablet: sbalené [ MENU ]
-      navFull.style.display = 'none';
-      navHamburger.style.display = 'flex';
-    } else {
-      // mobil: jen tlačítko [ MENU ] (mobile-menu-btn-sm)
-      navFull.style.display = 'none';
-      navHamburger.style.display = 'none';
-    }
-  }
-
+  // Viditelnost skupin menu (PC / tablet / mobil) řídí výhradně CSS breakpointy
+  // (hidden xl:flex / md:block xl:hidden / md:hidden) — stejně jako na ostatních
+  // stránkách. JS zde jen na homepage vysouvá logo po odscrollování z hero.
   function updateNav() {
     if (!nav) return;
     const scrolled = window.scrollY > 30;
@@ -267,7 +217,6 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         const showLogo = h1.getBoundingClientRect().bottom < 0;
         logo.style.opacity = showLogo ? '1' : '0';
         logo.style.pointerEvents = showLogo ? 'auto' : 'none';
-        applyHomeMenuVisibility(showLogo);
       }
     }
   }
