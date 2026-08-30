@@ -3,9 +3,6 @@ import '../styles/global.css';
 import { getLang, getPathInLang, getBreadcrumbTrail, languages } from '../i18n/utils';
 import CookieConsent from '../components/CookieConsent.astro';
 
-// Google Analytics 4 — doplněním measurement ID (G-XXXXXXXXXX) se aktivuje; měření řídí Consent Mode v2.
-const GA_ID = '';
-
 export interface Props {
   title: string;
   description?: string;
@@ -230,8 +227,6 @@ const jsonLd = {
       } catch (e) {}
       gtag('js', new Date());
     </script>
-    {GA_ID && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>}
-    {GA_ID && <script is:inline set:html={`gtag('config', '${GA_ID}');`} />}
     <!-- Google Tag Manager (načítá se po nastavení Consent Mode v2 defaultů výše) -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
