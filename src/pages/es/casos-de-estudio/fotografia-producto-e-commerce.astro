@@ -3,20 +3,19 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["MÉTODO", "Experimento de eye tracking"], ["MUESTRA", "104 participantes"], ["VARIABLE", "Dirección de la mirada del personaje"], ["ESTADÍSTICA", "F(1,102) = 12,57 · p < 0,001 · ηp² = 0,11"]];
-const zjisteni = ["El cambio en la dirección de la mirada del personaje influyó de forma estadísticamente significativa en la distribución de la atención visual: F(1,102) = 12,57; p < 0,001.", "El tamaño del efecto ηp² = 0,11 corresponde, según los límites orientativos habituales, a un efecto de tamaño medio.", "La composición del personaje funcionó, por tanto, como una guía visual en las creatividades probadas. Sin embargo, el estudio no midió clics, memorización del mensaje ni conversión."];
+const fakta = [["MÉTODO", "Experimento · eye tracking + UEQ"], ["MUESTRA", "84 participantes"], ["VARIANTES", "Packshot vs. fotografía lifestyle"], ["ESTADÍSTICA", "F(1,82) = 4,50 · p = 0,037"]];
+const zjisteni = ["El tipo de fotografía influyó de forma estadísticamente significativa en el tiempo de finalización de la tarea: F(1,82) = 4,50; p = 0,037.", "Con la variante del producto «sobre una persona», completar la tarea probada llevó más tiempo que con el packshot limpio.", "El estudio no aportó pruebas claras de que las variantes también difirieran en la valoración subjetiva de la experiencia de usuario."];
 const faq = [
-  { q: "¿La dirección de la mirada del personaje influyó en la atención?", a: "Sí, en las creatividades probadas y con una muestra de 104 participantes, la distribución de la atención entre las variantes difirió de forma estadísticamente significativa: p < 0,001; ηp² = 0,11." },
-  { q: "¿Significa esto que siempre debemos orientar al personaje hacia el CTA?", a: "No de forma automática. El resultado respalda la dirección de la mirada como una variable relevante de la composición. La variante adecuada depende de la fotografía concreta, el mensaje, el formato y el objetivo de la creatividad, por lo que recomendamos comparar diseños reales." },
-  { q: "¿El estudio demostró más clics o conversiones?", a: "No. El estudio midió la distribución de la atención visual, no los clics, la memorización, la compra ni otra métrica de negocio. El desplazamiento de la atención es un paso intermedio importante, pero por sí solo no garantiza la acción." },
-  { q: "¿Qué significa ηp² = 0,11?", a: "La eta cuadrado parcial describe el tamaño del efecto en el modelo estadístico utilizado. El valor 0,11 se interpreta, según los límites orientativos habituales, como un efecto de tamaño medio; sin embargo, no significa automáticamente un aumento del 11 % en el rendimiento de la campaña." },
-  { q: "¿Qué significa p < 0,001?", a: "Si la dirección de la mirada en realidad no tuviera ningún efecto en el modelo utilizado y se cumplieran sus supuestos, un resultado igual o más pronunciado sería muy poco habitual. El valor p por sí solo no describe la magnitud ni el valor comercial del efecto." },
-  { q: "¿Tenemos que rehacer toda la creatividad para hacer la prueba?", a: "No necesariamente. A menudo basta con preparar variantes controladas de la fotografía, el recorte o la posición del personaje. El resto de los elementos deben permanecer lo más parecidos posible para poder interpretar la diferencia con sentido." },
+  { q: "¿Es mejor el packshot o la fotografía lifestyle?", a: "A partir de un solo estudio no se puede determinar un tipo de fotografía universalmente mejor. En la tarea probada, la variante lifestyle llevó a un tiempo más largo que el packshot. La elección debe relacionarse con el producto concreto, la página y el objetivo del usuario." },
+  { q: "¿Qué significa p = 0,037?", a: "Si en realidad no hubiera diferencia entre las variantes y se cumplieran los supuestos de la prueba utilizada, un resultado igual o más pronunciado aparecería en aproximadamente el 3,7 % de las repeticiones. El valor p por sí solo no indica cuán grande es el impacto práctico o comercial." },
+  { q: "¿Influyó el tipo de fotografía también en la valoración de la página?", a: "El estudio no aportó pruebas claras de una diferencia en la valoración subjetiva de la experiencia de usuario. Por eso, el tiempo más largo no puede explicarse automáticamente porque una variante gustara más o menos." },
+  { q: "¿Un tiempo más largo significa una conversión menor?", a: "No. El estudio midió el tiempo de finalización de una tarea concreta, no el impacto en la conversión real o en las ventas. Para esa conclusión sería necesario combinar la investigación con otros datos o con un experimento posterior." },
+  { q: "¿Para qué sirvió el eye tracking en el estudio?", a: "El eye tracking complementó el desarrollo de la tarea con datos de atención visual. Sin embargo, la principal diferencia descrita entre las variantes se refiere al tiempo de finalización de la tarea, por lo que no la atribuimos automáticamente a un patrón de mirada concreto sin un análisis adicional." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "La mirada del personaje dirigió la atención de los visitantes.",
+    headline: "Mismo producto. Decisiones de distinta duración.",
     about: 'Eye tracking, investigación UX',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'es',
@@ -34,8 +33,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="es"
-  title="Caso de estudio: cómo la dirección de la mirada influyó en la atención"
-  description="Experimento de eye tracking con 104 participantes: el cambio en la dirección de la mirada del personaje influyó en la distribución de la atención, F(1,102) = 12,57; p < 0,001; ηp² = 0,11."
+  title="Caso de estudio: packshot vs. fotografía lifestyle"
+  description="Experimento con 84 participantes: la fotografía lifestyle llevó, en la tarea de e-commerce probada, a un tiempo más largo que el packshot limpio, F(1,82) = 4,50; p = 0,037."
   schema={pageSchema}
 >
   <Navbar />
@@ -47,9 +46,9 @@ const pageSchema = [
 
       <!-- Cabecera del estudio -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Creatividad publicitaria</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-commerce</span>
         <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
-          La mirada del personaje dirigió la atención de los visitantes<span style="color:#2D62FC">.</span>
+          Mismo producto. Decisiones de distinta duración<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
@@ -57,16 +56,16 @@ const pageSchema = [
       <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
         <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-mono text-xs tracking-widest text-brand-white/60 mb-5">DIRECCIÓN DE LA MIRADA</p>
-          <p class="font-display text-2xl md:text-3xl font-bold leading-tight">Cambió la distribución de la atención</p>
+          <p class="font-mono text-xs tracking-widest text-brand-white/60 mb-5">VARIANTE LIFESTYLE</p>
+          <p class="font-display text-2xl md:text-3xl font-bold leading-tight">Tiempo de tarea más largo</p>
         </div>
         <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">104</p>
-          <p class="text-brand-white/70 leading-relaxed">participantes en el experimento</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">84</p>
+          <p class="text-brand-white/70 leading-relaxed">participantes compararon dos variantes</p>
         </div>
         <div class="relative p-7 md:p-9">
-          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.2rem, 4.5vw, 4rem);">ηp² = 0,11</p>
-          <p class="text-brand-white/70 leading-relaxed">efecto medio · p &lt; 0,001</p>
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.2rem, 4.5vw, 4rem);">p = 0,037</p>
+          <p class="text-brand-white/70 leading-relaxed">diferencia estadísticamente significativa en el tiempo de la tarea</p>
         </div>
       </div>
 
@@ -88,13 +87,13 @@ const pageSchema = [
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— QUÉ HABÍA QUE DESCUBRIR</span></p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">¿Cambia la dirección de la mirada del personaje la distribución de la atención en la creatividad?</p>
-            <p class="text-brand-black/70 leading-relaxed">Un rostro humano en la publicidad atrae la atención. El experimento comprobó si un cambio en la dirección de la mirada del personaje también influye en cómo los participantes distribuyen la atención entre el rostro y el resto de la creatividad probada.</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">¿Influye la forma de presentar el producto en el desarrollo de la tarea de compra?</p>
+            <p class="text-brand-black/70 leading-relaxed">El estudio comparó un packshot limpio con una fotografía del producto «sobre una persona». El objetivo no era elegir la imagen más atractiva, sino comprobar si el tipo de fotografía cambia el tiempo necesario para completar la misma tarea.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— CÓMO SE REALIZÓ LA MEDICIÓN</span></p>
-            <p class="text-brand-black/70 leading-relaxed">En el experimento de eye tracking participaron 104 personas. Las variantes de la creatividad se diferenciaban en la dirección de la mirada del personaje, y el análisis comparó la distribución de la atención visual entre las áreas marcadas de antemano.</p>
+            <p class="text-brand-black/70 leading-relaxed">En el experimento controlado participaron 84 personas. Completaron tareas de e-commerce sobre las variantes de presentación del producto; el desarrollo se complementó con datos de eye tracking y el cuestionario estandarizado UEQ para la valoración subjetiva de la experiencia de usuario.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -103,42 +102,31 @@ const pageSchema = [
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIPIO DE LAS VARIANTES PROBADAS ]</p>
-              <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Esquema ilustrativo: la dirección de la mirada del personaje dirige la atención del espectador">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ESQUEMA ILUSTRATIVO DE LAS VARIANTES · NO ES UN HEATMAP</text>
-  <g>
-    <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <circle cx="70" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="62" cy="105" r="3" fill="#0A0A0A"/><circle cx="80" cy="105" r="3" fill="#0A0A0A"/>
-    <rect x="200" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">MIRADA A LA CÁMARA</text>
-    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">variante de composición A</text>
-  </g>
-  <g>
-    <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
-    <circle cx="410" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="424" cy="108" r="3" fill="#0A0A0A"/><circle cx="432" cy="112" r="3" fill="#0A0A0A"/>
-    <line x1="440" y1="118" x2="530" y2="152" stroke="#2D62FC" stroke-width="2" stroke-dasharray="4 4"/>
-    <rect x="540" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">MIRADA AL PRODUCTO</text>
-    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">variante de composición B</text>
-  </g>
-  <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EFECTO DE LA GUÍA: F(1,102) = 12,57 · p &lt; 0,001 · ηp² = 0,11 (EFECTO MEDIO)</text>
-</svg>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ QUÉ DICE EL ESTUDIO — Y QUÉ NO ]</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+                <div class="bg-brand-white p-6">
+                  <p class="font-mono text-xs tracking-widest mb-4" style="color:#2D62FC">RESPALDADO POR LOS DATOS</p>
+                  <p class="text-brand-black/70 leading-relaxed">En la tarea probada, la fotografía lifestyle llevó a un tiempo más largo que el packshot limpio. La diferencia fue estadísticamente significativa.</p>
+                </div>
+                <div class="bg-brand-white p-6">
+                  <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">NO PUEDE CONCLUIRSE</p>
+                  <p class="text-brand-black/70 leading-relaxed">Que la fotografía lifestyle reduce la conversión en general, que siempre es peor, o que los usuarios la valoraron mejor o peor.</p>
+                </div>
+              </div>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">El esquema solo explica la variable manipulada. No muestra los estímulos reales ni el heatmap de los participantes; la estadística procede de una medición real.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">El resultado se refiere a las variantes concretas, la muestra y la tarea de e-commerce probada.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— RECOMENDACIÓN PARA LA PRÁCTICA</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Incluir la dirección de la mirada entre las variables al diseñar y probar la creatividad. Si el personaje debe reforzar la atención hacia un mensaje o producto concreto, preparar variantes controladas y verificarlas junto con las métricas de la campaña.</p>
+            <p class="text-brand-black/70 leading-relaxed">No elegir la fotografía de producto solo por impresión. Verificarla con la tarea concreta que la página debe respaldar, y valorar el tiempo o el proceso de decisión junto con el comportamiento, la atención y los datos de negocio.</p>
           </section>
 
           <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
             <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ QUÉ APRENDER DE ESTO ]</p>
-            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Incluso un pequeño cambio de composición puede alterar la distribución de la atención<span style="color:#2D62FC">.</span></p>
-            <p class="text-brand-white/70 leading-relaxed mb-7">El eye tracking ayuda a elegir la variante según lo que las personas realmente registran. El impacto en los clics o en la conversión debe verificarse con datos posteriores.</p>
-            <a href="/es/contacto" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">HABLAR DE UN TEST DE CREATIVIDAD →</a>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">El mismo producto puede cambiar la forma de decidir según cómo lo muestre<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Probar variantes ayuda a elegir la fotografía según la tarea del cliente, no según la preferencia del equipo.</p>
+            <a href="/es/contacto" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">HABLAR DE SU PROPIO ESTUDIO →</a>
           </section>
         </div>
 
@@ -167,13 +155,26 @@ const pageSchema = [
               </dl>
             </div>
             <figure>
-              <img
-                src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
-                alt="Visualización del puesto de pruebas del laboratorio — cabinas separadas con estaciones de trabajo"
-                width="1080" height="762" loading="lazy" decoding="async"
-                class="w-full h-52 object-cover border border-brand-black/10"
-              />
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Visualización de las cabinas de prueba donde se realiza la medición de creatividades sin distracciones</figcaption>
+              <div class="border border-brand-black/10 p-4 bg-brand-white">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Esquema de dos variantes de la página de producto: packshot y fotografía lifestyle">
+                  <rect x="4" y="4" width="150" height="170" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="24" y="24" width="110" height="90" fill="rgba(10,10,10,0.06)"/>
+                  <rect x="62" y="40" width="34" height="58" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="70" y="32" width="18" height="10" fill="#0A0A0A"/>
+                  <rect x="24" y="126" width="70" height="7" fill="rgba(10,10,10,0.35)"/>
+                  <rect x="24" y="140" width="46" height="7" fill="#2D62FC"/>
+                  <text x="4" y="196" font-family="monospace" font-size="11" fill="#0A0A0A">PACKSHOT</text>
+                  <rect x="166" y="4" width="150" height="170" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="186" y="24" width="110" height="90" fill="rgba(10,10,10,0.06)"/>
+                  <circle cx="222" cy="52" r="14" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <path d="M 200 114 Q 222 76 244 114" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="256" y="62" width="20" height="36" fill="none" stroke="#0A0A0A" stroke-width="2"/>
+                  <rect x="186" y="126" width="70" height="7" fill="rgba(10,10,10,0.35)"/>
+                  <rect x="186" y="140" width="46" height="7" fill="rgba(10,10,10,0.2)"/>
+                  <text x="166" y="196" font-family="monospace" font-size="11" fill="#0A0A0A">LIFESTYLE</text>
+                </svg>
+              </div>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Esquema de las variantes evaluadas: packshot limpio vs. producto «sobre una persona»</figcaption>
             </figure>
             <a href="/es/contacto" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               SOLICITUD SIN COMPROMISO →
@@ -189,10 +190,10 @@ const pageSchema = [
             <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
           </summary>
           <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
-            <div><dt class="font-display font-bold mb-1">N (muestra)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Número de personas incluidas en el análisis. En este estudio, N = 104.</dd></div>
-            <div><dt class="font-display font-bold mb-1">F(1,102)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Valor del estadístico de la prueba y sus grados de libertad en el test estadístico utilizado.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Valor p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ayuda a valorar hasta qué punto los datos son compatibles con la suposición de que la dirección de la mirada no tuvo ningún efecto en el modelo utilizado.</dd></div>
-            <div><dt class="font-display font-bold mb-1">ηp²</dt><dd class="text-sm text-brand-black/70 leading-relaxed">La eta cuadrado parcial expresa el tamaño del efecto en el modelo estadístico correspondiente. No es un porcentaje de aumento del rendimiento de la campaña.</dd></div>
+            <div><dt class="font-display font-bold mb-1">N (muestra)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Número de personas incluidas en el análisis. En este estudio, N = 84.</dd></div>
+            <div><dt class="font-display font-bold mb-1">F(1,82)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Valor del estadístico de la prueba y sus grados de libertad en el test estadístico utilizado.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Valor p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ayuda a valorar hasta qué punto los datos son compatibles con la suposición de que no hay diferencia entre las variantes. Por sí solo no describe el tamaño del impacto.</dd></div>
+            <div><dt class="font-display font-bold mb-1">UEQ</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Cuestionario estandarizado para la valoración subjetiva de la experiencia de usuario.</dd></div>
           </dl>
         </details>
       </section>
@@ -226,13 +227,13 @@ const pageSchema = [
 
       <!-- Navegación entre estudios -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Otros casos de estudio">
-        <a href="/es/casos-de-estudio/produktove-fotografie-e-commerce" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
+        <a href="/es/casos-de-estudio/backend-stories" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← ESTUDIO ANTERIOR</p>
-          <p class="font-display font-bold leading-snug">Mismo producto. Decisiones de distinta duración</p>
+          <p class="font-display font-bold leading-snug">Cuanto más largo el texto, menos atención</p>
         </a>
-        <a href="/es/casos-de-estudio/sablony-e-shopu" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
+        <a href="/es/casos-de-estudio/banners-direccion-mirada" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">ESTUDIO SIGUIENTE →</p>
-          <p class="font-display font-bold leading-snug">La tarea cambió hacia dónde dirigían la atención</p>
+          <p class="font-display font-bold leading-snug">La mirada del personaje dirigió la atención de los visitantes</p>
         </a>
       </nav>
 
@@ -247,7 +248,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">¿Quiere revisar el estudio en detalle<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Los estudios están resumidos y anonimizados.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="La mirada del personaje dirigió la atención de los visitantes.">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Mismo producto. Decisiones de distinta duración.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NOMBRE *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Su nombre"
