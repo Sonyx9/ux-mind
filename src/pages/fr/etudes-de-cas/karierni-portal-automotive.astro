@@ -42,56 +42,37 @@ const pageSchema = [
 
       <a href="/fr/etudes-de-cas" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← TOUTES LES ÉTUDES</a>
 
+      <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">ŠKODA AUTO · portail carrières</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          40 % des candidats n'ont pas trouvé le chemin vers les postes vacants<span style="color:#2D62FC">.</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">ŠKODA AUTO · portail carrière</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Un site clair ne suffit pas<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);" data-count="40" data-suffix=" %">40 %</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">des candidats n'ont pas trouvé le chemin vers les postes vacants — sur un site qui « avait l'air clair »</p>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);" data-count="40" data-suffix=" %">40 %</p>
+          <p class="text-brand-white/70 leading-relaxed">des candidats n'ont pas trouvé les postes vacants</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">102</p>
+          <p class="text-brand-white/70 leading-relaxed">répondants ont suivi la même tâche</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-mono text-xs tracking-widest text-brand-blue mb-5">IMPRESSION ≠ PERFORMANCE</p>
+          <p class="text-brand-white/70 leading-relaxed">Le site semblait clair même pour une partie des personnes qui n'ont pas accompli la tâche.</p>
+        </div>
       </div>
 
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAIRE — CE QUE SIGNIFIENT LES CHIFFRES DE CETTE ÉTUDE ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes réelles ayant participé à la mesure. N = 102 signifie 102 répondants.</dd></div>
-            <div><dt class="font-display font-bold mb-1">valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Probabilité que la différence mesurée soit due au pur hasard. Plus elle est faible, plus le résultat est probant — p = 0,037 signifie seulement 3,7 % de chances de hasard (est considéré comme probant tout ce qui est sous 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Taille d'effet (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Indique l'ampleur réelle de la différence — pas seulement si elle existe. À titre indicatif : 0,01 petit, 0,06 moyen, 0,14 grand effet.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l'œil sur un point (des fractions de seconde). La succession des fixations compose tout ce qu'une personne a réellement « vu » sur la page.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (zone d'intérêt)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Partie de la page délimitée à l'avance — bouton, titre, photo — pour laquelle on mesure la quantité d'attention reçue.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Questionnaires scientifiques standardisés : UEQ mesure l'expérience utilisateur globale, VisAWI l'esthétique perçue du site. Grâce à la standardisation, les résultats sont comparables entre études.</dd></div>
-          </dl>
-        </details>
-      </section>
-
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXTE</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Le portail carrières de ŠKODA AUTO faisait l'objet d'une refonte. L'équipe interne considérait le site comme clair et les données analytiques ne signalaient pas de problème majeur — seule la conversion en CV envoyés ne correspondait pas au trafic. Les métriques classiques ne savaient pas dire pourquoi.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— QUESTION BUSINESS</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Un site carrières a une seule mission clé — amener le candidat aux offres de postes vacants. La remplit-il ?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESURE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-tracking avec le scénario « trouvez les postes vacants en IT », complété par un questionnaire. L'échantillon était principalement composé d'une population étudiante avec une forte proportion d'étudiants en IT — nous mentionnons cette limite volontairement : elle correspond à la cible du recrutement junior ; pour des rôles seniors, il faudrait élargir la mesure.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -100,6 +81,17 @@ const pageSchema = [
                 </div>
               ))}
             </div>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CE QU'IL FALLAIT DÉCOUVRIR</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Le portail carrières parvient-il à mener les candidats jusqu'aux offres de postes vacants ?</p>
+            <p class="text-brand-black/70 leading-relaxed">Le portail carrières de ŠKODA AUTO faisait l'objet d'une refonte. Le site semblait clair, mais le trafic ne se traduisait pas par un nombre correspondant de CV envoyés. L'analytique classique montrait le résultat du parcours, pas la raison pour laquelle une partie des candidats ne l'achevait pas.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— COMMENT S'EST DÉROULÉE LA MESURE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Les 102 répondants ont tous suivi le même scénario : « Trouvez les postes vacants en IT. » L'eye tracking a capté l'interaction avec le contenu et le CTA, le questionnaire a complété l'évaluation subjective du site. L'échantillon était majoritairement composé d'une population étudiante avec une forte proportion d'étudiants en IT, c'est pourquoi nous rapportons les résultats surtout au recrutement junior.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -111,27 +103,30 @@ const pageSchema = [
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ LES DONNÉES EN IMAGE ]</p>
               <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Sur 102 répondants, 60 pour cent ont trouvé le chemin vers les postes et 40 pour cent ne l'ont pas trouvé"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">N = 102 · SCÉNARIO « TROUVEZ LES POSTES VACANTS »</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">A TROUVÉ LE CHEMIN</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="240" height="22" fill="#0A0A0A" class="viz-bar"/><text x="430" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">60 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">N'A PAS TROUVÉ</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="160" height="22" fill="#2D62FC" class="viz-bar"/><text x="350" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">40 %</text></svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Quatre candidats sur dix n'ont pas atteint les offres — chacun d'eux est une perte directe du tunnel de recrutement.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Quatre candidats sur dix ne sont pas parvenus aux postes vacants durant le scénario donné.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CE QUI A ÉTÉ DÉCIDÉ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Simplification du chemin vers les postes, refonte de la navigation et travail sur le CTA dans le contexte de la tâche du candidat.</p>
+            <p class="text-brand-black/70 leading-relaxed">Les résultats ont motivé la simplification du chemin vers les postes vacants, l'ajustement de la navigation et le travail sur le CTA selon la tâche concrète du candidat. L'équipe n'a ainsi pas reçu une simple liste d'impressions, mais des points précis sur lesquels concentrer la refonte.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CE QU'EMLI APPORTERAIT AUJOURD'HUI</p>
-            <p class="text-brand-black/70 leading-relaxed">Pour une mission similaire, nous mesurons aujourd'hui en plus l'indice de charge cognitive EMLI pour chaque étape du parcours — il montrerait si les 60 % d'utilisateurs qui ont réussi l'ont fait facilement, ou au bord de la frustration.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE QU'IL FAUT EN RETENIR ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Une impression de clarté ne signifie pas une tâche accomplie<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Si l'analytique montre un résultat faible, la mesure utilisateur aide à trouver l'obstacle précis entre la visite et l'accomplissement de l'objectif.</p>
+            <a href="/fr/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUTER DE VOTRE PROPRE ÉTUDE →</a>
           </section>
         </div>
 
+        <!-- Fakta + foto (sticky) -->
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 space-y-6">
             <div class="border border-brand-black/10 p-6">
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">ÉTUDE RÉALISÉE EN COLLABORATION AVEC</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Université de Hradec Králové — Faculté d'informatique et de management"
+                alt="Univerzita Hradec Králové — Faculté d'informatique et de management"
                 title="Étude réalisée en collaboration avec la FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -164,6 +159,22 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAIRE — CE QUE SIGNIFIENT LES TERMES DE CETTE ÉTUDE ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes ayant participé à la mesure. N = 102 signifie 102 répondants.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l'œil sur un même point. La succession des fixations permet de décrire à quelles parties de la page une personne a prêté attention.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (zone observée)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Partie de la page délimitée à l'avance, par exemple un bouton, un titre ou une photo, pour laquelle nous calculons des métriques d'attention.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Comparaison A/B</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Comparaison de deux variantes d'un même élément ou d'une même page dans des conditions définies à l'avance.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES SUR L'ÉTUDE ]</p>
         <div class="border-t border-brand-black/10">
@@ -179,6 +190,7 @@ const pageSchema = [
         </div>
       </section>
 
+      <!-- Úzký pruh: kompletní studie (otevírá modal) -->
       <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></p>
@@ -189,26 +201,21 @@ const pageSchema = [
         </button>
       </section>
 
+      <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Autres études de cas">
         <a href="/fr/etudes-de-cas/billboardy-sport-marketing" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← ÉTUDE PRÉCÉDENTE</p>
-          <p class="font-display font-bold leading-snug">16 maquettes de panneaux, 79 paires d'yeux</p>
+          <p class="font-display font-bold leading-snug">Les six premières places sont revenues aux panneaux noirs.</p>
         </a>
         <a href="/fr/etudes-de-cas/backend-stories" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">ÉTUDE SUIVANTE →</p>
-          <p class="font-display font-bold leading-snug">92 % des regards ont fini sur le CTA principal</p>
+          <p class="font-display font-bold leading-snug">Plus le texte est long, moins il capte l'attention</p>
         </a>
       </nav>
 
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Vérifier le parcours clé de votre site<span style="color:#2D62FC">.</span></h2>
-        <a href="/fr/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          DEMANDE SANS ENGAGEMENT →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">PACK TYPIQUE POUR CE TYPE DE MISSION : <a href="/fr/services/packs-de-test" class="text-brand-white underline hover:no-underline">Test UX standard</a></p>
-      </div>
     </div>
 
+      <!-- Modal: žádost o kompletní studii -->
       <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
         <div class="p-8">
           <div class="flex justify-between items-start mb-6">

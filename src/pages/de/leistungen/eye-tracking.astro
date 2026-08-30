@@ -5,25 +5,60 @@ import Footer from '../../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const faq = [
-  { q: "Wie viele Testpersonen braucht eine Eye-Tracking-Studie?", a: "Für qualitative Einblicke genügen 8–12 Testpersonen pro Segment. Für quantitative Metriken (Heatmaps, AOI-Statistiken) empfehlen wir 30 und mehr, und für die Berechnung des kognitiven Belastungsindex EMLI arbeiten wir mit Stichproben von über 100 Testpersonen." },
-  { q: "Wie lange dauert ein Eye-Tracking-Test?", a: "Ein typisches Projekt dauert 1–3 Wochen ab Freigabe des Szenarios: Vorbereitung und Pilotierung, Datenerhebung im Labor oder im Feld, Analyse und Report mit priorisierten Empfehlungen." },
-  { q: "Ist Eye Tracking dasselbe wie Neuromarketing?", a: "Nein. Eye Tracking ist eine objektive Aufzeichnung visueller Aufmerksamkeit — wir versprechen weder „Gedankenlesen“ noch das Lesen von Emotionen. Wir interpretieren die Daten stets im Kontext der Aufgabe und mit klar benannten Grenzen der Methode." },
-  { q: "Was zeigt eine Heatmap und was lese ich nicht daraus ab?", a: "Eine Heatmap aggregiert, wohin die Testpersonen am häufigsten geschaut haben. Sie sagt aber nicht, wie anspruchsvoll die Oberfläche für sie war — deshalb ergänzen wir sie um AOI-Metriken (TTFF, Dwell Time) und den kognitiven Belastungsindex EMLI." },
-];
-
-const steps = [
-  { num: '01', title: 'Vorbereitung', desc: 'Testszenarien nach Ihren Zielen und Definition der AOI (Areas of Interest).' },
-  { num: '02', title: 'Testing', desc: 'Nutzer interagieren mit dem Produkt, der Eye Tracker zeichnet den Blick auf.' },
-  { num: '03', title: 'Analyse', desc: 'Heatmaps, Gaze Plots und AOI-Statistiken aus den erhobenen Daten.' },
-  { num: '04', title: 'Empfehlungen', desc: 'Konkrete Anpassungen von Layout und Inhaltshierarchie.' },
+const attentionSignals = [
+  { title: 'Was Menschen zuerst sehen', desc: 'Wir messen, welches Element den ersten Blick erhält und in welcher Reihenfolge Menschen den Inhalt durchgehen.' },
+  { title: 'Was unbemerkt bleibt', desc: 'Wir decken wichtige Informationen, Angebote oder Bedienelemente auf, die der Blick überhaupt nicht erreicht.' },
+  { title: 'Wo Menschen suchen und zurückkehren', desc: 'Wiederholte Blicke und langes Suchen zeigen Stellen, an denen die visuelle Hierarchie Nutzer nicht klar genug führt.' },
+  { title: 'Welche Variante besser funktioniert', desc: 'Wir vergleichen Entwürfe anhand derselben Metriken und zeigen, welche Variante die Aufmerksamkeit besser auf wichtige Inhalte lenkt.' },
 ];
 
 const usecases = [
-  { t: 'Websites', d: 'Wo Nutzer Zeit verbringen, was sie übersehen und warum sie nicht auf Ihre CTAs reagieren.', tag: 'WEB' },
-  { t: 'Mobile Apps', d: 'Navigation, Lesbarkeit und Usability mobiler Produkte.', tag: 'APP' },
-  { t: 'E-Commerce', d: 'Produktseiten, Warenkorb und Checkout für bessere Konversionen.', tag: 'E-SHOP' },
-  { t: 'Printmaterialien', d: 'Banner, Plakate, Verpackungen — was auf physischen Materialien Aufmerksamkeit anzieht.', tag: 'PRINT' },
+  { t: 'E-Commerce', d: 'Produkte, Filter, Warenkorb, Checkout und die Entscheidung zwischen Varianten.' },
+  { t: 'Websites und Apps', d: 'Navigation, Formulare, Inhalte, Prototypen und wichtige Nutzerpfade.' },
+  { t: 'Sport und Stadien', d: 'Werbung, Sponsorenflächen, Orientierung im Gelände und Besuchererlebnis.' },
+  { t: 'Automotive', d: 'Digitale Oberflächen, Infotainment, Fahrzeugpräsentation und Showroom-Umgebung.' },
+  { t: 'Verkehr und Städte', d: 'Navigation, Informationssysteme, Karten, Beschilderung und Bewegung im öffentlichen Raum.' },
+  { t: 'Industrie und Energie', d: 'Steuerungsoberflächen, Dashboards, Arbeitsabläufe und Sicherheitsinformationen.' },
+  { t: 'Gesundheitswesen', d: 'Medizinische Oberflächen, Anweisungen, Formulare und Patientenorientierung.' },
+  { t: 'Finanzen und Beratung', d: 'Verträge, Rechner, Kundenportale, Dashboards und komplexe Entscheidungen.' },
+  { t: 'Luftfahrt', d: 'Informationsoberflächen, Passagiernavigation, Betriebsabläufe und Schulung.' },
+  { t: 'Universitäten und Forschung', d: 'Experimentelle Studien, Hypothesenprüfung und Forschungsprojekte.' },
+];
+
+const outputs = [
+  { title: 'Heatmaps und Blickaufzeichnung', desc: 'Zeigen übersichtlich die Verteilung der Aufmerksamkeit und den Blickpfad eines einzelnen Teilnehmers.' },
+  { title: 'Metriken der Interessensbereiche', desc: 'Bei wichtigen Elementen messen wir die erste Fixation, die Anzahl der Rückkehrer und die aufgewendete Aufmerksamkeitsdauer.' },
+  { title: 'Zusammenhänge mit der Aufgabe', desc: 'Wir verknüpfen den Blick mit Erfolgsquote, Zeit, Fehlern und den Aussagen der Teilnehmer.' },
+  { title: 'Prioritäten und Empfehlungen', desc: 'Wir überführen die Ergebnisse in konkrete Anpassungen von Inhalt, Layout und visueller Hierarchie.' },
+];
+
+const steps = [
+  { num: '01', title: 'Forschungsfrage', desc: 'Wir klären die Entscheidung, die die Daten unterstützen sollen, und wählen den passenden Studienumfang.' },
+  { num: '02', title: 'Szenario und Pilotierung', desc: 'Wir bereiten Aufgaben und Interessensbereiche vor und prüfen vor der Erhebung, dass die Messung korrekt funktioniert.' },
+  { num: '03', title: 'Datenerhebung', desc: 'Wir führen Kalibrierung und Messung im Labor oder im Feld nach einem einheitlichen Protokoll durch.' },
+  { num: '04', title: 'Analyse und Empfehlungen', desc: 'Wir verbinden den Blick mit dem Kontext der Aufgabe und überführen die Ergebnisse in Prioritäten für die Praxis.' },
+];
+
+const technology = [
+  { name: 'Smart Eye Aurora', type: 'LABORMESSUNG', desc: 'Stationärer Eye Tracker für kontrollierte Studien von Websites, Apps und anderen digitalen Oberflächen.' },
+  { name: 'Tobii Pro X2-60', type: 'TRAGBARES SETUP', desc: 'Eye Tracker mit 60-Hz-Frequenz für Bildschirmmessungen und den Vergleich von Varianten.' },
+  { name: 'Pupil Labs Neon (2×)', type: 'MOBILE BRILLE', desc: 'Zwei Sets zur Erfassung der Aufmerksamkeit in Geschäften, Showrooms, Stadien oder im Straßenverkehr.' },
+];
+
+const studies = [
+  { href: '/de/fallstudien/reklamni-bannery-smer-pohledu', result: 'Aufmerksamkeit folgte dem Blick', title: 'Wohin die Figur auf dem Banner schaut, dorthin schaut auch der Kunde.', meta: 'EYE TRACKING · N = 104' },
+  { href: '/de/fallstudien/produktove-fotografie-e-commerce', result: 'Das Foto verlangsamte die Entscheidung', title: 'Das Lifestyle-Foto wirkte besser, verlängerte aber die Kaufaufgabe.', meta: 'EYE TRACKING + UEQ · N = 84' },
+  { href: '/de/fallstudien/billboardy-sport-marketing', result: 'Vergleich von 16 Entwürfen', title: 'Statt einer Abstimmung haben wir die Billboards an 79 Personen getestet.', meta: 'EYE TRACKING + FRAGEBOGEN · N = 79' },
+];
+
+const faq = [
+  { q: 'Was ist Eye Tracking und wie funktioniert es?', a: 'Eye Tracking zeichnet mit einer spezialisierten Kamera auf, wohin ein Mensch schaut, in welcher Reihenfolge und wie lange. Aus der Augenbewegung erstellen wir eine Blickaufzeichnung und Metriken der visuellen Aufmerksamkeit.' },
+  { q: 'Was lässt sich mit Eye Tracking herausfinden?', a: 'Wir stellen fest, was Menschen zuerst bemerken, welche Elemente sie übersehen, wo sie suchen und wie sich die Aufmerksamkeit zwischen Varianten verändert. Das Ergebnis bewerten wir immer im Kontext der konkreten Aufgabe.' },
+  { q: 'Was ist der Unterschied zwischen Eye Tracking und einer Heatmap aus der Web-Analytics?', a: 'Eine Analytics-Heatmap basiert meist auf Klicks oder Mausbewegungen. Eye Tracking erfasst die tatsächliche Blickrichtung des Teilnehmers. Aber auch eine Blick-Heatmap reicht allein nicht aus, deshalb ergänzen wir sie um weitere Metriken und den Ablauf der Aufgabe.' },
+  { q: 'Wie viele Teilnehmer sind für Eye Tracking nötig?', a: 'Die Anzahl hängt vom Studienziel, der Anzahl der Zielgruppen und davon ab, ob wir qualitative Probleme suchen oder Varianten vergleichen. Die passende Stichprobe schlagen wir erst nach der Forschungsfrage vor — eine allgemeingültige Zahl gibt es nicht.' },
+  { q: 'Wie lange dauert eine Eye-Tracking-Studie und was kostet sie?', a: 'Eine typische Studie dauert etwa 1–3 Wochen. Der Preis hängt von der Anzahl der Teilnehmer, dem Umfeld, dem Umfang der Stimuli und den gewünschten Ergebnissen ab. Nach einem Briefing erstellen wir einen konkreten Vorschlag samt Preis.' },
+  { q: 'Muss die Messung im Labor stattfinden?', a: 'Nein. Websites, Apps und Visuals messen wir meist am Bildschirm im Labor. Für Geschäfte, Dienstleistungen, Veranstaltungen oder andere reale Umgebungen nutzen wir mobile Eye-Tracking-Brillen.' },
+  { q: 'Misst Eye Tracking Emotionen oder mentale Belastung?', a: 'Eye Tracking allein misst visuelle Aufmerksamkeit, nicht konkrete Emotionen. Je nach Studienziel können wir es um biometrische Methoden und EMLI ergänzen, unseren zusätzlichen Index mentaler Belastung, abgeleitet aus ausgewählten Augenmetriken.' },
 ];
 
 const pageSchema = [
@@ -61,34 +96,36 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LEISTUNGEN / EYE TRACKING ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          WIR SEHEN,<br/>WAS SIE NICHT SEHEN<span style="color:#2D62FC">.</span>
+          MESSEN SIE<br/>DIE AUFMERKSAMKEIT<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Objektive Aufzeichnung visueller Aufmerksamkeit.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Eye Tracking liefert präzise Daten darüber, wie Nutzer Ihre Inhalte wahrnehmen.
-              Wir wissen, <strong class="text-brand-black">wohin sie schauen, was sie übersehen und was sie fesselt</strong>.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Erfahren Sie, was Menschen wirklich sehen.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Eye Tracking zeichnet auf, wohin Menschen bei der Nutzung einer Website, App oder eines Visuals schauen, in welcher Reihenfolge und wie lange. Es deckt Elemente auf, die Aufmerksamkeit anziehen, sowie wichtige Informationen, die unbemerkt bleiben.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Wir verbinden die Daten mit dem Ablauf der Aufgabe und überführen sie in <strong class="text-brand-black">konkrete Empfehlungen für Inhalt, Layout und visuelle Hierarchie</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/de/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              TESTING VEREINBAREN →
+              EYE TRACKING ANFRAGEN →
             </a>
-            <a href="/de/leistungen/test-pakete" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST-PAKETE
+            <a href="/de/leistungen#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PAKETE ANSEHEN
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Infoleiste -->
+      <!-- Info pás -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DAUER', '1–3 Wochen'],
-          ['TECHNOLOGIE', 'Tobii Pro · Smart Eye'],
+          ['UMFELD', 'Labor und Feld'],
           ['ERGEBNISSE', 'Heatmaps · AOI · Gaze Plots'],
-          ['PAKET', 'Standard-UX-Test'],
+          ['PAKET', 'Eye Tracking und Biometrie'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -97,7 +134,7 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Foto von der Messung -->
+      <!-- Foto z měření -->
       <div class="reveal mb-24">
         <img
           src={`${base}/images/eye-tracking-mereni-respondentka-laborator.webp`}
@@ -106,56 +143,158 @@ const pageSchema = [
           width="1080" height="1920" loading="lazy" decoding="async"
           class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Erhebung visueller Aufmerksamkeitsdaten im Labor — die Blickaufzeichnung wird für AOI-Analysen und Heatmaps gespeichert.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Eine kontrollierte Eye-Tracking-Studie im Labor — jede Aufzeichnung beginnt mit einer Kalibrierung und folgt einem vorab festgelegten Szenario.</p>
       </div>
 
-      <!-- Wo wir helfen -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WO WIR HELFEN ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Bildschirm, Papier und Regal<span style="color:#2D62FC">.</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
-          {usecases.map((v, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h3 class="font-display text-xl font-bold mb-3 leading-tight">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
-            </div>
-          ))}
-        </div>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4">
-          Außerhalb des Labors messen wir mit mobilen Brillen — siehe <a href="/de/leistungen/feldforschung" class="underline hover:no-underline">Feldforschung</a>.
-        </p>
-      </div>
-
-      <!-- So funktioniert es + EMLI -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ SO FUNKTIONIERT ES ]</p>
-          <div class="space-y-0">
-            {steps.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Co dokážeme změřit -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WAS WIR MESSEN KÖNNEN ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Aufmerksamkeit ist kein Eindruck. Sie ist eine Datenspur<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {attentionSignals.map((signal, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{signal.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{signal.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div class="border border-brand-black/10 p-8 flex flex-col justify-between">
+      </div>
+
+      <!-- Oblasti využití -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WO EYE TRACKING HILFT ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Überall, wo Aufmerksamkeit über das Ergebnis entscheidet<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-12">
+          Eye Tracking ist nicht nur ein Werkzeug zum Testen von Websites. Es hilft überall dort, wo Sie herausfinden müssen, was Menschen auffällt, was sie übersehen und wie visuelle Informationen ihre Orientierung oder Entscheidung beeinflussen.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {usecases.map((v, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{v.t}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{v.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WAS SIE ERHALTEN ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Nicht nur eine Heatmap. Entscheidungsgrundlagen<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Ein Bild mit bunten Flecken allein reicht nicht. Wir interpretieren jedes Ergebnis im Kontext der Aufgabe, vergleichen es mit dem Verhalten der Teilnehmer und überführen es in praktisch umsetzbare Änderungen.
+          </p>
+        </div>
+        <div class="border-t border-brand-black/20">
+          {outputs.map((output, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WIE DIE MESSUNG ABLÄUFT ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Von der Frage zur belastbaren Schlussfolgerung<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {steps.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Technologie -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.75fr_1.4fr] gap-10 lg:gap-16 mb-10">
           <div>
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ZUSÄTZLICH: EMLI-INDEX ]</p>
-            <h3 class="font-display text-2xl font-bold mb-3">Blick + Belastung in einem Score<span style="color:#2D62FC">.</span></h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Aus Eye-Tracking-Metriken bilden wir den Index mentaler Belastung EMLI (0–100).
-              Vergleichen Sie, welche Varianten oder Schritte Nutzer die meiste Anstrengung kosten.
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TECHNOLOGISCHES UMFELD ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Labor und Feld<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <p class="text-brand-black/60 leading-relaxed text-justify max-w-2xl">
+            Die Geräte wählen wir nach Umfeld und Forschungsfrage. Stationäre Systeme nutzen wir für präzise kontrollierte Studien am Bildschirm, mobile Brillen für die Messung der Aufmerksamkeit bei realer Bewegung und Entscheidungen im Raum.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
+          {technology.map(tool => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-4">{tool.type}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{tool.name}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{tool.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mt-10 pt-5 border-t border-brand-black/10">
+          Forschungsumfeld FIMEYELAB · Fakultät für Informatik und Management der Univerzita Hradec Králové
+        </p>
+      </div>
+
+      <!-- EMLI -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1.6fr)_minmax(240px,1fr)] md:items-center gap-10 md:gap-16">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ERGÄNZEND: INDEX MENTALER BELASTUNG EMLI ]</p>
+            <h2 class="font-display text-2xl md:text-4xl font-bold mb-4">Wo die Oberfläche die meiste Anstrengung erfordert<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-4">
+              EMLI überführt ausgewählte Eye-Tracking-Kennwerte in einen Score von 0 bis 100. Es ermöglicht, einzelne Bildschirme, Schritte oder Varianten zu vergleichen und festzustellen, wo die Informationsverarbeitung anspruchsvoller ist.
+            </p>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify">
+              <strong class="text-brand-black">Je höher der Score, desto größer die Belastung.</strong> Wir überprüfen EMLI laufend und nutzen es als ergänzende Interpretationsebene, nicht als eigenständigen Beweis.
             </p>
           </div>
-          <p class="font-display font-bold leading-none mt-6" style="font-size: clamp(2.5rem, 5vw, 4rem); color:#2D62FC;">0–100</p>
+          <div aria-label="Skala EMLI von geringerer zu höherer mentaler Belastung">
+            <div class="h-2 mb-4 bg-gradient-to-r from-brand-black/10 via-brand-blue/50 to-brand-blue" aria-hidden="true"></div>
+            <div class="flex items-start justify-between gap-6 font-mono text-[10px] tracking-widest uppercase">
+              <p><strong class="block font-display text-4xl leading-none mb-2" style="color:#2D62FC">0</strong>Geringere Belastung</p>
+              <p class="text-right"><strong class="block font-display text-4xl leading-none mb-2" style="color:#2D62FC">100</strong>Höhere Belastung</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studie -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ EYE TRACKING IN DER PRAXIS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Entscheidungen, gestützt auf Messung<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {studies.map(study => (
+            <a href={study.href} class="group border border-brand-black/15 p-7 min-h-72 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors">
+              <p class="font-display text-xl font-bold leading-tight mb-6" style="color:#2D62FC">{study.result}</p>
+              <h3 class="font-display text-2xl font-bold leading-tight mb-8">{study.title}</h3>
+              <div class="mt-auto">
+                <p class="font-mono text-[10px] tracking-widest opacity-60 mb-4">{study.meta}</p>
+                <span class="font-mono text-xs tracking-widest">STUDIE ANSEHEN →</span>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 
@@ -175,21 +314,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            WAS SEHEN IHRE<br/>NUTZER<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Schicken Sie uns Ihre Website, App oder Kreation. Wir entwerfen ein Messszenario und sagen Ihnen, was sich daraus sicher ableiten lässt.
-          </p>
-          <a href="/de/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            TESTING VEREINBAREN →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -208,3 +332,4 @@ const pageSchema = [
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </BaseLayout>
+</content>

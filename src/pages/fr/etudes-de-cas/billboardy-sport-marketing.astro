@@ -3,17 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["MÉTHODE", "Eye-tracking + questionnaire + TOP3"], ["ÉCHANTILLON", "79 répondants (43 hommes, 36 femmes) · 17–25 ans"], ["STIMULI", "16 maquettes de 10 secondes chacune"], ["RÉSULTATS", "Classement des variantes, analyse par genre"]];
-const zjisteni = ["Nette domination des maquettes noires : les six variantes les mieux notées avaient toutes un fond noir, le groupe du bas étant formé par les variantes blanches.", "La variante gagnante a obtenu le score pondéré le plus élevé dans la sélection TOP3 ainsi que la meilleure position finale moyenne.", "Insight le plus fort : la publicité visuelle influence 39 % des femmes contre 16 % des hommes. Les femmes prennent aussi davantage en compte des facteurs de confort — la météo (78 % vs. 56 %) et l'heure du coup d'envoi (72 % vs. 56 %).", "Limite honnête : les métriques de fixation du TOP3 et des variantes les moins bien notées ne différaient que très peu — le gagnant a été départagé par la préférence subjective et la lisibilité, pas par un écart spectaculaire dans le comportement de l'œil."];
+const fakta = [["MÉTHODE", "Eye tracking + questionnaire d’évaluation + TOP3"], ["ÉCHANTILLON", "79 répondants · 43 hommes, 36 femmes · 17–25 ans"], ["STIMULI", "16 propositions · chacune affichée 10 secondes"], ["RÉSULTATS", "Classement des variantes + métriques d’attention visuelle"]];
+const zjisteni = ["Les six propositions les mieux notées avaient toutes un fond noir. Les variantes blanches se concentraient au bas du classement.", "La proposition gagnante a obtenu le score pondéré le plus élevé dans la sélection TOP3 ainsi que le meilleur rang moyen.", "Les métriques de fixation différaient peu entre les variantes les mieux et les moins bien notées. Ce n’est donc pas le seul niveau d’attention visuelle qui a décidé du classement.", "Dans le questionnaire, 39 % des femmes et 16 % des hommes ont déclaré que la publicité visuelle influence leur venue à un événement sportif. Il s’agit d’une influence déclarée, pas d’un changement mesuré du comportement d’achat."];
 const faq = [
-  { q: "Quels panneaux fonctionnent le mieux ?", a: "Dans la mesure de 16 maquettes sur 79 répondants, les variantes noires minimalistes avec un titre marquant l'ont clairement emporté — les six mieux notées avaient toutes un fond noir." },
-  { q: "La publicité extérieure agit-elle de la même façon sur les hommes et les femmes ?", a: "Non — la publicité visuelle influence 39 % des femmes contre 16 % des hommes. Les femmes tiennent aussi davantage compte de facteurs de confort, comme la météo ou l'heure du coup d'envoi." },
-  { q: "Les métriques oculaires ont-elles départagé le gagnant ?", a: "Non — les métriques de fixation ne différaient que très peu entre les variantes ; c'est la préférence subjective et la lisibilité qui ont décidé. C'est précisément pour cela que nous complétons aujourd'hui la mesure par l'indice de charge cognitive EMLI." },
+  { q: "Le résultat signifie-t-il qu’un billboard noir fonctionne toujours mieux ?", a: "Non. Le fond noir a dominé dans cet ensemble de 16 propositions pour une campagne de football et un groupe cible précis. Le résultat ne peut pas être transposé tel quel à toute marque, tout message ou tout emplacement." },
+  { q: "Qu’est-ce qui a exactement décidé de la variante gagnante ?", a: "La proposition gagnante a obtenu le meilleur score pondéré dans la sélection TOP3 et le meilleur rang moyen. L’eye tracking a aidé à décrire l’attention visuelle, mais les seules métriques de fixation n’ont pas expliqué le classement des variantes." },
+  { q: "Le 39 % contre 16 % prouve-t-il que la publicité influence davantage les femmes ?", a: "Les répondants l’ont déclaré dans le questionnaire, il s’agit donc d’une influence déclarée. L’étude ne démontre pas que le billboard a réellement changé l’achat de billets, ni que le sexe était la cause de la différence." },
+  { q: "Pourquoi combiner l’eye tracking avec un questionnaire ?", a: "L’eye tracking montre où s’est dirigée l’attention visuelle. Le questionnaire capte les préférences, la clarté et l’intention. Dans cette étude, c’est justement leur combinaison qui a montré que plus d’attention ne signifie pas automatiquement une meilleure évaluation." },
+  { q: "Peut-on choisir de la même façon une création avant le lancement de la campagne ?", a: "Oui. Plusieurs variantes finales peuvent être comparées sur le groupe cible avant la production et la diffusion média. L’important est de définir à l’avance selon quel objectif le gagnant sera choisi." },
+  { q: "Une telle étude mesure-t-elle aussi la vente de billets ?", a: "Pas automatiquement. Une étude en laboratoire aide à choisir et à expliquer la création. L’impact réel sur la fréquentation ou les ventes doit être vérifié par des données de campagne ultérieures ou une expérience terrain." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "16 maquettes de panneaux, 79 paires d'yeux",
+    headline: "Les six premières places sont revenues aux panneaux noirs.",
     about: 'Eye tracking, recherche UX',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'fr',
@@ -31,8 +34,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="fr"
-  title="Étude de cas : 16 panneaux, 79 répondants"
-  description="Eye tracking de 16 maquettes de panneaux d'un club de football (N = 79) : les variantes noires minimalistes l'ont emporté. La publicité visuelle influence 39 % des femmes contre 16 % des hommes."
+  title="Étude de cas : choisir un billboard grâce à l’eye tracking"
+  description="Eye tracking et évaluation de 16 propositions de billboards auprès de 79 répondants : les six premières places ont été occupées par les variantes noires, mais les seules métriques de fixation n’ont pas désigné le gagnant."
   schema={pageSchema}
 >
   <Navbar />
@@ -42,56 +45,37 @@ const pageSchema = [
 
       <a href="/fr/etudes-de-cas" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← TOUTES LES ÉTUDES</a>
 
+      <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Sport marketing · publicité extérieure</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          16 maquettes de panneaux, 79 paires d'yeux<span style="color:#2D62FC">.</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Marketing sportif · publicité extérieure</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Les six premières places sont revenues aux panneaux noirs<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Design studie -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">39 : 16</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">% de femmes vs. hommes influencés par la publicité visuelle — et une nette victoire des variantes noires</p>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">6/6</p>
+          <p class="text-brand-white/70 leading-relaxed">des variantes les mieux notées avaient un fond noir</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">16</p>
+          <p class="text-brand-white/70 leading-relaxed">propositions de billboard comparées</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">79</p>
+          <p class="text-brand-white/70 leading-relaxed">répondants du groupe d’âge cible</p>
+        </div>
       </div>
 
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAIRE — CE QUE SIGNIFIENT LES CHIFFRES DE CETTE ÉTUDE ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes réelles ayant participé à la mesure. N = 102 signifie 102 répondants.</dd></div>
-            <div><dt class="font-display font-bold mb-1">valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Probabilité que la différence mesurée soit due au pur hasard. Plus elle est faible, plus le résultat est probant — p = 0,037 signifie seulement 3,7 % de chances de hasard (est considéré comme probant tout ce qui est sous 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Taille d'effet (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Indique l'ampleur réelle de la différence — pas seulement si elle existe. À titre indicatif : 0,01 petit, 0,06 moyen, 0,14 grand effet.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l'œil sur un point (des fractions de seconde). La succession des fixations compose tout ce qu'une personne a réellement « vu » sur la page.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (zone d'intérêt)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Partie de la page délimitée à l'avance — bouton, titre, photo — pour laquelle on mesure la quantité d'attention reçue.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Questionnaires scientifiques standardisés : UEQ mesure l'expérience utilisateur globale, VisAWI l'esthétique perçue du site. Grâce à la standardisation, les résultats sont comparables entre études.</dd></div>
-          </dl>
-        </details>
-      </section>
-
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXTE</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Un club de football préparait une campagne pour soutenir l'affluence au stade et avait le choix entre 16 maquettes graphiques de panneaux. Au lieu d'un vote au sein de l'équipe marketing, il a opté pour une mesure sur la cible.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— QUESTION BUSINESS</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Laquelle des 16 maquettes graphiques de panneaux capte le mieux l'attention et incite à acheter un billet — et cela diffère-t-il selon le genre du spectateur ?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESURE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Chaque répondant voyait les 16 maquettes exactement 10 secondes. L'eye-tracking était complété par un questionnaire d'évaluation (appréciation globale, clarté, attention, intention d'achat) et une sélection des TOP3 variantes.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CE QU’ONT MONTRÉ LES DONNÉES</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -102,6 +86,22 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CE QU’IL FALLAIT DÉCIDER</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Laquelle des 16 propositions doit servir la campagne pour soutenir la fréquentation du stade ?</p>
+            <p class="text-brand-black/70 leading-relaxed">Le club de football ne voulait pas choisir seulement d’après l’avis de l’équipe marketing. Il a donc comparé les variantes auprès de jeunes du groupe cible et suivi leur attention ainsi que leur évaluation.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— COMMENT S’EST DÉROULÉE LA MESURE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Chacun des 79 répondants a vu les 16 propositions pendant 10 secondes. L’eye tracking a enregistré l’attention visuelle. Le questionnaire d’évaluation et la sélection TOP3 ont complété l’appréciation globale, la clarté et l’intention déclarée d’assister au match.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— COMMENT LIRE LE RÉSULTAT</span></p>
+            <p class="text-brand-black/70 leading-relaxed">L’étude a choisi un gagnant parmi des propositions précises. Elle ne démontre pas qu’un fond noir augmente en général la performance de tout billboard. De même, la donnée d’enquête 39 % contre 16 % décrit ce que les répondants ont déclaré — pas un changement réel de la vente de billets.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
@@ -109,9 +109,9 @@ const pageSchema = [
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ LES DONNÉES EN IMAGE ]</p>
-              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="La publicité visuelle influence 39 pour cent des femmes et 16 pour cent des hommes"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">PART DES SPECTATEURS INFLUENCÉS PAR LA PUBLICITÉ VISUELLE · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FEMMES</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC" class="viz-bar"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">HOMMES</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A" class="viz-bar"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
-<svg viewBox="0 0 640 120" class="w-full mt-2" role="img" aria-label="Les six maquettes les mieux notées avaient un fond noir, le groupe du bas était formé par les variantes blanches">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ÉVALUATION DES 16 MAQUETTES · TOP 6 vs GROUPE DU BAS</text>
+              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Dans le questionnaire, 39 pour cent des femmes et 16 pour cent des hommes ont déclaré que la publicité visuelle influence leur venue à un événement sportif"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">INFLUENCE DÉCLARÉE DE LA PUBLICITÉ VISUELLE · QUESTIONNAIRE · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FEMMES</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC" class="viz-bar"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">HOMMES</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A" class="viz-bar"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
+<svg viewBox="0 0 640 120" class="w-full mt-2" role="img" aria-label="Les six propositions les mieux notées avaient un fond noir, le groupe du bas était formé des variantes blanches">
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ÉVALUATION DE 16 PROPOSITIONS · TOP 6 vs GROUPE DU BAS</text>
   <g>
     <rect x="0" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="48" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="96" y="36" width="40" height="26" fill="#0A0A0A"/>
     <rect x="144" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="192" y="36" width="40" height="26" fill="#0A0A0A"/><rect x="240" y="36" width="40" height="26" fill="#0A0A0A"/>
@@ -123,27 +123,30 @@ const pageSchema = [
   </g>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">L'écart entre genres est l'insight le plus transposable de l'étude ; le classement montre une nette domination des variantes noires.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Le graphique combine le classement des variantes testées avec les réponses au questionnaire. La donnée 39 % contre 16 % n’exprime pas l’impact mesuré de la campagne sur la vente de billets.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CE QUI A ÉTÉ DÉCIDÉ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Fond noir, simple et minimaliste, titre marquant, composition non agressive des personnages et objectif du panneau clairement défini.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— RECOMMANDATION POUR LA CAMPAGNE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Pour la suite, retenir la variante noire gagnante et conserver sa hiérarchie claire, son titre marquant et un objectif principal unique. Évaluer ensuite l’impact réel de la création sur les données de la campagne diffusée.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CE QU'EMLI APPORTERAIT AUJOURD'HUI</p>
-            <p class="text-brand-black/70 leading-relaxed">Pour une mission similaire, nous mesurons aujourd'hui en plus l'indice de charge EMLI — comme les métriques de fixation ne différaient presque pas entre les variantes, il serait l'arbitre idéal : il montrerait si les maquettes « épurées » réduisent réellement la charge de lecture du message.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE QU’IL FAUT EN RETENIR ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Attention et préférence ne sont pas la même chose<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">L’eye tracking montre ce que les gens voient. L’évaluation des variantes complète en indiquant quelle création ils préfèrent. Pour choisir une campagne, il faut lire les deux résultats ensemble.</p>
+            <a href="/fr/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUTER D’UN TEST DE CRÉATION →</a>
           </section>
         </div>
 
+        <!-- Fakta + foto (sticky) -->
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 space-y-6">
             <div class="border border-brand-black/10 p-6">
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">ÉTUDE RÉALISÉE EN COLLABORATION AVEC</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Université de Hradec Králové — Faculté d'informatique et de management"
+                alt="Univerzita Hradec Králové — Faculté d’informatique et de management"
                 title="Étude réalisée en collaboration avec la FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -162,7 +165,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schéma du principe gagnant du panneau : fond noir minimaliste avec un titre marquant">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schéma illustratif du principe des billboards les mieux notés : fond noir avec un titre marquant">
                   <rect x="24" y="16" width="272" height="120" fill="#0A0A0A"/>
                   <rect x="48" y="44" width="130" height="14" fill="#FCFCFC"/>
                   <rect x="48" y="68" width="90" height="8" fill="rgba(252,252,252,0.5)"/>
@@ -170,10 +173,10 @@ const pageSchema = [
                   <circle cx="248" cy="76" r="26" fill="none" stroke="rgba(252,252,252,0.6)" stroke-width="2"/>
                   <rect x="96" y="136" width="10" height="52" fill="#0A0A0A"/>
                   <rect x="214" y="136" width="10" height="52" fill="#0A0A0A"/>
-                  <text x="24" y="204" font-family="monospace" font-size="11" fill="#0A0A0A">PRINCIPE GAGNANT : NOIR · MINIMALISME · TITRE CLAIR</text>
+                  <text x="24" y="204" font-family="monospace" font-size="11" fill="#0A0A0A">TOP 6 : FOND NOIR · TITRE MARQUANT</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schéma du principe gagnant — fond noir, titre marquant, un objectif clair</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schéma illustratif du principe commun aux six variantes les mieux notées</figcaption>
             </figure>
             <a href="/fr/contact" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               DEMANDE SANS ENGAGEMENT →
@@ -182,8 +185,24 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAIRE — COMMENT LIRE LES RÉSULTATS DE L’ÉTUDE ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes incluses dans l’étude. Dans ce cas, N = 79.</dd></div>
+            <div><dt class="font-display font-bold mb-1">TOP3</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Sélection de trois variantes préférées. Le rang et la fréquence des choix peuvent être convertis en un score pondéré.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l’œil dans une zone. Il décrit l’attention visuelle, pas automatiquement la compréhension, la préférence ou l’achat.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Influence déclarée</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ce que le participant a déclaré dans le questionnaire. Ce n’est pas un changement directement mesuré de son comportement réel.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <!-- FAQ ke studii -->
       <section class="reveal mt-20">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES SUR L'ÉTUDE ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES SUR L’ÉTUDE ]</p>
         <div class="border-t border-brand-black/10">
           {faq.map(f => (
             <details class="group border-b border-brand-black/10">
@@ -197,45 +216,41 @@ const pageSchema = [
         </div>
       </section>
 
+      <!-- Úzký pruh: kompletní studie (otevírá modal) -->
       <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
-          <p class="font-display text-xl md:text-2xl font-bold leading-tight">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></p>
+          <p class="font-display text-xl md:text-2xl font-bold leading-tight">Vous voulez parcourir l’étude en détail<span style="color:#2D62FC">?</span></p>
           <p class="font-mono text-[11px] text-brand-white/70 tracking-wide mt-1">RAPPORT DÉTAILLÉ AVEC MÉTHODOLOGIE ET RECOMMANDATIONS — GRATUIT EN PDF</p>
         </div>
         <button type="button" class="study-modal-open shrink-0 border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          DEMANDER L'ÉTUDE →
+          DEMANDER L’ÉTUDE →
         </button>
       </section>
 
+      <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Autres études de cas">
         <a href="/fr/etudes-de-cas/sablony-e-shopu" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← ÉTUDE PRÉCÉDENTE</p>
-          <p class="font-display font-bold leading-snug">Trois modèles, le même assortiment. La tâche a décidé.</p>
+          <p class="font-display font-bold leading-snug">La tâche a changé où les gens ont porté leur attention.</p>
         </a>
         <a href="/fr/etudes-de-cas/karierni-portal-automotive" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">ÉTUDE SUIVANTE →</p>
-          <p class="font-display font-bold leading-snug">40 % des candidats n'ont pas trouvé le chemin vers les postes vacants</p>
+          <p class="font-display font-bold leading-snug">40 % des candidats n’ont pas trouvé le chemin vers les postes vacants</p>
         </a>
       </nav>
 
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Tester le visuel d'une campagne sur de vrais spectateurs<span style="color:#2D62FC">.</span></h2>
-        <a href="/fr/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          DEMANDE SANS ENGAGEMENT →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">PACK TYPIQUE POUR CE TYPE DE MISSION : <a href="/fr/services/packs-de-test" class="text-brand-white underline hover:no-underline">Test UX standard</a></p>
-      </div>
     </div>
 
+      <!-- Modal: žádost o kompletní studii -->
       <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
         <div class="p-8">
           <div class="flex justify-between items-start mb-6">
             <p class="font-mono text-xs text-brand-white/70 tracking-widest">[ ÉTUDE DÉTAILLÉE ]</p>
             <button type="button" class="study-modal-close font-mono text-2xl leading-none hover:text-brand-white/70 transition-colors" aria-label="Fermer la fenêtre">×</button>
           </div>
-          <h2 class="font-display text-2xl font-bold mb-3">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></h2>
+          <h2 class="font-display text-2xl font-bold mb-3">Vous voulez parcourir l’étude en détail<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Les études sont abrégées et anonymisées.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="16 maquettes de panneaux, 79 paires d'yeux">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Les six premières places sont revenues aux panneaux noirs.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NOM *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Votre nom"
@@ -243,7 +258,7 @@ const pageSchema = [
             </div>
             <div>
               <label for="sr-company" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">ENTREPRISE</label>
-              <input type="text" id="sr-company" name="company" placeholder="Nom de l'entreprise (facultatif)"
+              <input type="text" id="sr-company" name="company" placeholder="Nom de l’entreprise (facultatif)"
                 class="study-input" />
             </div>
             <div>
@@ -252,10 +267,10 @@ const pageSchema = [
                 class="study-input" />
             </div>
             <button type="submit" class="w-full border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              VOIR L'ÉTUDE (PDF) →
+              VOIR L’ÉTUDE (PDF) →
             </button>
-            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Merci ! Si l'étude ne s'est pas ouverte d'elle-même, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">ouvrez-la avec ce lien</a>.</p>
-            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">En envoyant ce formulaire, vous acceptez l'affichage de l'étude et l'envoi occasionnel d'offres commerciales d'UX MIND. Vous pouvez vous désabonner à tout moment en un clic.</p>
+            <p class="study-request-done hidden font-mono text-xs text-brand-white leading-relaxed border border-brand-white/50 p-3">Merci ! Si l’étude ne s’est pas ouverte d’elle-même, <a href="#" class="study-pdf-link underline hover:text-brand-white/70" target="_blank" rel="noopener">ouvrez-la avec ce lien</a>.</p>
+            <p class="font-mono text-[11px] text-brand-white/70 leading-relaxed">En envoyant ce formulaire, vous acceptez l’affichage de l’étude et l’envoi occasionnel d’offres commerciales d’UX MIND. Vous pouvez vous désabonner à tout moment en un clic.</p>
           </form>
         </div>
       </dialog>

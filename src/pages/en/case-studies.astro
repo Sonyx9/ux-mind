@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="en"
   title="Case Studies"
-  description="Real eye tracking studies with verifiable numbers: 40% of applicants lost, 92% of gazes on the main CTA, p = 0.037. We only publish what we can back with data."
+  description="Real eye tracking measurements with verifiable numbers: 40% of applicants didn’t find open positions, 92% of respondents noticed the CTA, p = 0.037. We state the method, sample and limits."
 >
   <Navbar />
 
@@ -17,7 +17,7 @@ import Footer from '../../components/Footer.astro';
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CASE STUDIES ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          RESULTS<br/>SPEAK<span style="color:#2D62FC">.</span>
+          WHAT MEASUREMENT<br/>REVEALED<span style="color:#2D62FC">.</span>
         </h1>
         <p class="text-xl text-brand-black/60 max-w-3xl leading-relaxed">
           Real measurements, real samples. We only publish numbers we can back with primary data — including method, sample size and limits.
@@ -29,65 +29,65 @@ import Footer from '../../components/Footer.astro';
           {
             href: '/en/case-studies/karierni-portal-automotive',
             category: "ŠKODA AUTO · career portal",
-            title: "40% of applicants couldn’t find their way to open positions — on a site that “looked clear”.",
-            desc: "Eye tracking with a “find open positions” scenario showed that subjective clarity ratings don’t match task success. An A/B comparison of a floating CTA produced measurable differences in fixation metrics and visit length. The result: a simplified path to positions and a rebuilt navigation.",
+            title: "40% of applicants couldn’t find their way to open positions. Yet the site “looked clear”.",
+            desc: "Eye tracking with a “find open positions” scenario showed that subjective clarity ratings don’t match the ability to complete the task. An A/B comparison of a floating CTA produced measurable differences in fixation metrics and visit length. The result was a simplified path to positions and a rebuilt navigation.",
             method: "Eye tracking + survey · N = 102",
             tags: ["Eye tracking", "Navigation", "A/B test"],
-            result: "40% lost",
+            result: "4 in 10 missed the openings",
           },
           {
             href: '/en/case-studies/backend-stories',
             category: "Educational microsite",
-            title: "92% of gazes landed on the main CTA. Only a third finished the long paragraph.",
-            desc: "AOI analysis revealed a reading gradient: ~86% of participants registered the bold headline, 62% the short follow-up text and only ~33% the long paragraph. Orientation is carried by hierarchy, not text volume — so the primary CTA was emphasised and long blocks shortened.",
+            title: "The longer the text, the less attention.",
+            desc: "AOI analysis revealed an attention gradient: the bold headline was registered by approximately 86% of respondents, the short follow-up text by 62% and the long paragraph by 33%. The results supported emphasising the primary CTA and shortening long blocks.",
             method: "Eye tracking, AOI analysis · ~120 participants",
             tags: ["AOI analysis", "Content hierarchy", "CTA"],
-            result: "92% on CTA",
+            result: "92% noticed the CTA",
           },
           {
             href: '/en/case-studies/produktove-fotografie-e-commerce',
             category: "E-commerce",
-            title: "Lifestyle product photos look better. But they measurably slowed down purchase decisions.",
-            desc: "An experiment compared a clean packshot with a lifestyle photo. Photo type had a significant effect on task completion time — F(1,82) = 4.50; p = 0.037. No clear effect on subjective ratings: “prettier” doesn’t mean “more effective”. Choose photo type by page goal.",
+            title: "The same product. A different length of decision.",
+            desc: "The experiment compared a clean packshot with a lifestyle photo. Photo type had a statistically significant effect on task completion time — F(1,82) = 4.50; p = 0.037. In the tested scenario the lifestyle variant led to a longer time; the difference in subjective ratings was not clearly confirmed.",
             method: "Eye tracking + UEQ · N = 84",
             tags: ["Product photos", "Experiment", "PDP"],
-            result: "Prettier, slower",
+            result: "Lifestyle lengthened task time",
           },
           {
             href: '/en/case-studies/reklamni-bannery-smer-pohledu',
             category: "Ad creative",
-            title: "Where the person in your banner looks is where your customer looks.",
-            desc: "Manipulating the visual cue (the model’s gaze direction) had a strong statistical effect on attention distribution: F(1,102) = 12.57; p < 0.001; ηp² = 0.11 — a medium-sized effect. Gaze direction is one of the cheapest tools to guide attention to your message and CTA.",
+            title: "A character’s gaze steered visitors’ attention.",
+            desc: "Changing the direction of the character’s gaze had a statistically significant effect on attention distribution: F(1,102) = 12.57; p < 0.001; ηp² = 0.11. The experiment demonstrated a medium-sized effect in the tested creatives; it measured neither clicks nor conversions.",
             method: "Eye tracking experiment · N = 104",
             tags: ["Banners", "Visual cues", "Attention"],
-            result: "Gaze leads gaze",
+            result: "ηp² = 0.11 · medium effect",
           },
           {
             href: '/en/case-studies/sablony-e-shopu',
             category: "E-shop templates",
-            title: "Three templates, the same products. Attention shifted with the task given.",
-            desc: "The same template produced different attention patterns depending on the task users received. Aesthetic ratings without task context are misleading — test your e-shop template with real shopping tasks, not “by impression”.",
+            title: "The task changed where people focused their attention.",
+            desc: "Eye tracking of three templates with the same product range showed that the distribution of attention changed with the task given. VisAWI added a subjective rating of appearance — the study thus shows why aesthetics and behaviour during a shopping task need to be assessed separately.",
             method: "Eye tracking + VisAWI · N = 61",
             tags: ["E-commerce", "Aesthetics vs. performance", "Task-based testing"],
-            result: "Context wins",
+            result: "3 templates · 2 task types",
           },
           {
             href: '/en/case-studies/billboardy-sport-marketing',
             category: "Sports marketing · OOH",
-            title: "16 billboard designs, 79 pairs of eyes. The black minimalist variants won.",
-            desc: "All six top-rated designs had a black background; the winning variant scored highest in TOP3 picks and best average ranking. The strongest insight: visual advertising influences 39% of women vs. 16% of men. Recommendation: clean background, clear headline, non-aggressive composition.",
+            title: "The first six places belonged to the black billboards.",
+            desc: "Eye tracking and the rating of 16 designs showed a clear preference for the black variants. Fixation metrics alone, however, did not determine the winner — the study shows why choosing creative needs to combine attention with the target group’s rating.",
             method: "Eye tracking + rating survey · N = 79 · 16 stimuli, 10 s each",
             tags: ["Billboards", "OOH", "Gender insight"],
-            result: "39% vs 16%",
+            result: "TOP 6 · black background",
           },
         ].map(study => (
           <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
-              <a href={study.href} class="font-display text-2xl font-bold leading-none md:text-right hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
+              <a href={study.href} class="font-display text-lg font-bold leading-tight md:text-right md:whitespace-nowrap hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
-            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <p class="text-brand-black/60 leading-relaxed mb-6 text-justify">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">METHOD: {study.method}</p>
             <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (

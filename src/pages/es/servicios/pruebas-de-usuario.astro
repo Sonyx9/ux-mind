@@ -6,32 +6,31 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const formats = [
-  { t: 'Pruebas moderadas', d: 'Un investigador guía al participante por el escenario, repregunta y profundiza allí donde ocurre algo.', tag: 'LAB / ONLINE' },
-  { t: 'Pruebas no moderadas', d: 'Los participantes completan las tareas por su cuenta. Recogida más rápida, muestra mayor, condiciones más naturales.', tag: 'ONLINE' },
-  { t: 'Think-aloud', d: 'El participante comenta en voz alta qué ve y por qué hace clic mientras trabaja. Revela el modelo mental, no solo el comportamiento.', tag: 'PROTOCOLO' },
+  { t: 'Pruebas moderadas', d: 'Un investigador observa al participante mientras completa las tareas, pregunta y ayuda a descubrir por qué se detuvo en un punto concreto o decidió de otra manera.', tag: 'EN PROFUNDIDAD · EN LABORATORIO Y ONLINE' },
+  { t: 'Pruebas no moderadas', d: 'Los participantes completan las tareas preparadas por su cuenta. Este formato permite incorporar rápidamente a más personas y comparar sus resultados.', tag: 'MUESTRA MAYOR · ONLINE' },
 ];
 
 const findings = [
-  'Si los usuarios completan las tareas clave — y dónde fallan exactamente',
-  'Cuánto duran las tareas y cuántos errores surgen en ellas',
-  'Qué elementos no entienden los usuarios o pasan por alto',
-  'En qué se diferencia el comportamiento de los principiantes y de los usuarios experimentados',
-  'Qué dicen los usuarios vs. qué hacen realmente',
+  { title: 'Finalización de tareas', desc: 'Comprobamos si las personas logran completar tareas importantes, cuánto tiempo tardan y en qué pasos se detienen.' },
+  { title: 'Claridad de la interfaz', desc: 'Detectamos elementos, nombres e información que los usuarios no entienden o pasan por alto.' },
+  { title: 'Motivos de la decisión', desc: 'Averiguamos qué esperan los usuarios, por qué eligen un camino concreto y si sus declaraciones coinciden con su comportamiento real.' },
 ];
 
 const process = [
-  { num: '01', title: 'Escenario y tareas', desc: 'Definimos qué debe verificarse y preparamos tareas realistas.' },
-  { num: '02', title: 'Reclutamiento de participantes', desc: 'Reclutamos según su público objetivo, no una audiencia aleatoria.' },
-  { num: '03', title: 'Pruebas', desc: 'Moderadas o no moderadas, con grabación de pantalla y piloto.' },
-  { num: '04', title: 'Análisis y recomendaciones', desc: 'Tasa de éxito, tiempo, tasa de errores y propuestas concretas de ajustes.' },
+  { num: '01', title: 'Objetivo y guion', desc: 'Aclaramos qué necesita verificar y preparamos tareas realistas.' },
+  { num: '02', title: 'Selección de participantes', desc: 'Determinamos el público objetivo adecuado y reclutamos participantes según los criterios acordados.' },
+  { num: '03', title: 'Pruebas', desc: 'Los participantes completan las tareas preparadas. Observamos su progreso, errores, reacciones y comentarios.' },
+  { num: '04', title: 'Análisis y recomendaciones', desc: 'Evaluamos los hallazgos, los ordenamos por importancia y los convertimos en propuestas concretas de mejora.' },
 ];
 
 const faq = [
-  { q: '¿Cuántos participantes se necesitan?', a: 'Para detectar cualitativamente los problemas principales suelen bastar 5–8 participantes por segmento. Para comparar variantes o hacer una evaluación estadística se necesita una muestra mayor y diseñada con más precisión — el tamaño lo proponemos según la pregunta de investigación.' },
-  { q: '¿Podemos probar también un prototipo?', a: 'Sí. Probamos webs y aplicaciones en producción, así como prototipos clicables (Figma y similares). Cuanto antes se prueba, más económicos son los ajustes.' },
-  { q: '¿En qué se diferencian las pruebas de una auditoría UX?', a: 'La auditoría es una evaluación realizada por un experto sin participantes — un primer paso más rápido. Las pruebas observan a usuarios reales completando tareas y verifican el comportamiento real. Idealmente se complementan.' },
-  { q: '¿Podremos ver las pruebas en directo?', a: 'Sí, en las pruebas moderadas puede estar en la línea de observación. Ver a sus propios usuarios suele ser el argumento más convincente para el equipo.' },
-  { q: '¿Y si los usuarios valoran la web positivamente pero no completan la tarea?', a: 'Eso es exactamente lo que revelan las pruebas. La impresión subjetiva de una «página clara» a menudo no coincide con la tasa de éxito real — por eso medimos el comportamiento, no solo las opiniones.' },
+  { q: '¿Cuántos participantes se necesitan?', a: 'Para detectar cualitativamente los problemas principales suelen bastar 5–8 participantes por segmento. Para comparar variantes o hacer una evaluación estadística se necesita una muestra mayor y diseñada con más precisión — el alcance lo proponemos según la pregunta de investigación.' },
+  { q: '¿Cuánto duran las pruebas de usuario?', a: 'Normalmente 1–4 semanas según el alcance, la forma de reclutamiento y el número de participantes. Concretamos el calendario exacto tras precisar el objetivo y el público objetivo.' },
+  { q: '¿Cuánto cuestan las pruebas de usuario?', a: 'El precio depende del número de participantes, la forma de reclutamiento, el formato de las pruebas y el alcance de la entrega. Tras un breve encargo inicial, le recomendamos el alcance adecuado y preparamos una propuesta concreta.' },
+  { q: '¿Podemos probar también un prototipo?', a: 'Sí. Probamos webs, e-commerce y aplicaciones terminados, así como prototipos clicables. Cuanto antes se detecta un problema, más fácil y económico suele ser su ajuste.' },
+  { q: '¿En qué se diferencian las pruebas de usuario de una auditoría UX?', a: 'La auditoría UX es una revisión experta de la interfaz sin participantes. Las pruebas de usuario observan a usuarios reales completando tareas y comprueban cómo se manifiestan los problemas en la práctica.' },
+  { q: '¿Las pruebas de usuario incluyen eye tracking?', a: 'No en el alcance estándar. Ofrecemos el eye tracking como una ampliación independiente, cuando necesita medir con precisión la atención visual y saber qué elementos notaron las personas o qué pasaron por alto.' },
+  { q: '¿Podemos ver las pruebas en directo?', a: 'Sí. En las pruebas moderadas, previo acuerdo, puede seguir el desarrollo desde un espacio separado o de forma remota, siempre respetando el consentimiento de los participantes y las condiciones del estudio.' },
 ];
 
 const pageSchema = [
@@ -69,22 +68,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICIOS / PRUEBAS DE USUARIO ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          OBSERVE<br/>DÓNDE FALLAN<span style="color:#2D62FC">.</span>
+          VERIFIQUE<br/>LA USABILIDAD<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Pruebas con usuarios reales, no con impresiones.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Observamos cómo la gente completa tareas reales en su producto. Descubrirá
-              <strong class="text-brand-black">qué hacen los usuarios</strong> — no solo qué dicen del producto.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Verifique tareas importantes con usuarios reales.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Observamos cómo utilizan las personas su web, e-commerce, aplicación o prototipo. Comprobamos si logran orientarse, completar tareas importantes y qué partes de la interfaz no entienden.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Recibirá hallazgos concretos y recomendaciones sobre <strong class="text-brand-black">qué ajustar para que el producto sea más claro y fácil de usar</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/es/contacto" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
               SOLICITAR PRUEBAS →
             </a>
-            <a href="/es/servicios/paquetes-de-prueba" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              PAQUETES DE PRUEBA
+            <a href="/es/servicios#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VER PAQUETES
             </a>
           </div>
         </div>
@@ -105,22 +106,25 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Formatos -->
+      <!-- Cómo probamos -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FORMATOS DE PRUEBA ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CÓMO PROBAMOS ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Tres maneras de observar<span style="color:#2D62FC">.</span>
+          Elegimos el formato según el objetivo del estudio<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
           {formats.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col h-full">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
             </div>
           ))}
         </div>
+        <p class="text-sm md:text-base text-brand-black/60 leading-relaxed mt-6 max-w-4xl">
+          <strong class="text-brand-black">Según el objetivo de las pruebas</strong> incorporamos el pensamiento en voz alta, una entrevista posterior, cuestionarios breves y grabación de pantalla.
+        </p>
       </div>
 
       <!-- Foto -->
@@ -135,47 +139,57 @@ const pageSchema = [
         <p class="font-mono text-[11px] text-brand-black/60 mt-2">En el laboratorio, las pruebas pueden complementarse con eye-tracking — verá no solo qué hizo el usuario, sino también qué vio mientras tanto.</p>
       </div>
 
-      <!-- Qué descubrirá + proceso -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ DESCUBRIRÁ ]</p>
-          <ul class="space-y-2">
-            {findings.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CÓMO SE DESARROLLAN LAS PRUEBAS ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Qué revelan las pruebas -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ QUÉ REVELAN LAS PRUEBAS ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Dónde ayuda la interfaz — y dónde estorba<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {findings.map((finding, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_12rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{finding.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{finding.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <!-- Límites -->
+      <!-- Proceso -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CÓMO SE DESARROLLAN LAS PRUEBAS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Del objetivo a las mejoras concretas<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Ampliación opcional -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ CUANDO NECESITA MÁS ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">El comportamiento lo ve. La atención y la carga, no<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ AMPLIACIÓN OPCIONAL ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Cuando también necesita medir la atención<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Una prueba clásica muestra si el usuario completó la tarea. Pero no muestra qué vio realmente,
-              qué pasó por alto y cuánto le costó. Por eso combinamos las pruebas con eye-tracking y biometría.
+              Las pruebas de usuario muestran si las personas completan la tarea y dónde se detienen. El eye tracking, además,
+              puede medir con precisión qué elementos notaron, qué pasaron por alto y cómo cambió su atención durante la tarea. Añadimos métodos biométricos solo cuando responden al objetivo del estudio.
             </p>
           </div>
           <a href="/es/servicios/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            AÑADIR EYE-TRACKING →
+            VER EYE TRACKING →
           </a>
         </div>
       </div>
@@ -196,21 +210,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            ¿COMPLETARÁN LOS USUARIOS<br/>SU TAREA<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Envíenos el producto y el recorrido clave. Propondremos un escenario de prueba y el formato que dé la respuesta más rápido.
-          </p>
-          <a href="/es/contacto" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            SOLICITAR PRUEBAS →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -229,3 +228,4 @@ const pageSchema = [
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </BaseLayout>
+</content>

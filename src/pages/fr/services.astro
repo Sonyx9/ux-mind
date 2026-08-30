@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="fr"
   title="Services"
-  description="Audit UX de site et d’e-commerce, eye tracking, recherche UX, tests utilisateurs et mesures terrain avec lunettes d’eye-tracking mobiles. Des recommandations fondées sur les données, pas sur des impressions."
+  description="Audit UX de site et de boutique en ligne, eye tracking, recherche UX, tests utilisateurs et mesures terrain avec des lunettes d’eye-tracking mobiles. Des recommandations fondées sur les données, pas sur des impressions."
 >
   <Navbar />
 
@@ -25,13 +25,14 @@ import Footer from '../../components/Footer.astro';
       <!-- Services list -->
       <div class="space-y-px border border-brand-black/10">
         {[
+          // Řazení: od rychlého základu (audit) po nejkomplexnější výzkum
           {
             num: '01',
             id: 'ux-audit',
             href: '/fr/services/audit-ux',
             title: 'Audit UX',
-            desc: 'Le socle rapide de toute amélioration. Une analyse systématique de votre produit numérique — nous parcourons l’interface du point de vue de l’utilisateur, identifions les obstacles et proposons des améliorations concrètes, priorisées par impact.',
-            details: ['Analyse heuristique', 'Analyse des parcours utilisateurs', 'Liste de recommandations priorisées', 'Atelier avec votre équipe', 'Rapport final avec maquettes'],
+            desc: 'Nous parcourons votre site, boutique en ligne ou application avec les yeux d’un utilisateur. Nous repérons les endroits où les gens hésitent, partent ou n’achèvent pas une étape importante. Vous recevez des recommandations concrètes classées par impact.',
+            details: ['Analyse heuristique', 'Analyse des parcours utilisateurs', 'Liste de recommandations priorisées', 'Atelier avec votre équipe', 'Rapport final avec propositions de modifications'],
             duration: '2–4 semaines',
             pkg: 'Diagnostic rapide',
           },
@@ -40,8 +41,8 @@ import Footer from '../../components/Footer.astro';
             id: 'testovani-uzivatelu',
             href: '/fr/services/tests-utilisateurs',
             title: 'Tests utilisateurs',
-            desc: 'Des tests modérés et non modérés avec de vrais utilisateurs. Nous observons comment les utilisateurs accomplissent des tâches dans votre produit et identifions où ils échouent.',
-            details: ['Sessions de test modérées', 'Tests en ligne non modérés', 'Protocole think-aloud', 'Enregistrement d’écran', 'Analyse et recommandations'],
+            desc: 'Nous confions à de vrais utilisateurs des tâches concrètes et observons s’ils parviennent à les accomplir. Vous découvrez où ils se perdent, ce qu’ils ne comprennent pas et pourquoi ils partent.',
+            details: ['Tests modérés', 'Tests en ligne non modérés', 'Protocole de verbalisation à voix haute', 'Enregistrement d’écran', 'Résultats et recommandations'],
             duration: '1–4 semaines',
             pkg: 'Test UX standard',
           },
@@ -49,7 +50,7 @@ import Footer from '../../components/Footer.astro';
             num: '03',
             href: '/fr/services/eye-tracking',
             title: 'Eye Tracking',
-            desc: 'Des données précises sur la perception visuelle de vos contenus. Nous suivons les mouvements oculaires des utilisateurs interagissant avec votre site, votre application ou vos supports imprimés.',
+            desc: 'Grâce à l’eye tracking, nous mesurons où les gens regardent vraiment. Vous découvrez ce qu’ils remarquent, ce qu’ils manquent et si le contenu important guide leur attention dans la bonne direction.',
             details: ['Heatmaps d’attention', 'Analyse AOI (Areas of Interest)', 'Enregistrements des mouvements oculaires', 'Analyse F-pattern & Z-pattern', 'Tests comparatifs de variantes'],
             duration: '1–3 semaines',
             pkg: 'Test UX standard',
@@ -59,7 +60,7 @@ import Footer from '../../components/Footer.astro';
             id: 'terenni-mereni',
             href: '/fr/services/recherche-terrain',
             title: 'Recherche terrain',
-            desc: 'Nous mesurons là où le client décide réellement — en magasin, en showroom, lors d’un événement ou face à un produit physique. Les lunettes d’eye-tracking mobiles capturent l’attention en environnement réel, pas seulement à l’écran. Un équipement que peu d’acteurs possèdent en République tchèque.',
+            desc: 'Nous observons les clients directement là où ils décident — en magasin, en showroom, lors d’un événement ou face à un produit physique. Des lunettes d’eye-tracking mobiles montrent ce qu’ils remarquent dans un environnement réel et ce qu’ils manquent.',
             details: ['Lunettes d’eye-tracking mobiles Pupil Labs NEON', 'Enregistrement vidéo de la situation et du comportement dans l’espace', 'GSR et entretiens selon les besoins', 'Product placement, signalétique, supports POS', 'Recommandations pour ajuster l’espace et le parcours client'],
             duration: '2–6 semaines',
             pkg: 'Étude terrain',
@@ -68,7 +69,7 @@ import Footer from '../../components/Footer.astro';
             num: '05',
             href: '/fr/services/recherche-ux',
             title: 'Recherche UX',
-            desc: 'L’étendue la plus profonde : une combinaison de méthodes qualitatives et quantitatives. Nous vous aidons à comprendre les besoins, frustrations et modèles mentaux de vos utilisateurs.',
+            desc: 'Nous vous aidons à comprendre ce dont les utilisateurs ont besoin, ce qui les frustre et pourquoi ils se comportent d’une certaine façon. Selon la question de recherche, nous combinons entretiens, observation, tests et données.',
             details: ['Entretiens approfondis', 'Recherche contextuelle', 'Tests d’utilisabilité', 'Analyse de données', 'Personas & Journey maps'],
             duration: '3–8 semaines',
             pkg: 'Recherche biométrique complète',
@@ -100,11 +101,11 @@ import Footer from '../../components/Footer.astro';
                   <a href="/fr/services/packs-de-test" class="font-display text-lg font-semibold underline hover:no-underline">{service.pkg}</a>
                 </div>
                 <div class="flex flex-col gap-2 mt-6">
-                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors text-center">
+                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-[#2D62FC] hover:border-[#2D62FC] hover:text-brand-white transition-colors text-center">
                     DÉTAIL DU SERVICE →
                   </a>
                   <a href="/fr/contact" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors text-center">
-                    NOUS CONTACTER
+                    DEMANDER SANS ENGAGEMENT
                   </a>
                 </div>
               </div>
@@ -113,22 +114,23 @@ import Footer from '../../components/Footer.astro';
         ))}
       </div>
 
-      <div class="mt-24 bg-brand-black text-brand-white p-8 md:p-12">
+      <!-- Testovací balíčky -->
+      <a id="packs-de-test" href="/fr/services/packs-de-test" class="group block mt-24 border border-brand-black bg-brand-black text-brand-white p-8 md:p-12 hover:bg-brand-white hover:text-brand-black transition-colors duration-300 scroll-mt-28">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div class="md:col-span-2">
-            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ PACKS DE TEST ]</p>
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Du diagnostic rapide à la recherche biométrique complète</h2>
-            <p class="text-brand-white/70 leading-relaxed max-w-2xl">
-              Nous composons nos services en packs de test selon la décision que vous devez prendre — eye-tracking, données comportementales, questionnaires, GSR et mesures terrain. Vous savez à l’avance ce que les tests vous apporteront et ce que l’étendue choisie ne permettra pas d’affirmer de manière fiable.
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4 group-hover:text-brand-black/60 transition-colors">[ PACKS DE TEST ]</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Du contrôle rapide à la recherche approfondie<span style="color:#2D62FC">.</span></h2>
+            <p class="text-brand-white/70 leading-relaxed max-w-2xl group-hover:text-brand-black/70 transition-colors">
+              Choisissez l’ampleur selon ce que vous devez découvrir. Nous combinons les méthodes adaptées et expliquons à l’avance quelles réponses les tests vous apporteront.
             </p>
           </div>
           <div class="flex md:justify-end">
-            <a href="/fr/services/packs-de-test" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              DÉCOUVRIR LES PACKS →
-            </a>
+            <span class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase group-hover:border-brand-black group-hover:text-brand-black transition-colors">
+              COMPARER LES PACKS →
+            </span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </main>
 

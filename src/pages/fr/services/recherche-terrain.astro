@@ -6,39 +6,61 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const contexts = [
-  { t: 'Retail et points de vente', d: 'Orientation dans l’espace, product placement, signalétique, supports POS et zones de rayonnage.', tag: 'IN-STORE' },
-  { t: 'Showrooms et événements', d: 'Ce que les visiteurs remarquent, où ils s’arrêtent et ce qui les amène à interagir.', tag: 'ESPACE' },
-  { t: 'Automobile et HMI', d: 'L’attention lors de l’utilisation d’une interface dans un véhicule ou face à un produit physique.', tag: 'HMI' },
+  { t: 'Retail et magasins', d: 'Déplacement entre les rayons, visibilité des catégories, mise en avant des produits, étiquettes de prix et supports POS.' },
+  { t: 'Services et showrooms', d: 'Orientation du visiteur, interaction avec les produits exposés et moments qui mènent à l’interaction.' },
+  { t: 'Sport et événements', d: 'Navigation dans l’enceinte, espaces sponsors, restauration, signalétique de sécurité et expérience du visiteur.' },
+  { t: 'Transports et villes', d: 'Systèmes d’information, cartes, points de correspondance, signalétique et orientation dans l’espace public.' },
+  { t: 'Automobile et mobilité', d: 'Attention lors de l’utilisation d’un véhicule, de l’infotainment, d’une borne de recharge ou d’un produit physique.' },
+  { t: 'Industrie et lieux de travail', d: 'Procédures de travail, panneaux de contrôle, informations de sécurité et interaction avec l’équipement.' },
+  { t: 'Santé et services', d: 'Orientation des patients, instructions, éléments en libre-service et parcours dans le service fourni.' },
+  { t: 'Aviation', d: 'Navigation des passagers, procédures opérationnelles, interfaces d’information et situations d’entraînement.' },
 ];
 
 const findings = [
-  'Comment les gens parcourent réellement l’espace — pas comme vous pensez qu’ils le parcourent',
-  'Ce qu’ils remarquent, ce qu’ils manquent et où ils s’arrêtent',
-  'Si la signalétique et la communication guident l’attention vers l’objectif',
-  'Où l’environnement soutient la décision et où il la complique',
-  'Comment le comportement varie selon le type de client ou la situation',
+  { title: 'Le déplacement réel dans l’espace', desc: 'Nous captons le trajet, les arrêts, les retours et les endroits où les gens changent de direction ou hésitent.' },
+  { title: 'L’attention en contexte', desc: 'Nous découvrons ce que les gens remarquent en se déplaçant et quelles informations, produits ou signalétiques ils manquent.' },
+  { title: 'Les moments de décision', desc: 'Nous relions le regard à l’interaction, au choix d’un produit, à l’accomplissement de la tâche ou à une demande d’aide.' },
+  { title: 'L’influence de l’environnement', desc: 'Nous évaluons comment le comportement est influencé par l’agencement de l’espace, l’affluence, l’éclairage ou la présence d’autres personnes.' },
 ];
 
 const process = [
-  { num: '01', title: 'Brief et reconnaissance', desc: 'Ce qui doit être décidé et où la mesure aura lieu.' },
-  { num: '02', title: 'Scénario et pilote', desc: 'Itinéraires, tâches et protocole technique vérifiés par un pilote sur place.' },
-  { num: '03', title: 'Mesure sur le terrain', desc: 'Lunettes d’eye-tracking mobiles, enregistrement vidéo, GSR et entretiens selon les besoins.' },
-  { num: '04', title: 'Analyse et recommandations', desc: 'Cartographie des moments clés et propositions d’ajustements de l’espace ou de la communication.' },
+  { num: '01', title: 'Objectif et lieu', desc: 'Nous clarifions la décision que l’étude doit soutenir et les conditions de l’environnement concerné.' },
+  { num: '02', title: 'Reconnaissance du lieu', desc: 'Nous parcourons le site, les risques, les autorisations nécessaires et les moments qu’il est pertinent d’observer.' },
+  { num: '03', title: 'Scénario et pilote', desc: 'Nous préparons les tâches, les itinéraires et le protocole, et les vérifions directement sur place.' },
+  { num: '04', title: 'Mesure sur le terrain', desc: 'Nous réalisons la calibration et la collecte des données avec des lunettes mobiles, de l’observation ou des entretiens.' },
+  { num: '05', title: 'Analyse et recommandations', desc: 'Nous relions le regard, le mouvement et la situation, et proposons des changements concrets de l’espace ou de la procédure.' },
+];
+
+const outputs = [
+  { title: 'Enregistrement du regard à la première personne', desc: 'La vidéo montre la scène devant le participant ainsi que l’endroit qu’il regardait à cet instant.' },
+  { title: 'Carte des moments clés', desc: 'Nous marquons les endroits où les gens cherchent, s’arrêtent, reviennent ou réagissent à un stimulus.' },
+  { title: 'Comportement et contexte', desc: 'Nous relions le regard au trajet, aux interactions, à la réussite de la tâche et à l’explication du participant.' },
+  { title: 'Recommandations pour l’exploitation réelle', desc: 'Nous proposons des ajustements de la signalétique, de l’agencement, de la communication, de l’équipement ou de la procédure de travail.' },
+];
+
+const controls = [
+  { title: 'Calibration en mouvement', desc: 'Nous contrôlons la qualité de l’enregistrement avant la mesure et pendant son déroulement.' },
+  { title: 'Conditions variables', desc: 'Nous enregistrons l’affluence, la lumière, le bruit et d’autres facteurs susceptibles de modifier le résultat.' },
+  { title: 'Protocole comparable', desc: 'Nous définissons les tâches, les itinéraires et l’ordre de façon à pouvoir comparer les enregistrements de manière pertinente.' },
+  { title: 'Consentement et confidentialité', desc: 'Nous coordonnons l’étude avec l’exploitant, travaillons avec un consentement éclairé et protégeons les personnes présentes dans l’enregistrement.' },
 ];
 
 const faq = [
-  { q: 'Comment la mesure terrain se déroule-t-elle techniquement ?', a: 'Le participant porte de légères lunettes d’eye-tracking Pupil Labs NEON, qui enregistrent le regard ainsi que la scène devant lui. Selon les besoins, nous ajoutons un bracelet GSR, un enregistrement vidéo de la situation et des entretiens après le parcours.' },
-  { q: 'En quoi diffère-t-elle d’une mesure en laboratoire ?', a: 'Le terrain offre un comportement plus naturel, mais un contrôle moindre des conditions — éclairage, affluence, autres clients. C’est pourquoi nous déterminons à l’avance quelles conclusions peuvent être tirées en toute fiabilité de la mesure terrain et lesquelles méritent une vérification plus contrôlée.' },
-  { q: 'Les lunettes ne perturbent-elles pas le comportement naturel ?', a: 'Les lunettes modernes ressemblent à des lunettes ordinaires et les participants les oublient généralement au bout de quelques minutes. Nous évaluons donc les premières minutes d’enregistrement avec prudence.' },
-  { q: 'Faut-il l’accord du magasin ou des visiteurs ?', a: 'Oui, nous coordonnons toujours la mesure avec l’exploitant de l’espace et les participants signent un consentement éclairé. Les personnes en arrière-plan de l’enregistrement sont anonymisées.' },
-  { q: 'Où pouvez-vous mesurer ?', a: 'Dans les points de vente, showrooms, événements, environnements de travail et véhicules. La limite n’est pas la technologie, mais la sécurité et l’accord avec l’exploitant.' },
+  { q: 'Qu’est-ce que la recherche terrain et quand a-t-elle du sens ?', a: 'La recherche terrain observe le comportement des gens directement dans l’environnement où ils accomplissent habituellement la tâche. Elle convient lorsque le résultat est influencé par l’espace, le déplacement, l’affluence environnante ou une interaction physique, et qu’une situation de laboratoire ne pourrait pas fidèlement reproduire ce contexte.' },
+  { q: 'Une étude terrain doit-elle inclure l’eye tracking ?', a: 'Pas nécessairement. Selon l’objectif, l’observation, l’enregistrement vidéo et l’entretien peuvent suffire. Nous intégrons l’eye tracking mobile lorsque vous devez découvrir précisément ce que les gens ont remarqué en se déplaçant et ce qu’ils ont manqué.' },
+  { q: 'Comment se déroule techniquement l’eye tracking mobile ?', a: 'Le participant porte de légères lunettes Pupil Labs Neon, qui enregistrent la scène devant lui et la direction de son regard. Avant chaque mesure, nous effectuons une calibration et contrôlons en continu la qualité de l’enregistrement.' },
+  { q: 'En quoi la mesure terrain diffère-t-elle du laboratoire ?', a: 'Sur le terrain, nous captons l’espace réel, l’affluence et la décision en contexte. Mais les conditions varient davantage, c’est pourquoi nous utilisons un pilote, un protocole unifié et enregistrons les circonstances susceptibles d’influencer les résultats.' },
+  { q: 'Les lunettes ne perturbent-elles pas le comportement naturel ?', a: 'Toute observation peut influencer le comportement dans une certaine mesure. Nous laissons donc aux participants le temps de s’habituer à l’équipement et évaluons la première partie de l’enregistrement avec prudence.' },
+  { q: 'Faut-il le consentement de l’exploitant et des participants ?', a: 'Oui. Nous coordonnons la mesure avec l’exploitant de l’espace et chaque participant signe un consentement éclairé. Les personnes filmées et les informations sensibles sont protégées selon un protocole de données convenu à l’avance.' },
+  { q: 'De combien de participants avons-nous besoin ?', a: 'Le nombre dépend de l’objectif de l’étude, du nombre d’environnements et de groupes que vous devez comparer. Nous proposons l’échantillon selon la question de recherche, pas selon un chiffre universel.' },
+  { q: 'Combien de temps dure une étude terrain et combien coûte-t-elle ?', a: 'Le plus souvent 2 à 6 semaines selon le lieu, les autorisations, le nombre de participants et l’étendue de l’analyse. Après un brief initial et une prise de connaissance de l’environnement, nous préparons un calendrier concret ainsi que le prix.' },
 ];
 
 const pageSchema = [
   {
     '@type': 'Service',
     name: 'Recherche terrain',
-    description: 'Recherche UX terrain avec lunettes d’eye-tracking mobiles Pupil Labs NEON : points de vente, showrooms, événements, automobile et HMI. Attention et comportement en environnement réel.',
+    description: 'Recherche UX terrain avec lunettes d’eye-tracking mobiles Pupil Labs NEON : magasins, showrooms, événements, automobile et HMI. Attention et comportement en environnement réel.',
     serviceType: 'Eye-tracking terrain',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -56,8 +78,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="fr"
-  title="Recherche terrain | Eye-tracking mobile en magasin et showroom"
-  description="Recherche UX terrain avec lunettes d’eye-tracking mobiles : points de vente, showrooms, événements, automobile. Découvrez ce que vos clients remarquent en environnement réel."
+  title="Recherche terrain et eye tracking mobile | UX MIND"
+  description="Recherche terrain et eye tracking mobile en magasin, dans les transports, l’automobile, l’industrie et les services. Mesurez l’attention et le comportement en environnement réel."
   schema={pageSchema}
 >
   <Navbar />
@@ -69,32 +91,38 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / RECHERCHE TERRAIN ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          AU-DELÀ<br/>DE L’ÉCRAN<span style="color:#2D62FC">.</span>
+          MESUREZ<br/>LA RÉALITÉ<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Nous mesurons là où le client décide réellement.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              En magasin, en showroom, lors d’un événement ou face à un produit physique. Les lunettes d’eye-tracking mobiles
-              capturent l’attention en environnement réel — <strong class="text-brand-black">un équipement que peu d’acteurs possèdent en République tchèque</strong>.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Observez les décisions là où elles se prennent réellement.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              La mesure terrain montre comment les gens s’orientent et décident en magasin, en showroom, dans un
+              stade, dans les transports, sur un lieu de travail ou dans un autre environnement réel. Nous captons
+              le regard, le mouvement et les circonstances qu’un laboratoire ne peut pas pleinement reproduire.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Selon l’objectif de l’étude, nous complétons l’eye tracking mobile par de l’observation, un enregistrement
+              vidéo ou un entretien de suivi. Le résultat : <strong class="text-brand-black">des recommandations concrètes pour l’espace, la signalétique, la mise en avant des produits et les procédures de travail</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/fr/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              DEMANDER UNE MESURE →
+              DEMANDER UNE ÉTUDE TERRAIN →
             </a>
-            <a href="/fr/services/packs-de-test" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              PACKS DE TEST
+            <a href="/fr/services#packs-de-test" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VOIR LES PACKS
             </a>
           </div>
         </div>
       </div>
 
+      <!-- Info pás -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DURÉE', '2–6 semaines'],
-          ['TECHNOLOGIE', 'Pupil Labs NEON'],
-          ['COMPLÉMENTS', 'GSR · vidéo · entretiens'],
+          ['MESURE', 'Observation · eye tracking mobile'],
+          ['COMPLÉMENTS', 'Vidéo · entretiens · GSR'],
           ['PACK', 'Étude terrain'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
@@ -104,78 +132,147 @@ const pageSchema = [
         ))}
       </div>
 
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ OÙ NOUS MESURONS ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Le parcours client ne s’arrête pas au site web<span style="color:#2D62FC">.</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {contexts.map((v, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="reveal mb-24">
-        <img
-          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
-          alt="Infrastructure de recherche UXMIND — c’est d’ici que nous partons sur le terrain avec l’eye-tracking mobile"
-          title="Infrastructure de recherche pour les mesures terrain"
-          width="1200" height="771" loading="lazy" decoding="async"
-          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
-        />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Les locaux du laboratoire de la FIM UHK — calibration et préparation du matériel avant le départ sur le terrain.</p>
-      </div>
-
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CE QUE VOUS DÉCOUVRIREZ ]</p>
-          <ul class="space-y-2">
-            {findings.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ COMMENT SE DÉROULE LA MESURE ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Co zachytíme -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE QUE NOUS CAPTONS SUR LE TERRAIN ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Le comportement en contexte, pas isolé<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {findings.map((finding, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{finding.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{finding.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <!-- Hranice -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ LIMITES DE LA MÉTHODE ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Le naturel au prix du contrôle<span style="color:#2D62FC">.</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Le terrain offre une situation plus naturelle, mais un contrôle des conditions moindre qu’en laboratoire.
-              C’est pourquoi nous déterminons toujours à l’avance quelles conclusions peuvent être tirées en toute fiabilité
-              de la mesure terrain et lesquelles méritent une vérification encore plus contrôlée.
-            </p>
-          </div>
-          <a href="/fr/services/packs-de-test#terenni-studie" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            PACK ÉTUDE TERRAIN →
-          </a>
+      <!-- Kde měříme -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ OÙ NOUS MESURONS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Partout où l’environnement influence la décision<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-12">
+          Une étude terrain a du sens partout où il ne suffit pas de montrer un écran à quelqu’un. Nous observons
+          le déplacement réel, l’interaction physique et les influences de l’environnement qui déterminent si une
+          personne s’oriente et accomplit la tâche.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {contexts.map((context, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{context.t}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{context.d}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
+      <!-- Technologie -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 border border-brand-black/15">
+        <div class="min-h-[360px]">
+          <img
+            src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
+            alt="Infrastructure de recherche UX MIND pour la préparation de l’eye tracking mobile sur le terrain"
+            title="Préparation du matériel pour la mesure terrain"
+            width="1200" height="771" loading="lazy" decoding="async"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ EYE TRACKING MOBILE ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">
+            Deux ensembles. Un protocole précis<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed text-justify mb-5">
+            Pupil Labs Neon enregistre la scène devant le participant ainsi que l’endroit où il regarde. Sa
+            construction légère permet la mesure pendant un déplacement naturel dans l’espace.
+          </p>
+          <p class="text-brand-black/60 leading-relaxed text-justify">
+            Nous disposons de deux ensembles de lunettes mobiles. Selon la conception de l’étude, nous pouvons
+            ainsi mesurer deux participants simultanément, travailler sur plusieurs sites ou garder un ensemble
+            de secours pour une collecte de données fluide.
+          </p>
+          <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mt-8 pt-5 border-t border-brand-black/10">
+            PUPIL LABS NEON (2×) · VIDÉO · OBSERVATION · GSR EN OPTION
+          </p>
+        </div>
+      </div>
+
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CE QUE VOUS RECEVREZ ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Un enregistrement ne suffit pas. Vous devez savoir quoi changer<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Nous ne livrons pas des heures de vidéo sans contexte. Nous relions les moments clés à la tâche,
+            à l’environnement et au comportement du participant, et les traduisons en priorités pour l’exploitation réelle.
+          </p>
+        </div>
+        <div class="border-t border-brand-black/20">
+          {outputs.map((output, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ COMMENT SE DÉROULE L’ÉTUDE TERRAIN ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          De la reconnaissance du lieu au changement dans l’exploitation<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Kontrola kvality -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.75fr_1.4fr] gap-10 lg:gap-16 mb-10">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CONTRÔLE QUALITÉ SUR LE TERRAIN ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Un contexte réel. Un protocole maîtrisé<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <p class="text-brand-black/60 leading-relaxed text-justify max-w-2xl">
+            Le terrain change à chaque minute. C’est pourquoi nous déterminons à l’avance ce qui peut être comparé,
+            nous enregistrons les conditions de la mesure et nous distinguons un constat réel d’une situation née du hasard.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {controls.map(control => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <h3 class="font-display text-lg font-bold leading-tight mb-3">{control.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{control.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES ]</p>
         <div class="border-t border-brand-black/10">
@@ -191,20 +288,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            QUE VOIT LE CLIENT<br/>DANS VOTRE MAGASIN <span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Décrivez-nous l’espace et la décision que vous devez prendre. Nous proposerons un scénario de mesure terrain et vous dirons ce qu’il permettra de conclure en toute fiabilité.
-          </p>
-          <a href="/fr/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            DEMANDER UNE MESURE →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="de"
   title="Kontakt"
-  description="Kontaktieren Sie UX Mind. Vereinbaren Sie eine kostenlose Beratung zu UX-Audit, Eye Tracking oder UX-Forschung."
+  description="Vereinbaren Sie eine unverbindliche Beratung zu Nutzertests, UX-Audit der Website oder Eye Tracking. Wir antworten innerhalb von 48 Stunden."
 >
   <Navbar />
 
@@ -17,71 +17,53 @@ import Footer from '../../components/Footer.astro';
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KONTAKT ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          SPRECHEN<br/>WIR<span style="color:#2D62FC">.</span>
+          LASSEN SIE UNS<br/>DAS PRÜFEN<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
 
+        <!-- Contact info -->
         <div>
-          <p class="text-xl text-brand-black/60 leading-relaxed mb-12">
-            Wir freuen uns auf Ihr Projekt. Schreiben Sie uns oder füllen Sie das Formular aus — wir melden uns innerhalb von 48 Stunden.
+          <p class="text-xl text-brand-black/60 leading-relaxed mb-12 text-justify">
+            Schicken Sie uns Ihre Website, App, Kampagne oder eine kurze Beschreibung des Problems. Wir melden uns innerhalb von 48 Stunden und schlagen vor, was sich zu prüfen lohnt und welches Vorgehen wir empfehlen.
           </p>
 
           <div class="space-y-6">
             <div>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">E-MAIL</p>
-              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
                 spoluprace@uxmind.cz
               </a>
             </div>
             <div>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">TELEFON</p>
-              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:opacity-50 transition-opacity">
+              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
                 +420 728 601 160
               </a>
             </div>
             <div>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SITZ</p>
-              <p class="font-display text-xl font-bold">K Lesu 180, Svinary<br/>500 09 Hradec Králové, Tschechien</p>
+              <p class="font-display text-xl font-bold">K Lesu 180, Svinary<br/>500 09 Hradec Králové</p>
             </div>
           </div>
 
-          <div class="mt-12 p-6 border border-brand-black/10">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ WIR ANTWORTEN INNERHALB VON ]</p>
-            <p class="font-display text-3xl font-bold">48 Stunden</p>
-            <p class="text-sm text-brand-black/60 mt-1">an Werktagen</p>
-          </div>
-
-          <div class="mt-6 p-6 border border-brand-black/10">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WEBSITE-BETREIBER ]</p>
-            <div class="space-y-3 text-sm">
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">FIRMENNAME</p>
-                <p class="text-brand-black/80">UX MIND Research Lab s.r.o.</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">ID-NUMMER (IČO)</p>
-                <p class="text-brand-black/80">29714966</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">AKTENZEICHEN</p>
-                <p class="text-brand-black/80">C 57053, geführt beim Kreisgericht in Hradec Králové</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">EINTRAGUNGSDATUM</p>
-                <p class="text-brand-black/80">24. Juni 2026</p>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-0.5">EINGETRAGENER SITZ</p>
-                <p class="text-brand-black/80">K Lesu 180, Svinary, 500 09 Hradec Králové, Tschechien</p>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <div>
-          <form class="space-y-6" name="kontakt-de" method="POST" data-netlify="true">
+        <!-- Contact form -->
+        <div class="relative min-h-[620px]">
+          <div class="absolute inset-0 z-10 border border-brand-black/10 bg-brand-white/95 flex items-center justify-center p-8 text-center">
+            <div class="max-w-sm">
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KONTAKTFORMULAR ]</p>
+              <p class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-5">IN VORBEREITUNG<span class="text-brand-blue">.</span></p>
+              <p class="text-brand-black/60 leading-relaxed">
+                Bis das Formular startklar ist, schreiben Sie uns an <a href="mailto:spoluprace@uxmind.cz" class="font-bold text-brand-black hover:text-brand-blue transition-colors">spoluprace@uxmind.cz</a>.
+              </p>
+            </div>
+          </div>
+          <form class="space-y-6 opacity-20 pointer-events-none select-none" name="kontakt-de" method="POST" data-netlify="true" aria-hidden="true">
+            <fieldset disabled>
+            <div class="space-y-6">
             <div>
               <label for="f-name" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">NAME *</label>
               <input
@@ -118,13 +100,13 @@ import Footer from '../../components/Footer.astro';
             </div>
 
             <div>
-              <label for="f-service" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">GEWÜNSCHTE LEISTUNG</label>
+              <label for="f-service" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">WORUM ES BEI IHREM PROJEKT GEHT</label>
               <select
                 id="f-service"
                 name="service"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent appearance-none"
               >
-                <option value="">Leistung auswählen…</option>
+                <option value="">Bereich auswählen…</option>
                 <option value="ux-audit">UX-Audit</option>
                 <option value="eye-tracking">Eye Tracking</option>
                 <option value="ux-forschung">UX-Forschung</option>
@@ -135,14 +117,14 @@ import Footer from '../../components/Footer.astro';
             </div>
 
             <div>
-              <label for="f-message" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">NACHRICHT *</label>
+              <label for="f-message" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">WAS MÖCHTEN SIE HERAUSFINDEN? *</label>
               <textarea
                 id="f-message"
                 name="message"
                 required
                 rows="5"
                 class="w-full border border-brand-black/20 px-4 py-3 font-sans text-base focus:outline-none focus:border-brand-black transition-colors bg-transparent resize-none"
-                placeholder="Beschreiben Sie Ihr Projekt oder Ihre Frage…"
+                placeholder="Beschreiben Sie kurz das Projekt, das Problem oder die Entscheidung, bei der wir helfen sollen."
               ></textarea>
             </div>
 
@@ -150,9 +132,54 @@ import Footer from '../../components/Footer.astro';
               type="submit"
               class="w-full border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors"
             >
-              NACHRICHT SENDEN →
+              ANFRAGE SENDEN →
             </button>
+            </div>
+            </fieldset>
           </form>
+        </div>
+      </div>
+
+      <!-- Provozovatel a bankovní spojení -->
+      <div class="mt-16 border border-brand-black/10 p-8 md:p-10">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WEBSITE-BETREIBER ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8 text-sm">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">FIRMENNAME</p>
+            <p class="text-brand-black/80">UX MIND Research Lab s.r.o.</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">IČO</p>
+            <p class="text-brand-black/80">29714966</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">EINTRAGUNGSDATUM</p>
+            <p class="text-brand-black/80">24. Juni 2026</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">AKTENZEICHEN</p>
+            <p class="text-brand-black/80">C 57053, geführt beim Kreisgericht in Hradec Králové</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SITZ</p>
+            <p class="text-brand-black/80">K Lesu 180, Svinary, 500 09 Hradec Králové</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">BANK</p>
+            <p class="text-brand-black/80">MONETA Money Bank, a.s.</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">KONTONUMMER</p>
+            <p class="text-brand-black/80">283221603/0600</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">IBAN</p>
+            <p class="text-brand-black/80 break-words">CZ96 0600 0000 0002 8322 1603</p>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">SWIFT / BIC</p>
+            <p class="text-brand-black/80">AGBACZPP</p>
+          </div>
         </div>
       </div>
     </div>
@@ -160,3 +187,4 @@ import Footer from '../../components/Footer.astro';
 
   <Footer />
 </BaseLayout>
+</content>

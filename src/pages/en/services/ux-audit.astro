@@ -6,31 +6,32 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const reveals = [
-  { t: 'Barriers in the journey', d: 'Where users lose their bearings, where they get stuck and what makes them leave.', tag: 'JOURNEY' },
-  { t: 'Known issues', d: 'Violations of proven usability principles — before your customers find them.', tag: 'HEURISTICS' },
-  { t: 'Quick wins', d: 'High-impact, low-effort changes you can ship straight away.', tag: 'PRIORITIES' },
+  { t: 'Barriers in the journey', d: 'Steps where it can be hard to get oriented, continue or find the right information.', tag: 'USER JOURNEY' },
+  { t: 'Unclear interface', d: 'Confusing labels, weak visual hierarchy and elements where it isn’t clear what they do.', tag: 'CLARITY' },
+  { t: 'Fix priorities', d: 'Problems sorted by impact and effort, so it’s clear what to tackle first.', tag: 'NEXT STEPS' },
 ];
 
 const process = [
-  { num: '01', title: 'Brief and scope', desc: 'Key journeys, goals and the business context of your product.' },
-  { num: '02', title: 'Heuristic analysis', desc: 'A systematic walkthrough of the interface against proven principles.' },
-  { num: '03', title: 'Journey and data analysis', desc: 'User flows; if you have analytics, we bring them in.' },
-  { num: '04', title: 'Report and workshop', desc: 'Prioritised recommendations and joint planning of changes.' },
+  { num: '01', title: 'Goal and scope', desc: 'We select the key pages, user journeys and goals of the audit.' },
+  { num: '02', title: 'Expert review', desc: 'We check the navigation, content, hierarchy and clarity of the interface.' },
+  { num: '03', title: 'Context and data', desc: 'We place the findings in the context of the product and bring in available analytics.' },
+  { num: '04', title: 'Recommendations and handover', desc: 'We sort the problems by importance and go through the next steps together.' },
 ];
 
 const outputs = [
-  'Prioritised list of issues by impact',
-  'Specific recommendations with proposed solutions',
-  'Quick wins ready for immediate deployment',
-  'Output report with mockups',
-  'Workshop with your team',
+  { title: 'Overview of problems', desc: 'We link each finding to a specific place in the interface and explain its impact.' },
+  { title: 'Priorities by impact', desc: 'We distinguish what needs to be solved right away, what later and what isn’t important yet.' },
+  { title: 'Specific proposed changes', desc: 'We recommend how to remove the problem. For selected places we add a proposal or example solution.' },
+  { title: 'Joint handover of the results', desc: 'We go through the conclusions with your team so it’s clear how to put them into practice.' },
 ];
 
 const faq = [
-  { q: 'How long does a UX audit take?', a: 'Typically 2–4 weeks depending on the scope of the product: initial analysis, heuristic evaluation, data analysis and presentation of the results.' },
-  { q: 'How does an audit differ from user testing?', a: 'An audit is an expert evaluation — a specialist assesses the interface against proven principles, without participants. Testing observes real users completing tasks. The audit is the faster and cheaper first step; testing verifies behaviour in practice.' },
-  { q: 'When is an audit not enough?', a: 'An audit identifies likely problems, but it does not prove their impact on user behaviour or conversion. If you need to back a decision with data, follow it up with measurement — eye tracking, user testing or biometrics.' },
-  { q: 'What do you need from us?', a: 'Access to the product (website, app, prototype), a description of the key journeys and goals. If you have analytics, we bring them into the analysis.' },
+  { q: 'What does a UX audit include?', a: 'We check the key pages and user journeys, the navigation, content, visual hierarchy and clarity of the interface. The output is an overview of problems, their priorities and specific recommendations for changes.' },
+  { q: 'How long does a UX audit take?', a: 'Most often 2–4 weeks depending on the scope of the product and the number of journeys reviewed. We specify the timeline after a short initial brief.' },
+  { q: 'How much does a UX audit cost?', a: 'The price depends on the scope of the product, the number of key journeys and the required form of the output. Once we know the brief we prepare a concrete quote with no hidden items.' },
+  { q: 'How does a UX audit differ from user testing?', a: 'A UX audit is an expert review of the interface without participants. User testing observes real users completing tasks and verifies how the problems show up in practice.' },
+  { q: 'Can you also audit an e-shop, an app or a prototype?', a: 'Yes. We audit websites, e-shops, apps and sufficiently developed prototypes. We always adapt the scope to the stage of the product and the decision you need to make.' },
+  { q: 'What do you need to start the audit?', a: 'Access to the product or prototype, a description of the target users and the key tasks they need to accomplish. If you have web analytics or previous research, we can bring them in as additional context.' },
 ];
 
 const pageSchema = [
@@ -68,22 +69,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / UX AUDIT ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          START WITH<br/>AN AUDIT<span style="color:#2D62FC">.</span>
+          REVEAL THE<br/>WEAK SPOTS<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">The fast foundation of every improvement.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              A specialist walks through your interface from the user's perspective and finds the barriers
-              before your customers do. The output is a <strong class="text-brand-black">prioritised plan of changes</strong>, not just a list of flaws.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">UX audit of a website, e-shop or app.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              We go through the key pages and user journeys. We check the navigation, the clarity of the content, the visual hierarchy and the barriers to completing important tasks.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              You get specific recommendations sorted by impact and effort, so you know <strong class="text-brand-black">what to fix first</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              REQUEST AN AUDIT →
+              REQUEST A UX AUDIT →
             </a>
-            <a href="/en/services/test-packages" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST PACKAGES
+            <a href="/en/services#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VIEW PACKAGES
             </a>
           </div>
         </div>
@@ -95,7 +98,7 @@ const pageSchema = [
           ['DURATION', '2–4 weeks'],
           ['METHOD', 'Expert evaluation'],
           ['PARTICIPANTS', 'Not required'],
-          ['PACKAGE', 'Rapid diagnostics'],
+          ['PACKAGE', 'Quick UX audit'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -106,17 +109,17 @@ const pageSchema = [
 
       <!-- What the audit reveals -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT THE AUDIT REVEALS ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT THE UX AUDIT REVEALS ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Problems your users quietly put up with<span style="color:#2D62FC">.</span>
+          What needlessly complicates completing a task<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
           {reveals.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col h-full">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
             </div>
           ))}
         </div>
@@ -134,47 +137,57 @@ const pageSchema = [
         <p class="font-mono text-[11px] text-brand-black/60 mt-2">An audit is not guesswork — we back every finding with a specific place in the interface and the principle it violates.</p>
       </div>
 
-      <!-- Process + output -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW THE AUDIT WORKS ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Process -->
+      <div class="reveal mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW THE AUDIT WORKS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Four steps from brief to recommendations<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Output -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WHAT YOU GET ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              A clear plan of what to fix first<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {outputs.map((output, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_12rem_1fr] gap-x-4 gap-y-2 py-5 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{output.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT YOU GET ]</p>
-          <ul class="space-y-2">
-            {outputs.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
-      <!-- Limits of the service -->
+      <!-- When an audit is enough and when to test -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ LIMITS OF THE AUDIT ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">The audit shows where, measurement proves why<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ WHEN AN AUDIT IS ENOUGH AND WHEN TO TEST ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">An audit reveals weak spots. Testing verifies their impact<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Expert evaluation identifies likely problems, but it does not prove their impact on behaviour and conversion.
-              When you need to defend a decision with data, the audit is followed by eye tracking, user testing or biometrics.
+              A UX audit is suitable when you need to quickly find problems and get a concrete plan of changes.
+              If you want to verify how users actually behave in the interface and which barriers have the greatest effect, we follow up with user testing or eye tracking.
             </p>
           </div>
           <a href="/en/services/test-packages" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            FOLLOW-UP MEASUREMENT →
+            VIEW TESTING OPTIONS →
           </a>
         </div>
       </div>
@@ -195,21 +208,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            WHAT IS YOUR<br/>WEBSITE COSTING YOU<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Send us a link. Within a few days we'll tell you whether an audit makes sense and what to expect from it.
-          </p>
-          <a href="/en/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            REQUEST AN AUDIT →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

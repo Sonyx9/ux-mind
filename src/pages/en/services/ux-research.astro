@@ -5,42 +5,60 @@ import Footer from '../../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const researchQuestions = [
+  { title: 'Who you’re creating the product for', desc: 'We get to know the needs, expectations and differences between the groups that use the product or service.' },
+  { title: 'What problem people are solving', desc: 'We reveal the real goals, motivations and obstacles, not just requirements formulated without context.' },
+  { title: 'How the whole journey unfolds', desc: 'We connect the individual touchpoints and show where the experience works and where it falls apart.' },
+  { title: 'What to change first', desc: 'We turn the findings into priorities by impact, certainty and their link to your product goals.' },
+];
+
 const methods = [
-  { title: 'In-depth interviews', type: 'QUALITATIVE', desc: 'One-to-one interviews reveal motivations, frustrations and mental models.' },
-  { title: 'Usability testing', type: 'QUALITATIVE', desc: 'We observe users completing tasks and identify where they fail.' },
-  { title: 'Contextual research', type: 'QUALITATIVE', desc: 'We observe users in their natural environment, seeing how they actually work.' },
-  { title: 'Survey research', type: 'QUANTITATIVE', desc: 'Data from many respondents for statistically relevant conclusions.' },
-  { title: 'A/B testing', type: 'QUANTITATIVE', desc: 'We compare design variants in live traffic and measure the results.' },
-  { title: 'Card sorting', type: 'MIXED', desc: 'How users categorise content — the foundation of better information architecture.' },
+  { title: 'Understand the needs', methods: 'INTERVIEWS · CONTEXTUAL RESEARCH', desc: 'When you need to understand the motivations, work procedures, decision-making and circumstances in which a problem arises.' },
+  { title: 'Verify real behaviour', methods: 'USER TESTING · OBSERVATION', desc: 'When you want to find out whether people can handle important tasks and what stops them in a specific situation.' },
+  { title: 'Measure the scope of the problem', methods: 'SURVEYS · ANALYTICS · OPERATIONAL DATA', desc: 'When you need to verify how often a certain pattern appears and which groups it affects.' },
+  { title: 'Compare possible directions', methods: 'CONCEPTS · PROTOTYPES · VARIANTS', desc: 'When you’re choosing between solutions and need to back the decision with behaviour and feedback.' },
 ];
 
 const deliverables = [
-  'Research report with methodology and findings',
-  'Personas — data-based profiles of key groups',
-  'Journey maps including pain points',
-  'Prioritised recommendations by impact',
-  'Groundwork for a redesign or further testing',
+  { title: 'An answer to the research question', desc: 'We clearly summarise what the data allow us to say, what remains uncertain and what needs further verification.' },
+  { title: 'Evidence and context', desc: 'We back the findings with specific situations, statements, patterns of behaviour and available data.' },
+  { title: 'Priorities and opportunities', desc: 'We separate the fundamental problems from the details and show where a change makes the most sense.' },
+  { title: 'Materials for further work', desc: 'Depending on the goal we prepare recommendations, a journey map, segmentation, a brief for design or a plan for further validation.' },
+];
+
+const situations = [
+  { title: 'A new product or service', desc: 'You need to verify who the solution should serve and what problem it should really solve.' },
+  { title: 'A redesign or change of direction', desc: 'You don’t just want to redraw the current state, but decide what to keep and what to change.' },
+  { title: 'Weak performance with no clear cause', desc: 'The data show a problem, but don’t explain the motivations, expectations or the context of behaviour.' },
+  { title: 'A new target group or market', desc: 'You need to understand different needs before transferring your existing solution elsewhere.' },
+  { title: 'A journey across channels', desc: 'The experience arises between the website, support, a branch, a store or a physical product.' },
+  { title: 'A high-impact decision', desc: 'You need to back a development direction, an investment or a process change before wider deployment.' },
 ];
 
 const process = [
-  { num: '01', title: 'Research question', desc: 'What you need to decide and who it concerns.' },
-  { num: '02', title: 'Method design', desc: 'A combination of qualitative and quantitative methods based on the question.' },
-  { num: '03', title: 'Data collection', desc: 'Interviews, testing, surveys — with piloting and quality control.' },
-  { num: '04', title: 'Synthesis and output', desc: 'We connect the findings into recommendations, personas and journey maps.' },
+  { num: '01', title: 'Decision and context', desc: 'We clarify what you need to decide, what you already know and where the biggest gaps are.' },
+  { num: '02', title: 'Research design', desc: 'We choose suitable methods, target groups, sample and method of evaluation.' },
+  { num: '03', title: 'Preparation and recruitment', desc: 'We prepare the scenario, verify it with a pilot and secure suitable participants.' },
+  { num: '04', title: 'Data collection and synthesis', desc: 'We connect interviews, behaviour and available data and look for recurring patterns.' },
+  { num: '05', title: 'Recommendations and handover', desc: 'We turn the results into priorities and together define the next product steps.' },
 ];
 
 const faq = [
-  { q: 'When does in-depth research make sense instead of a quick test?', a: 'When you are not deciding about one interface but about product strategy: who you are building for, which needs you are addressing, where the user journey is weakest. A quick test verifies a specific solution; research tells you what to build in the first place.' },
-  { q: 'How long does UX research take?', a: 'Depending on scope, typically 3–8 weeks: research design, recruitment, data collection, analysis and synthesis into recommendations.' },
-  { q: 'Do you combine research with biometrics?', a: 'Yes. We can complement interviews and observation with eye tracking, GSR or the EMLI mental load index — verifying subjective statements against objective data.' },
-  { q: 'What if we already have our own data?', a: 'Great — we bring your analytics, customer support insights or previous research into the synthesis. New data collection then targets only the gaps.' },
+  { q: 'What is UX research?', a: 'UX research systematically finds out who the users are, what they need, how they behave and why. It helps decide what problem to solve, what to design and which changes make the most sense.' },
+  { q: 'How does UX research differ from user testing?', a: 'User testing verifies a specific interface or prototype. UX research can address broader questions about needs, target groups, the whole customer journey or the direction of the product, and combines several methods depending on the goal.' },
+  { q: 'How does UX research differ from market research?', a: 'Market research often focuses on market size, preferences or the brand. UX research goes more into the context of using a product or service and looks for a basis for specific design and product decisions. The two approaches can complement each other well.' },
+  { q: 'How many participants do we need?', a: 'The number depends on the research question, the number of target groups and the chosen methods. Qualitative interviews work with a different sample than a survey or a comparison of variants, so we determine the scope when designing the study.' },
+  { q: 'How long does UX research take and how much does it cost?', a: 'Most often 3–8 weeks depending on the number of target groups, the recruitment method, the methods and the scope of the output. After an initial brief we prepare a concrete proposal, schedule and price.' },
+  { q: 'What if we already have analytics or previous research?', a: 'We first go through the existing data and use it as a starting point. We propose new collection only where we need to fill in missing context or verify uncertain conclusions.' },
+  { q: 'Does the research have to be in person?', a: 'No. Interviews and user testing can be conducted in person or remotely depending on the goal. Field research, on the other hand, takes place directly in the environment where people use the service, product or work procedure.' },
+  { q: 'When do you bring eye tracking and biometrics into UX research?', a: 'Only when the research question requires precisely measuring visual attention, physiological activation or mental load. It is not an automatic part of every study, but an optional extension.' },
 ];
 
 const pageSchema = [
   {
     '@type': 'Service',
     name: 'UX research',
-    description: 'In-depth UX research combining qualitative and quantitative methods: interviews, usability testing, surveys, personas and journey maps.',
+    description: 'UX research for product decisions: interviews, observation, user testing, surveys, data analysis and prioritised recommendations.',
     serviceType: 'UX research',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -58,8 +76,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="en"
-  title="UX research and website user testing"
-  description="Website user testing, in-depth interviews, usability testing, personas and journey maps. Decide on data, not assumptions."
+  title="UX research for product decisions | UX MIND"
+  description="UX research using interviews, observation, user testing and data analysis. Get clear findings, priorities and recommendations for your product."
   schema={pageSchema}
 >
   <Navbar />
@@ -71,22 +89,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / UX RESEARCH ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          DATA OVER<br/>IMPRESSIONS<span style="color:#2D62FC">.</span>
+          UNDERSTAND<br/>THE CONTEXT<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">The deepest scope: understanding users, not just the interface.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              We combine qualitative and quantitative methods to uncover the
-              <strong class="text-brand-black">needs, frustrations and mental models</strong> of your users.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Decide what’s worth creating and improving.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              UX research answers broader questions than a test of a single screen. It helps find out who your users are, what they need, how they decide and which parts of their journey have the greatest impact on the experience with the product or service.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Depending on the goal we combine interviews, observation, user testing, surveys and available data. The output is <strong class="text-brand-black">clear findings, priorities and recommendations for product decisions</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              START THE RESEARCH →
+              REQUEST UX RESEARCH →
             </a>
-            <a href="/en/services/test-packages" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST PACKAGES
+            <a href="/en/services#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VIEW PACKAGES
             </a>
           </div>
         </div>
@@ -96,9 +116,9 @@ const pageSchema = [
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DURATION', '3–8 weeks'],
-          ['METHODS', 'Qual + quant'],
-          ['OUTPUTS', 'Personas · journey maps'],
-          ['PACKAGE', 'Comprehensive biometric'],
+          ['METHODS', 'Interviews · observation · data'],
+          ['OUTPUTS', 'Findings · priorities · recommendations'],
+          ['FORMAT', 'Custom research'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -107,18 +127,62 @@ const pageSchema = [
         ))}
       </div>
 
+      <!-- Research questions -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WHAT UX RESEARCH ANSWERS ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              The question first. Then the method<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {researchQuestions.map((question, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{question.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{question.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- When it makes sense -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHEN UX RESEARCH MAKES SENSE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          When adjusting a single screen isn’t enough<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {situations.map((situation, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{situation.title}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{situation.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <!-- Methods -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ RESEARCH METHODS ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          The right method for the right question<span style="color:#2D62FC">.</span>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW WE COMPOSE THE METHODS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          The scope is set by the decision, not by a list of methods<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {methods.map(method => (
-            <div class="bg-brand-white p-8">
-              <span class="font-mono text-[10px] text-brand-black/60 border border-brand-black/20 px-2 py-0.5 tracking-widest">{method.type}</span>
-              <h3 class="font-display text-xl font-bold mb-3 mt-4">{method.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-10">
+          We don’t start by putting every available technique into the project. First we determine what type of answer you need, and only then do we propose the smallest meaningful combination of methods.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {methods.map((method, i) => (
+            <div class="bg-brand-white p-8 flex flex-col min-h-64">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold mb-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{method.desc}</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mt-auto pt-5 border-t border-brand-black/10">{method.methods}</p>
             </div>
           ))}
         </div>
@@ -128,55 +192,65 @@ const pageSchema = [
       <div class="reveal mb-24">
         <img
           src={`${base}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
-          alt="UX research lab — facilities for interviews, testing and biometric measurement"
+          alt="A UX research lab — facilities for interviews, testing and biometric measurement"
           title="UX research lab"
           width="1200" height="846" loading="lazy" decoding="async"
           class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">The FIM UHK research facilities — interviews and testing can be complemented with eye tracking and biometrics in the same session.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">The FIMEYELAB research facilities at FIM UHK — a space for interviews, user testing and, as needed, synchronised measurement.</p>
       </div>
 
-      <!-- What you get + process -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Deliverables -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
         <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT YOU GET ]</p>
-          <ul class="space-y-2">
-            {deliverables.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT YOU GET ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            A basis for decisions, not a document for the archive<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            We choose the form of the output by who will work with the results and what decision should follow. A journey map or a persona is not a mandatory item — they are created only when they help further work.
+          </p>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW THE RESEARCH WORKS ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div class="border-t border-brand-black/20">
+          {deliverables.map((deliverable, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{deliverable.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{deliverable.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Biometrics -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+      <!-- Process -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW UX RESEARCH WORKS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          From the question to the next product step<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Advanced measurement -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ STATEMENTS + OBJECTIVE DATA ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">What people say vs. what they do<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OPTIONAL ADVANCED MEASUREMENT ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">When statements and observation aren’t enough<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              We verify declared answers against behaviour: interviews and surveys are combined
-              with eye tracking, GSR and the EMLI mental load index. You then decide on what actually happened.
+              If the research question requires precisely measuring visual attention, physiological activation or mental load, we can extend the study with eye tracking, GSR, facial signal analysis or EMLI. We add a method only when it brings the type of evidence needed.
             </p>
           </div>
-          <a href="/en/services/test-packages#komplexni-biometricky-vyzkum" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            BIOMETRIC PACKAGE →
+          <a href="/en/services/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            VIEW EYE TRACKING →
           </a>
         </div>
       </div>
@@ -197,21 +271,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            GET TO KNOW<br/>YOUR USERS<span style="color:#2D62FC">.</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Tell us what you need to decide. We'll design research that answers it — without unnecessary methods.
-          </p>
-          <a href="/en/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            START THE RESEARCH →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

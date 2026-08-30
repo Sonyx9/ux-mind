@@ -31,8 +31,8 @@ import Footer from '../../components/Footer.astro';
             id: 'ux-audit',
             href: '/de/leistungen/ux-audit',
             title: 'UX-Audit',
-            desc: 'Die schnelle Basis jeder Verbesserung. Eine systematische Analyse Ihres digitalen Produkts — wir gehen die Oberfläche aus Nutzerperspektive durch, identifizieren Barrieren und schlagen konkrete Verbesserungen mit wirkungsbasierter Priorisierung vor.',
-            details: ['Heuristische Analyse', 'User-Flow-Analyse', 'Priorisierte Empfehlungsliste', 'Team-Workshop', 'Ergebnisbericht mit Mockups'],
+            desc: 'Wir durchlaufen Ihre Website, Ihren Onlineshop oder Ihre App mit den Augen der Nutzer. Wir finden Stellen, an denen Menschen zögern, abspringen oder einen wichtigen Schritt nicht abschließen. Sie erhalten konkrete Empfehlungen, geordnet nach ihrer Wirkung.',
+            details: ['Heuristische Analyse', 'Analyse der Nutzerpfade', 'Priorisierte Empfehlungsliste', 'Workshop mit dem Team', 'Ergebnisbericht mit Änderungsvorschlägen'],
             duration: '2–4 Wochen',
             pkg: 'Schnelldiagnose',
           },
@@ -41,8 +41,8 @@ import Footer from '../../components/Footer.astro';
             id: 'testovani-uzivatelu',
             href: '/de/leistungen/nutzertests',
             title: 'Nutzertests',
-            desc: 'Moderierte und unmoderierte Tests mit echten Nutzern. Wir beobachten, wie Nutzer Aufgaben in Ihrem Produkt lösen, und identifizieren, wo sie scheitern.',
-            details: ['Moderierte Testsitzungen', 'Unmoderierte Online-Tests', 'Think-Aloud-Protokoll', 'Bildschirmaufzeichnung', 'Analyse und Empfehlungen'],
+            desc: 'Wir geben echten Nutzern konkrete Aufgaben und beobachten, ob sie diese lösen können. Sie erfahren, wo sie sich verlieren, was sie nicht verstehen und warum sie abspringen.',
+            details: ['Moderiertes Testing', 'Unmoderiertes Online-Testing', 'Nutzer beschreibt seine Schritte laut', 'Bildschirmaufzeichnung', 'Ergebnisse und Empfehlungen'],
             duration: '1–4 Wochen',
             pkg: 'Standard-UX-Test',
           },
@@ -50,7 +50,7 @@ import Footer from '../../components/Footer.astro';
             num: '03',
             href: '/de/leistungen/eye-tracking',
             title: 'Eye Tracking',
-            desc: 'Präzise Daten zur visuellen Wahrnehmung Ihrer Inhalte. Wir verfolgen die Augenbewegungen von Nutzern bei der Interaktion mit Ihrer Website, App oder Ihren Printmaterialien.',
+            desc: 'Mit Eye Tracking messen wir, wohin Menschen wirklich schauen. Sie erfahren, was ihnen auffällt, was sie übersehen und ob wichtiger Inhalt ihre Aufmerksamkeit in die richtige Richtung lenkt.',
             details: ['Aufmerksamkeits-Heatmaps', 'AOI-Analyse (Areas of Interest)', 'Aufzeichnungen der Augenbewegungen', 'F-Pattern- & Z-Pattern-Analyse', 'Vergleichende Variantentests'],
             duration: '1–3 Wochen',
             pkg: 'Standard-UX-Test',
@@ -60,7 +60,7 @@ import Footer from '../../components/Footer.astro';
             id: 'terenni-mereni',
             href: '/de/leistungen/feldforschung',
             title: 'Feldforschung',
-            desc: 'Wir messen dort, wo der Kunde wirklich entscheidet — im Store, im Showroom, auf einem Event oder am physischen Produkt. Die mobile Eye-Tracking-Brille erfasst Aufmerksamkeit in realer Umgebung, nicht nur am Bildschirm. Eine Ausstattung, über die nur wenige verfügen.',
+            desc: 'Wir beobachten Kunden genau dort, wo sie entscheiden — im Geschäft, im Showroom, auf einer Veranstaltung oder am physischen Produkt. Mobile Eye-Tracking-Brillen zeigen, was ihnen im realen Umfeld auffällt und was sie übersehen.',
             details: ['Mobile Eye-Tracking-Brille Pupil Labs NEON', 'Videoaufzeichnung von Situation und Verhalten im Raum', 'GSR und Interviews nach Bedarf', 'Product Placement, Beschilderung, POS-Materialien', 'Empfehlungen zur Anpassung von Raum und Customer Journey'],
             duration: '2–6 Wochen',
             pkg: 'Feldstudie',
@@ -69,7 +69,7 @@ import Footer from '../../components/Footer.astro';
             num: '05',
             href: '/de/leistungen/ux-forschung',
             title: 'UX-Forschung',
-            desc: 'Der tiefste Umfang: eine Kombination qualitativer und quantitativer Methoden. Wir helfen Ihnen, die Bedürfnisse, Frustrationen und mentalen Modelle Ihrer Nutzer zu verstehen.',
+            desc: 'Wir helfen Ihnen zu verstehen, was Nutzer brauchen, was sie frustriert und warum sie sich auf eine bestimmte Weise verhalten. Je nach Forschungsfrage verbinden wir Interviews, Beobachtung, Tests und Daten.',
             details: ['Tiefeninterviews', 'Kontextuelle Forschung', 'Usability-Tests', 'Datenanalyse', 'Personas & Journey Maps'],
             duration: '3–8 Wochen',
             pkg: 'Umfassende biometrische Forschung',
@@ -101,7 +101,7 @@ import Footer from '../../components/Footer.astro';
                   <a href="/de/leistungen/test-pakete" class="font-display text-lg font-semibold underline hover:no-underline">{service.pkg}</a>
                 </div>
                 <div class="flex flex-col gap-2 mt-6">
-                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors text-center">
+                  <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-[#2D62FC] hover:border-[#2D62FC] hover:text-brand-white transition-colors text-center">
                     LEISTUNG IM DETAIL →
                   </a>
                   <a href="/de/kontakt" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors text-center">
@@ -114,25 +114,26 @@ import Footer from '../../components/Footer.astro';
         ))}
       </div>
 
-      <!-- Test-Pakete -->
-      <div class="mt-24 bg-brand-black text-brand-white p-8 md:p-12">
+      <!-- Testovací balíčky -->
+      <a id="testovaci-balicky" href="/de/leistungen/test-pakete" class="group block mt-24 border border-brand-black bg-brand-black text-brand-white p-8 md:p-12 hover:bg-brand-white hover:text-brand-black transition-colors duration-300 scroll-mt-28">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div class="md:col-span-2">
-            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ TEST-PAKETE ]</p>
-            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Von der Schnelldiagnose bis zur umfassenden biometrischen Forschung</h2>
-            <p class="text-brand-white/70 leading-relaxed max-w-2xl">
-              Wir stellen unsere Leistungen zu Test-Paketen zusammen — je nach Entscheidung, die Sie treffen müssen: Eye-Tracking, Verhaltensdaten, Fragebögen, GSR und Feldmessungen. Sie wissen vorab, was Sie aus dem Testing gewinnen und was sich mit dem jeweiligen Umfang nicht zuverlässig behaupten lässt.
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4 group-hover:text-brand-black/60 transition-colors">[ TEST-PAKETE ]</p>
+            <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Von der schnellen Kontrolle bis zur Tiefenforschung<span style="color:#2D62FC">.</span></h2>
+            <p class="text-brand-white/70 leading-relaxed max-w-2xl group-hover:text-brand-black/70 transition-colors">
+              Wählen Sie den Umfang nach dem, was Sie herausfinden möchten. Wir kombinieren passende Methoden und erklären vorab, welche Antworten Sie aus dem Testing erhalten.
             </p>
           </div>
           <div class="flex md:justify-end">
-            <a href="/de/leistungen/test-pakete" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              PAKETE ANSEHEN →
-            </a>
+            <span class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase group-hover:border-brand-black group-hover:text-brand-black transition-colors">
+              PAKETE VERGLEICHEN →
+            </span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </main>
 
   <Footer />
 </BaseLayout>
+</content>

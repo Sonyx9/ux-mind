@@ -7,7 +7,7 @@ import Footer from '../../components/Footer.astro';
 <BaseLayout
   lang="fr"
   title="Études de cas"
-  description="De vraies études d’eye tracking aux chiffres vérifiables : 40 % de candidats perdus, 92 % des regards sur le CTA principal, p = 0,037. Nous ne publions que ce que les données prouvent."
+  description="De vraies mesures d’eye tracking aux chiffres vérifiables : 40 % des candidats n’ont pas trouvé les postes ouverts, le CTA a été remarqué par 92 % des participants, p = 0,037. Nous indiquons la méthode, l’échantillon et les limites."
 >
   <Navbar />
 
@@ -17,7 +17,7 @@ import Footer from '../../components/Footer.astro';
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ÉTUDES DE CAS ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          LES RÉSULTATS<br/>PARLENT<span style="color:#2D62FC">.</span>
+          CE QU’A RÉVÉLÉ<br/>LA MESURE<span style="color:#2D62FC">.</span>
         </h1>
         <p class="text-xl text-brand-black/60 max-w-3xl leading-relaxed">
           De vraies mesures, de vrais échantillons. Nous ne publions que des chiffres étayés par des données primaires — méthode, taille d’échantillon et limites comprises.
@@ -27,67 +27,67 @@ import Footer from '../../components/Footer.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
         {[
           {
-            href: '/fr/etudes-de-cas/karierni-portal-automotive',
             category: "ŠKODA AUTO · portail carrière",
+            href: "/fr/etudes-de-cas/karierni-portal-automotive",
             title: "40 % des candidats n’ont pas trouvé les postes ouverts — sur un site pourtant « clair ».",
             desc: "L’eye tracking avec le scénario « trouvez les postes ouverts » a montré que la clarté perçue ne correspond pas à la réussite de la tâche. Une comparaison A/B d’un CTA flottant a produit des différences mesurables dans les métriques de fixation et la durée de visite. Résultat : un parcours simplifié et une navigation repensée.",
             method: "Eye tracking + questionnaire · N = 102",
             tags: ["Eye tracking", "Navigation", "Test A/B"],
-            result: "40 % perdus",
+            result: "4 candidats sur 10 n’ont pas trouvé les postes",
           },
           {
-            href: '/fr/etudes-de-cas/backend-stories',
             category: "Microsite éducatif",
-            title: "92 % des regards ont fini sur le CTA principal. Seul un tiers a lu le long paragraphe.",
-            desc: "L’analyse AOI a révélé un gradient de lecture : ~86 % des participants ont enregistré le titre en gras, 62 % le texte court et seulement ~33 % le long paragraphe. L’orientation vient de la hiérarchie, pas du volume de texte — le CTA principal a été renforcé, les longs blocs raccourcis.",
-            method: "Eye tracking, analyse AOI · ~120 participants",
+            href: "/fr/etudes-de-cas/backend-stories",
+            title: "Plus le texte est long, moins il capte l’attention.",
+            desc: "L’analyse AOI a révélé un gradient d’attention : le titre en gras a été enregistré par environ 86 % des participants, le texte court qui suit par 62 % et le long paragraphe par 33 %. Les résultats ont conduit à mettre en avant le CTA principal et à raccourcir les longs blocs.",
+            method: "Eye tracking, analyse AOI · env. 120 participants",
             tags: ["Analyse AOI", "Hiérarchie de contenu", "CTA"],
-            result: "92 % sur le CTA",
+            result: "92 % ont remarqué le CTA",
           },
           {
-            href: '/fr/etudes-de-cas/produktove-fotografie-e-commerce',
             category: "E-commerce",
-            title: "Les photos lifestyle sont plus belles. Mais elles ont ralenti la décision d’achat — mesurablement.",
-            desc: "Une expérience a comparé un packshot épuré à une photo lifestyle. Le type de photo a eu un effet significatif sur le temps d’exécution de la tâche — F(1,82) = 4,50 ; p = 0,037. Pas d’effet clair sur les évaluations subjectives : « plus joli » ne veut pas dire « plus performant ».",
+            href: "/fr/etudes-de-cas/produktove-fotografie-e-commerce",
+            title: "Même produit. Un temps de décision différent.",
+            desc: "L’expérience a comparé un packshot épuré à une photo lifestyle. Le type de photo a influencé de façon statistiquement significative la durée d’exécution de la tâche — F(1,82) = 4,50 ; p = 0,037. La variante lifestyle a entraîné un temps plus long dans le scénario testé ; la différence dans l’évaluation subjective n’a pas été clairement confirmée.",
             method: "Eye tracking + UEQ · N = 84",
             tags: ["Photos produit", "Expérimentation", "PDP"],
-            result: "Beau mais lent",
+            result: "Le lifestyle a rallongé la tâche",
           },
           {
-            href: '/fr/etudes-de-cas/reklamni-bannery-smer-pohledu',
             category: "Créa publicitaire",
-            title: "Là où regarde le personnage de votre bannière, votre client regarde aussi.",
-            desc: "La manipulation de l’indice visuel (direction du regard du modèle) a eu un fort effet statistique sur la répartition de l’attention : F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11 — un effet de taille moyenne. La direction du regard est l’un des outils les moins chers pour guider l’attention vers le message et le CTA.",
+            href: "/fr/etudes-de-cas/reklamni-bannery-smer-pohledu",
+            title: "Le regard du personnage a orienté l’attention des visiteurs.",
+            desc: "Le changement de direction du regard du personnage a statistiquement influencé de façon significative la répartition de l’attention : F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11. L’expérience a démontré un effet de taille moyenne sur les créations testées ; elle n’a mesuré ni les clics ni la conversion.",
             method: "Expérience d’eye tracking · N = 104",
             tags: ["Bannières", "Indices visuels", "Attention"],
-            result: "Le regard guide",
+            result: "ηp² = 0,11 · effet moyen",
           },
           {
-            href: '/fr/etudes-de-cas/sablony-e-shopu',
             category: "Templates e-shop",
-            title: "Trois templates, le même assortiment. L’attention changeait selon la tâche donnée.",
-            desc: "Le même template produisait des schémas d’attention différents selon la tâche reçue. Les évaluations esthétiques hors contexte de tâche sont trompeuses — testez votre template avec de vraies tâches d’achat, pas « à l’impression ».",
+            href: "/fr/etudes-de-cas/sablony-e-shopu",
+            title: "La tâche a changé où les gens ont porté leur attention.",
+            desc: "L’eye tracking de trois templates avec le même assortiment a montré que la répartition de l’attention changeait selon la tâche donnée. VisAWI a complété l’évaluation subjective de l’apparence — l’étude montre ainsi pourquoi il faut évaluer séparément l’esthétique et le comportement pendant une tâche d’achat.",
             method: "Eye tracking + VisAWI · N = 61",
             tags: ["E-commerce", "Esthétique vs performance", "Tests par tâches"],
-            result: "Le contexte prime",
+            result: "3 templates · 2 types de tâche",
           },
           {
-            href: '/fr/etudes-de-cas/billboardy-sport-marketing',
-            category: "Marketing sportif · OOH",
-            title: "16 maquettes d’affichage, 79 paires d’yeux. Les variantes noires minimalistes ont gagné.",
-            desc: "Les six maquettes les mieux notées avaient toutes un fond noir ; la variante gagnante a obtenu le meilleur score TOP3 et le meilleur rang moyen. Insight le plus fort : la publicité visuelle influence 39 % des femmes contre 16 % des hommes. Recommandation : fond épuré, titre clair, composition non agressive.",
+            category: "Marketing sportif · publicité extérieure",
+            href: "/fr/etudes-de-cas/billboardy-sport-marketing",
+            title: "Les six premières places sont revenues aux panneaux noirs.",
+            desc: "L’eye tracking et l’évaluation de 16 maquettes ont montré une préférence claire pour les variantes noires. Les seules métriques de fixation n’ont toutefois pas déterminé le gagnant — l’étude montre pourquoi il faut associer l’attention à l’évaluation du public cible lors du choix d’une création.",
             method: "Eye tracking + questionnaire d’évaluation · N = 79 · 16 stimuli de 10 s",
-            tags: ["Affichage", "OOH", "Insight genre"],
-            result: "39 % vs 16 %",
+            tags: ["Billboard", "OOH", "Insight genre"],
+            result: "TOP 6 · fond noir",
           },
         ].map(study => (
           <div class="bg-brand-white p-10 flex flex-col">
             <div class="flex flex-col gap-2 md:flex-row md:justify-between md:items-start mb-6">
               <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5 self-start">{study.category}</span>
-              <a href={study.href} class="font-display text-2xl font-bold leading-none md:text-right hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
+              <a href={study.href} class="font-display text-lg font-bold leading-tight md:text-right md:whitespace-nowrap hover:opacity-70 transition-opacity" style="color:#2D62FC">{study.result}</a>
             </div>
             <h3 class="font-display text-2xl font-bold mb-4 leading-tight"><a href={study.href} class="hover:opacity-60 transition-opacity">{study.title}</a></h3>
-            <p class="text-brand-black/60 leading-relaxed mb-6">{study.desc}</p>
+            <p class="text-brand-black/60 leading-relaxed mb-6 text-justify">{study.desc}</p>
             <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mb-6">MÉTHODE : {study.method}</p>
             <div class="flex flex-wrap gap-2 mt-auto mb-6">
               {study.tags.map(tag => (
@@ -114,13 +114,6 @@ import Footer from '../../components/Footer.astro';
         </dl>
       </details>
 
-      <div class="text-center py-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ ENVIE DE TELLES DONNÉES POUR VOTRE SITE ? ]</p>
-        <h2 class="font-display text-5xl font-bold mb-8">Mesurons votre projet</h2>
-        <a href="/fr/contact" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-          DEMANDER UN DEVIS →
-        </a>
-      </div>
     </div>
   </main>
 

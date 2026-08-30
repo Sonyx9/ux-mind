@@ -4,16 +4,17 @@ import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
 const fakta = [["METHOD", "Eye tracking, AOI analysis"], ["SAMPLE", "approx. 120 respondents"], ["SCENARIOS", "Multiple task scenarios"], ["OUTPUTS", "AOI statistics, reading gradient"]];
-const zjisteni = ["The “Read online” CTA was fixated by ~92% of the sample.", "Reading gradient: ~86% of respondents noticed the bold heading, 62% the short follow-up text, and only ~33% the long paragraph.", "~75% of respondents noticed the bottom section of the page before even filling in the form."];
+const zjisteni = ["The “Read online” CTA was noticed by approximately 92% of respondents.", "Attention gradually declined: the bold heading was noticed by approximately 86% of respondents, the short follow-up text by 62% and the long paragraph by 33%.", "Approximately 75% of respondents noticed the bottom part of the page before even filling in the form."];
 const faq = [
-  { q: "What is a reading gradient?", a: "The share of people who actually noticed each element of the page: bold heading ~86%, short text 62%, long paragraph only ~33%. Attention drops steeply with the length of the block." },
-  { q: "How many people saw the main CTA?", a: "The “Read online” CTA was fixated by ~92% of roughly 120 respondents — it was the most-watched element on the whole page." },
-  { q: "What does this mean for content creation?", a: "Orientation is carried by hierarchy, not by the amount of text: a strong heading, short text and a clear CTA work better than long paragraphs." },
+  { q: "What is an attention gradient?", a: "The share of respondents who noticed the individual elements gradually declined: the bold heading approximately 86%, the short text 62% and the long paragraph 33%. The result describes this specific page and the tested scenarios." },
+  { q: "How many respondents noticed the main CTA?", a: "The “Read online” CTA was noticed by approximately 92% of the roughly 120 respondents. Of all the tracked elements it received the highest reach." },
+  { q: "Does a fixation mean the person read the text?", a: "No. A fixation shows that the gaze was directed to the given area, not a full read or comprehension. That's why we phrase the result as noticing an element and interpret it in the context of the task." },
+  { q: "What do the results imply for content creation?", a: "On the tested page, clear CTAs, a strong heading and short follow-up text helped focus attention. For another website the same principle needs to be verified in its own content and context." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "92% of gazes landed on the main CTA",
+    headline: "The longer the text, the less attention",
     about: 'Eye tracking, UX research',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'en',
@@ -31,8 +32,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="en"
-  title="Case study: 92% of gazes on the main CTA"
-  description="AOI analysis of an educational microsite: reading gradient 86/62/33%, 92% of gazes on the CTA. Orientation is carried by hierarchy, not the amount of text."
+  title="Case study: how text length affected attention"
+  description="Eye-tracking AOI analysis of an educational microsite: the CTA was noticed by 92% of respondents, the bold heading 86%, the short text 62% and the long paragraph 33%."
   schema={pageSchema}
 >
   <Navbar />
@@ -45,56 +46,33 @@ const pageSchema = [
       <!-- Study header -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Educational microsite</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          92% of gazes landed on the main CTA<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          The longer the text, the less attention<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistics banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Key results -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-2 lg:grid-cols-4">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);" data-count="92" data-suffix=" %">92 %</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">of gazes landed on the main CTA — only a third read the long paragraph to the end</p>
+        {[
+          ['92 %', 'the CTA'],
+          ['86 %', 'the bold heading'],
+          ['62 %', 'the short text'],
+          ['33 %', 'the long paragraph'],
+        ].map(([value, label], i) => (
+          <div class:list={["relative p-6 md:p-8 border-brand-white/15", i === 0 && "border-t-4 border-t-brand-blue", i < 2 && "border-b lg:border-b-0", i % 2 === 0 && "border-r", i === 1 && "lg:border-r", i === 2 && "lg:border-r"]}>
+            <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.5rem, 5vw, 4.5rem);">{value}</p>
+            <p class="text-brand-white/70 text-sm md:text-base leading-relaxed">of respondents noticed {label}</p>
+          </div>
+        ))}
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSARY — WHAT THE NUMBERS IN THIS STUDY MEAN ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (sample)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The number of real people who took part in the measurement. N = 102 means 102 respondents.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-value</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The probability that the measured difference arose by pure chance. The smaller it is, the more conclusive the result — p = 0.037 means only a 3.7% chance of coincidence (anything below 5% is considered conclusive).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Effect size (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Tells you how large the difference is in practice — not just whether it exists. As a rough guide: 0.01 small, 0.06 medium, 0.14 large effect.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A brief stop of the eye on one spot (fractions of a second). The sequence of fixations makes up everything a person actually “saw” on the page.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (area of interest)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A predefined part of the page — a button, a heading, a photo — for which we measure how much attention it received.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardized scientific questionnaires: UEQ measures the overall user experience, VisAWI the perceived aesthetics of a website. Thanks to standardization, results are comparable across studies.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Content -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">The educational microsite combined longer expert texts with a call to action. The question was whether visitors actually read the content — and whether it makes sense to invest in long blocks of text, or rather in structure.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— BUSINESS QUESTION</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Which content on the microsite actually carries attention — and which just takes up space?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MEASUREMENT</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye tracking with multiple scenarios and a detailed AOI analysis — measuring attention separately for each marked element of the page.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WHAT THE DATA SHOWED</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— WHAT THE DATA SHOWED</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -103,6 +81,17 @@ const pageSchema = [
                 </div>
               ))}
             </div>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— WHAT WE NEEDED TO FIND OUT</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Which elements does a visitor notice, and where does attention start to drop?</p>
+            <p class="text-brand-black/70 leading-relaxed">The educational microsite combined expert content with a main call to action. The goal was to verify how much attention the individual layers of the page — CTA, headings, short texts and longer paragraphs — receive.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— HOW THE MEASUREMENT WORKED</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Approximately 120 respondents went through several task scenarios. Eye tracking captured their visual attention, and AOI analysis calculated the share of respondents who fixated the predefined elements of the page.</p>
           </section>
 
           <section class="reveal mb-12">
@@ -114,17 +103,19 @@ const pageSchema = [
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA VISUALIZED ]</p>
               <svg viewBox="0 0 640 278" class="w-full" role="img" aria-label="The CTA was noticed by 92 percent, the heading 86, the short text 62 and the long paragraph 33 percent of respondents"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">READING GRADIENT · SHARE OF RESPONDENTS WHO NOTICED THE ELEMENT</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">“READ ONLINE” CTA</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="368" height="22" fill="#2D62FC" class="viz-bar"/><text x="558" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">92 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">BOLD HEADING</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="344" height="22" fill="#0A0A0A" class="viz-bar"/><text x="534" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">86 %</text><text x="0" y="171" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">SHORT TEXT</text><rect x="190" y="156" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="156" width="248" height="22" fill="#0A0A0A" class="viz-bar"/><text x="438" y="171" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">62 %</text><text x="0" y="223" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">LONG PARAGRAPH</text><rect x="190" y="208" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="208" width="132" height="22" fill="#0A0A0A" class="viz-bar"/><text x="322" y="223" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">33 %</text></svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">The longer the block, the fewer eyes: attention drops from 92% to a third. Hierarchy carries orientation, not the amount of text.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">The share of respondents who noticed the element declined from the main CTA through the heading and short text down to the long paragraph.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
             <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WHAT WAS DECIDED</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Emphasizing the primary CTA, shortening long blocks of text and rebuilding the hierarchy — orientation is not carried by “more text” but by the right hierarchy.</p>
+            <p class="text-brand-black/70 leading-relaxed">The results supported clearly separating the main CTA, shortening long text blocks and working more consistently with the information hierarchy. The team gained concrete data for deciding which parts of the content to emphasise, shorten or rearrange.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">WHAT EMLI WOULD ADD TODAY</p>
-            <p class="text-brand-black/70 leading-relaxed">For a similar brief today we additionally measure the cognitive load of the form page vs. the content page — exactly where the reader “switches off”.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ THE TAKEAWAY ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Information on the page doesn't yet mean information noticed<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Eye tracking shows whether the information hierarchy really guides attention to what the visitor is meant to see and use.</p>
+            <a href="/en/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUSS YOUR OWN STUDY →</a>
           </section>
         </div>
 
@@ -162,15 +153,30 @@ const pageSchema = [
               <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">AOI analysis: each page element has its own attention metrics</figcaption>
             </figure>
             <a href="/en/contact" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              GET A QUOTE →
+              NO-OBLIGATION ENQUIRY →
             </a>
           </div>
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSARY — WHAT THE TERMS IN THIS STUDY MEAN ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A brief stop of the eye in a certain area. It shows visual attention, not a full read or comprehension.</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI (area of interest)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">A predefined part of the page, for example a CTA, a heading or a text block, for which we calculate metrics.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Element reach</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The share of respondents who fixated the given area at least once during the scenario.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Attention gradient</dt><dd class="text-sm text-brand-black/70 leading-relaxed">The gradual decline in the share of respondents who noticed the individual layers of content.</dd></div>
+          </dl>
+        </details>
+      </section>
+
       <!-- Study FAQ -->
       <section class="reveal mt-20">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ FREQUENTLY ASKED QUESTIONS ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ FREQUENTLY ASKED QUESTIONS ABOUT THE STUDY ]</p>
         <div class="border-t border-brand-black/10">
           {faq.map(f => (
             <details class="group border-b border-brand-black/10">
@@ -203,18 +209,10 @@ const pageSchema = [
         </a>
         <a href="/en/case-studies/produktove-fotografie-e-commerce" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">NEXT STUDY →</p>
-          <p class="font-display font-bold leading-snug">A photo “on a person” looks better. But it slowed down the purchase.</p>
+          <p class="font-display font-bold leading-snug">The same product. A different length of decision</p>
         </a>
       </nav>
 
-      <!-- Closing CTA -->
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Find out what actually works on your content<span style="color:#2D62FC">.</span></h2>
-        <a href="/en/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          GET A QUOTE →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">TYPICAL PACKAGE FOR THIS KIND OF WORK: <a href="/en/services/test-packages" class="text-brand-white underline hover:no-underline">Quick diagnostic</a></p>
-      </div>
     </div>
 
       <!-- Modal: request the full study -->
@@ -226,7 +224,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Want to go through the study in more detail<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">The studies are abridged and anonymized.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="92% of gazes landed on the main CTA">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="The longer the text, the less attention">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Your name"

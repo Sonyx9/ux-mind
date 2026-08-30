@@ -5,21 +5,55 @@ import Footer from '../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const partners = [{"num":"01","name":"Univerzita Hradec Králové","claim":"Wo UXMIND zu Hause ist.","logo":`${base}/logos/uhk.svg`,"logoAlt":"Logo der Universität Hradec Králové","logoClass":"h-16 md:h-20","text":["Wir forschen nicht „in Zusammenarbeit mit Akademikern“ — wir tun es direkt im Eye-Tracking-Labor der Fakultät für Informatik und Management der UHK. Eine universitäre Basis bedeutet kalibrierte Technik, methodische Strenge und Pilotierung, bevor ein einziger echter Datenpunkt erhoben wird.","Hier ist unser Index der mentalen Belastung EMLI entstanden, und von hier aus gehen wir auch ins Feld. Akademische Präzision, kommerzielles Tempo."],"tags":["FIM UHK","Labor","EMLI"],"links":[{"label":"UHK.CZ →","href":"https://www.uhk.cz"},{"label":"FAKULTÄT FÜR INFORMATIK UND MANAGEMENT","href":"https://www.uhk.cz/cs/fakulta-informatiky-a-managementu"}]},{"num":"02","name":"MindSense","claim":"Science of attention.","logo":`${base}/logos/mindsense.webp`,"logoAlt":"MindSense-Logo — Lösungen für Forschungslabore","logoClass":"h-10 md:h-12","text":["Ein Technologiepartner, der unser Labor versteht — weil er es mit aufgebaut hat. MindSense hat das Eye-Tracking-Labor der UHK um neue Forschungsausrüstung erweitert und hält als exklusiver autorisierter Tobii-Distributor für Tschechien und die Slowakei unsere Technik auf Weltklasse-Niveau.","Biosensoren, EEG, GSR, Motion Capture und Eye Tracking in der virtuellen Realität: Wenn wir etwas Neues messen müssen, wissen wir, wohin wir für Hardware, Software und Know-how gehen."],"tags":["Tobii","Biosensoren","VR"],"links":[{"label":"MINDSENSE.CZ →","href":"https://mindsense.cz"}]}];
+const partners = [
+  {
+    num: '01',
+    name: 'Univerzita Hradec Králové',
+    claim: 'Forschungsfundament und Methodik.',
+    logo: `${base}/logos/uhk.svg`,
+    logoAlt: 'Logo der Univerzita Hradec Králové',
+    logoClass: 'h-16 md:h-20',
+    text: [
+      'Im Labor für kognitive Studien der FIM UHK testen wir digitale wie physische Oberflächen unter kontrollierten Bedingungen sowie im Feld. Das Umfeld ermöglicht es uns, die Methodik vorzubereiten, das Szenario zu überprüfen und Eye Tracking mit weiteren Forschungsmethoden zu verbinden.',
+      'Zum Forschungsumfeld gehören auch Fachpublikationen, studentische Arbeiten und die Entwicklung eigener Methoden — einschließlich des Index der mentalen Belastung EMLI.',
+    ],
+    tags: ['FIM UHK', 'Labor', 'EMLI'],
+    links: [
+      { label: 'UHK.CZ →', href: 'https://www.uhk.cz' },
+      { label: 'FAKULTÄT FÜR INFORMATIK UND MANAGEMENT', href: 'https://www.uhk.cz/cs/fakulta-informatiky-a-managementu' },
+    ],
+  },
+  {
+    num: '02',
+    name: 'MindSense',
+    claim: 'Technologie und Fachsupport.',
+    logo: `${base}/logos/mindsense.webp`,
+    logoAlt: 'MindSense-Logo — Lösungen für Forschungslabore',
+    logoClass: 'h-10 md:h-12',
+    text: [
+      'MindSense war an der Erweiterung des Labors um neue Forschungsausrüstung beteiligt und bietet fachlichen Support für die eingesetzten Technologien. Das Unternehmen ist exklusiver autorisierter Tobii-Distributor für Tschechien und die Slowakei.',
+      'Es hilft dabei, Eye Tracking, Biosensoren, virtuelle Realität und Software so zu verbinden, dass die einzelnen Datenquellen als ein zusammenhängendes Forschungssystem funktionieren.',
+    ],
+    tags: ['Tobii', 'Biosensoren', 'VR'],
+    links: [
+      { label: 'MINDSENSE.CZ →', href: 'https://mindsense.cz' },
+    ],
+  },
+];
 
 const pageSchema = [
   {
     '@type': 'WebPage',
-    name: "Partner des UXMIND-Projekts",
-    description: "Partner des UXMIND-Projekts: Universität Hradec Králové (Forschungsbasis der FIM UHK) und MindSense (Technologie für Forschungslabore, Tobii-Distributor).",
+    name: 'Partner von UX MIND',
+    description: 'Partner von UX MIND: Die Univerzita Hradec Králové stellt das Forschungsfundament, MindSense die technologische und fachliche Unterstützung.',
   },
 ];
 ---
 
 <BaseLayout
   lang="de"
-  title="Partner"
-  description="Partner des UXMIND-Projekts: Universität Hradec Králové — Forschungsbasis des FIM-UHK-Labors, und MindSense — Technologie für Forschungslabore und Tobii-Distributor für CZ und SK."
+  title="Partner des Projekts"
+  description="Partner von UX MIND: Die Univerzita Hradec Králové stellt das Forschungsfundament, MindSense die technologische und fachliche Unterstützung."
   schema={pageSchema}
 >
   <Navbar />
@@ -27,20 +61,23 @@ const pageSchema = [
   <main id="main-content" class="pt-32 pb-24">
     <div class="max-w-7xl mx-auto px-6">
 
+      <!-- Hero -->
       <div class="mb-16">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PROJEKTPARTNER ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PARTNER ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
           WIR MESSEN<br/>NICHT ALLEIN<span style="color:#2D62FC">.</span>
         </h1>
-        <p class="text-lg text-brand-black/60 leading-relaxed max-w-2xl">
-          Hinter jeder guten Messung stehen eine Basis, Technik und Menschen, die sie verstehen. UXMIND ruht auf zwei Säulen — <strong class="text-brand-black">universitärer Forschung und Spitzentechnologie</strong>.
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl text-justify">
+          Guter Forschung genügt Technik allein nicht. Es braucht die richtige Methodik, verlässliche Ausrüstung und Menschen, die Daten interpretieren können. UX MIND verbindet deshalb <strong class="text-brand-black">das Forschungsfundament der FIM UHK mit dem technologischen Know-how von MindSense</strong>.
         </p>
       </div>
 
+      <!-- Partneři -->
       <div class="space-y-px border border-brand-black/10">
         {partners.map(p => (
           <div class="reveal p-8 md:p-12 border-b border-brand-black/10 last:border-0">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+              <!-- Logo -->
               <div class="flex flex-col gap-6">
                 <span class="font-mono text-xs text-brand-black/60">{p.num}</span>
                 <img src={p.logo} alt={p.logoAlt} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
@@ -50,11 +87,12 @@ const pageSchema = [
                   ))}
                 </div>
               </div>
+              <!-- Text -->
               <div class="md:col-span-2">
                 <h2 class="font-display text-3xl md:text-4xl font-bold mb-2">{p.name}</h2>
                 <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-6">{p.claim}</p>
                 {p.text.map(t => (
-                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl">{t}</p>
+                  <p class="text-brand-black/60 leading-relaxed mb-4 max-w-2xl text-justify">{t}</p>
                 ))}
                 <div class="flex flex-wrap gap-4 mt-6">
                   {p.links.map(l => (
@@ -69,31 +107,22 @@ const pageSchema = [
         ))}
       </div>
 
+      <!-- Jak spolupráce zapadá do měření -->
       <div class="reveal mt-24 grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-        {[{"t":"Basis","d":"Das FIM-UHK-Labor — kontrollierte Bedingungen, Kalibrierung, Pilotierung.","tag":"UHK"},{"t":"Technik","d":"Tobii, Shimmer GSR, Pupil Labs NEON und weitere Biosensoren hält MindSense aktuell.","tag":"MINDSENSE"},{"t":"Ergebnis","d":"Sie erhalten eine Messung, die standhält — methodisch und technisch.","tag":"UXMIND"}].map((v, i) => (
-          <div class="bg-brand-white p-8">
+        {[
+          { t: 'Forschungsfundament', d: 'Das Labor der FIM UHK bietet die Bedingungen für Vorbereitung, Pilotierung und Durchführung von Studien.', tag: 'UHK' },
+          { t: 'Technologische Unterstützung', d: 'MindSense hilft bei der Ausrüstung, ihrer Vernetzung und mit fachlichem Support.', tag: 'MINDSENSE' },
+          { t: 'Ergebnis für den Kunden', d: 'UX MIND übersetzt die erhobenen Daten in verständliche Schlussfolgerungen und konkrete Empfehlungen.', tag: 'UX MIND' },
+        ].map((v, i) => (
+          <div class="bg-brand-white p-8 flex flex-col h-full">
             <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
             <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{v.d}</p>
+            <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
           </div>
         ))}
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16 mt-24">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            MÖCHTEN SIE MESSEN<br/>MIT UNS<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Universitäre Basis und Spitzentechnik sind die halbe Arbeit. Die andere Hälfte beginnt mit Ihrem Briefing.
-          </p>
-          <a href="/de/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            KONTAKT AUFNEHMEN →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -103,9 +132,13 @@ const pageSchema = [
     document.body.classList.add('reveal-ready');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </BaseLayout>
+</content>

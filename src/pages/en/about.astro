@@ -2,71 +2,68 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import { localizedPath } from '../../i18n/utils';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const fotkaLegenda = [
-  ['Eye tracker', 'A bar below the monitor captures eye movement 60 times a second.'],
-  ['Facial expression analysis', 'A camera above the monitor reads facial expression.'],
-  ['A real task', 'The respondent completes a set task on a real page — not commenting on what she likes.'],
+const vystupyMereni = [
+  ['Attention', 'Which elements the user notices, in what order and what they miss entirely.'],
+  ['Task progress', 'Where they move smoothly, where they go back and at which step they get stuck.'],
+  ['Reactions', 'Where activation or mental load rises.'],
 ];
 
 const vrstvy = [
   {
     t: 'Visual attention',
-    d: 'Where a person looks, in what order, how long they stay there and what they miss entirely. Heatmaps, areas of interest, time to first fixation, dwell time.',
+    d: 'Eye tracking shows where the user looks, in what order and what they miss entirely. We also find out how quickly they find an important element and how long they pay attention to it.',
     tag: 'EYE TRACKING',
   },
   {
-    t: 'Emotion and arousal',
-    d: 'What a questionnaire fails to capture, because the person is unaware of it or will not admit it. Skin conductance measures the physiological response; facial expression analysis reads the expression on the face.',
+    t: 'Emotional response',
+    d: 'Skin conductance captures changes in physiological activation and facial analysis captures the facial expression. They help identify the moments that trigger a reaction — but on their own they don’t say why it arose.',
     tag: 'GSR + FACIAL EXPRESSION',
   },
   {
-    t: 'Cognitive load',
-    d: 'How much effort it takes to use an interface. Load is the silent killer of both conversion and clarity — the user does not leave thinking "that was hard", they simply leave.',
+    t: 'Mental load',
+    d: 'We measure where the interface requires more attention and effort. We reveal the places that slow users down, confuse them or needlessly complicate completing the task.',
     tag: 'MENTAL EFFORT',
   },
 ];
 
 const vybaveni = [
-  { nazev: 'Smart Eye Aurora', typ: 'desktop eye tracking', k: 'The current configuration for controlled on-screen studies.' },
-  { nazev: 'Tobii Pro X2-60', typ: 'desktop eye tracking', k: '60 Hz platform, a portable rig for fixation-focused studies.' },
-  { nazev: 'Pupil Labs Neon (2×)', typ: 'mobile glasses', k: 'Measurement in real environments — shop floor, stadium, traffic, street.' },
-  { nazev: 'iMotions + facial expression analysis', typ: 'software', k: 'Synchronisation of all signals with stimuli and recognition of facial expression.' },
-  { nazev: 'Shimmer3 GSR', typ: 'biometrics', k: 'Skin conductance — physiological response and level of arousal.' },
+  { nazev: 'Smart Eye Aurora', typ: 'desktop eye tracking', k: 'Precise gaze tracking when testing websites, apps and other digital interfaces.' },
+  { nazev: 'Tobii Pro X2-60', typ: 'desktop eye tracking', k: 'A portable eye tracker for on-screen studies and comparing different variants.' },
+  { nazev: 'Pupil Labs Neon (2×)', typ: 'mobile eye tracking', k: 'Glasses for tracking attention in stores, showrooms, at stadiums or on the shop floor.' },
+  { nazev: 'iMotions + facial analysis', typ: 'research software', k: 'Connects eye tracking, facial expression and other signals into a single time-synchronised recording.' },
+  { nazev: 'Shimmer3 GSR', typ: 'biometrics', k: 'Captures changes in skin conductance that indicate the level of physiological activation.' },
 ];
 
 const postup = [
-  { num: '01', title: 'Study design', desc: 'Research question, definition of metrics, sample size and structure, task scenarios.' },
-  { num: '02', title: 'Data collection', desc: 'Protocol for the lab or the field, calibration, stimuli, simultaneous recording of all signals.' },
-  { num: '03', title: 'Analysis', desc: 'Metrics over areas of interest, temporal indicators, linking gaze with biometrics, statistics.' },
-  { num: '04', title: 'Transfer into practice', desc: 'Prioritised recommendations, a report with the methodology and a workshop with your team.' },
+  { num: '01', title: 'Study design', desc: 'We clarify what you need to find out, who is worth testing and what we will evaluate the result against.' },
+  { num: '02', title: 'Preparation and measurement', desc: 'We prepare the tasks, set up the equipment and carry out the measurement in the lab or directly in the field.' },
+  { num: '03', title: 'Analysis', desc: 'We connect gaze, behaviour, reactions and participants’ statements. We look for connections, not isolated numbers without context.' },
+  { num: '04', title: 'Recommendations for practice', desc: 'You get clear conclusions, priorities and concrete recommendations on what to change.' },
 ];
 
 const rizika = [
-  'calibration drift during measurement',
-  'respondent fatigue',
-  'order effect — hence randomisation and counterbalancing',
-  'an ambiguously worded task',
-  'overreliance on a single metric',
+  'correct calibration throughout the measurement',
+  'participant fatigue',
+  'the order of tasks, so it doesn’t affect the result',
+  'a clear and unambiguous brief',
+  'that the conclusion doesn’t rest on a single metric',
 ];
 
 const etika = [
-  'A standardised protocol and pilot testing before every study',
-  'Informed consent from every respondent',
-  'Data processing in line with GDPR, routinely under NDA',
-  'The option of fully anonymised data and a reproducible report',
-  'For research projects, review by an ethics committee as needed',
+  'A standardised protocol and pilot validation of the study',
+  'Informed consent from every participant',
+  'Data processing in line with GDPR and, as needed, under NDA',
+  'The option of anonymising the data and an output with documented methodology',
+  'Review by an ethics committee if the nature of the project requires it',
 ];
 
 const tymLaboratore = [
-  ['01', 'Research lead'],
-  ['01', 'Senior researcher'],
+  ['02', 'Leadership and methodology'],
   ['01', 'Lab management'],
-  ['02', 'Senior operators'],
-  ['06', 'Junior operators'],
+  ['08', 'Trained operators'],
 ];
 
 const pageSchema = [
@@ -104,34 +101,30 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ABOUT / LAB ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          A LABORATORY,<br/>NOT AN AGENCY<span style="color:#2D62FC">.</span>
+          RESEARCH,<br/>NOT IMPRESSIONS<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-4xl">
           <div>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl mb-4">
-              There are plenty of UX agencies in the Czech Republic. Laboratories that measure eye movement, skin
-              conductance and facial expression at once — and have publications in peer-reviewed journals behind them —
-              are considerably rarer.
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              UX MIND combines experience with digital products and the research facilities of the
+              <strong class="text-brand-black">FIMEYELAB</strong> laboratory at the Faculty of Informatics and Management
+              of the University of Hradec Králové. Using eye tracking, user testing and biometric methods, we find out
+              what people actually see, what they don’t understand and where they get lost when making decisions.
             </p>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              UX MIND measures at the <strong class="text-brand-black">FIMEYELAB</strong> laboratory at the Faculty of
-              Informatics and Management of the University of Hradec Králové. That is not a marketing flourish: it means
-              methodological rigour, instruments a commercial agency would not acquire, and the obligation to defend
-              every conclusion before a reviewer.
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              The result is not just heatmaps and charts. You get clear conclusions and concrete recommendations
+              for a website, app, campaign or physical space.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
-            <a href={localizedPath('en', 'contact')} class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              ARRANGE A VISIT →
-            </a>
-            <a href={localizedPath('en', 'case-studies')} class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="/en/case-studies" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               CASE STUDIES
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Info pás -->
+      <!-- Info strip -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['MEASUREMENT SYSTEMS', '5'],
@@ -146,7 +139,7 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Foto laboratoře -->
+      <!-- Lab photo -->
       <div class="reveal mb-24 grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
         <div class="md:col-span-2">
           <img
@@ -157,25 +150,24 @@ const pageSchema = [
             class="w-full max-h-[520px] object-cover object-center border border-brand-black/10"
           />
           <p class="font-mono text-[11px] text-brand-black/60 mt-2">
-            The FIMEYELAB laboratory, FIM UHK. No render, no stock photo.
+            The FIMEYELAB laboratory, Faculty of Informatics and Management, UHK.
           </p>
         </div>
         <div class="md:col-span-3">
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT IS IN THE PHOTO ]</p>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MEASUREMENT IN PRACTICE ]</p>
           <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
-            None of it is a prop<span style="color:#2D62FC">.</span>
+            What we observe during testing<span style="color:#2D62FC">.</span>
           </h2>
-          <p class="text-brand-black/60 leading-relaxed mb-4">
-            Below the monitor is the eye tracker bar, which captures eye movement sixty times a second.
-            Above the monitor, a camera for facial expression analysis. The respondent is completing a set task on a
-            real page — not commenting on what she likes.
+          <p class="text-brand-black/60 leading-relaxed text-justify mb-4">
+            The eye tracker below the monitor records eye movement sixty times a second. A camera above the monitor
+            captures facial reactions while the respondent completes a specific task on the tested page.
           </p>
-          <p class="text-brand-black/60 leading-relaxed">
-            That is exactly the difference between measurement and a focus group. We do not ask people what they think
-            they do. We watch what they actually do.
+          <p class="text-brand-black/60 leading-relaxed text-justify">
+            By connecting gaze, behaviour and reactions we find out what the user noticed, what they overlooked
+            and at which point they hesitated while completing the task.
           </p>
           <dl class="mt-8 border-t border-brand-black/10 pt-6 space-y-4">
-            {fotkaLegenda.map(([label, desc], i) => (
+            {vystupyMereni.map(([label, desc], i) => (
               <div class="flex gap-4">
                 <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
                 <div>
@@ -188,70 +180,72 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Jak to spolu souvisí -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-12">
+      <!-- How it all fits together -->
+      <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW IT ALL FITS TOGETHER ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8 max-w-3xl">
           A university laboratory, at a commercial pace<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">LABORATORY</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
-              FIMEYELAB belongs to the University of Hradec Králové. It serves research, teaching and the supervision of
-              master's and doctoral theses — and in doing so it holds a methodological bar that a commercial operation
-              would not set for itself.
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">01</p>
+            <h3 class="font-display text-2xl font-bold mb-3">The FIMEYELAB laboratory</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
+              FIMEYELAB belongs to the University of Hradec Králové. It serves research, teaching and the supervision
+              of master’s and doctoral theses — and in doing so it holds a methodological bar that a commercial operation would not set for itself.
             </p>
           </div>
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">UX MIND</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
-              Commercial work in the laboratory always runs through UX MIND. We are the contractual partner with whom you
-              sign the engagement, receive a deadline, a price and a deliverable — and who is accountable for the result.
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">02</p>
+            <h3 class="font-display text-2xl font-bold mb-3">UX MIND</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
+              Commercial work in the laboratory always runs through UX MIND. We are the contractual partner with whom
+              you sign the engagement, receive a deadline, a price and a deliverable — and who is accountable for the result.
             </p>
           </div>
-          <div>
-            <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC">THE LINK</p>
-            <p class="text-brand-black/60 leading-relaxed text-sm">
-              Jan Petružálek is the head of the FIMEYELAB laboratory and, at the same time, a co-owner of UX MIND. So
-              methodology and execution are not two worlds tossing things to each other over a fence.
+          <div class="bg-brand-white p-6 md:p-8">
+            <p class="font-mono text-xs text-brand-black/60 mb-6">03</p>
+            <h3 class="font-display text-2xl font-bold mb-3">The link</h3>
+            <p class="text-brand-black/60 leading-relaxed text-sm text-justify">
+              Jan Petružálek is the head of the FIMEYELAB laboratory and, at the same time, a co-owner of UX MIND.
+              So methodology and execution are not two worlds tossing things to each other over a fence.
             </p>
           </div>
         </div>
-        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          In practice, that means one thing for you: you get academic methodology without academic timelines. This is how
-          we measured a careers portal for <strong class="text-brand-black">ŠKODA AUTO</strong>, a football club's
-          campaign and the product pages of e-shops.
+        <p class="text-brand-black/60 leading-relaxed text-justify mt-8 max-w-3xl">
+          In practice, that means one thing for you: you get academic methodology without academic timelines.
+          This is how we measured a careers portal for <strong class="text-brand-black">ŠKODA AUTO</strong>,
+          a football club’s campaign and the product pages of e-shops.
         </p>
       </div>
 
-      <!-- Co umíme změřit -->
+      <!-- What we can measure -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT WE CAN MEASURE ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Three layers of what goes on in the user's head<span style="color:#2D62FC">.</span>
+          Three layers of user experience<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
           {vrstvy.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="mt-auto self-start font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
             </div>
           ))}
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          The methods keep each other in check. When eye tracking shows prolonged viewing, biometrics show heightened
-          arousal and the questionnaire shows calm, we know something is happening — and we know where.
+          One metric is not enough. That’s why we connect gaze, task progress, reactions and the user’s account.
+          Only their connection shows where the problem arises and what is worth changing.
         </p>
       </div>
 
-      <!-- Čím měříme -->
+      <!-- What we measure with -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WHAT WE MEASURE WITH ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Five systems, one synchronised recording<span style="color:#2D62FC">.</span>
+          Five systems for the lab and the field<span style="color:#2D62FC">.</span>
         </h2>
         <div class="border border-brand-black/10">
           {vybaveni.map(z => (
@@ -265,12 +259,11 @@ const pageSchema = [
           ))}
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          Two pairs of mobile glasses mean we can measure two people at once — or carry on when one set happens to be
-          charging. In the field, that is the difference between "we made it" and "we'll come back next time".
+          Two sets of mobile glasses let us measure more participants or situations in less time.
         </p>
       </div>
 
-      <!-- Vizualizace laboratoře -->
+      <!-- Lab visualisation -->
       <div class="reveal mb-24">
         <img
           src={`${base}/images/laborator-ux-vyzkumu-vizualizace-1.webp`}
@@ -284,92 +277,84 @@ const pageSchema = [
         </p>
       </div>
 
-      <!-- Jak měření probíhá -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW MEASUREMENT WORKS ]</p>
-          <div class="space-y-0">
-            {postup.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <!-- How measurement works -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW MEASUREMENT WORKS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          From the question to a concrete recommendation<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {postup.map(step => (
+            <div class="bg-brand-white p-6 md:p-8 flex flex-col">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT THE PROTOCOL WATCHES FOR ]</p>
-          <ul class="space-y-2 mb-6">
+        <div class="mt-6 border border-brand-black/10 p-8 md:p-10">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ WHAT THE PROTOCOL WATCHES FOR ]</p>
+          <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-x-8 gap-y-4 mb-8">
             {rizika.map(r => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {r}
+              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed">
+                <span class="font-mono text-xs pt-0.5 shrink-0" style="color:#2D62FC;">→</span> {r}
               </li>
             ))}
           </ul>
-          <p class="text-sm text-brand-black/60 leading-relaxed">
-            This list is the reason lab measurement is not the same as "we played back a screen recording". Each of those
-            five things can turn a result upside down, and all of them can only be dealt with in advance.
+          <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl border-t border-brand-black/10 pt-6">
+            As a result, the outcomes are comparable and the recommendations don’t come from chance or a single recording.
           </p>
         </div>
       </div>
 
-      <!-- Akademické zázemí -->
+      <!-- Academic background -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ACADEMIC BACKGROUND ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          What you will not find out at an agency<span style="color:#2D62FC">.</span>
+          Academic background in numbers<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
           <div class="bg-brand-white p-8">
             <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">PUBLICATIONS</p>
             <p class="font-display text-5xl font-bold mb-2">8</p>
             <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
-              academic publications focused on eye tracking.
+              academic publications focused on eye tracking and user experience.
             </p>
-            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">Q1 JOURNAL (2021–2025)</p>
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">EXAMPLE PUBLICATION</p>
             <p class="text-sm text-brand-black/60 leading-relaxed">
               Franěk, M., &amp; Petružálek, J. (2025). <em>Perceptual fluency and eye movements when viewing
               urban and natural scenes.</em> Scientific Reports, 15(1), art. 25772.
             </p>
           </div>
           <div class="bg-brand-white p-8">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">SCHOOL AND YOUNG TALENT</p>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">RESEARCH AND EDUCATION</p>
             <ul class="space-y-3 text-sm text-brand-black/60 leading-relaxed">
               <li class="pb-3 border-b border-brand-black/5">
                 <strong class="text-brand-black">2 defended dissertations</strong><br/>
-                Jan Petružálek (2023) — Comparison and combination of methods for measuring user experience
-                using eye-tracking technology<br/>
-                Denis Šefara (2022) — Business dashboards working with the user's attention
-              </li>
-              <li class="pb-3 border-b border-brand-black/5">
-                <strong class="text-brand-black">8 defended master's and bachelor's theses</strong><br/>
-                2 master's, 6 bachelor's
+                Jan Petružálek (2023) — combination of methods for measuring user experience using eye tracking<br/>
+                Denis Šefara (2022) — using attention in the design of business dashboards
               </li>
               <li>
-                <strong class="text-brand-black">10 new topics for 2025/2026</strong><br/>
-                5 of them focused on eye tracking
+                <strong class="text-brand-black">8 defended master’s and bachelor’s theses</strong><br/>
+                2 master’s theses, 6 bachelor’s theses
               </li>
             </ul>
           </div>
         </div>
         <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
-          Students are not cheap labour. They are the reason the laboratory is constantly testing its own methods on new
-          briefs — and why you cannot settle comfortably into a single procedure.
+          Ongoing work on research topics allows us to validate, compare and develop the methods on various types of briefs.
         </p>
       </div>
 
-      <!-- Lidé -->
+      <!-- People -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PEOPLE ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-3xl">
-          Two of us run the company. Two do not do the measuring<span style="color:#2D62FC">.</span>
+          Two partners, a wider research team<span style="color:#2D62FC">.</span>
         </h2>
         <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-10">
-          UX MIND has two partners. Behind the collection and processing of data stands the laboratory team — research
-          leadership, lab management and trained operators.
+          UX MIND is led by two partners. Depending on the scope of the project, the lab leadership and trained
+          operators also take part in the study design, measurement and data processing.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mb-px">
@@ -378,15 +363,15 @@ const pageSchema = [
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
               <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO IN PREPARATION ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">We measure where you look. We haven't yet turned the camera on ourselves.</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Jan Petružálek</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">HEAD OF THE FIMEYELAB LABORATORY · CO-OWNER OF UX MIND</p>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Ing. Jan Petružálek, Ph.D.</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                He leads both the laboratory and the research: he designs experiments, guards the methodological cleanliness
-                of measurement and is responsible for the interpretation of data. A doctorate from FIM UHK, a dissertation
-                on combining methods for measuring user experience with eye tracking, publications in HCI and e-commerce.
+                He designs the research, oversees the course of measurement and is responsible for the analysis and
+                interpretation of data. In his dissertation he focused on combining UX research methods with eye tracking.
+                He publishes in the area of user experience and e-commerce.
               </p>
               <a href="https://www.linkedin.com/in/jan-petru%C5%BE%C3%A1lek-79167474/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
@@ -398,14 +383,15 @@ const pageSchema = [
           <div class="bg-brand-white flex flex-col">
             <div class="border-b border-brand-black/10 aspect-[3/2] flex flex-col items-center justify-center text-center px-6" style="background-image: linear-gradient(rgba(10,10,10,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.06) 1px, transparent 1px); background-size: 20% 25%;">
               <p class="font-mono text-[10px] tracking-widest text-brand-black/40 mb-3">[ PHOTO IN PREPARATION ]</p>
-              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Portrait in the works. We promise — no stock photo.</p>
+              <p class="font-display text-lg md:text-xl font-bold text-brand-black/40 leading-snug max-w-xs">Lukáš Koula</p>
             </div>
             <div class="p-8 flex flex-col flex-1">
               <p class="font-mono text-[10px] tracking-widest uppercase mb-2" style="color:#2D62FC">STRATEGY, WEB AND MARKETING · CO-OWNER OF UX MIND</p>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-4">Mgr. Lukáš Koula</h3>
               <p class="text-brand-black/60 leading-relaxed mb-6">
-                He translates research into practice: he turns lab findings into concrete changes to websites, e-shops
-                and campaigns. Certified Shoptet Partner and Google Partner. He leads projects and client communication.
+                He translates research results into concrete recommendations for websites, e-shops and campaigns.
+                He leads projects, client communication and connects research with business and marketing goals.
+                He is a certified Shoptet Partner and Google Partner.
               </p>
               <a href="https://www.linkedin.com/in/lukaskoula/" target="_blank" rel="noopener noreferrer" class="mt-auto self-start inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
                 LINKEDIN ↗
@@ -414,7 +400,7 @@ const pageSchema = [
           </div>
         </div>
 
-        <!-- Tým laboratoře -->
+        <!-- Laboratory team -->
         <div class="border border-brand-black/10 p-8 md:p-10">
           <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ THE LABORATORY TEAM ]</p>
           <div class="border border-brand-black/10 divide-y divide-brand-black/10 mb-6">
@@ -431,22 +417,22 @@ const pageSchema = [
             ))}
           </div>
           <p class="text-sm text-brand-black/60 leading-relaxed max-w-3xl">
-            Data collection is done by trained operators following a protocol. That is what repeatability rests on — the
-            result of a measurement must not depend on who happens to be sitting at the computer.
+            Every measurement follows a consistent protocol and expert supervision. As a result, data collection stays
+            consistent regardless of the composition of the delivery team.
           </p>
         </div>
       </div>
 
-      <!-- Etika a data -->
+      <!-- Ethics and data -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
             <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ ETHICS AND DATA ]</p>
             <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">
-              We measure people's eyes, skin and facial expression<span style="color:#2D62FC">.</span>
+              Consent and data protection are part of the measurement<span style="color:#2D62FC">.</span>
             </h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              This is not a footer section. Without a proper protocol and consent, nothing gets measured here.
+              Every participant knows in advance what we record, why we collect the data and how we will work with it.
             </p>
           </div>
           <ul class="space-y-2">
@@ -459,22 +445,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            WANT TO<br/>TAKE A LOOK<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            The laboratory can be visited. We will show you the equipment, play a real measurement recording and tell you
-            straight whether measurement makes sense for your brief — or whether a cheaper tool will do.
-          </p>
-          <a href={localizedPath('en', 'contact')} class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            ARRANGE A VISIT →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

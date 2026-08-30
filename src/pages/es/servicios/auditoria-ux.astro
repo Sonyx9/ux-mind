@@ -6,31 +6,32 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const reveals = [
-  { t: 'Barreras en el recorrido', d: 'Dónde los usuarios pierden la orientación, dónde se atascan y qué los hace abandonar.', tag: 'RECORRIDO' },
-  { t: 'Problemas conocidos', d: 'Infracciones de los principios de usabilidad contrastados — antes de que las encuentren sus clientes.', tag: 'HEURÍSTICAS' },
-  { t: 'Quick wins', d: 'Ajustes de gran impacto y bajo esfuerzo que pueden implementarse de inmediato.', tag: 'PRIORIDADES' },
+  { t: 'Barreras en el recorrido', d: 'Pasos en los que puede resultar difícil orientarse, continuar o encontrar la información correcta.', tag: 'RECORRIDO DEL USUARIO' },
+  { t: 'Interfaz poco clara', d: 'Nombres confusos, jerarquía visual débil y elementos cuya función no está clara.', tag: 'CLARIDAD' },
+  { t: 'Prioridades de mejora', d: 'Problemas ordenados según impacto y dificultad, para que quede claro qué resolver primero.', tag: 'PRÓXIMOS PASOS' },
 ];
 
 const process = [
-  { num: '01', title: 'Encargo y alcance', desc: 'Recorridos clave, objetivos y contexto de negocio del producto.' },
-  { num: '02', title: 'Análisis heurístico', desc: 'Recorrido sistemático de la interfaz según principios contrastados.' },
-  { num: '03', title: 'Análisis de recorridos y datos', desc: 'Flujos de usuario; si dispone de analítica, la incorporamos.' },
-  { num: '04', title: 'Informe y taller', desc: 'Recomendaciones priorizadas y planificación conjunta de los ajustes.' },
+  { num: '01', title: 'Objetivo y alcance', desc: 'Seleccionamos las páginas clave, los recorridos de usuario y los objetivos de la auditoría.' },
+  { num: '02', title: 'Revisión experta', desc: 'Revisamos la navegación, el contenido, la jerarquía y la claridad de la interfaz.' },
+  { num: '03', title: 'Contexto y datos', desc: 'Situamos los hallazgos en el contexto del producto e incorporamos la analítica disponible.' },
+  { num: '04', title: 'Recomendaciones y entrega', desc: 'Ordenamos los problemas según su importancia y revisamos juntos los próximos pasos.' },
 ];
 
 const outputs = [
-  'Lista de problemas priorizada según el impacto',
-  'Recomendaciones concretas con propuestas de solución',
-  'Quick wins para implementar de inmediato',
-  'Informe final con mockups',
-  'Taller con su equipo',
+  { title: 'Resumen de problemas', desc: 'Vinculamos cada hallazgo con un lugar concreto de la interfaz y explicamos su impacto.' },
+  { title: 'Prioridades según impacto', desc: 'Distinguimos qué hay que resolver de inmediato, qué más adelante y qué aún no es prioritario.' },
+  { title: 'Propuestas concretas de mejora', desc: 'Recomendamos cómo resolver cada problema. En los puntos seleccionados añadimos una propuesta o ejemplo de solución.' },
+  { title: 'Entrega conjunta de resultados', desc: 'Revisamos las conclusiones con su equipo para que quede claro cómo llevarlas a la práctica.' },
 ];
 
 const faq = [
-  { q: '¿Cuánto dura una auditoría UX?', a: 'Normalmente 2–4 semanas según el alcance del producto: análisis inicial, evaluación heurística, análisis de datos y presentación de los resultados.' },
-  { q: '¿En qué se diferencia la auditoría de las pruebas de usuario?', a: 'La auditoría es una evaluación experta — un especialista valora la interfaz según principios contrastados, sin participantes. Las pruebas observan a usuarios reales completando tareas. La auditoría es un primer paso más rápido y económico; las pruebas verifican el comportamiento en la práctica.' },
-  { q: '¿Cuándo no basta con una auditoría?', a: 'La auditoría identifica problemas probables, pero no demuestra su impacto en el comportamiento de los usuarios ni en la conversión. Si necesita respaldar decisiones con datos, se continúa con una medición — eye-tracking, pruebas con usuarios o biometría.' },
-  { q: '¿Qué necesitan de nosotros?', a: 'Acceso al producto (web, aplicación, prototipo), una descripción de los recorridos clave y los objetivos. Si dispone de analítica, la incorporamos al análisis.' },
+  { q: '¿Qué incluye una auditoría UX?', a: 'Revisamos las páginas clave y los recorridos de usuario, la navegación, el contenido, la jerarquía visual y la claridad de la interfaz. El resultado es un resumen de problemas, sus prioridades y recomendaciones concretas de mejora.' },
+  { q: '¿Cuánto dura una auditoría UX?', a: 'Normalmente 2–4 semanas según el alcance del producto y el número de recorridos revisados. Concretamos el plazo tras un breve encargo inicial.' },
+  { q: '¿Cuánto cuesta una auditoría UX?', a: 'El precio depende del alcance del producto, del número de recorridos clave y del formato de entrega solicitado. Tras conocer el encargo, preparamos una propuesta concreta sin partidas ocultas.' },
+  { q: '¿En qué se diferencia la auditoría UX de las pruebas de usuario?', a: 'La auditoría UX es una revisión experta de la interfaz sin participantes. Las pruebas de usuario observan a usuarios reales completando tareas y comprueban cómo se manifiestan los problemas en la práctica.' },
+  { q: '¿Se puede auditar también un e-commerce, una aplicación o un prototipo?', a: 'Sí. Auditamos webs, tiendas online, aplicaciones y prototipos suficientemente desarrollados. Siempre adaptamos el alcance a la fase del producto y a la decisión que necesita tomar.' },
+  { q: '¿Qué necesita para iniciar la auditoría?', a: 'Acceso al producto o prototipo, una descripción de los usuarios objetivo y de las tareas clave que deben completar. Si dispone de analítica web o de investigación previa, podemos incorporarlas como contexto adicional.' },
 ];
 
 const pageSchema = [
@@ -68,22 +69,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICIOS / AUDITORÍA UX ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          EMPIECE POR<br/>LA AUDITORÍA<span style="color:#2D62FC">.</span>
+          DETECTE<br/>LOS PUNTOS DÉBILES<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">La base rápida de toda mejora.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Un especialista recorre su interfaz desde la perspectiva del usuario y encuentra las barreras
-              antes de que las encuentren sus clientes. El resultado es un <strong class="text-brand-black">plan de ajustes priorizado</strong>, no solo una lista de errores.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Auditoría UX de su web, e-commerce o aplicación.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Revisamos las páginas clave y los recorridos de usuario. Analizamos la navegación, la claridad del contenido, la jerarquía visual y las barreras que dificultan completar tareas importantes.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Recibirá recomendaciones concretas ordenadas según su impacto y dificultad, para que sepa <strong class="text-brand-black">qué ajustar primero</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/es/contacto" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              SOLICITAR AUDITORÍA →
+              SOLICITAR AUDITORÍA UX →
             </a>
-            <a href="/es/servicios/paquetes-de-prueba" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              PAQUETES DE PRUEBA
+            <a href="/es/servicios#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VER PAQUETES
             </a>
           </div>
         </div>
@@ -95,7 +98,7 @@ const pageSchema = [
           ['DURACIÓN', '2–4 semanas'],
           ['MÉTODO', 'Evaluación experta'],
           ['PARTICIPANTES', 'No son necesarios'],
-          ['PAQUETE', 'Diagnóstico rápido'],
+          ['PAQUETE', 'Auditoría UX rápida'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -106,17 +109,17 @@ const pageSchema = [
 
       <!-- Qué revela la auditoría -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ QUÉ REVELA LA AUDITORÍA ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ QUÉ REVELA LA AUDITORÍA UX ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Problemas que los usuarios soportan en silencio<span style="color:#2D62FC">.</span>
+          Qué complica innecesariamente completar una tarea<span style="color:#2D62FC">.</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
           {reveals.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col h-full">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
             </div>
           ))}
         </div>
@@ -134,47 +137,57 @@ const pageSchema = [
         <p class="font-mono text-[11px] text-brand-black/60 mt-2">La auditoría no es cuestión de impresiones — cada hallazgo lo documentamos con un lugar concreto de la interfaz y el principio que infringe.</p>
       </div>
 
-      <!-- Proceso + entrega -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CÓMO SE DESARROLLA LA AUDITORÍA ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Proceso -->
+      <div class="reveal mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CÓMO SE DESARROLLA LA AUDITORÍA ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Cuatro pasos, del encargo a las recomendaciones<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Qué recibirá -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ QUÉ RECIBIRÁ ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Un plan claro de qué ajustar primero<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {outputs.map((output, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_12rem_1fr] gap-x-4 gap-y-2 py-5 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{output.desc}</p>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ RECIBIRÁ ]</p>
-          <ul class="space-y-2">
-            {outputs.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
-      <!-- Límites del servicio -->
+      <!-- Cuándo basta con la auditoría y cuándo probar -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ LÍMITES DE LA AUDITORÍA ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">La auditoría muestra dónde, la medición demuestra por qué<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ CUÁNDO BASTA CON LA AUDITORÍA Y CUÁNDO PROBAR ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">La auditoría detecta los puntos débiles. Las pruebas confirman su impacto<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              La evaluación experta identifica problemas probables, pero no demuestra su impacto en el comportamiento ni en la conversión.
-              Cuando necesita defender una decisión con datos, a la auditoría le sigue el eye-tracking, las pruebas con usuarios o la biometría.
+              La auditoría UX es adecuada cuando necesita encontrar problemas rápidamente y obtener un plan de mejora concreto.
+              Si quiere comprobar cómo se comportan realmente los usuarios en la interfaz y qué barreras tienen mayor impacto, continuamos con pruebas de usuario o eye tracking.
             </p>
           </div>
           <a href="/es/servicios/paquetes-de-prueba" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            MEDICIONES DE SEGUIMIENTO →
+            VER OPCIONES DE PRUEBA →
           </a>
         </div>
       </div>
@@ -195,21 +208,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            ¿CUÁNTO LE CUESTA<br/>SU WEB<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Envíenos el enlace. En pocos días le diremos si la auditoría tiene sentido y qué puede esperar de ella.
-          </p>
-          <a href="/es/contacto" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            SOLICITAR AUDITORÍA →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -228,3 +226,4 @@ const pageSchema = [
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </BaseLayout>
+</content>

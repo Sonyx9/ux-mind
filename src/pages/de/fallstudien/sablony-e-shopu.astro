@@ -3,17 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["METHODE", "Eye-Tracking + VisAWI"], ["STICHPROBE", "61 Probanden"], ["STIMULI", "3 Templates · gleiches Sortiment"], ["ERGEBNISSE", "Aufmerksamkeitsverteilung nach Aufgabe"]];
-const zjisteni = ["Dasselbe Template führte je nach gestellter Aufgabe zu einer unterschiedlichen Aufmerksamkeitsverteilung.", "Die Wahrnehmung des Designs ändert sich mit der Aufgabe — eine ästhetische Bewertung ohne Aufgabenkontext ist irreführend.", "„Schön“ und „funktional“ sind zwei verschiedene Metriken und müssen getrennt gemessen werden."];
+const fakta = [["METHODE", "Eye Tracking + VisAWI"], ["STICHPROBE", "61 Probanden"], ["STIMULI", "3 Templates · gleiches Sortiment"], ["SZENARIEN", "Freies Stöbern · gezielte Aufgabe"]];
+const zjisteni = ["Auf demselben Template veränderte sich die Verteilung der visuellen Aufmerksamkeit je nach gestellter Aufgabe.", "Freies Stöbern und gezielte Produktsuche führten die Teilnehmer zu unterschiedlichen Teilen der Seite.", "Die ästhetische Bewertung und das Verhalten bei einer konkreten Aufgabe beschreiben unterschiedliche Aspekte der Erfahrung. Eine Metrik kann daher nicht automatisch die andere ersetzen."];
 const faq = [
-  { q: "Wie wählt man ein E-Shop-Template aus?", a: "Anhand von Tests mit echten Einkaufsaufgaben, nicht nach dem Aussehen der Vorschau. In der Messung mit 61 Probanden änderte sich die Aufmerksamkeit auf demselben Template je nach gestellter Aufgabe." },
-  { q: "Warum genügt eine ästhetische Bewertung des Templates nicht?", a: "Weil sie sich mit der Aufgabe ändert — „schön“ und „funktional“ sind zwei verschiedene Metriken und müssen getrennt gemessen werden (VisAWI-Fragebogen + Leistungsdaten)." },
-  { q: "Wie viele Templates und Aufgaben wurden getestet?", a: "Drei Templates mit demselben Sortiment und verschiedene Aufgabentypen (freies Stöbern vs. gezielter Kauf) bei einer Stichprobe von 61 Probanden." },
+  { q: "Wie wählt man ein E-Shop-Template aus?", a: "Zunächst nach Sortiment, Inhalt, technischen Anforderungen und den wichtigsten Kundenpfaden. Eine engere Auswahl sollte an realistischen Aufgaben überprüft werden, denn die Vorschau des Templates allein zeigt nicht, wie sich Menschen darin orientieren." },
+  { q: "Warum genügt eine ästhetische Bewertung des Templates nicht?", a: "Die wahrgenommene Ästhetik und das Verhalten bei einer Aufgabe sind unterschiedliche Konstrukte. Ein Template kann gut wirken, aber ein konkreter Pfad darin kann schwierig sein — oder umgekehrt. Deshalb kombinieren wir den Fragebogen mit aufgaben- und verhaltensbezogenen Daten." },
+  { q: "Wie viele Templates und Aufgaben wurden getestet?", a: "Die Studie umfasste drei Templates mit demselben Sortiment, zwei unterschiedliche Aufgabenkontexte und 61 Probanden. Ein Szenario unterstützte freies Stöbern, das andere die gezielte Arbeit mit dem Angebot." },
+  { q: "Fand die Studie ein einzelnes bestes Template?", a: "Nicht universell. Die zentrale Erkenntnis war, dass die Interpretation eines Templates von der Aufgabe abhängt. Die Siegervariante muss deshalb anhand des konkreten Pfads und der Metriken definiert werden, die der Onlineshop unterstützen soll." },
+  { q: "Belegt die Verteilung der Aufmerksamkeit eine höhere Konversion?", a: "Nein. Eye Tracking zeigt, wohin Menschen ihren Blick gerichtet haben, nicht automatisch den Kauf oder Umsatz. Für eine geschäftliche Schlussfolgerung muss das Ergebnis mit dem Aufgabenerfolg, Analytics oder einem nachgelagerten Experiment verbunden werden." },
+  { q: "Lässt sich ein Template noch vor dem Start des Onlineshops testen?", a: "Ja. Getestet werden können ein funktionsfähiges Demo, ein Prototyp oder mehrere Kandidaten-Templates mit realistischem Inhalt. Je näher die Bedingungen der tatsächlichen Nutzung kommen, desto besser lässt sich das Ergebnis interpretieren." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "Drei Templates, dasselbe Sortiment. Die Aufgabe entschied.",
+    headline: "Die Aufgabe veränderte, worauf Menschen ihre Aufmerksamkeit richteten.",
     about: 'Eye Tracking, UX-Forschung',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'de',
@@ -31,8 +34,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="de"
-  title="Fallstudie: E-Shop-Templates und der Einfluss der Aufgabe"
-  description="Eye Tracking dreier E-Shop-Templates (N = 61): Die Aufmerksamkeitsverteilung änderte sich mit der gestellten Aufgabe. Eine ästhetische Bewertung ohne Aufgabe ist irreführend."
+  title="Fallstudie: Wie die Aufgabe die Aufmerksamkeit im Onlineshop veränderte"
+  description="Eye Tracking von drei E-Shop-Templates mit 61 Probanden: Die Verteilung der Aufmerksamkeit auf demselben Template veränderte sich je nach gestellter Aufgabe."
   schema={pageSchema}
 >
   <Navbar />
@@ -45,56 +48,34 @@ const pageSchema = [
       <!-- Studien-Kopf -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-Shop-Templates</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          Drei Templates, dasselbe Sortiment. Die Aufgabe entschied<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Die Aufgabe veränderte, worauf Menschen ihre Aufmerksamkeit richteten<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistik-Banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Design studie -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">3 × 2</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">drei Templates, zwei Aufgaben — jedes Mal eine andere Aufmerksamkeitskarte</p>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">3</p>
+          <p class="text-brand-white/70 leading-relaxed">E-Shop-Templates mit demselben Sortiment</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">2</p>
+          <p class="text-brand-white/70 leading-relaxed">unterschiedliche Aufgabenkontexte</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">61</p>
+          <p class="text-brand-white/70 leading-relaxed">Probanden in der Studie</p>
+        </div>
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAR — WAS DIE ZAHLEN IN DIESER STUDIE BEDEUTEN ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (Stichprobe)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Anzahl der tatsächlichen Personen, die an der Messung teilgenommen haben. N = 102 bedeutet 102 Probanden.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-Wert</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Wahrscheinlichkeit, dass der gemessene Unterschied rein zufällig entstanden ist. Je kleiner, desto aussagekräftiger das Ergebnis — p = 0,037 bedeutet nur eine 3,7%ige Zufallswahrscheinlichkeit (als aussagekräftig gilt alles unter 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Effektgröße (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Sagt aus, wie groß der Unterschied in der Praxis ist — nicht nur, ob er existiert. Zur Orientierung: 0,01 klein, 0,06 mittel, 0,14 großer Effekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Kurzes Verweilen des Auges an einer Stelle (Bruchteile einer Sekunde). Aus der Abfolge von Fixationen setzt sich alles zusammen, was ein Mensch auf der Seite tatsächlich „gesehen“ hat.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (beobachteter Bereich)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ein vorab markierter Teil der Seite — Schaltfläche, Überschrift, Foto —, für den wir messen, wie viel Aufmerksamkeit er erhalten hat.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardisierte wissenschaftliche Fragebögen: UEQ misst das gesamte Nutzererlebnis, VisAWI die wahrgenommene Ästhetik der Website. Dank der Standardisierung sind die Ergebnisse zwischen Studien vergleichbar.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Inhalt -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Die Wahl des Templates ist eine der ersten Entscheidungen jedes Online-Shops — und sie erfolgt meist nach dem Aussehen der Vorschau. Wir haben gemessen, ob der ästhetische Eindruck ein guter Anhaltspunkt für die tatsächliche Kaufleistung ist.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— GESCHÄFTSFRAGE</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Genügt es, ein E-Shop-Template nach seinem Aussehen zu wählen? Oder kommt es darauf an, was die Kunden darauf tun sollen?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESSUNG</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Eye-Tracking von drei Templates mit demselben Sortiment und verschiedenen gestellten Aufgaben, ergänzt durch den VisAWI-Fragebogen — einem standardisierten Instrument zur Messung der wahrgenommenen Ästhetik einer Website.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WAS DIE DATEN ZEIGTEN</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— WAS DIE DATEN ZEIGTEN</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -105,15 +86,26 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— WAS HERAUSZUFINDEN WAR</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Beschreibt allein das Aussehen eines Templates, wie gut Menschen darin eine konkrete Aufgabe bewältigen?</p>
+            <p class="text-brand-black/70 leading-relaxed">Die Studie verglich drei E-Shop-Templates mit demselben Sortiment. Ziel war zu beobachten, wie ein unterschiedlicher Kontext — freies Stöbern und gezielte Arbeit mit dem Angebot — die Art verändert, wie Menschen die Seite visuell durchgehen.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— WIE DIE MESSUNG ABLIEF</span></p>
+            <p class="text-brand-black/70 leading-relaxed">An der Studie nahmen 61 Probanden teil. Das Eye Tracking erfasste die Verteilung der visuellen Aufmerksamkeit bei unterschiedlichen Aufgaben, und der Fragebogen VisAWI ergänzte die subjektive Bewertung der wahrgenommenen Ästhetik der Templates.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATEN IM BILD ]</p>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINZIP DER GETESTETEN SZENARIEN ]</p>
               <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Illustratives Schema: dasselbe Template, zwei Aufgaben, zwei verschiedene Aufmerksamkeitsverteilungen">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILLUSTRATIVES SCHEMA · DASSELBE TEMPLATE, ZWEI AUFGABEN</text>
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ILLUSTRATIVES SCHEMA · KEINE ECHTE HEATMAP</text>
   <g>
     <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
     <rect x="12" y="52" width="276" height="26" fill="rgba(10,10,10,0.12)"/>
@@ -141,17 +133,19 @@ const pageSchema = [
   <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EYE-TRACKING + VisAWI · N = 61 · DREI TEMPLATES MIT DEMSELBEN SORTIMENT</text>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schema des Prinzips: die blauen Flächen stellen den Schwerpunkt der Aufmerksamkeit bei verschiedenen Aufgaben auf demselben Template dar.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Das Schema erklärt den Unterschied zwischen den Szenarien. Die blauen Flächen sind nur illustrativ und zeigen keine tatsächlich gemessenen Daten der Teilnehmer.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WAS ENTSCHIEDEN WURDE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Das E-Shop-Template auf Basis von Tests mit echten Einkaufsaufgaben wählen, nicht nach dem Eindruck der Vorschau.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— EMPFEHLUNG FÜR DIE PRAXIS</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Das Template nicht nur beim freien Stöbern oder anhand einer statischen Vorschau beurteilen. Kandidatenlösungen mit realistischem Inhalt füllen und an Aufgaben überprüfen, die den tatsächlichen Kundenpfaden entsprechen.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">WAS EMLI HEUTE ERGÄNZEN WÜRDE</p>
-            <p class="text-brand-black/70 leading-relaxed">Bei einer ähnlichen Aufgabe messen wir heute zusätzlich den Belastungsindex EMLI für jede Aufgabe und jedes Template — er quantifiziert, welche Kombination den Kunden am wenigsten ermüdet.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WAS SICH DARAUS MITNEHMEN LÄSST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Ein Template funktioniert nicht für sich allein. Es funktioniert für eine konkrete Aufgabe<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Ein Nutzertest zeigt, ob die gewählte Lösung Suche, Vergleich und Kauf so unterstützt, wie es Ihr Onlineshop braucht.</p>
+            <a href="/de/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">E-SHOP-TEST BESPRECHEN →</a>
           </section>
         </div>
 
@@ -162,7 +156,7 @@ const pageSchema = [
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE ENTSTAND IN ZUSAMMENARBEIT MIT</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Universität Hradec Králové — Fakultät für Informatik und Management"
+                alt="Univerzita Hradec Králové — Fakultät für Informatik und Management"
                 title="Studie entstand in Zusammenarbeit mit der FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -181,7 +175,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schema dreier verschiedener E-Shop-Templates mit demselben Sortiment">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Illustratives Schema dreier verschiedener E-Shop-Templates mit demselben Sortiment">
                   <g>
                     <rect x="4" y="20" width="96" height="130" fill="none" stroke="#0A0A0A" stroke-width="2"/>
                     <rect x="12" y="28" width="80" height="16" fill="rgba(10,10,10,0.25)"/>
@@ -210,10 +204,10 @@ const pageSchema = [
                     <circle cx="268" cy="90" r="16" fill="#2D62FC" opacity="0.3"/>
                   </g>
                   <text x="4" y="176" font-family="monospace" font-size="11" fill="#0A0A0A">3 TEMPLATES · GLEICHES SORTIMENT</text>
-                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">blau: Schwerpunkt der Aufmerksamkeit</text>
+                  <text x="4" y="194" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">illustrative Vorschau der Varianten</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schema der drei getesteten Templates — die Aufmerksamkeit verschob sich mit der Aufgabe</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Illustratives Schema dreier Templates mit demselben Sortiment</figcaption>
             </figure>
             <a href="/de/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               UNVERBINDLICHE ANFRAGE →
@@ -221,6 +215,21 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAR — WAS DIE BEGRIFFE IN DIESER STUDIE BEDEUTEN ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (Stichprobe)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Anzahl der in die Studie einbezogenen Personen. In diesem Fall N = 61.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Aufgabenszenario</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Konkrete Aufgabenstellung, die festlegt, was der Teilnehmer auf der Seite erreichen soll.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Kurzes Verweilen des Auges in einem bestimmten Bereich. Beschreibt visuelle Aufmerksamkeit, nicht automatisch Verständnis oder Kauf.</dd></div>
+            <div><dt class="font-display font-bold mb-1">VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardisierter Fragebogen zur subjektiv wahrgenommenen Ästhetik einer Web-Oberfläche.</dd></div>
+          </dl>
+        </details>
+      </section>
 
       <!-- FAQ zur Studie -->
       <section class="reveal mt-20">
@@ -253,22 +262,14 @@ const pageSchema = [
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Weitere Fallstudien">
         <a href="/de/fallstudien/reklamni-bannery-smer-pohledu" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← VORHERIGE STUDIE</p>
-          <p class="font-display font-bold leading-snug">Wohin die Person auf dem Banner schaut, dorthin schaut auch Ihr Kunde</p>
+          <p class="font-display font-bold leading-snug">Der Blick der Figur lenkte die Aufmerksamkeit der Besucher</p>
         </a>
         <a href="/de/fallstudien/billboardy-sport-marketing" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">NÄCHSTE STUDIE →</p>
-          <p class="font-display font-bold leading-snug">16 Billboard-Entwürfe, 79 Augenpaare</p>
+          <p class="font-display font-bold leading-snug">Die ersten sechs Plätze gingen an schwarze Billboards.</p>
         </a>
       </nav>
 
-      <!-- Abschluss-CTA -->
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Ihren E-Shop mit echten Aufgaben testen<span style="color:#2D62FC">.</span></h2>
-        <a href="/de/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          UNVERBINDLICHE ANFRAGE →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">TYPISCHES PAKET FÜR DIESE ART VON AUFTRAG: <a href="/de/leistungen/test-pakete" class="text-brand-white underline hover:no-underline">Standard-UX-Test</a></p>
-      </div>
     </div>
 
       <!-- Modal: Anforderung der vollständigen Studie -->
@@ -280,7 +281,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Möchten Sie die Studie im Detail durchgehen<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Die Studien sind gekürzt und anonymisiert.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Drei Templates, dasselbe Sortiment. Die Aufgabe entschied.">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Die Aufgabe veränderte, worauf Menschen ihre Aufmerksamkeit richteten.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Ihr Name"
@@ -312,3 +313,4 @@ const pageSchema = [
 <script>
   import '../../../scripts/case-study';
 </script>
+</content>

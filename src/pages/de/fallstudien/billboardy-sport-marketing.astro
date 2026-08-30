@@ -3,17 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["METHODE", "Eye-Tracking + Befragung + TOP3"], ["STICHPROBE", "79 Probanden (43 Männer, 36 Frauen) · 17–25 Jahre"], ["STIMULI", "16 Entwürfe à 10 Sekunden"], ["ERGEBNISSE", "Ranking der Varianten, Gender-Analyse"]];
-const zjisteni = ["Klare Dominanz der schwarzen Entwürfe: Alle sechs bestbewerteten Varianten hatten einen schwarzen Hintergrund, das untere Cluster bildeten die weißen Varianten.", "Die Siegervariante erzielte den höchsten gewichteten Score in der TOP3-Auswahl sowie den besten durchschnittlichen Endrang.", "Stärkster Insight: Visuelle Werbung beeinflusst 39 % der Frauen vs. 16 % der Männer. Frauen berücksichtigen zudem stärker Komfortfaktoren — Wetter (78 % vs. 56 %) und Anstoßzeit (72 % vs. 56 %).", "Faire Einschränkung: Die Fixationsmetriken der TOP3 und der schlechtestbewerteten Varianten unterschieden sich nur minimal — über den Sieger entschied die subjektive Präferenz und Lesbarkeit, kein dramatischer Unterschied im Blickverhalten."];
+const fakta = [["METHODE", "Eye Tracking + Bewertungsfragebogen + TOP3"], ["STICHPROBE", "79 Probanden · 43 Männer, 36 Frauen · 17–25 Jahre"], ["STIMULI", "16 Entwürfe · je 10 Sekunden gezeigt"], ["ERGEBNISSE", "Ranking der Varianten + Metriken der visuellen Aufmerksamkeit"]];
+const zjisteni = ["Alle sechs bestbewerteten Entwürfe hatten einen schwarzen Hintergrund. Die weißen Varianten konzentrierten sich im unteren Bereich des Rankings.", "Der Siegerentwurf erzielte den höchsten gewichteten Score in der TOP3-Auswahl und zugleich den besten durchschnittlichen Rang.", "Die Fixationsmetriken unterschieden sich zwischen den bestbewerteten und den schlechtestbewerteten Varianten nur wenig. Über das Ranking entschied deshalb nicht allein das Ausmaß der visuellen Aufmerksamkeit.", "Im Fragebogen gaben 39 % der Frauen und 16 % der Männer an, dass visuelle Werbung ihren Besuch einer Sportveranstaltung beeinflusst. Es handelt sich um einen angegebenen Einfluss, nicht um eine gemessene Veränderung des Kaufverhaltens."];
 const faq = [
-  { q: "Welche Billboards funktionieren am besten?", a: "In der Messung von 16 Entwürfen an 79 Probanden gewannen eindeutig die schwarzen minimalistischen Varianten mit markanter Überschrift — alle sechs bestbewerteten hatten einen schwarzen Hintergrund." },
-  { q: "Wirkt Außenwerbung auf Männer und Frauen gleich?", a: "Nein — visuelle Werbung beeinflusst 39 % der Frauen vs. 16 % der Männer. Frauen berücksichtigen zudem stärker Komfortfaktoren wie Wetter oder Anstoßzeit." },
-  { q: "Entschieden die Blickmetriken über den Sieger?", a: "Nein — die Fixationsmetriken unterschieden sich zwischen den Varianten nur minimal; entschieden haben subjektive Präferenz und Lesbarkeit. Genau deshalb ergänzen wir die Messung heute um den kognitiven Belastungsindex EMLI." },
+  { q: "Bedeutet das Ergebnis, dass ein schwarzes Billboard immer besser funktioniert?", a: "Nein. Der schwarze Hintergrund dominierte in diesem Set von 16 Entwürfen für eine konkrete Fußballkampagne und Zielgruppe. Das Ergebnis lässt sich nicht ohne Weiteres auf jede Marke, Botschaft oder Platzierung übertragen." },
+  { q: "Was genau entschied über die Siegervariante?", a: "Der Siegerentwurf erzielte den besten gewichteten Score in der TOP3-Auswahl sowie den besten durchschnittlichen Rang. Eye Tracking half, die visuelle Aufmerksamkeit zu beschreiben, aber die Fixationsmetriken allein erklärten das Ranking der Varianten nicht." },
+  { q: "Belegt 39 % vs. 16 %, dass Werbung Frauen stärker beeinflusst?", a: "Die Probanden gaben dies im Fragebogen an, es handelt sich also um einen angegebenen Einfluss. Die Studie belegt damit nicht, dass das Billboard tatsächlich den Ticketkauf veränderte oder dass das Geschlecht die Ursache des Unterschieds war." },
+  { q: "Warum Eye Tracking mit einem Fragebogen kombinieren?", a: "Eye Tracking zeigt, wohin die visuelle Aufmerksamkeit gerichtet war. Der Fragebogen erfasst Präferenzen, Verständlichkeit und Absicht. In dieser Studie zeigte gerade ihre Kombination, dass mehr Aufmerksamkeit nicht automatisch eine bessere Bewertung bedeutet." },
+  { q: "Lässt sich eine Kreation auf ähnliche Weise noch vor dem Kampagnenstart auswählen?", a: "Ja. Mehrere finale Varianten lassen sich noch vor der Produktion und dem Media-Einsatz an der Zielgruppe vergleichen. Wichtig ist, vorab festzulegen, nach welchem Ziel der Sieger ausgewählt wird." },
+  { q: "Misst eine solche Studie auch den Ticketverkauf?", a: "Nicht automatisch. Eine Laborstudie hilft, die Kreation auszuwählen und zu erklären. Die tatsächliche Wirkung auf Besucherzahlen oder Verkauf muss mit nachgelagerten Kampagnendaten oder einem Feldexperiment überprüft werden." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "16 Billboard-Entwürfe, 79 Augenpaare",
+    headline: "Die ersten sechs Plätze gingen an schwarze Billboards.",
     about: 'Eye Tracking, UX-Forschung',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'de',
@@ -31,8 +34,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="de"
-  title="Fallstudie: 16 Billboards, 79 Probanden"
-  description="Eye Tracking von 16 Billboard-Entwürfen eines Fußballvereins (N = 79): Die schwarzen minimalistischen Varianten gewannen. Visuelle Werbung beeinflusst 39 % der Frauen vs. 16 % der Männer."
+  title="Fallstudie: Billboard-Auswahl mittels Eye Tracking"
+  description="Eye Tracking und Bewertung von 16 Billboard-Entwürfen bei 79 Probanden: Die ersten sechs Plätze belegten die schwarzen Varianten, die Fixationsmetriken allein bestimmten jedoch nicht den Sieger."
   schema={pageSchema}
 >
   <Navbar />
@@ -45,56 +48,34 @@ const pageSchema = [
       <!-- Studien-Kopf -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Sportmarketing · Außenwerbung</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          16 Billboard-Entwürfe, 79 Augenpaare<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Die ersten sechs Plätze gingen an schwarze Billboards<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <!-- Statistik-Banner -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Design studie -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">39 : 16</p>
-        <p class="relative text-brand-white/70 text-lg leading-relaxed max-w-md">% der Frauen vs. Männer, die von visueller Werbung beeinflusst werden — und ein klarer Sieg der schwarzen Varianten</p>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">6/6</p>
+          <p class="text-brand-white/70 leading-relaxed">der bestbewerteten Varianten hatten einen schwarzen Hintergrund</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">16</p>
+          <p class="text-brand-white/70 leading-relaxed">Billboard-Entwürfe im Vergleich</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">79</p>
+          <p class="text-brand-white/70 leading-relaxed">Probanden aus der Zielaltersgruppe</p>
+        </div>
       </div>
-
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAR — WAS DIE ZAHLEN IN DIESER STUDIE BEDEUTEN ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (Stichprobe)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Anzahl der tatsächlichen Personen, die an der Messung teilgenommen haben. N = 102 bedeutet 102 Probanden.</dd></div>
-            <div><dt class="font-display font-bold mb-1">p-Wert</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Wahrscheinlichkeit, dass der gemessene Unterschied rein zufällig entstanden ist. Je kleiner, desto aussagekräftiger das Ergebnis — p = 0,037 bedeutet nur eine 3,7%ige Zufallswahrscheinlichkeit (als aussagekräftig gilt alles unter 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Effektgröße (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Sagt aus, wie groß der Unterschied in der Praxis ist — nicht nur, ob er existiert. Zur Orientierung: 0,01 klein, 0,06 mittel, 0,14 großer Effekt.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Kurzes Verweilen des Auges an einer Stelle (Bruchteile einer Sekunde). Aus der Abfolge von Fixationen setzt sich alles zusammen, was ein Mensch auf der Seite tatsächlich „gesehen“ hat.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (beobachteter Bereich)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Ein vorab markierter Teil der Seite — Schaltfläche, Überschrift, Foto —, für den wir messen, wie viel Aufmerksamkeit er erhalten hat.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Standardisierte wissenschaftliche Fragebögen: UEQ misst das gesamte Nutzererlebnis, VisAWI die wahrgenommene Ästhetik der Website. Dank der Standardisierung sind die Ergebnisse zwischen Studien vergleichbar.</dd></div>
-          </dl>
-        </details>
-      </section>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Inhalt -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— KONTEXT</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Ein Fußballverein bereitete eine Kampagne zur Steigerung der Stadionauslastung vor und hatte 16 grafische Billboard-Entwürfe zur Auswahl. Statt einer Abstimmung im Marketingteam entschied er sich für eine Messung an der Zielgruppe.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— GESCHÄFTSFRAGE</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Welcher der 16 grafischen Billboard-Entwürfe zieht am besten die Aufmerksamkeit an und führt zur Kaufabsicht eines Tickets — und unterscheidet sich das nach Geschlecht des Betrachters?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESSUNG</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Jeder Proband sah alle 16 Entwürfe genau 10 Sekunden lang. Das Eye-Tracking wurde durch einen Bewertungsfragebogen (Gesamtbewertung, Übersichtlichkeit, Aufmerksamkeit, Kaufabsicht) und die Auswahl der TOP3-Varianten ergänzt.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WAS DIE DATEN ZEIGTEN</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— WAS DIE DATEN ZEIGTEN</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -105,6 +86,22 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— WAS ZU ENTSCHEIDEN WAR</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">Welcher der 16 Entwürfe soll in die Kampagne zur Steigerung der Stadionauslastung gehen?</p>
+            <p class="text-brand-black/70 leading-relaxed">Der Fußballverein wollte nicht nur nach der Meinung des Marketingteams auswählen. Er verglich die Varianten deshalb an jungen Menschen aus der Zielgruppe und beobachtete ihre Aufmerksamkeit sowie die anschließende Bewertung.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— WIE DIE MESSUNG ABLIEF</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Jeder der 79 Probanden sah alle 16 Entwürfe 10 Sekunden lang. Das Eye Tracking erfasste die visuelle Aufmerksamkeit. Der Bewertungsfragebogen und die TOP3-Auswahl ergänzten die Gesamtbewertung, die Übersichtlichkeit und die angegebene Absicht, das Spiel zu besuchen.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WIE DAS ERGEBNIS ZU LESEN IST</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Die Studie wählte einen Sieger unter konkreten Entwürfen. Sie belegt nicht, dass ein schwarzer Hintergrund generell die Wirkung jedes Billboards steigert. Ebenso beschreibt der Fragebogenwert 39 % vs. 16 %, was die Probanden angaben — nicht eine tatsächliche Veränderung des Ticketverkaufs.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
@@ -112,7 +109,7 @@ const pageSchema = [
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATEN IM BILD ]</p>
-              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Von visueller Werbung werden 39 Prozent der Frauen und 16 Prozent der Männer beeinflusst"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ANTEIL DER VON VISUELLER WERBUNG BEEINFLUSSTEN BETRACHTER · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FRAUEN</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC" class="viz-bar"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">MÄNNER</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A" class="viz-bar"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
+              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Im Fragebogen gaben 39 Prozent der Frauen und 16 Prozent der Männer an, dass visuelle Werbung ihren Besuch einer Sportveranstaltung beeinflusst"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">ANGEGEBENER EINFLUSS VISUELLER WERBUNG · FRAGEBOGEN · N = 79</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FRAUEN</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="156" height="22" fill="#2D62FC" class="viz-bar"/><text x="346" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">39 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">MÄNNER</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="64" height="22" fill="#0A0A0A" class="viz-bar"/><text x="254" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">16 %</text></svg>
 <svg viewBox="0 0 640 120" class="w-full mt-2" role="img" aria-label="Sechs bestbewertete Entwürfe hatten einen schwarzen Hintergrund, das untere Cluster bildeten die weißen Varianten">
   <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">BEWERTUNG DER 16 ENTWÜRFE · TOP 6 vs UNTERES CLUSTER</text>
   <g>
@@ -126,17 +123,19 @@ const pageSchema = [
   </g>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Der Gender-Unterschied ist der am besten übertragbare Insight der Studie; das Ranking zeigt die eindeutige Dominanz der schwarzen Varianten.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Die Grafik kombiniert das Ranking der getesteten Varianten mit den Antworten aus dem Fragebogen. Der Wert 39 % vs. 16 % drückt keine gemessene Auswirkung der Kampagne auf den Ticketverkauf aus.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WAS ENTSCHIEDEN WURDE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Schwarzer, schlichter und minimalistischer Hintergrund, markante Überschrift, nicht aggressive Komposition der Figuren und ein klar definiertes Ziel des Billboards.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— EMPFEHLUNG FÜR DIE KAMPAGNE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Für die weitere Ausarbeitung die siegreiche schwarze Variante wählen und ihre klare Hierarchie, die markante Überschrift und ein einziges Hauptziel beibehalten. Die tatsächliche Wirkung der Kreation anschließend anhand der Daten aus der laufenden Kampagne bewerten.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">WAS EMLI HEUTE ERGÄNZEN WÜRDE</p>
-            <p class="text-brand-black/70 leading-relaxed">Bei einer ähnlichen Aufgabe messen wir heute zusätzlich den Belastungsindex EMLI — da sich die Fixationsmetriken zwischen den Varianten kaum unterschieden, wäre er der ideale Schiedsrichter: er würde zeigen, ob die „sauberen“ Entwürfe tatsächlich die Belastung beim Lesen der Botschaft senken.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WAS SICH DARAUS MITNEHMEN LÄSST ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Aufmerksamkeit und Präferenz sind nicht dasselbe<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Eye Tracking zeigt, was Menschen sehen. Die Bewertung der Varianten ergänzt, welche Kreation sie bevorzugen. Für die Wahl der Kampagne müssen beide Ergebnisse gemeinsam gelesen werden.</p>
+            <a href="/de/kontakt" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">KREATIVTEST BESPRECHEN →</a>
           </section>
         </div>
 
@@ -147,7 +146,7 @@ const pageSchema = [
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">STUDIE ENTSTAND IN ZUSAMMENARBEIT MIT</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Universität Hradec Králové — Fakultät für Informatik und Management"
+                alt="Univerzita Hradec Králové — Fakultät für Informatik und Management"
                 title="Studie entstand in Zusammenarbeit mit der FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -166,7 +165,7 @@ const pageSchema = [
             </div>
             <figure>
               <div class="border border-brand-black/10 p-4 bg-brand-white">
-                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Schema des Siegerprinzips eines Billboards: schwarzer minimalistischer Hintergrund mit markanter Überschrift">
+                <svg viewBox="0 0 320 210" class="w-full" role="img" aria-label="Illustratives Schema des Prinzips der bestbewerteten Billboards: schwarzer Hintergrund mit markanter Überschrift">
                   <rect x="24" y="16" width="272" height="120" fill="#0A0A0A"/>
                   <rect x="48" y="44" width="130" height="14" fill="#FCFCFC"/>
                   <rect x="48" y="68" width="90" height="8" fill="rgba(252,252,252,0.5)"/>
@@ -174,10 +173,10 @@ const pageSchema = [
                   <circle cx="248" cy="76" r="26" fill="none" stroke="rgba(252,252,252,0.6)" stroke-width="2"/>
                   <rect x="96" y="136" width="10" height="52" fill="#0A0A0A"/>
                   <rect x="214" y="136" width="10" height="52" fill="#0A0A0A"/>
-                  <text x="24" y="204" font-family="monospace" font-size="11" fill="#0A0A0A">SIEGERPRINZIP: SCHWARZ · MINIMALISMUS · KLARE ÜBERSCHRIFT</text>
+                  <text x="24" y="204" font-family="monospace" font-size="11" fill="#0A0A0A">TOP 6: SCHWARZER HINTERGRUND · MARKANTE ÜBERSCHRIFT</text>
                 </svg>
               </div>
-              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Schema des Siegerprinzips — schwarzer Hintergrund, markante Überschrift, ein klares Ziel</figcaption>
+              <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Illustratives Schema des gemeinsamen Prinzips der sechs bestbewerteten Varianten</figcaption>
             </figure>
             <a href="/de/kontakt" class="block text-center border border-brand-black px-6 py-3.5 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
               UNVERBINDLICHE ANFRAGE →
@@ -185,6 +184,21 @@ const pageSchema = [
           </div>
         </aside>
       </div>
+
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAR — WIE DIE ERGEBNISSE DER STUDIE ZU LESEN SIND ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (Stichprobe)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Anzahl der in die Studie einbezogenen Personen. In diesem Fall N = 79.</dd></div>
+            <div><dt class="font-display font-bold mb-1">TOP3</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Auswahl der drei bevorzugten Varianten. Reihenfolge und Häufigkeit der Wahl lassen sich in einen gewichteten Score umrechnen.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Kurzes Verweilen des Auges in einem bestimmten Bereich. Beschreibt visuelle Aufmerksamkeit, nicht automatisch Verständnis, Vorliebe oder Kauf.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Angegebener Einfluss</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Was der Teilnehmer im Fragebogen angegeben hat. Es handelt sich nicht um eine direkt gemessene Veränderung seines tatsächlichen Verhaltens.</dd></div>
+          </dl>
+        </details>
+      </section>
 
       <!-- FAQ zur Studie -->
       <section class="reveal mt-20">
@@ -217,22 +231,14 @@ const pageSchema = [
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Weitere Fallstudien">
         <a href="/de/fallstudien/sablony-e-shopu" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← VORHERIGE STUDIE</p>
-          <p class="font-display font-bold leading-snug">Drei Templates, dasselbe Sortiment. Die Aufgabe entschied.</p>
+          <p class="font-display font-bold leading-snug">Die Aufgabe veränderte, worauf Menschen ihre Aufmerksamkeit richteten.</p>
         </a>
         <a href="/de/fallstudien/karierni-portal-automotive" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">NÄCHSTE STUDIE →</p>
-          <p class="font-display font-bold leading-snug">40 % der Bewerber fanden den Weg zu offenen Stellen nicht</p>
+          <p class="font-display font-bold leading-snug">40 % der Bewerber fanden nicht zu den offenen Stellen</p>
         </a>
       </nav>
 
-      <!-- Abschluss-CTA -->
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Das Kampagnen-Visual an echten Betrachtern testen<span style="color:#2D62FC">.</span></h2>
-        <a href="/de/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          UNVERBINDLICHE ANFRAGE →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">TYPISCHES PAKET FÜR DIESE ART VON AUFTRAG: <a href="/de/leistungen/test-pakete" class="text-brand-white underline hover:no-underline">Standard-UX-Test</a></p>
-      </div>
     </div>
 
       <!-- Modal: Anforderung der vollständigen Studie -->
@@ -244,7 +250,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Möchten Sie die Studie im Detail durchgehen<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Die Studien sind gekürzt und anonymisiert.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="16 Billboard-Entwürfe, 79 Augenpaare">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Die ersten sechs Plätze gingen an schwarze Billboards.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NAME *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Ihr Name"
@@ -276,3 +282,4 @@ const pageSchema = [
 <script>
   import '../../../scripts/case-study';
 </script>
+</content>

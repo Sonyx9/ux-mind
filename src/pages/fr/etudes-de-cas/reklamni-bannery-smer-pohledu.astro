@@ -3,17 +3,20 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["MÉTHODE", "Expérimentation eye-tracking"], ["ÉCHANTILLON", "104 répondants"], ["MANIPULATION", "Direction du regard du personnage"], ["STATISTIQUE", "p < 0,001 · chances de hasard sous 0,1 %"]];
-const zjisteni = ["Fort effet du repère visuel : F(1,102) = 12,57 ; p < 0,001 — la probabilité que ce soit dû au hasard est inférieure à 0,1 %.", "Taille d'effet ηp² = 0,11 — un effet moyen : une différence que l'on remarque en pratique.", "La direction du regard est l'un des outils les moins coûteux pour guider l'attention vers le message et le CTA — elle n'exige pas de changer la mise en page, seulement la composition."];
+const fakta = [["MÉTHODE", "Expérience d'eye tracking"], ["ÉCHANTILLON", "104 répondants"], ["VARIABLE", "Direction du regard du personnage"], ["STATISTIQUE", "F(1,102) = 12,57 · p < 0,001 · ηp² = 0,11"]];
+const zjisteni = ["Le changement de direction du regard du personnage a statistiquement influencé de façon significative la répartition de l'attention visuelle : F(1,102) = 12,57 ; p < 0,001.", "La taille d'effet ηp² = 0,11 correspond, selon les seuils indicatifs habituels, à un effet de taille moyenne.", "La composition du personnage a donc fonctionné comme un indice visuel dans les créations testées. L'étude n'a toutefois pas mesuré les clics, la mémorisation du message ni la conversion."];
 const faq = [
-  { q: "La direction du regard du personnage fonctionne-t-elle sur une bannière ?", a: "Oui, de façon mesurable : la manipulation de la direction du regard a eu un fort effet sur la répartition de l'attention (p < 0,001 ; ηp² = 0,11 — un effet moyen sur un échantillon de 104 répondants)." },
-  { q: "Comment exploiter la direction du regard dans une création ?", a: "Orientez le regard du personnage vers le message clé ou le CTA, pas vers l'objectif. L'attention du spectateur suit la direction du regard." },
-  { q: "Peut-on exploiter l'effet sans refaire toute la création ?", a: "Oui — il s'agit d'un changement de composition, pas de mise en page. Il suffit souvent de choisir une photo avec une direction du regard adaptée." },
+  { q: "La direction du regard du personnage a-t-elle influencé l'attention ?", a: "Oui, dans les créations testées et sur un échantillon de 104 répondants, la répartition de l'attention différait de façon statistiquement significative entre les variantes : p < 0,001 ; ηp² = 0,11." },
+  { q: "Cela signifie-t-il qu'il faut toujours orienter le personnage vers le CTA ?", a: "Pas automatiquement. Le résultat confirme que la direction du regard est une variable de composition pertinente. La variante adaptée dépend de la photo précise, du message, du format et de l'objectif de la création ; nous recommandons donc de comparer de vraies maquettes." },
+  { q: "L'étude a-t-elle démontré plus de clics ou de conversions ?", a: "Non. L'étude a mesuré la répartition de l'attention visuelle, pas les clics, la mémorisation, l'achat ou une autre métrique commerciale. Le déplacement de l'attention est une étape intermédiaire importante, mais ne garantit pas à lui seul une action." },
+  { q: "Que signifie ηp² = 0,11 ?", a: "Le êta carré partiel décrit la taille de l'effet dans le modèle statistique utilisé. La valeur 0,11 s'interprète, selon les seuils indicatifs habituels, comme un effet de taille moyenne ; elle ne signifie toutefois pas automatiquement une hausse de 11 % de la performance de la campagne." },
+  { q: "Que signifie p < 0,001 ?", a: "Si la direction du regard n'avait en réalité aucun effet dans le modèle utilisé et que ses conditions étaient respectées, un résultat aussi marqué ou plus serait très inhabituel. La valeur p ne décrit, à elle seule, ni l'ampleur ni la valeur commerciale de l'effet." },
+  { q: "Devons-nous refaire toute la création pour ce test ?", a: "Pas nécessairement. Il suffit souvent de préparer des variantes contrôlées de la photo, du cadrage ou de la position du personnage. Les autres éléments doivent rester aussi similaires que possible pour que la différence puisse être interprétée de façon pertinente." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "Là où regarde le personnage de la bannière, votre client regarde aussi",
+    headline: "Le regard du personnage a orienté l'attention des visiteurs.",
     about: 'Eye tracking, recherche UX',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'fr',
@@ -31,8 +34,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="fr"
-  title="Étude de cas : direction du regard sur bannière (ηp² = 0,11)"
-  description="Expérimentation eye-tracking N = 104 : la direction du regard du personnage sur une bannière influence fortement la répartition de l'attention — F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11."
+  title="Étude de cas : comment la direction du regard a influencé l'attention"
+  description="Expérience d'eye tracking avec 104 répondants : le changement de direction du regard du personnage a influencé la répartition de l'attention, F(1,102) = 12,57 ; p < 0,001 ; ηp² = 0,11."
   schema={pageSchema}
 >
   <Navbar />
@@ -42,56 +45,37 @@ const pageSchema = [
 
       <a href="/fr/etudes-de-cas" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← TOUTES LES ÉTUDES</a>
 
+      <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
-        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Création publicitaire</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          Là où regarde le personnage de la bannière, votre client regarde aussi<span style="color:#2D62FC">.</span>
+        <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">Créa publicitaire</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Le regard du personnage a orienté l'attention des visiteurs<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">ηp² = 0,11</p>
-        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">effet moyen de la direction du regard du personnage sur la répartition de l'attention</p><p class="font-mono text-xs text-brand-white/70 leading-relaxed mt-3">ηp² mesure la force de l'effet en pratique : 0,11 est une influence moyenne — une différence que l'on remarque, pas juste un détail statistique.</p></div>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-mono text-xs tracking-widest text-brand-white/60 mb-5">DIRECTION DU REGARD</p>
+          <p class="font-display text-2xl md:text-3xl font-bold leading-tight">A modifié la répartition de l'attention</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">104</p>
+          <p class="text-brand-white/70 leading-relaxed">répondants dans l'expérience</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.2rem, 4.5vw, 4rem);">ηp² = 0,11</p>
+          <p class="text-brand-white/70 leading-relaxed">effet moyen · p &lt; 0,001</p>
+        </div>
       </div>
 
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAIRE — CE QUE SIGNIFIENT LES CHIFFRES DE CETTE ÉTUDE ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes réelles ayant participé à la mesure. N = 102 signifie 102 répondants.</dd></div>
-            <div><dt class="font-display font-bold mb-1">valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Probabilité que la différence mesurée soit due au pur hasard. Plus elle est faible, plus le résultat est probant — p = 0,037 signifie seulement 3,7 % de chances de hasard (est considéré comme probant tout ce qui est sous 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Taille d'effet (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Indique l'ampleur réelle de la différence — pas seulement si elle existe. À titre indicatif : 0,01 petit, 0,06 moyen, 0,14 grand effet.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l'œil sur un point (des fractions de seconde). La succession des fixations compose tout ce qu'une personne a réellement « vu » sur la page.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (zone d'intérêt)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Partie de la page délimitée à l'avance — bouton, titre, photo — pour laquelle on mesure la quantité d'attention reçue.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Questionnaires scientifiques standardisés : UEQ mesure l'expérience utilisateur globale, VisAWI l'esthétique perçue du site. Grâce à la standardisation, les résultats sont comparables entre études.</dd></div>
-          </dl>
-        </details>
-      </section>
-
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXTE</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Une composition avec un visage humain fait partie des éléments les plus puissants d'une création publicitaire. Mais le visage n'attire pas seulement l'attention — il sait aussi la transmettre. Nous avons testé la force de cet effet et sa fiabilité d'exploitation.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— QUESTION BUSINESS</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">La direction du regard d'un personnage dans une création peut-elle guider systématiquement l'attention du spectateur vers le message ?</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESURE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Expérimentation eye-tracking avec manipulation d'un repère visuel : les variantes de la création différaient par la direction du regard du personnage, et l'on mesurait la répartition de l'attention entre le visage, le message et le produit.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -102,23 +86,33 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CE QU'IL FALLAIT DÉCOUVRIR</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">La direction du regard du personnage modifie-t-elle la répartition de l'attention dans la création ?</p>
+            <p class="text-brand-black/70 leading-relaxed">Un visage humain dans une publicité attire l'attention. L'expérience visait à vérifier si le changement de direction du regard du personnage influence aussi la façon dont les répondants répartissent leur attention entre le visage et les autres parties de la création testée.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— COMMENT S'EST DÉROULÉE LA MESURE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">104 répondants ont participé à l'expérience d'eye tracking. Les variantes de la création différaient par la direction du regard du personnage, et l'analyse comparait la répartition de l'attention visuelle entre les zones prédéfinies.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ LES DONNÉES EN IMAGE ]</p>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ PRINCIPE DES VARIANTES TESTÉES ]</p>
               <svg viewBox="0 0 640 300" class="w-full" role="img" aria-label="Schéma illustratif : la direction du regard du personnage guide l'attention du spectateur">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">SCHÉMA ILLUSTRATIF DE L'EFFET · STIMULUS DÉMO PROPRE</text>
+  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">SCHÉMA ILLUSTRATIF DES VARIANTES · CE N'EST PAS UNE HEATMAP</text>
   <g>
     <rect x="0" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
     <circle cx="70" cy="110" r="26" fill="none" stroke="#0A0A0A" stroke-width="2"/>
     <circle cx="62" cy="105" r="3" fill="#0A0A0A"/><circle cx="80" cy="105" r="3" fill="#0A0A0A"/>
     <rect x="200" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="70" cy="110" r="44" fill="#2D62FC" opacity="0.25"/>
-    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">REGARD VERS L'OBJECTIF</text>
-    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">l'attention reste sur le visage</text>
+    <text x="8" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">REGARD VERS LA CAMÉRA</text>
+    <text x="8" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">variante de composition A</text>
   </g>
   <g>
     <rect x="340" y="40" width="300" height="180" fill="none" stroke="rgba(10,10,10,0.3)"/>
@@ -126,34 +120,36 @@ const pageSchema = [
     <circle cx="424" cy="108" r="3" fill="#0A0A0A"/><circle cx="432" cy="112" r="3" fill="#0A0A0A"/>
     <line x1="440" y1="118" x2="530" y2="152" stroke="#2D62FC" stroke-width="2" stroke-dasharray="4 4"/>
     <rect x="540" y="140" width="70" height="46" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-    <circle cx="575" cy="163" r="44" fill="#2D62FC" opacity="0.25"/>
     <text x="348" y="250" font-family="monospace" font-size="11" fill="#0A0A0A">REGARD VERS LE PRODUIT</text>
-    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">l'attention suit la direction du regard</text>
+    <text x="348" y="268" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">variante de composition B</text>
   </g>
   <text x="0" y="296" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EFFET DU REPÈRE : F(1,102) = 12,57 · p &lt; 0,001 · ηp² = 0,11 (EFFET MOYEN)</text>
 </svg>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Schéma du principe sur un stimulus démo propre : la zone bleue représente le centre de gravité de l'attention. La statistique provient d'une mesure réelle.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Le schéma explique seulement la variable manipulée. Il ne représente pas les stimuli réels ni la heatmap des participants ; la statistique provient d'une mesure réelle.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CE QUI A ÉTÉ DÉCIDÉ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Orienter le regard des personnages dans les créations vers le message clé ou le CTA, et non vers l'objectif.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— RECOMMANDATION POUR LA PRATIQUE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Intégrer la direction du regard parmi les variables lors de la conception et du test de la création. Si le personnage doit soutenir l'attention portée à un message ou un produit précis, préparer des variantes contrôlées et les vérifier avec les métriques de la campagne.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CE QU'EMLI APPORTERAIT AUJOURD'HUI</p>
-            <p class="text-brand-black/70 leading-relaxed">Pour une mission similaire, nous mesurons aujourd'hui en plus la charge cognitive du traitement de la création — pour savoir si le repère rend seulement le message plus visible, ou s'il en facilite aussi le traitement.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE QU'IL FAUT EN RETENIR ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Même un petit changement de composition peut modifier la répartition de l'attention<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">L'eye tracking aide à choisir la variante selon ce que les gens remarquent réellement. L'impact sur les clics ou la conversion doit être vérifié par des données complémentaires.</p>
+            <a href="/fr/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUTER DU TEST DE VOTRE CRÉATION →</a>
           </section>
         </div>
 
+        <!-- Fakta + foto (sticky) -->
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 space-y-6">
             <div class="border border-brand-black/10 p-6">
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">ÉTUDE RÉALISÉE EN COLLABORATION AVEC</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Université de Hradec Králové — Faculté d'informatique et de management"
+                alt="Univerzita Hradec Králové — Faculté d'informatique et de management"
                 title="Étude réalisée en collaboration avec la FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -186,6 +182,22 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAIRE — CE QUE SIGNIFIENT LES TERMES DE CETTE ÉTUDE ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes incluses dans l'analyse. Dans cette étude, N = 104.</dd></div>
+            <div><dt class="font-display font-bold mb-1">F(1,102)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Valeur de la statistique de test et ses degrés de liberté dans le test statistique utilisé.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Elle aide à évaluer dans quelle mesure les données sont compatibles avec l'hypothèse que la direction du regard n'avait aucun effet dans le modèle utilisé.</dd></div>
+            <div><dt class="font-display font-bold mb-1">ηp²</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Le êta carré partiel exprime la taille de l'effet dans le modèle statistique donné. Ce n'est pas un pourcentage d'augmentation de la performance de la campagne.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES SUR L'ÉTUDE ]</p>
         <div class="border-t border-brand-black/10">
@@ -201,6 +213,7 @@ const pageSchema = [
         </div>
       </section>
 
+      <!-- Úzký pruh: kompletní studie (otevírá modal) -->
       <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></p>
@@ -211,26 +224,21 @@ const pageSchema = [
         </button>
       </section>
 
+      <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Autres études de cas">
         <a href="/fr/etudes-de-cas/produktove-fotografie-e-commerce" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← ÉTUDE PRÉCÉDENTE</p>
-          <p class="font-display font-bold leading-snug">La photo « portée » est plus belle. Mais elle a ralenti l'achat.</p>
+          <p class="font-display font-bold leading-snug">Même produit. Un temps de décision différent</p>
         </a>
         <a href="/fr/etudes-de-cas/sablony-e-shopu" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">ÉTUDE SUIVANTE →</p>
-          <p class="font-display font-bold leading-snug">Trois modèles, le même assortiment. La tâche a décidé.</p>
+          <p class="font-display font-bold leading-snug">La tâche a changé où les gens ont porté leur attention.</p>
         </a>
       </nav>
 
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Comparer deux variantes de création<span style="color:#2D62FC">.</span></h2>
-        <a href="/fr/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          DEMANDE SANS ENGAGEMENT →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">PACK TYPIQUE POUR CE TYPE DE MISSION : <a href="/fr/services/packs-de-test" class="text-brand-white underline hover:no-underline">Test UX standard</a></p>
-      </div>
     </div>
 
+      <!-- Modal: žádost o kompletní studii -->
       <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
         <div class="p-8">
           <div class="flex justify-between items-start mb-6">
@@ -239,7 +247,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Les études sont abrégées et anonymisées.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Là où regarde le personnage de la bannière, votre client regarde aussi">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Le regard du personnage a orienté l'attention des visiteurs.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NOM *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Votre nom"

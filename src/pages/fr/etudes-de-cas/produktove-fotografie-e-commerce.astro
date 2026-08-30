@@ -3,17 +3,19 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 
-const fakta = [["MÉTHODE", "Expérimentation · eye-tracking + UEQ"], ["ÉCHANTILLON", "84 répondants"], ["STIMULI", "Packshot vs. photo lifestyle"], ["STATISTIQUE", "p = 0,037 · 3,7 % de chances de hasard"]];
-const zjisteni = ["Le type de photo a influencé de façon démontrée la durée d'accomplissement de la tâche : F(1,82) = 4,50 ; p = 0,037 — la probabilité que ce soit dû au hasard n'est que de 3,7 %.", "Le produit « porté » a conduit à un accomplissement de la tâche plus long qu'un packshot pur.", "L'impact sur l'évaluation subjective de l'UX ne s'est pas confirmé clairement — « plus séduisant » ≠ « plus performant »."];
+const fakta = [["MÉTHODE", "Expérience · eye tracking + UEQ"], ["ÉCHANTILLON", "84 répondants"], ["VARIANTES", "Packshot vs. photo lifestyle"], ["STATISTIQUE", "F(1,82) = 4,50 · p = 0,037"]];
+const zjisteni = ["Le type de photo a influencé de façon statistiquement significative la durée d'accomplissement de la tâche : F(1,82) = 4,50 ; p = 0,037.", "Pour la variante avec le produit « porté », l'accomplissement de la tâche testée a pris plus de temps que pour le packshot pur.", "L'étude n'a pas fourni de preuve claire que les variantes différaient aussi dans l'évaluation subjective de l'expérience utilisateur."];
 const faq = [
-  { q: "Vaut-il mieux un packshot ou une photo lifestyle ?", a: "Cela dépend de l'objectif de la page. Dans la mesure sur 84 répondants, la photo lifestyle a allongé la durée de décision d'achat (p = 0,037). Pour un choix par tâche et une comparaison, le packshot convient ; pour des pages d'inspiration, le lifestyle." },
-  { q: "Que signifie p = 0,037 ?", a: "La probabilité que la différence mesurée soit due au hasard n'est que de 3,7 %. Tout ce qui est sous 5 % est considéré comme statistiquement probant." },
-  { q: "Le type de photo a-t-il aussi influencé l'appréciation de la page ?", a: "Clairement non — l'impact sur l'évaluation subjective de l'UX ne s'est pas confirmé. « Plus séduisant » ne signifie pas « plus performant »." },
+  { q: "Le packshot est-il préférable à la photo lifestyle ?", a: "Une seule étude ne permet pas de déterminer un type de photo universellement meilleur. Dans la tâche testée, la variante lifestyle a entraîné un temps plus long que le packshot. Le choix doit être rapporté au produit, à la page et à l'objectif de l'utilisateur concernés." },
+  { q: "Que signifie p = 0,037 ?", a: "S'il n'existait en réalité aucune différence entre les variantes et que les conditions du test étaient respectées, un résultat aussi marqué ou plus apparaîtrait dans environ 3,7 % des répétitions. La valeur p ne dit pas, à elle seule, quelle est l'ampleur de l'impact pratique ou commercial." },
+  { q: "Le type de photo a-t-il aussi influencé l'évaluation de la page ?", a: "L'étude n'a pas fourni de preuve claire d'une différence dans l'évaluation subjective de l'expérience utilisateur. Le temps plus long ne peut donc pas s'expliquer automatiquement par le fait qu'une variante ait plu davantage ou moins aux gens." },
+  { q: "Un temps plus long signifie-t-il une conversion plus faible ?", a: "Non. L'étude a mesuré le temps d'accomplissement d'une tâche précise, pas l'impact sur la conversion réelle ou le chiffre d'affaires. Une telle conclusion nécessiterait de relier la recherche à d'autres données ou à une expérience complémentaire." },
+  { q: "À quoi a servi l'eye tracking dans cette étude ?", a: "L'eye tracking a complété le déroulement de la tâche par des données d'attention visuelle. Mais la principale différence décrite entre les variantes concerne le temps d'accomplissement de la tâche, nous ne l'attribuons donc pas automatiquement à un schéma de regard précis sans analyse complémentaire." },
 ];
 const pageSchema = [
   {
     '@type': 'Article',
-    headline: "La photo « portée » est plus belle. Mais elle a ralenti l'achat.",
+    headline: "Même produit. Un temps de décision différent.",
     about: 'Eye tracking, recherche UX',
     author: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     inLanguage: 'fr',
@@ -31,8 +33,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="fr"
-  title="Étude de cas : photo produit vs. performance (p = 0,037)"
-  description="Expérimentation eye-tracking N = 84 : la photo lifestyle a significativement allongé l'accomplissement de la tâche d'achat (p = 0,037). Plus séduisant ne signifie pas plus performant."
+  title="Étude de cas : packshot vs. photo lifestyle"
+  description="Expérience avec 84 répondants : la photo lifestyle a entraîné un temps plus long que le packshot pur dans la tâche e-commerce testée, F(1,82) = 4,50 ; p = 0,037."
   schema={pageSchema}
 >
   <Navbar />
@@ -42,56 +44,37 @@ const pageSchema = [
 
       <a href="/fr/etudes-de-cas" class="font-mono text-xs tracking-widest text-brand-black/60 hover:text-brand-black transition-colors">← TOUTES LES ÉTUDES</a>
 
+      <!-- Hlavička studie -->
       <div class="mt-8 mb-10">
         <span class="font-mono text-xs text-brand-black/60 border border-brand-black/20 px-2 py-0.5">E-commerce</span>
-        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-4xl" style="font-size: clamp(3rem, 9vw, 8rem);">
-          La photo « portée » est plus belle. Mais elle a ralenti l'achat<span style="color:#2D62FC">.</span>
+        <h1 class="font-display font-bold leading-tight tracking-tight mt-6 max-w-5xl" style="font-size: clamp(2.5rem, 6vw, 5.5rem);">
+          Même produit. Un temps de décision différent<span style="color:#2D62FC">.</span>
         </h1>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white p-8 md:p-12 mb-16 flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
+      <!-- Hlavní výsledky -->
+      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white mb-16 grid grid-cols-1 md:grid-cols-3">
         <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <p class="relative font-display font-bold leading-none tracking-tight whitespace-nowrap" style="font-size: clamp(3rem, 8vw, 6.5rem);">p = 0,037</p>
-        <div class="relative max-w-md"><p class="text-brand-white/70 text-lg leading-relaxed max-w-md">décision d'achat significativement plus longue avec la photo lifestyle</p><p class="font-mono text-xs text-brand-white/70 leading-relaxed mt-3">p = probabilité que la différence soit due au hasard. La valeur 0,037 signifie seulement 3,7 % de chances — le résultat est statistiquement probant.</p></div>
+        <div class="relative p-7 md:p-9 border-t-4 border-t-brand-blue border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-mono text-xs tracking-widest text-brand-white/60 mb-5">VARIANTE LIFESTYLE</p>
+          <p class="font-display text-2xl md:text-3xl font-bold leading-tight">Temps de tâche plus long</p>
+        </div>
+        <div class="relative p-7 md:p-9 border-b md:border-b-0 md:border-r border-brand-white/15">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.8rem, 6vw, 5rem);">84</p>
+          <p class="text-brand-white/70 leading-relaxed">répondants ont comparé deux variantes</p>
+        </div>
+        <div class="relative p-7 md:p-9">
+          <p class="font-display font-bold leading-none tracking-tight mb-4" style="font-size: clamp(2.2rem, 4.5vw, 4rem);">p = 0,037</p>
+          <p class="text-brand-white/70 leading-relaxed">différence statistiquement significative dans le temps de tâche</p>
+        </div>
       </div>
 
-      <section class="reveal mb-16">
-        <details class="group border border-brand-black/15">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-            [ GLOSSAIRE — CE QUE SIGNIFIENT LES CHIFFRES DE CETTE ÉTUDE ]
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes réelles ayant participé à la mesure. N = 102 signifie 102 répondants.</dd></div>
-            <div><dt class="font-display font-bold mb-1">valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Probabilité que la différence mesurée soit due au pur hasard. Plus elle est faible, plus le résultat est probant — p = 0,037 signifie seulement 3,7 % de chances de hasard (est considéré comme probant tout ce qui est sous 5 %).</dd></div>
-            <div><dt class="font-display font-bold mb-1">Taille d'effet (ηp²)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Indique l'ampleur réelle de la différence — pas seulement si elle existe. À titre indicatif : 0,01 petit, 0,06 moyen, 0,14 grand effet.</dd></div>
-            <div><dt class="font-display font-bold mb-1">Fixation</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Bref arrêt de l'œil sur un point (des fractions de seconde). La succession des fixations compose tout ce qu'une personne a réellement « vu » sur la page.</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI (zone d'intérêt)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Partie de la page délimitée à l'avance — bouton, titre, photo — pour laquelle on mesure la quantité d'attention reçue.</dd></div>
-            <div><dt class="font-display font-bold mb-1">UEQ / VisAWI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Questionnaires scientifiques standardisés : UEQ mesure l'expérience utilisateur globale, VisAWI l'esthétique perçue du site. Grâce à la standardisation, les résultats sont comparables entre études.</dd></div>
-          </dl>
-        </details>
-      </section>
-
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Obsah -->
         <div class="lg:col-span-2">
 
           <section class="reveal mb-12">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CONTEXTE</span></p>
-            <p class="text-lg text-brand-black/80 leading-relaxed">Le choix entre un packshot pur et une photo lifestyle fait partie des désaccords les plus fréquents entre l'équipe de marque et le marketing à la performance. Les deux camps ont « leurs » données — nous avons tranché ce débat par une expérimentation contrôlée.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— QUESTION BUSINESS</span></p>
-            <p class="font-display text-2xl font-bold leading-snug">Packshot ou photo lifestyle ? La plupart des e-shops décident au goût. Nous, nous l'avons mesuré.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— MESURE</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Expérimentation contrôlée en environnement e-commerce : les répondants accomplissaient des tâches d'achat sur des variantes de pages produit, mesurées par eye-tracking et complétées par le questionnaire UEQ — un outil standardisé de mesure de l'expérience utilisateur.</p>
-          </section>
-
-          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
+            <p class="font-mono text-xs tracking-widest mb-6"><span style="color:#2D62FC">01</span> <span class="text-brand-black/60">— CE QUE LES DONNÉES ONT MONTRÉ</span></p>
             <div class="space-y-5">
               {zjisteni.map((item, i) => (
                 <div class="flex gap-5 items-start border-l-2 pl-5" style="border-color:#2D62FC">
@@ -102,51 +85,59 @@ const pageSchema = [
             </div>
           </section>
 
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">02</span> <span class="text-brand-black/60">— CE QU'IL FALLAIT DÉCOUVRIR</span></p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-5">La façon de présenter le produit influence-t-elle le déroulement de la tâche d'achat ?</p>
+            <p class="text-brand-black/70 leading-relaxed">L'étude comparait un packshot pur à une photo du produit « porté ». L'objectif n'était pas de choisir la plus belle image, mais de vérifier si le type de photo modifie le temps nécessaire pour accomplir la même tâche.</p>
+          </section>
+
+          <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">03</span> <span class="text-brand-black/60">— COMMENT S'EST DÉROULÉE LA MESURE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">84 répondants ont participé à l'expérience contrôlée. Ils accomplissaient des tâches e-commerce sur les variantes de présentation produit ; le déroulement a été complété par des données d'eye tracking et le questionnaire standardisé UEQ pour l'évaluation subjective de l'expérience utilisateur.</p>
+          </section>
+
           <section class="reveal mb-12">
             <div class="relative border border-brand-black/15 p-6 md:p-10">
               <span class="absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ LES DONNÉES EN IMAGE ]</p>
-              <svg viewBox="0 0 640 330" class="w-full" role="img" aria-label="Matrice de décision : type de photo selon l'objectif de la page">
-  <text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">MATRICE DE DÉCISION · TYPE DE PHOTO SELON L'OBJECTIF DE LA PAGE</text>
-  <text x="230" y="52" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">INSPIRATION</text>
-  <text x="440" y="52" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">CHOIX RAPIDE</text>
-  <text x="8" y="130" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">LIFESTYLE</text>
-  <text x="8" y="240" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">PACKSHOT</text>
-  <g stroke="rgba(10,10,10,0.25)" fill="none">
-    <rect x="120" y="65" width="240" height="110"/><rect x="360" y="65" width="240" height="110"/>
-    <rect x="120" y="175" width="240" height="110"/><rect x="360" y="175" width="240" height="110"/>
-  </g>
-  <text x="240" y="125" font-family="monospace" font-size="26" font-weight="bold" fill="#2D62FC" text-anchor="middle">✓</text>
-  <text x="480" y="235" font-family="monospace" font-size="26" font-weight="bold" fill="#2D62FC" text-anchor="middle">✓</text>
-  <text x="480" y="125" font-family="monospace" font-size="20" fill="rgba(10,10,10,0.3)" text-anchor="middle">×</text>
-  <text x="240" y="235" font-family="monospace" font-size="20" fill="rgba(10,10,10,0.3)" text-anchor="middle">×</text>
-  <text x="0" y="318" font-family="monospace" font-size="11" fill="rgba(10,10,10,0.6)">EFFET SIGNIFICATIF SUR LA DURÉE DE TÂCHE : F(1,82) = 4,50 · p = 0,037 · N = 84</text>
-</svg>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ CE QUE L'ÉTUDE MONTRE — ET CE QU'ELLE NE MONTRE PAS ]</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+                <div class="bg-brand-white p-6">
+                  <p class="font-mono text-xs tracking-widest mb-4" style="color:#2D62FC">ÉTAYÉ PAR LES DONNÉES</p>
+                  <p class="text-brand-black/70 leading-relaxed">Dans la tâche testée, la photo lifestyle a entraîné un temps plus long que le packshot pur. La différence était statistiquement significative.</p>
+                </div>
+                <div class="bg-brand-white p-6">
+                  <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">NE PEUT PAS ÊTRE CONCLU</p>
+                  <p class="text-brand-black/70 leading-relaxed">Que la photo lifestyle réduit généralement la conversion, qu'elle est toujours moins bonne, ou que les utilisateurs l'ont évaluée mieux ou moins bien.</p>
+                </div>
+              </div>
             </div>
-            <p class="font-mono text-[11px] text-brand-black/60 mt-3">La conclusion pratique de l'étude sous forme de matrice : photo lifestyle pour les pages d'inspiration, packshot pour le choix par tâche et la comparaison.</p>
+            <p class="font-mono text-[11px] text-brand-black/60 mt-3">Le résultat se rapporte aux variantes précises, à l'échantillon et à la tâche e-commerce testée.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— CE QUI A ÉTÉ DÉCIDÉ</span></p>
-            <p class="text-brand-black/70 leading-relaxed">Choisir le type de photo selon l'objectif de la page : inspiration vs. comparaison rapide et choix par tâche. Tester dans le contexte de la tâche, pas isolément.</p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— RECOMMANDATION POUR LA PRATIQUE</span></p>
+            <p class="text-brand-black/70 leading-relaxed">Ne pas choisir la photo produit seulement à l'impression. La vérifier sur la tâche concrète que la page doit soutenir, et évaluer le temps ou le déroulement de la décision avec le comportement, l'attention et les données commerciales.</p>
           </section>
 
-          <section class="reveal border border-brand-black p-8">
-            <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mb-4">CE QU'EMLI APPORTERAIT AUJOURD'HUI</p>
-            <p class="text-brand-black/70 leading-relaxed">Pour une mission similaire, nous mesurons aujourd'hui en plus si le temps plus long passé sur les photos lifestyle correspond à une navigation agréable, ou à une réelle charge cognitive dans la recherche des paramètres — c'est exactement ce type d'ambiguïté que l'indice EMLI adresse.</p>
+          <section class="reveal bg-brand-black text-brand-white p-7 md:p-9">
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE QU'IL FAUT EN RETENIR ]</p>
+            <p class="font-display text-xl md:text-2xl font-bold leading-snug mb-4">Un même produit peut changer la façon de décider selon la manière dont vous le montrez<span style="color:#2D62FC">.</span></p>
+            <p class="text-brand-white/70 leading-relaxed mb-7">Le test de variantes aide à choisir la photo selon la tâche du client, pas selon la préférence de l'équipe.</p>
+            <a href="/fr/contact" class="inline-block border border-brand-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">DISCUTER DE VOTRE PROPRE ÉTUDE →</a>
           </section>
         </div>
 
+        <!-- Fakta + foto (sticky) -->
         <aside class="lg:col-span-1">
           <div class="lg:sticky lg:top-28 space-y-6">
             <div class="border border-brand-black/10 p-6">
               <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-4">ÉTUDE RÉALISÉE EN COLLABORATION AVEC</p>
               <img
                 src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`}
-                alt="Université de Hradec Králové — Faculté d'informatique et de management"
+                alt="Univerzita Hradec Králové — Faculté d'informatique et de management"
                 title="Étude réalisée en collaboration avec la FIM UHK"
                 width="157" height="37" loading="lazy" decoding="async"
                 class="h-8 w-auto"
@@ -192,6 +183,22 @@ const pageSchema = [
         </aside>
       </div>
 
+      <section class="reveal mt-16">
+        <details class="group border border-brand-black/15">
+          <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+            [ GLOSSAIRE — CE QUE SIGNIFIENT LES TERMES DE CETTE ÉTUDE ]
+            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <dl class="px-5 pb-6 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <div><dt class="font-display font-bold mb-1">N (échantillon)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Nombre de personnes incluses dans l'analyse. Dans cette étude, N = 84.</dd></div>
+            <div><dt class="font-display font-bold mb-1">F(1,82)</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Valeur de la statistique de test et ses degrés de liberté dans le test statistique utilisé.</dd></div>
+            <div><dt class="font-display font-bold mb-1">Valeur p</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Elle aide à évaluer dans quelle mesure les données sont compatibles avec l'hypothèse qu'il n'existe pas de différence entre les variantes. Elle ne décrit pas, à elle seule, l'ampleur de l'impact.</dd></div>
+            <div><dt class="font-display font-bold mb-1">UEQ</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Questionnaire standardisé pour l'évaluation subjective de l'expérience utilisateur.</dd></div>
+          </dl>
+        </details>
+      </section>
+
+      <!-- FAQ ke studii -->
       <section class="reveal mt-20">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES SUR L'ÉTUDE ]</p>
         <div class="border-t border-brand-black/10">
@@ -207,6 +214,7 @@ const pageSchema = [
         </div>
       </section>
 
+      <!-- Úzký pruh: kompletní studie (otevírá modal) -->
       <section class="reveal mt-16 !hidden bg-brand-black text-brand-white px-6 md:px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
         <div>
           <p class="font-display text-xl md:text-2xl font-bold leading-tight">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></p>
@@ -217,26 +225,21 @@ const pageSchema = [
         </button>
       </section>
 
+      <!-- Navigace mezi studiemi -->
       <nav class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 mt-20 border border-brand-black/10" aria-label="Autres études de cas">
         <a href="/fr/etudes-de-cas/backend-stories" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">← ÉTUDE PRÉCÉDENTE</p>
-          <p class="font-display font-bold leading-snug">92 % des regards ont fini sur le CTA principal</p>
+          <p class="font-display font-bold leading-snug">Plus le texte est long, moins il capte l'attention</p>
         </a>
         <a href="/fr/etudes-de-cas/reklamni-bannery-smer-pohledu" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
           <p class="font-mono text-xs text-brand-black/60 group-hover:text-brand-white/70 tracking-widest mb-2">ÉTUDE SUIVANTE →</p>
-          <p class="font-display font-bold leading-snug">Là où regarde le personnage de la bannière, votre client regarde aussi</p>
+          <p class="font-display font-bold leading-snug">Le regard du personnage a orienté l'attention des visiteurs</p>
         </a>
       </nav>
 
-      <div class="reveal bg-brand-black text-brand-white text-center p-10 md:p-14 mt-10">
-        <h2 class="font-display text-3xl md:text-4xl font-bold mb-8">Comparer les variantes de présentation produit<span style="color:#2D62FC">.</span></h2>
-        <a href="/fr/contact" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-          DEMANDE SANS ENGAGEMENT →
-        </a>
-        <p class="font-mono text-xs text-brand-white/60 mt-6">PACK TYPIQUE POUR CE TYPE DE MISSION : <a href="/fr/services/packs-de-test" class="text-brand-white underline hover:no-underline">Test UX standard</a></p>
-      </div>
     </div>
 
+      <!-- Modal: žádost o kompletní studii -->
       <dialog id="study-dialog" class="bg-brand-black text-brand-white p-0 w-[calc(100%-2rem)] max-w-lg border border-brand-white/20 backdrop:bg-brand-black/70">
         <div class="p-8">
           <div class="flex justify-between items-start mb-6">
@@ -245,7 +248,7 @@ const pageSchema = [
           </div>
           <h2 class="font-display text-2xl font-bold mb-3">Vous voulez parcourir l'étude en détail<span style="color:#2D62FC">?</span></h2>
           <p class="text-brand-white/70 text-sm leading-relaxed mb-6">Les études sont abrégées et anonymisées.</p>
-          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="La photo « portée » est plus belle. Mais elle a ralenti l'achat.">
+          <form class="study-request space-y-4" data-pdf="https://lukaskoula.com" data-study="Même produit. Un temps de décision différent.">
             <div>
               <label for="sr-name" class="font-mono text-xs text-brand-white/70 tracking-widest block mb-2">NOM *</label>
               <input type="text" id="sr-name" name="name" required placeholder="Votre nom"

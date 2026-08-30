@@ -2,28 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-
 const homeStudies = [
   {
     href: '/de/fallstudien/karierni-portal-automotive',
-    category: "ŠKODA AUTO · Karriereportal",
-    title: "40 % der Bewerber fanden den Weg zu offenen Stellen nicht — auf einer „übersichtlichen“ Website.",
-    method: "Eye Tracking + Befragung · N = 102",
-    result: "40 % verloren",
+    category: 'ŠKODA AUTO · Karriereportal',
+    title: '40 % der Bewerber fanden nicht zu den offenen Stellen. Die Website „wirkte dabei übersichtlich".',
+    method: 'Eye-Tracking + Fragebogen · N = 102',
+    result: '4 von 10 fanden keine Stellen',
   },
   {
     href: '/de/fallstudien/backend-stories',
-    category: "Edukative Microsite",
-    title: "92 % der Blicke landeten auf dem Haupt-CTA. Den langen Absatz las nur ein Drittel.",
-    method: "Eye Tracking, AOI-Analyse · ca. 120 Probanden",
-    result: "92 % auf CTA",
+    category: 'Edukative Microsite',
+    title: 'Je länger der Text, desto weniger Aufmerksamkeit.',
+    method: 'Eye-Tracking, AOI-Analyse · ca. 120 Probanden',
+    result: '92 % nahmen den CTA wahr',
   },
   {
     href: '/de/fallstudien/reklamni-bannery-smer-pohledu',
-    category: "Werbekreation",
-    title: "Wohin die Person auf Ihrem Banner schaut, dorthin schaut auch Ihr Kunde.",
-    method: "Eye-Tracking-Experiment · N = 104",
-    result: "Blick lenkt Blick",
+    category: 'Werbekreation',
+    title: 'Der Blick der Figur lenkte die Aufmerksamkeit der Besucher.',
+    method: 'Eye-Tracking-Experiment · N = 104',
+    result: 'ηp² = 0,11 · mittlerer Effekt',
   },
 ];
 
@@ -33,111 +32,110 @@ const yearSuffix = new Date().getFullYear().toString().slice(-2);
 const clientLogos = [
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/skoda.webp`, w: 1920, h: 630, alt: 'Škoda Auto' , dh: 50 },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.webp`, w: 800, h: 800, alt: 'FC Hradec Králové' , dh: 54 },
-  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'Universität Hradec Králové' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'Univerzita Hradec Králové' },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/texopluslogo.webp`, w: 216, h: 46, alt: 'TEXO Plus' },
 ];
 ---
 
-<BaseLayout lang="de" title="UX-Forschung, Eye Tracking & Nutzertests | UXMIND" description="Nutzertests, Eye Tracking und Messung kognitiver Belastung (EMLI-Modell). Objektive UX-Forschung mit dem wissenschaftlichen Umfeld der FIM UHK." preloadImage={{ href: gifSrc, media: "(min-width: 768px)" }}>
+<BaseLayout lang="de" title="UX-Forschung, Eye Tracking und Nutzertests | UXMIND" description="Nutzertests, Eye Tracking und Messung der kognitiven Belastung (Modell EMLI). Objektive UX-Forschung mit wissenschaftlichem Hintergrund der FIM UHK. Testen Sie Ihre Website anhand von Daten." preloadImage={{ href: gifSrc, media: "(min-width: 768px)" }}>
   <Navbar />
 
   <!-- HERO SECTION -->
   <section class="hero-shell relative overflow-hidden" style="background:#FDFDFD;">
 
+    <!-- Background grid: 4 columns × 3 rows, plus markers at intersections -->
     <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
       style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
       <div class="hidden md:block">
       {[0, 25, 50, 75, 100].flatMap(x =>
         [0, 33.333, 66.667, 100].map(y => (
-          <div class="absolute" style={`left:${x}%; top:${y}%; transform:translate(-50%,-50%);`}>
-            <div class="relative" style="width:14px; height:14px;">
-              <div class="absolute" style="top:50%; left:0; width:14px; height:1px; background:rgba(10,10,10,0.22); transform:translateY(-50%);"></div>
-              <div class="absolute" style="left:50%; top:0; height:14px; width:1px; background:rgba(10,10,10,0.22); transform:translateX(-50%);"></div>
-            </div>
-          </div>
+          <div class="absolute" style={`left:${x}%; top:${y}%; width:14px; height:14px; transform:translate(-50%,-50%); background:linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/14px 1px no-repeat, linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/1px 14px no-repeat;`}></div>
         ))
       )}
       </div>
     </div>
 
-    <!-- Center CTA — below the hero figure, on the same grid row axis as the spec list -->
+    <!-- Center CTA — pod středovým obrázkem, na ose řádku mřížky se specializacemi -->
     <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] hidden md:block" style="top: 83.333%;">
       <a href="/de/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-2 font-mono text-xs tracking-widest uppercase transition-colors duration-200 hover:bg-transparent hover:text-brand-black">
         TERMIN VEREINBAREN
       </a>
     </div>
 
+    <!-- Large headline — top-aligned s horní linkou (stejná výška jako začínala horní tabulka) -->
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: calc(var(--desktop-top-offset) + 3rem); line-height: 1; margin: 0; padding: 0;">
       <h1 class="m-0 p-0 relative" style="line-height:0;">
         <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
-        <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
+        <!-- Easter egg: hotspot nad modrou tečkou loga + záslepka, když tečka "uteče" -->
         <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
         <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
       </h1>
       <!-- Mobile-only: first annotation below heading -->
-      <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">WO FORSCHUNG WAHRHEIT ZEIGT</p>
+      <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">FORSCHUNG STATT VERMUTUNGEN</p>
     </div>
 
     <!-- Mobile hero image — static, shown immediately -->
     <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX-Forschung und Eye Tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX-Forschung und Eye-Tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
     </div>
 
     <!-- Center 3D Brain — desktop only -->
     <div class="hidden md:flex absolute inset-0 items-center justify-center">
       <div id="hero-gif-container" class="relative" style="width: min(48vw, 760px); height: min(50vh, 540px);">
+        <!-- Hero GIF - plays once then freezes on last frame -->
         <img
           id="hero-gif"
           src={gifSrc}
-          alt="Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye Tracking und Daten"
+          alt="Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye-Tracking und Daten"
           class="w-full h-full object-contain"
           width="960" height="540" loading="lazy" decoding="async"
         />
 
-        <!-- Annotation: top -->
+        <!-- Annotation: top — text visible in hero below CTA, line goes down into image -->
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">WO FORSCHUNG<br/>WAHRHEIT ZEIGT</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">FORSCHUNG STATT<br/>VERMUTUNGEN</p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
-        <!-- Annotation: left -->
+        <!-- Annotation: left — text left of container, dot at 22% from left -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
           <div class="text-right mr-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">AUS DER NUTZER-<br/>PERSPEKTIVE<br/>ENTSTEHT DESIGN</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">DESIGN BEGINNT<br/>BEIM NUTZER</p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
 
-        <!-- Annotation: right top — top 40% keeps the text below the stats box bottom edge -->
+        <!-- Annotation: right top — text right of container, dot at 22% from right; top 40% = pod spodní hranou stats boxu -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:40%; transform:translate(100%,-50%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>ZEIGT, WAS MAN<br/>WIRKLICH SIEHT</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>ZEIGT, WAS<br/>MENSCHEN SEHEN</p>
           </div>
         </div>
 
-        <!-- Annotation: right bottom -->
+        <!-- Annotation: right bottom — text right of container, dot at 22% from right -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">BASIS FÜR<br/>WACHSTUM</p>
+            <p class="font-mono hero-fluid-micro tracking-widest">MESSEN<br/>VERSTEHEN<br/>VERBESSERN</p>
           </div>
         </div>
 
-        <!-- Annotation: bottom -->
+        <!-- Annotation: bottom — text below container, dot at 18% from bottom -->
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATEN STATT<br/>EINDRÜCKE</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATEN<br/>STATT EINDRÜCKE</p>
         </div>
 
       </div>
-    </div>
+    </div><!-- end desktop gif container -->
 
+    <!-- Info box: stats (top right) -->
     <div class="hero-stats-box hidden absolute z-10 border border-brand-black p-4 bg-brand-white/90 backdrop-blur-sm" style="top: calc(var(--desktop-top-offset) + 3rem); left: calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter);">
       <div class="flex justify-between items-center mb-3">
         <p class="font-mono text-xs font-medium tracking-widest">UX MIND</p>
@@ -159,6 +157,7 @@ const clientLogos = [
       </div>
     </div>
 
+    <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
     <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
       <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/60">[ UNSERE SPEZIALISIERUNG ]</p>
       <div class="space-y-3">
@@ -185,52 +184,56 @@ const clientLogos = [
       </div>
     </div>
 
+    <!-- Info box: about us — fills right half of bottom grid rectangle -->
     <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col"
       style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
         <div class="mb-2">
           <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">KEINE AGENTUR – SPEZIALISTEN</p>
         </div>
-        <p class="font-mono text-brand-white/90 leading-relaxed infobox-desc" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">
-          Ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten und Eye-Tracking zu verstehen.
+        <p class="font-mono text-brand-white/90 leading-relaxed text-justify infobox-desc" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">
+          Wir sind ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten, Forschung und Eye-Tracking zu verstehen.
         </p>
       </div>
-      <div class="shrink-0">
+      <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
         <div class="pt-2 border-t border-brand-white/20 flex flex-col items-start gap-1.5">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * min(var(--fs, 1), 1.08));">PROJEKT MIT:</p>
-          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universität Hradec Králové" class="max-w-full shrink-0" style="height:clamp(24px,2.8vh,40px); margin-top:4px; margin-bottom:4px; object-fit:contain; filter: invert(1);" />
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="max-w-full shrink-0" style="height:clamp(24px,2.8vh,40px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
         </div>
       </div>
     </div>
 
     <!-- Cursor dot — only in hero area -->
-    <div id="cursor-dot" style="position:fixed; top:0; left:0; width:8px; height:8px; background:#2D62FC; border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); opacity:0;"></div>
+    <div id="cursor-dot" style="position:fixed;top:0;left:0;width:8px;height:8px;background:#2D62FC;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;"></div>
 
+    <!-- Scroll indicator -->
     <button type="button" aria-label="Zum Inhalt scrollen" class="hidden md:flex absolute bottom-6 z-10 flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
       <p class="font-mono text-xs text-brand-black/60 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
       <div class="h-8 bg-brand-black/20" style="width: 1px;"></div>
     </button>
   </section>
 
-  <!-- Mobile info box — NOT AN AGENCY, above logo carousel -->
+  <main id="main-content">
+
+  <!-- Mobile info box — NE AGENTURA, above logo carousel -->
   <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
     <div>
       <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">KEINE AGENTUR – SPEZIALISTEN</p>
     </div>
-    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten und Eye-Tracking zu verstehen.</p>
+    <p class="font-mono text-sm text-brand-white/90 leading-relaxed text-justify">Wir sind ein Team von UX-Spezialisten. Wir helfen Unternehmen, ihre Nutzer durch Daten, Forschung und Eye-Tracking zu verstehen.</p>
     <div class="flex gap-2">
       <a href="/de/ueber-uns" class="font-mono text-xs border border-brand-white px-2 py-1">ÜBER UNS</a>
       <a href="/de/kontakt" class="font-mono text-xs border border-brand-white px-2 py-1">KONTAKT</a>
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJEKT MIT:</p>
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universität Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
   <!-- LOGO STRIP -->
   <div class="border-y border-brand-black/10 py-6" style="background:#FDFDFD;">
-    <!-- Desktop: static strip -->
+    <!-- Desktop: statický pás -->
     <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
       {clientLogos.map(({ src, alt, w, h, dh }) => (
         <div class="px-4 py-1">
@@ -247,7 +250,7 @@ const clientLogos = [
         </div>
       ))}
     </div>
-    <!-- Mobile: auto-scrolling carousel, two logos per row -->
+    <!-- Mobil: automatický carousel, dvě loga na řádek -->
     <div class="md:hidden overflow-hidden">
       <div class="logo-marquee flex items-center">
         {[...clientLogos, ...clientLogos].map(({ src, alt, w, h, dh }) => (
@@ -275,7 +278,7 @@ const clientLogos = [
     }
     .logo-marquee {
       width: max-content;
-      /* the loop is visual only (transform) — logos download once and animate from cache */
+      /* smyčka je jen vizuální (transform) — loga se stahují jednorázově a běží z cache */
       animation: logo-scroll 10s linear infinite;
     }
     @keyframes logo-scroll {
@@ -287,13 +290,13 @@ const clientLogos = [
     }
   </style>
 
-  <!-- THREE QUESTIONS, THREE MEASUREMENTS -->
-  <section id="main-content" class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
+  <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
+  <section class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
     <div class="mb-12 max-w-3xl">
       <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ DREI FRAGEN, DREI MESSUNGEN ]</p>
-      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Was Nutzer sehen, wie sie reagieren<br/>und was es sie kostet<span style="color:#2D62FC">.</span></h2>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Was Nutzer sehen, wie sie reagieren<br/>und was sie belastet<span style="color:#2D62FC">.</span></h2>
       <p class="text-sm text-brand-black/60 leading-relaxed">
-        Analytics zeigt, WO Menschen geklickt haben. Umfragen zeigen, WAS sie denken. Wir messen die dritte Ebene:
+        Analytics zeigt, WOHIN Menschen geklickt haben. Umfragen zeigen, WAS sie denken. Wir messen die dritte Ebene:
         was sie tatsächlich gesehen haben, wie stark sie reagiert haben und wo die Oberfläche sie mental überlastet hat.
       </p>
     </div>
@@ -301,90 +304,97 @@ const clientLogos = [
       {[
         {
           q: 'Sehen sie es überhaupt?',
-          desc: 'Visuelle Aufmerksamkeit — Fixationen, TTFF, Dwell Time, AOI-Analyse und Scanpaths. Eine objektive Aufzeichnung dessen, was Nutzer wirklich gesehen und was sie übersehen haben.',
+          desc: 'Visuelle Aufmerksamkeit — Heatmaps, Fixationen, TTFF, Dwell Time, AOI-Analyse und Scanpaths. Eye Tracking hält objektiv fest, was Nutzer wirklich gesehen und was sie übersehen haben.',
           tool: 'EYE-TRACKING',
         },
         {
           q: 'Wie stark reagieren sie?',
-          desc: 'Physiologische Erregung und mimische Signale im Kontext der Aufgabe. Stets mit Blick auf die Grenzen interpretiert — kein „Emotionslesen“.',
+          desc: 'Physiologische Erregung und mimische Signale im Kontext der Aufgabe. Wir interpretieren sie stets mit ihren Grenzen — kein „Gedankenlesen".',
           tool: 'GSR + MIMISCHE SIGNALE',
         },
         {
           q: 'Schaffen sie es ohne Anstrengung?',
-          desc: 'Mentale Belastung als ein klarer Score von 0–100. Erfahren Sie, wo Ihre Oberfläche Nutzer überlastet — selbst wenn sie die Aufgabe am Ende lösen.',
-          tool: 'EMLI-MODELL',
+          desc: 'Kognitive Belastung als ein klar verständlicher Score von 0–100. Sie erfahren, wo die Oberfläche Nutzer überlastet, selbst wenn sie die Aufgabe am Ende schaffen.',
+          tool: 'MODELL EMLI',
         },
       ].map((item, i) => (
         <div class="bg-brand-white p-8 flex flex-col">
           <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
           <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
-          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
+          <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{item.desc}</p>
           <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
         </div>
       ))}
     </div>
-    <!-- Glossary of abbreviations -->
+    <!-- Slovníček zkratek -->
     <details class="group border border-brand-black/15 mt-6">
         <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
           [ GLOSSAR ]
           <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
         </summary>
         <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Zeit bis zur ersten Fixation</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Area of Interest (untersuchter Bereich)</dd></div>
-            <div><dt class="font-display font-bold mb-1">Dwell Time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Gesamtzeit des Blicks in einem Bereich</dd></div>
-            <div><dt class="font-display font-bold mb-1">Scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Blickpfad zwischen Fixationen</dd></div>
-            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Hautleitwert, Indikator physiologischer Erregung</dd></div>
-            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">aus Eye-Tracking-Metriken abgeleiteter Index mentaler Belastung</dd></div>
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Zeit bis zur ersten Blickfixation</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">beobachteter Interessenbereich (Area of Interest)</dd></div>
+            <div><dt class="font-display font-bold mb-1">Dwell Time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Gesamtzeit, die der Blick in einem Bereich verweilt</dd></div>
+            <div><dt class="font-display font-bold mb-1">Scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Blickpfad zwischen den Fixationen</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Messung der Hautleitfähigkeit, Indikator physiologischer Erregung</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">aus Eye-Tracking-Metriken abgeleiteter Index der mentalen (kognitiven) Belastung</dd></div>
         </dl>
       </details>
   </section>
 
   <!-- SERVICES SECTION -->
   <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="mb-12 max-w-3xl">
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ UNSERE LEISTUNGEN ]</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Was wir tun<span style="color:#2D62FC">.</span></h2>
+      <p class="text-sm text-brand-black/60 leading-relaxed">
+        Wir helfen herauszufinden, wo eine Website, App oder Kommunikation Menschen den Weg erschwert. Wir messen das Problem, erklären seine Ursache und empfehlen, was zuerst zu ändern ist.
+      </p>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10">
       {[
         {
           num: '01',
-          title: "UX-Audit",
-          desc: "Systematische Analyse der wichtigsten Journeys Ihres Produkts: Navigation, CTAs, Formulare. Das Ergebnis sind nicht nur Diagramme, sondern priorisierte Empfehlungen, was zuerst zu verbessern ist.",
+          title: 'UX-Audit',
+          desc: 'Wir durchlaufen Ihre Website, Ihren Onlineshop oder Ihre App mit den Augen der Nutzer. Wir finden Stellen, an denen Menschen zögern, eine Bestellung nicht abschließen oder wichtige Informationen übersehen. Sie erhalten eine nach Priorität geordnete Liste an Anpassungen.',
           href: '/de/leistungen/ux-audit',
-          tags: ["Analyse", "Empfehlungen", "Priorisierung"],
+          tags: ['Analyse', 'Empfehlungen', 'Priorisierung'],
         },
         {
           num: '02',
-          title: "Nutzertests",
-          desc: "Aufgabenszenarien mit echten Nutzern: wo sie zögern, wo sie sich verlieren, warum sie abspringen. Moderiert und unmoderiert, mit messbarer Erfolgsquote und qualitativen Einsichten.",
+          title: 'Nutzertests',
+          desc: 'Wir geben echten Nutzern konkrete Aufgaben und beobachten, ob sie diese lösen können. Sie sehen, wo sie sich verlieren, was sie nicht verstehen und warum sie abspringen — samt Vorschlägen, was zu ändern ist.',
           href: '/de/leistungen/nutzertests',
-          tags: ["Aufgabenszenarien", "Erfolgsquote", "Qualitative Einsichten"],
+          tags: ['Aufgabenszenarien', 'Erfolgsquote', 'Qualitative Einsichten'],
         },
         {
           num: '03',
-          title: "Eye Tracking",
-          desc: "Objektive Aufzeichnung der visuellen Aufmerksamkeit: Fixationen, Time to First Fixation (TTFF), Dwell Time, AOI-Metriken, Heatmaps und Scanpaths. Was Menschen wirklich sehen — und was sie übersehen.",
+          title: 'Eye Tracking',
+          desc: 'Mit Eye Tracking messen wir, wohin Menschen wirklich schauen. Heatmaps und Blickaufzeichnungen zeigen, was ihnen auffällt, was sie übersehen und ob wichtiger Inhalt sie in die richtige Richtung lenkt.',
           href: '/de/leistungen/eye-tracking',
-          tags: ["Heatmap", "AOI · TTFF", "Scanpath"],
+          tags: ['Heatmap', 'AOI · TTFF', 'Scanpath'],
         },
         {
           num: '04',
-          title: "Feldforschung",
-          desc: "Eye-Tracking und Beobachtung vor Ort — im Geschäft, auf Veranstaltungen, im realen Umfeld. Mobile Eye-Tracking-Brillen und authentisches Verhalten außerhalb des Labors.",
+          title: 'Feldforschung',
+          desc: 'Wir beobachten das Verhalten von Kunden genau dort, wo sie entscheiden — im Geschäft, im Showroom, auf einer Veranstaltung oder am physischen Produkt. Mobile Eye-Tracking-Brillen zeigen, was ihnen im realen Umfeld auffällt und was sie übersehen.',
           href: '/de/leistungen/feldforschung',
-          tags: ["Mobiles Eye-Tracking", "Realer Kontext", "Beobachtung"],
+          tags: ['Mobiles Eye-Tracking', 'Realer Kontext', 'Beobachtung'],
         },
         {
           num: '05',
-          title: "UX-Forschung",
-          desc: "Wir kombinieren objektive Verhaltensmessung, biometrische Daten und Fragebögen im Kontext der Aufgabe. Im Labor und im Feld, mit Piloten, Datenqualitätskontrolle und ehrlichen Grenzen.",
+          title: 'UX-Forschung',
+          desc: 'Wenn Sie nicht nur verstehen müssen, was nicht funktioniert, sondern auch warum. Wir verbinden Interviews, Beobachtung, Tests und die Messung von Reaktionen, damit Sie nach den tatsächlichen Bedürfnissen der Nutzer entscheiden können.',
           href: '/de/leistungen/ux-forschung',
-          tags: ["Eye-Tracking", "Biometrie", "Fragebögen"],
+          tags: ['Eye-Tracking', 'Biometrie', 'Fragebögen'],
         },
         {
           num: '06',
-          title: "Fallstudien",
-          desc: "40 % der Bewerber fanden keine offenen Stellen. 92 % der Blicke landeten auf dem Haupt-CTA. Echte Zahlen aus echten Messungen — und die Entscheidungen, die daraus folgten.",
+          title: 'Fallstudien',
+          desc: 'Sehen Sie, was echte Messungen zeigten: 40 % der Bewerber fanden nicht zu den offenen Stellen, und den Haupt-CTA nahmen 92 % der Befragten wahr. Wir zeigen die Daten und die Änderungen, zu denen sie führten.',
           href: '/de/fallstudien',
-          tags: ["Ergebnisse", "Daten", "Entscheidungen"],
+          tags: ['Ergebnisse', 'Daten', 'Entscheidungen'],
         },
       ].map(service => (
         <a href={service.href} class="group bg-brand-white p-8 hover:bg-brand-black hover:text-brand-white transition-colors duration-300">
@@ -393,7 +403,7 @@ const clientLogos = [
             <span class="font-mono text-xs group-hover:text-brand-white/60">→</span>
           </div>
           <h3 class="font-display text-3xl font-bold mb-4 leading-tight">{service.title}</h3>
-          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6">{service.desc}</p>
+          <p class="text-sm text-brand-black/60 group-hover:text-brand-white/60 leading-relaxed mb-6 text-justify">{service.desc}</p>
           <div class="flex flex-wrap gap-2">
             {service.tags.map(tag => (
               <span class="font-mono text-xs border border-brand-black/20 group-hover:border-brand-white/20 px-2 py-1">{tag}</span>
@@ -402,13 +412,13 @@ const clientLogos = [
         </a>
       ))}
     </div>
-    <!-- Test packages — black strip -->
+    <!-- Testovací balíčky — černý pás, ať vyniknou -->
     <a href="/de/leistungen/test-pakete" class="group flex flex-col md:flex-row md:items-center justify-between gap-4 bg-brand-black text-brand-white border border-brand-black p-8 hover:bg-[#2D62FC] transition-colors duration-300">
       <div>
         <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-2">[ TEST-PAKETE ]</p>
-        <p class="font-display text-2xl font-bold leading-tight">Von der schnellen Diagnose bis zur umfassenden biometrischen UX-Studie — wählen Sie den Umfang nach der Entscheidung, die Sie treffen müssen.</p>
+        <p class="font-display text-2xl font-bold leading-tight">Von der schnellen Kontrolle bis zur Tiefenforschung. Wählen Sie den Umfang nach dem, was Sie herausfinden möchten.</p>
       </div>
-      <span class="font-mono text-xs tracking-widest uppercase shrink-0">PAKETE ANSEHEN →</span>
+      <span class="font-mono text-xs tracking-widest uppercase shrink-0">PAKETE VERGLEICHEN →</span>
     </a>
   </section>
 
@@ -418,13 +428,14 @@ const clientLogos = [
       <div>
         <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ EMLI — EYE-TRACKING MENTAL LOAD INDEX ]</p>
         <h2 class="font-display text-4xl md:text-6xl font-bold leading-none tracking-tight mb-8">Mentale Belastung<br/>als Zahl<span style="color:#2D62FC">.</span></h2>
-        <p class="text-brand-white/60 leading-relaxed mb-6">
-          Eine Heatmap zeigt, wohin Menschen geschaut haben. Sie verrät aber nicht, <strong class="text-brand-white">wie viel es sie gekostet hat</strong>.
-          EMLI übersetzt acht Eye-Tracking-Metriken in einen einzigen Belastungsindex von 0–100. Vergleichen Sie Designvarianten,
-          Formularschritte oder Wettbewerbslösungen — auf Basis harter Daten statt Bauchgefühl.
+        <p class="text-brand-white/60 leading-relaxed mb-6 text-justify">
+          Eine Heatmap zeigt, wohin Menschen geschaut haben. Sie allein erkennt aber nicht, ob die Oberfläche für sie einfach war
+          oder sie bei der Aufgabe unnötig belastete. EMLI verbindet acht Eye-Tracking-Metriken zu einem einzigen
+          Score der kognitiven Belastung von 0 bis 100. <strong class="text-brand-white">Je höher der Score, desto größer die Belastung.</strong> So vergleichen Sie leicht
+          zwei Designvarianten, einzelne Formularschritte oder Wettbewerbslösungen — auf Basis von Daten, nicht nach Gefühl.
         </p>
         <p class="font-mono text-xs text-brand-white/70 leading-relaxed mb-10">
-          Ein Modell, entwickelt und fortlaufend geprüft in der akademischen Forschung der FIM UHK,<br class="hidden md:block"/> mit vollständig dokumentierter Replikationsmethodik.
+          Das Modell entstand in der akademischen Forschung der FIM UHK.<br class="hidden md:block"/> Die Methodik ist für eine unabhängige Überprüfung ausführlich dokumentiert.
         </p>
         <a href="/de/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
           BELASTUNG MESSEN LASSEN →
@@ -432,7 +443,7 @@ const clientLogos = [
       </div>
       <div class="flex justify-center">
         <!-- EMLI gauge 0–100 -->
-        <svg viewBox="0 0 320 200" class="w-full max-w-sm" role="img" aria-label="Illustration des EMLI-Index mentaler Belastung auf einer Skala von 0 bis 100">
+        <svg viewBox="0 0 320 200" class="w-full max-w-sm" role="img" aria-label="Illustration des EMLI-Index der mentalen Belastung auf einer Skala von 0 bis 100">
           <path d="M 30 170 A 130 130 0 0 1 290 170" fill="none" stroke="rgba(252,252,252,0.15)" stroke-width="14" stroke-linecap="round" />
           <path id="emli-arc" d="M 30 170 A 130 130 0 0 1 290 170" pathLength="100" fill="none" stroke="#FCFCFC" stroke-width="14" stroke-linecap="round" stroke-dasharray="65 100" />
           {Array.from({ length: 11 }).map((_, i) => {
@@ -461,65 +472,69 @@ const clientLogos = [
       {[
         { num: '5+', label: 'Durchgeführte Studien' },
         { num: '450+', label: 'Probanden in Studien' },
-        { num: '8', label: 'Metriken im EMLI-Modell' },
+        { num: '8', label: 'Metriken im Modell EMLI' },
         { num: '0–100', label: 'Skala des Belastungsindex' },
       ].map(stat => (
         <div class="text-center">
-          <p class="font-display text-5xl md:text-6xl font-bold mb-2">{stat.num}</p>
+          <p class="font-display text-5xl md:text-6xl font-bold mb-3">{stat.num}</p>
+          <div class="border-t border-brand-black/15 mb-2"></div>
           <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase">{stat.label}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- RESEARCH & TECHNOLOGY -->
+  <!-- VÝZKUM A TECHNOLOGIE -->
   <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ LABOR & TECHNOLOGIE ]</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Forschungsfundament,<br/>keine Marketing-Magie<span style="color:#2D62FC">.</span></h2>
-        <p class="text-sm text-brand-black/60 leading-relaxed mb-8">
-          Wir messen im Labor für kognitive Studien der FIM UHK und im Feld. GSR nutzen wir als Indikator
-          physiologischer Erregung, mimische Signale interpretieren wir stets im Kontext der Aufgabe. Jede
-          Messung hat eine klare Forschungsfrage, eine Pilotierung, Datenqualitätskontrolle und benannte Limits.
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ LABOR UND TECHNOLOGIE ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Technologie allein reicht nicht.<br/>Entscheidend ist die Methodik<span style="color:#2D62FC">.</span></h2>
+        <p class="text-sm text-brand-black/60 leading-relaxed mb-8 text-justify">
+          Wir messen im Labor für kognitive Studien der FIM UHK sowie direkt im Feld. Moderne Geräte allein
+          garantieren aber kein verlässliches Ergebnis. Deshalb beginnt jede Untersuchung mit einer klaren
+          Fragestellung, wir prüfen das Szenario vorab und kontrollieren während der Messung die Datenqualität.
+          Ergebnisse bewerten wir im Kontext der konkreten Aufgabe und sagen offen, was sich daraus ableiten
+          lässt — und was nicht.
         </p>
         <div class="flex flex-wrap gap-2">
           {['TOBII PRO X2-60', 'SMART EYE AURORA', 'PUPIL LABS NEON', 'IMOTIONS', 'SHIMMER3 GSR'].map(tech => (
             <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{tech}</span>
           ))}
         </div>
-        <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mt-8">WISSENSCHAFT, KEINE VERSPRECHEN</p>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4">
-          Das Team publiziert in Scientific Reports (Nature Portfolio), im Journal of Environmental
-          Psychology und auf der ACM ETRA. UXMIND bringt dieses akademische Know-how in die Praxis —
-          inklusive der methodischen Disziplin, die Kundenmessungen erfordern.
+        <p class="font-mono font-medium tracking-widest bg-brand-black text-brand-white text-xs px-2 py-1 block w-full mt-8">AKADEMISCHER HINTERGRUND</p>
+        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 text-justify">
+          Mitglieder des Teams veröffentlichen ihre Ergebnisse in den Fachzeitschriften Scientific Reports
+          (Nature Portfolio) und Journal of Environmental Psychology sowie auf der Konferenz ACM ETRA. Dieselbe
+          Sorgfalt bringen wir in Kundenprojekte ein — von der Messplanung bis zur verständlichen Interpretation
+          der Ergebnisse.
         </p>
       </div>
       <div class="flex flex-col">
-        <!-- Photo fills the column height (object-cover crop) -->
+        <!-- Fotka vyplní výšku sloupce (ořez object-cover) -->
         <div class="border border-brand-black flex flex-col flex-1 min-h-0">
           <img
             src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/jan-petruzalek-analyza-eye-tracking-dat.webp`}
-            alt="UXMIND-Forscher analysiert Eye-Tracking-Daten — Heatmaps visueller Aufmerksamkeit auf dem Monitor, Aufzeichnungen mimischer Ausdrücke auf dem Tablet"
+            alt="UXMIND-Forscher analysiert Eye-Tracking-Daten — auf dem Monitor Heatmaps der visuellen Aufmerksamkeit, auf dem Tablet Aufzeichnungen der mimischen Ausdrücke der Probanden"
             title="Analyse von Eye-Tracking-Daten im Labor für kognitive Studien der FIM UHK"
             width="1920" height="1280" loading="lazy" decoding="async"
             class="w-full flex-1 min-h-0 object-cover block"
           />
         </div>
         <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
-          <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">IN KOOPERATION MIT:</p>
-          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Universität Hradec Králové" class="h-[40px] w-auto" />
+          <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">IN ZUSAMMENARBEIT MIT:</p>
+          <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CASE STUDIES -->
+  <!-- PŘÍPADOVÉ STUDIE -->
   <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
     <div class="flex justify-between items-end mb-12">
       <div>
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ FALLSTUDIEN ]</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Ergebnisse<br/>sprechen<span style="color:#2D62FC">.</span></h2>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Was die<br/>Messung zeigte<span style="color:#2D62FC">.</span></h2>
       </div>
       <a href="/de/fallstudien" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
         ALLE FALLSTUDIEN →
@@ -534,59 +549,44 @@ const clientLogos = [
           </div>
           <h3 class="font-display text-xl font-bold mb-4 leading-tight group-hover:text-brand-white transition-colors">{study.title}</h3>
           <p class="font-mono text-[11px] text-brand-black/60 group-hover:text-brand-white/70 tracking-wide mb-6 transition-colors">METHODE: {study.method}</p>
-          <div class="mt-auto flex justify-between items-end gap-3">
-            <span class="font-mono text-xs tracking-widest group-hover:text-brand-white transition-colors">STUDIE ANSEHEN →</span>
-            <span class="font-display text-2xl font-bold leading-none" style="color:#2D62FC">{study.result}</span>
+          <div class="mt-auto">
+            <span class="block font-display text-lg font-bold leading-none whitespace-nowrap mb-4" style="color:#2D62FC">{study.result}</span>
+            <span class="block font-mono text-xs tracking-widest group-hover:text-brand-white transition-colors">STUDIE ANSEHEN →</span>
           </div>
         </a>
       ))}
     </div>
   </section>
 
-  <!-- HOW WE WORK -->
+  <!-- JAK TO U NÁS FUNGUJE -->
   <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
     <div class="flex justify-between items-end mb-12">
       <div>
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ SO ARBEITEN WIR ]</p>
-        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Fünf Schritte<br/>zur Entscheidung<span style="color:#2D62FC">.</span></h2>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ ABLAUF DER ZUSAMMENARBEIT ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Wie die<br/>Zusammenarbeit abläuft<span style="color:#2D62FC">.</span></h2>
       </div>
       <a href="/de/leistungen/test-pakete" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
         TEST-PAKETE →
       </a>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
       {[
-        { num: '01', title: "Briefing", desc: "Wir klären, welche Entscheidung Sie treffen müssen. Daran orientiert sich das gesamte Messdesign." },
-        { num: '02', title: "Paketvorschlag", desc: "Wir empfehlen Methoden, Stichprobe und Ergebnisform — einschließlich dessen, was sich aus dem Umfang nicht sicher ableiten lässt." },
-        { num: '03', title: "Vorbereitung & Pilot", desc: "Szenario, Stimuli, Fragebögen und technisches Protokoll. Bei komplexeren Projekten eine Pilotmessung." },
-        { num: '04', title: "Messung", desc: "Im Labor oder im Feld — mit Kalibrierung, Datenqualitätskontrolle und einheitlichem Vorgehen." },
-        { num: '05', title: "Analyse & Ergebnis", desc: "Aufmerksamkeit, Verhalten, Fragebögen und Aussagen verbinden wir zu Empfehlungen, nicht zu isolierten Diagrammen." },
+        { num: '01', title: 'Erstberatung', desc: 'Sie sagen uns, was Sie herausfinden oder entscheiden müssen. Gemeinsam wählen wir aus, wen und was es sinnvoll ist zu testen.' },
+        { num: '02', title: 'Forschungsdesign', desc: 'Wir empfehlen geeignete Methoden, Teilnehmerzahl, Umfang und Form der Ergebnisse. Sie wissen vorab, welche Fragen die Messung beantwortet.' },
+        { num: '03', title: 'Testvorbereitung', desc: 'Wir bereiten Aufgaben, Unterlagen und Fragebögen vor. Bei komplexeren Projekten prüfen wir zunächst alles mit einer Pilotmessung.' },
+        { num: '04', title: 'Messung', desc: 'Wir testen im Labor oder direkt im Feld. Wir achten auf einen korrekten Ablauf und die Qualität der erfassten Daten.' },
+        { num: '05', title: 'Ergebnisse und Empfehlungen', desc: 'Wir verbinden die Daten mit Beobachtungen und Aussagen der Nutzer. Sie erhalten klare Schlussfolgerungen, Prioritäten und Empfehlungen, was zu ändern ist.' },
       ].map(step => (
         <div class="bg-brand-white p-6 md:p-8">
           <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
-          <h3 class="font-display text-xl font-bold mb-3">{step.title}</h3>
+          <h3 class="font-display text-base font-bold mb-3 whitespace-nowrap">{step.title}</h3>
           <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <section class="desktop-gutter-x py-24 bg-brand-black text-brand-white">
-    <div class="max-w-4xl mx-auto text-center">
-      <p class="font-mono text-xs text-brand-white/70 tracking-widest mb-6">[ STARTEN WIR ZUSAMMEN ]</p>
-      <h2 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 8vw, 7rem);">
-        BEREIT<br/>ZU HELFEN<span style="color:#2D62FC">.</span>
-      </h2>
-      <p class="text-lg text-brand-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
-        Sie wissen nicht, ob das Problem im Design, im Inhalt, in der Kampagne oder in der Aufgabe selbst liegt?
-        Schicken Sie uns Ihre Website, App oder Kreation. Wir entwerfen ein Messszenario, das Ihnen hilft,
-        auf Datenbasis zu entscheiden — nicht aus dem Bauch heraus.
-      </p>
-      <a href="/de/kontakt" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-        UNSERE UX TESTEN →
-      </a>
-    </div>
-  </section>
+  </main>
 
   <Footer />
 </BaseLayout>
@@ -594,3 +594,4 @@ const clientLogos = [
 <script>
   import '../../scripts/homepage';
 </script>
+</content>

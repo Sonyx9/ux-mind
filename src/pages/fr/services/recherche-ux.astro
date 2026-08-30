@@ -5,42 +5,60 @@ import Footer from '../../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const researchQuestions = [
+  { title: 'Pour qui vous créez le produit', desc: 'Nous identifions les besoins, les attentes et les différences entre les groupes qui utilisent le produit ou le service.' },
+  { title: 'Quel problème les gens résolvent', desc: 'Nous révélons les véritables objectifs, motivations et obstacles, pas seulement des demandes formulées hors contexte.' },
+  { title: 'Comment se déroule tout le parcours', desc: 'Nous relions les différents points de contact et montrons où l’expérience fonctionne et où elle se rompt.' },
+  { title: 'Quoi changer en premier', desc: 'Nous traduisons les constats en priorités selon l’impact, la certitude et le lien avec vos objectifs produit.' },
+];
+
+const situations = [
+  { title: 'Nouveau produit ou service', desc: 'Vous devez vérifier à qui la solution doit s’adresser et quel problème elle doit réellement résoudre.' },
+  { title: 'Refonte ou changement de direction', desc: 'Vous ne voulez pas seulement redessiner l’existant, mais décider ce qu’il faut garder et ce qu’il faut changer.' },
+  { title: 'Performance faible sans cause claire', desc: 'Les données montrent un problème, mais n’expliquent ni les motivations, ni les attentes, ni le contexte du comportement.' },
+  { title: 'Nouveau public cible ou marché', desc: 'Vous devez comprendre des besoins différents avant de transposer une solution existante ailleurs.' },
+  { title: 'Parcours multicanal', desc: 'L’expérience se construit entre le site, le support, l’agence, le magasin ou le produit physique.' },
+  { title: 'Décision à fort impact', desc: 'Vous devez étayer une orientation de développement, un investissement ou un changement de processus avant un déploiement plus large.' },
+];
+
 const methods = [
-  { title: 'Entretiens approfondis', type: 'QUALITATIF', desc: 'Des entretiens individuels révèlent les motivations, frustrations et modèles mentaux.' },
-  { title: 'Tests d’utilisabilité', type: 'QUALITATIF', desc: 'Nous observons les utilisateurs accomplissant des tâches et identifions où ils échouent.' },
-  { title: 'Recherche contextuelle', type: 'QUALITATIF', desc: 'Nous observons les utilisateurs dans leur environnement naturel, tels qu’ils travaillent réellement.' },
-  { title: 'Enquêtes par questionnaire', type: 'QUANTITATIF', desc: 'Des données auprès de nombreux participants pour des conclusions statistiquement pertinentes.' },
-  { title: 'Tests A/B', type: 'QUANTITATIF', desc: 'Nous comparons des variantes de design en conditions réelles et mesurons les résultats.' },
-  { title: 'Card sorting', type: 'MIXTE', desc: 'Comment les utilisateurs catégorisent les contenus — la base d’une meilleure architecture de l’information.' },
+  { title: 'Comprendre les besoins', methods: 'ENTRETIENS · RECHERCHE CONTEXTUELLE', desc: 'Quand vous devez comprendre les motivations, les façons de travailler, les décisions et les circonstances dans lesquelles le problème apparaît.' },
+  { title: 'Vérifier le comportement réel', methods: 'TESTS UTILISATEURS · OBSERVATION', desc: 'Quand vous voulez découvrir si les gens accomplissent les tâches importantes et ce qui les en empêche dans une situation précise.' },
+  { title: 'Mesurer l’ampleur du problème', methods: 'QUESTIONNAIRES · ANALYTICS · DONNÉES OPÉRATIONNELLES', desc: 'Quand vous devez vérifier la fréquence d’un schéma donné et les groupes qu’il concerne.' },
+  { title: 'Comparer les directions possibles', methods: 'CONCEPTS · PROTOTYPES · VARIANTES', desc: 'Quand vous choisissez entre plusieurs solutions et devez étayer la décision par le comportement et les retours.' },
 ];
 
 const deliverables = [
-  'Rapport de recherche avec méthodologie et constats',
-  'Personas — profils des groupes clés fondés sur les données',
-  'Journey maps incluant les pain points',
-  'Recommandations priorisées par impact',
-  'Bases pour une refonte ou des tests complémentaires',
+  { title: 'Réponse à la question de recherche', desc: 'Nous résumons clairement ce que les données permettent d’affirmer, ce qui reste incertain et ce qu’il faut encore vérifier.' },
+  { title: 'Preuves et liens', desc: 'Nous étayons les constats par des situations concrètes, des propos, des schémas de comportement et des données disponibles.' },
+  { title: 'Priorités et opportunités', desc: 'Nous distinguons les problèmes majeurs des cas isolés et montrons où le changement a le plus de sens.' },
+  { title: 'Bases pour la suite du travail', desc: 'Selon l’objectif, nous préparons des recommandations, une journey map, une segmentation, un brief de conception ou un plan de vérification complémentaire.' },
 ];
 
 const process = [
-  { num: '01', title: 'Question de recherche', desc: 'Ce que vous devez décider et qui est concerné.' },
-  { num: '02', title: 'Choix des méthodes', desc: 'Une combinaison de méthodes qualitatives et quantitatives selon la question.' },
-  { num: '03', title: 'Collecte des données', desc: 'Entretiens, tests, questionnaires — avec pilote et contrôle qualité.' },
-  { num: '04', title: 'Synthèse et livrable', desc: 'Nous relions les constats en recommandations, personas et journey maps.' },
+  { num: '01', title: 'Décision et contexte', desc: 'Nous clarifions ce que vous devez décider, ce que vous savez déjà et où se trouvent les plus grandes lacunes.' },
+  { num: '02', title: 'Conception de la recherche', desc: 'Nous choisissons les méthodes adaptées, les groupes cibles, l’échantillon et la méthode d’évaluation.' },
+  { num: '03', title: 'Préparation et recrutement', desc: 'Nous préparons le scénario, le vérifions par un pilote et recrutons les participants adaptés.' },
+  { num: '04', title: 'Collecte et synthèse des données', desc: 'Nous relions entretiens, comportement et données disponibles, et recherchons les liens récurrents.' },
+  { num: '05', title: 'Recommandations et remise', desc: 'Nous traduisons les résultats en priorités et déterminons ensemble les prochaines étapes produit.' },
 ];
 
 const faq = [
-  { q: 'Quand une recherche approfondie a-t-elle plus de sens qu’un test rapide ?', a: 'Lorsque vous ne décidez pas d’une seule interface, mais d’une stratégie produit : pour qui vous construisez, quels besoins vous adressez, où le parcours utilisateur est le plus fragile. Un test rapide valide une solution concrète, la recherche dit ce qu’il faut construire.' },
-  { q: 'Combien de temps dure une recherche UX ?', a: 'Selon l’étendue, généralement 3–8 semaines : conception de la recherche, recrutement, collecte des données, analyse et synthèse en recommandations.' },
-  { q: 'Combinez-vous la recherche avec la biométrie ?', a: 'Oui. Les entretiens et observations peuvent être complétés par l’eye-tracking, le GSR ou l’indice de charge mentale EMLI — nous confrontons ainsi les témoignages subjectifs à des données objectives.' },
-  { q: 'Et si nous avons déjà nos propres données ?', a: 'Parfait — nous intégrons vos analytics, votre support client ou vos recherches précédentes à la synthèse. La nouvelle collecte cible alors uniquement les endroits où les données manquent.' },
+  { q: 'Qu’est-ce que la recherche UX ?', a: 'La recherche UX identifie systématiquement qui sont les utilisateurs, ce dont ils ont besoin, comment ils se comportent et pourquoi. Elle aide à décider quel problème résoudre, quoi concevoir et quels changements ont le plus de sens.' },
+  { q: 'En quoi la recherche UX diffère-t-elle des tests utilisateurs ?', a: 'Les tests utilisateurs vérifient une interface ou un prototype précis. La recherche UX peut traiter des questions plus larges sur les besoins, les publics cibles, tout le parcours client ou la direction du produit, et combine plusieurs méthodes selon l’objectif.' },
+  { q: 'En quoi la recherche UX diffère-t-elle d’une étude de marché ?', a: 'L’étude de marché se concentre souvent sur la taille du marché, les préférences ou la marque. La recherche UX entre davantage dans le contexte d’utilisation du produit ou du service et cherche des bases pour la conception et les décisions produit. Les deux approches peuvent utilement se compléter.' },
+  { q: 'De combien de participants avons-nous besoin ?', a: 'Le nombre dépend de la question de recherche, du nombre de groupes cibles et des méthodes choisies. Les entretiens qualitatifs travaillent avec un échantillon différent d’un questionnaire ou d’une comparaison de variantes, c’est pourquoi nous déterminons l’étendue lors de la conception de l’étude.' },
+  { q: 'Combien de temps dure une recherche UX et combien coûte-t-elle ?', a: 'Le plus souvent 3 à 8 semaines selon le nombre de groupes cibles, le mode de recrutement, les méthodes et l’étendue du livrable. Après un brief initial, nous préparons une proposition concrète, un calendrier et le prix.' },
+  { q: 'Et si nous avons déjà de l’analytics ou une recherche antérieure ?', a: 'Nous examinons d’abord les données existantes et les utilisons comme point de départ. Nous ne proposons une nouvelle collecte que là où il faut compléter des liens manquants ou vérifier des conclusions incertaines.' },
+  { q: 'La recherche doit-elle se dérouler en personne ?', a: 'Non. Selon l’objectif, les entretiens et les tests utilisateurs peuvent se dérouler en personne ou à distance. La recherche terrain, elle, se déroule directement dans l’environnement où les gens utilisent le service, le produit ou la procédure de travail.' },
+  { q: 'Quand intégrez-vous l’eye tracking et la biométrie à la recherche UX ?', a: 'Uniquement lorsque la question de recherche exige de mesurer précisément l’attention visuelle, l’activation physiologique ou la charge mentale. Ce n’est pas un élément automatique de chaque recherche, mais une extension facultative.' },
 ];
 
 const pageSchema = [
   {
     '@type': 'Service',
     name: 'Recherche UX',
-    description: 'Recherche UX approfondie combinant méthodes qualitatives et quantitatives : entretiens, tests d’utilisabilité, questionnaires, personas et journey maps.',
+    description: 'Recherche UX pour les décisions produit : entretiens, observation, tests utilisateurs, questionnaires, analyse de données et recommandations priorisées.',
     serviceType: 'Recherche UX',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -58,8 +76,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="fr"
-  title="Recherche UX et tests utilisateurs de site web"
-  description="Tests utilisateurs de votre site, entretiens approfondis, tests d’utilisabilité, personas et journey maps. Décidez sur la base de données, pas de suppositions."
+  title="Recherche UX pour les décisions produit | UX MIND"
+  description="Recherche UX par entretiens, observation, tests utilisateurs et analyse de données. Obtenez des constats clairs, des priorités et des recommandations pour votre produit."
   schema={pageSchema}
 >
   <Navbar />
@@ -71,33 +89,39 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / RECHERCHE UX ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          DES DONNÉES, PAS<br/>DES IMPRESSIONS<span style="color:#2D62FC">.</span>
+          COMPRENEZ<br/>LE CONTEXTE<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">L’étendue la plus profonde : comprendre les utilisateurs, pas seulement l’interface.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Nous combinons méthodes qualitatives et quantitatives pour révéler les
-              <strong class="text-brand-black">besoins, frustrations et modèles mentaux</strong> de vos utilisateurs.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Décidez ce qu’il est pertinent de créer et d’améliorer.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              La recherche UX répond à des questions plus larges que le test d’un seul écran. Elle aide à découvrir
+              qui sont vos utilisateurs, ce dont ils ont besoin, comment ils décident et quelles parties de leur
+              parcours ont le plus d’influence sur leur expérience du produit ou du service.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Selon l’objectif, nous combinons entretiens, observation, tests utilisateurs, questionnaires et données
+              disponibles. Le résultat : <strong class="text-brand-black">des constats clairs, des priorités et des recommandations pour vos décisions produit</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/fr/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              LANCER UNE RECHERCHE →
+              DEMANDER UNE RECHERCHE UX →
             </a>
-            <a href="/fr/services/packs-de-test" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              PACKS DE TEST
+            <a href="/fr/services#packs-de-test" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VOIR LES PACKS
             </a>
           </div>
         </div>
       </div>
 
+      <!-- Info pás -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DURÉE', '3–8 semaines'],
-          ['MÉTHODES', 'Quali + quanti'],
-          ['LIVRABLES', 'Personas · journey maps'],
-          ['PACK', 'Biométrique complet'],
+          ['MÉTHODES', 'Entretiens · observation · données'],
+          ['LIVRABLES', 'Constats · priorités · recommandations'],
+          ['FORMAT', 'Recherche sur mesure'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -106,17 +130,63 @@ const pageSchema = [
         ))}
       </div>
 
+      <!-- Výzkumné otázky -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CE À QUOI RÉPOND LA RECHERCHE UX ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              D’abord la question. Ensuite la méthode<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {researchQuestions.map((question, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{question.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{question.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Kdy dává smysl -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MÉTHODES DE RECHERCHE ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          La bonne méthode pour la bonne question<span style="color:#2D62FC">.</span>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ QUAND LA RECHERCHE UX A DU SENS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Quand il ne suffit pas d’ajuster un seul écran<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {methods.map(method => (
-            <div class="bg-brand-white p-8">
-              <span class="font-mono text-[10px] text-brand-black/60 border border-brand-black/20 px-2 py-0.5 tracking-widest">{method.type}</span>
-              <h3 class="font-display text-xl font-bold mb-3 mt-4">{method.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {situations.map((situation, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{situation.title}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{situation.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Metody -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ COMMENT NOUS COMBINONS LES MÉTHODES ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          C’est la décision qui détermine l’étendue, pas une liste de méthodes<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-10">
+          Nous ne commençons pas par intégrer toutes les techniques disponibles au projet. Nous déterminons d’abord
+          quel type de réponse vous avez besoin, puis nous proposons la plus petite combinaison de méthodes pertinente.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {methods.map((method, i) => (
+            <div class="bg-brand-white p-8 flex flex-col min-h-64">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold mb-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{method.desc}</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mt-auto pt-5 border-t border-brand-black/10">{method.methods}</p>
             </div>
           ))}
         </div>
@@ -131,53 +201,70 @@ const pageSchema = [
           width="1200" height="846" loading="lazy" decoding="async"
           class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">L’infrastructure de recherche de la FIM UHK — entretiens et tests peuvent être complétés par l’eye-tracking et la biométrie au sein d’une même session.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">L’infrastructure de recherche FIMEYELAB à la FIM UHK — un espace pour les entretiens, les tests utilisateurs et, si nécessaire, des mesures synchronisées.</p>
       </div>
 
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
         <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CE QUE VOUS RECEVREZ ]</p>
-          <ul class="space-y-2">
-            {deliverables.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CE QUE VOUS RECEVREZ ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Des bases pour décider, pas un document d’archive<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Nous choisissons la forme du livrable selon qui travaillera avec les résultats et quelle décision doit
+            suivre. Ni la journey map ni la persona ne sont des éléments obligatoires — elles ne sont créées que
+            lorsqu’elles aident le travail suivant.
+          </p>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ COMMENT SE DÉROULE LA RECHERCHE ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div class="border-t border-brand-black/20">
+          {deliverables.map((deliverable, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{deliverable.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{deliverable.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Biometrie -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ COMMENT SE DÉROULE LA RECHERCHE UX ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          De la question à la prochaine étape produit<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pokročilé měření -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ TÉMOIGNAGES + DONNÉES OBJECTIVES ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Ce que les gens disent vs ce qu’ils font<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ MESURE AVANCÉE FACULTATIVE ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Quand les témoignages et l’observation ne suffisent pas<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Nous confrontons les réponses déclarées au comportement : nous combinons entretiens et questionnaires
-              avec l’eye-tracking, le GSR et l’indice de charge mentale EMLI. Vous décidez ensuite sur la base de ce qui s’est réellement passé.
+              Si la question de recherche exige de mesurer précisément l’attention visuelle, l’activation
+              physiologique ou la charge mentale, nous pouvons étendre l’étude avec l’eye tracking, le GSR,
+              l’analyse des signaux faciaux ou EMLI. Nous n’ajoutons une méthode que lorsqu’elle apporte le
+              type de preuve nécessaire.
             </p>
           </div>
-          <a href="/fr/services/packs-de-test#komplexni-biometricky-vyzkum" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            PACK BIOMÉTRIQUE →
+          <a href="/fr/services/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            VOIR L’EYE TRACKING →
           </a>
         </div>
       </div>
 
+      <!-- FAQ -->
       <div class="reveal mb-24">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUESTIONS FRÉQUENTES ]</p>
         <div class="border-t border-brand-black/10">
@@ -193,20 +280,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            APPRENEZ À CONNAÎTRE<br/>VOS UTILISATEURS<span style="color:#2D62FC">.</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Décrivez-nous ce que vous devez décider. Nous concevrons une recherche qui y répond — sans méthodes superflues.
-          </p>
-          <a href="/fr/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            LANCER UNE RECHERCHE →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

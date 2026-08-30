@@ -7,119 +7,121 @@ const packages = [
   {
     num: '01',
     id: 'rychla-diagnostika',
-    title: 'Diagnóstico rápido',
-    tagline: 'Sospecha que algo no funciona — necesita acotar el problema con rapidez.',
-    chips: ['Análisis heurístico', 'Eye-tracking', 'Cuestionario'],
-    findings: 'Dónde la gente pierde la orientación, qué pasa por alto y qué merece una prueba más profunda.',
-    forWho: 'Para equipos que sospechan que su web, aplicación, formulario o campaña no funciona de forma óptima, pero primero necesitan acotar el problema con rapidez. Es útil antes de un rediseño mayor, al preparar el briefing para una agencia o como primera verificación de las pantallas clave.',
-    inside: 'Análisis heurístico experto, eye-tracking en pantallas seleccionadas y una breve encuesta mediante cuestionario.',
-    limits: 'El diagnóstico rápido sirve para identificar problemas probables. Por sí solo no demuestra el impacto en la conversión y puede no explicar todas las causas del comportamiento.',
-    output: 'Informe breve con los hallazgos principales, ejemplos de visualizaciones y una lista priorizada de recomendaciones.',
+    title: 'Auditoría UX rápida',
+    tagline: 'Un control experto y rápido que detecta los principales problemas de una web o aplicación.',
+    chips: ['Auditoría UX experta', 'Pantallas clave', 'Prioridades de mejora'],
+    findings: 'Dónde puede confundir la interfaz al usuario, qué complica completar una tarea y qué deficiencias tiene sentido resolver primero.',
+    forWho: 'Para equipos que necesitan revisar rápidamente una web, un e-commerce, una aplicación o un formulario. Es útil antes de un rediseño, ante una caída de las conversiones o como base para futuros ajustes.',
+    inside: 'Revisión experta de las páginas clave y los recorridos de usuario. Evaluamos su claridad, la navegación, el contenido, la jerarquía visual y las barreras para completar una tarea.',
+    limits: 'La auditoría no mide a usuarios reales. Detecta problemas probables y establece prioridades que después pueden verificarse con pruebas de usuario.',
+    output: 'Resumen de los principales problemas, ejemplos concretos y mejoras recomendadas ordenadas por importancia.',
   },
   {
     num: '02',
     id: 'standardni-ux-test',
-    title: 'Prueba UX estándar',
-    tagline: 'Verifica un recorrido de usuario o compara dos variantes.',
-    chips: ['Eye-tracking', 'Datos conductuales', 'Cuestionarios', 'Escenario'],
-    findings: 'Qué variante funciona mejor, dónde surgen los errores y si la atención se traduce en la finalización de la tarea.',
-    forWho: 'Para situaciones en las que necesita verificar un recorrido de usuario concreto, comparar dos variantes de interfaz o demostrar que el rediseño realmente ayuda. Es adecuada para webs, aplicaciones, e-commerce, formularios, campañas y prototipos.',
-    inside: 'Eye-tracking, datos conductuales, cuestionarios estandarizados o propios y un escenario de prueba guiado. Con variantes trabajamos con diseño experimental para que la comparación sea lo más limpia posible.',
-    limits: 'La prueba UX estándar describe bien la atención, la orientación y el rendimiento en la tarea. Sin embargo, no captura la respuesta fisiológica ni ofrece una imagen más profunda del nivel de arousal o del esfuerzo mental.',
-    output: 'Protocolo de investigación, métricas AOI, heatmaps, gaze plots, resultados de las tareas, evaluación de los cuestionarios y recomendaciones para la siguiente decisión de diseño.',
+    title: 'Pruebas de usuario',
+    tagline: 'Observamos cómo los usuarios reales recorren la interfaz y dónde se detienen al completar tareas.',
+    chips: ['Pruebas con usuarios', 'Escenarios de tareas', 'Entrevistas', 'Cuestionarios'],
+    findings: 'Si los usuarios logran completar tareas importantes, dónde se equivocan, qué no entienden y qué variante resulta más fácil de usar.',
+    forWho: 'Para equipos que necesitan verificar un recorrido de usuario concreto, un nuevo diseño o un prototipo con usuarios reales. Es adecuado para webs, aplicaciones, e-commerce y formularios.',
+    inside: 'Pruebas guiadas con usuarios según tareas preparadas. Observamos la tasa de éxito, el tiempo, los errores y la forma de usar la interfaz. Completamos el comportamiento con una entrevista y, si es necesario, un cuestionario.',
+    limits: 'La prueba muestra qué hicieron los usuarios y cómo explican su comportamiento. No mide el movimiento ocular exacto ni la respuesta fisiológica — para esas preguntas existe la medición premium en laboratorio.',
+    output: 'Resultados de cada tarea, principales barreras, ejemplos del comportamiento de los usuarios y recomendaciones ordenadas por impacto.',
   },
   {
     num: '03',
     id: 'komplexni-biometricky-vyzkum',
-    title: 'Investigación biométrica integral',
-    tagline: 'Una decisión costosa o difícil de revertir que debe sostenerse ante la dirección.',
+    title: 'Eye tracking y biometría',
+    tagline: 'Medición premium en laboratorio para decisiones importantes que necesita respaldar con varias fuentes de datos.',
     chips: ['Todo lo del 02', 'GSR', 'Señales faciales', 'EMLI', 'Taller'],
-    findings: 'No solo qué vio e hizo la gente, sino también dónde aumenta el arousal y qué pasos resultan más exigentes.',
-    forWho: 'Para decisiones costosas, difíciles de revertir o que deben sostenerse ante la dirección, un inversor o un cliente. Es adecuada para rediseños importantes, campañas clave, innovaciones de producto, HMI, situaciones de retail o investigaciones donde el comportamiento por sí solo no basta.',
-    inside: 'Todo lo de la Prueba UX estándar, complementado según el encargo con GSR, análisis de señales faciales, elicitación cualitativa, entrevista retrospectiva sobre la grabación de la mirada y, opcionalmente, medición de la carga mental mediante el modelo EMLI.',
-    limits: 'No interpretamos los datos biométricos de forma aislada. El GSR no dice si la reacción es positiva o negativa, y las señales faciales no constituyen una «lectura de emociones» por sí solas. Solo cobran sentido junto con la tarea, el escenario, el eye-tracking y el testimonio del participante.',
-    output: 'Informe de investigación ampliado, línea temporal multimodal de hallazgos, interpretación de los momentos críticos, límites del estudio, recomendaciones de rediseño y un taller sobre los resultados.',
+    findings: 'Qué vieron realmente los usuarios, cómo procedieron y en qué momentos aumentó su activación fisiológica o su carga mental.',
+    forWho: 'Para decisiones costosas, difíciles de revertir o que deben sostenerse ante la dirección, un inversor o un cliente. Es adecuado para rediseños importantes, campañas clave, innovaciones de producto, HMI, situaciones de retail o investigaciones en las que el comportamiento por sí solo no basta.',
+    inside: 'Completamos las pruebas de usuario con eye tracking y, según el encargo, también con GSR, análisis de señales faciales, una entrevista retrospectiva sobre la grabación de la mirada o la medición de la carga mental mediante el modelo EMLI.',
+    limits: 'No interpretamos los datos biométricos de forma aislada. El GSR no indica si la reacción es positiva o negativa, y las señales faciales no constituyen por sí solas una «lectura de emociones». Cobran sentido solo junto con la tarea, el escenario, el eye tracking y el testimonio del participante.',
+    output: 'Informe de investigación ampliado, conexión de las distintas fuentes de datos, explicación de los momentos críticos, recomendaciones de mejora y un taller sobre los resultados.',
     featured: true,
   },
   {
     num: '04',
     id: 'terenni-studie',
     title: 'Estudio de campo',
-    tagline: 'La decisión no ocurre en la pantalla, sino en la tienda o en el espacio físico.',
-    chips: ['Gafas ET NEON', 'Grabación de vídeo', 'GSR', 'Entrevistas'],
-    findings: 'Cómo la gente recorre el entorno real, qué le llama la atención, qué pasa de largo y dónde se detiene.',
-    forWho: 'Para situaciones en las que la decisión no ocurre solo en la pantalla. Típicamente en una tienda, un showroom, junto a un producto físico, en un evento, en un entorno de trabajo o en un contexto automotive/HMI.',
-    inside: 'Gafas móviles de eye-tracking Pupil Labs NEON, grabación en vídeo de la situación y, según las necesidades, GSR, cuestionarios, entrevistas y análisis del comportamiento en el entorno real.',
-    limits: 'La investigación de campo ofrece mayor naturalidad de la situación, pero menor control de las condiciones que el laboratorio. Por eso siempre determinamos de antemano qué conclusiones pueden extraerse con seguridad de la medición de campo y cuáles conviene verificar en condiciones más controladas.',
+    tagline: 'Observamos el comportamiento donde realmente ocurre — en la tienda, el punto de venta u otro espacio físico.',
+    chips: ['Observación de campo', 'Grabación de vídeo', 'Entrevistas', 'Eye tracking móvil'],
+    findings: 'Cómo recorren las personas el entorno real, qué notan, qué pasan por alto y dónde se detienen.',
+    forWho: 'Para situaciones en las que la decisión no ocurre solo en la pantalla. Típicamente en una tienda, un showroom, junto a un producto físico, en un evento, en un entorno laboral o en un contexto automotive/HMI.',
+    inside: 'Observación y grabación en vídeo de la situación, entrevistas y análisis del comportamiento en un entorno real. Según la pregunta de investigación, también podemos incorporar las gafas móviles de eye tracking Pupil Labs NEON o GSR.',
+    limits: 'La investigación de campo ofrece mayor naturalidad, pero menos control de las condiciones que el laboratorio. Por eso siempre determinamos de antemano qué conclusiones pueden extraerse con seguridad de la medición de campo y cuáles conviene verificar en condiciones más controladas.',
     output: 'Videoanálisis, mapeo de los momentos clave, visualización de la atención en el entorno, resumen de barreras y recomendaciones para ajustar el espacio, la comunicación o el recorrido del cliente.',
   },
 ];
 
-const chooseTable = [
-  { need: 'No sabe dónde está el problema', pkg: 'Diagnóstico rápido', href: '#rychla-diagnostika' },
-  { need: 'Compara dos variantes de una web, aplicación o campaña', pkg: 'Prueba UX estándar', href: '#standardni-ux-test' },
-  { need: 'Necesita respaldar una decisión importante con datos', pkg: 'Investigación biométrica integral', href: '#komplexni-biometricky-vyzkum' },
-  { need: 'Prueba el comportamiento en una tienda, showroom o evento', pkg: 'Estudio de campo', href: '#terenni-studie' },
-  { need: 'Tiene un encargo específico o una combinación de entornos', pkg: 'Paquete a medida', href: '#na-miru' },
-];
-
-const methods = [
-  { m: 'Eye-tracking en pantalla', tool: 'Tobii Pro X2-60, Smart Eye Aurora', brings: 'Determina qué ve realmente la gente, qué pasa por alto, en qué orden y durante cuánto tiempo' },
-  { m: 'Eye-tracking móvil', tool: 'Pupil Labs NEON', brings: 'Captura la atención en el entorno real y la vincula con la grabación en vídeo de la situación' },
-  { m: 'GSR', tool: 'Shimmer3 GSR', brings: 'Muestra los momentos de aumento del arousal fisiológico durante la tarea' },
-  { m: 'Análisis de señales faciales', tool: 'iMotions / Facial Expression Analysis', brings: 'Ayuda a seguir los cambios de la respuesta facial en el tiempo frente a un estímulo concreto' },
-  { m: 'Encuestas mediante cuestionario', tool: 'VisAWI, NASA-TLX, SUS, UEQ o ítems propios', brings: 'Complementan la medición objetiva con la valoración consciente de la comprensibilidad, la estética, la credibilidad o la carga' },
-  { m: 'Elicitación cualitativa', tool: 'Think-aloud, think-aloud retrospectivo, entrevista', brings: 'Explica por qué el usuario decidió o se detuvo en un momento determinado' },
-  { m: 'Datos conductuales', tool: 'Éxito de la tarea, tiempo, tasa de errores, clics', brings: 'Verifican si la atención se tradujo en un resultado real' },
-  { m: 'Análisis heurístico experto', tool: 'Evaluación de la interfaz por un especialista', brings: 'Revela rápidamente problemas de usabilidad conocidos antes de una medición más profunda' },
-  { m: 'Diseño experimental', tool: 'Escenarios, pilotaje, aleatorización, comparabilidad de variantes', brings: 'Garantiza que los resultados no sean solo la impresión de una única situación' },
-];
-
 const outputs = [
-  'Protocolo de investigación con el encargo y los límites',
-  'Métricas de atención visual',
-  'Éxito de la tarea, tiempo, tasa de errores',
-  'Heatmaps, gaze plots, comparación de AOI',
-  'Cuestionarios vs. datos objetivos',
-  'Hallazgos cualitativos',
-  'Interpretación del impacto en la UX y el producto',
-  'Recomendaciones según impacto y esfuerzo',
-  'Límites del estudio claramente descritos',
-  'Taller final con el equipo',
+  {
+    title: 'Hallazgos principales',
+    desc: 'Resumen de problemas, resultados de las tareas y visualizaciones según el paquete elegido.',
+  },
+  {
+    title: 'Explicación del contexto',
+    desc: 'Mostramos qué ocurrió, por qué es importante y qué puede concluirse con seguridad a partir de los resultados.',
+  },
+  {
+    title: 'Prioridades y próximos pasos',
+    desc: 'Mejoras recomendadas ordenadas por impacto y dificultad. En estudios más amplios, también un taller conjunto sobre los resultados.',
+  },
 ];
 
 const process = [
-  { num: '01', title: 'Encargo', desc: 'Aclaramos qué decisión necesita tomar.' },
-  { num: '02', title: 'Propuesta del paquete', desc: 'Métodos, muestra, escenario y qué podrá concluirse con seguridad.' },
-  { num: '03', title: 'Preparación y pilotaje', desc: 'Escenario, estímulos, cuestionarios y, en proyectos más complejos, un piloto.' },
-  { num: '04', title: 'Medición', desc: 'Laboratorio o campo, calibración y control de calidad de los datos.' },
-  { num: '05', title: 'Análisis y entrega', desc: 'Recomendaciones, no gráficos aislados.' },
+  { num: '01', title: 'Objetivo', desc: 'Aclaramos qué necesita averiguar y qué decisión debe respaldar la investigación.' },
+  { num: '02', title: 'Propuesta', desc: 'Recomendamos el paquete adecuado, los métodos, el alcance y los participantes.' },
+  { num: '03', title: 'Preparación', desc: 'Preparamos el guion, los materiales y, si es necesario, una prueba piloto.' },
+  { num: '04', title: 'Realización', desc: 'Llevamos a cabo la auditoría, las pruebas de usuario o la medición en laboratorio o en campo.' },
+  { num: '05', title: 'Resultados', desc: 'Evaluamos los datos y los convertimos en recomendaciones concretas.' },
 ];
 
 const audiences = [
-  { title: 'Producto y UX', desc: 'Recorridos, formularios, navegación, prototipos.' },
-  { title: 'Marketing', desc: 'Campañas, banners, vídeo, landing pages.' },
-  { title: 'E-commerce', desc: 'Listado, ficha de producto, filtros, carrito, checkout.' },
-  { title: 'Retail y servicios', desc: 'Orientación en el espacio, POS, product placement.' },
-  { title: 'Dirección', desc: 'Datos para decisiones costosas, comprensibles también fuera del equipo UX.' },
+  'Producto y UX',
+  'Marketing',
+  'E-commerce',
+  'Retail y servicios',
+  'Dirección',
 ];
 
 const faq = [
-  { q: '¿Tenemos que elegir un paquete completo?', a: 'No. Los paquetes son configuraciones de partida, no productos cerrados. Según el encargo podemos añadir, simplificar o combinar los métodos.' },
-  { q: '¿En qué se diferencia de un heatmap de la analítica web?', a: 'El heatmap analítico suele trabajar con clics, movimiento del cursor o scroll. El eye-tracking mide la mirada real. Gracias a ello captura también los elementos que el usuario miró pero en los que no hizo clic.' },
-  { q: '¿Miden emociones?', a: 'No usamos el atajo «medimos emociones» en el sentido de una lectura fiable del estado interno de una persona. Trabajamos con indicadores de arousal fisiológico, señales faciales y valoraciones subjetivas. Siempre los interpretamos en el contexto de la tarea concreta.' },
-  { q: '¿Cuántos participantes necesitamos?', a: 'Depende del objetivo del estudio. Para un diagnóstico rápido basta una muestra más pequeña y una interpretación más cualitativa. Para comparar variantes y hacer una evaluación estadística se necesita una muestra mayor y diseñada con más precisión. El tamaño recomendado lo proponemos según la pregunta de investigación.' },
-  { q: '¿Cuánto cuestan las pruebas?', a: 'El precio se determina según el alcance del paquete, el número de participantes, la complejidad de la preparación, el tipo de medición y la forma de la entrega. Envíenos su encargo y prepararemos una oferta sin compromiso.' },
-  { q: '¿Las pruebas tienen que realizarse en el laboratorio?', a: 'No. El laboratorio es adecuado para estudios controlados de webs, aplicaciones, campañas o prototipos. Para entornos reales usamos gafas móviles de eye-tracking y metodología de campo.' },
-  { q: '¿Cómo tratan los datos de los participantes?', a: 'Antes de la medición trabajamos con el consentimiento informado y un propósito de investigación claramente definido. Las entregas para los clientes se preparan de forma estándar en formato agregado o seudonimizado. El régimen concreto de tratamiento de datos lo configuramos según el tipo de proyecto, la sensibilidad de los datos y los requisitos del cliente.' },
-  { q: '¿Recibiremos solo un informe?', a: 'No. En la mayoría de los proyectos recomendamos un taller final. Gracias a él, los resultados pueden convertirse en prioridades, en un backlog de ajustes o en nuevas pruebas.' },
+  {
+    q: '¿Cuál es la diferencia entre una auditoría UX y las pruebas de usuario?',
+    a: 'La auditoría UX la realiza un especialista sin la participación de usuarios y detecta rápidamente problemas probables de la interfaz. En las pruebas de usuario observamos a usuarios reales completando tareas concretas. Así comprobamos dónde se detienen, se equivocan o no entienden algo realmente.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre las pruebas de usuario y el eye tracking?',
+    a: 'Las pruebas de usuario muestran si las personas logran completar tareas importantes y cómo interactúan con la interfaz. El eye tracking, además, mide con precisión su mirada — qué vieron, qué pasaron por alto y en qué orden siguieron los elementos. Por eso lo usamos como método premium para preguntas que la simple observación no resuelve.',
+  },
+  {
+    q: '¿En qué se diferencia el eye tracking de un heatmap de la analítica web?',
+    a: 'El heatmap de la analítica web suele basarse en clics, movimiento del cursor o desplazamiento de la página. El eye tracking mide la mirada real del usuario. Por eso también capta elementos que la persona notó pero en los que no hizo clic, o lugares que pasó totalmente por alto.',
+  },
+  {
+    q: '¿Cuántos participantes se necesitan para las pruebas de usuario?',
+    a: 'El número depende del objetivo de la investigación, de la diversidad del público objetivo y de la forma de evaluación. Para detectar problemas solemos trabajar con una muestra más pequeña. Para comparar variantes de forma fiable o extraer conclusiones estadísticas se necesita una muestra mayor. Recomendamos el número concreto según la pregunta de investigación.',
+  },
+  {
+    q: '¿Cuánto cuesta una auditoría UX o unas pruebas de usuario?',
+    a: 'El precio depende del alcance, del número de recorridos o variantes probados, del número de participantes, de los métodos utilizados y del formato de entrega. Tras un breve encargo, le recomendamos el alcance adecuado y preparamos una propuesta sin compromiso.',
+  },
+  {
+    q: '¿Las pruebas tienen que realizarse en el laboratorio?',
+    a: 'No necesariamente. Podemos probar una web, una aplicación o un prototipo tanto en laboratorio como de forma remota, según el objetivo del proyecto. El comportamiento en una tienda, un punto de venta u otro espacio físico lo observamos directamente en el campo.',
+  },
+  {
+    q: '¿Cómo protegen los datos de los participantes?',
+    a: 'Antes de las pruebas definimos el propósito del tratamiento y obtenemos el consentimiento informado de cada participante. Protegemos los datos y, por norma, preparamos las entregas en formato agregado o seudonimizado. El régimen concreto se ajusta según la sensibilidad del proyecto, los requisitos del cliente y el RGPD.',
+  },
 ];
 
 const pageSchema = [
   {
     '@type': 'Service',
-    name: 'Paquetes de prueba UXMIND',
-    description: 'Paquetes de prueba de investigación UX: diagnóstico rápido, prueba UX estándar, investigación biométrica integral y estudio de campo. Eye-tracking, GSR, cuestionarios y análisis experto según la decisión que necesita tomar.',
+    name: 'Paquetes de prueba de UX MIND',
+    description: 'Paquetes de prueba de investigación UX: auditoría UX rápida, pruebas de usuario, eye tracking premium con biometría y estudio de campo.',
     serviceType: 'Pruebas UX',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -137,8 +139,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="es"
-  title="Paquetes de prueba UXMIND | Eye-tracking, biometría e investigación UX"
-  description="Elija el alcance de las pruebas UX según la decisión que necesita tomar. Diagnóstico rápido, prueba UX estándar, investigación biométrica integral y estudio de campo."
+  title="Paquetes de prueba UX MIND | Eye tracking, biometría e investigación UX"
+  description="Elija el alcance de las pruebas UX según lo que necesite averiguar. Auditoría UX rápida, pruebas de usuario, eye tracking con biometría y estudio de campo."
   schema={pageSchema}
 >
   <Navbar />
@@ -150,22 +152,21 @@ const pageSchema = [
       <div class="mb-12">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PAQUETES DE PRUEBA ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          ¿A QUÉ PROFUNDIDAD<br/>MEDIR<span style="color:#2D62FC">?</span>
+          ELIJA EL ALCANCE<br/>DE LAS PRUEBAS<span style="color:#2D62FC">.</span>
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Del diagnóstico rápido a la investigación UX biométrica integral.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Un heatmap muestra dónde miró la gente — no por qué se perdió. Componemos los paquetes según
-              <strong class="text-brand-black">la decisión que necesita tomar</strong>, no según lo que tenemos en el laboratorio.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Según lo que necesite averiguar.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl text-justify">
+              A veces basta con detectar rápidamente los principales obstáculos. Otras veces necesita comparar variantes o respaldar una decisión importante con varias fuentes de datos. Le recomendaremos el alcance que se ajuste a su objetivo, su entorno y el nivel de certeza que necesita.
             </p>
           </div>
           <div class="flex flex-wrap gap-4 md:justify-end">
-            <a href="/es/contacto" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              SOLICITAR OFERTA →
+            <a href="#balicky" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+              VER PAQUETES ↓
             </a>
-            <a href="#vyber" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              ¿CUÁL ME CONVIENE?
+            <a href="/es/contacto" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PEDIR CONSEJO PARA ELEGIR →
             </a>
           </div>
         </div>
@@ -188,14 +189,14 @@ const pageSchema = [
         <div class="flex items-center gap-3 mt-3 font-mono text-[10px] text-brand-black/60 tracking-widest uppercase">
           <span>Menor alcance</span>
           <span class="flex-1 h-px bg-gradient-to-r from-brand-black/20 to-brand-black"></span>
-          <span>Evidencia más profunda</span>
+          <span>Investigación más detallada</span>
         </div>
       </div>
 
       <!-- Franja de credibilidad -->
       <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
         <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
-          Infraestructura de investigación de la FIM UHK · Tobii Pro X2-60 · Smart Eye Aurora · Pupil Labs NEON · iMotions CORE · BeSigma · Shimmer3 GSR · mediciones en laboratorio y en campo
+          Infraestructura de investigación FIM UHK · Tobii Pro X2-60 · Smart Eye Aurora · Pupil Labs NEON · iMotions CORE · BeSigma · Shimmer3 GSR · mediciones en laboratorio y en campo
         </p>
       </div>
 
@@ -225,7 +226,7 @@ const pageSchema = [
       </div>
 
       <!-- Paquetes -->
-      <div class="mb-24">
+      <div id="balicky" class="mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ NUESTROS PAQUETES DE PRUEBA ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Cuatro configuraciones<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
@@ -238,7 +239,7 @@ const pageSchema = [
               <div class="flex justify-between items-start mb-6">
                 <span class={`font-mono text-xs ${pkg.featured ? 'text-brand-white/60' : 'text-brand-black/60'}`}>{pkg.num}</span>
                 {pkg.featured && (
-                  <span class="font-mono text-[10px] tracking-widest px-2 py-1" style="background:#2D62FC; color:#FCFCFC;">LA EVIDENCIA MÁS PROFUNDA</span>
+                  <span class="font-mono text-[10px] tracking-widest px-2 py-1" style="background:#2D62FC; color:#FCFCFC;">MEDICIÓN PREMIUM</span>
                 )}
               </div>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-3 leading-tight">{pkg.title}</h3>
@@ -263,7 +264,7 @@ const pageSchema = [
                 <div class={`mt-4 space-y-4 text-sm leading-relaxed ${pkg.featured ? 'text-brand-white/70' : 'text-brand-black/60'}`}>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Para quién</span>{pkg.forWho}</p>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Qué incluye</span>{pkg.inside}</p>
-                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Límites del paquete</span>{pkg.limits}</p>
+                  <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Qué es bueno saber</span>{pkg.limits}</p>
                   <p><span class={`font-mono text-[10px] tracking-widest uppercase block mb-1 ${pkg.featured ? 'text-brand-white/50' : 'text-brand-black/40'}`}>Entrega típica</span>{pkg.output}</p>
                 </div>
               </details>
@@ -279,7 +280,7 @@ const pageSchema = [
               <p class="font-mono text-xs text-brand-white/60 mb-2">05</p>
               <h3 class="font-display text-2xl md:text-3xl font-bold mb-3">Paquete a medida<span style="color:#2D62FC">.</span></h3>
               <p class="text-brand-white/70 leading-relaxed max-w-xl">
-                Primero conocemos tu negocio, tus objetivos y tu contexto — luego diseñamos las pruebas y la optimización posterior a tu medida. Desde la pregunta de investigación y la combinación adecuada de métodos hasta cambios concretos que se ven en los resultados. Componemos según la decisión que los datos van a informar, no según el equipamiento del laboratorio.
+                Primero conocemos su negocio, sus objetivos y su contexto — luego le diseñamos las pruebas y la optimización posterior a medida. Desde la pregunta de investigación y la combinación adecuada de métodos hasta cambios concretos que se reflejan en los resultados. Componemos según la decisión que se tomará con los datos, no según el equipamiento del laboratorio.
               </p>
             </div>
             <a href="/es/contacto" class="shrink-0 inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
@@ -289,106 +290,75 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- Cómo elegir -->
-      <div id="vyber" class="reveal mb-24 scroll-mt-28">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CÓMO ELEGIR EL PAQUETE ADECUADO ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">¿Qué necesita decidir<span style="color:#2D62FC">?</span></h2>
-        <div class="border border-brand-black/10">
-          {chooseTable.map(row => (
-            <a href={row.href} class="group grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0 hover:bg-brand-black hover:text-brand-white transition-colors">
-              <p class="text-brand-black/60 group-hover:text-brand-white/70 leading-relaxed transition-colors">{row.need}</p>
-              <p class="font-display font-bold flex items-center justify-between gap-4">
-                {row.pkg}
-                <span class="font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-              </p>
-            </a>
+      <!-- EMLI -->
+      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(240px,1fr)] md:items-center gap-10 md:gap-16">
+          <div class="max-w-2xl">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ EMLI: ÍNDICE DE CARGA MENTAL ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4">Dónde exige más esfuerzo la interfaz<span style="color:#2D62FC">.</span></h2>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-4">
+              EMLI convierte indicadores seleccionados del eye tracking en una puntuación de 0 a 100. Así podemos comparar distintas pantallas, pasos o variantes y determinar dónde resulta más exigente para el usuario procesar la información.
+            </p>
+            <p class="text-sm text-brand-black/60 leading-relaxed text-justify">
+              <strong class="text-brand-black">Cuanto más alta la puntuación, mayor la carga.</strong> El resultado siempre lo evaluamos junto con el comportamiento del usuario y otros datos, nunca como un veredicto aislado.
+            </p>
+          </div>
+          <div aria-label="Escala EMLI de menor a mayor carga mental">
+            <div class="emli-scale h-2 mb-4" aria-hidden="true">
+              <div class="emli-fill"></div>
+            </div>
+            <div class="flex items-start justify-between gap-6 font-mono text-[10px] tracking-widest uppercase">
+              <p><strong class="block font-display text-3xl leading-none mb-2 text-brand-blue">0</strong>Menor carga</p>
+              <p class="text-right"><strong class="block font-display text-3xl leading-none mb-2 text-brand-blue">100</strong>Mayor carga</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proceso y entregas -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CÓMO ES LA COLABORACIÓN ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Del objetivo a las mejoras concretas<span style="color:#2D62FC">.</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+          {process.map(step => (
+            <div class="bg-brand-white p-6 md:p-7 min-h-64 flex flex-col">
+              <span class="font-mono text-xs text-brand-black/60 mb-10">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mt-auto">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mt-16 mb-8">[ QUÉ RECIBIRÁ EN LA ENTREGA ]</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {outputs.map((output, i) => (
+            <div class="bg-brand-white p-7 md:p-8 min-h-56 flex flex-col">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold leading-tight mb-3">{output.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mt-auto">{output.desc}</p>
+            </div>
           ))}
         </div>
       </div>
 
-      <!-- Qué incluyen los paquetes (desplegable) -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ INCLUYEN LOS PAQUETES ]</p>
-        <details class="group border border-brand-black/10">
-          <summary class="flex justify-between items-center gap-6 cursor-pointer p-6 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
-            9 métodos y herramientas con los que trabajamos
-            <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <div class="border-t border-brand-black/10">
-            {methods.map(row => (
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 p-5 border-b border-brand-black/10 last:border-0">
-                <p class="font-display font-bold">{row.m}</p>
-                <p class="font-mono text-xs text-brand-black/60 leading-relaxed pt-1">{row.tool}</p>
-                <p class="text-sm text-brand-black/60 leading-relaxed">{row.brings}</p>
-              </div>
-            ))}
-          </div>
-        </details>
-        <p class="text-sm text-brand-black/60 leading-relaxed mt-4 max-w-2xl">
-          Más sobre las tecnologías: <a href="/es/servicios/eye-tracking" class="underline hover:no-underline">Eye tracking</a> · <a href="/es/servicios/investigacion-ux" class="underline hover:no-underline">Investigación UX</a>
-        </p>
-      </div>
-
-      <!-- EMLI -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ COMPLEMENTO: ÍNDICE DE CARGA MENTAL EMLI ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">La carga mental como una sola puntuación<span style="color:#2D62FC">.</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Un modelo propio, nacido de la investigación en la FIM UHK, compone las métricas de eye-tracking en un único índice de carga.
-              Compara qué pasos, pantallas o variantes exigen más esfuerzo. Es un modelo que validamos continuamente —
-              lo usamos como capa interpretativa complementaria, no como prueba por sí sola.
-            </p>
-          </div>
-          <p class="font-display font-bold leading-none shrink-0" style="font-size: clamp(3rem, 6vw, 5rem); color:#2D62FC;">0–100</p>
-        </div>
-      </div>
-
-      <!-- Entrega + proceso -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ QUÉ RECIBIRÁ EN LA ENTREGA ]</p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
-            {outputs.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ CÓMO ES LA COLABORACIÓN ]</p>
-          <div class="space-y-0">
-            {process.map((step, i) => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <!-- Para quién -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PARA QUIÉN SON ADECUADOS LOS PAQUETES ]</p>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
+      <div class="reveal mb-24 max-w-4xl">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PARA QUIÉN SON ADECUADOS LOS PAQUETES ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">Para equipos que quieren decidir según datos<span style="color:#2D62FC">.</span></h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify mb-8 max-w-3xl">
+          Los paquetes de prueba los utilizan equipos de producto y UX, marketing, e-commerce, retail y la dirección de empresas. Adaptamos el alcance según si trabaja en la navegación, un formulario, una campaña, el proceso de compra, un espacio físico o los datos para una decisión importante.
+        </p>
+        <div class="flex flex-wrap gap-x-5 gap-y-3">
           {audiences.map(a => (
-            <div class="bg-brand-white p-6">
-              <h3 class="font-display text-lg font-bold mb-2 leading-tight">{a.title}</h3>
-              <p class="text-xs text-brand-black/60 leading-relaxed">{a.desc}</p>
-            </div>
+            <span class="font-mono text-[11px] text-brand-black/60 tracking-widest uppercase">{a}</span>
           ))}
         </div>
       </div>
 
       <!-- FAQ -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ PREGUNTAS FRECUENTES ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PREGUNTAS FRECUENTES SOBRE LAS PRUEBAS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Qué es bueno saber antes de elegir<span style="color:#2D62FC">.</span></h2>
         <div class="border-t border-brand-black/10">
           {faq.map(f => (
             <details class="group border-b border-brand-black/10">
@@ -402,27 +372,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA final -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            ENVÍENOS<br/>SU ENCARGO<span style="color:#2D62FC">.</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Web, aplicación, campaña o prototipo. Propondremos un paquete acorde con su decisión —
-            sin metodología complicada y sin promesas que no puedan extraerse de los datos con seguridad.
-          </p>
-          <div class="flex flex-wrap gap-4 justify-center">
-            <a href="/es/contacto" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-              ENVIAR EL ENCARGO →
-            </a>
-            <a href="/es/contacto" class="inline-block border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              CONSULTA INICIAL
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -441,4 +390,33 @@ const pageSchema = [
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
+
+  <style>
+    /* Escala EMLI — la línea avanza una vez (0 → 100) y se estabiliza en 63; se activa al entrar en el viewport */
+    .emli-scale {
+      position: relative;
+      overflow: hidden;
+      background: rgba(45, 98, 252, 0.1);
+    }
+    .emli-fill {
+      position: absolute;
+      inset: 0;
+      transform-origin: left center;
+      background: linear-gradient(90deg, rgba(45, 98, 252, 0.16), #2d62fc);
+      transform: scaleX(0.63);
+    }
+    .reveal.is-visible .emli-fill {
+      animation: emliFill 2.8s ease-in-out both;
+    }
+    @keyframes emliFill {
+      0% { transform: scaleX(0); }
+      65% { transform: scaleX(1); }
+      100% { transform: scaleX(0.63); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal.is-visible .emli-fill { animation: none; }
+      .emli-fill { transform: scaleX(0.63); }
+    }
+  </style>
 </BaseLayout>
+</content>

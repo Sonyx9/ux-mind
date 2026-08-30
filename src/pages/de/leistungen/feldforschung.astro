@@ -6,32 +6,54 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const contexts = [
-  { t: 'Retail und Stores', d: 'Orientierung im Raum, Product Placement, Beschilderung, POS-Materialien und Regalzonen.', tag: 'IN-STORE' },
-  { t: 'Showrooms und Events', d: 'Was Besucher wahrnehmen, wo sie stehen bleiben und was sie zur Interaktion führt.', tag: 'RAUM' },
-  { t: 'Automotive und HMI', d: 'Aufmerksamkeit bei der Bedienung von Interfaces im Fahrzeug oder am physischen Produkt.', tag: 'HMI' },
+  { t: 'Retail und Geschäfte', d: 'Bewegung zwischen den Regalen, Sichtbarkeit der Kategorien, Produktpräsentation, Preisschilder und POS-Materialien.' },
+  { t: 'Dienstleistungen und Showrooms', d: 'Orientierung der Besucher, Umgang mit ausgestellten Produkten und Momente, die zur Interaktion führen.' },
+  { t: 'Sport und Events', d: 'Navigation im Gelände, Sponsorenflächen, Verpflegung, Sicherheitsbeschilderung und Besuchererlebnis.' },
+  { t: 'Verkehr und Städte', d: 'Informationssysteme, Karten, Umsteigepunkte, Beschilderung und Orientierung im öffentlichen Raum.' },
+  { t: 'Automotive und Mobilität', d: 'Aufmerksamkeit bei der Bedienung des Fahrzeugs, des Infotainments, eines Ladepunkts oder eines physischen Produkts.' },
+  { t: 'Industrie und Arbeitsplätze', d: 'Arbeitsabläufe, Bedienpanels, Sicherheitsinformationen und Interaktion mit der Ausstattung.' },
+  { t: 'Gesundheitswesen und Dienstleistungen', d: 'Orientierung der Patienten, Anweisungen, Selbstbedienungselemente und Ablauf der erbrachten Dienstleistung.' },
+  { t: 'Luftfahrt', d: 'Passagiernavigation, Betriebsabläufe, Informationsoberflächen und Schulungssituationen.' },
 ];
 
 const findings = [
-  'Wie Menschen sich tatsächlich durch den Raum bewegen — nicht, wie Sie glauben, dass sie es tun',
-  'Was sie wahrnehmen, was sie übergehen und wo sie stehen bleiben',
-  'Ob Beschilderung und Kommunikation die Aufmerksamkeit zum Ziel führen',
-  'Wo die Umgebung Entscheidungen unterstützt und wo sie sie erschwert',
-  'Wie sich das Verhalten je nach Kundentyp oder Situation unterscheidet',
+  { title: 'Tatsächliche Bewegung im Raum', desc: 'Wir erfassen die Route, Stopps, Rückkehrer und Stellen, an denen Menschen die Richtung ändern oder zögern.' },
+  { title: 'Aufmerksamkeit im Kontext', desc: 'Wir stellen fest, was Menschen während der Bewegung auffällt und welche Informationen, Produkte oder Beschilderungen sie übersehen.' },
+  { title: 'Entscheidungsmomente', desc: 'Wir verknüpfen den Blick mit Interaktion, Produktwahl, Aufgabenabschluss oder der Bitte um Hilfe.' },
+  { title: 'Einfluss der Umgebung', desc: 'Wir bewerten, wie die Raumgestaltung, der Betrieb, die Beleuchtung oder die Anwesenheit anderer Menschen das Verhalten beeinflussen.' },
 ];
 
 const process = [
-  { num: '01', title: 'Aufgabenstellung und Ortsbegehung', desc: 'Was entschieden werden soll und wo die Messung stattfindet.' },
-  { num: '02', title: 'Szenario und Pilotierung', desc: 'Routen, Aufgaben und technisches Protokoll überprüfen wir mit einem Pilottest vor Ort.' },
-  { num: '03', title: 'Messung im Feld', desc: 'Mobile Eye-Tracking-Brille, Videoaufzeichnung, nach Bedarf GSR und Interviews.' },
-  { num: '04', title: 'Analyse und Empfehlungen', desc: 'Mapping der Schlüsselmomente und Vorschläge zur Anpassung von Raum oder Kommunikation.' },
+  { num: '01', title: 'Ziel und Standort', desc: 'Wir klären die Entscheidung, die die Studie unterstützen soll, und die Bedingungen der konkreten Umgebung.' },
+  { num: '02', title: 'Ortsbegehung', desc: 'Wir prüfen den Standort, Risiken, benötigte Genehmigungen und Momente, die es sinnvoll zu beobachten gilt.' },
+  { num: '03', title: 'Szenario und Pilotierung', desc: 'Wir bereiten Aufgaben, Routen und das Protokoll vor und überprüfen sie direkt vor Ort.' },
+  { num: '04', title: 'Messung im Feld', desc: 'Wir führen Kalibrierung und Datenerhebung mit mobilen Brillen, Beobachtung oder Interviews durch.' },
+  { num: '05', title: 'Analyse und Empfehlungen', desc: 'Wir verbinden Blick, Bewegung und Situation und schlagen konkrete Änderungen von Umgebung oder Ablauf vor.' },
+];
+
+const outputs = [
+  { title: 'Blickaufzeichnung aus der Ich-Perspektive', desc: 'Das Video zeigt die Szene vor der Testperson sowie die Stelle, auf die sie im jeweiligen Moment geblickt hat.' },
+  { title: 'Karte der Schlüsselmomente', desc: 'Wir markieren Stellen, an denen Menschen suchen, stehen bleiben, zurückkehren oder auf einen Reiz reagieren.' },
+  { title: 'Verhalten und Kontext', desc: 'Wir verbinden den Blick mit der Route, den Interaktionen, dem Aufgabenerfolg und der anschließenden Erklärung der Testperson.' },
+  { title: 'Empfehlungen für den realen Betrieb', desc: 'Wir schlagen Anpassungen von Beschilderung, Anordnung, Kommunikation, Ausstattung oder Arbeitsablauf vor.' },
+];
+
+const controls = [
+  { title: 'Kalibrierung in Bewegung', desc: 'Wir kontrollieren die Qualität der Aufzeichnung vor und während der Messung.' },
+  { title: 'Veränderliche Bedingungen', desc: 'Wir dokumentieren Betrieb, Licht, Lärm und weitere Einflüsse, die das Ergebnis verändern können.' },
+  { title: 'Vergleichbares Protokoll', desc: 'Wir legen Aufgaben, Routen und Reihenfolge so fest, dass sich die Aufzeichnungen sinnvoll vergleichen lassen.' },
+  { title: 'Einwilligung und Privatsphäre', desc: 'Wir koordinieren die Studie mit dem Betreiber, arbeiten mit informierter Einwilligung und schützen Personen in der Aufzeichnung.' },
 ];
 
 const faq = [
-  { q: 'Wie läuft eine Feldmessung technisch ab?', a: 'Die Testperson trägt eine leichte Eye-Tracking-Brille Pupil Labs NEON, die den Blick und die Szene vor ihr aufzeichnet. Nach Bedarf ergänzen wir ein GSR-Armband, eine Videoaufzeichnung der Situation und Interviews nach dem Durchgang.' },
-  { q: 'Worin unterscheidet sie sich von einer Messung im Labor?', a: 'Das Feld bietet natürlicheres Verhalten, aber weniger Kontrolle über die Bedingungen — Beleuchtung, Betrieb, andere Kunden. Deshalb legen wir vorab fest, welche Schlüsse sich aus der Feldmessung sicher ziehen lassen und welche besser unter kontrollierteren Bedingungen überprüft werden.' },
-  { q: 'Stört die Brille das natürliche Verhalten nicht?', a: 'Moderne Brillen sehen aus wie gewöhnliche Brillen, und Testpersonen vergessen sie in der Regel nach wenigen Minuten. Die ersten Minuten der Aufzeichnung werten wir deshalb mit Vorsicht aus.' },
-  { q: 'Brauchen wir die Zustimmung des Stores oder der Besucher?', a: 'Ja, wir koordinieren die Messung immer mit dem Betreiber des Raums, und die Testpersonen unterschreiben eine informierte Einwilligung. Personen im Hintergrund der Aufzeichnung anonymisieren wir.' },
-  { q: 'Wo überall können Sie messen?', a: 'In Stores, Showrooms, auf Events, im Arbeitsumfeld und in Fahrzeugen. Die Grenze ist nicht die Technologie, sondern Sicherheit und die Abstimmung mit dem Betreiber.' },
+  { q: 'Was ist Feldforschung und wann ergibt sie Sinn?', a: 'Feldforschung beobachtet das Verhalten von Menschen direkt in der Umgebung, in der sie die Aufgabe gewöhnlich ausführen. Sie eignet sich, wenn das Ergebnis von Raum, Bewegung, umgebendem Betrieb oder physischer Interaktion abhängt und eine Laborsituation diesen Kontext nicht originalgetreu abbilden könnte.' },
+  { q: 'Muss eine Feldstudie Eye Tracking enthalten?', a: 'Nicht zwingend. Je nach Ziel können Beobachtung, Videoaufzeichnung und Interview genügen. Mobiles Eye Tracking setzen wir ein, wenn Sie genau wissen müssen, was Menschen während der Bewegung wahrgenommen haben und was sie übersehen haben.' },
+  { q: 'Wie läuft mobiles Eye Tracking technisch ab?', a: 'Die Testperson trägt eine leichte Brille Pupil Labs Neon, die die Szene vor ihr und die Blickrichtung aufzeichnet. Vor jeder Messung führen wir eine Kalibrierung durch und kontrollieren die Aufzeichnungsqualität laufend.' },
+  { q: 'Worin unterscheidet sich die Feldmessung vom Labor?', a: 'Im Feld erfassen wir den tatsächlichen Raum, Betrieb und Entscheidungen im Kontext. Die Bedingungen ändern sich jedoch stärker, deshalb nutzen wir Pilotierung, ein einheitliches Protokoll und dokumentieren Umstände, die die Ergebnisse beeinflussen können.' },
+  { q: 'Beeinflusst die Brille nicht das natürliche Verhalten?', a: 'Jede Beobachtung kann das Verhalten in gewissem Maße beeinflussen. Wir geben den Teilnehmern deshalb Zeit, sich an die Ausrüstung zu gewöhnen, und werten den einleitenden Teil der Aufzeichnung mit Vorsicht aus.' },
+  { q: 'Benötigen wir die Zustimmung des Betreibers und der Teilnehmer?', a: 'Ja. Wir koordinieren die Messung mit dem Betreiber des Raums, und jeder Teilnehmer unterschreibt eine informierte Einwilligung. Erfasste Personen und sensible Informationen schützen wir nach einem vorab vereinbarten Datenprotokoll.' },
+  { q: 'Wie viele Teilnehmer benötigen wir?', a: 'Die Anzahl hängt vom Studienziel, der Anzahl der Umgebungen und Gruppen ab, die Sie vergleichen möchten. Die Stichprobe schlagen wir nach der Forschungsfrage vor, nicht nach einer allgemeingültigen Zahl.' },
+  { q: 'Wie lange dauert eine Feldstudie und was kostet sie?', a: 'Meist 2–6 Wochen, je nach Standort, Genehmigungen, Anzahl der Teilnehmer und Umfang der Analyse. Nach einem Briefing und einer Ortsbesichtigung erstellen wir einen konkreten Zeitplan samt Preis.' },
 ];
 
 const pageSchema = [
@@ -56,8 +78,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="de"
-  title="Feldforschung | Mobiles Eye Tracking im Store und Showroom"
-  description="UX-Feldforschung mit mobilen Eye-Tracking-Brillen: Stores, Showrooms, Events, Automotive. Erfahren Sie, was Kunden in realer Umgebung wahrnehmen."
+  title="Feldforschung und mobiles Eye Tracking | UX MIND"
+  description="Feldforschung und mobiles Eye Tracking in Geschäften, im Verkehr, in der Automobilbranche, der Industrie und im Dienstleistungssektor. Messen Sie Aufmerksamkeit und Verhalten in realer Umgebung."
   schema={pageSchema}
 >
   <Navbar />
@@ -69,33 +91,35 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LEISTUNGEN / FELDFORSCHUNG ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          JENSEITS DES<br/>BILDSCHIRMS<span style="color:#2D62FC">.</span>
+          MESSEN SIE<br/>DIE REALITÄT<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Wir messen dort, wo der Kunde wirklich entscheidet.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Im Store, im Showroom, auf einem Event oder am physischen Produkt. Die mobile Eye-Tracking-Brille
-              erfasst Aufmerksamkeit in realer Umgebung — <strong class="text-brand-black">eine Ausstattung, über die nur wenige verfügen</strong>.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Beobachten Sie Entscheidungen dort, wo sie wirklich stattfinden.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              Die Feldmessung zeigt, wie sich Menschen im Geschäft, im Showroom, im Stadion, im Verkehr, am Arbeitsplatz oder in einem anderen realen Umfeld orientieren und entscheiden. Wir erfassen Blick, Bewegung und Umstände, die sich im Labor nicht vollständig nachbilden lassen.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Je nach Ziel der Studie ergänzen wir das mobile Eye Tracking um Beobachtung, Videoaufzeichnung oder ein anschließendes Interview. Das Ergebnis sind <strong class="text-brand-black">konkrete Empfehlungen für Raum, Beschilderung, Produktpräsentation und Arbeitsabläufe</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/de/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              MESSUNG ANFRAGEN →
+              FELDSTUDIE ANFRAGEN →
             </a>
-            <a href="/de/leistungen/test-pakete" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST-PAKETE
+            <a href="/de/leistungen#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PAKETE ANSEHEN
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Infoleiste -->
+      <!-- Info pás -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DAUER', '2–6 Wochen'],
-          ['TECHNOLOGIE', 'Pupil Labs NEON'],
-          ['ERGÄNZUNGEN', 'GSR · Video · Interviews'],
+          ['MESSUNG', 'Beobachtung · mobiles Eye Tracking'],
+          ['ERGÄNZUNG', 'Video · Interviews · GSR'],
           ['PAKET', 'Feldstudie'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
@@ -105,77 +129,136 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Wo wir messen -->
-      <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WO WIR MESSEN ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Die Customer Journey endet nicht auf der Website<span style="color:#2D62FC">.</span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {contexts.map((v, i) => (
-            <div class="bg-brand-white p-8">
-              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
-              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="reveal mb-24">
-        <img
-          src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
-          alt="Forschungsumfeld von UXMIND — von hier starten wir mit mobilem Eye-Tracking ins Feld"
-          title="Forschungsumfeld für Feldmessungen"
-          width="1200" height="771" loading="lazy" decoding="async"
-          class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
-        />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Umfeld des Labors der FIM UHK — Kalibrierung und Vorbereitung der Technik vor dem Einsatz im Feld.</p>
-      </div>
-
-      <!-- Was Sie erfahren + Prozess -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WAS SIE ERFAHREN ]</p>
-          <ul class="space-y-2">
-            {findings.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ SO LÄUFT DIE MESSUNG AB ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- Co zachytíme -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WAS WIR IM FELD ERFASSEN ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Verhalten im Kontext, nicht isoliert<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {findings.map((finding, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{finding.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{finding.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <!-- Grenzen -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ GRENZEN DER METHODE ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Natürlichkeit um den Preis der Kontrolle<span style="color:#2D62FC">.</span></h2>
-            <p class="text-sm text-brand-black/60 leading-relaxed">
-              Das Feld bietet eine höhere Natürlichkeit der Situation, aber weniger Kontrolle über die Bedingungen als das Labor.
-              Deshalb legen wir immer vorab fest, welche Schlüsse sich aus der Feldmessung sicher ziehen lassen
-              und welche besser unter noch kontrollierteren Bedingungen überprüft werden.
-            </p>
+      <!-- Kde měříme -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WO WIR MESSEN ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Überall, wo die Umgebung Entscheidungen verändert<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-12">
+          Eine Feldstudie ist überall dort sinnvoll, wo es nicht reicht, jemandem einen Bildschirm zu zeigen. Wir beobachten die tatsächliche Bewegung, die physische Interaktion und die Einflüsse der Umgebung, die darüber entscheiden, ob sich jemand orientiert und die Aufgabe abschließt.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {contexts.map((context, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{context.t}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{context.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Technologie -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 border border-brand-black/15">
+        <div class="min-h-[360px]">
+          <img
+            src={`${base}/images/laborator-ux-vyzkumu-vizualizace-2.webp`}
+            alt="Forschungsumfeld von UX MIND zur Vorbereitung des mobilen Eye Trackings für den Feldeinsatz"
+            title="Vorbereitung der Technik für die Feldmessung"
+            width="1200" height="771" loading="lazy" decoding="async"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+        <div class="p-8 md:p-12 flex flex-col justify-center">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ MOBILES EYE TRACKING ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6">
+            Zwei Sets. Ein präzises Protokoll<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed text-justify mb-5">
+            Pupil Labs Neon zeichnet die Szene vor der Testperson und gleichzeitig die Stelle auf, auf die sie blickt. Die leichte Konstruktion ermöglicht Messungen während natürlicher Bewegung im Raum.
+          </p>
+          <p class="text-brand-black/60 leading-relaxed text-justify">
+            Wir verfügen über zwei Sets mobiler Brillen. Je nach Studiendesign können wir so zwei Teilnehmer gleichzeitig messen, an mehreren Orten arbeiten oder ein Ersatzgerät für eine reibungslose Datenerhebung bereithalten.
+          </p>
+          <p class="font-mono text-[11px] text-brand-black/60 tracking-wide mt-8 pt-5 border-t border-brand-black/10">
+            PUPIL LABS NEON (2×) · VIDEO · BEOBACHTUNG · OPTIONAL GSR
+          </p>
+        </div>
+      </div>
+
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WAS SIE ERHALTEN ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Aufzeichnung allein reicht nicht. Sie müssen wissen, was zu ändern ist<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Wir liefern nicht einfach stundenlanges Videomaterial ohne Kontext. Wir verbinden die Schlüsselmomente mit der Aufgabe, der Umgebung und dem Verhalten der Teilnehmer und überführen sie in Prioritäten für den realen Betrieb.
+          </p>
+        </div>
+        <div class="border-t border-brand-black/20">
+          {outputs.map((output, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WIE DIE FELDSTUDIE ABLÄUFT ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Von der Ortsbegehung zur Veränderung im Betrieb<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Kontrola kvality -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.75fr_1.4fr] gap-10 lg:gap-16 mb-10">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ QUALITÄTSKONTROLLE IM FELD ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Realer Kontext. Kontrolliertes Protokoll<span style="color:#2D62FC">.</span>
+            </h2>
           </div>
-          <a href="/de/leistungen/test-pakete#terenni-studie" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            PAKET FELDSTUDIE →
-          </a>
+          <p class="text-brand-black/60 leading-relaxed text-justify max-w-2xl">
+            Das Feld verändert sich jede Minute. Deshalb legen wir vorab fest, was sich vergleichen lässt, dokumentieren die Messbedingungen und trennen echte Erkenntnisse von zufällig entstandenen Situationen.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {controls.map(control => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <h3 class="font-display text-lg font-bold leading-tight mb-3">{control.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{control.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -195,21 +278,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            WAS SIEHT DER KUNDE<br/>IN IHREM STORE<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Beschreiben Sie uns den Raum und die Entscheidung, die ansteht. Wir entwerfen ein Szenario für die Feldmessung und sagen Ihnen, was sich daraus sicher ableiten lässt.
-          </p>
-          <a href="/de/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            MESSUNG ANFRAGEN →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -228,3 +296,4 @@ const pageSchema = [
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 </BaseLayout>
+</content>

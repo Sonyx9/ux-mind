@@ -5,42 +5,60 @@ import Footer from '../../../components/Footer.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
+const researchQuestions = [
+  { title: 'Für wen Sie das Produkt entwickeln', desc: 'Wir lernen die Bedürfnisse, Erwartungen und Unterschiede zwischen den Gruppen kennen, die das Produkt oder die Leistung nutzen.' },
+  { title: 'Welches Problem Menschen lösen', desc: 'Wir decken die echten Ziele, Motivationen und Hürden auf, nicht nur Anforderungen, die ohne Kontext formuliert wurden.' },
+  { title: 'Wie die gesamte Journey verläuft', desc: 'Wir verbinden die einzelnen Kontaktpunkte und zeigen, wo die Erfahrung funktioniert und wo sie zerfällt.' },
+  { title: 'Was zuerst zu ändern ist', desc: 'Wir überführen die Erkenntnisse in Prioritäten nach Wirkung, Sicherheit und Bezug zu Ihren Produktzielen.' },
+];
+
 const methods = [
-  { title: 'Tiefeninterviews', type: 'QUALITATIV', desc: 'Einzelinterviews decken Motivationen, Frustrationen und mentale Modelle auf.' },
-  { title: 'Usability-Tests', type: 'QUALITATIV', desc: 'Wir beobachten Nutzer beim Lösen von Aufgaben und identifizieren, woran sie scheitern.' },
-  { title: 'Kontextuelle Forschung', type: 'QUALITATIV', desc: 'Wir beobachten Nutzer in ihrer natürlichen Umgebung, wie sie wirklich arbeiten.' },
-  { title: 'Fragebogenerhebungen', type: 'QUANTITATIV', desc: 'Daten von vielen Testpersonen für statistisch belastbare Schlüsse.' },
-  { title: 'A/B-Tests', type: 'QUANTITATIV', desc: 'Wir vergleichen Designvarianten im Live-Betrieb und messen die Ergebnisse.' },
-  { title: 'Card Sorting', type: 'GEMISCHT', desc: 'Wie Nutzer Inhalte kategorisieren — die Basis einer besseren Informationsarchitektur.' },
+  { title: 'Bedürfnisse verstehen', methods: 'INTERVIEWS · KONTEXTUELLE FORSCHUNG', desc: 'Wenn Sie Motivationen, Arbeitsabläufe, Entscheidungen und die Umstände verstehen müssen, unter denen das Problem entsteht.' },
+  { title: 'Tatsächliches Verhalten überprüfen', methods: 'NUTZERTESTS · BEOBACHTUNG', desc: 'Wenn Sie herausfinden wollen, ob Menschen wichtige Aufgaben bewältigen und was sie in der konkreten Situation daran hindert.' },
+  { title: 'Das Ausmaß des Problems messen', methods: 'FRAGEBÖGEN · ANALYTIK · BETRIEBSDATEN', desc: 'Wenn Sie überprüfen müssen, wie oft ein bestimmtes Muster auftritt und welche Gruppen es betrifft.' },
+  { title: 'Mögliche Richtungen vergleichen', methods: 'KONZEPTE · PROTOTYPEN · VARIANTEN', desc: 'Wenn Sie zwischen Lösungen wählen und die Entscheidung mit Verhalten und Feedback untermauern müssen.' },
 ];
 
 const deliverables = [
-  'Forschungsbericht mit Methodik und Erkenntnissen',
-  'Personas — datenbasierte Profile der Schlüsselgruppen',
-  'Journey Maps inklusive Pain Points',
-  'Priorisierte Empfehlungen nach Wirkung',
-  'Grundlagen für Redesign oder weiteres Testing',
+  { title: 'Antwort auf die Forschungsfrage', desc: 'Wir fassen klar zusammen, was die Daten zu sagen erlauben, was unsicher bleibt und was weiter zu überprüfen ist.' },
+  { title: 'Belege und Zusammenhänge', desc: 'Die Erkenntnisse belegen wir mit konkreten Situationen, Aussagen, Verhaltensmustern und verfügbaren Daten.' },
+  { title: 'Prioritäten und Chancen', desc: 'Wir trennen grundlegende Probleme von Einzelfällen und zeigen, wo eine Änderung am sinnvollsten ist.' },
+  { title: 'Grundlagen für die weitere Arbeit', desc: 'Je nach Ziel bereiten wir Empfehlungen, eine Journey Map, eine Segmentierung, ein Briefing für den Entwurf oder einen Plan für die weitere Überprüfung vor.' },
+];
+
+const situations = [
+  { title: 'Neues Produkt oder neue Leistung', desc: 'Sie müssen prüfen, wem die Lösung dienen soll und welches Problem sie wirklich lösen soll.' },
+  { title: 'Redesign oder Richtungswechsel', desc: 'Sie wollen nicht nur den aktuellen Stand neu zeichnen, sondern entscheiden, was zu behalten und was zu ändern ist.' },
+  { title: 'Schwache Leistung ohne klare Ursache', desc: 'Die Daten zeigen ein Problem, erklären aber weder Motivationen noch Erwartungen oder den Verhaltenskontext.' },
+  { title: 'Neue Zielgruppe oder neuer Markt', desc: 'Sie müssen die unterschiedlichen Bedürfnisse verstehen, bevor Sie die bestehende Lösung anderswohin übertragen.' },
+  { title: 'Journey über mehrere Kanäle', desc: 'Die Erfahrung entsteht zwischen Website, Support, Filiale, Geschäft oder physischem Produkt.' },
+  { title: 'Entscheidung mit hoher Tragweite', desc: 'Sie müssen eine Entwicklungsrichtung, eine Investition oder eine Prozessänderung vor dem breiteren Einsatz belegen.' },
 ];
 
 const process = [
-  { num: '01', title: 'Forschungsfrage', desc: 'Was Sie entscheiden müssen und wen es betrifft.' },
-  { num: '02', title: 'Methodendesign', desc: 'Kombination qualitativer und quantitativer Methoden je nach Frage.' },
-  { num: '03', title: 'Datenerhebung', desc: 'Interviews, Tests, Fragebögen — mit Pilotierung und Qualitätskontrolle.' },
-  { num: '04', title: 'Synthese und Ergebnis', desc: 'Wir verdichten die Erkenntnisse zu Empfehlungen, Personas und Journey Maps.' },
+  { num: '01', title: 'Entscheidung und Kontext', desc: 'Wir klären, was Sie entscheiden müssen, was Sie bereits wissen und wo die größten Lücken sind.' },
+  { num: '02', title: 'Forschungsdesign', desc: 'Wir wählen die passenden Methoden, Zielgruppen, Stichprobe und Art der Auswertung.' },
+  { num: '03', title: 'Vorbereitung und Rekrutierung', desc: 'Wir bereiten das Szenario vor, überprüfen es mit einem Pilottest und sorgen für passende Teilnehmer.' },
+  { num: '04', title: 'Erhebung und Synthese der Daten', desc: 'Wir verbinden Interviews, Verhalten und verfügbare Daten und suchen wiederkehrende Zusammenhänge.' },
+  { num: '05', title: 'Empfehlungen und Übergabe', desc: 'Wir überführen die Ergebnisse in Prioritäten und legen gemeinsam die nächsten Produktschritte fest.' },
 ];
 
 const faq = [
-  { q: 'Wann ist tiefgehende Forschung sinnvoller als ein schneller Test?', a: 'Wenn Sie nicht über ein einzelnes Interface entscheiden, sondern über die Produktstrategie: für wen Sie bauen, welche Bedürfnisse Sie lösen, wo die User Journey am schwächsten ist. Ein schneller Test überprüft eine konkrete Lösung, Forschung sagt, was überhaupt gebaut werden sollte.' },
-  { q: 'Wie lange dauert UX-Forschung?', a: 'Je nach Umfang typischerweise 3–8 Wochen: Forschungsdesign, Rekrutierung, Datenerhebung, Analyse und Synthese zu Empfehlungen.' },
-  { q: 'Kombinieren Sie Forschung mit Biometrie?', a: 'Ja. Interviews und Beobachtungen können wir um Eye-Tracking, GSR oder den Index mentaler Belastung EMLI ergänzen — subjektive Aussagen überprüfen wir so gegen objektive Daten.' },
-  { q: 'Was, wenn wir bereits eigene Daten haben?', a: 'Ausgezeichnet — Analytics, Kundensupport oder frühere Studien beziehen wir in die Synthese ein. Die neue Erhebung zielt dann nur auf die Stellen, an denen Daten fehlen.' },
+  { q: 'Was ist UX-Forschung?', a: 'UX-Forschung ermittelt systematisch, wer die Nutzer sind, was sie brauchen, wie sie sich verhalten und warum. Sie hilft zu entscheiden, welches Problem zu lösen ist, was zu entwerfen ist und welche Änderungen am sinnvollsten sind.' },
+  { q: 'Wie unterscheidet sich UX-Forschung von Nutzertests?', a: 'Nutzertests überprüfen eine konkrete Oberfläche oder einen Prototyp. UX-Forschung kann breitere Fragen zu Bedürfnissen, Zielgruppen, der gesamten Customer Journey oder der Produktrichtung beantworten und kombiniert je nach Ziel mehrere Methoden.' },
+  { q: 'Wie unterscheidet sich UX-Forschung von Marktforschung?', a: 'Marktforschung konzentriert sich oft auf Marktgröße, Präferenzen oder die Marke. UX-Forschung geht stärker in den Kontext der Nutzung eines Produkts oder einer Leistung und sucht Grundlagen für einen konkreten Entwurf und Produktentscheidungen. Beide Ansätze können sich sinnvoll ergänzen.' },
+  { q: 'Wie viele Teilnehmer brauchen wir?', a: 'Die Zahl hängt von der Forschungsfrage, der Zahl der Zielgruppen und den gewählten Methoden ab. Qualitative Interviews arbeiten mit einer anderen Stichprobe als ein Fragebogen oder ein Variantenvergleich, deshalb legen wir den Umfang erst beim Studiendesign fest.' },
+  { q: 'Wie lange dauert UX-Forschung und was kostet sie?', a: 'Am häufigsten 3–8 Wochen, je nach Zahl der Zielgruppen, Art der Rekrutierung, Methoden und Umfang der Ergebnisse. Nach dem ersten Briefing bereiten wir einen konkreten Vorschlag, Zeitplan und Preis vor.' },
+  { q: 'Was, wenn wir bereits Analytik oder frühere Forschung haben?', a: 'Die vorhandenen Daten gehen wir zuerst durch und nutzen sie als Ausgangspunkt. Eine neue Erhebung schlagen wir nur dort vor, wo wir fehlende Zusammenhänge ergänzen oder unsichere Schlussfolgerungen überprüfen müssen.' },
+  { q: 'Muss die Forschung persönlich stattfinden?', a: 'Nicht unbedingt. Interviews und Nutzertests lassen sich je nach Ziel persönlich oder aus der Ferne durchführen. Feldforschung findet dagegen direkt in der Umgebung statt, in der Menschen die Leistung, das Produkt oder den Arbeitsablauf nutzen.' },
+  { q: 'Wann beziehen Sie Eye Tracking und Biometrie in die UX-Forschung ein?', a: 'Nur dann, wenn die Forschungsfrage erfordert, die visuelle Aufmerksamkeit, die physiologische Aktivierung oder die mentale Belastung genau zu messen. Es ist kein automatischer Bestandteil jeder Forschung, sondern eine optionale Erweiterung.' },
 ];
 
 const pageSchema = [
   {
     '@type': 'Service',
     name: 'UX-Forschung',
-    description: 'Tiefgehende UX-Forschung mit qualitativen und quantitativen Methoden: Interviews, Usability-Tests, Fragebögen, Personas und Journey Maps.',
+    description: 'UX-Forschung für Produktentscheidungen: Interviews, Beobachtung, Nutzertests, Fragebögen, Datenanalyse und priorisierte Empfehlungen.',
     serviceType: 'UX-Forschung',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
@@ -58,8 +76,8 @@ const pageSchema = [
 
 <BaseLayout
   lang="de"
-  title="UX-Forschung und Nutzertests für Websites"
-  description="Nutzertests, Tiefeninterviews, Usability-Tests, Personas und Journey Maps. Entscheiden Sie auf Basis von Daten, nicht von Vermutungen."
+  title="UX-Forschung für Produktentscheidungen | UX MIND"
+  description="UX-Forschung mit Interviews, Beobachtung, Nutzertests und Datenanalyse. Erhalten Sie klare Erkenntnisse, Prioritäten und Empfehlungen für Ihr Produkt."
   schema={pageSchema}
 >
   <Navbar />
@@ -71,34 +89,36 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ LEISTUNGEN / UX-FORSCHUNG ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          DATEN<br/>STATT EINDRÜCKE<span style="color:#2D62FC">.</span>
+          VERSTEHEN SIE<br/>DIE ZUSAMMENHÄNGE<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Der tiefste Umfang: Nutzer verstehen, nicht nur das Interface.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              Wir kombinieren qualitative und quantitative Methoden, um die
-              <strong class="text-brand-black">Bedürfnisse, Frustrationen und mentalen Modelle</strong> Ihrer Nutzer aufzudecken.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Entscheiden Sie, was zu entwickeln und zu verbessern sinnvoll ist.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              UX-Forschung beantwortet breitere Fragen als der Test eines einzelnen Bildschirms. Sie hilft herauszufinden, wer Ihre Nutzer sind, was sie brauchen, wie sie entscheiden und welche Teile ihrer Journey den größten Einfluss auf die Erfahrung mit dem Produkt oder der Leistung haben.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              Je nach Ziel kombinieren wir Interviews, Beobachtung, Nutzertests, Fragebögen und verfügbare Daten. Das Ergebnis sind <strong class="text-brand-black">verständliche Erkenntnisse, Prioritäten und Empfehlungen für Produktentscheidungen</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/de/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
-              FORSCHUNG STARTEN →
+              UX-FORSCHUNG ANFRAGEN →
             </a>
-            <a href="/de/leistungen/test-pakete" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST-PAKETE
+            <a href="/de/leistungen#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              PAKETE ANSEHEN
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Infoleiste -->
+      <!-- Info pás -->
       <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
         {[
           ['DAUER', '3–8 Wochen'],
-          ['METHODEN', 'Qualitativ + quantitativ'],
-          ['ERGEBNISSE', 'Personas · Journey Maps'],
-          ['PAKET', 'Umfassende Biometrie'],
+          ['METHODEN', 'Interviews · Beobachtung · Daten'],
+          ['ERGEBNISSE', 'Erkenntnisse · Prioritäten · Empfehlungen'],
+          ['FORM', 'Maßgeschneiderte Forschung'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
             <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
@@ -107,18 +127,62 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Methoden -->
+      <!-- Výzkumné otázky -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WORAUF UX-FORSCHUNG ANTWORTET ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Zuerst die Frage. Dann die Methode<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {researchQuestions.map((question, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{question.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{question.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Kdy dává smysl -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ FORSCHUNGSMETHODEN ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Die richtige Methode für die richtige Frage<span style="color:#2D62FC">.</span>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WANN UX-FORSCHUNG SINNVOLL IST ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Wenn es nicht genügt, einen Bildschirm anzupassen<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
-          {methods.map(method => (
-            <div class="bg-brand-white p-8">
-              <span class="font-mono text-[10px] text-brand-black/60 border border-brand-black/20 px-2 py-0.5 tracking-widest">{method.type}</span>
-              <h3 class="font-display text-xl font-bold mb-3 mt-4">{method.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed">{method.desc}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+          {situations.map((situation, i) => (
+            <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <div>
+                <h3 class="font-display text-xl font-bold mb-2 leading-tight">{situation.title}</h3>
+                <p class="text-sm text-brand-black/60 leading-relaxed">{situation.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Metody -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WIE WIR DIE METHODEN ZUSAMMENSTELLEN ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Den Umfang bestimmt die Entscheidung, nicht eine Methodenliste<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed text-justify max-w-3xl mb-10">
+          Wir beginnen nicht damit, alle verfügbaren Techniken in das Projekt zu packen. Zuerst legen wir fest, welche Art von Antwort Sie brauchen, und erst dann schlagen wir die kleinste sinnvolle Kombination von Methoden vor.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          {methods.map((method, i) => (
+            <div class="bg-brand-white p-8 flex flex-col min-h-64">
+              <span class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</span>
+              <h3 class="font-display text-2xl font-bold mb-3">{method.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6 text-justify">{method.desc}</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mt-auto pt-5 border-t border-brand-black/10">{method.methods}</p>
             </div>
           ))}
         </div>
@@ -133,50 +197,60 @@ const pageSchema = [
           width="1200" height="846" loading="lazy" decoding="async"
           class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Forschungsumfeld der FIM UHK — Interviews und Tests lassen sich in derselben Session um Eye-Tracking und Biometrie ergänzen.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">Forschungsumfeld FIMEYELAB an der FIM UHK — Raum für Interviews, Nutzertests und bei Bedarf auch synchronisierte Messungen.</p>
       </div>
 
-      <!-- Was Sie erhalten + Prozess -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Výstupy -->
+      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
         <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WAS SIE ERHALTEN ]</p>
-          <ul class="space-y-2">
-            {deliverables.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WAS SIE ERHALTEN ]</p>
+          <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight max-w-xl">
+            Grundlagen für Entscheidungen, kein Dokument fürs Archiv<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mt-6 max-w-xl text-justify">
+            Die Form des Ergebnisses wählen wir danach, wer mit den Ergebnissen arbeiten wird und welche Entscheidung folgen soll. Weder eine Journey Map noch eine Persona sind Pflicht — sie entstehen nur dann, wenn sie der weiteren Arbeit helfen.
+          </p>
         </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ SO LÄUFT DIE FORSCHUNG AB ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div class="border-t border-brand-black/20">
+          {deliverables.map((deliverable, i) => (
+            <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
+              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <h3 class="font-display text-lg font-bold leading-tight">{deliverable.title}</h3>
+              <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{deliverable.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      <!-- Biometrie -->
-      <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
+      <!-- Proces -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ WIE UX-FORSCHUNG ABLÄUFT ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Von der Frage zum nächsten Produktschritt<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-x-7 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pokročilé měření -->
+      <div class="reveal mb-24 border border-brand-black/15 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ AUSSAGEN + OBJEKTIVE DATEN ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Was Menschen sagen vs. was sie tun<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OPTIONALE ERWEITERTE MESSUNG ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Wenn Aussagen und Beobachtung nicht genügen<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              Deklarierte Antworten überprüfen wir gegen das Verhalten: Interviews und Fragebögen kombinieren wir
-              mit Eye-Tracking, GSR und dem Index mentaler Belastung EMLI. Sie entscheiden dann auf Basis dessen, was wirklich passiert ist.
+              Wenn die Forschungsfrage erfordert, die visuelle Aufmerksamkeit, die physiologische Aktivierung oder die mentale Belastung genau zu messen, können wir die Studie um Eye Tracking, GSR, die Analyse mimischer Signale oder EMLI erweitern. Eine Methode fügen wir nur dann hinzu, wenn sie die benötigte Art von Beleg liefert.
             </p>
           </div>
-          <a href="/de/leistungen/test-pakete#komplexni-biometricky-vyzkum" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            BIOMETRIE-PAKET →
+          <a href="/de/leistungen/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+            EYE TRACKING ANSEHEN →
           </a>
         </div>
       </div>
@@ -197,21 +271,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            LERNEN SIE IHRE<br/>NUTZER KENNEN<span style="color:#2D62FC">.</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Beschreiben Sie uns, was Sie entscheiden müssen. Wir entwerfen eine Forschung, die genau darauf antwortet — ohne überflüssige Methoden.
-          </p>
-          <a href="/de/kontakt" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            FORSCHUNG STARTEN →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 

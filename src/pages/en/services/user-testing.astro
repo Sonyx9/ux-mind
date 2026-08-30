@@ -6,32 +6,31 @@ import Footer from '../../../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const formats = [
-  { t: 'Moderated tests', d: 'A researcher guides the participant through the scenario, probing and digging deeper wherever something happens.', tag: 'LAB / ONLINE' },
-  { t: 'Unmoderated tests', d: 'Participants complete tasks on their own. Faster data collection, larger samples, more natural conditions.', tag: 'ONLINE' },
-  { t: 'Think-aloud', d: 'The participant comments out loud on what they see and why they click. It reveals the mental model, not just behaviour.', tag: 'PROTOCOL' },
+  { t: 'Moderated testing', d: 'A researcher watches the participant complete tasks, asks follow-up questions and helps reveal why they got stuck or decided differently at a particular point.', tag: 'IN DEPTH · IN THE LAB AND ONLINE' },
+  { t: 'Unmoderated testing', d: 'Participants complete the prepared tasks on their own. This format makes it possible to quickly involve more people and compare their results.', tag: 'LARGER SAMPLE · ONLINE' },
 ];
 
 const findings = [
-  'Whether users complete key tasks — and exactly where they fail',
-  'How long tasks take and how many errors occur along the way',
-  'Which elements users misunderstand or miss entirely',
-  'How the behaviour of newcomers differs from experienced users',
-  'What users say vs. what they actually do',
+  { title: 'Task completion', desc: 'We find out whether people can handle important tasks, how long they take and at which steps they get stuck.' },
+  { title: 'Interface clarity', desc: 'We reveal elements, labels and information that users don’t understand or overlook.' },
+  { title: 'Reasons for decisions', desc: 'We find out what users expect, why they choose a particular path and whether their statements match their actual behaviour.' },
 ];
 
 const process = [
-  { num: '01', title: 'Scenario and tasks', desc: 'We define what needs to be verified and prepare realistic tasks.' },
-  { num: '02', title: 'Participant recruitment', desc: 'We recruit against your target audience, not a random crowd.' },
-  { num: '03', title: 'Testing', desc: 'Moderated or unmoderated, with screen recording and a pilot run.' },
-  { num: '04', title: 'Analysis and recommendations', desc: 'Success rate, time, error rate and specific proposed changes.' },
+  { num: '01', title: 'Goal and scenario', desc: 'We clarify what you need to verify and prepare realistic tasks.' },
+  { num: '02', title: 'Participant selection', desc: 'We define a suitable target group and recruit participants according to the agreed criteria.' },
+  { num: '03', title: 'Testing', desc: 'Participants complete the prepared tasks. We watch their progress, errors, reactions and comments.' },
+  { num: '04', title: 'Analysis and recommendations', desc: 'We evaluate the findings, sort them by importance and turn them into concrete proposed changes.' },
 ];
 
 const faq = [
-  { q: 'How many participants are needed?', a: 'To qualitatively uncover the main problems, 5–8 participants per segment is usually enough. Comparing variants or statistical evaluation requires a larger, more precisely designed sample — we propose the scope based on the research question.' },
-  { q: 'Can we test a prototype too?', a: 'Yes. We test production websites and apps as well as clickable prototypes (Figma and similar). The earlier you test, the cheaper the changes are.' },
-  { q: 'How does testing differ from a UX audit?', a: 'An audit is an expert evaluation without participants — a faster first step. Testing observes real users completing tasks and verifies actual behaviour. Ideally, one follows the other.' },
-  { q: 'Can we watch the testing live?', a: 'Yes, with moderated tests you can join the observation line. Watching your own users is often the most persuasive argument for the team.' },
-  { q: 'What if users rate the website positively but fail the task?', a: 'That is exactly what testing reveals. The subjective impression of a "clear page" often does not match the actual success rate — which is why we measure behaviour, not just opinions.' },
+  { q: 'How many participants are needed?', a: 'For a qualitative reveal of the main problems, 5–8 participants per segment are usually enough. For comparing variants or statistical evaluation a larger, more precisely designed sample is needed — we propose the scope based on the research question.' },
+  { q: 'How long does user testing take?', a: 'Most often 1–4 weeks depending on the scope, the recruitment method and the number of participants. We set the exact schedule after clarifying the goal and target group.' },
+  { q: 'How much does user testing cost?', a: 'The price depends on the number of participants, the recruitment method, the testing format and the scope of the output. After a short initial brief we recommend a suitable scope and prepare a concrete quote.' },
+  { q: 'Can you also test a prototype?', a: 'Yes. We test finished websites, e-shops and apps as well as clickable prototypes. The sooner we reveal a problem, the easier and cheaper it usually is to fix.' },
+  { q: 'How does user testing differ from a UX audit?', a: 'A UX audit is an expert review of the interface without participants. User testing observes real users completing tasks and verifies how the problems show up in practice.' },
+  { q: 'Is eye tracking part of user testing?', a: 'Not in the standard scope. We offer eye tracking as a separate extension when you need to precisely measure visual attention and find out which elements people noticed or what they overlooked.' },
+  { q: 'Can we watch the testing live?', a: 'Yes. For moderated tests, by arrangement you can follow the session from a separate room or remotely, always with regard to participant consent and the study conditions.' },
 ];
 
 const pageSchema = [
@@ -57,7 +56,7 @@ const pageSchema = [
 <BaseLayout
   lang="en"
   title="User testing | Moderated and unmoderated UX tests"
-  description="User testing of websites, apps and prototypes with real users. Moderated and unmoderated tests, think-aloud, screen recording and specific recommendations."
+  description="User testing of websites, apps and prototypes with real users. Moderated and unmoderated tests, think-aloud, screen recording and concrete recommendations."
   schema={pageSchema}
 >
   <Navbar />
@@ -69,22 +68,24 @@ const pageSchema = [
       <div class="mb-16">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SERVICES / USER TESTING ]</p>
         <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
-          WATCH WHERE<br/>THEY FAIL<span style="color:#2D62FC">.</span>
+          VERIFY<br/>USABILITY<span style="color:#2D62FC">.</span>
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+        <div class="max-w-3xl">
           <div>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Tests with real users, not impressions.</h2>
-            <p class="text-lg text-brand-black/60 leading-relaxed max-w-xl">
-              We observe how people complete real tasks in your product. You learn
-              <strong class="text-brand-black">what users do</strong> — not just what they say about the product.
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Verify important tasks with real users.</h2>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify mb-4">
+              We watch how people use your website, e-shop, app or prototype. We find out whether they can get oriented, complete important tasks and which parts of the interface they don’t understand.
+            </p>
+            <p class="text-lg text-brand-black/60 leading-relaxed text-justify">
+              You get specific findings and recommendations on <strong class="text-brand-black">what to change to make the product clearer and easier to use</strong>.
             </p>
           </div>
-          <div class="flex flex-wrap gap-4 md:justify-end">
+          <div class="flex flex-wrap gap-4 mt-8">
             <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
               REQUEST TESTING →
             </a>
-            <a href="/en/services/test-packages" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-              TEST PACKAGES
+            <a href="/en/services#testovaci-balicky" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+              VIEW PACKAGES
             </a>
           </div>
         </div>
@@ -95,7 +96,7 @@ const pageSchema = [
         {[
           ['DURATION', '1–4 weeks'],
           ['FORMAT', 'Moderated and online'],
-          ['SAMPLE', 'Based on the research question'],
+          ['SAMPLE', 'By the research question'],
           ['PACKAGE', 'Standard UX test'],
         ].map(([k, v]) => (
           <div class="bg-brand-white p-5">
@@ -105,77 +106,90 @@ const pageSchema = [
         ))}
       </div>
 
-      <!-- Formats -->
+      <!-- How we test -->
       <div class="reveal mb-24">
-        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ TEST FORMATS ]</p>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW WE TEST ]</p>
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
-          Three ways of watching<span style="color:#2D62FC">.</span>
+          We choose the format by the goal of the study<span style="color:#2D62FC">.</span>
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
           {formats.map((v, i) => (
-            <div class="bg-brand-white p-8">
+            <div class="bg-brand-white p-8 flex flex-col h-full">
               <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
               <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
-              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+              <p class="text-sm text-brand-black/60 leading-relaxed text-justify mb-6">{v.d}</p>
+              <span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest self-start mt-auto">{v.tag}</span>
             </div>
           ))}
         </div>
+        <p class="text-sm md:text-base text-brand-black/60 leading-relaxed mt-6 max-w-4xl">
+          <strong class="text-brand-black">Depending on the testing goal</strong> we bring in thinking aloud, a follow-up interview, short surveys and screen recording.
+        </p>
       </div>
 
       <!-- Photo -->
       <div class="reveal mb-24">
         <img
           src={`${base}/images/eye-tracking-mereni-respondentka-laborator.webp`}
-          alt="Participant during a user testing session in the lab"
-          title="A user testing session in progress"
+          alt="A participant during user testing in the lab"
+          title="The course of user testing"
           width="1080" height="1920" loading="lazy" decoding="async"
           class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
         />
-        <p class="font-mono text-[11px] text-brand-black/60 mt-2">In the lab, tests can be extended with eye tracking — you see not only what the user did, but also what they saw while doing it.</p>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-2">In the lab, tests can be complemented with eye tracking — you see not only what the user did, but also what they saw while doing it.</p>
       </div>
 
-      <!-- What you learn + process -->
-      <div class="reveal mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ WHAT YOU LEARN ]</p>
-          <ul class="space-y-2">
-            {findings.map(o => (
-              <li class="flex gap-2 text-sm text-brand-black/60 leading-relaxed py-1 border-b border-brand-black/5">
-                <span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">→</span> {o}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-8">[ HOW THE TESTING WORKS ]</p>
-          <div class="space-y-0">
-            {process.map(step => (
-              <div class="flex gap-5 items-start pb-4 mb-4 border-b border-brand-black/10 last:border-0">
-                <span class="font-mono text-xs text-brand-black/60 pt-1">{step.num}</span>
-                <div>
-                  <h3 class="font-display text-lg font-bold leading-tight">{step.title}</h3>
-                  <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
-                </div>
+      <!-- What testing reveals -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ WHAT TESTING REVEALS ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+              Where the interface helps — and where it gets in the way<span style="color:#2D62FC">.</span>
+            </h2>
+          </div>
+          <div class="border-t border-brand-white/20">
+            {findings.map((finding, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_12rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <h3 class="font-display text-lg font-bold leading-tight">{finding.title}</h3>
+                <p class="col-start-2 sm:col-start-3 text-sm text-brand-white/65 leading-relaxed">{finding.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <!-- Limits -->
+      <!-- Process -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ HOW TESTING WORKS ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          From the goal to concrete changes<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+          {process.map(step => (
+            <div class="border-t border-brand-black/20 pt-5">
+              <span class="block font-mono text-xs text-brand-black/60 mb-5">{step.num}</span>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Optional extension -->
       <div class="reveal mb-24 border border-brand-black/10 p-8 md:p-10">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div class="max-w-2xl">
-            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ WHEN YOU NEED MORE ]</p>
-            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">You see the behaviour. Not the attention and the load<span style="color:#2D62FC">.</span></h2>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ OPTIONAL EXTENSION ]</p>
+            <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">When you also need to measure attention<span style="color:#2D62FC">.</span></h2>
             <p class="text-sm text-brand-black/60 leading-relaxed">
-              A classic test shows whether the user completed the task. It does not show what they actually saw,
-              what they missed and how much it cost them. That is why we combine tests with eye tracking and biometrics.
+              User testing shows whether people can handle a task and where they get stuck. Eye tracking can additionally
+              measure precisely which elements they noticed, what they overlooked and how their attention changed during the task. We add biometric methods only when they match the goal of the study.
             </p>
           </div>
           <a href="/en/services/eye-tracking" class="shrink-0 inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
-            ADD EYE TRACKING →
+            VIEW EYE TRACKING →
           </a>
         </div>
       </div>
@@ -196,21 +210,6 @@ const pageSchema = [
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="reveal relative overflow-hidden bg-brand-black text-brand-white text-center p-10 md:p-16">
-        <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(252,252,252,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(252,252,252,0.05) 1px, transparent 1px); background-size: 25% 50%;"></div>
-        <div class="relative">
-          <h2 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-            WILL USERS COMPLETE<br/>YOUR TASK<span style="color:#2D62FC">?</span>
-          </h2>
-          <p class="text-brand-white/70 leading-relaxed max-w-xl mx-auto mb-10">
-            Send us your product and its key journey. We'll propose a test scenario and the format that delivers the answer fastest.
-          </p>
-          <a href="/en/contact" class="inline-block bg-brand-white text-brand-black border border-brand-white px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-transparent hover:text-brand-white transition-colors">
-            REQUEST TESTING →
-          </a>
-        </div>
-      </div>
     </div>
   </main>
 
