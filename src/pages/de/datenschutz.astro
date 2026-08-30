@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { localizedPath } from '../../i18n/utils';
+
+const updated = '30. 8. 2026';
+const cookiesHref = localizedPath('de', 'cookies');
+
+const purposes = [
+  {
+    name: 'Anfragen & Kommunikation',
+    legal: 'Berechtigtes Interesse / Vertragsanbahnung',
+    purpose: 'Beantwortung von Anfragen per E-Mail und Telefon, Erstellung von Angeboten und Abstimmung der Zusammenarbeit.',
+    data: 'Name, E-Mail, Telefon, Firma, Inhalt der Nachricht.',
+    expiry: 'Für die Dauer der Kommunikation, danach bis zu 3 Jahre (Rechtsverteidigung).',
+  },
+  {
+    name: 'Studienteilnehmer',
+    legal: 'Einwilligung der Teilnehmer',
+    purpose: 'Durchführung von Nutzertests und Eye-Tracking-Sitzungen. Ergebnisse werden aggregiert und anonymisiert verarbeitet.',
+    data: 'Eye-Tracking-Daten, Fragebogenantworten, Sitzungsaufzeichnung (je nach Protokoll).',
+    expiry: 'Bis zur Erfüllung des Studienzwecks; danach Anonymisierung oder Löschung.',
+  },
+  {
+    name: 'Kundenverträge',
+    legal: 'Vertragserfüllung / rechtliche Pflicht',
+    purpose: 'Auftragsabwicklung, Rechnungsstellung und Buchhaltung.',
+    data: 'Rechnungs- und Identifikationsdaten, Ansprechpartner.',
+    expiry: 'Gesetzlich vorgeschrieben (Buchhaltungs- und Steuerbelege bis zu 10 Jahre).',
+  },
+  {
+    name: 'Reichweitenmessung',
+    legal: 'Einwilligung (Cookies)',
+    purpose: 'Anonyme Statistiken zur Website-Nutzung, um sie verbessern zu können.',
+    data: 'Cookies und Geräte-IDs (Google Analytics).',
+    expiry: 'Bis zu 24 Monate, siehe Cookie-Richtlinie.',
+  },
+];
+
+const rights = [
+  ['Auskunft', 'Erfahren, welche Daten wir über Sie verarbeiten, und eine Kopie erhalten.'],
+  ['Berichtigung', 'Unrichtige Daten korrigieren oder unvollständige ergänzen lassen.'],
+  ['Löschung', 'Daten löschen lassen, wenn der Grund für die Verarbeitung entfällt.'],
+  ['Einschränkung', 'Verarbeitung vorübergehend einschränken, z. B. während der Prüfung der Richtigkeit.'],
+  ['Übertragbarkeit', 'Daten in einem maschinenlesbaren Format erhalten oder an einen anderen Verantwortlichen übertragen.'],
+  ['Widerspruch', 'Der Verarbeitung auf Grundlage des berechtigten Interesses widersprechen.'],
+  ['Widerruf der Einwilligung', 'Eine erteilte Einwilligung jederzeit widerrufen — ohne Auswirkung auf die Verarbeitung davor.'],
+];
+---
+
+<BaseLayout
+  title="Datenschutzerklärung"
+  description="Wie UX MIND Research Lab personenbezogene Daten verarbeitet: Anfragen, Studienteilnehmer, Kunden und Analyse. Rechtsgrundlagen nach DSGVO, Speicherfristen und Ihre Rechte."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ RECHTLICHE INFORMATIONEN ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 8vw, 6rem);">
+          Datenschutz<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-sm text-brand-black/50 font-mono">Zuletzt aktualisiert: {updated}</p>
+      </div>
+
+      <div class="space-y-10 text-brand-black/70 leading-relaxed">
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Verantwortlicher</h2>
+          <p class="mb-3">
+            Verantwortlicher für die Verarbeitung ist <strong class="text-brand-black">UX MIND Research Lab s.r.o.</strong>,
+            IdNr. 29714966, Sitz in Hradec Králové, Tschechien. Die Verarbeitung erfolgt gemäß der
+            DSGVO-Verordnung (EU) 2016/679 und dem tschechischen Gesetz Nr. 110/2019 Slg. über die Verarbeitung
+            personenbezogener Daten.
+          </p>
+          <p>
+            Fragen zu personenbezogenen Daten und Ausübung Ihrer Rechte:
+            <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Was und warum wir verarbeiten</h2>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {purposes.map(p => (
+              <div class="bg-brand-white p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <h3 class="font-mono text-sm tracking-widest uppercase text-brand-black">{p.name}</h3>
+                  <span class="font-mono text-[10px] tracking-widest uppercase" style="color:#2D62FC">{p.legal}</span>
+                </div>
+                <p class="text-sm mb-2">{p.purpose}</p>
+                <dl class="text-xs text-brand-black/50 space-y-0.5">
+                  <div><dt class="inline font-mono">Daten: </dt><dd class="inline">{p.data}</dd></div>
+                  <div><dt class="inline font-mono">Speicherung: </dt><dd class="inline">{p.expiry}</dd></div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Studienteilnehmer</h2>
+          <p class="mb-3">
+            Tests und Eye-Tracking-Sitzungen erfolgen stets <strong class="text-brand-black">auf Grundlage einer
+            informierten Einwilligung</strong>, die jederzeit widerrufen werden kann. Vor jeder Sitzung erklären
+            wir verständlich den Zweck, den Ablauf und den Umgang mit den Daten.
+          </p>
+          <p>
+            Ergebnisse präsentieren wir Kunden und der Öffentlichkeit <strong class="text-brand-black">aggregiert und
+            anonymisiert</strong> — einzelne Personen sind aus veröffentlichten Ergebnissen nicht identifizierbar.
+            Rohdaten (Okulometrie, Fragebögen, etwaige Aufzeichnungen) verwenden wir nur so lange, wie die Studie
+            es erfordert, und anonymisieren oder löschen sie danach.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Empfänger der Daten</h2>
+          <p class="mb-3">
+            Wir verkaufen keine personenbezogenen Daten. Wir geben sie nur an geprüfte Auftragsverarbeiter weiter,
+            soweit dies für den Betrieb nötig ist — unser Hosting- und E-Mail-Anbieter, Tools zur Reichweitenmessung
+            (Google Analytics, Google Ads) und Buchhaltungsdienste. Mit diesen Auftragsverarbeitern bestehen
+            Auftragsverarbeitungsverträge.
+          </p>
+          <p>
+            Einige Anbieter (Google) verarbeiten Daten möglicherweise auch außerhalb der EU. Eine solche Übermittlung
+            ist durch die EU-Standardvertragsklauseln abgesichert. Die Bedingungen von Google finden Sie in deren
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">Datenschutzerklärung ↗</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Ihre Rechte</h2>
+          <p class="mb-5">In Bezug auf Ihre personenbezogenen Daten haben Sie folgende Rechte. Sie machen sie per E-Mail geltend — wir bearbeiten Anfragen ohne unnötige Verzögerung, spätestens innerhalb eines Monats.</p>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {rights.map(([name, desc]) => (
+              <div class="bg-brand-white p-4 flex flex-col sm:flex-row sm:gap-4">
+                <p class="font-mono text-xs tracking-widest uppercase text-brand-black sm:w-48 shrink-0 mb-1 sm:mb-0">{name}</p>
+                <p class="text-sm">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Cookies</h2>
+          <p>
+            Die Website verwendet Cookies für den Betrieb, die Reichweitenmessung und das Marketing. Details und
+            Einwilligungseinstellungen finden Sie in der separaten
+            <a href={cookiesHref} class="underline hover:text-brand-black">Cookie-Richtlinie</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Aufsichtsbehörde</h2>
+          <p>
+            Wenn Sie der Ansicht sind, dass wir Ihre Daten rechtswidrig verarbeiten, haben Sie das Recht, eine
+            Beschwerde bei der <strong class="text-brand-black">tschechischen Datenschutzbehörde</strong>
+            (Úřad pro ochranu osobních údajů), Pplk. Sochora 27, 170 00 Prag 7,
+            <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">uoou.cz ↗</a> einzureichen.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

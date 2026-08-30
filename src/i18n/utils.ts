@@ -48,6 +48,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
     partners: '/partneri',
     contact: '/kontakt',
     cookies: '/zasady-cookies',
+    privacy: '/zasady-osobnich-udaju',
   },
   en: {
     home: '/en/',
@@ -70,6 +71,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
     blog: '/en/blog',
     contact: '/en/contact',
     cookies: '/en/cookie-policy',
+    privacy: '/en/privacy-policy',
   },
   de: {
     home: '/de/',
@@ -92,6 +94,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
     blog: '/de/blog',
     contact: '/de/kontakt',
     cookies: '/de/cookie-richtlinie',
+    privacy: '/de/datenschutz',
   },
   fr: {
     home: '/fr/',

@@ -10,6 +10,9 @@ const lang = getLang(langPath);
 const normalizedLangPath = langPath.replace(/\/+$/, '') || '/';
 const showContactCta = lang === 'cs' && normalizedLangPath !== '/kontakt';
 const cookiePolicyHref = base + localizedPath(lang, 'cookies');
+// Zásady zpracování osobních údajů — jen v jazycích, kde stránka existuje (jinak by localizedPath spadl na home)
+const privacyPath = localizedPath(lang, 'privacy');
+const privacyPolicyHref = privacyPath !== localizedPath(lang, 'home') ? base + privacyPath : null;
 
 // Navigace v patičce — jen hlavní položky (podstránky služeb jsou sbalené)
 const nav = getNavLinks(lang);
@@ -21,11 +24,11 @@ const flatNav: { href: string; label: string; indent: boolean }[] =
 const footerSegments = getFooterSegments(lang).map(s => ({ href: base + s.href, label: s.label }));
 
 const t = {
-  cs: { desc: 'UX výzkum, UX audit a eye tracking. Odhalujeme, kde uživatelé tápou a co má smysl zlepšit.', nav: 'Navigace', segments: 'Pro koho', contact: 'Kontakt', rights: 'Všechna práva vyhrazena.', tagline: 'UX / EYE TRACKING / VÝZKUM UŽIVATELŮ', policy: 'Zásady cookies', settings: 'Nastavení cookies' },
-  en: { desc: 'We specialise in UX research, UX audits and eye tracking. We help companies build better digital products.', nav: 'Navigation', segments: 'For whom', contact: 'Contact', rights: 'All rights reserved.', tagline: 'UX / EYE TRACKING / USER RESEARCH', policy: 'Cookie policy', settings: 'Cookie settings' },
-  de: { desc: 'Wir sind auf UX-Forschung, UX-Audits und Eye Tracking spezialisiert. Wir helfen Unternehmen, bessere digitale Produkte zu entwickeln.', nav: 'Navigation', segments: 'Für wen', contact: 'Kontakt', rights: 'Alle Rechte vorbehalten.', tagline: 'UX / EYE TRACKING / NUTZERFORSCHUNG', policy: 'Cookie-Richtlinie', settings: 'Cookie-Einstellungen' },
-  fr: { desc: 'Nous sommes spécialisés en recherche UX, audits UX et eye tracking. Nous aidons les entreprises à créer de meilleurs produits numériques.', nav: 'Navigation', segments: 'Pour qui', contact: 'Contact', rights: 'Tous droits réservés.', tagline: 'UX / EYE TRACKING / RECHERCHE UTILISATEURS', policy: 'Politique cookies', settings: 'Paramètres cookies' },
-  es: { desc: 'Nos especializamos en investigación UX, auditorías UX y eye tracking. Ayudamos a las empresas a crear mejores productos digitales.', nav: 'Navegación', segments: 'Para quién', contact: 'Contacto', rights: 'Todos los derechos reservados.', tagline: 'UX / EYE TRACKING / INVESTIGACIÓN DE USUARIOS', policy: 'Política de cookies', settings: 'Configuración de cookies' },
+  cs: { desc: 'UX výzkum, UX audit a eye tracking. Odhalujeme, kde uživatelé tápou a co má smysl zlepšit.', nav: 'Navigace', segments: 'Pro koho', contact: 'Kontakt', rights: 'Všechna práva vyhrazena.', tagline: 'UX / EYE TRACKING / VÝZKUM UŽIVATELŮ', policy: 'Zásady cookies', privacy: 'Zpracování osobních údajů', settings: 'Nastavení cookies' },
+  en: { desc: 'We specialise in UX research, UX audits and eye tracking. We help companies build better digital products.', nav: 'Navigation', segments: 'For whom', contact: 'Contact', rights: 'All rights reserved.', tagline: 'UX / EYE TRACKING / USER RESEARCH', policy: 'Cookie policy', privacy: 'Privacy policy', settings: 'Cookie settings' },
+  de: { desc: 'Wir sind auf UX-Forschung, UX-Audits und Eye Tracking spezialisiert. Wir helfen Unternehmen, bessere digitale Produkte zu entwickeln.', nav: 'Navigation', segments: 'Für wen', contact: 'Kontakt', rights: 'Alle Rechte vorbehalten.', tagline: 'UX / EYE TRACKING / NUTZERFORSCHUNG', policy: 'Cookie-Richtlinie', privacy: 'Datenschutz', settings: 'Cookie-Einstellungen' },
+  fr: { desc: 'Nous sommes spécialisés en recherche UX, audits UX et eye tracking. Nous aidons les entreprises à créer de meilleurs produits numériques.', nav: 'Navigation', segments: 'Pour qui', contact: 'Contact', rights: 'Tous droits réservés.', tagline: 'UX / EYE TRACKING / RECHERCHE UTILISATEURS', policy: 'Politique cookies', privacy: 'Confidentialité', settings: 'Paramètres cookies' },
+  es: { desc: 'Nos especializamos en investigación UX, auditorías UX y eye tracking. Ayudamos a las empresas a crear mejores productos digitales.', nav: 'Navegación', segments: 'Para quién', contact: 'Contacto', rights: 'Todos los derechos reservados.', tagline: 'UX / EYE TRACKING / INVESTIGACIÓN DE USUARIOS', policy: 'Política de cookies', privacy: 'Privacidad', settings: 'Configuración de cookies' },
 };
 const s = t[lang] ?? t.en;
 ---
@@ -93,6 +96,9 @@ const s = t[lang] ?? t.en;
       <a href="https://lukaskoula.com" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-brand-black/60 hover:text-[#2D62FC] transition-colors">Lukáš Koula</a> © {currentYear} UX Mind. {s.rights}
     </p>
     <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+      {privacyPolicyHref && (
+        <a href={privacyPolicyHref} class="font-mono text-xs text-brand-black/60 hover:text-[#2D62FC] transition-colors">{s.privacy}</a>
+      )}
       <a href={cookiePolicyHref} class="font-mono text-xs text-brand-black/60 hover:text-[#2D62FC] transition-colors">{s.policy}</a>
       <button type="button" onclick="window.uxmindConsent && window.uxmindConsent.open()" class="font-mono text-xs text-brand-black/60 hover:text-[#2D62FC] transition-colors">{s.settings}</button>
       <p class="font-mono text-xs text-brand-black/60">{s.tagline}</p>

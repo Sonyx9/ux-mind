@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { localizedPath } from '../i18n/utils';
+
+const updated = '30. 8. 2026';
+const cookiesHref = localizedPath('cs', 'cookies');
+
+// Účely a právní základy zpracování — přehledová tabulka
+const purposes = [
+  {
+    name: 'Poptávky a komunikace',
+    legal: 'Oprávněný zájem / jednání o smlouvě',
+    purpose: 'Odpovědi na dotazy z e-mailu a telefonu, příprava nabídky a domluva spolupráce.',
+    data: 'Jméno, e-mail, telefon, firma, obsah zprávy.',
+    expiry: 'Po dobu komunikace, poté až 3 roky (obrana práv).',
+  },
+  {
+    name: 'Účastníci výzkumu',
+    legal: 'Souhlas účastníka',
+    purpose: 'Realizace uživatelských testů a eye-trackingových měření. Výstupy zpracováváme v agregované a anonymizované podobě.',
+    data: 'Okulometrická data, odpovědi v dotazníku, videozáznam sezení (dle scénáře).',
+    expiry: 'Do splnění účelu studie; poté anonymizace nebo výmaz.',
+  },
+  {
+    name: 'Plnění smlouvy s klientem',
+    legal: 'Plnění smlouvy / právní povinnost',
+    purpose: 'Realizace zakázky, fakturace a účetnictví.',
+    data: 'Fakturační a identifikační údaje, kontaktní osoby.',
+    expiry: 'Dle zákona (účetní a daňové doklady až 10 let).',
+  },
+  {
+    name: 'Měření návštěvnosti',
+    legal: 'Souhlas (cookies)',
+    purpose: 'Anonymní statistiky návštěvnosti webu, abychom ho mohli zlepšovat.',
+    data: 'Cookies a identifikátory zařízení (Google Analytics).',
+    expiry: 'Až 24 měsíců, viz zásady cookies.',
+  },
+];
+
+const rights = [
+  ['Přístup', 'Vědět, jaké údaje o vás zpracováváme, a získat jejich kopii.'],
+  ['Oprava', 'Nechat opravit nepřesné nebo doplnit neúplné údaje.'],
+  ['Výmaz', 'Nechat údaje smazat, pokud pro jejich zpracování pomine důvod.'],
+  ['Omezení', 'Dočasně omezit zpracování, například po dobu ověřování jejich přesnosti.'],
+  ['Přenositelnost', 'Získat údaje ve strojově čitelném formátu nebo je předat jinému správci.'],
+  ['Námitka', 'Vznést námitku proti zpracování založenému na oprávněném zájmu.'],
+  ['Odvolání souhlasu', 'Kdykoli odvolat udělený souhlas — bez vlivu na zpracování před odvoláním.'],
+];
+---
+
+<BaseLayout
+  title="Zásady zpracování osobních údajů"
+  description="Jak UX MIND Research Lab zpracovává osobní údaje: poptávky, účastníci výzkumu, klienti a analytika. Právní základy dle GDPR, doba uchování a vaše práva."
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PRÁVNÍ INFORMACE ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-6" style="font-size: clamp(2.5rem, 8vw, 6rem);">
+          Zpracování osobních údajů<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-sm text-brand-black/50 font-mono">Naposledy aktualizováno: {updated}</p>
+      </div>
+
+      <div class="space-y-10 text-brand-black/70 leading-relaxed">
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Kdo je správce</h2>
+          <p class="mb-3">
+            Správcem osobních údajů je <strong class="text-brand-black">UX MIND Research Lab s.r.o.</strong>,
+            IČO 29714966, se sídlem v Hradci Králové, Česká republika. Zpracování probíhá v souladu
+            s Nařízením GDPR (EU) 2016/679 a zákonem č. 110/2019 Sb., o zpracování osobních údajů.
+          </p>
+          <p>
+            Dotazy k osobním údajům a uplatnění práv:
+            <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Co a proč zpracováváme</h2>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {purposes.map(p => (
+              <div class="bg-brand-white p-5">
+                <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                  <h3 class="font-mono text-sm tracking-widest uppercase text-brand-black">{p.name}</h3>
+                  <span class="font-mono text-[10px] tracking-widest uppercase" style="color:#2D62FC">{p.legal}</span>
+                </div>
+                <p class="text-sm mb-2">{p.purpose}</p>
+                <dl class="text-xs text-brand-black/50 space-y-0.5">
+                  <div><dt class="inline font-mono">Údaje: </dt><dd class="inline">{p.data}</dd></div>
+                  <div><dt class="inline font-mono">Uchování: </dt><dd class="inline">{p.expiry}</dd></div>
+                </dl>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Účastníci výzkumu</h2>
+          <p class="mb-3">
+            Testování a eye-trackingová měření probíhají <strong class="text-brand-black">vždy na základě
+            informovaného souhlasu</strong> účastníka, který lze kdykoli odvolat. Před sezením účastníka
+            srozumitelně informujeme o účelu, průběhu a nakládání s daty.
+          </p>
+          <p>
+            Výsledky klientům a veřejnosti prezentujeme <strong class="text-brand-black">agregovaně a
+            anonymizovaně</strong> — konkrétní osoby z publikovaných výstupů nelze identifikovat.
+            Surová data (okulometrie, dotazníky, případné záznamy) používáme jen po dobu nezbytnou
+            pro danou studii a poté je anonymizujeme nebo mažeme.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Komu údaje předáváme</h2>
+          <p class="mb-3">
+            Osobní údaje neprodáváme. Sdílíme je pouze s prověřenými zpracovateli v rozsahu nezbytném
+            pro provoz — poskytovatel hostingu a e-mailu, nástroje pro měření návštěvnosti
+            (Google Analytics, Google Ads) a účetní služby. Se zpracovateli máme uzavřené smlouvy
+            o zpracování osobních údajů.
+          </p>
+          <p>
+            Někteří poskytovatelé (Google) mohou zpracovávat data i mimo EU. Předání je v takovém
+            případě kryté standardními smluvními doložkami EU. Podmínky Google popisují jejich
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">Zásady ochrany soukromí ↗</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-5">Vaše práva</h2>
+          <p class="mb-5">Ve vztahu ke svým osobním údajům máte tato práva. Uplatníte je e-mailem — vyřídíme je bez zbytečného odkladu, nejpozději do jednoho měsíce.</p>
+          <div class="space-y-px bg-brand-black/10 border border-brand-black/10">
+            {rights.map(([name, desc]) => (
+              <div class="bg-brand-white p-4 flex flex-col sm:flex-row sm:gap-4">
+                <p class="font-mono text-xs tracking-widest uppercase text-brand-black sm:w-48 shrink-0 mb-1 sm:mb-0">{name}</p>
+                <p class="text-sm">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Cookies</h2>
+          <p>
+            Web používá cookies pro provoz, měření návštěvnosti a marketing. Podrobnosti a nastavení
+            souhlasu najdete v samostatných
+            <a href={cookiesHref} class="underline hover:text-brand-black">zásadách používání cookies</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-2xl font-bold text-brand-black mb-3">Dozorový úřad</h2>
+          <p>
+            Pokud se domníváte, že zpracováváme vaše údaje v rozporu s předpisy, máte právo podat
+            stížnost u <strong class="text-brand-black">Úřadu pro ochranu osobních údajů</strong>,
+            Pplk. Sochora 27, 170 00 Praha 7,
+            <a href="https://www.uoou.cz" target="_blank" rel="noopener noreferrer" class="underline hover:text-brand-black">uoou.cz ↗</a>.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
