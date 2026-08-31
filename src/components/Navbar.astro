@@ -207,8 +207,11 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   function updateNav() {
     if (!nav) return;
     const scrolled = window.scrollY > 30;
-    nav.style.background = scrolled ? 'rgba(252,252,252,0.85)' : '';
-    nav.style.backdropFilter = scrolled ? 'blur(8px)' : '';
+    // Pozadí lišty po odscrollování: PLNĚ neprůhledné a BEZ backdrop-filter: blur.
+    // Blur na position:fixed prvku způsobuje na iOS Safari „ghosting" (zastaralý
+    // snímek obsahu se vykreslí nad lištou). Neprůhledné pozadí to spolehlivě řeší.
+    nav.style.background = scrolled ? '#FAFAFA' : '';
+    nav.style.boxShadow = scrolled ? '0 1px 0 rgba(10,10,10,0.08)' : '';
     nav.style.mixBlendMode = scrolled ? 'normal' : 'multiply';
 
     if (logo && isHomePage) {
