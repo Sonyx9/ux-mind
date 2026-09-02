@@ -270,59 +270,6 @@ const clientLogos = [
     }
   </style>
 
-  <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
-  <section class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
-    <div class="mb-12 max-w-3xl">
-      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ TŘI OTÁZKY, TŘI MĚŘENÍ ]</p>
-      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Co uživatel vidí, jak reaguje<br/>a co ho zatěžuje<span style="color:#2D62FC">.</span></h2>
-      <p class="text-sm text-brand-black/60 leading-relaxed">
-        Analytika ukáže, KAM lidé klikli. Dotazník ukáže, CO si myslí. My měříme třetí vrstvu:
-        co skutečně viděli, jak silně reagovali a kde je rozhraní mentálně přetížilo.
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
-      {[
-        {
-          q: 'Vidí to vůbec?',
-          desc: 'Vizuální pozornost — heatmapy, fixace, TTFF, dwell time, AOI analýza a scanpathy. Eye tracking objektivně zachytí, co uživatel skutečně viděl a co minul.',
-          tool: 'EYE-TRACKING',
-        },
-        {
-          q: 'Jak silně reaguje?',
-          desc: 'Fyziologický arousal a mimické signály v kontextu úkolu. Interpretujeme je vždy s limity — žádné „čtení emocí".',
-          tool: 'GSR + MIMICKÉ SIGNÁLY',
-        },
-        {
-          q: 'Zvládá to bez námahy?',
-          desc: 'Kognitivní zátěž jako jedno srozumitelné skóre 0–100. Zjistíte, kde rozhraní uživatele přetěžuje, i když úkol nakonec splní.',
-          tool: 'MODEL EMLI',
-        },
-      ].map((item, i) => (
-        <div class="bg-brand-white p-8 flex flex-col">
-          <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
-          <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
-          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
-          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
-        </div>
-      ))}
-    </div>
-    <!-- Slovníček zkratek -->
-    <details class="group border border-brand-black/15 mt-6">
-        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-          [ SLOVNÍK POJMŮ ]
-          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-        </summary>
-        <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">čas do první fixace pohledu</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">sledovaná oblast zájmu (Area of Interest)</dd></div>
-            <div><dt class="font-display font-bold mb-1">dwell time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">celkový čas strávený pohledem v oblasti</dd></div>
-            <div><dt class="font-display font-bold mb-1">scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">dráha pohledu mezi fixacemi</dd></div>
-            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">měření kožní vodivosti, indikátor fyziologického arousalu</dd></div>
-            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">index mentální (kognitivní) zátěže odvozený z eye-tracking metrik</dd></div>
-        </dl>
-      </details>
-  </section>
-
   <!-- SERVICES SECTION -->
   <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
     <div class="mb-12 max-w-3xl">
@@ -400,6 +347,59 @@ const clientLogos = [
       </div>
       <span class="font-mono text-xs tracking-widest uppercase shrink-0">POROVNAT BALÍČKY →</span>
     </a>
+  </section>
+
+  <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="mb-12 max-w-3xl">
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ TŘI OTÁZKY, TŘI MĚŘENÍ ]</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Co uživatel vidí, jak reaguje<br/>a co ho zatěžuje<span style="color:#2D62FC">.</span></h2>
+      <p class="text-sm text-brand-black/60 leading-relaxed">
+        Analytika ukáže, KAM lidé klikli. Dotazník ukáže, CO si myslí. My měříme třetí vrstvu:
+        co skutečně viděli, jak silně reagovali a kde je rozhraní mentálně přetížilo.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+      {[
+        {
+          q: 'Vidí to vůbec?',
+          desc: 'Vizuální pozornost — heatmapy, fixace, TTFF, dwell time, AOI analýza a scanpathy. Eye tracking objektivně zachytí, co uživatel skutečně viděl a co minul.',
+          tool: 'EYE-TRACKING',
+        },
+        {
+          q: 'Jak silně reaguje?',
+          desc: 'Fyziologický arousal a mimické signály v kontextu úkolu. Interpretujeme je vždy s limity — žádné „čtení emocí".',
+          tool: 'GSR + MIMICKÉ SIGNÁLY',
+        },
+        {
+          q: 'Zvládá to bez námahy?',
+          desc: 'Kognitivní zátěž jako jedno srozumitelné skóre 0–100. Zjistíte, kde rozhraní uživatele přetěžuje, i když úkol nakonec splní.',
+          tool: 'MODEL EMLI',
+        },
+      ].map((item, i) => (
+        <div class="bg-brand-white p-8 flex flex-col">
+          <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
+          <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
+          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
+          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
+        </div>
+      ))}
+    </div>
+    <!-- Slovníček zkratek -->
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ SLOVNÍK POJMŮ ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">čas do první fixace pohledu</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">sledovaná oblast zájmu (Area of Interest)</dd></div>
+            <div><dt class="font-display font-bold mb-1">dwell time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">celkový čas strávený pohledem v oblasti</dd></div>
+            <div><dt class="font-display font-bold mb-1">scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">dráha pohledu mezi fixacemi</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">měření kožní vodivosti, indikátor fyziologického arousalu</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">index mentální (kognitivní) zátěže odvozený z eye-tracking metrik</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- EMLI SECTION -->
