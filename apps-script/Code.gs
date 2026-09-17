@@ -71,7 +71,7 @@ function doPost(e) {
 
     // Kontakt: pošli klientovi potvrzení (v jeho jazyce)
     if (type === 'contact' && SEND_CONTACT_CONFIRMATION && _isEmail(p.email)) {
-      const m = _contactConfirm(p.lang, p.name, p.message);
+      const m = _contactConfirm(p.lang, p.name);
       _send(p.email, m.subject, m.html);
     }
 
@@ -130,34 +130,60 @@ function _slack(type, p) {
   } catch (err) { /* Slack nesmí shodit uložení */ }
 }
 
-// Potvrzovací e-mail klientovi podle jazyka
-function _contactConfirm(lang, name, message) {
+// Podpisový blok (tagline podle jazyka)
+function _signature(tagline) {
+  return '<div style="margin-top:24px;padding-top:16px;border-top:1px solid #e5e5e5;color:#555;font-size:13px;line-height:1.6">' +
+    'Mgr. Lukáš Koula<br>' +
+    'UX MIND Research Lab<br>' +
+    '<span style="color:#888">' + tagline + '</span><br>' +
+    '<a href="mailto:spoluprace@uxmind.cz" style="color:#2D62FC;text-decoration:none">spoluprace@uxmind.cz</a> · +420 728 601 160 · ' +
+    '<a href="https://uxmind.cz" style="color:#2D62FC;text-decoration:none">uxmind.cz</a>' +
+    '</div>';
+}
+
+// Potvrzovací e-mail klientovi podle jazyka.
+// Pozn.: v ČESKÉM oslovení jméno NEUVÁDÍME (museli bychom ho skloňovat) — „Dobrý den,".
+// V EN/DE se skloňování neřeší, jméno tam necháváme.
+function _contactConfirm(lang, name) {
   const l = String(lang || 'cs').toLowerCase();
   const hi = name ? ' ' + name : '';
-  const quote = message ? '<br><br><span style="color:#666">Vaše zpráva:</span><br><em>' + _esc(message) + '</em>' : '';
   if (l === 'en') {
     return {
       subject: 'Thank you for your message — UX MIND',
-      html: 'Hello' + hi + ',<br><br>Thank you for reaching out. We\'ve received your message and will get back to you within 48 hours with a suggestion of what makes sense to test.' +
-            quote + '<br><br>— ' + FROM_NAME,
+      html: 'Hello' + hi + ',<br><br>' +
+        'thank you for your message. Your enquiry has reached us safely.<br><br>' +
+        'We\'ll look at what you need to find out or decide and get back to you within 48 hours at the latest. We\'ll suggest what makes sense to verify in your case, which method to choose and how the next steps could look.<br><br>' +
+        'We don\'t recommend research just for the sake of doing research. First we need to understand the question the measurement should answer.<br><br>' +
+        'If you\'d like to send us more materials in the meantime — a link to your website, app, prototype or analytics data — just reply to this email.<br><br>' +
+        'We look forward to your project.' +
+        _signature('UX research · user testing · eye tracking'),
     };
   }
   if (l === 'de') {
     return {
       subject: 'Danke für Ihre Nachricht — UX MIND',
-      html: 'Hallo' + hi + ',<br><br>vielen Dank für Ihre Nachricht. Wir haben sie erhalten und melden uns innerhalb von 48 Stunden mit einem Vorschlag, was sich zu testen lohnt.' +
-            quote + '<br><br>— ' + FROM_NAME,
+      html: 'Hallo' + hi + ',<br><br>' +
+        'vielen Dank für Ihre Nachricht. Ihre Anfrage ist wohlbehalten bei uns angekommen.<br><br>' +
+        'Wir sehen uns an, was Sie herausfinden oder entscheiden möchten, und melden uns spätestens innerhalb von 48 Stunden. Wir schlagen vor, was sich in Ihrem Fall zu prüfen lohnt, welche Methode sinnvoll ist und wie das weitere Vorgehen aussehen könnte.<br><br>' +
+        'Wir empfehlen Forschung nicht, nur um Forschung zu machen. Zuerst müssen wir die Frage verstehen, die die Messung beantworten soll.<br><br>' +
+        'Wenn Sie uns in der Zwischenzeit weitere Unterlagen schicken möchten — einen Link zu Ihrer Website, App, einem Prototyp oder Analysedaten — antworten Sie einfach auf diese E-Mail.<br><br>' +
+        'Wir freuen uns auf Ihr Projekt.' +
+        _signature('UX-Forschung · Nutzertests · Eye Tracking'),
     };
   }
   return {
     subject: 'Děkujeme za zprávu — UX MIND',
-    html: 'Dobrý den' + hi + ',<br><br>děkujeme za vaši zprávu. Máme ji a ozveme se do 48 hodin s návrhem, co má smysl ověřit.' +
-          quote + '<br><br>— ' + FROM_NAME,
+    html: 'Dobrý den,<br><br>' +
+      'děkujeme za zprávu. Vaše poptávka k nám v pořádku dorazila.<br><br>' +
+      'Podíváme se na to, co potřebujete zjistit nebo rozhodnout, a ozveme se vám nejpozději do 48 hodin. Navrhneme, co má v daném případě smysl ověřit, jakou metodu zvolit a jak by mohl další postup vypadat.<br><br>' +
+      'Nechceme doporučovat výzkum jen proto, abychom výzkum udělali. Nejdřív potřebujeme pochopit otázku, na kterou má měření odpovědět.<br><br>' +
+      'Pokud nám chcete mezitím poslat další podklady, odkaz na web, aplikaci, prototyp nebo třeba analytická data, stačí odpovědět na tento e-mail.<br><br>' +
+      'Těšíme se na váš projekt.' +
+      _signature('UX výzkum · uživatelské testování · eye tracking'),
   };
 }
 
 function _isEmail(s) { return typeof s === 'string' && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s); }
-function _esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
 function _ok()   { return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON); }
 function _err(m) { return ContentService.createTextOutput(JSON.stringify({ ok: false, error: m })).setMimeType(ContentService.MimeType.JSON); }
