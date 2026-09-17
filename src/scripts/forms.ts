@@ -1,7 +1,7 @@
 // Odesílání formulářů na Google Apps Script endpoint (viz apps-script/Code.gs).
 // Po nasazení scriptu sem vlož jeho /exec URL. Dokud je prázdná, web funguje
 // normálně, jen se nic neodesílá (formuláře se chovají jako dřív).
-export const FORMS_ENDPOINT = '';
+export const FORMS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx3k2PhzXg8xavUfP8KUDoq_j0KTgqPAhzfkc0Xq3zeslcv49fTc-NAFO0dR0SgPz5q9Q/exec';
 
 /**
  * Odeslání dat na endpoint tak, aby přežilo i okamžité přesměrování stránky

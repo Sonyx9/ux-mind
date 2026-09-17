@@ -9,7 +9,7 @@ export const features = {
    * s výzvou napsat e-mail; formulář za ním je jen dekorativní (disabled).
    * Před zapnutím: napojit odeslání přes forms.ts (FORMS_ENDPOINT).
    */
-  contactForm: false,
+  contactForm: true,
 
   /**
    * Stažení případové studie za lead (CTA „Vyžádat studii" + modal s formulářem).
