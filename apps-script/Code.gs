@@ -21,7 +21,9 @@ const NOTIFY_EMAIL = 'spoluprace@uxmind.cz';   // kam chodí interní notifikace
 const FROM_NAME    = 'UX MIND Research Lab';    // jméno odesílatele u odchozí pošty
 const REPLY_TO     = 'spoluprace@uxmind.cz';    // kam míří odpovědi klienta (Reply-To)
 const FROM_ALIAS   = '';                        // máš-li v Gmailu ověřený alias „Odesílat jako…", vlož adresu — pošta pak půjde z ní
-const SLACK_WEBHOOK = '';                       // volitelně: Slack Incoming Webhook URL → notifikace i do Slacku
+// Slack webhook ZÁMĚRNĚ není v kódu (repo je veřejné). Vlož ho do Script Properties:
+//   Nastavení projektu (⚙) → Vlastnosti skriptu → přidat vlastnost
+//   SLACK_WEBHOOK = https://hooks.slack.com/services/…    (načte ho _slack())
 const SHARED_SECRET = '';                       // volitelně anti-spam token (stejný dáme i do webu). Prázdné = vypnuto.
 const SEND_PDF_TO_REQUESTER   = true;           // u studie poslat žadateli e-mail s odkazem na PDF
 const SEND_CONTACT_CONFIRMATION = true;         // u kontaktu poslat klientovi potvrzení, že zprávu máme
@@ -114,14 +116,15 @@ function _notify(type, p) {
 
 // Notifikace do Slacku (Incoming Webhook)
 function _slack(type, p) {
-  if (!SLACK_WEBHOOK) return;
+  const url = PropertiesService.getScriptProperties().getProperty('SLACK_WEBHOOK');
+  if (!url) return;
   try {
     const lines = ['*Nový lead* — ' + type];
     ['name', 'email', 'company', 'service', 'message'].forEach(function (k) {
       if (p[k]) lines.push('*' + k + ':* ' + p[k]);
     });
     if (p.source) lines.push('_' + p.source + '_');
-    UrlFetchApp.fetch(SLACK_WEBHOOK, {
+    UrlFetchApp.fetch(url, {
       method: 'post',
       contentType: 'application/json',
       payload: JSON.stringify({ text: lines.join('\n') }),

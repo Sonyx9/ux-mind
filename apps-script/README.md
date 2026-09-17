@@ -17,7 +17,7 @@ volitelně zprávu do Slacku a přesměruje na děkovací stránku.
 1. V tomto účtu založ **Google Sheet** (klidně prázdný) — bude to databáze leadů.
 2. V něm: **Rozšíření → Apps Script**.
 3. Smaž ukázkový kód, vlož **celý obsah `Code.gs`**.
-4. Nahoře zkontroluj `NOTIFY_EMAIL` (kam chodí notifikace) a případně vlož `SLACK_WEBHOOK`.
+4. Nahoře zkontroluj `NOTIFY_EMAIL` (kam chodí notifikace). Slack se nastavuje zvlášť (viz níže).
 5. **Nasadit → Nové nasazení → typ „Webová aplikace“:**
    - Spouštět jako: **Já (uxmindresearchlab@gmail.com)**
    - Kdo má přístup: **Kdokoli**
@@ -46,8 +46,11 @@ Dokud je `FORMS_ENDPOINT` prázdný / flag vypnutý, na webu se drží stav
   **Nastavení → Účty → Odesílat jako…** (ověřený alias) a jeho adresu vlož do `FROM_ALIAS` v `Code.gs`.
 
 ## Slack (volitelné)
-1. Slack → vytvoř **Incoming Webhook** pro zvolený kanál.
-2. Zkopírovanou URL vlož do `SLACK_WEBHOOK` v `Code.gs` → přenasaď (viz Poznámky).
+Webhook **nedáváme do kódu** (repo je veřejné) — uloží se do Script Properties:
+1. Slack → vytvoř **Incoming Webhook** pro zvolený kanál (zkopíruj URL).
+2. Apps Script → **Nastavení projektu (⚙) → Vlastnosti skriptu → Přidat vlastnost:**
+   `SLACK_WEBHOOK` = zkopírovaná URL → ulož.
+3. Není potřeba znovu nasazovat — vlastnost se čte za běhu (`_slack()`).
 
 ## Listy v tabulce (vzniknou samy)
 | List | Sloupce |
