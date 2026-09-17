@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <script is:inline define:vars={{ base }}>
     (function () {
       const rel = location.pathname.startsWith(base) ? location.pathname.slice(base.length) : location.pathname;
-      const lang = rel.startsWith('/en') ? 'en' : rel.startsWith('/de') ? 'de' : 'cs';
+      const lang = (rel === '/en' || rel.startsWith('/en/')) ? 'en' : (rel === '/de' || rel.startsWith('/de/')) ? 'de' : 'cs';
       const T = {
         cs: { title: '404 — stránka nenalezena', tag: '[ CHYBA 404 ]', h1: 'TADY NIC<br/>NEVIDÍME<span style="color:#2D62FC">.</span>', body: 'A že se na pozornost díváme profesionálně. Stránka neexistuje, byla přesunuta — nebo jste narazili na překlep v odkazu.', home: 'NA ÚVOD →', homeHref: '/', services: 'NAŠE SLUŽBY', servicesHref: '/sluzby', contact: 'KONTAKT', contactHref: '/kontakt' },
         en: { title: '404 — page not found', tag: '[ ERROR 404 ]', h1: 'NOTHING<br/>TO SEE HERE<span style="color:#2D62FC">.</span>', body: 'And attention is literally our job. The page doesn’t exist, was moved — or you hit a typo in the link.', home: 'HOME →', homeHref: '/en/', services: 'OUR SERVICES', servicesHref: '/en/services', contact: 'CONTACT', contactHref: '/en/contact' },

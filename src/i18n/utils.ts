@@ -106,8 +106,9 @@ for (const lang of Object.keys(urlMap) as Lang[]) {
 }
 
 export function getLang(pathname: string): Lang {
-  if (pathname.startsWith('/en')) return 'en';
-  if (pathname.startsWith('/de')) return 'de';
+  // Pozor na hranici lomítka: '/dekujeme' NEsmí být detekováno jako '/de'.
+  if (pathname === '/en' || pathname.startsWith('/en/')) return 'en';
+  if (pathname === '/de' || pathname.startsWith('/de/')) return 'de';
   return 'cs';
 }
 
