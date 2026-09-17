@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Děkujeme za zprávu"
+  description="Vaši zprávu jsme přijali. Ozveme se do 48 hodin."
+  noindex={true}
+  hreflang={false}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <div class="mb-10">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ODESLÁNO ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 7rem);">
+          Děkujeme<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-xl text-brand-black/70 leading-relaxed max-w-2xl">
+          Vaši zprávu máme. Ozveme se <strong class="text-brand-black">do 48 hodin</strong> s návrhem, co má smysl ověřit a jaký postup zvolit.
+        </p>
+      </div>
+
+      <div class="border border-brand-black/10 p-6 md:p-8 mb-10">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ CO BUDE DÁL ]</p>
+        <ul class="space-y-2 text-brand-black/70 leading-relaxed">
+          <li class="flex gap-2"><span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">01</span> Potvrzení jsme poslali na váš e-mail (zkontrolujte i spam).</li>
+          <li class="flex gap-2"><span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">02</span> Projdeme zadání a připravíme první návrh měření.</li>
+          <li class="flex gap-2"><span class="font-mono text-xs pt-0.5" style="color:#2D62FC;">03</span> Ozveme se e-mailem nebo telefonicky do dvou pracovních dnů.</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="/" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">
+          ← Zpět na úvod
+        </a>
+        <a href="/pripadove-studie" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">
+          Prohlédnout studie →
+        </a>
+      </div>
+
+      <p class="text-sm text-brand-black/50 mt-10">
+        Něco nesedí? Napište přímo na <a href="mailto:spoluprace@uxmind.cz" class="underline hover:text-brand-black">spoluprace@uxmind.cz</a>.
+      </p>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

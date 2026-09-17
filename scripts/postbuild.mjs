@@ -72,6 +72,7 @@ const entries = [];
 for (const file of files) {
   const html = readFileSync(file, 'utf8');
   if (html.includes('http-equiv="refresh"')) continue; // redirect stránky
+  if (/name="robots"[^>]*content="[^"]*noindex/i.test(html)) continue; // noindex stránky (děkovací apod.)
   const rel = relative(DIST, file).replace(/\\/g, '/');
   if (rel === '404.html') continue;
   const path = rel === 'index.html' ? '' : rel.replace(/\/index\.html$/, '/').replace(/\.html$/, '/');

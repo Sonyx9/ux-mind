@@ -1,46 +1,67 @@
 # Formuláře → Google Sheet (Apps Script)
 
-Ukládání leadů z webu do Google tabulky + odeslání PDF studie na e-mail žadatele.
-Bez serveru — funguje na statickém GitHub Pages hostingu.
+Kontaktní formulář (a formuláře studií) na statickém webu bez serveru:
+ukládá leady do Google tabulky, posílá notifikaci nám, potvrzení klientovi,
+volitelně zprávu do Slacku a přesměruje na děkovací stránku.
 
 ## Co je hotové
-- **`Code.gs`** — kód k vložení do Apps Scriptu (zvládne `study`, `contact` i `newsletter`;
-  teď je na webu napojený jen formulář **studie**).
-- Na webu: `src/scripts/forms.ts` odesílá data na endpoint; formulář studie v `src/scripts/case-study.ts`.
+- **`Code.gs`** — kód k vložení do Apps Scriptu (zvládne `contact`, `study` i `newsletter`).
+- Na webu: `src/scripts/forms.ts` (odeslání přes `sendBeacon`, přežije redirect),
+  `src/scripts/contact-form.ts` (kontaktní formulář), `src/scripts/case-study.ts` (studie).
+- Děkovací stránky: `/dekujeme`, `/en/thank-you`, `/de/danke` (noindex).
 
 ## Nasazení (cca 10 minut) — dělá se jednou
 
-1. Založ **Google Sheet** (klidně prázdný). Bude to tvoje databáze leadů.
+Účet: **uxmindresearchlab@gmail.com**.
+
+1. V tomto účtu založ **Google Sheet** (klidně prázdný) — bude to databáze leadů.
 2. V něm: **Rozšíření → Apps Script**.
 3. Smaž ukázkový kód, vlož **celý obsah `Code.gs`**.
-4. Uprav nahoře `NOTIFY_EMAIL` (kam mají chodit notifikace o novém leadu).
+4. Nahoře zkontroluj `NOTIFY_EMAIL` (kam chodí notifikace) a případně vlož `SLACK_WEBHOOK`.
 5. **Nasadit → Nové nasazení → typ „Webová aplikace“:**
-   - Spouštět jako: **Já**
+   - Spouštět jako: **Já (uxmindresearchlab@gmail.com)**
    - Kdo má přístup: **Kdokoli**
-6. Potvrď oprávnění (poslat e-mail, upravit tabulku).
+6. Potvrď oprávnění (poslat e-mail, upravit tabulku; u Slacku i připojení k externí službě).
 7. Zkopíruj vygenerovanou **URL** (končí na `/exec`).
 
-## Poslední krok (uděláme my)
-Pošli nám tu `/exec` URL — vložíme ji do `src/scripts/forms.ts` (konstanta `FORMS_ENDPOINT`).
-Dokud je prázdná, web funguje normálně, jen se nic neukládá.
+## Go-live (uděláme my, jakmile pošleš `/exec` URL)
+1. Vložíme URL do `src/scripts/forms.ts` (`FORMS_ENDPOINT`).
+2. Zapneme formulář: `src/config.ts` → `features.contactForm = true`.
+3. Commit + push. Hotovo — formulář je živý.
 
-## Jak to poběží
-- Návštěvník vyplní jméno + e-mail v modalu „Vyžádat studii“.
-- Web pošle data na endpoint → **řádek do listu `Studie`** + **notifikace vám** +
-  **PDF odkaz e-mailem žadateli** (ověří pravost e-mailu).
-- PDF se zároveň otevře hned (rychlá odezva). Chceš-li „tvrdou bránu“ (PDF jen e-mailem),
-  je to změna jednoho řádku — řekni.
+Dokud je `FORMS_ENDPOINT` prázdný / flag vypnutý, na webu se drží stav
+„PŘIPRAVUJEME" a nepřijde se o žádný lead.
+
+## Jak to poběží (kontakt)
+- Návštěvník vyplní formulář → web pošle data na endpoint (`sendBeacon`).
+- Vznikne **řádek v listu `Kontakt`**, přijde **notifikace nám** (Reply-To = e-mail klienta),
+  klientovi **potvrzení v jeho jazyce** (odesílatel „UX MIND Research Lab", Reply-To spoluprace@uxmind.cz)
+  a volitelně **zpráva do Slacku**.
+- Návštěvník je přesměrován na **děkovací stránku** v daném jazyce.
+
+## E-mail: odesílatel a doručitelnost
+- Pošta chodí z **uxmindresearchlab@gmail.com** se jménem odesílatele **UX MIND Research Lab**
+  a **Reply-To spoluprace@uxmind.cz** (odpovědi klienta míří tam).
+- Chceš-li, aby pošta chodila přímo „z" `spoluprace@uxmind.cz`: v Gmailu nastav
+  **Nastavení → Účty → Odesílat jako…** (ověřený alias) a jeho adresu vlož do `FROM_ALIAS` v `Code.gs`.
+
+## Slack (volitelné)
+1. Slack → vytvoř **Incoming Webhook** pro zvolený kanál.
+2. Zkopírovanou URL vlož do `SLACK_WEBHOOK` v `Code.gs` → přenasaď (viz Poznámky).
 
 ## Listy v tabulce (vzniknou samy)
 | List | Sloupce |
 |---|---|
-| Studie | Datum · Jméno · E-mail · Firma · Studie · PDF · Souhlas · Zdroj |
-| Kontakt | *(připraveno, zatím nenapojeno)* |
-| Newsletter | *(připraveno, zatím nenapojeno)* |
+| Kontakt | Datum · Jméno · E-mail · Firma · Služba · Zpráva · Souhlas · Marketing · Jazyk · Zdroj |
+| Studie | Datum · Jméno · E-mail · Firma · Studie · PDF · Souhlas · Marketing · Zdroj |
+| Newsletter | Datum · E-mail · Souhlas · Zdroj |
 
 ## Poznámky
-- **Anti-spam:** volitelný sdílený token (`SHARED_SECRET` v `Code.gs` + stejný na webu).
-  Zatím vypnuto; když začne chodit spam, zapneme.
-- **GDPR:** souhlas se posílá jako pole `consent`; data jsou u vás v Googlu (zpracovatel Google).
+- **Anti-spam:** honeypot (skryté pole `_gotcha`) je aktivní. Navíc volitelný token
+  `SHARED_SECRET` (v `Code.gs` + stejný na webu) — zapneme, když začne chodit spam.
+- **Limity Gmailu:** ~100 příchozích akcí / e-mailů denně (běžný Gmail) — pro kontaktní
+  formulář bohatě stačí.
+- **GDPR:** souhlas se posílá jako `consent`, marketing zvlášť jako `marketing`; data jsou
+  u vás v Googlu (Google = zpracovatel).
 - **Změna kódu scriptu** = po úpravě znovu **Nasadit → Spravovat nasazení → upravit → nová verze**
-  (URL zůstává stejná).
+  (URL `/exec` zůstává stejná).

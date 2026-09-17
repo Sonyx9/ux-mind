@@ -62,9 +62,10 @@ import { features } from '../../config';
               </p>
             </div>
           </div>
-          <form class="space-y-6 opacity-20 pointer-events-none select-none" aria-hidden="true">
-            <fieldset disabled>
+          <form class:list={["space-y-6 contact-form", !features.contactForm && "opacity-20 pointer-events-none select-none"]} aria-hidden={!features.contactForm ? "true" : undefined} data-redirect="/de/danke/" data-lang="de">
+            <fieldset disabled={!features.contactForm}>
             <div class="space-y-6">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div>
               <label for="f-name" class="font-mono text-xs text-brand-black/60 tracking-widest block mb-2">NAME *</label>
               <input
@@ -194,5 +195,9 @@ import { features } from '../../config';
   </main>
 
   <Footer />
+
+  <script>
+    import '../../scripts/contact-form';
+  </script>
 </BaseLayout>
 </content>
