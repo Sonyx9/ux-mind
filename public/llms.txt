@@ -8,7 +8,7 @@
 - IČO: 29714966
 - Web: https://uxmind.cz
 - E-mail: spoluprace@uxmind.cz
-- Telefon: +420 728 601 160
+- Telefon: +420 605 907 866
 - Sídlo: Hradec Králové, Česká republika
 - Jazyky webu: čeština (výchozí), angličtina, němčina
 
@@ -58,4 +58,4 @@
 
 ## English summary
 
-UX MIND Research Lab is a Czech UX research laboratory specialising in eye tracking, user testing and cognitive load measurement, working with the FIMEYELAB lab at the Faculty of Informatics and Management, University of Hradec Králové (FIM UHK). It measures visual attention (heatmaps, AOI analysis) and cognitive load using its own developed and continuously verified EMLI index, and publishes only findings backed by primary data, always with method, sample size and limitations. Canonical domain: https://uxmind.cz. Contact: spoluprace@uxmind.cz, +420 728 601 160.
+UX MIND Research Lab is a Czech UX research laboratory specialising in eye tracking, user testing and cognitive load measurement, working with the FIMEYELAB lab at the Faculty of Informatics and Management, University of Hradec Králové (FIM UHK). It measures visual attention (heatmaps, AOI analysis) and cognitive load using its own developed and continuously verified EMLI index, and publishes only findings backed by primary data, always with method, sample size and limitations. Canonical domain: https://uxmind.cz. Contact: spoluprace@uxmind.cz, +420 605 907 866.
