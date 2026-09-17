@@ -22,34 +22,32 @@ import { features } from '../../config';
         </h1>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div class="max-w-3xl">
 
-        <!-- Contact info -->
-        <div>
-          <p class="text-xl text-brand-black/60 leading-relaxed mb-12">
-            Send us a website, app, campaign or a brief description of the problem. We’ll get back to you within 48 hours and propose what makes sense to verify and which approach to take.
-          </p>
+        <!-- Short text -->
+        <p class="text-xl text-brand-black/60 leading-relaxed mb-10">
+          Send us a website, app, campaign or a brief description of the problem. We’ll get back to you within 48 hours and propose what makes sense to verify and which approach to take.
+        </p>
 
-          <div class="space-y-6">
-            <div>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">EMAIL</p>
-              <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
-                spoluprace@uxmind.cz
-              </a>
-            </div>
-            <div>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">PHONE</p>
-              <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
-                +420 728 601 160
-              </a>
-            </div>
-            <div>
-              <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">LOCATION</p>
-              <p class="font-display text-xl font-bold">K Lesu 180, Svinary<br/>500 09 Hradec Králové</p>
-            </div>
+        <!-- E-mail + phone side by side -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-10 mb-12 border-b border-brand-black/10">
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">EMAIL</p>
+            <a href="mailto:spoluprace@uxmind.cz" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors break-words">
+              spoluprace@uxmind.cz
+            </a>
           </div>
-
+          <div>
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">PHONE</p>
+            <a href="tel:+420728601160" class="font-display text-2xl font-bold hover:text-brand-blue transition-colors">
+              +420 728 601 160
+            </a>
+          </div>
         </div>
+
+        <!-- Form -->
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ CONTACT FORM ]</p>
+        <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-8">Write to us<span style="color:#2D62FC">.</span></h2>
 
         <!-- Contact form -->
         <div class="relative min-h-[620px]">
