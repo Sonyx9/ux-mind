@@ -46,11 +46,11 @@ Dokud je `FORMS_ENDPOINT` prázdný / flag vypnutý, na webu se drží stav
   **Nastavení → Účty → Odesílat jako…** (ověřený alias) a jeho adresu vlož do `FROM_ALIAS` v `Code.gs`.
 
 ## Slack (volitelné)
-Webhook **nedáváme do kódu** (repo je veřejné) — uloží se do Script Properties:
-1. Slack → vytvoř **Incoming Webhook** pro zvolený kanál (zkopíruj URL).
-2. Apps Script → **Nastavení projektu (⚙) → Vlastnosti skriptu → Přidat vlastnost:**
-   `SLACK_WEBHOOK` = zkopírovaná URL → ulož.
-3. Není potřeba znovu nasazovat — vlastnost se čte za běhu (`_slack()`).
+Webhook je natvrdo v `Code.gs` (konstanta `SLACK_WEBHOOK`). Aby se tajný webhook
+nedostal do veřejného repa, je **`apps-script/Code.gs` v `.gitignore`** — je to
+lokální pracovní kopie k vložení do Apps Scriptu, do gitu se necommituje.
+1. Slack → vytvoř **Incoming Webhook** (zkopíruj URL) a vlož do `SLACK_WEBHOOK` v `Code.gs`.
+2. Přenasaď: **Nasadit → Spravovat nasazení → nová verze** (URL `/exec` zůstává).
 
 ## Listy v tabulce (vzniknou samy)
 | List | Sloupce |

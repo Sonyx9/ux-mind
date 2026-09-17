@@ -40,3 +40,6 @@ UXMind logo*.png
 
 # pomocné skripty
 stahni-loga.sh
+
+# Apps Script backend — obsahuje tajný Slack webhook, drží se mimo veřejné repo
+apps-script/Code.gs
