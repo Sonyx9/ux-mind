@@ -39,8 +39,9 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       <img src={`${base}/logo.svg`} alt="UX Mind" width="551" height="94" style="height:clamp(18px, 0.55vw + 14px, 22px); width:auto; display:block;" />
     </a>
 
-    <!-- Mobile CTA — na všech stránkách (mezi logem a [ MENU ]) -->
-    <a href={contactHref} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5 whitespace-nowrap shrink-0">
+    <!-- Mobile CTA — mezi logem a [ MENU ]. Na homepage se objeví až po odscrollování z hero
+         (do té doby je CTA v hero nad obrázkem), stejně jako logo. -->
+    <a id="nav-cta-sm" href={contactHref} class="md:hidden font-mono text-[10px] tracking-widest uppercase bg-brand-black text-brand-white px-3 py-1.5 whitespace-nowrap shrink-0" style={`transition: opacity 0.3s ease; ${isHome ? 'opacity:0; pointer-events:none;' : ''}`}>
       {mobileCTALabel}
     </a>
 
@@ -49,9 +50,9 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <div class="nav-drop relative">
           <a
             href={link.href}
-            class={`flex items-center gap-1 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
+            class={`flex items-center gap-1 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
               currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
-                ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
+                ? 'underline underline-offset-4' : 'hover:text-[#2D62FC]'
             }`}
             aria-haspopup="true"
           >
@@ -63,7 +64,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
                 <a
                   href={c.href}
                   class={`block px-4 py-2 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
-                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
+                    currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'underline underline-offset-4' : 'hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
                   {c.label}
@@ -82,8 +83,8 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       ) : (
         <a
           href={link.href}
-          class={`font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
-            currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
+          class={`font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
+            currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'underline underline-offset-4' : 'hover:text-[#2D62FC]'
           }`}
         >
           {link.label}
@@ -200,6 +201,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   const nav = document.getElementById('main-nav');
   const logo = document.getElementById('nav-logo') as HTMLAnchorElement | null;
   const isHomePage = document.querySelector('h1') !== null && logo?.style.opacity === '0';
+  const navCtaSm = document.getElementById('nav-cta-sm') as HTMLAnchorElement | null;
 
   // Viditelnost skupin menu (PC / tablet / mobil) řídí výhradně CSS breakpointy
   // (hidden xl:flex / md:block xl:hidden / md:hidden) — stejně jako na ostatních
@@ -220,6 +222,10 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         const showLogo = h1.getBoundingClientRect().bottom < 0;
         logo.style.opacity = showLogo ? '1' : '0';
         logo.style.pointerEvents = showLogo ? 'auto' : 'none';
+        if (navCtaSm) {
+          navCtaSm.style.opacity = showLogo ? '1' : '0';
+          navCtaSm.style.pointerEvents = showLogo ? 'auto' : 'none';
+        }
       }
     }
   }

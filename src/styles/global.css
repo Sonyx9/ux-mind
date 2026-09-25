@@ -163,6 +163,14 @@ rect.viz-bar {
   @apply w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors;
 }
 
+/* Mobil (<768px): vršek velkého hero loga lícuje s vrškem [ MENU ] v liště.
+   Tablet (md–xl) drží výchozí hodnotu. */
+@media (max-width: 767px) {
+  :root {
+    --hero-logo-top: 1.8rem;
+  }
+}
+
 /* PC (≥1280px): velké hero logo posunuto nahoru, aby jeho vršek lícoval s vrškem menu.
    Mobil/tablet zůstávají na výchozí hodnotě výše. */
 @media (min-width: 1280px) {
