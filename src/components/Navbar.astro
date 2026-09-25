@@ -49,7 +49,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <div class="nav-drop relative">
           <a
             href={link.href}
-            class={`flex items-center gap-1 font-mono font-semibold text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
+            class={`flex items-center gap-1 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
               currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
                 ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
             }`}
@@ -62,7 +62,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
               {link.children.map(c => (
                 <a
                   href={c.href}
-                  class={`block px-4 py-2 font-mono font-semibold text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
+                  class={`block px-4 py-2 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
                     currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
@@ -75,22 +75,22 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       ) : link.href === contactHref ? (
         <a
           href={link.href}
-          class="font-mono font-semibold text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
+          class="font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
         >
           {link.label}
         </a>
       ) : (
         <a
           href={link.href}
-          class={`font-mono font-semibold text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
+          class={`font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
             currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
           }`}
         >
           {link.label}
         </a>
       ))}
-      <div class="lang-switch relative font-mono font-semibold text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase">
-        <button class="lang-toggle font-semibold flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
+      <div class="lang-switch relative font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase">
+        <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
           {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
         <div class="lang-menu hidden absolute right-0 top-full mt-2 bg-brand-white border border-brand-black/20 z-[110] shadow-sm" role="listbox">
