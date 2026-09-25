@@ -167,6 +167,6 @@ rect.viz-bar {
    Mobil/tablet zůstávají na výchozí hodnotě výše. */
 @media (min-width: 1280px) {
   :root {
-    --hero-logo-top: 2.5rem;
+    --hero-logo-top: 2.625rem;
   }
 }
