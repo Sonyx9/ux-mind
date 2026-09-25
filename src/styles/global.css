@@ -71,6 +71,11 @@
     font-size: calc(clamp(11px, 0.85vw, 13px) * var(--fs, 1));
   }
 
+  /* PC menu — škáluje se s přepínačem TEXT (--fs) */
+  .nav-fs {
+    font-size: calc(clamp(0.75rem, 0.25vw + 0.6rem, 0.8125rem) * var(--fs, 1));
+  }
+
   .desktop-gutter-x {
     padding-inline: var(--desktop-gutter);
   }

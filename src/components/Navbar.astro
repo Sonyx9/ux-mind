@@ -50,7 +50,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <div class="nav-drop relative">
           <a
             href={link.href}
-            class={`flex items-center gap-1 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
+            class={`flex items-center gap-1 font-mono nav-fs tracking-widest uppercase transition-colors ${
               currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
                 ? 'underline underline-offset-4' : 'hover:text-[#2D62FC]'
             }`}
@@ -63,7 +63,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
               {link.children.map(c => (
                 <a
                   href={c.href}
-                  class={`block px-4 py-2 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
+                  class={`block px-4 py-2 font-mono nav-fs tracking-widest uppercase transition-colors ${
                     currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'underline underline-offset-4' : 'hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
@@ -76,21 +76,21 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       ) : link.href === contactHref ? (
         <a
           href={link.href}
-          class="font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
+          class="font-mono nav-fs tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
         >
           {link.label}
         </a>
       ) : (
         <a
           href={link.href}
-          class={`font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
+          class={`font-mono nav-fs tracking-widest uppercase transition-colors ${
             currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'underline underline-offset-4' : 'hover:text-[#2D62FC]'
           }`}
         >
           {link.label}
         </a>
       ))}
-      <div class="lang-switch relative font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase">
+      <div class="lang-switch relative font-mono nav-fs tracking-widest uppercase">
         <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
           {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
@@ -101,13 +101,14 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
           )}
         </div>
       </div>
-      <div class="fs-switch flex flex-col items-center" aria-label={t.fsTitle}>
-        <div class="flex items-end" style="gap:3px;">
-          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:8px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
-          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:12px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
-          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:7px; height:16px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
+      <!-- Přepínač je záměrně větší (i pro hůře vidící); záporný margin drží výšku lišty, aby se neposunulo menu ani zarovnání s hero logem -->
+      <div class="fs-switch flex flex-col items-center" style="margin-block:-5px;" aria-label={t.fsTitle}>
+        <div class="flex items-end" style="gap:4px;">
+          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:12px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
+          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:18px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
+          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:24px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
         </div>
-        <span class="font-mono tracking-widest text-brand-black/60 mt-0.5" style="font-size:8px;">TEXT</span>
+        <span class="font-mono tracking-widest text-brand-black/70 mt-0.5" style="font-size:10px;">TEXT</span>
       </div>
     </div>
 
@@ -234,7 +235,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   updateNav();
 
   // Přepínač velikosti textu — tři sloupce (malý/střední/velký) s popiskem TEXT.
-  // Škáluje se POUZE obsah pod hero sekcí (zoom) — hero, navigace ani scroll indikátor se nemění.
+  // Obsah pod hero se škáluje přes zoom; hero texty a PC menu přes CSS proměnnou --fs.
   (function () {
     const FS_KEY = 'uxmind-font-scale';
     const LEVELS = [1, 1.08, 1.16];
