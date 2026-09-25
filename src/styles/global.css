@@ -41,6 +41,8 @@
     --desktop-top-offset: 1.25rem;
     --hero-mono-size: 0.75rem;
     --hero-micro-size: 0.75rem;
+    /* Svislá pozice velkého hero loga. Na PC (viz konec souboru) se srovná s vrškem menu. */
+    --hero-logo-top: calc(var(--desktop-top-offset) + 3rem);
   }
 
   body {
@@ -159,4 +161,12 @@ rect.viz-bar {
 /* Textové pole formuláře žádosti o studii (na tmavém pozadí) */
 .study-input {
   @apply w-full border border-brand-white/50 px-4 py-3 font-sans text-base bg-transparent text-brand-white placeholder:text-brand-white/70 focus:outline-none focus:border-brand-white transition-colors;
+}
+
+/* PC (≥1280px): velké hero logo posunuto nahoru, aby jeho vršek lícoval s vrškem menu.
+   Mobil/tablet zůstávají na výchozí hodnotě výše. */
+@media (min-width: 1280px) {
+  :root {
+    --hero-logo-top: 2.5rem;
+  }
 }

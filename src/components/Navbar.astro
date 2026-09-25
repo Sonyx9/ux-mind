@@ -32,7 +32,7 @@ const mobileCTALabel = t.cta;
 const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es'].includes(path);
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 mix-blend-multiply transition-colors duration-300">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 xl:pt-9 xl:pb-5 mix-blend-multiply transition-colors duration-300">
   <div id="nav-inner" class="desktop-gutter-x relative flex items-center justify-between">
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
     <a id="nav-logo" href={homeHref} class="block hover:opacity-50 transition-opacity ml-[5px]" style={`line-height:0; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
@@ -49,7 +49,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <div class="nav-drop relative">
           <a
             href={link.href}
-            class={`flex items-center gap-1 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
+            class={`flex items-center gap-1 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
               currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
                 ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
             }`}
@@ -62,7 +62,7 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
               {link.children.map(c => (
                 <a
                   href={c.href}
-                  class={`block px-4 py-2 font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-colors ${
+                  class={`block px-4 py-2 font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-colors ${
                     currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
@@ -75,21 +75,21 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       ) : link.href === contactHref ? (
         <a
           href={link.href}
-          class="font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
+          class="font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase border border-brand-black px-3 py-1.5 transition-colors hover:border-[#2D62FC] hover:text-[#2D62FC]"
         >
           {link.label}
         </a>
       ) : (
         <a
           href={link.href}
-          class={`font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase transition-opacity ${
+          class={`font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase transition-opacity ${
             currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' ? 'opacity-100' : 'opacity-60 hover:opacity-100 hover:text-[#2D62FC]'
           }`}
         >
           {link.label}
         </a>
       ))}
-      <div class="lang-switch relative font-mono text-[clamp(0.625rem,0.28vw+0.48rem,0.75rem)] tracking-widest uppercase">
+      <div class="lang-switch relative font-mono text-[clamp(0.75rem,0.25vw+0.6rem,0.8125rem)] tracking-widest uppercase">
         <button class="lang-toggle font-medium flex items-center gap-1 hover:opacity-50 transition-opacity" aria-haspopup="listbox" aria-expanded="false" title={t.langTitle}>
           {currentLangLabel}<span style="font-size:7px; line-height:1;">▼</span>
         </button>
