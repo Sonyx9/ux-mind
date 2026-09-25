@@ -252,10 +252,11 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       });
     }
 
-    // Uložená volba má přednost; bez ní je na velkých monitorech (>=1536px)
-    // výchozí střední velikost (1.08), jinak malá (1). Auto-výchozí se neukládá.
+    // Uložená volba má přednost; bez ní je na desktopu (>=1024px) výchozí STŘEDNÍ (1.08,
+    // prostřední volba) — jde zmenšit na malé i zvětšit na velké. Na mobilu malé (1),
+    // není tam přepínač a zoom by mohl přetékat. Auto-výchozí se neukládá.
     const storedFs = parseFloat(localStorage.getItem(FS_KEY) || '');
-    let fs = LEVELS.includes(storedFs) ? storedFs : (window.innerWidth >= 1536 ? 1.08 : 1);
+    let fs = LEVELS.includes(storedFs) ? storedFs : (window.innerWidth >= 1024 ? 1.08 : 1);
     applyFS(fs);
 
     bars.forEach(b => b.addEventListener('click', () => {
