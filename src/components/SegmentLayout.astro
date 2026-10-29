@@ -201,7 +201,7 @@ const pageSchema = [
           <img
             src={`${base}${segment.obrazek.src}`}
             alt={segment.obrazek.alt}
-            width="1200" height="800" loading="lazy" decoding="async"
+            width={segment.obrazek.width ?? 1200} height={segment.obrazek.height ?? 800} loading="lazy" decoding="async"
             class="w-full max-h-[480px] object-cover object-center border border-brand-black/10"
           />
           <p class="font-mono text-[11px] text-brand-black/60 mt-2">{segment.obrazek.popisek}</p>

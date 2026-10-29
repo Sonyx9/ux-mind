@@ -72,7 +72,7 @@ export type Segment = {
   /** Závěrečný černý CTA blok */
   zaver: { nadpis: string[]; text: string };
   /** Volitelný obrázek (heatmapa / záběr z měření). Zatím nedodáno → sekce se vynechá. */
-  obrazek?: { src: string; alt: string; popisek: string };
+  obrazek?: { src: string; alt: string; popisek: string; width?: number; height?: number };
   /** Klíče z urlMap — související služby */
   souvisejiciSluzby: string[];
 };
@@ -81,6 +81,13 @@ export const segmenty: Segment[] = [
   // ── 1. E-shopy ────────────────────────────────────────────────
   {
     slug: 'e-shopy',
+    obrazek: {
+      src: '/images/heatmapa-vypis-produktu-e-shop.webp',
+      alt: 'Heatmapa pozornosti nad mřížkou dlaždic při vyhodnocení eye-trackingové studie v laboratoři',
+      popisek: 'Heatmapa ukáže, které dlaždice ve výpisu lidé opravdu viděli a které přeskočili.',
+      width: 1920,
+      height: 873,
+    },
     poradi: 1,
     nazev: 'E-shopy a e-commerce',
     nazevKratky: 'E-shopy',
