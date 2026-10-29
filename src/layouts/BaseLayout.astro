@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const {
   title,
-  description = 'UX Mind — specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.',
+  description = 'UX MIND — specializujeme se na UX výzkum, UX audit a eye tracking. Pomáháme firmám vytvářet lepší digitální produkty.',
   image = `${base}/og-image.jpg`,
   type = 'website',
   lang = 'cs',
@@ -49,9 +49,9 @@ const canonicalPath = withSlash(
 const canonicalURL = siteOrigin + canonicalPath;
 const resolvedImage = asset(image);
 // Nepřidávat sufix, pokud už titulek značku obsahuje
-const fullTitle = title === 'UX Mind' || title.includes('UXMIND') || title.includes('UX Mind')
+const fullTitle = /ux\s?mind/i.test(title)
   ? title
-  : `${title} | UX Mind`;
+  : `${title} | UX MIND`;
 const ogLocales: Record<string, string> = { cs: 'cs_CZ', en: 'en_GB', de: 'de_DE', fr: 'fr_FR', es: 'es_ES' };
 const skipLabels: Record<string, string> = { cs: 'Přeskočit na obsah', en: 'Skip to content', de: 'Zum Inhalt springen', fr: 'Aller au contenu', es: 'Saltar al contenido' };
 
@@ -73,7 +73,7 @@ const orgSchema = {
   '@type': 'ProfessionalService',
   '@id': `${siteUrl}#organization`,
   name: 'UX MIND Research Lab s.r.o.',
-  alternateName: 'UX Mind',
+  alternateName: 'UX MIND',
   url: siteUrl,
   logo: new URL('logo.svg', siteUrl).toString(),
   image: resolvedImage,
@@ -104,7 +104,7 @@ const webPageSchema = {
 const webSiteSchema = {
   '@type': 'WebSite',
   '@id': `${siteUrl}#website`,
-  name: 'UX Mind',
+  name: 'UX MIND',
   url: siteUrl,
   inLanguage: lang,
   publisher: { '@id': `${siteUrl}#organization` },
@@ -273,7 +273,7 @@ const jsonLd = {
     {languages.filter(l => l.code !== lang).map(l => (
       <meta property="og:locale:alternate" content={ogLocales[l.code]} />
     ))}
-    <meta property="og:site_name" content="UX Mind" />
+    <meta property="og:site_name" content="UX MIND" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
