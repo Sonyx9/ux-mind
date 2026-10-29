@@ -34,6 +34,7 @@ const clientLogos = [
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/fchk.webp`, w: 800, h: 800, alt: 'FC Hradec Králové' , dh: 54 },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`, w: 157, h: 37, alt: 'Univerzita Hradec Králové' },
   { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/texopluslogo.webp`, w: 216, h: 46, alt: 'TEXO Plus' },
+  { src: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/epodlahovka.webp`, w: 285, h: 49, alt: 'E-podlahovka' },
 ];
 ---
 
@@ -237,7 +238,7 @@ const clientLogos = [
     </div>
     <!-- Mobil: automatický carousel, dvě loga na řádek -->
     <div class="md:hidden overflow-hidden">
-      <div class="logo-marquee flex items-center">
+      <div class="logo-marquee flex items-center" style={`--loop:-${clientLogos.length * 50}vw; animation-duration:${(clientLogos.length * 50 / 15).toFixed(1)}s;`}>
         {[...clientLogos, ...clientLogos].map(({ src, alt, w, h, dh }) => (
           <div class="flex-shrink-0 flex justify-center items-center px-4" style="width:50vw;">
             <img
@@ -268,7 +269,7 @@ const clientLogos = [
     }
     @keyframes logo-scroll {
       from { transform: translateX(0); }
-      to { transform: translateX(-150vw); }
+      to { transform: translateX(var(--loop)); } /* posun = počet log × 50vw → plynulá smyčka */
     }
     @media (prefers-reduced-motion: reduce) {
       .logo-marquee { animation: none; }
