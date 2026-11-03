@@ -312,59 +312,6 @@ const clientLogos = [
     }
   </style>
 
-  <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
-  <section class="desktop-gutter-x pt-24 pb-12 max-w-7xl mx-auto">
-    <div class="mb-12 max-w-3xl">
-      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ DREI FRAGEN, DREI MESSUNGEN ]</p>
-      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Was Nutzer sehen, wie sie reagieren<br/>und was sie belastet<span style="color:#2D62FC">.</span></h2>
-      <p class="text-sm text-brand-black/60 leading-relaxed">
-        Analytics zeigt, WOHIN Menschen geklickt haben. Umfragen zeigen, WAS sie denken. Wir messen die dritte Ebene:
-        was sie tatsächlich gesehen haben, wie stark sie reagiert haben und wo die Oberfläche sie mental überlastet hat.
-      </p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
-      {[
-        {
-          q: 'Sehen sie es überhaupt?',
-          desc: 'Visuelle Aufmerksamkeit — Heatmaps, Fixationen, TTFF, Dwell Time, AOI-Analyse und Scanpaths. Eye Tracking hält objektiv fest, was Nutzer wirklich gesehen und was sie übersehen haben.',
-          tool: 'EYE-TRACKING',
-        },
-        {
-          q: 'Wie stark reagieren sie?',
-          desc: 'Physiologische Erregung und mimische Signale im Kontext der Aufgabe. Wir interpretieren sie stets mit ihren Grenzen — kein „Gedankenlesen".',
-          tool: 'GSR + MIMISCHE SIGNALE',
-        },
-        {
-          q: 'Schaffen sie es ohne Anstrengung?',
-          desc: 'Kognitive Belastung als ein klar verständlicher Score von 0–100. Sie erfahren, wo die Oberfläche Nutzer überlastet, selbst wenn sie die Aufgabe am Ende schaffen.',
-          tool: 'MODELL EMLI',
-        },
-      ].map((item, i) => (
-        <div class="bg-brand-white p-8 flex flex-col">
-          <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
-          <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
-          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
-          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
-        </div>
-      ))}
-    </div>
-    <!-- Slovníček zkratek -->
-    <details class="group border border-brand-black/15 mt-6">
-        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
-          [ GLOSSAR ]
-          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-        </summary>
-        <dl class="px-5 pb-6 space-y-4">
-            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Zeit bis zur ersten Blickfixation</dd></div>
-            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">beobachteter Interessenbereich (Area of Interest)</dd></div>
-            <div><dt class="font-display font-bold mb-1">Dwell Time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Gesamtzeit, die der Blick in einem Bereich verweilt</dd></div>
-            <div><dt class="font-display font-bold mb-1">Scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Blickpfad zwischen den Fixationen</dd></div>
-            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Messung der Hautleitfähigkeit, Indikator physiologischer Erregung</dd></div>
-            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">aus Eye-Tracking-Metriken abgeleiteter Index der mentalen (kognitiven) Belastung</dd></div>
-        </dl>
-      </details>
-  </section>
-
   <!-- SERVICES SECTION -->
   <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
     <div class="mb-12 max-w-3xl">
@@ -442,6 +389,59 @@ const clientLogos = [
       </div>
       <span class="font-mono text-xs tracking-widest uppercase shrink-0">PAKETE VERGLEICHEN →</span>
     </a>
+  </section>
+
+  <!-- TŘI OTÁZKY, TŘI MĚŘENÍ -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="mb-12 max-w-3xl">
+      <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ DREI FRAGEN, DREI MESSUNGEN ]</p>
+      <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Was Nutzer sehen, wie sie reagieren<br/>und was sie belastet<span style="color:#2D62FC">.</span></h2>
+      <p class="text-sm text-brand-black/60 leading-relaxed">
+        Analytics zeigt, WOHIN Menschen geklickt haben. Umfragen zeigen, WAS sie denken. Wir messen die dritte Ebene:
+        was sie tatsächlich gesehen haben, wie stark sie reagiert haben und wo die Oberfläche sie mental überlastet hat.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10">
+      {[
+        {
+          q: 'Sehen sie es überhaupt?',
+          desc: 'Visuelle Aufmerksamkeit — Heatmaps, Fixationen, TTFF, Dwell Time, AOI-Analyse und Scanpaths. Eye Tracking hält objektiv fest, was Nutzer wirklich gesehen und was sie übersehen haben.',
+          tool: 'EYE-TRACKING',
+        },
+        {
+          q: 'Wie stark reagieren sie?',
+          desc: 'Physiologische Erregung und mimische Signale im Kontext der Aufgabe. Wir interpretieren sie stets mit ihren Grenzen — kein „Gedankenlesen".',
+          tool: 'GSR + MIMISCHE SIGNALE',
+        },
+        {
+          q: 'Schaffen sie es ohne Anstrengung?',
+          desc: 'Kognitive Belastung als ein klar verständlicher Score von 0–100. Sie erfahren, wo die Oberfläche Nutzer überlastet, selbst wenn sie die Aufgabe am Ende schaffen.',
+          tool: 'MODELL EMLI',
+        },
+      ].map((item, i) => (
+        <div class="bg-brand-white p-8 flex flex-col">
+          <p class="font-mono text-xs text-brand-black/60 mb-8">0{i + 1}</p>
+          <h3 class="font-display text-2xl font-bold mb-4 leading-tight">{item.q}</h3>
+          <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{item.desc}</p>
+          <p class="mt-auto"><span class="font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{item.tool}</span></p>
+        </div>
+      ))}
+    </div>
+    <!-- Slovníček zkratek -->
+    <details class="group border border-brand-black/15 mt-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer p-5 font-mono text-xs tracking-widest list-none [&::-webkit-details-marker]:hidden">
+          [ GLOSSAR ]
+          <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <dl class="px-5 pb-6 space-y-4">
+            <div><dt class="font-display font-bold mb-1">TTFF</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Zeit bis zur ersten Blickfixation</dd></div>
+            <div><dt class="font-display font-bold mb-1">AOI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">beobachteter Interessenbereich (Area of Interest)</dd></div>
+            <div><dt class="font-display font-bold mb-1">Dwell Time</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Gesamtzeit, die der Blick in einem Bereich verweilt</dd></div>
+            <div><dt class="font-display font-bold mb-1">Scanpath</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Blickpfad zwischen den Fixationen</dd></div>
+            <div><dt class="font-display font-bold mb-1">GSR</dt><dd class="text-sm text-brand-black/70 leading-relaxed">Messung der Hautleitfähigkeit, Indikator physiologischer Erregung</dd></div>
+            <div><dt class="font-display font-bold mb-1">EMLI</dt><dd class="text-sm text-brand-black/70 leading-relaxed">aus Eye-Tracking-Metriken abgeleiteter Index der mentalen (kognitiven) Belastung</dd></div>
+        </dl>
+      </details>
   </section>
 
   <!-- EMLI SECTION -->
