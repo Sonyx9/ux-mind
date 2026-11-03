@@ -29,8 +29,11 @@
       fillCycle(0);
     }
 
-    // Annotations — appear after GIF finishes playing
+    // Annotations — appear after GIF finishes playing (on repeat visits the static
+    // final frame is shown, see inline script in index.astro, so they appear right away)
     function animateAnnotations() {
+      const seen = document.getElementById('hero-gif')?.dataset.seen === '1';
+      const startDelay = seen ? 300 : GIF_DURATION;
       const gifContainer = document.getElementById('hero-gif-container');
       const gifH = gifContainer ? gifContainer.offsetHeight : 630;
       const gifW = gifContainer ? gifContainer.offsetWidth : 840;
@@ -52,7 +55,7 @@
             const size = Math.round((base ?? 170) * Math.min(scaleW, 1));
             line.style.width = size + 'px';
           }
-        }, GIF_DURATION + i * 250);
+        }, startDelay + i * 250);
       });
     }
 

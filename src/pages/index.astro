@@ -65,18 +65,18 @@ const clientLogos = [
 
     <!-- Large headline — top-aligned s horní linkou (stejná výška jako začínala horní tabulka) -->
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: var(--hero-logo-top); line-height: 1; margin: 0; padding: 0;">
-      <h1 class="m-0 p-0 relative" style="line-height:0;">
+      <div class="m-0 p-0 relative" style="line-height:0;">
         <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
         <!-- Easter egg: hotspot nad modrou tečkou loga + záslepka, když tečka "uteče" -->
         <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
         <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
-      </h1>
-      <!-- Mobile-only: first annotation below heading -->
-      <p class="md:hidden font-mono tracking-widest text-brand-black/70 mt-3" style="font-size:10px;">VÝZKUM MÍSTO DOMNĚNEK</p>
+      </div>
+      <p class="font-mono tracking-widest text-brand-black/60 mt-3 md:mt-6" style="font-size:clamp(10px,0.8vw,12px);">VÝZKUM MÍSTO DOMNĚNEK</p>
+      <h1 class="font-display font-semibold md:font-bold tracking-tight mt-2 max-w-[34ch] md:max-w-[24ch] text-[12.5px] md:text-[clamp(14px,1.35vw,21px)]" style="line-height:1.3;">UX výzkum, eye tracking a&nbsp;testování uživatelů v&nbsp;laboratoři i&nbsp;v&nbsp;terénu.</h1>
     </div>
 
     <!-- Mobilní CTA — vycentrované ve volném prostoru mezi logem a obrázkem (nad linkou 33,333 %) -->
-    <div class="md:hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60]" style="top: calc(64px + 16.667%);">
+    <div class="md:hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60]" style="top: calc(64px + 16.667% + 36px);">
       <a href="/kontakt" class="inline-block bg-brand-black text-brand-white px-4 py-2 font-mono text-[11px] tracking-widest uppercase whitespace-nowrap">DOMLUVIT SCHŮZKU</a>
     </div>
 
@@ -85,7 +85,7 @@ const clientLogos = [
       <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX výzkum a eye tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
     </div>
 
-    <!-- Center 3D Brain — desktop only -->
+    <!-- Center 3D Brain — desktop only. Pro koho kolem obrázku (PC/tablet) — hlavní segmenty + „Všechny obory →“; služby jsou v seznamu vlevo dole -->
     <div class="hidden md:flex absolute inset-0 items-center justify-center">
       <div id="hero-gif-container" class="relative" style="width: min(48vw, 760px); height: min(50vh, 540px);">
         <!-- Hero GIF - plays once then freezes on last frame -->
@@ -97,9 +97,22 @@ const clientLogos = [
           width="960" height="540" loading="lazy" decoding="async"
         />
 
+        <!-- Animace mozku jen při první návštěvě; při dalších rovnou hotový obrázek (poslední snímek animace) -->
+        <script is:inline>
+          try {
+            var heroGif = document.getElementById('hero-gif');
+            if (localStorage.getItem('uxmind-hero-seen')) {
+              heroGif.src = heroGif.src.replace('hero.webp', 'hero-static.webp');
+              heroGif.dataset.seen = '1';
+            } else {
+              localStorage.setItem('uxmind-hero-seen', '1');
+            }
+          } catch (e) {}
+        </script>
+
         <!-- Annotation: top — text visible in hero below CTA, line goes down into image -->
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">VÝZKUM MÍSTO<br/>DOMNĚNEK</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32"><a href="/segmenty/sport-a-stadiony" class="hover:text-[#2D62FC] transition-colors">SPORT A<br/>STADIONY</a></p>
           <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
         </div>
@@ -107,7 +120,16 @@ const clientLogos = [
         <!-- Annotation: left — text left of container, dot at 22% from left -->
         <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
           <div class="text-right mr-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">DESIGN ZAČÍNÁ<br/>U UŽIVATELE</p>
+            <p class="font-mono hero-fluid-micro tracking-widest"><a href="/segmenty/weby" class="hover:text-[#2D62FC] transition-colors">WEBY<br/>A APLIKACE</a></p>
+          </div>
+          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
+          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
+        </div>
+
+        <!-- Annotation: left bottom — mirrors the right bottom one, dot at 22% from left -->
+        <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:65%; transform:translate(-100%,-50%);">
+          <div class="text-right mr-2">
+            <p class="font-mono hero-fluid-micro tracking-widest"><a href="/segmenty/automotive" class="hover:text-[#2D62FC] transition-colors">AUTOMOTIVE</a></p>
           </div>
           <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
@@ -118,7 +140,7 @@ const clientLogos = [
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">EYE TRACKING<br/>UKÁŽE, CO<br/>LIDÉ VIDÍ</p>
+            <p class="font-mono hero-fluid-micro tracking-widest"><a href="/segmenty/e-shopy" class="hover:text-[#2D62FC] transition-colors">E-SHOPY</a></p>
           </div>
         </div>
 
@@ -127,7 +149,7 @@ const clientLogos = [
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
           <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">MĚŘIT<br/>POCHOPIT<br/>ZLEPŠIT</p>
+            <p class="font-mono hero-fluid-micro tracking-widest"><a href="/segmenty/univerzity-a-vyzkum" class="hover:text-[#2D62FC] transition-colors">UNIVERZITY<br/>A VÝZKUM</a></p>
           </div>
         </div>
 
@@ -135,7 +157,7 @@ const clientLogos = [
         <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
           <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
           <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-24">DATA<br/>MÍSTO DOJMŮ</p>
+          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-32"><a href="/segmenty" class="hover:text-[#2D62FC] transition-colors">VŠECHNY<br/>OBORY →</a></p>
         </div>
 
       </div>
@@ -148,11 +170,11 @@ const clientLogos = [
       <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/60">[ NAŠE SPECIALIZACE ]</p>
       <div class="space-y-3">
         {[
-          { num: '01', label: 'UX AUDIT' },
-          { num: '02', label: 'TESTOVÁNÍ UŽIVATELŮ' },
-          { num: '03', label: 'EYE TRACKING' },
-          { num: '04', label: 'TERÉNNÍ MĚŘENÍ' },
-          { num: '05', label: 'UX VÝZKUM' },
+          { num: '01', label: 'UX AUDIT', href: '/sluzby/ux-audit' },
+          { num: '02', label: 'TESTOVÁNÍ UŽIVATELŮ', href: '/sluzby/testovani-uzivatelu' },
+          { num: '03', label: 'EYE TRACKING', href: '/sluzby/eye-tracking' },
+          { num: '04', label: 'TERÉNNÍ MĚŘENÍ', href: '/sluzby/terenni-mereni' },
+          { num: '05', label: 'UX VÝZKUM', href: '/sluzby/ux-vyzkum' },
         ].map((item) => (
           <div class="flex items-center gap-2">
             <p class="font-mono text-xs text-brand-black/60 shrink-0">{item.num}.</p>
@@ -161,7 +183,7 @@ const clientLogos = [
                 <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
               ))}
             </span>
-            <p class="font-mono text-xs tracking-widest whitespace-nowrap">{item.label}</p>
+            <p class="font-mono text-xs tracking-widest whitespace-nowrap"><a href={item.href} class="hover:text-[#2D62FC] transition-colors">{item.label}</a></p>
           </div>
         ))}
       </div>
@@ -175,11 +197,12 @@ const clientLogos = [
       style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
       <div>
         <div class="mb-2">
-          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(12px,0.95vw,14px) * min(var(--fs, 1), 1.08));">NE AGENTURA – ODBORNÍCI</p>
+          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(12px,0.95vw,14px) * min(var(--fs, 1), 1.08));">UX AUDIT WEBU A E-SHOPU</p>
         </div>
         <p class="font-mono text-brand-white/90 leading-relaxed infobox-desc" style="font-size:calc(clamp(12px,0.95vw,14px) * min(var(--fs, 1), 1.08));">
-          Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.
+          Najdeme místa, kde lidé na webu nebo v <span class="whitespace-nowrap">e-shopu</span> váhají a odcházejí. Ke každému dodáme konkrétní návrh úpravy.
         </p>
+        <a href="/sluzby/ux-audit" class="inline-block mt-3 border border-brand-white px-2 py-1 font-mono tracking-widest hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">CHCI AUDIT →</a>
       </div>
       <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
         <div class="pt-2 border-t border-brand-white/20 flex flex-col items-start gap-1.5">
@@ -201,14 +224,27 @@ const clientLogos = [
 
   <main id="main-content">
 
+  <!-- Mobile: Pro koho (obory) -->
+  <div class="md:hidden px-6 pt-8">
+    <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">[ PRO KOHO ]</p>
+    <div class="grid grid-cols-2 gap-2">
+      <a href="/segmenty/sport-a-stadiony" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">SPORT A STADIONY</a>
+      <a href="/segmenty/e-shopy" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">E-SHOPY</a>
+      <a href="/segmenty/weby" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">WEBY A APLIKACE</a>
+      <a href="/segmenty/automotive" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">AUTOMOTIVE</a>
+      <a href="/segmenty/univerzity-a-vyzkum" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">UNIVERZITY A VÝZKUM</a>
+      <a href="/segmenty/" class="font-mono text-[11px] tracking-widest border border-brand-black px-2 py-2 text-center">VŠECHNY OBORY →</a>
+    </div>
+  </div>
+
   <!-- Mobile info box — NE AGENTURA, above logo carousel -->
   <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
     <div>
-      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">NE AGENTURA – ODBORNÍCI</p>
+      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">UX AUDIT WEBU A E-SHOPU</p>
     </div>
-    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Jsme tým UX specialistů. Pomáháme firmám pochopit jejich uživatele prostřednictvím dat, výzkumu a eye trackingu.</p>
+    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">Najdeme místa, kde lidé na webu nebo v e-shopu váhají a odcházejí. Ke každému dodáme konkrétní návrh úpravy.</p>
     <div class="flex gap-2">
-      <a href="/o-nas" class="font-mono text-xs border border-brand-white px-2 py-1">O NÁS</a>
+      <a href="/sluzby/ux-audit" class="font-mono text-xs border border-brand-white px-2 py-1">CHCI AUDIT →</a>
       <a href="/kontakt" class="font-mono text-xs border border-brand-white px-2 py-1">KONTAKT</a>
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
