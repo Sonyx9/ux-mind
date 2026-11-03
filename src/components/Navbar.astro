@@ -50,13 +50,11 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         <div class="nav-drop relative">
           <a
             href={link.href}
-            class={`flex items-center gap-1 font-mono nav-fs tracking-widest uppercase transition-colors ${
-              currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
-                ? 'underline underline-offset-4' : 'hover:text-[#2D62FC]'
-            }`}
+            class="flex items-center gap-1 font-mono nav-fs tracking-widest uppercase transition-colors hover:text-[#2D62FC]"
             aria-haspopup="true"
           >
-            {link.label}<span style="font-size:7px; line-height:1;">▼</span>
+            <span class={currentPath === link.href || currentPath === link.href.replace(/\/$/, '') + '/' || link.children.some(c => currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/')
+                ? 'underline underline-offset-4' : ''}>{link.label}</span><span style="font-size:7px; line-height:1;">▼</span>
           </a>
           <div class="nav-drop-menu hidden absolute left-0 top-full pt-2 z-[110]">
             <div class="isolate bg-brand-white border border-brand-black/20 shadow-sm min-w-max">
