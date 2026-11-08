@@ -376,6 +376,13 @@ export const segmenty: Segment[] = [
   // ── 3. Sport, stadiony a sponzoring ───────────────────────────
   {
     slug: 'sport-a-stadiony',
+    obrazek: {
+      src: '/images/divak-eye-tracking-bryle-stadion-fc-hradec-kralove.webp',
+      alt: 'Divák s mobilními eye-trackingovými brýlemi sleduje zápas na stadionu FC Hradec Králové',
+      popisek: 'Mobilní eye-tracking brýle na zápase FC Hradec Králové – pohled diváka zaznamenaný přímo z tribuny.',
+      width: 1920,
+      height: 873,
+    },
     poradi: 3,
     nazev: 'Sport, stadiony a sponzoring',
     nazevKratky: 'Sport a stadiony',
