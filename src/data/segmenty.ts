@@ -73,6 +73,10 @@ export type Segment = {
   zaver: { nadpis: string[]; text: string };
   /** Volitelný obrázek (heatmapa / záběr z měření). Zatím nedodáno → sekce se vynechá. */
   obrazek?: { src: string; alt: string; popisek: string; width?: number; height?: number };
+  /** Fotka na výšku (860×1000) vpravo v hero – jen na desktopu od 1280 px */
+  /** Náhled pro sdílení (1200×675 JPG v /public/og/) */
+  ogObrazek?: string;
+  heroFoto?: { src: string; alt: string; /** vodorovný bod zájmu pro ořez, např. '20%' */ pozice?: string };
   /** Klíče z urlMap — související služby */
   souvisejiciSluzby: string[];
 };
@@ -81,6 +85,12 @@ export const segmenty: Segment[] = [
   // ── 1. E-shopy ────────────────────────────────────────────────
   {
     slug: 'e-shopy',
+    ogObrazek: '/og/og-e-shopy.jpg',
+    heroFoto: {
+      src: '/images/hero-eshopy-heatmapa-produkty-analyza.webp',
+      pozice: '22%',
+      alt: 'Vyhodnocení heatmapy pozornosti nad výpisem produktů v eye-trackingové laboratoři',
+    },
     obrazek: {
       src: '/images/heatmapa-vypis-produktu-e-shop.webp',
       alt: 'Heatmapa pozornosti nad mřížkou dlaždic při vyhodnocení eye-trackingové studie v laboratoři',
@@ -376,6 +386,11 @@ export const segmenty: Segment[] = [
   // ── 3. Sport, stadiony a sponzoring ───────────────────────────
   {
     slug: 'sport-a-stadiony',
+    ogObrazek: '/og/og-sport-a-stadiony.jpg',
+    heroFoto: {
+      src: '/images/hero-sport-respondent-sedi-na-tribune.webp',
+      alt: 'Respondent s mobilními eye-trackingovými brýlemi sedí na tribuně stadionu FC Hradec Králové',
+    },
     obrazek: {
       src: '/images/divak-sleduje-zapas-eye-tracking-fc-hradec-kralove.webp',
       alt: 'Divák s mobilními eye-trackingovými brýlemi sleduje zápas FC Hradec Králové z tribuny, v pozadí hřiště a reklamní mantinely',

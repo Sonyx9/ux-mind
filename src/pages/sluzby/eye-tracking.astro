@@ -82,6 +82,7 @@ const pageSchema = [
 ---
 
 <BaseLayout
+  image="/og/og-eye-tracking.jpg"
   title="Eye tracking a heatmapy pozornosti"
   description="Eye tracking webů, aplikací i tiskovin: heatmapy, AOI analýza, záznamy pohledu a uživatelské testování v laboratoři FIM UHK. Zjistěte, co uživatelé skutečně vidí."
   schema={pageSchema}
@@ -92,9 +93,15 @@ const pageSchema = [
     <div class="max-w-7xl mx-auto px-6">
 
       <!-- Hero -->
-      <div class="mb-16">
+      <div class="mb-16 relative">
+        <div class="hidden xl:block absolute right-0 top-9 bottom-0 left-[816px]">
+          <picture class="block h-full">
+            <source media="(min-width: 1280px)" srcset={`${base}/images/hero-eye-tracking-mobilni-bryle-portret.webp`} width="860" height="1000" />
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Mobilní eye-trackingové brýle s kamerou scény" width="860" height="1000" fetchpriority="high" decoding="async" class="w-full h-full object-cover border border-brand-black/10" style="object-position: 50% 50%;" />
+          </picture>
+        </div>
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / EYE TRACKING ]</p>
-        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8 xl:![font-size:clamp(3rem,7vw,6.5rem)] xl:pr-[464px]" style="font-size: clamp(3rem, 9vw, 8rem);">
           ZMĚŘTE<br/>POZORNOST<span style="color:#2D62FC">.</span>
         </h1>
         <div class="max-w-3xl">

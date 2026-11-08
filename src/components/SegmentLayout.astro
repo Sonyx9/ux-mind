@@ -75,6 +75,7 @@ const pageSchema = [
 <BaseLayout
   title={segment.metaTitle}
   description={segment.metaDescription}
+  image={segment.ogObrazek}
   schema={pageSchema}
   hreflang={false}
 >
@@ -84,9 +85,17 @@ const pageSchema = [
     <div class="max-w-7xl mx-auto px-6">
 
       <!-- 1 · Hero -->
-      <div class="mb-16">
+      <div class="mb-16 relative">
+      {segment.heroFoto && (
+        <div class="hidden xl:block absolute right-0 top-9 bottom-0 left-[816px]">
+          <picture class="block h-full">
+            <source media="(min-width: 1280px)" srcset={`${base}${segment.heroFoto.src}`} width="860" height="1000" />
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt={segment.heroFoto.alt} width="860" height="1000" fetchpriority="high" decoding="async" class="w-full h-full object-cover border border-brand-black/10" style={`object-position: ${segment.heroFoto.pozice ?? '50%'} 50%;`} />
+          </picture>
+        </div>
+      )}
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ {segment.moderni ? 'PRO KOHO' : 'SEGMENTY'} / {segment.nazevKratky.toUpperCase()} ]</p>
-        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+        <h1 class:list={["font-display font-bold leading-none tracking-tighter mb-8", segment.heroFoto && "xl:![font-size:clamp(3rem,7vw,6.5rem)] xl:pr-[464px]"]} style="font-size: clamp(3rem, 9vw, 8rem);">
           {h1Head.map((line) => (<>{line}<br/></>))}{lastPrefix}<span style="color:#2D62FC">{lastPunct}</span>
         </h1>
         {segment.moderni ? (
