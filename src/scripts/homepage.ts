@@ -52,7 +52,20 @@
             const size = Math.round((base ?? 150) * Math.min(scaleH, 1));
             line.style.height = size + 'px';
           } else {
-            const size = Math.round((base ?? 170) * Math.min(scaleW, 1));
+            let size = Math.round((base ?? 170) * Math.min(scaleW, 1));
+            // Pravé popisky nesmí zajet pod černý info box (užší monitory, delší DE texty)
+            const box = document.getElementById('info-box')?.getBoundingClientRect();
+            const text = ann.querySelector<HTMLElement>('p');
+            const l = line.getBoundingClientRect();
+            if (box && box.width && text && l.left < box.left) {
+              const t = text.getBoundingClientRect();
+              if (t.bottom > box.top && t.top < box.bottom) {
+                const room = Math.floor(box.left - 12 - l.left - (t.left - l.right) - t.width);
+                size = Math.max(24, Math.min(size, room));
+                // Ani nejkratší čára nestačí → popisek posunout nad box
+                if (room < 24) ann.style.marginTop = -Math.ceil(t.bottom - box.top + 8) + 'px';
+              }
+            }
             line.style.width = size + 'px';
           }
         }, startDelay + i * 250);
