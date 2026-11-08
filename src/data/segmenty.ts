@@ -377,8 +377,8 @@ export const segmenty: Segment[] = [
   {
     slug: 'sport-a-stadiony',
     obrazek: {
-      src: '/images/divak-eye-tracking-bryle-stadion-fc-hradec-kralove.webp',
-      alt: 'Divák s mobilními eye-trackingovými brýlemi sleduje zápas na stadionu FC Hradec Králové',
+      src: '/images/divak-sleduje-zapas-eye-tracking-fc-hradec-kralove.webp',
+      alt: 'Divák s mobilními eye-trackingovými brýlemi sleduje zápas FC Hradec Králové z tribuny, v pozadí hřiště a reklamní mantinely',
       popisek: 'Mobilní eye-tracking brýle na zápase FC Hradec Králové – pohled diváka zaznamenaný přímo z tribuny.',
       width: 1920,
       height: 873,
