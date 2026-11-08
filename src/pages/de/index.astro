@@ -66,7 +66,7 @@ const clientLogos = [
     <!-- Large headline — top-aligned s horní linkou (stejná výška jako začínala horní tabulka) -->
     <div class="absolute z-10" style="left: var(--desktop-gutter); top: var(--hero-logo-top); line-height: 1; margin: 0; padding: 0;">
       <div class="m-0 p-0 relative" style="line-height:0;">
-        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
+        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" title="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
         <!-- Easter egg: hotspot nad modrou tečkou loga + záslepka, když tečka "uteče" -->
         <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
         <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
@@ -82,7 +82,7 @@ const clientLogos = [
 
     <!-- Mobile hero image — static, shown immediately -->
     <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX-Forschung und Eye-Tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX-Forschung und Eye-Tracking" title="UX Mind — UX-Forschung und Eye-Tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
     </div>
 
     <!-- Center 3D Brain — desktop only. Who it’s for around the image (desktop/tablet); segment pages are CS only, so no links. Services stay in the bottom-left list -->
@@ -92,7 +92,7 @@ const clientLogos = [
         <img
           id="hero-gif"
           src={gifSrc}
-          alt="Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye-Tracking und Daten"
+          alt="Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye-Tracking und Daten" title="Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye-Tracking und Daten"
           class="w-full h-full object-contain"
           width="960" height="540" loading="lazy" decoding="async"
         />
@@ -207,7 +207,7 @@ const clientLogos = [
       <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
         <div class="pt-2 border-t border-brand-white/20 flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5">
           <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * min(var(--fs, 1), 1.08));">PROJEKT MIT:</p>
-          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="max-w-full shrink-0" style="width:auto; height:clamp(30px,3.4vh,52px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
+          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" title="Univerzita Hradec Králové" class="max-w-full shrink-0" style="width:auto; height:clamp(30px,3.4vh,52px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
         </div>
       </div>
     </div>
@@ -249,7 +249,7 @@ const clientLogos = [
     </div>
     <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
       <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJEKT MIT:</p>
-      <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
+      <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" title="Univerzita Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
     </div>
   </div>
 
@@ -545,7 +545,7 @@ const clientLogos = [
         </div>
         <div class="mt-4 pt-3 border-t border-brand-black/20 flex items-center justify-between">
           <p class="font-mono text-[10px] text-brand-black/60 tracking-widest">IN ZUSAMMENARBEIT MIT:</p>
-          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" class="h-[40px] w-auto" />
+          <img width="157" height="37" loading="lazy" decoding="async" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="Univerzita Hradec Králové" title="Univerzita Hradec Králové" class="h-[40px] w-auto" />
         </div>
       </div>
     </div>

@@ -82,7 +82,7 @@ const pageSchema = [
               <!-- Logo -->
               <div class="flex flex-col gap-6">
                 <span class="font-mono text-xs text-brand-black/60">{p.num}</span>
-                <img src={p.logo} alt={p.logoAlt} width={p.logoW} height={p.logoH} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
+                <img src={p.logo} alt={p.logoAlt} title={p.logoAlt} width={p.logoW} height={p.logoH} class={`${p.logoClass} w-auto object-contain self-start`} loading="lazy" decoding="async" />
                 <div class="flex flex-wrap gap-2">
                   {p.tags.map(tag => (
                     <span class="font-mono text-[11px] border border-brand-black/20 px-2 py-1 tracking-widest">{tag}</span>
