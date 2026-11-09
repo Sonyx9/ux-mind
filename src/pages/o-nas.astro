@@ -37,6 +37,12 @@ const pageSchema = [
     '@type': 'AboutPage',
     name: 'O nás: tým UX MIND',
     description,
+    about: { '@id': 'https://uxmind.cz/#organization' },
+    mentions: [
+      { '@id': 'https://uxmind.cz/o-nas/#jan-petruzalek' },
+      { '@id': 'https://uxmind.cz/o-nas/#lukas-koula' },
+    ],
+    primaryImageOfPage: 'https://uxmind.cz/og/og-o-nas.jpg',
   },
   {
     '@type': 'Person',
@@ -65,6 +71,7 @@ const pageSchema = [
 <BaseLayout
   title="O nás: tým UX MIND a spolupráce s laboratoří FIMEYELAB"
   description={description}
+  image="/og/og-o-nas.jpg"
   schema={pageSchema}
 >
   <Navbar />
