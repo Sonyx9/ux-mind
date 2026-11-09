@@ -1,0 +1,350 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { MEDIA_PAGE_LIVE } from '../../data/media';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+
+const vystupyMereni = [
+  ['Pozornost', 'Které prvky uživatel zaznamená, v jakém pořadí a co úplně přehlédne.'],
+  ['Průběh úkolu', 'Kde postupuje plynule, kde se vrací a ve kterém kroku se zastaví.'],
+  ['Reakce', 'Ve kterých místech roste aktivace nebo mentální zátěž.'],
+];
+
+const vrstvy = [
+  {
+    t: 'Vizuální pozornost',
+    d: 'Eye tracking ukáže, kam se uživatel dívá, v jakém pořadí a co úplně přehlédne. Zjistíme také, jak rychle důležitý prvek najde a jak dlouho mu věnuje pozornost.',
+    tag: 'EYE TRACKING',
+  },
+  {
+    t: 'Emoční reakce',
+    d: 'Kožní vodivost zachytí změny fyziologické aktivace a analýza mimiky výraz obličeje. Pomáhají určit okamžiky, které vyvolávají reakci. Samy ale neříkají, proč vznikla.',
+    tag: 'GSR + MIMIKA',
+  },
+  {
+    t: 'Mentální zátěž',
+    d: 'Měříme, kde rozhraní vyžaduje více pozornosti a úsilí. Odhalíme místa, která uživatele zpomalují, matou nebo zbytečně komplikují dokončení úkolu.',
+    tag: 'MENTÁLNÍ ÚSILÍ',
+  },
+];
+
+const vybaveni = [
+  { nazev: 'Smart Eye Aurora', typ: 'stolní eye tracking', k: 'Přesné sledování pohledu při testování webů, aplikací a dalších digitálních rozhraní.' },
+  { nazev: 'Tobii Pro X2-60', typ: 'stolní eye tracking', k: 'Přenosný eye tracker pro studie na obrazovce a porovnávání různých variant.' },
+  { nazev: 'Mobilní eye-trackingové brýle (2×)', typ: 'mobilní eye tracking', k: 'Brýle pro sledování pozornosti v prodejnách, showroomech, na stadionech nebo v provozu.' },
+  { nazev: 'iMotions + analýza mimiky', typ: 'výzkumný software', k: 'Propojuje eye tracking, mimiku a další signály do jednoho časově sladěného záznamu.' },
+  { nazev: 'Shimmer3 GSR', typ: 'biometrie', k: 'Snímá změny kožní vodivosti, které ukazují míru fyziologické aktivace.' },
+];
+
+const postup = [
+  { num: '01', title: 'Návrh studie', desc: 'Ujasníme si, co potřebujete zjistit, koho má smysl testovat a podle čeho budeme výsledek hodnotit.' },
+  { num: '02', title: 'Příprava a měření', desc: 'Připravíme úkoly, nastavíme techniku a provedeme měření v laboratoři nebo přímo v terénu.' },
+  { num: '03', title: 'Analýza', desc: 'Propojíme pohled, chování, reakce a výpovědi účastníků. Hledáme souvislosti, ne jednotlivá čísla bez kontextu.' },
+  { num: '04', title: 'Doporučení pro praxi', desc: 'Dostanete jasné závěry, priority a konkrétní doporučení, co změnit.' },
+];
+
+const dalsi = [
+  { t: 'Kdo jsme', d: 'Dva společníci, výzkumný tým a jak spolupracujeme s UHK.', href: '/o-nas' },
+  ...(MEDIA_PAGE_LIVE ? [{ t: 'V médiích', d: 'Podcasty, reportáže a články o eye trackingu a našich měřeních.', href: '/v-mediich' }] : []),
+  { t: 'Partneři', d: 'Univerzita Hradec Králové a MindSense: výzkumné zázemí a technologická podpora.', href: '/partneri' },
+];
+
+const description =
+  'Eye tracking v laboratoři FIMEYELAB na FIM UHK i v terénu: na stadionu nebo v prodejně. Mobilní eye-trackingové brýle, stolní eye trackery, mimika a GSR.';
+
+const pageSchema = [
+  {
+    '@type': 'WebPage',
+    name: 'Kde a čím měříme',
+    description,
+    about: { '@id': 'https://uxmind.cz/o-nas/kde-merime/#fimeyelab' },
+  },
+  {
+    '@type': 'ResearchOrganization',
+    '@id': 'https://uxmind.cz/o-nas/kde-merime/#fimeyelab',
+    name: 'FIMEYELAB',
+    description:
+      'Laboratoř eye trackingu a biometrie Fakulty informatiky a managementu Univerzity Hradec Králové.',
+    parentOrganization: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Univerzita Hradec Králové, Fakulta informatiky a managementu',
+      url: 'https://www.uhk.cz/cs/fakulta-informatiky-a-managementu',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Kde a čím měříme: laboratoř FIMEYELAB i terén"
+  description={description}
+  image="/og/og-kde-merime.jpg"
+  schema={pageSchema}
+  hreflang={false}
+  preloadImages={[{ href: `${base}/images/hero-kde-merime-nasazeni-bryli-stadion.webp`, media: '(min-width: 1280px)' }]}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16 relative">
+        <div class="hidden xl:block absolute right-0 top-9 bottom-0 left-[816px]">
+          <picture class="block h-full">
+            <source media="(min-width: 1280px)" srcset={`${base}/images/hero-kde-merime-nasazeni-bryli-stadion.webp`} width="860" height="1000" />
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Respondent si nasazuje mobilní eye-trackingové brýle na tribuně stadionu FC Hradec Králové" title="Nasazení mobilních eye-trackingových brýlí na stadionu" width="860" height="1000" fetchpriority="high" decoding="async" class="w-full h-full object-cover border border-brand-black/10" style="object-position: 50% 20%;" />
+          </picture>
+        </div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ O NÁS / KDE A ČÍM MĚŘÍME ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8 xl:![font-size:clamp(3rem,7vw,6.5rem)] xl:pr-[464px]" style="font-size: clamp(3rem, 9vw, 8rem);">
+          V LABORATOŘI<br/>I NA TRIBUNĚ<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="max-w-3xl">
+          <p class="text-lg text-brand-black/60 leading-relaxed mb-4">
+            Měříme tam, kde se lidé rozhodují. U monitoru v laboratoři FIMEYELAB na Fakultě informatiky
+            a managementu UHK, v prodejně i na stadionu během zápasu.
+          </p>
+          <p class="text-lg text-brand-black/60 leading-relaxed">
+            Laboratoř patří univerzitě. Komerční měření v ní i v terénu zajišťuje UX MIND.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="#laborator" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">LABORATOŘ ↓</a>
+            <a href="#teren" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">TERÉN ↓</a>
+            <a href="#vybaveni" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">VYBAVENÍ ↓</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['MĚŘICÍ SYSTÉMY', '5'],
+          ['ODBORNÉ PUBLIKACE', '8'],
+          ['OBHÁJENÉ DISERTACE', '2'],
+          ['MĚŘÍME', 'Laboratoř i terén'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight text-xl">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- V laboratoři: velká fotka vlevo, text vpravo, druhá fotka menší pod textem (diagonální kompozice) -->
+      <section id="laborator" class="reveal mb-32 scroll-mt-28">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ V LABORATOŘI ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-12 max-w-3xl">
+          Laboratoř FIMEYELAB na FIM UHK<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16">
+          <figure class="lg:col-span-7 lg:row-span-2">
+            <img src={`${base}/images/priprava-mereni-gsr-senzory.webp`} alt="Jan Petružálek nasazuje respondentce senzory kožní vodivosti (GSR) na prsty před měřením, vedle sedí Filip Oborník" title="Příprava biometrického měření v laboratoři FIMEYELAB" width="1200" height="1200" loading="lazy" decoding="async" class="w-full aspect-square object-cover border border-brand-black/10" />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Příprava biometrického měření: senzory kožní vodivosti.</figcaption>
+          </figure>
+          <div class="lg:col-span-5">
+            <p class="text-brand-black/60 leading-relaxed mb-4">
+              Eye tracker pod monitorem zaznamenává pohyb očí šedesátkrát za sekundu. Kamera nad monitorem
+              zachycuje mimiku a respondent mezitím plní konkrétní úkol na testované stránce.
+            </p>
+            <p class="text-brand-black/60 leading-relaxed mb-8">
+              Laboratoř slouží výzkumu, výuce a disertačním pracím na FIM UHK. Komerční zakázky v ní
+              běží přes UX MIND, metodiku hlídá vedoucí laboratoře Jan Petružálek.
+            </p>
+            <dl class="border-t border-brand-black/10 pt-6 space-y-4">
+              {vystupyMereni.map(([label, desc], i) => (
+                <div class="flex gap-4">
+                  <span class="font-mono text-xs shrink-0 pt-0.5" style="color:#2D62FC;">0{i + 1}</span>
+                  <div>
+                    <dt class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70 mb-0.5">{label}</dt>
+                    <dd class="text-sm text-brand-black/60 leading-relaxed">{desc}</dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <figure class="lg:col-span-4 lg:col-start-9 self-end">
+            <img src={`${base}/images/respondentka-gsr-senzory-laborator.webp`} alt="Respondentka se senzory kožní vodivosti během měření v laboratoři" title="Respondentka během měření v laboratoři FIMEYELAB" width="1200" height="1200" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover border border-brand-black/10" />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Respondentka během biometrického měření.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- V terénu: zrcadlově, text vlevo, velká fotka vpravo, menší fotka pod textem -->
+      <section id="teren" class="reveal mb-32 scroll-mt-28">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ V TERÉNU ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-12 max-w-3xl">
+          Na stadionu, v prodejně, v provozu<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16">
+          <figure class="lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1">
+            <img src={`${base}/images/divak-mobilni-eye-tracking-bryle-fotbalovy-zapas.webp`} alt="Divák s mobilními eye-trackingovými brýlemi sleduje fotbalový zápas FC Hradec Králové z tribuny" title="Mobilní eye tracking během fotbalového zápasu" width="1600" height="1067" loading="lazy" decoding="async" class="w-full aspect-[4/3] object-cover border border-brand-black/10" />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">FC Hradec Králové, listopad 2026: měření během zápasu.</figcaption>
+          </figure>
+          <div class="lg:col-span-5 lg:col-start-1 lg:row-start-1">
+            <p class="text-brand-black/60 leading-relaxed mb-4">
+              Mobilní eye-trackingové brýle nosí respondent při běžné činnosti. Sleduje zápas, prochází prodejnu
+              nebo plní pracovní postup. Brýle zaznamenají scénu před ním i to, kam se právě dívá.
+            </p>
+            <p class="text-brand-black/60 leading-relaxed mb-8">
+              Zjistíme, jestli si diváci všimnou reklamních ploch, jak se zákazník orientuje v regálech
+              nebo kde obsluha hledá ovládací prvky.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href={`${base}/sluzby/terenni-mereni`} class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">TERÉNNÍ MĚŘENÍ →</a>
+              <a href={`${base}/segmenty/sport-a-stadiony`} class="inline-block border border-brand-black/20 px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-[#2D62FC] hover:text-[#2D62FC] transition-colors">SPORT A STADIONY →</a>
+            </div>
+          </div>
+          <figure class="lg:col-span-4 lg:col-start-1 lg:row-start-2 self-end">
+            <img src={`${base}/images/priprava-terenniho-mereni-tribuna-fc-hradec.webp`} alt="Příprava terénního měření na tribuně stadionu FC Hradec Králové, respondent v eye-trackingových brýlích" title="Příprava terénního měření na tribuně" width="1600" height="1067" loading="lazy" decoding="async" class="w-full aspect-[3/2] object-cover object-top border border-brand-black/10" />
+            <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Příprava na tribuně před výkopem.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Vybavení -->
+      <section id="vybaveni" class="scroll-mt-28">
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ČÍM ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Pět měřicích systémů<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="border border-brand-black/10">
+          {vybaveni.map(z => (
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 p-6 border-b border-brand-black/10 last:border-0">
+              <div class="md:col-span-4">
+                <p class="font-display text-lg font-bold leading-tight">{z.nazev}</p>
+                <p class="font-mono text-[11px] text-brand-black/60 tracking-wide uppercase">{z.typ}</p>
+              </div>
+              <p class="md:col-span-8 text-sm text-brand-black/60 leading-relaxed">{z.k}</p>
+            </div>
+          ))}
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center mt-8">
+          <p class="md:col-span-2 text-brand-black/60 leading-relaxed">
+            Dvě sady mobilních brýlí nám umožňují měřit více účastníků nebo situací v kratším čase.
+          </p>
+          <figure class="md:col-span-3">
+            <img src={`${base}/images/mobilni-eye-trackingove-bryle-zaznamova-jednotka.webp`} alt="Mobilní eye-trackingové brýle se záznamovou jednotkou na stole" title="Mobilní eye-trackingové brýle se záznamovou jednotkou" width="1600" height="1067" loading="lazy" decoding="async" class="w-full aspect-[16/9] object-cover border border-brand-black/10" />
+          </figure>
+        </div>
+      </div>
+      </section>
+
+      <!-- Co z měření vyčteme (zkráceně, detail na službách) -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO Z TOHO VYČTEME ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Tři vrstvy zkušenosti<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
+          {vrstvy.map((v, i) => (
+            <div class="bg-brand-white p-8 flex flex-col">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-2xl font-bold mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed mb-6">{v.d}</p>
+              <span class="mt-auto self-start font-mono text-xs border border-brand-black/20 px-2 py-1 tracking-widest">{v.tag}</span>
+            </div>
+          ))}
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          Jak to vypadá v konkrétní studii, popisujeme u služby <a href={`${base}/sluzby/eye-tracking`} class="underline hover:text-[#2D62FC]">Eye tracking</a>.
+        </p>
+      </div>
+
+      <!-- Akademické zázemí -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ AKADEMICKÉ ZÁZEMÍ ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Odborné zázemí v číslech<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+          <div class="bg-brand-white p-8">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">PUBLIKACE</p>
+            <p class="font-display text-5xl font-bold mb-2">8</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed mb-6">
+              odborných publikací zaměřených na eye tracking a uživatelskou zkušenost.
+            </p>
+            <p class="font-mono text-[11px] text-brand-black/60 tracking-widest mb-2">PŘÍKLAD PUBLIKACE</p>
+            <p class="text-sm text-brand-black/60 leading-relaxed">
+              Franěk, M., &amp; Petružálek, J. (2025). <em>Perceptual fluency and eye movements when viewing
+              urban and natural scenes.</em> Scientific Reports, 15(1), čl. 25772.
+            </p>
+          </div>
+          <div class="bg-brand-white p-8">
+            <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">VÝZKUM A VZDĚLÁVÁNÍ</p>
+            <ul class="space-y-3 text-sm text-brand-black/60 leading-relaxed">
+              <li class="pb-3 border-b border-brand-black/5">
+                <strong class="text-brand-black">2 obhájené disertace</strong><br/>
+                Jan Petružálek (2023): kombinace metod měření uživatelské zkušenosti s využitím eye trackingu<br/>
+                Denis Šefara (2022): využití pozornosti při návrhu business dashboardů
+              </li>
+              <li>
+                <strong class="text-brand-black">8 obhájených diplomových a bakalářských prací</strong><br/>
+                2 diplomové práce, 6 bakalářských prací
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          Průběžná práce na výzkumných tématech nám umožňuje metody ověřovat, porovnávat a rozvíjet
+          na různých typech zadání.
+        </p>
+      </div>
+
+      <!-- Jak měření probíhá -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ POSTUP ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Od otázky ke konkrétnímu doporučení<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {postup.map(step => (
+            <div class="bg-brand-white p-6 md:p-8 flex flex-col">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">{step.num}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-8 max-w-3xl">
+          V protokolu hlídáme kalibraci po celou dobu měření, únavu účastníků, pořadí úkolů a srozumitelné zadání.
+          Závěr nikdy nestojí na jedné metrice ani jedné nahrávce. Co z toho dostanete u konkrétní služby,
+          najdete v <a href={`${base}/sluzby`} class="underline hover:text-[#2D62FC]">přehledu služeb</a>.
+        </p>
+      </div>
+
+      <!-- Dál o nás -->
+      <nav aria-label="Dál o nás" class:list={["reveal grid grid-cols-1 gap-px bg-brand-black/10 border border-brand-black/10", dalsi.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"]}>
+        {dalsi.map(x => (
+          <a href={base + x.href} class="group bg-brand-white p-8 flex items-start justify-between gap-6 hover:bg-[#2D62FC]/5 transition-colors">
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-3">[ DÁL O NÁS ]</p>
+              <p class="font-display text-2xl md:text-3xl font-bold mb-2 group-hover:text-[#2D62FC] transition-colors">{x.t}</p>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{x.d}</p>
+            </div>
+            <span class="font-mono text-lg group-hover:text-[#2D62FC]" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </nav>
+
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</BaseLayout>

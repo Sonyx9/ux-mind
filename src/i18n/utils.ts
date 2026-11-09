@@ -26,6 +26,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'field-research': '/sluzby/terenni-mereni',
     'ux-research': '/sluzby/ux-vyzkum',
     about: '/o-nas',
+    where: '/o-nas/kde-merime',
     segments: '/segmenty',
     'seg-e-shopy': '/segmenty/e-shopy',
     'seg-weby': '/segmenty/weby',
@@ -134,7 +135,7 @@ export function getAlternatePath(pathname: string): string {
 }
 
 const navLabels: Record<Lang, Record<string, string>> = {
-  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři', media: 'V médiích' },
+  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři', media: 'V médiích', where: 'Kde a čím měříme' },
   en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact', about: 'About', partners: 'Partners' },
   de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt', about: 'Über uns', partners: 'Partner' },
 };
@@ -232,7 +233,8 @@ export function getNavLinks(lang: Lang): NavLink[] {
 export function getAboutChildren(lang: Lang): { href: string; label: string; desc?: string }[] {
   if (lang !== 'cs') return [];
   return [
-    { href: urlMap.cs.about, label: 'Tým a laboratoř', desc: 'Kdo jsme a spolupráce s laboratoří FIM UHK' },
+    { href: urlMap.cs.about, label: 'Kdo jsme', desc: 'Tým UX MIND a spolupráce s FIM UHK' },
+    { href: urlMap.cs.where, label: 'Kde a čím měříme', desc: 'Laboratoř, terén a vybavení' },
     ...(MEDIA_PAGE_LIVE ? [{ href: urlMap.cs.media, label: 'V médiích', desc: 'Podcasty, reportáže a články' }] : []),
     { href: urlMap.cs.partners, label: 'Partneři', desc: 'S kým spolupracujeme' },
   ];
