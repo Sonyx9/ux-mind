@@ -1,0 +1,176 @@
+---
+// Záměrně mimo build (podtržítko), dokud MEDIA_PAGE_LIVE = false — viz src/data/media.ts.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import YouTubeFacade from '../../components/YouTubeFacade.astro';
+import { getCollection } from 'astro:content';
+import { mediaItems, mediaTypes, MEDIA_PAGE_LIVE, type MediaItem } from '../../data/media';
+
+// Díly, které mají přepis → tlačítko „Zobrazit přepis"
+const prepisy = new Set((await getCollection('prepisy')).map(e => e.slug));
+const hasTranscript = (i: MediaItem) => !!i.slug && prepisy.has(i.slug);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Na živé stránce jen hotové položky; v náhledu (MEDIA_PAGE_LIVE = false) i rozpracované
+const visible = mediaItems
+  .filter(i => !MEDIA_PAGE_LIVE || !i.placeholder)
+  .sort((a, b) => (b.date ?? '9999').localeCompare(a.date ?? '9999'));
+
+const groups = mediaTypes
+  .map(t => ({ ...t, items: visible.filter(i => i.type === t.type) }))
+  .filter(g => g.items.length > 0);
+
+const fmtDate = (d?: string) => {
+  if (!d) return 'Připravujeme';
+  const [y, m, day] = d.split('-').map(Number);
+  return `${day}. ${m}. ${y}`;
+};
+const thumb = (i: MediaItem) => (i.youtubeId ? `https://i.ytimg.com/vi/${i.youtubeId}/hqdefault.jpg` : null);
+const ctaLabel = (i: MediaItem) => (i.youtubeId ? 'PŘEHRÁT NA YOUTUBE ↗' : i.type === 'clanek' ? 'ČÍST ČLÁNEK ↗' : 'OTEVŘÍT ↗');
+
+const description =
+  'Podcasty, reportáže a články o eye trackingu a UX výzkumu, ve kterých se mluví o UX MIND a měřeních ve spolupráci s laboratoří FIM UHK.';
+
+const pageUrl = new URL('/v-mediich/', Astro.site).href;
+const videos = visible.filter(i => i.youtubeId && i.date);
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    name: 'UX MIND v médiích',
+    description,
+    ...(videos.length ? { hasPart: videos.map(i => ({ '@id': `${pageUrl}#video-${i.youtubeId}` })) } : {}),
+  },
+  ...videos
+    .map(i => ({
+      '@type': 'VideoObject',
+      '@id': `${pageUrl}#video-${i.youtubeId}`,
+      name: i.title,
+      description: i.summary,
+      uploadDate: i.date,
+      thumbnailUrl: thumb(i),
+      embedUrl: `https://www.youtube-nocookie.com/embed/${i.youtubeId}`,
+      url: i.url,
+      ...(i.duration ? { duration: i.duration } : {}),
+      ...(i.author ? { author: { '@type': 'Person', name: i.author } } : {}),
+    })),
+];
+---
+
+<BaseLayout title="UX MIND v médiích: podcasty, reportáže a články" description={description} schema={schema} hreflang={false}>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-12">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ PODCASTY · REPORTÁŽE · ČLÁNKY ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8" style="font-size: clamp(3rem, 9vw, 8rem);">
+          V MÉDIÍCH<span style="color:#2D62FC">.</span>
+        </h1>
+        <p class="text-lg text-brand-black/60 leading-relaxed max-w-3xl">
+          Podcasty, reportáže a články, ve kterých se mluví o eye trackingu, UX výzkumu a našich měřeních
+          — v laboratoři i v terénu.
+        </p>
+      </div>
+
+      <!-- Kotvy na kategorie -->
+      <nav aria-label="Kategorie" class="mb-16 flex flex-wrap gap-2">
+        {groups.map(g => (
+          <a href={`#${g.anchor}`} class="font-mono text-xs tracking-widest uppercase border border-brand-black/20 px-3 py-2 hover:border-[#2D62FC] hover:text-[#2D62FC] transition-colors">
+            {g.label} <span class="text-brand-black/40">({g.items.length})</span>
+          </a>
+        ))}
+      </nav>
+
+      {groups.map((g, gi) => (
+        <section id={g.anchor} class="reveal mb-24 scroll-mt-28">
+          <div class="flex items-baseline justify-between border-b border-brand-black/10 pb-4 mb-8">
+            <h2 class="font-display text-3xl md:text-5xl font-bold">{g.label}<span style="color:#2D62FC">.</span></h2>
+            <span class="font-mono text-xs text-brand-black/40">0{gi + 1}</span>
+          </div>
+
+          {g.type === 'clanek' ? (
+            <!-- Články: kompaktní řádky s odkazem ven -->
+            <div class="border border-brand-black/10 divide-y divide-brand-black/10">
+              {g.items.map(i => (
+                <Fragment>{(() => { const Tag = i.url ? 'a' : 'div'; return (
+                <Tag {...(i.url ? { href: i.url, target: '_blank', rel: 'noopener noreferrer' } : {})} class="group grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 p-6 md:p-8 hover:bg-[#2D62FC]/5 transition-colors">
+                  <div class="md:col-span-3">
+                    <p class="font-mono text-xs tracking-widest uppercase">{i.outlet}</p>
+                    <p class="font-mono text-xs text-brand-black/50 mt-1">{fmtDate(i.date)}</p>
+                  </div>
+                  <div class="md:col-span-8">
+                    <h3 class="font-display text-xl md:text-2xl font-bold mb-2 group-hover:text-[#2D62FC] transition-colors">{i.title}</h3>
+                    <p class="text-sm text-brand-black/60 leading-relaxed max-w-2xl">{i.summary}</p>
+                  </div>
+                  {i.url && <span class="md:col-span-1 font-mono text-lg md:text-right self-start group-hover:text-[#2D62FC]" aria-hidden="true">↗</span>}
+                </Tag>
+                ); })()}</Fragment>
+              ))}
+            </div>
+          ) : (
+            <!-- Podcasty a reportáže: video vlevo, popis vpravo -->
+            <div class="space-y-12">
+              {g.items.map(i => (
+                <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                  <div class="lg:col-span-7">
+                    <YouTubeFacade youtubeId={i.youtubeId} title={i.title} />
+                  </div>
+                  <div class="lg:col-span-5 flex flex-col">
+                    <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:#2D62FC">{i.outlet}{i.author ? ` · ${i.author}` : ''}</p>
+                    <p class="font-mono text-xs text-brand-black/50 mb-5">{fmtDate(i.date)}</p>
+                    <h3 class="font-display text-2xl md:text-3xl font-bold leading-tight mb-4">
+                      {hasTranscript(i) ? <a href={`${base}/v-mediich/${i.slug}/`} class="hover:text-[#2D62FC] transition-colors">{i.title}</a> : i.title}
+                    </h3>
+                    <p class="text-brand-black/60 leading-relaxed mb-8">{i.summary}</p>
+                    <div class="flex flex-wrap gap-3">
+                      {i.url && (
+                        <a href={i.url} target="_blank" rel="noopener noreferrer" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">{ctaLabel(i)}</a>
+                      )}
+                      {hasTranscript(i) && (
+                        <a href={`${base}/v-mediich/${i.slug}/`} class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">ZOBRAZIT PŘEPIS →</a>
+                      )}
+                      {i.ourArticle && (
+                        <a href={base + i.ourArticle} class="inline-block border border-brand-black/20 px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-[#2D62FC] hover:text-[#2D62FC] transition-colors">NÁŠ ČLÁNEK →</a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      ))}
+
+      <!-- Pro novináře a tvůrce -->
+      <div class="reveal border border-brand-black/10 p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div class="md:col-span-2">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-3">[ PRO MÉDIA ]</p>
+          <h2 class="font-display text-2xl md:text-3xl font-bold mb-3">Chystáte téma o pozornosti, reklamě nebo UX<span style="color:#2D62FC">?</span></h2>
+          <p class="text-sm text-brand-black/60 leading-relaxed max-w-2xl">Rádi ukážeme měření v praxi, dodáme data z našich studií nebo přijdeme do podcastu.</p>
+        </div>
+        <a href={`${base}/kontakt`} class="md:justify-self-end inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">NAPIŠTE NÁM →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  </script>
+</BaseLayout>

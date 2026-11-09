@@ -19,7 +19,17 @@ const nav = getNavLinks(lang);
 const flatNav: { href: string; label: string; indent: boolean }[] =
   nav
     .filter(l => l.href !== '/segmenty')
-    .map(l => ({ href: base + l.href, label: l.label, indent: false }));
+    .flatMap(l => {
+      const item = { href: base + l.href, label: l.label, indent: false };
+      // „O nás": podpoložky (V médiích, Partneři) odsazeně; první vede na stejnou stránku jako rodič
+      if (l.children?.some(c => c.href === l.href)) {
+        const subs = l.children
+          .filter(c => c.href !== l.href)
+          .map(c => ({ href: base + c.href, label: c.label, indent: true }));
+        return [item, ...subs];
+      }
+      return [item];
+    });
 // Sloupec „Pro koho" — hlavní segmenty (zatím jen čeština)
 const footerSegments = getFooterSegments(lang).map(s => ({ href: base + s.href, label: s.label }));
 

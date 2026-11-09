@@ -15,4 +15,15 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+// Přepisy podcastů a reportáží pro stránky /v-mediich/{slug}/ — metadata dílu jsou v src/data/media.ts
+const prepisy = defineCollection({
+  type: 'content',
+  schema: z.object({
+    /** Kdo mluví (zobrazí se nad přepisem) */
+    mluvci: z.array(z.string()).default([]),
+    /** Přepis upravený pro čtení (ne surový automatický) */
+    upraveno: z.boolean().default(true),
+  }),
+});
+
+export const collections = { blog, prepisy };

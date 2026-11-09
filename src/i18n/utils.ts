@@ -1,3 +1,5 @@
+import { MEDIA_PAGE_LIVE } from '../data/media';
+
 export type Lang = 'cs' | 'en' | 'de';
 
 export const defaultLang: Lang = 'cs';
@@ -44,6 +46,7 @@ const urlMap: Record<Lang, Record<string, string>> = {
     'cs-billboardy-sport-marketing': '/pripadove-studie/billboardy-sport-marketing',
     blog: '/blog',
     partners: '/partneri',
+    media: '/v-mediich',
     contact: '/kontakt',
     cookies: '/zasady-cookies',
     privacy: '/zasady-osobnich-udaju',
@@ -131,7 +134,7 @@ export function getAlternatePath(pathname: string): string {
 }
 
 const navLabels: Record<Lang, Record<string, string>> = {
-  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři' },
+  cs: { services: 'Služby', 'test-packages': 'Testovací balíčky', 'ux-audit': 'UX Audit', 'user-testing': 'Testování uživatelů', 'field-research': 'Terénní měření', 'ux-research': 'UX Výzkum', 'case-studies': 'Studie', segments: 'Pro koho', contact: 'Kontakt', about: 'O nás', partners: 'Partneři', media: 'V médiích' },
   en: { services: 'Services', 'test-packages': 'Test Packages', 'ux-audit': 'UX Audit', 'user-testing': 'User Testing', 'field-research': 'Field Research', 'ux-research': 'UX Research', 'case-studies': 'Case Studies', contact: 'Contact', about: 'About', partners: 'Partners' },
   de: { services: 'Leistungen', 'test-packages': 'Test-Pakete', 'ux-audit': 'UX-Audit', 'user-testing': 'Nutzertests', 'field-research': 'Feldforschung', 'ux-research': 'UX-Forschung', 'case-studies': 'Fallstudien', contact: 'Kontakt', about: 'Über uns', partners: 'Partner' },
 };
@@ -163,7 +166,7 @@ export type NavLink = {
   href: string;
   label: string;
   /** Podpoložky — kategorizační strom (dropdown na desktopu, odsazení v mobilním menu) */
-  children?: { href: string; label: string }[];
+  children?: { href: string; label: string; desc?: string }[];
 };
 
 // Segmenty do patičky — stejný úplný seznam jako v menu „Pro koho“ (zatím jen čeština)
@@ -213,8 +216,24 @@ export function getNavLinks(lang: Lang): NavLink[] {
     { href: urlMap[lang].services, label: t.services, children: serviceChildren },
     ...(urlMap[lang].segments ? [{ href: urlMap[lang].segments, label: t.segments ?? 'Pro koho', children: segmentChildren }] : []),
     { href: urlMap[lang]['case-studies'], label: t['case-studies'] },
-    ...(urlMap[lang].about ? [{ href: urlMap[lang].about, label: t.about ?? 'O nás' }] : []),
-    ...(urlMap[lang].partners ? [{ href: urlMap[lang].partners, label: t.partners ?? 'Partneři' }] : []),
+    // CS: „O nás" je rozbalovací (Tým a laboratoř · V médiích · Partneři); klik na „O nás" vede na /o-nas.
+    // EN/DE: zatím beze změny (O nás a Partneři jako samostatné položky).
+    ...(lang === 'cs'
+      ? [{ href: urlMap[lang].about, label: t.about, children: getAboutChildren(lang) }]
+      : [
+          ...(urlMap[lang].about ? [{ href: urlMap[lang].about, label: t.about ?? 'O nás' }] : []),
+          ...(urlMap[lang].partners ? [{ href: urlMap[lang].partners, label: t.partners ?? 'Partneři' }] : []),
+        ]),
     { href: urlMap[lang].contact, label: t.contact },
+  ];
+}
+
+// Podpoložky „O nás" (zatím jen čeština). „V médiích" až po spuštění stránky (MEDIA_PAGE_LIVE).
+export function getAboutChildren(lang: Lang): { href: string; label: string; desc?: string }[] {
+  if (lang !== 'cs') return [];
+  return [
+    { href: urlMap.cs.about, label: 'Tým a laboratoř', desc: 'Kdo jsme a spolupráce s laboratoří FIM UHK' },
+    ...(MEDIA_PAGE_LIVE ? [{ href: urlMap.cs.media, label: 'V médiích', desc: 'Podcasty, reportáže a články' }] : []),
+    { href: urlMap.cs.partners, label: 'Partneři', desc: 'S kým spolupracujeme' },
   ];
 }

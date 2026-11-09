@@ -1,0 +1,167 @@
+---
+// Stránka dílu podcastu / reportáže s přepisem: /v-mediich/{slug}/
+// Generuje se jen pro položky z src/data/media.ts, které mají slug A soubor src/content/prepisy/{slug}.md.
+// Záměrně mimo build (složka s podtržítkem), dokud MEDIA_PAGE_LIVE = false.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import YouTubeFacade from '../../components/YouTubeFacade.astro';
+import { getCollection } from 'astro:content';
+import { mediaItems, mediaTypes, MEDIA_PAGE_LIVE } from '../../data/media';
+
+export async function getStaticPaths() {
+  const prepisy = await getCollection('prepisy');
+  return mediaItems
+    .filter(i => i.slug && (!MEDIA_PAGE_LIVE || !i.placeholder))
+    .map(i => ({ item: i, entry: prepisy.find(e => e.slug === i.slug) }))
+    .filter(x => x.entry)
+    .map(x => ({ params: { slug: x.item.slug }, props: x }));
+}
+
+const { item, entry } = Astro.props;
+const { Content } = await entry!.render();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const typeLabel = { podcast: 'Podcast', reportaz: 'Reportáž', clanek: 'Článek' }[item.type];
+const typeAnchor = mediaTypes.find(t => t.type === item.type)?.anchor ?? '';
+
+const fmtDate = (d?: string) => {
+  if (!d) return 'Připravujeme';
+  const [y, m, day] = d.split('-').map(Number);
+  return `${day}. ${m}. ${y}`;
+};
+const toSec = (t: string) => t.split(':').map(Number).reduce((acc, n) => acc * 60 + n, 0);
+const ytAt = (t: string) => (item.youtubeId ? `https://www.youtube.com/watch?v=${item.youtubeId}&t=${toSec(t)}s` : null);
+
+// Přepis jako prostý text pro JSON-LD (bez Markdownu a HTML komentářů)
+const transcriptText = (entry!.body ?? '')
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/^#+\s*/gm, '')
+  .replace(/\*\*/g, '')
+  .replace(/\n{2,}/g, '\n')
+  .trim();
+
+const pageTitle = item.seoTitle ?? `${item.title} (${typeLabel.toLowerCase()} ${item.outlet})`;
+const description = item.seoDescription ?? item.summary;
+const pageUrl = new URL(`/v-mediich/${item.slug}/`, Astro.site).href;
+
+const schema = item.youtubeId && item.date
+  ? [{
+      '@type': 'VideoObject',
+      '@id': `${pageUrl}#video`,
+      name: item.title,
+      description: item.summary,
+      uploadDate: item.date,
+      thumbnailUrl: `https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg`,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${item.youtubeId}`,
+      ...(item.url ? { url: item.url } : {}),
+      ...(item.duration ? { duration: item.duration } : {}),
+      ...(item.author ? { author: { '@type': 'Person', name: item.author } } : {}),
+      ...(transcriptText ? { transcript: transcriptText } : {}),
+      ...(item.chapters?.length
+        ? { hasPart: item.chapters.map((c, idx) => ({
+            '@type': 'Clip',
+            name: c.title,
+            startOffset: toSec(c.time),
+            ...(item.chapters![idx + 1] ? { endOffset: toSec(item.chapters![idx + 1].time) } : {}),
+            url: ytAt(c.time),
+          })) }
+        : {}),
+    }]
+  : undefined;
+---
+
+<BaseLayout title={pageTitle} description={description} schema={schema} hreflang={false}>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Zpět + hlavička -->
+      <a href={`${base}/v-mediich/#${typeAnchor}`} class="inline-block font-mono text-xs tracking-widest uppercase text-brand-black/60 hover:text-[#2D62FC] transition-colors mb-10">← V médiích</a>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20">
+        <div class="lg:col-span-7">
+          <YouTubeFacade youtubeId={item.youtubeId} title={item.title} eager />
+        </div>
+        <div class="lg:col-span-5 flex flex-col">
+          <p class="font-mono text-xs tracking-widest uppercase mb-1" style="color:#2D62FC">{typeLabel} · {item.outlet}{item.author ? ` · ${item.author}` : ''}</p>
+          <p class="font-mono text-xs text-brand-black/50 mb-5">{fmtDate(item.date)}</p>
+          <h1 class="font-display text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-5">{item.title}<span style="color:#2D62FC">.</span></h1>
+          <p class="text-brand-black/60 leading-relaxed mb-8">{item.summary}</p>
+          <div class="flex flex-wrap gap-3">
+            {item.url && (
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">{item.youtubeId ? 'PŘEHRÁT NA YOUTUBE ↗' : 'OTEVŘÍT ORIGINÁL ↗'}</a>
+            )}
+            <a href="#prepis" class="inline-block border border-brand-black/20 px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-[#2D62FC] hover:text-[#2D62FC] transition-colors">PŘEPIS ↓</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <!-- Boční sloupec: hlavní body, kapitoly, související -->
+        <aside class="lg:col-span-4 space-y-12 lg:sticky lg:top-28 self-start">
+          {item.keyPoints?.length ? (
+            <section>
+              <h2 class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-4">[ Hlavní body ]</h2>
+              <ul class="space-y-3">
+                {item.keyPoints.map(k => (
+                  <li class="flex gap-2 text-brand-black/80 leading-relaxed"><span class="font-mono text-xs pt-1" style="color:#2D62FC;">→</span>{k}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {item.chapters?.length ? (
+            <section>
+              <h2 class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-4">[ Kapitoly ]</h2>
+              <ol class="border border-brand-black/10 divide-y divide-brand-black/10">
+                {item.chapters.map(c => {
+                  const href = ytAt(c.time);
+                  const inner = <Fragment><span class="font-mono text-xs text-brand-black/50 tabular-nums w-14 shrink-0">{c.time}</span><span class="text-sm">{c.title}</span></Fragment>;
+                  return (
+                    <li>
+                      {href
+                        ? <a href={href} target="_blank" rel="noopener noreferrer" class="flex gap-3 px-4 py-3 hover:bg-[#2D62FC]/5 hover:text-[#2D62FC] transition-colors">{inner}</a>
+                        : <div class="flex gap-3 px-4 py-3">{inner}</div>}
+                    </li>
+                  );
+                })}
+              </ol>
+            </section>
+          ) : null}
+
+          {item.related?.length ? (
+            <section>
+              <h2 class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-4">[ Souvisí ]</h2>
+              <div class="flex flex-wrap gap-2">
+                {item.related.map(r => (
+                  <a href={base + r.href} class="font-mono text-xs tracking-widest uppercase border border-brand-black/20 px-3 py-2 hover:border-[#2D62FC] hover:text-[#2D62FC] transition-colors">{r.label} →</a>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </aside>
+
+        <!-- Přepis -->
+        <section id="prepis" class="lg:col-span-8 scroll-mt-28">
+          <div class="border-b border-brand-black/10 pb-4 mb-8">
+            <h2 class="font-display text-3xl md:text-4xl font-bold">Přepis<span style="color:#2D62FC">.</span></h2>
+            {(entry!.data.mluvci.length > 0 || entry!.data.upraveno) && (
+              <p class="font-mono text-xs text-brand-black/50 mt-2">
+                {entry!.data.mluvci.length > 0 && <Fragment>Mluví: {entry!.data.mluvci.join(', ')}</Fragment>}
+                {entry!.data.mluvci.length > 0 && entry!.data.upraveno && ' · '}
+                {entry!.data.upraveno && 'Přepis je upravený pro čtení.'}
+              </p>
+            )}
+          </div>
+          <div class="prose max-w-none">
+            <Content />
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

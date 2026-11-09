@@ -2,8 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { MEDIA_PAGE_LIVE } from '../data/media';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Rozcestník na konci stránky — ať V médiích a Partneři nejsou dostupné jen z rozbalovacího menu
+const dalsi = [
+  ...(MEDIA_PAGE_LIVE ? [{ t: 'V médiích', d: 'Podcasty, reportáže a články o eye trackingu a našich měřeních.', href: '/v-mediich' }] : []),
+  { t: 'Partneři', d: 'Univerzita Hradec Králové a MindSense: výzkumné zázemí a technologická podpora.', href: '/partneri' },
+];
 
 const vystupyMereni = [
   ['Pozornost', 'Které prvky uživatel zaznamená, v jakém pořadí a co úplně přehlédne.'],
@@ -455,6 +462,20 @@ const pageSchema = [
           </ul>
         </div>
       </div>
+
+      <!-- Dál o nás -->
+      <nav aria-label="Dál o nás" class="reveal grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
+        {dalsi.map(x => (
+          <a href={base + x.href} class="group bg-brand-white p-8 flex items-start justify-between gap-6 hover:bg-[#2D62FC]/5 transition-colors">
+            <div>
+              <p class="font-mono text-xs text-brand-black/60 tracking-widest uppercase mb-3">[ DÁL O NÁS ]</p>
+              <p class="font-display text-2xl md:text-3xl font-bold mb-2 group-hover:text-[#2D62FC] transition-colors">{x.t}</p>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{x.d}</p>
+            </div>
+            <span class="font-mono text-lg group-hover:text-[#2D62FC]" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </nav>
 
     </div>
   </main>

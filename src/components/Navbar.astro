@@ -61,11 +61,14 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
               {link.children.map(c => (
                 <a
                   href={c.href}
-                  class={`block px-4 py-2 font-mono nav-fs tracking-widest uppercase transition-colors ${
+                  class={`block px-4 ${c.desc ? 'py-2.5' : 'py-2'} font-mono nav-fs tracking-widest uppercase transition-colors ${
                     currentPath === c.href || currentPath === c.href.replace(/\/$/, '') + '/' ? 'underline underline-offset-4' : 'hover:text-[#2D62FC] hover:bg-[#2D62FC]/10'
                   }`}
                 >
                   {c.label}
+                  {c.desc && (
+                    <span class="block mt-0.5 font-sans normal-case tracking-normal text-[12px] leading-snug text-brand-black/45">{c.desc}</span>
+                  )}
                 </a>
               ))}
             </div>

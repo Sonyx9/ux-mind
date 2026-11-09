@@ -1,0 +1,40 @@
+---
+// YouTube přehrávač až po kliknutí: rychlé načtení stránky, žádné cookies YouTube předem.
+// Bez youtubeId zobrazí zástupný blok „Video doplníme po vydání".
+interface Props { youtubeId?: string; title: string; eager?: boolean }
+const { youtubeId, title, eager = false } = Astro.props;
+---
+{youtubeId ? (
+  <button type="button" class="yt-facade group relative block w-full aspect-video bg-brand-black overflow-hidden" data-yt={youtubeId} aria-label={`Přehrát video: ${title}`}>
+    <img src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`} alt={`Náhled videa ${title}`} title={title} width="480" height="360" loading={eager ? 'eager' : 'lazy'} decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+    <span class="absolute inset-0 flex items-center justify-center">
+      <span class="w-20 h-20 rounded-full bg-brand-white/95 flex items-center justify-center group-hover:scale-105 transition-transform">
+        <svg viewBox="0 0 24 24" class="w-8 h-8 ml-1" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#0A0A0A"/></svg>
+      </span>
+    </span>
+  </button>
+) : (
+  <div class="relative w-full aspect-video border border-dashed border-brand-black/25 bg-brand-black/[0.03] flex flex-col items-center justify-center gap-3">
+    <span class="w-16 h-16 rounded-full border border-brand-black/25 flex items-center justify-center">
+      <svg viewBox="0 0 24 24" class="w-6 h-6 ml-0.5" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#0A0A0A" fill-opacity=".35"/></svg>
+    </span>
+    <span class="font-mono text-[11px] tracking-widest uppercase text-brand-black/45">[ Video doplníme po vydání ]</span>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.yt-facade').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.yt;
+      if (!id) return;
+      const start = btn.dataset.start ? `&start=${btn.dataset.start}` : '';
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1${start}`;
+      iframe.title = btn.getAttribute('aria-label') ?? 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullScreen = true;
+      iframe.className = 'w-full aspect-video';
+      btn.replaceWith(iframe);
+    });
+  });
+</script>
