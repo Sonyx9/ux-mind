@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import YouTubeFacade from '../../components/YouTubeFacade.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -64,6 +65,17 @@ const pageSchema = [
     serviceType: 'Terénní eye-tracking',
     provider: { '@type': 'Organization', name: 'UX MIND Research Lab s.r.o.' },
     areaServed: 'CZ',
+  },
+  {
+    '@type': 'VideoObject',
+    name: 'Jak funguje eye tracking v terénu? Od nasazení brýlí po heatmapu',
+    description: 'Krok za krokem na měření ze zápasu FC Hradec Králové: nasazení a nastavení mobilních eye-trackingových brýlí, záznam pohledu, fixace, heatmapy a doplnění rozhovory a dotazníky.',
+    thumbnailUrl: 'https://uxmind.cz/images/video-jak-funguje-eye-tracking-v-terenu.webp',
+    uploadDate: '2026-11-19',
+    duration: 'PT1M9S',
+    embedUrl: 'https://www.youtube-nocookie.com/embed/RbpnEFTicTE',
+    contentUrl: 'https://www.youtube.com/watch?v=RbpnEFTicTE',
+    inLanguage: 'cs',
   },
   {
     '@type': 'FAQPage',
@@ -243,6 +255,16 @@ const pageSchema = [
             </div>
           ))}
         </div>
+      </div>
+
+      <!-- Video: jak funguje eye tracking v terénu (FC Hradec Králové) -->
+      <div class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ VIDEO: JAK TO VYPADÁ V PRAXI ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-4xl">
+          Od nasazení brýlí po heatmapu<span style="color:#2D62FC">.</span>
+        </h2>
+        <YouTubeFacade youtubeId="RbpnEFTicTE" title="Jak funguje eye tracking v terénu? Od nasazení brýlí po heatmapu" poster={`${base}/images/video-jak-funguje-eye-tracking-v-terenu.webp`} posterAlt="Heatmapa pohledu fanouška při penaltě na stadionu FC Hradec Králové z mobilních eye-trackingových brýlí" />
+        <div class="flex justify-between mt-2.5 font-mono text-[11px] tracking-widest text-brand-black/50"><span>VIDEO · 1:09</span><span>PŘEHRAJE SE Z YOUTUBE</span></div>
       </div>
 
       <!-- Fotky z terénu: FC Hradec Králové -->

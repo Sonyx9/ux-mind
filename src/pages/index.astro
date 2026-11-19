@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import YouTubeFacade from '../components/YouTubeFacade.astro';
 const homeStudies = [
   {
     href: '/pripadove-studie/karierni-portal-automotive',
@@ -27,6 +28,22 @@ const homeStudies = [
 ];
 
 const gifSrc = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero.webp`;
+const promoVideo = {
+  youtubeId: 'P638-nDisOs',
+  title: 'Kam se fanoušek opravdu dívá? Eye tracking na FC Hradec Králové',
+  poster: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/images/video-eye-tracking-fanousek-fc-hradec-kralove.webp`,
+};
+const homeSchema = {
+  '@type': 'VideoObject',
+  name: promoVideo.title,
+  description: 'Fanouškům FC Hradec Králové jsme nasadili mobilní eye-trackingové brýle a zaznamenali jejich pohled od vstupu přes občerstvení až po penaltu. Oranžový kroužek ukazuje, kam se v danou chvíli opravdu dívají.',
+  thumbnailUrl: 'https://uxmind.cz/images/video-eye-tracking-fanousek-fc-hradec-kralove.webp',
+  uploadDate: '2026-11-19',
+  duration: 'PT1M35S',
+  embedUrl: `https://www.youtube-nocookie.com/embed/${promoVideo.youtubeId}`,
+  contentUrl: `https://www.youtube.com/watch?v=${promoVideo.youtubeId}`,
+  inLanguage: 'cs',
+};
 const yearSuffix = new Date().getFullYear().toString().slice(-2);
 
 const clientLogos = [
@@ -38,7 +55,7 @@ const clientLogos = [
 ];
 ---
 
-<BaseLayout title="UX výzkum, eye tracking a uživatelské testování | UX MIND" description="Uživatelské testování, eye tracking a měření kognitivní zátěže (model EMLI). Objektivní UX výzkum s vědeckým zázemím FIM UHK. Otestujte svůj web na datech." preloadImages={[{ href: gifSrc, media: "(min-width: 768px)" }, { href: `${import.meta.env.BASE_URL.replace(/\/$/, "")}/hero-mobile.webp`, media: "(max-width: 767px)" }]}>
+<BaseLayout schema={homeSchema} title="UX výzkum, eye tracking a uživatelské testování | UX MIND" description="Uživatelské testování, eye tracking a měření kognitivní zátěže (model EMLI). Objektivní UX výzkum s vědeckým zázemím FIM UHK. Otestujte svůj web na datech." preloadImages={[{ href: gifSrc, media: "(min-width: 768px)" }, { href: `${import.meta.env.BASE_URL.replace(/\/$/, "")}/hero-mobile.webp`, media: "(max-width: 767px)" }]}>
   <Navbar />
 
   <!-- HERO SECTION -->
@@ -311,6 +328,25 @@ const clientLogos = [
       .logo-marquee { animation: none; }
     }
   </style>
+
+  <!-- VIDEO: EYE TRACKING NA STADIONU (FC Hradec Králové) -->
+  <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-8 lg:gap-14 items-center">
+      <div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ EYE TRACKING V TERÉNU ]</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-6">Kam se fanoušek opravdu dívá<span style="color:#2D62FC">?</span></h2>
+        <p class="text-sm text-brand-black/60 leading-relaxed">
+          Na zápase FC Hradec Králové jsme fanouškům nasadili eye-trackingové brýle a zaznamenali jejich pohled od vstupu přes občerstvení až po penaltu.
+          Oranžový kroužek ukazuje, kam se v danou chvíli opravdu dívají.
+        </p>
+        <p class="mt-7"><a href="/sluzby/terenni-mereni" class="font-mono text-xs tracking-widest border-b border-brand-black pb-0.5 hover:text-brand-blue hover:border-brand-blue transition-colors">JAK MĚŘENÍ V TERÉNU PROBÍHÁ →</a></p>
+      </div>
+      <div>
+        <YouTubeFacade youtubeId={promoVideo.youtubeId} title={promoVideo.title} poster={promoVideo.poster} posterAlt="Pohled fanouška z eye-trackingových brýlí při penaltě na stadionu FC Hradec Králové s oranžovou stopou pohledu" />
+        <div class="flex justify-between mt-2.5 font-mono text-[11px] tracking-widest text-brand-black/50"><span>VIDEO · 1:35</span><span>PŘEHRAJE SE Z YOUTUBE</span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- SERVICES SECTION -->
   <section class="desktop-gutter-x py-24 max-w-7xl mx-auto">

@@ -1,12 +1,12 @@
 ---
 // YouTube přehrávač až po kliknutí: rychlé načtení stránky, žádné cookies YouTube předem.
 // Bez youtubeId zobrazí zástupný blok „Video doplníme po vydání".
-interface Props { youtubeId?: string; title: string; eager?: boolean }
-const { youtubeId, title, eager = false } = Astro.props;
+interface Props { youtubeId?: string; title: string; eager?: boolean; poster?: string; posterAlt?: string }
+const { youtubeId, title, eager = false, poster, posterAlt } = Astro.props;
 ---
 {youtubeId ? (
   <button type="button" class="yt-facade group relative block w-full aspect-video bg-brand-black overflow-hidden" data-yt={youtubeId} aria-label={`Přehrát video: ${title}`}>
-    <img src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`} alt={`Náhled videa ${title}`} title={title} width="480" height="360" loading={eager ? 'eager' : 'lazy'} decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+    <img src={poster ?? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`} alt={posterAlt ?? `Náhled videa ${title}`} title={title} width={poster ? 1280 : 480} height={poster ? 720 : 360} loading={eager ? 'eager' : 'lazy'} decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
     <span class="absolute inset-0 flex items-center justify-center">
       <span class="w-20 h-20 rounded-full bg-brand-white/95 flex items-center justify-center group-hover:scale-105 transition-transform">
         <svg viewBox="0 0 24 24" class="w-8 h-8 ml-1" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#0A0A0A"/></svg>
