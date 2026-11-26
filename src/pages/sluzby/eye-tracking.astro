@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
+import UkazkyVystupu from '../../components/UkazkyVystupu.astro';
+import { UKAZKY_LIVE } from '../../data/ukazky';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -220,6 +222,9 @@ const pageSchema = [
           ))}
         </div>
       </div>
+
+      <!-- Ukázka výstupů (zapíná UKAZKY_LIVE v src/data/ukazky.ts) -->
+      {UKAZKY_LIVE && <UkazkyVystupu ids={['zaznam', 'heatmapa', 'aoi']} />}
 
       <!-- Proces -->
       <div class="reveal mb-24">

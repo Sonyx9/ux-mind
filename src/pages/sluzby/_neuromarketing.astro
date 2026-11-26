@@ -1,0 +1,483 @@
+---
+// NÁVRH – skryto (podtržítko = Astro nesestaví). Náhled: dvojklik „Náhled Neuromarketing.command“ v kořeni projektu.
+// Zveřejnění = přejmenovat na src/pages/sluzby/neuromarketing.astro, doplnit do /sluzby, menu a odkazy z HP a /sluzby/eye-tracking.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactCta from '../../components/ContactCta.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const testujeme = [
+  { t: 'Produktové fotky a výpis produktů', seg: 'E-SHOP', d: 'Packshot, nebo produkt na modelu? Které informace zákazník při výběru opravdu čte a co přehlédne.' },
+  { t: 'Ceník, akce a košík', seg: 'E-SHOP', d: 'Přeškrtnuté ceny, doprava zdarma, tarify a balíčky. Jak lidé nabídku čtou a kterou variantu nakonec vyberou.' },
+  { t: 'Bannery, newsletter a reklama', seg: 'KOMUNIKACE', d: 'Všimnou si lidé značky a sdělení? A vybaví si je ještě po skončení testu?' },
+  { t: 'Sponzoring a stadiony', seg: 'SPORT', d: 'Kolik pohledů dostanou partnerské plochy během zápasu a kolik diváků si sponzora potom vybaví.' },
+  { t: 'Obal a regál', seg: 'RETAIL', d: 'Vynikne produkt mezi konkurencí? Najde ho zákazník a vezme ho do ruky?' },
+];
+
+const ukazka = {
+  cepice: {
+    label: 'Čepice',
+    cas: [7.0, 7.7], casSig: false,
+    fix: [3.34, 3.79], fixSig: true,
+    data: 'Fotky s modelem přitáhly víc fixací (3,8 proti 3,3, rozdíl statisticky významný). Čas úkolu se mezi variantami prakticky nelišil.',
+    ne: 'Že víc fixací znamená větší zájem. Fotka s člověkem je zároveň vizuálně složitější, takže může jít i o delší „čtení“ obrázku.',
+    dop: 'U čepic typ fotky výběr nezpomaluje. Rozhodněte podle stylu značky a ověřte na konverzních datech.',
+  },
+  hodinky: {
+    label: 'Hodinky',
+    cas: [9.0, 11.8], casSig: true,
+    fix: [1.67, 2.28], fixSig: false,
+    data: 'S fotkami na modelu trval úkol déle (11,8 s proti 9,0 s, rozdíl statisticky významný). Počet fixací na fotky se průkazně nelišil.',
+    ne: 'Že fotky s modelem prodávají hůř. Studie neměřila konverzi a hodnocení atraktivity webu se mezi variantami nelišilo.',
+    dop: 'U hodinek ověřit A/B testem na e-shopu, jestli packshot ve výpisu zrychlí výběr bez dopadu na konverzi.',
+  },
+};
+
+const rozdil = [
+  ['Co testujeme', 'Rozhraní: web, aplikace, e-shop', 'Marketingovou komunikaci: fotky, ceník, reklamu, sponzoring, obal'],
+  ['Hlavní otázka', 'Najdou to? Kde se zaseknou?', 'Všimnou si toho, zapamatují si to a vyberou to?'],
+  ['Co měříme', 'Pohled a úspěšnost úkolu', 'Pohled, fyziologickou reakci, zapamatování a volbu'],
+];
+
+const metody = [
+  { m: 'Eye tracking', meri: 'Kam a kdy se člověk dívá, v jakém pořadí a co přehlédne.', ne: 'Že se mu prvek líbí nebo že ho koupí.' },
+  { m: 'Kožní vodivost (GSR)', meri: 'Změnu fyziologické aktivace, tedy že se v těle „něco děje“.', ne: 'Jestli šlo o nadšení, nebo o stres.' },
+  { m: 'Pohyby tváře', meri: 'Pohyby obličejových svalů, například zvednuté koutky.', ne: 'Jakou emoci člověk prožíval. Úsměv může být i zdvořilost.' },
+  { m: 'Test zapamatování a volby', meri: 'Co si lidé po testu vybaví a kterou variantu vyberou.', ne: 'Jak se zachovají za měsíc v reálném obchodě. To ukáže až ostrý provoz.' },
+  { m: 'EEG a fMRI', meri: 'Aktivitu mozku.', ne: 'Tyto metody nepoužíváme. Pokud by je vaše otázka vyžadovala, řekneme vám to.' },
+];
+
+const vystupy = [
+  { t: 'Testované varianty a úkoly', d: 'Přesně popíšeme, co jsme porovnávali a co účastníci dělali, aby šel výsledek zopakovat.' },
+  { t: 'Co lidé udělali', d: 'Čas, chyby, volba varianty a zapamatování. Výsledek, o který vám jde, ne jen hezký obrázek.' },
+  { t: 'Záznamy pohledu s výkladem', d: 'Heatmapy a sledované oblasti doplněné o to, co z nich plyne a co ne.' },
+  { t: 'Doporučení a další krok', d: 'Co změnit hned a co ověřit A/B testem na ostrém provozu.' },
+];
+
+const postup = [
+  { num: '01', title: 'Rozhodnutí', desc: 'Ujasníme si, co potřebujete rozhodnout a jaký výsledek o tom rozhodne.' },
+  { num: '02', title: 'Návrh studie', desc: 'Připravíme varianty, úkoly a sledované oblasti. Měníme vždy jen to, co testujeme.' },
+  { num: '03', title: 'Měření', desc: 'V laboratoři FIMEYELAB nebo v terénu, podle jednotného protokolu.' },
+  { num: '04', title: 'Výklad a doporučení', desc: 'Oddělíme, co data ukazují, od toho, co si k nim domýšlíme.' },
+];
+
+const faq = [
+  { q: 'Čím se neuromarketing liší od eye trackingu?', a: 'Eye tracking je jedna z metod. Neuromarketingová studie ho kombinuje s fyziologickou reakcí, testem zapamatování a volbou a míří na marketingovou komunikaci: fotky, ceny, reklamu, sponzoring nebo obal.' },
+  { q: 'Hodí se to i pro běžný e-shop?', a: 'Ano, pokud stojíte před konkrétním rozhodnutím: nové focení produktů, redesign výpisu, změna ceníku nebo akční mechaniky. Test pak ukáže, jestli změna pomáhá, ještě než do ní investujete naplno.' },
+  { q: 'Umí neuromarketing číst emoce?', a: 'Ne přímo. Kožní vodivost ukáže, že se reakce změnila, ale ne jestli byla příjemná. Pohyby tváře nejsou spolehlivým ukazatelem prožívané emoce. Proto biometrii doplňujeme tím, co lidé udělali a řekli.' },
+  { q: 'Je neuromarketing manipulace?', a: 'Měření nikoho neovlivňuje. Zjišťuje, jak lidé vnímají to, co už existuje. Účastníci o měření vědí a souhlasí s ním. Výsledek obvykle vede k tomu, že je důležitá informace lépe vidět a snáz se jí rozumí.' },
+  { q: 'Kolik účastníků potřebujete?', a: 'Záleží na otázce. Na odhalení problémů stačí menší skupina, na srovnání variant jich potřebujeme víc. Rozsah navrhneme v úvodní konzultaci.' },
+];
+
+const zdroje = [
+  { c: 'Lee, Broderick & Chamberlain (2007). What is “neuromarketing”? International Journal of Psychophysiology.', doi: '10.1016/j.ijpsycho.2006.03.007' },
+  { c: 'Ariely & Berns (2010). Neuromarketing: the hope and hype of neuroimaging in business. Nature Reviews Neuroscience.', doi: '10.1038/nrn2795' },
+  { c: 'Plassmann, Venkatraman, Huettel & Yoon (2015). Consumer neuroscience. Journal of Marketing Research.', doi: '10.1509/jmr.14.0048' },
+  { c: 'Poldrack (2006). Can cognitive processes be inferred from neuroimaging data? Trends in Cognitive Sciences.', doi: '10.1016/j.tics.2005.12.004' },
+  { c: 'Pieters & Wedel (2004). Attention capture and transfer in advertising. Journal of Marketing.', doi: '10.1509/jmkg.68.2.36.27794' },
+  { c: 'Barrett et al. (2019). Emotional expressions reconsidered. Psychological Science in the Public Interest.', doi: '10.1177/1529100619832930' },
+];
+
+const title = 'Neuromarketing: testy fotek, cen, reklamy a sponzoringu';
+const description =
+  'Neuromarketing bez hype pro e-shopy, reklamu a sport: eye tracking, fyziologická reakce, zapamatování a volba. Co data ukazují a co už je jen výklad.';
+
+const pageSchema = [
+  {
+    '@type': 'Service',
+    name: 'Neuromarketing',
+    description,
+    serviceType: 'Neuromarketing',
+    areaServed: 'CZ',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schema={pageSchema}
+  preloadImages={[{ href: `${base}/images/hero-neuromarketing-respondent-eye-tracking-bryle.webp`, media: '(min-width: 1280px)' }]}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-32 pb-24">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Hero -->
+      <div class="mb-16 relative">
+        <div class="hidden xl:block absolute right-0 top-9 bottom-0 left-[816px]">
+          <picture class="block h-full">
+            <source media="(min-width: 1280px)" srcset={`${base}/images/hero-neuromarketing-respondent-eye-tracking-bryle.webp`} width="880" height="1100" />
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Respondent v mobilních eye-trackingových brýlích na tribuně stadionu" title="Respondent v eye-trackingových brýlích během měření" width="880" height="1100" fetchpriority="high" decoding="async" class="w-full h-full object-cover border border-brand-black/10" style="object-position: 50% 30%;" />
+          </picture>
+        </div>
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SLUŽBY / NEUROMARKETING ]</p>
+        <h1 class="font-display font-bold leading-none tracking-tighter mb-8 xl:![font-size:clamp(3rem,7vw,6.5rem)] xl:pr-[464px]" style="font-size: clamp(3rem, 9vw, 8rem);">
+          NEURO&shy;MARKETING<br/>BEZ HYPE<span style="color:#2D62FC">.</span>
+        </h1>
+        <div class="max-w-3xl">
+          <h2 class="font-display text-2xl md:text-3xl font-bold mb-4 leading-tight">Čeho si zákazníci všimnou, co si zapamatují a co vyberou.</h2>
+          <p class="text-lg text-brand-black/60 leading-relaxed mb-4">
+            Otestujeme produktové fotky, ceník, reklamu, sponzorské plochy nebo obal dřív, než do nich investujete naplno.
+            Měříme pohled a fyziologickou reakci a spojujeme je s tím, co lidé opravdu udělají.
+          </p>
+          <p class="text-lg text-brand-black/60 leading-relaxed">
+            A říkáme jen to, co data unesou. <strong class="text-brand-black">Žádné „mozek miluje variantu B“.</strong>
+          </p>
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="/kontakt" class="inline-block bg-brand-black text-brand-white border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-white hover:text-brand-black transition-colors">POPTAT NEUROMARKETING →</a>
+            <a href="#ukazka" class="inline-block border border-brand-black px-8 py-4 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">UKÁZKA VÝSTUPU ↓</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info pás -->
+      <div class="reveal mb-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+        {[
+          ['PRO KOHO', 'E-shopy · reklama · sport · obaly'],
+          ['PROSTŘEDÍ', 'Laboratoř i terén'],
+          ['MĚŘÍME', 'Pohled · reakce · zapamatování · volba'],
+          ['ZÁZEMÍ', 'Výuka neuromarketingu na FIM UHK'],
+        ].map(([k, v]) => (
+          <div class="bg-brand-white p-5">
+            <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-1">{k}</p>
+            <p class="font-display font-bold leading-tight">{v}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Co testujeme -->
+      <div class="reveal mb-24 bg-brand-black text-brand-white p-8 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.35fr] gap-10 lg:gap-16">
+          <div>
+            <p class="font-mono text-xs text-brand-white/60 tracking-widest mb-4">[ CO TESTUJEME ]</p>
+            <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-8">
+              Rozhodnutí, která stojí peníze<span style="color:#2D62FC">.</span>
+            </h2>
+            <img src={`${base}/images/neuromarketing-heatmapa-vypisu-produktu.webp`} alt="Výzkumník ukazuje na heatmapu výpisu produktů e-shopu na monitoru" title="Rozbor heatmapy výpisu produktů" width="880" height="1100" loading="lazy" decoding="async" class="hidden lg:block w-full aspect-[4/5] object-cover border border-brand-white/15" />
+          </div>
+          <div class="border-t border-brand-white/20">
+            {testujeme.map((s, i) => (
+              <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_1fr_auto] gap-x-4 gap-y-2 py-6 border-b border-brand-white/20">
+                <span class="font-mono text-xs text-brand-white/50 pt-1">0{i + 1}</span>
+                <div>
+                  <h3 class="font-display text-lg md:text-xl font-bold leading-tight mb-2">{s.t}</h3>
+                  <p class="text-sm text-brand-white/65 leading-relaxed">{s.d}</p>
+                </div>
+                <span class="hidden sm:block self-start font-mono text-[10px] tracking-widest border border-brand-white/25 px-2 py-1">{s.seg}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Ukázka výstupu (interaktivní) -->
+      <section id="ukazka" class="reveal mb-24 scroll-mt-28">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ UKÁZKA VÝSTUPU ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-4xl">
+          Packshot, nebo fotka na modelu<span style="color:#2D62FC">?</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-10">
+          Reálná data z experimentu s 84 účastníky. Polovina viděla výpis produktů s čistými packshoty, polovina stejný
+          výpis s fotkami na modelech, a hledali v něm zadaný produkt. Přepněte kategorii a podívejte se, co data ukazují
+          a co z nich naopak neplyne.
+        </p>
+
+        <div class="border border-brand-black/10" data-ukazka>
+          <div class="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-b border-brand-black/10 bg-brand-black/[0.03]">
+            <div class="flex gap-2" role="tablist" aria-label="Kategorie produktu">
+              {Object.entries(ukazka).map(([k, v], i) => (
+                <button type="button" role="tab" data-tab={k} aria-selected={i === 0 ? 'true' : 'false'} class="ukazka-tab font-mono text-xs tracking-widest uppercase px-5 py-3 border border-brand-black transition-colors">{v.label}</button>
+              ))}
+            </div>
+            <p class="font-mono text-[11px] text-brand-black/50 tracking-wide">N = 84 · eye tracking + dotazník UEQ</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-brand-black/10">
+            <!-- Varianty -->
+            <div class="bg-brand-white p-6 md:p-8">
+              <div class="grid grid-cols-2 gap-6 mb-8">
+                {[['packshot', 'PACKSHOT'], ['model', 'NA MODELU']].map(([typ, n]) => (
+                  <div>
+                    <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">{n}</p>
+                    {['cepice', 'hodinky'].map((prod, pi) => (
+                      <div data-ikona={prod} class:list={["grid grid-cols-3 gap-1.5", pi > 0 && "hidden"]}>
+                        {[1, 2, 3].map(i => (
+                          <img src={`${base}/images/ukazka-neuromarketing/${prod}-${typ}-${i}.webp`} alt={`Ilustrační ${typ === 'packshot' ? 'packshot' : 'fotka na modelu'}: ${prod === 'cepice' ? 'čepice' : 'hodinky'} ${i}`} title={`Ilustrační náhled varianty ${n.toLowerCase()}`} width="512" height="512" loading="lazy" decoding="async" class="w-full aspect-square object-cover bg-brand-black/[0.05]" />
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              {[
+                { key: 'cas', label: 'Doba hledání produktu', unit: 's' },
+                { key: 'fix', label: 'Fixace na produktové fotky (průměr)', unit: '' },
+              ].map(m => (
+                <div class="mb-6" data-metrika={m.key} data-unit={m.unit}>
+                  <div class="flex justify-between items-baseline mb-2">
+                    <p class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70">{m.label}</p>
+                    <p class="font-mono text-[11px] tracking-widest" data-sig></p>
+                  </div>
+                  {['Packshot', 'Na modelu'].map((n, i) => (
+                    <div class="grid grid-cols-[6rem_1fr_3.5rem] items-center gap-3 mb-1.5">
+                      <span class="text-xs text-brand-black/60">{n}</span>
+                      <span class="h-3 bg-brand-black/[0.06] block"><span data-bar={i} class="block h-full transition-all duration-500" style={`width:0%;background:${i === 0 ? '#0A0A0A' : '#2D62FC'}`}></span></span>
+                      <span data-val={i} class="font-mono text-xs text-right tabular-nums"></span>
+                    </div>
+                  ))}
+                </div>
+              ))}
+              <div class="flex justify-between items-baseline border-t border-brand-black/10 pt-4">
+                <p class="font-mono text-[11px] tracking-widest uppercase text-brand-black/70">Hodnocení atraktivity webu</p>
+                <p class="font-mono text-[11px] tracking-widest text-brand-black/60">BEZ PRŮKAZNÉHO ROZDÍLU</p>
+              </div>
+            </div>
+
+            <!-- Výklad -->
+            <div class="bg-brand-white p-6 md:p-8 flex flex-col gap-6">
+              <div>
+                <p class="font-mono text-xs tracking-widest mb-2" style="color:#2D62FC;">CO DATA UKAZUJÍ</p>
+                <p class="text-brand-black/80 leading-relaxed" data-text="data"></p>
+              </div>
+              <div class="border-t border-brand-black/10 pt-6">
+                <p class="font-mono text-xs tracking-widest text-brand-black/60 mb-2">CO Z TOHO NETVRDÍME</p>
+                <p class="text-brand-black/60 leading-relaxed" data-text="ne"></p>
+              </div>
+              <div class="border-t border-brand-black/10 pt-6 bg-[#2D62FC]/5 -mx-6 md:-mx-8 px-6 md:px-8 pb-6 -mb-6 md:-mb-8 mt-auto">
+                <p class="font-mono text-xs tracking-widest mb-2">CO BYCHOM DOPORUČILI</p>
+                <p class="text-brand-black/80 leading-relaxed" data-text="dop"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="font-mono text-[11px] text-brand-black/60 mt-3 max-w-4xl">
+          Zdroj: disertační práce J. Petružálka (FIM UHK, 2023), průměrné hodnoty skupin. Náhledy variant jsou ilustrační (vygenerované AI), nejde o původní stimuly studie.
+          Celou studii najdete v <a href={`${base}/pripadove-studie/produktove-fotografie-e-commerce`} class="underline hover:text-[#2D62FC]">případové studii</a>.
+        </p>
+        <script type="application/json" id="ukazka-data" set:html={JSON.stringify(ukazka)}></script>
+      </section>
+
+      <!-- Rozdíl oproti eye trackingu -->
+      <section class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ROZDÍL ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Eye tracking, nebo neuromarketing<span style="color:#2D62FC">?</span>
+        </h2>
+        <div class="border border-brand-black/10">
+          <div class="hidden md:grid grid-cols-12 gap-6 px-6 py-3 border-b border-brand-black/10 bg-brand-black/[0.03]">
+            <p class="col-span-3"></p>
+            <p class="col-span-4 font-mono text-[11px] tracking-widest text-brand-black/60">EYE TRACKING</p>
+            <p class="col-span-5 font-mono text-[11px] tracking-widest" style="color:#2D62FC;">NEUROMARKETING</p>
+          </div>
+          {rozdil.map(([k, a, b]) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 p-6 border-b border-brand-black/10 last:border-0">
+              <p class="md:col-span-3 font-mono text-[11px] tracking-widest uppercase text-brand-black/70 pt-1">{k}</p>
+              <p class="md:col-span-4 text-sm text-brand-black/60 leading-relaxed"><span class="md:hidden font-mono text-[10px] tracking-widest text-brand-black/50 block">EYE TRACKING</span>{a}</p>
+              <p class="md:col-span-5 text-sm text-brand-black/80 leading-relaxed"><span class="md:hidden font-mono text-[10px] tracking-widest block" style="color:#2D62FC;">NEUROMARKETING</span>{b}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-brand-black/60 leading-relaxed mt-6 max-w-3xl">
+          Potřebujete zjistit, kde se uživatelé na webu zasekávají? Podívejte se na
+          <a href={`${base}/sluzby/eye-tracking`} class="underline hover:text-[#2D62FC]">eye tracking</a>.
+        </p>
+      </section>
+
+      <!-- Co měříme a co ne -->
+      <section class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO MĚŘÍME ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-6 max-w-3xl">
+          Co přístroj změří a co už je výklad<span style="color:#2D62FC">.</span>
+        </h2>
+        <p class="text-brand-black/60 leading-relaxed max-w-3xl mb-10">
+          Mokrá silnice neznamená, že pršelo: mohla jet i cisterna. Stejně tak vyšší kožní vodivost může znamenat nadšení,
+          stres i překvapení. Proto každou metodu používáme jen na to, co opravdu měří.
+        </p>
+        <div class="border border-brand-black/10">
+          <div class="hidden md:grid grid-cols-12 gap-6 px-6 py-3 border-b border-brand-black/10 bg-brand-black/[0.03]">
+            <p class="col-span-3 font-mono text-[11px] tracking-widest text-brand-black/60">METODA</p>
+            <p class="col-span-4 font-mono text-[11px] tracking-widest text-brand-black/60">CO PŘÍMO MĚŘÍ</p>
+            <p class="col-span-5 font-mono text-[11px] tracking-widest text-brand-black/60">CO Z TOHO SAMO NEPLYNE</p>
+          </div>
+          {metody.map((r, i) => (
+            <div class:list={["grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 p-6 border-b border-brand-black/10 last:border-0", i === metody.length - 1 && "opacity-60"]}>
+              <p class="md:col-span-3 font-display text-lg font-bold leading-tight">{r.m}</p>
+              <p class="md:col-span-4 text-sm text-brand-black/70 leading-relaxed"><span class="md:hidden font-mono text-[10px] tracking-widest text-brand-black/50 block">MĚŘÍ</span>{r.meri}</p>
+              <p class="md:col-span-5 text-sm text-brand-black/60 leading-relaxed"><span class="md:hidden font-mono text-[10px] tracking-widest text-brand-black/50 block">SAMO NEPLYNE</span>{r.ne}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Sport: pohled vs. zapamatování -->
+      <section class="reveal mb-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-x-16 items-center">
+        <figure class="lg:col-span-7">
+          <img src={`${base}/images/pohled-divaka-sledovani-zapasu-eye-tracking.webp`} alt="Divák s mobilními eye-trackingovými brýlemi sleduje fotbalový zápas z tribuny" title="Měření pozornosti diváka během zápasu" width="1920" height="1280" loading="lazy" decoding="async" class="w-full aspect-[3/2] object-cover border border-brand-black/10" />
+          <figcaption class="font-mono text-[11px] text-brand-black/60 mt-2">Měření během zápasu FC Hradec Králové, listopad 2026.</figcaption>
+        </figure>
+        <div class="lg:col-span-5">
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ SPONZORING ]</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">
+            Pohled na logo není zapamatování<span style="color:#2D62FC">.</span>
+          </h2>
+          <p class="text-brand-black/60 leading-relaxed mb-6">
+            Brýle ukážou, kolikrát a jak dlouho se divák na partnerskou plochu podíval. Jestli si sponzora po zápase
+            vybaví, zjistíme až testem zapamatování. Partnerům tak ukážete obojí: viditelnost i to, co z ní zůstalo.
+          </p>
+          <a href={`${base}/segmenty/sport-a-stadiony`} class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">SPORT A STADIONY →</a>
+        </div>
+      </section>
+
+      <!-- Co dostanete -->
+      <section class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ CO DOSTANETE ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Výsledek, ne hromadu heatmap<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {vystupy.map((v, i) => (
+            <div class="bg-brand-white p-6 md:p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">0{i + 1}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{v.t}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{v.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Postup -->
+      <section class="reveal mb-24">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ POSTUP ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">
+          Nejdřív otázka, potom přístroj<span style="color:#2D62FC">.</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-px bg-brand-black/10 border border-brand-black/10">
+          {postup.map(s => (
+            <div class="bg-brand-white p-6 md:p-8">
+              <p class="font-mono text-xs text-brand-black/60 mb-6">{s.num}</p>
+              <h3 class="font-display text-xl font-bold leading-tight mb-3">{s.title}</h3>
+              <p class="text-sm text-brand-black/60 leading-relaxed">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Kdo za tím stojí -->
+      <section class="reveal mb-24 grid grid-cols-1 md:grid-cols-[1.4fr_0.6fr] gap-10 lg:gap-16 items-center">
+        <figure class="md:order-2">
+          <img src={`${base}/images/jan-petruzalek-pred-univerzitou.webp`} alt="Ing. Jan Petružálek, Ph.D., přemýšlí před vstupem do budovy Univerzity Hradec Králové" title="Ing. Jan Petružálek, Ph.D., před univerzitou" width="860" height="1075" loading="lazy" decoding="async" class="w-full aspect-[4/5] object-cover border border-brand-black/10" />
+        </figure>
+        <div>
+          <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ KDO ZA TÍM STOJÍ ]</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold leading-tight mb-6">Z univerzitní výuky do praxe<span style="color:#2D62FC">.</span></h2>
+          <p class="text-brand-black/60 leading-relaxed mb-4">
+            Ing. Jan Petružálek, Ph.D., spolumajitel UX MIND, vede laboratoř FIMEYELAB a na Fakultě informatiky
+            a managementu Univerzity Hradec Králové vyučuje předmět Neuromarketing.
+          </p>
+          <p class="text-brand-black/60 leading-relaxed mb-8">
+            Studenty učí totéž, čím se řídíme v každé studii: oddělit to, co bylo změřeno, od toho, co si z toho
+            vyvozujeme, a nedávat doporučení silnější, než unesou data.
+          </p>
+          <a href={`${base}/o-nas`} class="inline-block border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-brand-black hover:text-brand-white transition-colors">KDO JSME →</a>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="reveal mb-16">
+        <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ ČASTÉ OTÁZKY ]</p>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10 max-w-3xl">Na co se ptáte<span style="color:#2D62FC">.</span></h2>
+        <div class="border-t border-brand-black/10">
+          {faq.map(f => (
+            <details class="group border-b border-brand-black/10">
+              <summary class="flex justify-between items-center gap-6 cursor-pointer py-5 font-display text-lg md:text-xl font-bold list-none [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span class="font-mono text-xl shrink-0 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="text-brand-black/60 leading-relaxed pb-6 max-w-3xl">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Zdroje (sbalené) -->
+      <details class="reveal group border border-brand-black/10 px-6">
+        <summary class="flex justify-between items-center gap-6 cursor-pointer py-4 font-mono text-xs tracking-widest uppercase list-none [&::-webkit-details-marker]:hidden">
+          Z čeho vycházíme: odborné zdroje
+          <span class="text-lg transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <ol class="space-y-2 pb-6">
+          {zdroje.map(z => (
+            <li class="text-sm text-brand-black/60 leading-relaxed">{z.c} <a href={`https://doi.org/${z.doi}`} class="underline hover:text-[#2D62FC]" rel="noopener" target="_blank">doi:{z.doi}</a></li>
+          ))}
+        </ol>
+      </details>
+
+    </div>
+  </main>
+
+  <ContactCta />
+  <Footer />
+
+  <style>
+    .ukazka-tab[aria-selected='true'] { background: #0A0A0A; color: #fff; }
+    .ukazka-tab[aria-selected='false']:hover { background: rgba(45, 98, 252, 0.08); }
+  </style>
+
+  <script>
+    document.body.classList.add('reveal-ready');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    {
+      const root = document.querySelector('[data-ukazka]');
+      const dataEl = document.getElementById('ukazka-data');
+      if (root && dataEl) {
+        const data = JSON.parse(dataEl.textContent || '{}');
+        const fmt = (n: number) => n.toLocaleString('cs-CZ', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+        const show = (key: string) => {
+          const d = data[key];
+          if (!d) return;
+          root.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === key)));
+          root.querySelectorAll<HTMLElement>('[data-ikona]').forEach(el => el.classList.toggle('hidden', el.getAttribute('data-ikona') !== key));
+          root.querySelectorAll<HTMLElement>('[data-metrika]').forEach(m => {
+            const k = m.dataset.metrika as 'cas' | 'fix';
+            const vals: number[] = d[k];
+            const max = Math.max(...vals) * 1.1;
+            const unit = m.dataset.unit ? ' ' + m.dataset.unit : '';
+            vals.forEach((v, i) => {
+              const bar = m.querySelector<HTMLElement>(`[data-bar="${i}"]`);
+              const val = m.querySelector<HTMLElement>(`[data-val="${i}"]`);
+              if (bar) bar.style.width = (v / max * 100).toFixed(1) + '%';
+              if (val) val.textContent = fmt(v) + unit;
+            });
+            const sig = m.querySelector<HTMLElement>('[data-sig]');
+            const isSig = d[k + 'Sig'];
+            if (sig) {
+              sig.textContent = isSig ? 'PRŮKAZNÝ ROZDÍL' : 'ROZDÍL NEPRŮKAZNÝ';
+              sig.style.color = isSig ? '#2D62FC' : 'rgba(10,10,10,.5)';
+            }
+          });
+          ['data', 'ne', 'dop'].forEach(t => {
+            const el = root.querySelector<HTMLElement>(`[data-text="${t}"]`);
+            if (el) el.textContent = d[t];
+          });
+        };
+        root.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach(b => b.addEventListener('click', () => show(b.dataset.tab || '')));
+        show(Object.keys(data)[0]);
+      }
+    }
+  </script>
+</BaseLayout>
