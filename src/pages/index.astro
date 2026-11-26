@@ -272,6 +272,7 @@ const clientLogos = [
 
   <!-- LOGO STRIP -->
   <div class="border-y border-brand-black/10 py-6" style="background:#FDFDFD;">
+    <p class="font-mono text-xs tracking-widest text-brand-black/60 text-center mb-4">[ SPOLUPRACOVALI JSME S ]</p>
     <!-- Desktop: statický pás -->
     <div class="hidden md:flex flex-wrap items-center justify-center gap-x-14 gap-y-6 px-6">
       {clientLogos.map(({ src, alt, w, h, dh }) => (
@@ -616,12 +617,12 @@ const clientLogos = [
 
   <!-- JAK TO U NÁS FUNGUJE -->
   <section class="desktop-gutter-x py-24 border-t border-brand-black/10 max-w-7xl mx-auto">
-    <div class="flex justify-between items-end mb-12">
+    <div class="flex flex-col items-start gap-6 md:flex-row md:justify-between md:items-end mb-12">
       <div>
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-2">[ PRŮBĚH SPOLUPRÁCE ]</p>
         <h2 class="font-display text-4xl md:text-5xl font-bold leading-tight">Jak probíhá<br/>spolupráce<span style="color:#2D62FC">.</span></h2>
       </div>
-      <a href="/sluzby/testovaci-balicky" class="font-mono text-xs tracking-widest border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
+      <a href="/sluzby/testovaci-balicky" class="font-mono text-xs tracking-widest whitespace-nowrap border-b border-brand-black pb-1 hover:opacity-50 transition-opacity">
         TESTOVACÍ BALÍČKY →
       </a>
     </div>
