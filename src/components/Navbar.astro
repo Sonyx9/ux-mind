@@ -22,18 +22,18 @@ const currentLangLabel = langItems.find(l => l.current)?.label ?? 'CZ';
 const homeHref = base + getPathInLang('/', lang);
 const contactHref = base + getPathInLang('/kontakt', lang);
 const t = {
-  cs: { cta: 'DOMLUVIT SCHŮZKU', close: 'ZAVŘÍT', langTitle: 'Jazyk webu', fsTitle: 'Velikost písma', fsSmall: 'Malé písmo', fsMedium: 'Střední písmo', fsLarge: 'Velké písmo' },
-  en: { cta: 'BOOK A MEETING', close: 'CLOSE', langTitle: 'Site language', fsTitle: 'Font size', fsSmall: 'Small text', fsMedium: 'Medium text', fsLarge: 'Large text' },
-  de: { cta: 'TERMIN VEREINBAREN', close: 'SCHLIESSEN', langTitle: 'Sprache der Website', fsTitle: 'Schriftgröße', fsSmall: 'Kleine Schrift', fsMedium: 'Mittlere Schrift', fsLarge: 'Große Schrift' },
-  fr: { cta: 'PRENDRE RENDEZ-VOUS', close: 'FERMER', langTitle: 'Langue du site', fsTitle: 'Taille du texte', fsSmall: 'Petit texte', fsMedium: 'Texte moyen', fsLarge: 'Grand texte' },
-  es: { cta: 'CONCERTAR UNA CITA', close: 'CERRAR', langTitle: 'Idioma del sitio', fsTitle: 'Tamaño del texto', fsSmall: 'Texto pequeño', fsMedium: 'Texto mediano', fsLarge: 'Texto grande' },
+  cs: { cta: 'DOMLUVIT SCHŮZKU', close: 'ZAVŘÍT', langTitle: 'Jazyk webu', fsTitle: 'Velikost písma', navLabel: 'Hlavní navigace', fsSmall: 'Malé písmo', fsMedium: 'Střední písmo', fsLarge: 'Velké písmo' },
+  en: { cta: 'BOOK A MEETING', close: 'CLOSE', langTitle: 'Site language', fsTitle: 'Font size', navLabel: 'Main navigation', fsSmall: 'Small text', fsMedium: 'Medium text', fsLarge: 'Large text' },
+  de: { cta: 'TERMIN VEREINBAREN', close: 'SCHLIESSEN', langTitle: 'Sprache der Website', fsTitle: 'Schriftgröße', navLabel: 'Hauptnavigation', fsSmall: 'Kleine Schrift', fsMedium: 'Mittlere Schrift', fsLarge: 'Große Schrift' },
+  fr: { cta: 'PRENDRE RENDEZ-VOUS', close: 'FERMER', langTitle: 'Langue du site', fsTitle: 'Taille du texte', navLabel: 'Navigation principale', fsSmall: 'Petit texte', fsMedium: 'Texte moyen', fsLarge: 'Grand texte' },
+  es: { cta: 'CONCERTAR UNA CITA', close: 'CERRAR', langTitle: 'Idioma del sitio', fsTitle: 'Tamaño del texto', navLabel: 'Navegación principal', fsSmall: 'Texto pequeño', fsMedium: 'Texto mediano', fsLarge: 'Texto grande' },
 }[lang];
 const mobileCTALabel = t.cta;
 const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es'].includes(path);
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 py-5 xl:pt-9 xl:pb-5 mix-blend-multiply transition-colors duration-300">
-  <div id="nav-inner" class="desktop-gutter-x relative flex items-center justify-between">
+<nav id="main-nav" aria-label={t.navLabel} class="fixed top-0 left-0 right-0 z-50 py-5 xl:pt-9 xl:pb-5 mix-blend-multiply transition-colors duration-300">
+  <div id="nav-inner" class="desktop-gutter-x relative flex items-center justify-between gap-2">
     <!-- Logo (desktop: fades in after scroll; mobile non-homepage: always visible) -->
     <a id="nav-logo" href={homeHref} class="block hover:opacity-50 transition-opacity ml-[5px]" style={`line-height:0; opacity:0; pointer-events:none; transition: opacity 0.3s ease; ${!isHome ? 'opacity:1; pointer-events:auto;' : ''}`}>
       <img src={`${base}/logo.svg`} alt="UX Mind" title="UX Mind" width="551" height="94" style="height:clamp(18px, 0.55vw + 14px, 22px); width:auto; display:block;" />
@@ -103,24 +103,27 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
         </div>
       </div>
       <!-- Přepínač je záměrně větší (i pro hůře vidící); záporný margin drží výšku lišty, aby se neposunulo menu ani zarovnání s hero logem -->
-      <div class="fs-switch flex flex-col items-center" style="margin-block:-5px;" aria-label={t.fsTitle}>
-        <div class="flex items-end" style="gap:4px;">
-          <button data-fs="1" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:12px;" title={t.fsSmall} aria-label={t.fsSmall}></button>
-          <button data-fs="1.08" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:18px;" title={t.fsMedium} aria-label={t.fsMedium}></button>
-          <button data-fs="1.16" class="border border-brand-black/40 hover:border-brand-black transition-colors" style="width:10px; height:24px;" title={t.fsLarge} aria-label={t.fsLarge}></button>
+      <div class="fs-switch flex flex-col items-center" style="margin-block:-5px;" role="group" aria-label={t.fsTitle}>
+        <!-- Každé tlačítko má klikací plochu 24×24 px (WCAG 2.5.8), viditelný sloupeček uvnitř zůstává stejný -->
+        <div class="flex items-end">
+          <button data-fs="1" class="group flex items-end justify-center" style="width:24px; height:24px;" title={t.fsSmall} aria-label={t.fsSmall}><span class="fs-bar block border border-brand-black/40 group-hover:border-brand-black transition-colors" style="width:10px; height:12px;"></span></button>
+          <button data-fs="1.08" class="group flex items-end justify-center" style="width:24px; height:24px;" title={t.fsMedium} aria-label={t.fsMedium}><span class="fs-bar block border border-brand-black/40 group-hover:border-brand-black transition-colors" style="width:10px; height:18px;"></span></button>
+          <button data-fs="1.16" class="group flex items-end justify-center" style="width:24px; height:24px;" title={t.fsLarge} aria-label={t.fsLarge}><span class="fs-bar block border border-brand-black/40 group-hover:border-brand-black transition-colors" style="width:10px; height:24px;"></span></button>
         </div>
         <span class="font-mono tracking-widest text-brand-black/70 mt-0.5" style="font-size:10px;">TEXT</span>
       </div>
     </div>
 
     <!-- Tablet (md–<xl): jen [ MENU ]. Jazyk je v rozbalovacím menu, přepínač písma je jen na PC. -->
-    <button id="mobile-menu-btn" class="hidden md:block xl:hidden font-mono text-xs tracking-widest uppercase" aria-label="Menu">[ MENU ]</button>
+    <button id="mobile-menu-btn" class="hidden md:flex xl:hidden items-center justify-center min-h-[44px] min-w-[44px] -my-[14px] shrink-0 whitespace-nowrap font-mono text-xs tracking-widest uppercase" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">[ MENU ]</button>
 
     <!-- Mobile-only menu button (< md) -->
     <button
       id="mobile-menu-btn-sm"
-      class="md:hidden font-mono text-xs tracking-widest uppercase"
+      class="md:hidden flex items-center justify-center min-h-[44px] min-w-[44px] -my-[14px] shrink-0 whitespace-nowrap font-mono text-xs tracking-widest uppercase"
       aria-label="Menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       [ MENU ]
     </button>
@@ -130,6 +133,8 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
 <!-- Slide-in menu -->
 <div
   id="mobile-menu"
+  inert
+  aria-hidden="true"
   class="fixed top-0 right-0 bottom-0 z-[100] bg-brand-white w-4/5 max-w-xs flex flex-col pt-20 px-8 pb-8 gap-6 shadow-2xl"
   style="transform: translateX(100%); transition: transform 0.3s ease;"
 >
@@ -173,17 +178,36 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
   const menu = document.getElementById('mobile-menu') as HTMLElement | null;
   const overlay = document.getElementById('mobile-overlay');
 
-  function openMenu() {
-    if (menu) menu.style.transform = 'translateX(0)';
+  const btnSm = document.getElementById('mobile-menu-btn-sm');
+  // Zavřené menu je inert (mimo pořadí Tab i čtečky); fokus se vrací na tlačítko, které ho otevřelo
+  let opener: HTMLElement | null = null;
+
+  function setExpanded(v: boolean) {
+    [btn, btnSm].forEach(b => b?.setAttribute('aria-expanded', v ? 'true' : 'false'));
+  }
+  function openMenu(e: Event) {
+    if (!menu) return;
+    opener = e.currentTarget as HTMLElement;
+    menu.inert = false;
+    menu.removeAttribute('aria-hidden');
+    menu.style.transform = 'translateX(0)';
     overlay?.classList.remove('hidden');
+    setExpanded(true);
+    closeBtn?.focus();
   }
   function closeMenu() {
-    if (menu) menu.style.transform = 'translateX(100%)';
+    if (!menu || menu.inert) return;
+    menu.style.transform = 'translateX(100%)';
+    menu.inert = true;
+    menu.setAttribute('aria-hidden', 'true');
     overlay?.classList.add('hidden');
+    setExpanded(false);
+    opener?.focus();
+    opener = null;
   }
 
   btn?.addEventListener('click', openMenu);
-  document.getElementById('mobile-menu-btn-sm')?.addEventListener('click', openMenu);
+  btnSm?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
   overlay?.addEventListener('click', closeMenu);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
@@ -255,7 +279,8 @@ const isHome = ['/', '/en/', '/en', '/de/', '/de', '/fr/', '/fr', '/es/', '/es']
       bars.forEach(b => {
         const bi = LEVELS.indexOf(parseFloat(b.dataset.fs || '1'));
         const filled = bi > -1 && bi <= idx;
-        b.style.background = filled ? '#0A0A0A' : 'transparent';
+        const bar = b.querySelector<HTMLElement>('.fs-bar');
+        if (bar) bar.style.background = filled ? '#0A0A0A' : 'transparent';
         b.setAttribute('aria-pressed', bi === idx ? 'true' : 'false');
       });
     }

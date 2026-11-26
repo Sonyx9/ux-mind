@@ -34,6 +34,11 @@
 
   html {
     scroll-behavior: smooth;
+    /* Sticky hlavička nesmí zakrýt prvek s fokusem ani cíl kotvy (WCAG 2.4.11): výška #main-nav + 16 px */
+    scroll-padding-top: 84px;
+  }
+  @media (min-width: 1280px) {
+    html { scroll-padding-top: 108px; }
   }
 
   :root {
