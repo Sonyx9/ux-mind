@@ -175,7 +175,7 @@ const pageSchema = [
           Od nasazení brýlí po heatmapu<span style="color:#2D62FC">.</span>
         </h2>
         <YouTubeFacade youtubeId="RbpnEFTicTE" title="Jak funguje eye tracking v terénu? Od nasazení brýlí po heatmapu" poster={`${base}/images/video-jak-funguje-eye-tracking-v-terenu.webp`} posterAlt="Respondent si na stadionu FC Hradec Králové nasazuje mobilní eye-trackingové brýle" />
-        <div class="flex justify-between mt-2.5 font-mono text-[11px] tracking-widest text-brand-black/50"><span>VIDEO · 1:09</span><span>PŘEHRAJE SE Z YOUTUBE</span></div>
+        <div class="flex justify-between mt-2.5 font-mono text-[11px] tracking-widest text-brand-black/60"><span>VIDEO · 1:09</span><span>PŘEHRAJE SE Z YOUTUBE</span></div>
       </div>
 
       <!-- Kde měříme -->
@@ -190,7 +190,7 @@ const pageSchema = [
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
           {contexts.map((context, i) => (
             <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
-              <span class="font-mono text-xs text-brand-black/50 pt-1">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-mono text-xs text-brand-black/60 pt-1">{String(i + 1).padStart(2, '0')}</span>
               <div>
                 <h3 class="font-display text-xl font-bold mb-2 leading-tight">{context.t}</h3>
                 <p class="text-sm text-brand-black/60 leading-relaxed">{context.d}</p>
@@ -242,7 +242,7 @@ const pageSchema = [
         <div class="border-t border-brand-black/20">
           {outputs.map((output, i) => (
             <div class="grid grid-cols-[2rem_1fr] sm:grid-cols-[2rem_13rem_1fr] gap-x-4 gap-y-2 py-6 border-b border-brand-black/20">
-              <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+              <span class="font-mono text-xs text-brand-black/60 pt-1">0{i + 1}</span>
               <h3 class="font-display text-lg font-bold leading-tight">{output.title}</h3>
               <p class="col-start-2 sm:col-start-3 text-sm text-brand-black/60 leading-relaxed">{output.desc}</p>
             </div>

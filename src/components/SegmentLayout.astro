@@ -194,7 +194,7 @@ const pageSchema = [
           <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-brand-black/10 border border-brand-black/10">
             {segment.rozsahy.map((rozsah, i) => (
               <a href={rozsah.href} class="group bg-brand-white p-8 min-h-72 flex flex-col hover:bg-brand-black hover:text-brand-white transition-colors">
-                <span class="font-mono text-xs text-brand-black/50 mb-8 group-hover:text-brand-white/50">0{i + 1}</span>
+                <span class="font-mono text-xs text-brand-black/60 mb-8 group-hover:text-brand-white/50">0{i + 1}</span>
                 <h3 class="font-display text-2xl font-bold mb-3 leading-tight">{rozsah.nadpis}</h3>
                 <p class="text-sm text-brand-black/60 leading-relaxed mb-8 group-hover:text-brand-white/70">{rozsah.text}</p>
                 <p class="font-mono text-[10px] tracking-widest mt-auto pt-5 border-t border-current/20">{rozsah.stitek} <span class="float-right">→</span></p>
@@ -229,7 +229,7 @@ const pageSchema = [
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
               {segment.typickeZadani.map((z, i) => (
                 <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-6 border-t border-brand-black/20">
-                  <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+                  <span class="font-mono text-xs text-brand-black/60 pt-1">0{i + 1}</span>
                   <p class="text-sm text-brand-black/60 leading-relaxed">{z}</p>
                 </div>
               ))}
@@ -248,7 +248,7 @@ const pageSchema = [
             <div class="border-t border-brand-black/20">
               {segment.coDostanete.map((o, i) => (
                 <div class="grid grid-cols-[2rem_1fr] gap-x-4 py-5 border-b border-brand-black/20">
-                  <span class="font-mono text-xs text-brand-black/50 pt-1">0{i + 1}</span>
+                  <span class="font-mono text-xs text-brand-black/60 pt-1">0{i + 1}</span>
                   <p class="text-sm text-brand-black/60 leading-relaxed">{o}</p>
                 </div>
               ))}
@@ -330,8 +330,8 @@ const pageSchema = [
             <ul class="space-y-3 max-w-3xl">
               {ciziDukazy.map((d) => (
                 <li class="flex gap-3 text-sm text-brand-black/60 leading-relaxed py-1">
-                  <span class="font-mono text-xs pt-0.5 text-brand-black/40">—</span>
-                  <span>{d.text}{d.zdroj && <span class="text-brand-black/45"> (zdroj: {d.zdroj})</span>}</span>
+                  <span class="font-mono text-xs pt-0.5 text-brand-black/60">—</span>
+                  <span>{d.text}{d.zdroj && <span class="text-brand-black/60"> (zdroj: {d.zdroj})</span>}</span>
                 </li>
               ))}
             </ul>
@@ -382,13 +382,13 @@ const pageSchema = [
         <div class="reveal mb-24 grid grid-cols-1 md:grid-cols-2 gap-px bg-brand-black/10 border border-brand-black/10">
           {prev ? (
             <a href={`/segmenty/${prev.slug}`} class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
-              <p class="font-mono text-[10px] text-brand-black/50 tracking-widest mb-2 group-hover:text-brand-white/60">← PŘEDCHOZÍ SEGMENT</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">← PŘEDCHOZÍ SEGMENT</p>
               <p class="font-display text-xl font-bold">{prev.nazevKratky}</p>
             </a>
           ) : <div class="bg-brand-white p-6"></div>}
           {next ? (
             <a href={`/segmenty/${next.slug}`} class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
-              <p class="font-mono text-[10px] text-brand-black/50 tracking-widest mb-2 group-hover:text-brand-white/60">DALŠÍ SEGMENT →</p>
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">DALŠÍ SEGMENT →</p>
               <p class="font-display text-xl font-bold">{next.nazevKratky}</p>
             </a>
           ) : <div class="bg-brand-white p-6"></div>}
