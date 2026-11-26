@@ -197,7 +197,7 @@ const pageSchema = [
                 <span class="font-mono text-xs text-brand-black/60 mb-8 group-hover:text-brand-white/50">0{i + 1}</span>
                 <h3 class="font-display text-2xl font-bold mb-3 leading-tight">{rozsah.nadpis}</h3>
                 <p class="text-sm text-brand-black/60 leading-relaxed mb-8 group-hover:text-brand-white/70">{rozsah.text}</p>
-                <p class="font-mono text-[10px] tracking-widest mt-auto pt-5 border-t border-current/20">{rozsah.stitek} <span class="float-right">→</span></p>
+                <p class="font-mono text-[10px] tracking-widest mt-auto pt-5 border-t border-current/20">DETAIL SLUŽBY <span class="float-right">→</span></p>
               </a>
             ))}
           </div>
@@ -385,13 +385,24 @@ const pageSchema = [
               <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">← PŘEDCHOZÍ SEGMENT</p>
               <p class="font-display text-xl font-bold">{prev.nazevKratky}</p>
             </a>
-          ) : <div class="bg-brand-white p-6"></div>}
+          ) : (
+            <!-- První obor: místo prázdného pole odkaz na přehled (obory jsou zatím jen česky) -->
+            <a href="/segmenty" class="bg-brand-white p-6 hover:bg-brand-black hover:text-brand-white transition-colors group">
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">← PŘEHLED</p>
+              <p class="font-display text-xl font-bold">Všechny obory</p>
+            </a>
+          )}
           {next ? (
             <a href={`/segmenty/${next.slug}`} class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
               <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">DALŠÍ SEGMENT →</p>
               <p class="font-display text-xl font-bold">{next.nazevKratky}</p>
             </a>
-          ) : <div class="bg-brand-white p-6"></div>}
+          ) : (
+            <a href="/segmenty" class="bg-brand-white p-6 text-right hover:bg-brand-black hover:text-brand-white transition-colors group">
+              <p class="font-mono text-[10px] text-brand-black/60 tracking-widest mb-2 group-hover:text-brand-white/60">PŘEHLED →</p>
+              <p class="font-display text-xl font-bold">Všechny obory</p>
+            </a>
+          )}
         </div>
       )}
 

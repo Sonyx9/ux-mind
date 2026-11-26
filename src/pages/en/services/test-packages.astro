@@ -33,7 +33,7 @@ const packages = [
     id: 'komplexni-biometricky-vyzkum',
     title: 'Eye tracking and biometrics',
     tagline: 'Premium lab measurement for important decisions you need to back with multiple sources of data.',
-    chips: ['Everything in 02', 'GSR', 'Facial signals', 'EMLI', 'Workshop'],
+    chips: ['Everything in User testing', 'GSR', 'Facial signals', 'EMLI', 'Workshop'],
     findings: 'What users actually saw, how they proceeded and at which moments their physiological or mental load rose.',
     forWho: 'For decisions that are expensive, hard to reverse or must stand up in front of leadership, an investor or a client. Suitable for major redesigns, key campaigns, product innovations, HMI, retail situations or research where behaviour alone is not enough.',
     inside: 'We complement user testing with eye tracking and, per brief, also GSR, facial signal analysis, a retrospective interview over the gaze recording or mental load measurement using the EMLI model.',
@@ -195,7 +195,7 @@ const pageSchema = [
 
       <!-- Credibility strip -->
       <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
-        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider">
           FIM UHK research facilities · Tobii Pro X2-60 · Smart Eye Aurora · mobile eye-tracking glasses · eye-tracking data processing software · BeSigma · Shimmer3 GSR · lab and field measurement
         </p>
       </div>
@@ -228,7 +228,7 @@ const pageSchema = [
       <!-- Packages -->
       <div id="balicky" class="mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ OUR TEST PACKAGES ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Four configurations<span style="color:#2D62FC">.</span></h2>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Four packages and custom solutions<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
           These are not fixed products — we adapt them to the brief. With each one you know in advance what you’ll get and what <strong class="text-brand-black">cannot be reliably claimed</strong> from that scope.
         </p>
@@ -321,10 +321,10 @@ const pageSchema = [
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">From the goal to concrete changes<span style="color:#2D62FC">.</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
           {process.map(step => (
-            <div class="bg-brand-white p-6 md:p-7 min-h-64 flex flex-col">
+            <div class="bg-brand-white p-6 md:p-7 md:min-h-64 flex flex-col">
               <span class="font-mono text-xs text-brand-black/60 mb-10">{step.num}</span>
               <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mt-auto">{step.desc}</p>
+              <p class="text-sm text-brand-black/60 leading-relaxed md:mt-auto">{step.desc}</p>
             </div>
           ))}
         </div>

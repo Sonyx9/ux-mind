@@ -226,7 +226,7 @@ export const segmenty: Segment[] = [
       },
     ],
     cta: { text: 'POPTAT TESTOVÁNÍ E-SHOPU →', href: '/kontakt' },
-    ctaSekundarni: { text: 'PROJÍT BALÍČKY', href: '/sluzby#testovaci-balicky' },
+    ctaSekundarni: { text: 'PROJÍT BALÍČKY', href: '/sluzby/testovaci-balicky' },
     zaver: {
       nadpis: ['KDE VÁM', 'MIZÍ NÁKUP?'],
       text: 'Pošlete nám odkaz na e-shop a stručně popište, co potřebujete rozhodnout. Navrhneme, co má smysl prověřit a jaký rozsah bude stačit.',
@@ -375,7 +375,7 @@ export const segmenty: Segment[] = [
       },
     ],
     cta: { text: 'POPTAT TESTOVÁNÍ WEBU →', href: '/kontakt' },
-    ctaSekundarni: { text: 'PROJÍT BALÍČKY', href: '/sluzby#testovaci-balicky' },
+    ctaSekundarni: { text: 'PROJÍT BALÍČKY', href: '/sluzby/testovaci-balicky' },
     zaver: {
       nadpis: ['VYPADÁ DOBŘE.', 'FUNGUJE?'],
       text: 'Pošlete nám odkaz na web, aplikaci nebo prototyp a stručně popište, co potřebujete rozhodnout. Navrhneme, co má smysl prověřit a jaký rozsah bude stačit.',

@@ -33,7 +33,7 @@ const packages = [
     id: 'komplexni-biometricky-vyzkum',
     title: 'Eye Tracking und Biometrie',
     tagline: 'Eine Premium-Labormessung für wichtige Entscheidungen, die Sie mit mehreren Datenquellen absichern müssen.',
-    chips: ['Alles aus 02', 'GSR', 'Mimische Signale', 'EMLI', 'Workshop'],
+    chips: ['Alles aus Nutzertests', 'GSR', 'Mimische Signale', 'EMLI', 'Workshop'],
     findings: 'Was Nutzer tatsächlich gesehen haben, wie sie vorgegangen sind und in welchen Momenten ihre physiologische oder mentale Belastung anstieg.',
     forWho: 'Für Entscheidungen, die teuer, schwer umkehrbar sind oder vor Geschäftsführung, Investoren oder Kunden bestehen müssen. Geeignet für bedeutende Redesigns, zentrale Kampagnen, Produktinnovationen, HMI, Retail-Situationen oder Studien, bei denen das Verhalten allein nicht ausreicht.',
     inside: 'Wir ergänzen die Nutzertests um Eye Tracking und je nach Aufgabenstellung auch um GSR, die Analyse mimischer Signale, ein retrospektives Interview über der Blickaufzeichnung oder die Messung der mentalen Belastung mit dem Modell EMLI.',
@@ -195,7 +195,7 @@ const pageSchema = [
 
       <!-- Důvěryhodnostní pás -->
       <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
-        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider">
           Forschungsumfeld der FIM UHK · Tobii Pro X2-60 · Smart Eye Aurora · mobile Eye-Tracking-Brillen · Software zur Auswertung von Eye-Tracking-Daten · BeSigma · Shimmer3 GSR · Labor- und Feldmessungen
         </p>
       </div>
@@ -228,7 +228,7 @@ const pageSchema = [
       <!-- Balíčky -->
       <div id="balicky" class="mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ UNSERE TEST-PAKETE ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Vier Konfigurationen<span style="color:#2D62FC">.</span></h2>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Vier Pakete und Lösungen nach Maß<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
           Es sind keine starren Produkte — wir passen sie an Ihre Aufgabenstellung an. Bei jedem wissen Sie vorab, was Sie erhalten und was sich mit dem jeweiligen Umfang <strong class="text-brand-black">nicht zuverlässig behaupten lässt</strong>.
         </p>
@@ -321,10 +321,10 @@ const pageSchema = [
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Vom Ziel zu konkreten Anpassungen<span style="color:#2D62FC">.</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
           {process.map(step => (
-            <div class="bg-brand-white p-6 md:p-7 min-h-64 flex flex-col">
+            <div class="bg-brand-white p-6 md:p-7 md:min-h-64 flex flex-col">
               <span class="font-mono text-xs text-brand-black/60 mb-10">{step.num}</span>
               <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mt-auto">{step.desc}</p>
+              <p class="text-sm text-brand-black/60 leading-relaxed md:mt-auto">{step.desc}</p>
             </div>
           ))}
         </div>

@@ -102,13 +102,27 @@ const pageSchema = [
           <span class="absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 border-brand-black" aria-hidden="true"></span>
           <span class="absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 border-brand-black" aria-hidden="true"></span>
               <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-6">[ DATA VISUALIZED ]</p>
-              <svg viewBox="0 0 640 174" class="w-full" role="img" aria-label="Of 102 respondents, 60 percent found their way to the positions and 40 percent did not"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">N = 102 · SCENARIO “FIND THE OPEN POSITIONS”</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FOUND THE WAY</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="240" height="22" fill="#0A0A0A" class="viz-bar"/><text x="430" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">60 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">DIDN'T FIND THE WAY</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="160" height="22" fill="#2D62FC" class="viz-bar"/><text x="350" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">40 %</text></svg>
+              <!-- Mobil: stejný graf v HTML, aby se popisky nezmenšovaly s SVG (min. 12 px) -->
+              <div class="md:hidden" role="img" aria-label="Of 102 respondents, 60 percent found their way to the positions and 40 percent did not">
+                <p class="font-mono text-[12px] tracking-widest text-brand-black/60 mb-5">N = 102 · SCENARIO “FIND THE OPEN POSITIONS”</p>
+                <div class="space-y-4" aria-hidden="true">
+                  <div>
+                    <p class="font-mono text-[12px] tracking-wider mb-1.5">FOUND THE WAY</p>
+                    <div class="flex items-center gap-2"><div class="flex-1 h-[22px] bg-brand-black/[0.06]"><div class="h-full" style="width:60%; background:#0A0A0A;"></div></div><span class="font-mono text-[12px] font-bold w-10 text-right">60 %</span></div>
+                  </div>
+                  <div>
+                    <p class="font-mono text-[12px] tracking-wider mb-1.5">DIDN'T FIND THE WAY</p>
+                    <div class="flex items-center gap-2"><div class="flex-1 h-[22px] bg-brand-black/[0.06]"><div class="h-full" style="width:40%; background:#2D62FC;"></div></div><span class="font-mono text-[12px] font-bold w-10 text-right">40 %</span></div>
+                  </div>
+                </div>
+              </div>
+              <svg viewBox="0 0 640 174" class="hidden md:block w-full" role="img" aria-label="Of 102 respondents, 60 percent found their way to the positions and 40 percent did not"><text x="0" y="18" font-family="monospace" font-size="12" letter-spacing="2" fill="rgba(10,10,10,0.6)">N = 102 · SCENARIO “FIND THE OPEN POSITIONS”</text><text x="0" y="67" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">FOUND THE WAY</text><rect x="190" y="52" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="52" width="240" height="22" fill="#0A0A0A" class="viz-bar"/><text x="430" y="67" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">60 %</text><text x="0" y="119" font-family="monospace" font-size="11" letter-spacing="1" fill="#0A0A0A">DIDN'T FIND THE WAY</text><rect x="190" y="104" width="400" height="22" fill="rgba(10,10,10,0.06)"/><rect x="190" y="104" width="160" height="22" fill="#2D62FC" class="viz-bar"/><text x="350" y="119" dx="8" font-family="monospace" font-size="12" font-weight="bold" fill="#0A0A0A">40 %</text></svg>
             </div>
             <p class="font-mono text-[11px] text-brand-black/60 mt-3">Four out of ten applicants did not reach the open positions during the assigned scenario.</p>
           </section>
 
           <section class="reveal mb-12 border-t border-brand-black/10 pt-10">
-            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">05</span> <span class="text-brand-black/60">— WHAT WAS DECIDED</span></p>
+            <p class="font-mono text-xs tracking-widest mb-4"><span style="color:#2D62FC">04</span> <span class="text-brand-black/60">— WHAT WAS DECIDED</span></p>
             <p class="text-brand-black/70 leading-relaxed">The results supported simplifying the path to the open positions, adjusting the navigation and working with the CTA according to the applicant's specific task. The team didn't just get a list of impressions, but concrete places to focus on during the redesign.</p>
           </section>
 

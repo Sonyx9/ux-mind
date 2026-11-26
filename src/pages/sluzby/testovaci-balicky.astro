@@ -33,7 +33,7 @@ const packages = [
     id: 'komplexni-biometricky-vyzkum',
     title: 'Eye tracking a biometrie',
     tagline: 'Prémiové laboratorní měření pro důležitá rozhodnutí, která potřebujete podložit více zdroji dat.',
-    chips: ['Vše ze 02', 'GSR', 'Mimické signály', 'EMLI', 'Workshop'],
+    chips: ['Vše z Uživatelského testování', 'GSR', 'Mimické signály', 'EMLI', 'Workshop'],
     findings: 'Co uživatelé skutečně viděli, jak postupovali a ve kterých okamžicích rostla jejich fyziologická nebo mentální zátěž.',
     forWho: 'Pro rozhodnutí, která jsou drahá, obtížně vratná nebo musí obstát před vedením, investorem či klientem. Hodí se pro významné redesigny, klíčové kampaně, produktové inovace, HMI, retailové situace nebo výzkumy, kde samotné chování nestačí.',
     inside: 'Uživatelské testování doplníme o eye tracking a podle zadání také o GSR, analýzu mimických signálů, zpětný rozhovor nad záznamem pohledu nebo měření mentální zátěže pomocí modelu EMLI.',
@@ -194,7 +194,7 @@ const pageSchema = [
 
       <!-- Důvěryhodnostní pás -->
       <div class="reveal mb-24 border-y border-brand-black/10 py-4 overflow-hidden">
-        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider whitespace-nowrap md:whitespace-normal overflow-x-auto">
+        <p class="font-mono text-[11px] text-brand-black/60 tracking-wider">
           Výzkumné zázemí FIM UHK · Tobii Pro X2-60 · Smart Eye Aurora · mobilní eye-tracking brýle · software pro zpracování eye-tracking dat · BeSigma · Shimmer3 GSR · laboratorní i terénní měření
         </p>
       </div>
@@ -227,7 +227,7 @@ const pageSchema = [
       <!-- Balíčky -->
       <div id="balicky" class="mb-24 scroll-mt-28">
         <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-4">[ NAŠE TESTOVACÍ BALÍČKY ]</p>
-        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Čtyři konfigurace<span style="color:#2D62FC">.</span></h2>
+        <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-4">Čtyři balíčky a řešení na míru<span style="color:#2D62FC">.</span></h2>
         <p class="text-brand-black/60 leading-relaxed max-w-2xl mb-12">
           Nejsou to pevné produkty — upravujeme je podle zadání. U každého předem víte, co získáte i co z daného rozsahu <strong class="text-brand-black">nepůjde spolehlivě tvrdit</strong>.
         </p>
@@ -320,10 +320,10 @@ const pageSchema = [
         <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight mb-10">Od cíle ke konkrétním úpravám<span style="color:#2D62FC">.</span></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-px bg-brand-black/10 border border-brand-black/10">
           {process.map(step => (
-            <div class="bg-brand-white p-6 md:p-7 min-h-64 flex flex-col">
+            <div class="bg-brand-white p-6 md:p-7 md:min-h-64 flex flex-col">
               <span class="font-mono text-xs text-brand-black/60 mb-10">{step.num}</span>
               <h3 class="font-display text-xl font-bold leading-tight mb-3">{step.title}</h3>
-              <p class="text-sm text-brand-black/60 leading-relaxed mt-auto">{step.desc}</p>
+              <p class="text-sm text-brand-black/60 leading-relaxed md:mt-auto">{step.desc}</p>
             </div>
           ))}
         </div>

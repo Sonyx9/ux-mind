@@ -33,7 +33,8 @@ import Footer from '../components/Footer.astro';
             desc: 'Projdeme váš web, e-shop nebo aplikaci očima uživatele. Najdeme místa, kde lidé tápou, odcházejí nebo nedokončí důležitý krok. Dostanete konkrétní doporučení seřazená podle dopadu.',
             details: ['Heuristická analýza', 'Analýza uživatelských cest', 'Prioritizovaný seznam doporučení', 'Workshop s týmem', 'Výstupní zpráva s návrhy úprav'],
             duration: '2–4 týdny',
-            pkg: 'Rychlá diagnostika',
+            pkg: 'Rychlý UX audit',
+            pkgHref: '/sluzby/testovaci-balicky#rychla-diagnostika',
           },
           {
             num: '02',
@@ -43,7 +44,8 @@ import Footer from '../components/Footer.astro';
             desc: 'Dáme reálným uživatelům konkrétní úkoly a sledujeme, zda je dokážou splnit. Zjistíte, kde se ztrácejí, čemu nerozumějí a proč odcházejí.',
             details: ['Moderované testování', 'Nemoderované online testování', 'Uživatel nahlas popisuje své kroky', 'Záznam obrazovky', 'Výsledky a doporučení'],
             duration: '1–4 týdny',
-            pkg: 'Standardní UX test',
+            pkg: 'Uživatelské testování',
+            pkgHref: '/sluzby/testovaci-balicky#standardni-ux-test',
           },
           {
             num: '03',
@@ -52,7 +54,8 @@ import Footer from '../components/Footer.astro';
             desc: 'Pomocí eye trackingu změříme, kam se lidé skutečně dívají. Zjistíte, čeho si všimnou, co přehlédnou a zda důležitý obsah vede jejich pozornost správným směrem.',
             details: ['Heatmapy pozornosti', 'Analýza AOI (Areas of Interest)', 'Záznamy pohybu očí', 'F-pattern & Z-pattern analýza', 'Srovnávací testování variant'],
             duration: '1–3 týdny',
-            pkg: 'Standardní UX test',
+            pkg: 'Eye tracking a biometrie',
+            pkgHref: '/sluzby/testovaci-balicky#komplexni-biometricky-vyzkum',
           },
           {
             num: '04',
@@ -63,6 +66,7 @@ import Footer from '../components/Footer.astro';
             details: ['Mobilní eye-tracking brýle', 'Videozáznam situace a chování v prostoru', 'GSR a rozhovory podle potřeby', 'Product placement, značení, POS materiály', 'Doporučení pro úpravu prostoru a zákaznické cesty'],
             duration: '2–6 týdnů',
             pkg: 'Terénní studie',
+            pkgHref: '/sluzby/testovaci-balicky#terenni-studie',
           },
           {
             num: '05',
@@ -71,7 +75,8 @@ import Footer from '../components/Footer.astro';
             desc: 'Pomůžeme vám pochopit, co uživatelé potřebují, co je frustruje a proč se chovají určitým způsobem. Podle výzkumné otázky propojíme rozhovory, pozorování, testování a data.',
             details: ['Hloubkové rozhovory', 'Kontextuální výzkum', 'Testování použitelnosti', 'Analýza dat', 'Personas & Journey mapy'],
             duration: '3–8 týdnů',
-            pkg: 'Komplexní biometrický výzkum',
+            pkg: 'Eye tracking a biometrie',
+            pkgHref: '/sluzby/testovaci-balicky#komplexni-biometricky-vyzkum',
           },
         ].map(service => (
           <div id={service.id} class="p-8 md:p-12 border-b border-brand-black/10 last:border-0 scroll-mt-28">
@@ -97,7 +102,7 @@ import Footer from '../components/Footer.astro';
                   <p class="font-mono text-xs text-brand-black/60 tracking-widest mb-1">DÉLKA PROJEKTU</p>
                   <p class="font-display text-lg font-semibold">{service.duration}</p>
                   <p class="font-mono text-xs text-brand-black/60 tracking-widest mt-4 mb-1">TYPICKÝ BALÍČEK</p>
-                  <a href="/sluzby/testovaci-balicky" class="font-display text-lg font-semibold underline hover:no-underline">{service.pkg}</a>
+                  <a href={service.pkgHref} class="font-display text-lg font-semibold underline hover:no-underline">{service.pkg}</a>
                 </div>
                 <div class="flex flex-col gap-2 mt-6">
                   <a href={service.href} class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-3 font-mono text-xs tracking-widest uppercase hover:bg-[#2D62FC] hover:border-[#2D62FC] hover:text-brand-white transition-colors text-center">

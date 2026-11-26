@@ -7,6 +7,13 @@ import { submitForm } from './forms';
   const form = document.querySelector<HTMLFormElement>('form.contact-form');
   if (!form) return;
 
+  // Předvyplnění oblasti z odkazu (?oblast=ux-audit); neznámou hodnotu ignorujeme
+  const oblast = new URLSearchParams(location.search).get('oblast');
+  const serviceSelect = form.querySelector<HTMLSelectElement>('select[name="service"]');
+  if (oblast && serviceSelect && [...serviceSelect.options].some(o => o.value === oblast)) {
+    serviceSelect.value = oblast;
+  }
+
   const field = (name: string): string =>
     (form.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null)?.value.trim() || '';
 
