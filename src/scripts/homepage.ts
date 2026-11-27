@@ -1,89 +1,8 @@
-// Sdílené interakce homepage (CZ i EN): hero animace, EMLI gauge, easter egg, čas.
-// Používá se v src/pages/index.astro a src/pages/en/index.astro.
+// Sdílené interakce homepage (CS / EN / DE): stopa za kurzorem, záznam pohledu,
+// EMLI gauge, easter egg, čas. Hero markup je v src/components/HomeHero.astro.
 
-  // GIF plays once (Netscape block removed from file). Duration = 4760ms.
-  (function () {
-    const GIF_DURATION = 3330;
-
-    // Spec-dashes loading animation — starts immediately, loops forever
-    function blackenDashes() {
-      const rows = document.querySelectorAll<HTMLElement>('.spec-dashes');
-      const rowDelay = 350, barDelay = 90, barCount = 20;
-      const rowDuration = barCount * barDelay;
-      const totalDuration = rowDuration + (rows.length - 1) * rowDelay;
-
-      function fillCycle(startDelay: number) {
-        rows.forEach((row, ri) => {
-          Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
-            setTimeout(() => { span.style.color = '#2D62FC'; }, startDelay + ri * rowDelay + si * barDelay);
-          });
-        });
-        const greyStart = startDelay + totalDuration + 600;
-        rows.forEach((row, ri) => {
-          Array.from(row.querySelectorAll<HTMLElement>('span')).forEach((span, si) => {
-            setTimeout(() => { span.style.color = 'rgb(210,210,210)'; }, greyStart + ri * rowDelay + si * barDelay);
-          });
-        });
-        setTimeout(() => fillCycle(0), greyStart + totalDuration + 400);
-      }
-      fillCycle(0);
-    }
-
-    // Annotations — appear after GIF finishes playing (on repeat visits the static
-    // final frame is shown, see inline script in index.astro, so they appear right away)
-    function animateAnnotations() {
-      const seen = document.getElementById('hero-gif')?.dataset.seen === '1';
-      const startDelay = seen ? 300 : GIF_DURATION;
-      const gifContainer = document.getElementById('hero-gif-container');
-      const gifH = gifContainer ? gifContainer.offsetHeight : 630;
-      const gifW = gifContainer ? gifContainer.offsetWidth : 840;
-      const scaleH = gifH / 630;
-      const scaleW = gifW / 840;
-
-      document.querySelectorAll<HTMLElement>('.ann').forEach((ann, i) => {
-        setTimeout(() => {
-          ann.style.transition = 'opacity 0.3s ease';
-          ann.style.opacity = '1';
-          const line = ann.querySelector<HTMLElement>('.ann-line');
-          if (!line) return;
-          line.style.transition = 'width 0.5s ease, height 0.5s ease';
-          const base = line.dataset.size ? parseInt(line.dataset.size) : null;
-          if (line.classList.contains('w-px')) {
-            const size = Math.round((base ?? 150) * Math.min(scaleH, 1));
-            line.style.height = size + 'px';
-          } else {
-            let size = Math.round((base ?? 170) * Math.min(scaleW, 1));
-            // Pravé popisky nesmí zajet pod černý info box (užší monitory, delší DE texty)
-            const box = document.getElementById('info-box')?.getBoundingClientRect();
-            const text = ann.querySelector<HTMLElement>('p');
-            const l = line.getBoundingClientRect();
-            if (box && box.width && text && l.left < box.left) {
-              const t = text.getBoundingClientRect();
-              if (t.bottom > box.top && t.top < box.bottom) {
-                const room = Math.floor(box.left - 12 - l.left - (t.left - l.right) - t.width);
-                size = Math.max(24, Math.min(size, room));
-                // Ani nejkratší čára nestačí → popisek posunout nad box
-                if (room < 24) ann.style.marginTop = -Math.ceil(t.bottom - box.top + 8) + 'px';
-              }
-            }
-            line.style.width = size + 'px';
-          }
-        }, startDelay + i * 250);
-      });
-    }
-
-    blackenDashes();
-
-    const img = document.getElementById('hero-gif') as HTMLImageElement | null;
-    if (img) {
-      if (img.complete && img.naturalWidth > 0) {
-        animateAnnotations();
-      } else {
-        img.addEventListener('load', animateAnnotations);
-      }
-    }
-  })();
-
+// Záznam pohledu (ZAP/VYP) — když je zapnutý, stopa za kurzorem se nekreslí.
+let gazeOn = false;
 
   // Cursor circle + trail — only in hero section, desktop only
   (function() {
@@ -113,7 +32,7 @@
       mx = e.clientX; my = e.clientY;
       const visible = inHero();
       if (dot) dot.style.opacity = visible ? '1' : '0';
-      if (visible) trail.push({ x: mx, y: my, t: performance.now() });
+      if (visible && !gazeOn) trail.push({ x: mx, y: my, t: performance.now() });
     });
     document.addEventListener('mouseleave', () => { if (dot) dot.style.opacity = '0'; });
 
@@ -154,6 +73,138 @@
         el.style.opacity = '0';
       });
       setTimeout(() => el.remove(), 420);
+    });
+  })();
+
+  // Záznam pohledu — myš místo očí. Zastavení kurzoru = fixace (kolečko roste s délkou),
+  // skok mezi nimi = sakáda (čára). Dokud uživatel po zapnutí nehýbe myší, přehraje se ukázka.
+  (function () {
+    if (window.innerWidth < 1024) return;
+    const btn = document.getElementById('gaze-toggle') as HTMLButtonElement | null;
+    const modeEl = document.getElementById('gaze-mode');
+    const readEl = document.getElementById('gaze-readout');
+    const panel = document.getElementById('gaze-panel');
+    const layer = document.getElementById('gaze-layer');
+    const hero = document.querySelector<HTMLElement>('section.hero-shell');
+    if (!btn || !modeEl || !readEl || !panel || !layer || !hero) return;
+    const L = JSON.parse(btn.dataset.gaze || '{}') as Record<string, string>;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    type Fix = { x: number; y: number; t: number; dur: number; n: number };
+    let fixes: Fix[] = [];
+    let anchor: { x: number; y: number; t: number; f: Fix | null } | null = null;
+    let n = 0, onAt = 0, movedOn = false, inside = false, raf = 0;
+    let cx = -9999, cy = -9999; // pozice myši v okně
+    let demoPts: { x: number; y: number; at: number; dur: number }[] = [];
+
+    document.addEventListener('mousemove', e => {
+      cx = e.clientX; cy = e.clientY;
+      const r = hero.getBoundingClientRect();
+      inside = cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom;
+      if (gazeOn && inside && performance.now() - onAt > 400) movedOn = true;
+    });
+    document.addEventListener('mouseleave', () => { inside = false; anchor = null; });
+
+    // Ukázkové fixace přes skutečné prvky hlavičky (logo → nadpis → popis → tlačítko → obory → čísla)
+    function buildDemo() {
+      const hr = hero!.getBoundingClientRect();
+      const at = (sel: string, fx: number, fy: number) => {
+        const el = hero!.querySelector<HTMLElement>(sel);
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        if (!r.width) return null;
+        return { x: r.left - hr.left + r.width * fx, y: r.top - hr.top + r.height * fy };
+      };
+      const plan: [string, number, number, number][] = [
+        ['.hero-logo img', 0.45, 0.5, 320],
+        ['.hero-h1', 0.12, 0.17, 520],
+        ['.hero-h1', 0.55, 0.2, 380],
+        ['.hero-h1', 0.45, 0.5, 460],
+        ['.hero-sub', 0.35, 0.45, 300],
+        ['.hero-cta-main', 0.5, 0.5, 640],
+        ['.hero-forwhom-links', 0.3, 0.5, 380],
+        ['.hero-stat-num', 0.3, 0.5, 520],
+      ];
+      const times = [600, 1000, 1650, 2150, 2750, 3200, 3700, 4400];
+      demoPts = [];
+      plan.forEach((p, i) => {
+        const pt = at(p[0], p[1], p[2]);
+        if (pt) demoPts.push({ ...pt, at: times[i], dur: p[3] });
+      });
+    }
+
+    const pad = (v: number) => String(v).padStart(2, '0');
+
+    function frame(now: number) {
+      if (!gazeOn) return;
+      const hr = hero!.getBoundingClientRect();
+      const mx = cx - hr.left, my = cy - hr.top;
+      // fixace se zaznamenávají až po prvním pohybu myši (do té doby běží ukázka)
+      if (inside && movedOn) {
+        if (!anchor || Math.hypot(mx - anchor.x, my - anchor.y) > 28) {
+          anchor = { x: mx, y: my, t: now, f: null };
+        } else {
+          const dur = now - anchor.t;
+          if (dur > 220) {
+            if (!anchor.f) {
+              n += 1;
+              anchor.f = { x: anchor.x, y: anchor.y, t: now, dur, n };
+              fixes.push(anchor.f);
+              if (fixes.length > 8) fixes.shift();
+            }
+            anchor.f.dur = dur;
+          }
+        }
+      }
+      fixes = fixes.filter(f => now - f.t < 7000);
+
+      const elOn = now - onAt;
+      const live = fixes.length > 0 || movedOn;
+      let src: Fix[];
+      if (live) src = fixes;
+      else if (reduced) src = demoPts.map((p, i) => ({ x: p.x, y: p.y, t: onAt, dur: p.dur, n: i + 1 }));
+      else if (elOn < 9000) src = demoPts.filter(p => elOn >= p.at).map((p, i) => ({ x: p.x, y: p.y, t: onAt + p.at, dur: Math.min(p.dur, elOn - p.at), n: i + 1 }));
+      else src = [];
+      const fade = (f: Fix) => live
+        ? Math.max(0, 1 - Math.max(0, now - f.t - 4000) / 3000)
+        : (reduced || elOn < 7500 ? 1 : Math.max(0, 1 - (elOn - 7500) / 1500));
+
+      let html = '';
+      for (let i = 1; i < src.length; i++) {
+        const p = src[i - 1], q = src[i];
+        const w = Math.hypot(q.x - p.x, q.y - p.y);
+        const r = Math.atan2(q.y - p.y, q.x - p.x) * 180 / Math.PI;
+        html += `<div style="position:absolute;left:${p.x}px;top:${p.y}px;width:${w}px;height:1px;background:#2D62FC;transform-origin:0 0;transform:rotate(${r}deg);opacity:${Math.min(fade(p), fade(q)) * 0.6}"></div>`;
+      }
+      for (const f of src) {
+        const d = Math.min(16 + f.dur / 14, 64), o = fade(f) * 0.95;
+        html += `<div style="position:absolute;left:${f.x}px;top:${f.y}px;width:${d}px;height:${d}px;border:1.5px solid #2D62FC;background:rgba(45,98,252,0.1);border-radius:50%;transform:translate(-50%,-50%);box-sizing:border-box;opacity:${o}"></div>`;
+        html += `<span style="position:absolute;left:${f.x + d / 2 + 4}px;top:${f.y - d / 2 - 8}px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#2D62FC;white-space:nowrap;opacity:${o}">${pad(f.n)} · ${Math.round(f.dur)} MS</span>`;
+      }
+      layer!.innerHTML = html;
+
+      const last = src[src.length - 1];
+      const read = last ? `${L.fix} ${pad(last.n)} · ${Math.round(last.dur)} MS · ${src.length} ${L.rec}` : L.hintOn;
+      if (readEl!.textContent !== read) readEl!.textContent = read;
+      const mode = live ? L.live : L.demo;
+      if (modeEl!.textContent !== mode) modeEl!.textContent = mode;
+      raf = requestAnimationFrame(frame);
+    }
+
+    btn.addEventListener('click', () => {
+      gazeOn = !gazeOn;
+      btn.setAttribute('aria-pressed', String(gazeOn));
+      fixes = []; n = 0; anchor = null; movedOn = false; onAt = performance.now();
+      cancelAnimationFrame(raf);
+      layer.innerHTML = '';
+      panel.classList.toggle('hidden', !gazeOn);
+      if (gazeOn) {
+        buildDemo();
+        raf = requestAnimationFrame(frame);
+      } else {
+        modeEl.textContent = L.off;
+        readEl.textContent = L.hintOff;
+      }
     });
   })();
 

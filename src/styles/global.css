@@ -113,20 +113,9 @@
     --hero-micro-size: calc(clamp(0.6875rem, 0.25vw + 0.55rem, 0.75rem) * var(--fs, 1));
   }
 
-  .hero-spec-list p,
-  .hero-spec-list .spec-dashes {
-    font-size: var(--hero-mono-size);
-  }
-
   /* Texty v hero s Tailwind text-xs se škálují s přepínačem TEXT */
   .hero-shell .text-xs {
     font-size: calc(0.75rem * var(--fs, 1));
-  }
-
-  /* Anotace u hero obrázku: pojistný max-width, ať delší jazykové verze
-     (FR/DE/ES) nikdy nezajedou pod boční boxy ani mimo obrazovku */
-  .ann p {
-    max-width: 10.5rem;
   }
 }
 
@@ -192,4 +181,162 @@ rect.viz-bar {
   :root {
     --hero-logo-top: 2.625rem;
   }
+}
+
+/* ================================================================
+   Hlavička úvodní stránky (návrh D2) — src/components/HomeHero.astro
+   Mobil (<1024 px): obsah pod sebou, výška podle obsahu.
+   PC (≥1024 px): výška okna (min. 640 px), levý sloupec + pravý sloupec
+   v jedné mřížce; velikosti z šířky okna a výšky hero (--hh), krát --fs.
+   ================================================================ */
+.hero-home .hero-grid-bg {
+  background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px);
+  background-size: 50% 25%;
+}
+.hero-home .hero-brain img { opacity: 0.32; }
+.hero-home .hero-brain-m img { opacity: 0.22; }
+
+@media (max-width: 1023px) {
+  .hero-home.hero-shell { height: auto; min-height: 0; }
+  .hero-home .hero-brain-m { top: 110px; left: -8%; width: 116%; max-width: 760px; aspect-ratio: 460 / 330; }
+  .hero-home .hero-main {
+    padding: var(--hero-logo-top) var(--desktop-gutter) 2rem;
+    max-width: calc(36rem + 2 * var(--desktop-gutter));
+  }
+  .hero-home .hero-eyebrow { margin-top: 1.25rem; font-size: 12px; }
+  /* H1 vždy na 3 řádky: velikost podle nejdelšího řádku daného jazyka (--h1-em, v em) */
+  .hero-home .hero-h1 { margin-top: 0.75rem; font-size: min(34px, calc((100vw - 2 * var(--desktop-gutter)) / var(--h1-em, 11.6))); line-height: 1.08; letter-spacing: -0.02em; white-space: nowrap; }
+  .hero-home .hero-sub { margin-top: 1rem; font-size: 15px; line-height: 1.55; text-wrap: balance; }
+  .hero-home .hero-stats-m { margin-top: 1.5rem; }
+  .hero-home .hero-ctas { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .hero-home .hero-ctas a { display: flex; align-items: center; justify-content: center; font-size: 13px; letter-spacing: 0.12em; }
+  .hero-home .hero-cta-main { height: 52px; }
+  .hero-home .hero-cta-sec { height: 50px; }
+  .hero-home .hero-forwhom { margin-top: 1.75rem; font-size: 12px; }
+  .hero-home .hero-forwhom-label { margin-bottom: 2px; }
+  .hero-home .hero-forwhom-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; letter-spacing: 0.08em; }
+  .hero-home .hero-forwhom-links a { display: flex; align-items: center; min-height: 44px; border-top: 1px solid rgba(10,10,10,0.2); }
+  .hero-home .hero-box-m { margin-top: 1.75rem; padding: 16px 18px; }
+}
+
+@media (min-width: 1024px) {
+  .hero-home.hero-shell { min-height: 600px; }
+  .hero-home {
+    --hh: max(100dvh, 600px);
+    --hero-pad-b: clamp(24px, 4.2dvh, 48px);
+    --hero-rc-w: clamp(250px, 21.2vw, 400px);
+    --hero-forwhom-mb: max(60px, calc(var(--hh) * 0.088));
+  }
+  .hero-home .hero-grid-bg { background-size: 25% 33.333%; }
+  .hero-home .hero-brain { left: 22.9%; top: 7.8%; width: 79.9%; height: 77.8%; }
+
+  .hero-home .hero-main {
+    position: absolute;
+    left: var(--desktop-gutter);
+    right: var(--desktop-gutter);
+    top: var(--hero-logo-top);
+    bottom: var(--hero-pad-b);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--hero-rc-w);
+    column-gap: 2rem;
+    grid-template-rows: auto calc(var(--hh) * 0.05) auto auto auto auto minmax(1rem, 1fr) auto;
+  }
+  .hero-home .hero-logo { grid-area: 1 / 1; }
+  .hero-home .hero-eyebrow { grid-area: 3 / 1; font-size: var(--hero-mono-size); margin-bottom: calc(var(--hh) * 0.011); }
+  .hero-home .hero-h1 {
+    grid-area: 4 / 1;
+    font-size: calc(min(3.7vw, var(--hh) * 0.059) * var(--fs, 1));
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+  }
+  .hero-home .hero-sub {
+    grid-area: 5 / 1;
+    margin-top: calc(var(--hh) * 0.028);
+    max-width: 32em;
+    font-size: calc(clamp(14px, 1.1vw, 18px) * var(--fs, 1));
+    line-height: 1.55;
+  }
+  .hero-home .hero-ctas { grid-area: 6 / 1; margin-top: calc(var(--hh) * 0.024); display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-home .hero-ctas a { display: inline-block; padding: calc(var(--hh) * 0.0145) 22px; font-size: calc(0.75rem * var(--fs, 1)); white-space: nowrap; }
+  .hero-home .hero-forwhom {
+    grid-area: 8 / 1;
+    margin-bottom: var(--hero-forwhom-mb);
+    display: flex; align-items: center; gap: 1.5rem;
+    font-size: calc(0.75rem * var(--fs, 1));
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .hero-home .hero-forwhom-links { display: flex; align-items: center; gap: 1.5rem; }
+
+  /* Pravý sloupec: od úrovně H1 po spodní okraj; čísla nahoře, box přichycený dolů */
+  .hero-home .hero-right { grid-column: 2; grid-row: 4 / 9; min-height: 0; }
+  .hero-home .hero-stats { gap: calc(var(--hh) * 0.024); margin-bottom: 1rem; }
+  .hero-home .hero-stats > div { padding-top: calc(var(--hh) * 0.011); }
+  .hero-home .hero-stat-num { font-size: calc(min(3vw, var(--hh) * 0.048) * var(--fs, 1)); letter-spacing: -0.02em; }
+  .hero-home .hero-stat-label { margin-top: calc(var(--hh) * 0.009); font-size: calc(clamp(10px, 0.76vw, 12px) * var(--fs, 1)); }
+  .hero-home .hero-box {
+    margin-top: auto;
+    padding: clamp(12px, calc(var(--hh) * 0.018), 18px) clamp(14px, 1.25vw, 20px);
+    gap: clamp(8px, calc(var(--hh) * 0.0155), 16px);
+  }
+  .hero-home .hero-box-tag { font-size: calc(clamp(12px, 0.9vw, 14px) * min(var(--fs, 1), 1.08)); }
+  .hero-home .hero-box-desc { font-size: calc(clamp(11px, 0.83vw, 13px) * min(var(--fs, 1), 1.08)); }
+  .hero-home .hero-box-btn { padding: 6px 10px; font-size: calc(clamp(11px, 0.83vw, 13px) * min(var(--fs, 1), 1.08)); }
+  .hero-home .hero-box-coop { padding-top: 10px; gap: 10px; }
+  .hero-home .hero-box-coop p { font-size: calc(clamp(10px, 0.72vw, 12px) * min(var(--fs, 1), 1.08)); line-height: 1.4; letter-spacing: 0.06em; }
+  .hero-home .hero-box-coop img { height: clamp(22px, calc(var(--hh) * 0.028), 34px); }
+
+  /* Spodní lišta */
+  .hero-home .hero-clock { left: var(--desktop-gutter); bottom: 22px; font-size: calc(0.75rem * var(--fs, 1)); }
+  .hero-home .hero-scroll { left: 50%; bottom: 10px; transform: translateX(-50%); animation: hero-bob 1.6s ease-in-out infinite; }
+  /* Tlačítko a průběžný text se na užších oknech zalomí, aby nenajely na hodiny ani na černý box */
+  .hero-home .hero-gaze-btn {
+    right: calc(50% + 18px); bottom: 14px; min-height: 28px; padding: 0 6px;
+    font-size: calc(11px * var(--fs, 1)); line-height: 1.25;
+    white-space: normal; text-align: right;
+    max-width: calc(50% - 18px - var(--desktop-gutter) - 19.5em - 16px);
+  }
+  .hero-home .hero-gaze-btn:focus-visible { outline: 2px solid #2D62FC; outline-offset: 2px; }
+  .hero-home .hero-gaze-readout {
+    left: calc(50% + 24px); bottom: 22px; font-size: calc(11px * var(--fs, 1)); line-height: 1.25;
+    white-space: normal;
+    max-width: calc(50% - 24px - var(--hero-rc-w) - var(--desktop-gutter) - 16px);
+  }
+  .hero-home .hero-gaze-panel {
+    left: 50%; transform: translateX(-50%);
+    width: min(500px, 36vw);
+    bottom: calc(var(--hero-pad-b) + var(--hero-forwhom-mb) + 2.25rem);
+    padding: 14px 18px;
+  }
+  .hero-home .hero-gaze-panel p:first-child { font-size: calc(11px * var(--fs, 1)); }
+  .hero-home .hero-gaze-panel-text { font-size: calc(13px * var(--fs, 1)); }
+}
+
+/* PC menu (≥1280 px): poslední sloupeček přepínače písma je uprostřed tlačítka 24 px →
+   pravá hrana sloupce lícuje s jeho viditelnou hranou, ne s klikací plochou */
+@media (min-width: 1280px) {
+  .hero-home .hero-right { margin-right: 7px; }
+}
+
+/* Nižší okna (13″ notebooky, 1366×768…): čísla vedle sebe, ať se pravý sloupec vejde na výšku */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .hero-home .hero-box { padding: 10px 12px; gap: 8px; }
+  .hero-home .hero-box-desc { line-height: 1.5; }
+  .hero-home .hero-box-coop { padding-top: 8px; }
+  .hero-home .hero-box-coop p { line-height: 1.3; }
+  .hero-home .hero-box-coop img { height: 20px; }
+}
+@media (min-width: 1024px) and (max-height: 800px) {
+  .hero-home .hero-stats { flex-direction: row; gap: 12px; }
+  .hero-home .hero-stats > div { flex: 1 1 0; min-width: 0; }
+  .hero-home .hero-stat-label { font-size: calc(10px * var(--fs, 1)); letter-spacing: 0.06em; line-height: 1.35; }
+}
+
+@keyframes hero-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-home .hero-scroll { animation: none; }
 }

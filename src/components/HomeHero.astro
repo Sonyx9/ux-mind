@@ -1,0 +1,257 @@
+---
+// Hlavička úvodní stránky (návrh D2) — společná pro CS / EN / DE.
+// PC (≥1024 px): mřížka 4×3, levý sloupec (logo, eyebrow, velký H1, podnadpis, tlačítka, Pro koho),
+// pravý sloupec (čísla + černý box UX AUDIT), mozek jako pozadí, spodní lišta se záznamem pohledu.
+// Mobil (<1024 px): vše pod sebou, mozek jako slabé pozadí, bez záznamu pohledu a stopy.
+// Logika (záznam pohledu, stopa, easter egg, hodiny) je v src/scripts/homepage.ts.
+interface Props { lang: 'cs' | 'en' | 'de' }
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const gifSrc = `${base}/hero.webp`;
+
+const T = {
+  cs: {
+    eyebrow: 'VÝZKUM MÍSTO DOMNĚNEK',
+    h1: 'UX výzkum, eye tracking<br>a&nbsp;testování uživatelů<br>v&nbsp;laboratoři i&nbsp;v&nbsp;terénu<span class="text-[#2D62FC]">.</span>',
+    sub: 'Měříme, kam se lidé dívají, co přehlédnou a&nbsp;kde se zaseknou. Na&nbsp;webu, v&nbsp;e-shopu i&nbsp;na stadionu. Ke každému zjištění dodáme konkrétní úpravu.',
+    cta: { label: 'DOMLUVIT SCHŮZKU', href: '/kontakt' },
+    cta2: { label: 'PŘÍPADOVÉ STUDIE →', href: '/pripadove-studie' },
+    stats: [
+      { num: '800+', label: 'RESPONDENTŮ V MĚŘENÍCH', short: 'Respondentů v měřeních' },
+      { num: '8', label: 'ODBORNÝCH PUBLIKACÍ', short: 'Odborných publikací' },
+      { num: '5', label: 'MĚŘICÍCH SYSTÉMŮ', short: 'Měřicích systémů' },
+    ],
+    box: {
+      tag: 'UX AUDIT WEBU A E-SHOPU',
+      desc: 'Najdeme místa, kde lidé na&nbsp;webu nebo v&nbsp;<span class="whitespace-nowrap">e-shopu</span> váhají a&nbsp;odcházejí. Ke každému dodáme konkrétní návrh úpravy.',
+      btn: { label: 'CHCI AUDIT →', href: '/sluzby/ux-audit' },
+      coop: 'MĚŘÍME VE SPOLUPRÁCI S LABORATOŘÍ FIMEYELAB (UHK)',
+      uhk: 'Univerzita Hradec Králové',
+    },
+    forWhom: {
+      label: '[ PRO KOHO ]',
+      links: [
+        { label: 'E-SHOPY', href: '/segmenty/e-shopy' },
+        { label: 'SPORT A STADIONY', href: '/segmenty/sport-a-stadiony' },
+        { label: 'WEBY A APLIKACE', href: '/segmenty/weby' },
+      ],
+      all: { label: 'VŠECHNY OBORY →', href: '/segmenty' },
+    },
+    brainAlt: 'Animovaná neuronová síť — vizualizace propojení UX výzkumu, eye trackingu a dat',
+    scroll: 'Posunout na obsah',
+    gaze: {
+      name: 'ZÁZNAM POHLEDU',
+      off: 'VYP', live: 'ZAP · MYŠ MÍSTO OČÍ', demo: 'ZAP · UKÁZKA',
+      hintOff: 'ZAPNĚTE A ZKUSTE, KAM SE DÍVÁTE',
+      hintOn: 'ZASTAVTE KURZOR A UVIDÍTE FIXACI',
+      fix: 'FIXACE', rec: 'V ZÁZNAMU',
+      panelTitle: '[ JAK SE DÍVÁME ]',
+      panel: 'Oko neklouže plynule. Na chvíli se zastaví (<b>fixace</b>, obvykle desetiny sekundy) a&nbsp;pak rychle skočí jinam (<b>sakáda</b>), během skoku skoro nic nevidíme. Kolečko roste s&nbsp;délkou fixace, čára ukazuje skok. Tady za oči zaskakuje myš: zastavte kurzor.',
+    },
+  },
+  en: {
+    eyebrow: 'RESEARCH OVER ASSUMPTIONS',
+    h1: 'UX research, eye tracking<br>and user testing<br>in the lab and in the field<span class="text-[#2D62FC]">.</span>',
+    sub: 'We measure where people look, what they miss and where they get stuck. On websites, in e-shops and at stadiums. For every finding we deliver a specific fix.',
+    cta: { label: 'BOOK A MEETING', href: '/en/contact' },
+    cta2: { label: 'CASE STUDIES →', href: '/en/case-studies' },
+    stats: [
+      { num: '800+', label: 'RESPONDENTS MEASURED', short: 'Respondents measured' },
+      { num: '8', label: 'PEER-REVIEWED PUBLICATIONS', short: 'Peer-reviewed publications' },
+      { num: '5', label: 'MEASUREMENT SYSTEMS', short: 'Measurement systems' },
+    ],
+    box: {
+      tag: 'WEBSITE &amp; E-SHOP UX AUDIT',
+      desc: 'We find the spots where people hesitate and leave your website or <span class="whitespace-nowrap">e-shop</span>. For each one, we deliver a concrete fix.',
+      btn: { label: 'GET AN AUDIT →', href: '/en/services/ux-audit' },
+      coop: 'IN COOPERATION WITH FIMEYELAB (UHK)',
+      uhk: 'University of Hradec Králové',
+    },
+    forWhom: null,
+    brainAlt: 'Animated neural network — a visualisation connecting UX research, eye tracking and data',
+    scroll: 'Scroll to content',
+    gaze: {
+      name: 'GAZE RECORDING',
+      off: 'OFF', live: 'ON · MOUSE FOR EYES', demo: 'ON · DEMO',
+      hintOff: 'TURN IT ON AND SEE WHERE YOU LOOK',
+      hintOn: 'STOP THE CURSOR TO SEE A FIXATION',
+      fix: 'FIXATION', rec: 'RECORDED',
+      panelTitle: '[ HOW WE LOOK ]',
+      panel: 'The eye doesn’t glide smoothly. It stops for a moment (a <b>fixation</b>, usually a fraction of a second) and then jumps elsewhere (a <b>saccade</b>); during the jump we see almost nothing. The circle grows with the fixation’s length, the line shows the jump. Here the mouse stands in for the eyes: stop the cursor.',
+    },
+  },
+  de: {
+    eyebrow: 'FORSCHUNG STATT VERMUTUNGEN',
+    h1: 'UX-Forschung, Eye-Tracking<br>und Nutzertests<br>im Labor und im Feld<span class="text-[#2D62FC]">.</span>',
+    sub: 'Wir messen, wohin Menschen schauen, was sie übersehen und wo sie hängen bleiben. Auf Websites, in Onlineshops und im Stadion. Zu jeder Erkenntnis liefern wir eine konkrete Verbesserung.',
+    cta: { label: 'TERMIN VEREINBAREN', href: '/de/kontakt' },
+    cta2: { label: 'FALLSTUDIEN →', href: '/de/fallstudien' },
+    stats: [
+      { num: '800+', label: 'GEMESSENE PROBANDEN', short: 'Gemessene Probanden' },
+      { num: '8', label: 'FACHPUBLIKATIONEN', short: 'Fachpublikationen' },
+      { num: '5', label: 'MESSSYSTEME', short: 'Messsysteme' },
+    ],
+    box: {
+      tag: 'UX-AUDIT: WEB &amp; SHOP',
+      desc: 'Wir finden, wo Menschen auf Ihrer Website oder im Onlineshop zögern und abspringen. Zu jeder Stelle gibt es einen konkreten Vorschlag.',
+      btn: { label: 'AUDIT ANFRAGEN →', href: '/de/leistungen/ux-audit' },
+      coop: 'IN ZUSAMMENARBEIT MIT DEM FIMEYELAB (UHK)',
+      uhk: 'Universität Hradec Králové',
+    },
+    forWhom: null,
+    brainAlt: 'Animiertes neuronales Netz — Visualisierung der Verbindung von UX-Forschung, Eye-Tracking und Daten',
+    scroll: 'Zum Inhalt scrollen',
+    gaze: {
+      name: 'BLICKAUFZEICHNUNG',
+      off: 'AUS', live: 'AN · MAUS STATT AUGEN', demo: 'AN · DEMO',
+      hintOff: 'EINSCHALTEN UND SEHEN, WOHIN SIE SCHAUEN',
+      hintOn: 'CURSOR ANHALTEN, UM EINE FIXATION ZU SEHEN',
+      fix: 'FIXATION', rec: 'AUFGEZEICHNET',
+      panelTitle: '[ WIE WIR SCHAUEN ]',
+      panel: 'Das Auge gleitet nicht gleichmäßig. Es hält kurz an (<b>Fixation</b>, meist Bruchteile einer Sekunde) und springt dann schnell weiter (<b>Sakkade</b>); während des Sprungs sehen wir fast nichts. Der Kreis wächst mit der Dauer der Fixation, die Linie zeigt den Sprung. Hier ersetzt die Maus die Augen: Halten Sie den Cursor an.',
+    },
+  },
+}[lang];
+
+const gazeData = JSON.stringify({ off: T.gaze.off, live: T.gaze.live, demo: T.gaze.demo, hintOff: T.gaze.hintOff, hintOn: T.gaze.hintOn, fix: T.gaze.fix, rec: T.gaze.rec });
+const uhkSrc = `${base}/logos/uhk.svg`;
+---
+
+<section class="hero-shell hero-home relative overflow-hidden" style="background:#FDFDFD;">
+
+  <!-- Mřížka 4 × 3 (PC), 2 × 4 (mobil) + křížky v průsečících (PC) -->
+  <div class="hero-grid-bg absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+    <div class="hidden md:block">
+    {[0, 25, 50, 75, 100].flatMap(x =>
+      [0, 33.333, 66.667, 100].map(y => (
+        <div class="absolute" style={`left:${x}%; top:${y}%; width:14px; height:14px; transform:translate(-50%,-50%); background:linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/14px 1px no-repeat, linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/1px 14px no-repeat;`}></div>
+      ))
+    )}
+    </div>
+  </div>
+
+  <!-- Mozek — PC: velké pozadí přes pravou část, pod textem -->
+  <div class="hero-brain hidden md:block absolute z-[1] pointer-events-none">
+    <img
+      id="hero-gif"
+      src={gifSrc}
+      alt={T.brainAlt} title={T.brainAlt}
+      class="w-full h-full object-contain"
+      width="960" height="540" loading="lazy" decoding="async"
+    />
+    <!-- Animace mozku jen při první návštěvě; při dalších rovnou hotový obrázek (poslední snímek animace) -->
+    <script is:inline>
+      try {
+        var heroGif = document.getElementById('hero-gif');
+        if (localStorage.getItem('uxmind-hero-seen')) {
+          heroGif.src = heroGif.src.replace('hero.webp', 'hero-static.webp');
+          heroGif.dataset.seen = '1';
+        } else {
+          localStorage.setItem('uxmind-hero-seen', '1');
+        }
+      } catch (e) {}
+    </script>
+  </div>
+
+  <!-- Mozek — mobil: slabé pozadí za nadpisem, popisem a čísly -->
+  <div class="hero-brain-m md:hidden absolute z-0 pointer-events-none">
+    <img src={`${base}/hero-static.webp`} alt={T.brainAlt} title={T.brainAlt} class="w-full h-full object-contain" width="960" height="540" loading="lazy" decoding="async" />
+  </div>
+
+  <div class="hero-main relative z-10">
+
+    <!-- Logo + easter egg (hotspot nad modrou tečkou + záslepka, když tečka „uteče“) -->
+    <div class="hero-logo m-0 p-0">
+      <div class="relative inline-block" style="line-height:0;">
+        <img src={`${base}/logo-2line.svg`} alt="UX Mind" title="UX Mind" width="264" height="88" style="width: clamp(8.4rem, min(16.8vw, 30dvh), 264px); height:auto; display:block;" />
+        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
+        <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
+      </div>
+    </div>
+
+    <p class="hero-eyebrow font-mono tracking-widest text-brand-black/60">{T.eyebrow}</p>
+    <h1 class="hero-h1 font-display font-bold" style={`--h1-em:${{ cs: 11.6, en: 12.05, de: 13.2 }[lang]}`} set:html={T.h1} />
+    <p class="hero-sub text-brand-black/80" set:html={T.sub} />
+
+    <!-- Mobil: čísla ve 3 sloupcích -->
+    <div class="hero-stats-m md:hidden grid grid-cols-3 gap-x-3">
+      {T.stats.map(s => (
+        <div class="border-t border-brand-black/35 pt-2 min-w-0">
+          <p class="font-display font-bold leading-none tracking-tight" style="font-size:30px;">{s.num}</p>
+          <p class="font-mono text-xs leading-snug text-brand-black/70 mt-1.5" style="letter-spacing:0.04em;">{s.short}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="hero-ctas">
+      <a href={T.cta.href} class="hero-cta-main font-mono tracking-widest bg-brand-black text-brand-white border border-brand-black transition-colors duration-200 hover:bg-transparent hover:text-brand-black">{T.cta.label}</a>
+      <a href={T.cta2.href} class="hero-cta-sec font-mono tracking-widest border border-brand-black bg-[#FDFDFD] transition-colors duration-200 hover:bg-brand-black hover:text-brand-white">{T.cta2.label}</a>
+    </div>
+
+    {T.forWhom && (
+      <nav class="hero-forwhom font-mono" aria-label={T.forWhom.label.replace(/[\[\]]/g, '').trim()}>
+        <p class="hero-forwhom-label tracking-widest text-brand-black/60">{T.forWhom.label}</p>
+        <div class="hero-forwhom-links">
+          {T.forWhom.links.map(l => <a href={l.href} class="seg-link">{l.label}</a>)}
+          <a href={T.forWhom.all.href} class="seg-link !text-[#2D62FC]">{T.forWhom.all.label}</a>
+        </div>
+      </nav>
+    )}
+
+    <!-- Mobil: černý box UX AUDIT -->
+    <div class="hero-box-m md:hidden bg-brand-black text-brand-white flex flex-col gap-3">
+      <p class="self-start font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5" style="font-size:13px;" set:html={T.box.tag} />
+      <p class="font-mono text-xs leading-relaxed text-brand-white/90" set:html={T.box.desc} />
+      <a href={T.box.btn.href} class="self-start inline-flex items-center min-h-[44px] border border-brand-white px-3 font-mono text-xs tracking-widest hover:bg-brand-white hover:text-brand-black transition-colors">{T.box.btn.label}</a>
+      <div class="border-t border-brand-white/20 pt-2.5 flex items-center justify-between gap-3">
+        <p class="font-mono text-[11px] leading-snug tracking-widest text-brand-white/80">{T.box.coop}</p>
+        <img width="157" height="37" loading="lazy" decoding="async" src={uhkSrc} alt={T.box.uhk} title={T.box.uhk} class="shrink-0 w-auto" style="height:28px; filter: invert(1);" />
+      </div>
+    </div>
+
+    <!-- PC: pravý sloupec — čísla a černý box v jednom flex sloupci, box přichycený dolů -->
+    <div class="hero-right hidden md:flex flex-col">
+      <div class="hero-stats flex flex-col">
+        {T.stats.map(s => (
+          <div class="border-t border-brand-black/35">
+            <p class="hero-stat-num font-display font-bold leading-none">{s.num}</p>
+            <p class="hero-stat-label font-mono tracking-widest text-brand-black/70">{s.label}</p>
+          </div>
+        ))}
+      </div>
+      <div id="info-box" class="hero-box bg-brand-black text-brand-white flex flex-col">
+        <p class="hero-box-tag font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5" set:html={T.box.tag} />
+        <p class="hero-box-desc font-mono leading-relaxed text-brand-white/90" set:html={T.box.desc} />
+        <a href={T.box.btn.href} class="hero-box-btn self-start border border-brand-white font-mono tracking-widest hover:bg-brand-white hover:text-brand-black transition-colors">{T.box.btn.label}</a>
+        <div class="hero-box-coop border-t border-brand-white/20 flex items-center justify-between">
+          <p class="font-mono text-brand-white/80">{T.box.coop}</p>
+          <img width="157" height="37" loading="lazy" decoding="async" src={uhkSrc} alt={T.box.uhk} title={T.box.uhk} class="shrink-0 w-auto" style="filter: invert(1);" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PC: vrstva záznamu pohledu (fixace + sakády), plní ji homepage.ts -->
+  <div id="gaze-layer" class="hidden md:block absolute inset-0 z-[50] pointer-events-none" aria-hidden="true"></div>
+
+  <!-- PC: vysvětlivka, jen když je záznam zapnutý -->
+  <div id="gaze-panel" class="hero-gaze-panel hidden absolute z-[55] bg-[#FDFDFD] border border-brand-black/15">
+    <p class="font-mono tracking-widest text-brand-black/70 mb-1.5">{T.gaze.panelTitle}</p>
+    <p class="hero-gaze-panel-text leading-relaxed text-brand-black/85" set:html={T.gaze.panel} />
+  </div>
+
+  <!-- PC: spodní lišta — hodiny vlevo, záznam pohledu | SCROLL | průběžný text -->
+  <p id="local-time" class="hero-clock hidden md:block absolute z-10 font-mono tracking-widest">PRG --:--:-- &nbsp; --/--/----</p>
+
+  <button type="button" id="gaze-toggle" aria-pressed="false" data-gaze={gazeData} class="hero-gaze-btn hidden md:block absolute z-[56] font-mono tracking-widest cursor-pointer">[ <span class="text-[#2D62FC]" aria-hidden="true">■</span> {T.gaze.name} · <span id="gaze-mode">{T.gaze.off}</span> ]</button>
+
+  <p id="gaze-readout" aria-live="off" class="hero-gaze-readout hidden md:block absolute z-10 font-mono tracking-widest text-brand-black/70">{T.gaze.hintOff}</p>
+
+  <button type="button" aria-label={T.scroll} class="hero-scroll hidden md:flex absolute z-10 flex-col items-center gap-2 cursor-pointer" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
+    <span class="font-mono text-xs text-brand-black/60 tracking-widest">SCROLL</span>
+    <span class="block h-8 bg-brand-black/25" style="width:1px;"></span>
+  </button>
+
+  <!-- Cursor dot — only in hero area -->
+  <div id="cursor-dot" style="position:fixed;top:0;left:0;width:8px;height:8px;background:#2D62FC;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;"></div>
+</section>

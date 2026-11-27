@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
+import HomeHero from '../../components/HomeHero.astro';
 import Footer from '../../components/Footer.astro';
 const homeStudies = [
   {
@@ -38,220 +39,12 @@ const clientLogos = [
 ];
 ---
 
-<BaseLayout lang="en" title="UX Research, Eye Tracking & User Testing | UX MIND" description="User testing, eye tracking and cognitive load measurement (EMLI model). Objective UX research backed by the FIM UHK science lab. Test your website on data." preloadImages={[{ href: gifSrc, media: "(min-width: 768px)" }, { href: `${import.meta.env.BASE_URL.replace(/\/$/, "")}/hero-mobile.webp`, media: "(max-width: 767px)" }]}>
+<BaseLayout lang="en" title="UX Research, Eye Tracking & User Testing | UX MIND" description="User testing, eye tracking and cognitive load measurement (EMLI model). Objective UX research backed by the FIM UHK science lab. Test your website on data." preloadImages={[{ href: gifSrc, media: "(min-width: 1024px)" }]}>
   <Navbar />
 
-  <!-- HERO SECTION -->
-  <section class="hero-shell relative overflow-hidden" style="background:#FDFDFD;">
-
-    <!-- Background grid: 4 columns × 3 rows, plus markers at intersections -->
-    <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true"
-      style="background-image: linear-gradient(rgba(10,10,10,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.07) 1px, transparent 1px); background-size: 25% 33.333%;">
-      <div class="hidden md:block">
-      {[0, 25, 50, 75, 100].flatMap(x =>
-        [0, 33.333, 66.667, 100].map(y => (
-          <div class="absolute" style={`left:${x}%; top:${y}%; width:14px; height:14px; transform:translate(-50%,-50%); background:linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/14px 1px no-repeat, linear-gradient(rgba(10,10,10,0.22),rgba(10,10,10,0.22)) center/1px 14px no-repeat;`}></div>
-        ))
-      )}
-      </div>
-    </div>
-
-    <!-- Center CTA — below the hero figure, on the same grid row axis as the spec list -->
-    <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60] hidden md:block" style="top: 83.333%;">
-      <a href="/en/contact" class="inline-block bg-brand-black text-brand-white border border-brand-black px-6 py-[10.5px] font-mono text-xs tracking-widest uppercase transition-colors duration-200 hover:bg-transparent hover:text-brand-black">
-        BOOK A MEETING
-      </a>
-    </div>
-
-    <!-- Large headline — top-aligned with the top line (same height where the top table began) -->
-    <div class="absolute z-10" style="left: var(--desktop-gutter); top: var(--hero-logo-top); line-height: 1; margin: 0; padding: 0;">
-      <div class="m-0 p-0 relative" style="line-height:0;">
-        <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logo-2line.svg`} alt="UX Mind" title="UX Mind" width="264" height="88" style="width: clamp(8.4rem, 16.8vw, 264px); height:auto; display:block;" />
-        <!-- Easter egg: hotspot over the logo's blue dot + patch shown while the dot is "escaped" -->
-        <span id="logo-dot-hotspot" class="hidden md:block" style="position:absolute; left:89%; top:64%; width:14%; height:24%;"></span>
-        <span id="logo-dot-patch" style="position:absolute; left:92.4%; top:69%; width:8%; height:14%; background:#FCFCFC; border-radius:50%; display:none;"></span>
-      </div>
-      <p class="font-mono tracking-widest text-brand-black/60 mt-3 md:mt-6" style="font-size:clamp(10px,0.8vw,12px);">RESEARCH OVER ASSUMPTIONS</p>
-      <h1 class="font-display font-semibold md:font-bold tracking-tight mt-2 max-w-[34ch] md:max-w-[24ch] text-[12.5px] md:text-[clamp(14px,1.35vw,21px)]" style="line-height:1.3;">UX research, eye tracking and user testing in the lab and in the field.</h1>
-    </div>
-
-    <!-- Mobile CTA — centred in the free space between the logo and the image (above the 33.333% line) -->
-    <div class="md:hidden absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-[60]" style="top: calc(64px + 16.667% + 36px);">
-      <a href="/en/contact" class="inline-block bg-brand-black text-brand-white px-4 py-2 font-mono text-[11px] tracking-widest uppercase whitespace-nowrap">BOOK A MEETING</a>
-    </div>
-
-    <!-- Mobile hero image — static, shown immediately -->
-    <div class="md:hidden absolute left-0 right-0 flex items-center justify-center" style="top: 33.333%; height: 33.334%;">
-      <img src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/hero-mobile.webp`} alt="UX Mind — UX research and eye tracking" title="UX Mind — UX research and eye tracking" style="width:100%; height:auto; object-fit:contain;" width="800" height="450" fetchpriority="high" decoding="async" />
-    </div>
-
-    <!-- Center 3D Brain — desktop only. Who it’s for around the image (desktop/tablet); segment pages are CS only, so no links. Services stay in the bottom-left list -->
-    <div class="hidden md:flex absolute inset-0 items-center justify-center">
-      <div id="hero-gif-container" class="relative" style="width: min(48vw, 760px); height: min(50vh, 540px);">
-        <!-- Hero GIF - plays once then freezes on last frame -->
-        <img
-          id="hero-gif"
-          src={gifSrc}
-          alt="Animated neural network — a visualisation connecting UX research, eye tracking and data" title="Animated neural network — a visualisation connecting UX research, eye tracking and data"
-          class="w-full h-full object-contain"
-          width="960" height="540" loading="lazy" decoding="async"
-        />
-
-        <!-- Animace mozku jen při první návštěvě; při dalších rovnou hotový obrázek (poslední snímek animace) -->
-        <script is:inline>
-          try {
-            var heroGif = document.getElementById('hero-gif');
-            if (localStorage.getItem('uxmind-hero-seen')) {
-              heroGif.src = heroGif.src.replace('hero.webp', 'hero-static.webp');
-              heroGif.dataset.seen = '1';
-            } else {
-              localStorage.setItem('uxmind-hero-seen', '1');
-            }
-          } catch (e) {}
-        </script>
-
-        <!-- Annotation: top — text visible in hero below CTA, line goes down into image -->
-        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; top:-30px; transform:translateX(-50%);">
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mb-1 max-w-32">SPORT &amp;<br/>STADIUMS</p>
-          <div class="ann-line w-px bg-brand-black" style="height:0;" data-size="200"></div>
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-        </div>
-
-        <!-- Annotation: left — text left of container, dot at 22% from left -->
-        <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:42%; transform:translate(-100%,-50%);">
-          <div class="text-right mr-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">WEBSITES<br/>&amp; APPS</p>
-          </div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-        </div>
-
-        <!-- Annotation: left bottom — mirrors the right bottom one, dot at 22% from left -->
-        <div class="ann absolute hidden md:flex items-center opacity-0" style="left:22%; top:65%; transform:translate(-100%,-50%);">
-          <div class="text-right mr-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">AUTOMOTIVE</p>
-          </div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;"></div>
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-        </div>
-
-        <!-- Annotation: right top — text right of container, dot at 22% from right; top 40% keeps text below the stats box bottom edge -->
-        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:40%; transform:translate(100%,-50%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
-          <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">E-SHOPS</p>
-          </div>
-        </div>
-
-        <!-- Annotation: right bottom — text right of container, dot at 22% from right -->
-        <div class="ann absolute hidden md:flex items-center opacity-0" style="right:22%; top:65%; transform:translate(100%,-50%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-          <div class="ann-line h-px bg-brand-black" style="width:0;" data-size="110"></div>
-          <div class="ml-2">
-            <p class="font-mono hero-fluid-micro tracking-widest">UNIVERSITIES<br/>&amp; RESEARCH</p>
-          </div>
-        </div>
-
-        <!-- Annotation: bottom — text below container, dot at 18% from bottom -->
-        <div class="ann absolute hidden md:flex flex-col items-center opacity-0" style="left:50%; bottom:35%; transform:translate(-50%,100%);">
-          <div class="flex-shrink-0" style="width:10px;height:10px;border:1px solid #0A0A0A;background:#FCFCFC;border-radius:50%;display:flex;align-items:center;justify-content:center;"><div style="width:4px;height:4px;background:#0A0A0A;border-radius:50%;"></div></div>
-          <div class="ann-line w-px bg-brand-black" style="height:0;"></div>
-          <p class="font-mono hero-fluid-micro tracking-widest text-center mt-1 max-w-32">AND OTHER<br/>INDUSTRIES</p>
-        </div>
-
-      </div>
-    </div><!-- end desktop gif container -->
-
-    <!-- Info box: stats (top right) -->
-
-    <!-- Core services — vertically centered in 3rd grid rectangle (66.667%–100%) -->
-    <div class="hero-spec-list absolute z-10" style="left: var(--desktop-gutter); top: 83.333%; transform: translateY(-50%);">
-      <p class="font-mono text-xs tracking-widest mb-4 text-brand-black/60">[ OUR SPECIALIZATION ]</p>
-      <div class="space-y-3">
-        {[
-          { num: '01', label: 'UX AUDIT', href: '/en/services/ux-audit' },
-          { num: '02', label: 'USER TESTING', href: '/en/services/user-testing' },
-          { num: '03', label: 'EYE TRACKING', href: '/en/services/eye-tracking' },
-          { num: '04', label: 'FIELD RESEARCH', href: '/en/services/field-research' },
-          { num: '05', label: 'UX RESEARCH', href: '/en/services/ux-research' },
-        ].map((item) => (
-          <div class="flex items-center gap-2">
-            <p class="font-mono text-xs text-brand-black/60 shrink-0">{item.num}.</p>
-            <span class="spec-dashes font-mono text-xs tracking-tight">
-              {Array.from({length: 20}).map(() => (
-                <span style="color:rgb(200,200,200); transition:color 0.8s ease;">|</span>
-              ))}
-            </span>
-            <p class="font-mono text-xs tracking-widest whitespace-nowrap"><a href={item.href} class="hover:text-[#2D62FC] transition-colors">{item.label}</a></p>
-          </div>
-        ))}
-      </div>
-      <div class="flex items-center gap-3 mt-3">
-        <p id="local-time" class="font-mono text-xs tracking-widest">PRG --:-- -- &nbsp; --/--/----</p>
-      </div>
-    </div>
-
-    <!-- Info box: about us — fills right half of bottom grid rectangle -->
-    <div id="info-box" class="hidden md:flex absolute z-30 border border-brand-black bg-brand-black text-brand-white flex-col"
-      style="left:calc(75% + clamp(12px,1.8vw,32px)); right: var(--desktop-gutter); bottom: 16.667%; transform: translateY(min(50%, calc(16.667dvh - 16px))); padding:clamp(8px,1.1vh,18px) clamp(10px,1.2vw,20px);">
-      <div>
-        <div class="mb-2">
-          <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:calc(clamp(12px,0.95vw,14px) * min(var(--fs, 1), 1.08));">WEBSITE &amp; E-SHOP UX AUDIT</p>
-        </div>
-        <p class="font-mono text-brand-white/90 leading-relaxed infobox-desc" style="font-size:calc(clamp(12px,0.95vw,14px) * min(var(--fs, 1), 1.08));">
-          We find the spots where people hesitate and leave your website or <span class="whitespace-nowrap">e-shop</span>. For each one, we deliver a concrete fix.
-        </p>
-        <a href="/en/services/ux-audit" class="inline-block mt-3 border border-brand-white px-2 py-1 font-mono tracking-widest hover:bg-brand-white hover:text-brand-black transition-colors" style="font-size:calc(clamp(11px,0.85vw,13px) * min(var(--fs, 1), 1.08));">GET AN AUDIT →</a>
-      </div>
-      <div class="shrink-0" style="margin-top:clamp(10px,1.4vh,20px);">
-        <div class="pt-2 border-t border-brand-white/20 flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5">
-          <p class="font-mono text-brand-white/75 tracking-widest whitespace-nowrap" style="font-size:calc(clamp(10px,0.75vw,12px) * min(var(--fs, 1), 1.08));">PROJECT WITH:</p>
-          <img loading="lazy" decoding="async" width="157" height="37" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="University of Hradec Králové" title="University of Hradec Králové" class="max-w-full shrink-0" style="width:auto; height:clamp(30px,3.4vh,52px); object-fit:contain; margin-top:4px; margin-bottom:4px; filter: invert(1);" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Cursor dot — only in hero area -->
-    <div id="cursor-dot" style="position:fixed;top:0;left:0;width:8px;height:8px;background:#2D62FC;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;"></div>
-
-    <!-- Scroll indicator -->
-    <button type="button" aria-label="Scroll to content" class="hidden md:flex absolute bottom-6 z-10 flex-col items-start gap-2 animate-bounce cursor-pointer" style="left: 50%;" onclick="window.scrollBy({ top: window.innerHeight * 0.6, behavior: 'smooth' })">
-      <p class="font-mono text-xs text-brand-black/60 tracking-widest" style="transform: translateX(-50%);">SCROLL</p>
-      <div class="h-8 bg-brand-black/20" style="width: 1px;"></div>
-    </button>
-  </section>
+  <HomeHero lang="en" />
 
   <main id="main-content">
-
-  <!-- Mobile: Pro koho (obory) -->
-  <div class="md:hidden px-6 pt-8">
-    <p class="font-mono text-[11px] tracking-widest text-brand-black/60 mb-3">[ WHO WE WORK WITH ]</p>
-    <div class="grid grid-cols-2 gap-2">
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">SPORT &amp; STADIUMS</span>
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">E-SHOPS</span>
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">WEBSITES &amp; APPS</span>
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">AUTOMOTIVE</span>
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">UNIVERSITIES &amp; RESEARCH</span>
-      <span class="font-mono text-[11px] tracking-widest border border-brand-black/40 px-2 py-2 text-center">OTHER INDUSTRIES</span>
-    </div>
-  </div>
-
-  <!-- Mobile info box — NOT AN AGENCY, above logo carousel -->
-  <div class="md:hidden border border-brand-black bg-brand-black text-brand-white mx-6 my-8 p-6 flex flex-col gap-4">
-    <div>
-      <p class="font-mono font-medium tracking-widest bg-brand-white text-brand-black px-1 py-0.5 block w-full" style="font-size:12px;">WEBSITE &amp; E-SHOP UX AUDIT</p>
-    </div>
-    <p class="font-mono text-sm text-brand-white/90 leading-relaxed">We find the spots where people hesitate and leave your website or e-shop. For each one, we deliver a concrete fix.</p>
-    <div class="flex gap-2">
-      <a href="/en/services/ux-audit" class="font-mono text-xs border border-brand-white px-2 py-1">GET AN AUDIT →</a>
-      <a href="/en/contact" class="font-mono text-xs border border-brand-white px-2 py-1">CONTACT</a>
-    </div>
-    <div class="border-t border-brand-white/20 pt-2 flex items-center justify-between">
-      <p class="font-mono text-[11px] text-brand-white/75 tracking-widest">PROJECT WITH:</p>
-      <img loading="lazy" decoding="async" width="157" height="37" src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/logos/uhk.svg`} alt="University of Hradec Králové" title="University of Hradec Králové" class="h-[40px] w-auto ml-6 my-1" style="filter: invert(1);" />
-    </div>
-  </div>
 
   <!-- LOGO STRIP -->
   <div class="border-y border-brand-black/10 py-6" style="background:#FDFDFD;">
@@ -494,7 +287,7 @@ const clientLogos = [
     <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
       {[
         { num: '5+', label: 'Completed studies' },
-        { num: '450+', label: 'Study respondents' },
+        { num: '800+', label: 'Study respondents' },
         { num: '8', label: 'Metrics in the EMLI model' },
         { num: '0–100', label: 'Load index scale' },
       ].map(stat => (
