@@ -132,19 +132,19 @@ const s = t[lang] ?? t.en;
 
   <!-- BANNER — vycentrovaný box dole, ne přes celou šířku -->
   <div id="cc-banner" role="dialog" aria-modal="false" aria-label={s.title}
-    class="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-[92vw] max-w-2xl z-[999] border border-brand-white/15 bg-brand-black text-brand-white shadow-2xl">
+    class="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-[92vw] max-w-2xl z-[999] border border-brand-black bg-brand-white text-brand-black md:border-brand-white/15 md:bg-brand-black md:text-brand-white shadow-2xl">
     <div class="px-6 py-4 md:py-5 flex flex-col gap-3 md:gap-4">
       <div>
-        <p class="font-mono text-xs tracking-widest uppercase mb-1.5 text-brand-white">{s.title}</p>
-        <p class="text-sm text-brand-white leading-relaxed">
-          {s.body} <a href={policyHref} class="underline text-brand-white hover:text-brand-white/70 whitespace-nowrap">{s.policy} ↗</a>
+        <p class="font-mono text-xs tracking-widest uppercase mb-1.5 text-brand-black md:text-brand-white">{s.title}</p>
+        <p class="text-sm text-brand-black md:text-brand-white leading-relaxed">
+          {s.body} <a href={policyHref} class="underline text-brand-black hover:text-brand-black/70 md:text-brand-white md:hover:text-brand-white/70 whitespace-nowrap">{s.policy} ↗</a>
         </p>
       </div>
       <!-- Volby jsou rovnocenné (AI-010); na mobilu min. 44 px výška, menší mezery drží lištu na původní výšce -->
       <div class="flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-x-5 md:gap-y-3">
-        <button type="button" data-cc="reject" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-3 md:px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors">{s.necessaryOnly}</button>
-        <button type="button" data-cc="settings" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase border border-brand-white/60 text-brand-white px-3 md:px-4 py-2.5 hover:bg-brand-white hover:text-brand-black transition-colors">{s.settings}</button>
-        <button type="button" data-cc="accept" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase bg-brand-white text-brand-black px-3 md:px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors ml-auto">{s.acceptAll}</button>
+        <button type="button" data-cc="reject" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white md:bg-brand-white md:text-brand-black px-3 md:px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors">{s.necessaryOnly}</button>
+        <button type="button" data-cc="settings" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase border border-brand-black text-brand-black hover:bg-brand-black hover:text-brand-white md:border-brand-white/60 md:text-brand-white md:hover:bg-brand-white md:hover:text-brand-black px-3 md:px-4 py-2.5 transition-colors">{s.settings}</button>
+        <button type="button" data-cc="accept" class="inline-flex items-center justify-center min-h-[44px] md:min-h-0 font-mono text-xs tracking-widest uppercase bg-brand-black text-brand-white md:bg-brand-white md:text-brand-black px-3 md:px-4 py-2.5 hover:bg-[#2D62FC] hover:text-brand-white transition-colors ml-auto">{s.acceptAll}</button>
       </div>
     </div>
   </div>
